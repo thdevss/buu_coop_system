@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '103.86.50.206',
-	'username' => 'coop999',
-	'password' => '999satu',
+	'hostname' => '',
+	'username' => '',
+	'password' => '',
 	'database' => 'coop_db',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
