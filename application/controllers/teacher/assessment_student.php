@@ -17,7 +17,7 @@ class assessment_student extends CI_Controller {
     }
 	public function index()
 	{
-		$data['data'] = $this->assessment_student->get_list(9);
+		$data['data'] = $this->Teacher_Assessmentstudent->get_list(9);
 		// print_r($data);
 		$this->template->view('Teacher/assessment_student_view',$data);
 		
