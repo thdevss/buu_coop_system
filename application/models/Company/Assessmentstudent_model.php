@@ -11,6 +11,7 @@ class Assessmentstudent_model extends CI_Model {
         $this->db->join("company_job_position","company_job_position.id = company_job_position_id");
         $this->db->where('coop_student.company_id' , $company_id); 
         
+        
         $query = $this->db->get();
         return $query->result();
     }

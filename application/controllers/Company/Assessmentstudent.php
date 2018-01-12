@@ -20,9 +20,12 @@ class Assessmentstudent extends CI_Controller {
 
 	public function index()
 	{
+
 		
 		$company_id = $this->Company->getByPerson($this->Login_session->check_login()->login_value)->id;
 		$data['data'] = $this->Company_Assessmentstudent->get_list($company_id);
+
+
 		// print_r($data);
 		$this->template->view('Assessmentstudent/Assessmentstudent_view',$data);
 		
