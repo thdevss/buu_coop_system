@@ -25,8 +25,8 @@ class Assessmentstudent extends CI_Controller {
 		
 	}
 
-	public function form(){
-		$this->template->view('Assessmentstudent/Assessmentstudentform');
+	public function form(){	
+		$this->template->view('Assessmentstudent/Assessmentstudentform_view');
 	}
 }  
   
