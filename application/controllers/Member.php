@@ -17,7 +17,6 @@ class Member extends CI_Controller {
             if($member) {
                 $session_ID = $this->Login_session->set($username, 'company');
                 if($session_ID) {
-                    $this->session->set_userdata('session_ID', $session_ID);
                     redirect('company');                    
                 }
             }

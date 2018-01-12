@@ -11,8 +11,8 @@
   <title>Dashboard ระบบสหกิจ</title>
 
   <!-- Icons -->
-  <link href="<?php echo base_url('assets/theme/css/font-awesome.min.css');?>" rel="stylesheet">
-  <link href="<?php echo base_url('assets/theme/css/simple-line-icons.min.css');?>" rel="stylesheet">
+  <link href="<?php echo base_url('assets/theme/font-awesome/css/font-awesome.min.css');?>" rel="stylesheet">
+  <link href="<?php echo base_url('assets/theme/simple-line-icons/css/simple-line-icons.css');?>" rel="stylesheet">
 
   <!-- Main styles for this application -->
   <link href="<?php echo base_url('assets/css/style.css');?>" rel="stylesheet">
@@ -51,8 +51,7 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          <img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-          <span class="d-md-down-none">admin</span>
+          <span class="d-md-down-none"><?php echo $user->login_value;?></span>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <div class="dropdown-header text-center">
@@ -80,3 +79,4 @@
     </button>
 
   </header>
+  <div class="app-body">

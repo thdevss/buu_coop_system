@@ -3,6 +3,7 @@ class Company_person_login_model extends CI_model
 {
     public function login($username, $password) 
     {
+        $this->db->select('password');
         $this->db->where('username', $username);
         $this->db->from('company_person_login');
         $query = $this->db->get();
