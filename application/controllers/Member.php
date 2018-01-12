@@ -24,14 +24,20 @@ class Member extends CI_Controller {
             //ldap login
             $check_ldap = $this->BUUMember->login($username, $password);
             if($check_ldap) {
-                // $session_ID = $this->Login_session->set($username, $status);
-                // if($session_ID) {
-                //     $this->session->set_userdata('session_ID', $session_ID);
-                //     redirect('company');                    
-                // }
+                $session_ID = $this->Login_session->set($username, $check_ldap['login_type']);
+                if($session_ID) {
+                    $this->session->set_userdata('session_ID', $session_ID);
+                    redirect($check_ldap['login_type']);                    
+                }
             }
         }
 
+        redirect('member/login');
+    }
+
+    public function logout()
+    {
+        $this->session->sess_destroy();
         redirect('member/login');
     }
 }
