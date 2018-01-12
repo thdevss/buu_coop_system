@@ -136,6 +136,6 @@ $autoload['model'] = array(
     'BUUMember_model' => 'BUUMember',
     'Company_person_login_model' => 'Company_person_login',
     'Login_session_model' => 'Login_session',
-    'Company/Assessmentstudent_model' => 'Assessmentstudent',
+    'Company/Assessmentstudent_model' => 'Company_Assessmentstudent',
 
 );

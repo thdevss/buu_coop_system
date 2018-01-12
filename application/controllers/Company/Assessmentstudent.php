@@ -20,14 +20,14 @@ class Assessmentstudent extends CI_Controller {
 
 	public function index()
 	{
-		$data['data'] = $this->Assessmentstudent->get_list(9);
+		$data['data'] = $this->Company_Assessmentstudent->get_list(9);
 		// print_r($data);
 		$this->template->view('Assessmentstudent/Assessmentstudent_view',$data);
 		
 	}
 
 	public function list_assessment(){
-		$data['data'] = $this->Assessmentstudent->get_list();
+		$data['data'] = $this->Company_Assessmentstudent->get_list();
 		
 	}
 
