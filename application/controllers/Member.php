@@ -34,4 +34,10 @@ class Member extends CI_Controller {
 
         redirect('member/login');
     }
+
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect('member/login');
+    }
 }
