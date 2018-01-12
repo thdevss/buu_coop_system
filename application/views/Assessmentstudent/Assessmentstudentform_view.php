@@ -14,7 +14,7 @@
       <!--table รายชื่อนิสิต-->
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify">ประเมินผลการฝึกงานของนิสิตสหกิจ</i></div>
+            <div class="card-header"><i class="fa fa-align-justify"></i>ประเมินผลการฝึกงานของนิสิตสหกิจ</div>
               <div class="card-body">
               <table class="table table-bordered">
                     <thead>
@@ -29,7 +29,9 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Pompeius René</td>
+                        <td><B>1.ผลสำเร็จของงาน/Work Achievement</B>
+                          <p>1.1.ปริมาณงาน(Quantity of work)</p>
+                        </td>
                         <td><input type="radio"></td>
                         <td><input type="radio"></td>
                         <td><input type="radio"></td>
@@ -37,7 +39,9 @@
                         <td><input type="radio"></td>
                       </tr>
                       <tr>
-                        <td>Paĉjo Jadon</td>
+                        <td>1.2.คุณภาพงาน(Quality of work)
+                          <p></p>
+                        </td>
                         <td><input type="radio"></td>
                         <td><input type="radio"></td>
                         <td><input type="radio"></td>
@@ -45,7 +49,9 @@
                         <td><input type="radio"></td>
                       </tr>
                       <tr>
-                        <td>Micheal Mercurius</td>
+                        <td><B>2.ความรู้ความสามารถ/Knowledge and Ability</B>
+                          <p>2.1.ความรู้ความมามารถทางวิชาการ/(Academic ability)</P>
+                        </td>
                         <td><input type="radio"></td>
                         <td><input type="radio"></td>
                         <td><input type="radio"></td>
@@ -53,7 +59,7 @@
                         <td><input type="radio"></td>
                       </tr>
                       <tr>
-                        <td>Ganesha Dubhghall</td>
+                        <td>2.2.ความสามารถในการเรียนรู้และประยุกต์วิชาการ(Ability to learn and apply knowledge)</td>
                         <td><input type="radio"></td>
                         <td><input type="radio"></td>
                         <td><input type="radio"></td>
@@ -61,7 +67,7 @@
                         <td><input type="radio"></td>
                       </tr>
                       <tr>
-                        <td>Hiroto Šimun</td>
+                        <td>2.3.ความรู้ความชำนาญด้านปฏิบัติการ(Practical Ability)</td>
                         <td><input type="radio"></td>
                         <td><input type="radio"></td>
                         <td><input type="radio"></td>

@@ -14,7 +14,7 @@
       <!--table รายชื่อนิสิต-->
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify">ประเมินผลการฝึกงานของนิสิตสหกิจ</i></div>
+            <div class="card-header"><i class="fa fa-align-justify"></i>ประเมินผลการฝึกงานของนิสิตสหกิจ</div>
               <div class="card-body">
 
               <table class="table table-striped datatable">
