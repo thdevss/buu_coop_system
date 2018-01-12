@@ -137,9 +137,9 @@ $autoload['model'] = array(
     'Company_person_login_model' => 'Company_person_login',
     'Login_session_model' => 'Login_session',
 
-    'Teacher/assessment_student_model' => 'assessment_student',
+    'Teacher/assessment_student_model' => 'Teahcer_Assessmentstudent',
 
-    'Company/Assessmentstudent_model' => 'Assessmentstudent',
+    'Company/Assessmentstudent_model' => 'Company_Assessmentstudent',
     'Company/Company_address_model' => 'Company_address',
     'Company/Company_info_model' => 'Company',
 
