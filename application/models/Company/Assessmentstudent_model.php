@@ -9,7 +9,7 @@ class Assessmentstudent_model extends CI_Model {
         $this->db->join("student","student.id = student_id");
         $this->db->join("student_field","student_field.id = student.student_field_id");
         $this->db->join("company_job_position","company_job_position.id = company_job_position_id");
-        $this->db->where('coop_student.company_id' , $company_id);
+        $this->db->where('coop_student.company_id' , $company_id); 
         
         $query = $this->db->get();
         return $query->result();
