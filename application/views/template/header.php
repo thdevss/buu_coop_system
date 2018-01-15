@@ -16,6 +16,12 @@
 
   <!-- Main styles for this application -->
   <link href="<?php echo base_url('assets/css/style.css');?>" rel="stylesheet">
+
+  <script src="<?php echo base_url('assets/theme/jquery/dist/jquery.min.js');?>"></script>
+  <script>
+    var SITE_URL = '<?php echo site_url();?>';
+    var BASE_URL = '<?php echo base_url();?>';
+  </script>
 </head>
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">

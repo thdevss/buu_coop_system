@@ -6,7 +6,6 @@
   </footer>
 
   <!-- Bootstrap and necessary plugins -->
-  <script src="<?php echo base_url('assets/theme/jquery/dist/jquery.min.js');?>"></script>
   <script src="<?php echo base_url('assets/theme/popper.js/dist/umd/popper.min.js');?>"></script>
   <script src="<?php echo base_url('assets/theme/bootstrap/dist/js/bootstrap.min.js');?>"></script>
   <script src="<?php echo base_url('assets/theme/pace-progress/pace.min.js');?>"></script>
