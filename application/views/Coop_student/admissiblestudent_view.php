@@ -74,7 +74,7 @@
                    <input type="text" class="form-control" id="postal-code" placeholder="">
                 </div>
                 <div class="form-group col-sm-4">
-                   <label for="city">ฃรหัสไปรษณีย์</label>
+                   <label for="city">รหัสไปรษณีย์</label>
                    <input type="text" class="form-control" id="city" placeholder="">
                   </div>
               </div>
