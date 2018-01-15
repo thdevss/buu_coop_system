@@ -12,7 +12,7 @@ class Main extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'company') {
+        if($this->Login_session->check_login()->login_type != 'student') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
