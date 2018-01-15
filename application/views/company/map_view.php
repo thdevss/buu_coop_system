@@ -4,7 +4,7 @@
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">ระบบสหกิจ</li>
-        <li class="breadcrumb-item"><a href="#">สถานประกอบการ</a></li>
+        <li class="breadcrumb-item"><a href="#"><?php echo $user->login_type;?></a></li>
         <li class="breadcrumb-item active">แผนที่ตั้งบริษัท</li>
       </ol>
 
