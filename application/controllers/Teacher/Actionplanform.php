@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class assessment_student extends CI_Controller {
+class Actionplanform extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
@@ -17,9 +17,12 @@ class assessment_student extends CI_Controller {
     }
 
 		public function index(){
+         $data['data'] = $this->Teacher_Actionplanform->planform();
+        $this->template->view('Teacher/Actionplanform_view',$data);
+        }
+
+        public function planform (){
+        $data['data'] = $this->Teacher_Actionplanform->planform();
+        print_r($data);
+    }
 }
-		public function form(){
-		$this->template->view('Teacher/assessment_student_view');
-	} 
-}
-  
