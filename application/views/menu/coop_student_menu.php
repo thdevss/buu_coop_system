@@ -14,10 +14,10 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> ข้อมูลทั่วไป</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> Buttons</a>
+                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> ข้อมูลนิสิต</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
+                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> จัดการกิจกรรมการฝึกงานแต่ละวัน</a>
               </li>
             </ul>
           </li>
@@ -25,32 +25,32 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> แบบอนุญาตให้นิสิตไปปฏิบัติงานสหกิจ</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> Buttons</a>
+                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> ดาวน์โหลดเอกสาร</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
+                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> อัพโหลดเอกสาร</a>
               </li>
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> แบบแจ้งรายละเอียดการปฏิบัติงาน</a>
             <ul class="nav-dropdown-items">
-              <li class="nav-item">
-                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> Buttons</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
-              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> ดาวน์โหลดเอกสาร</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> อัพโหลดเอกสาร</a>
+            </li>
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> แบบแจ้งแผนปฏิบัติงานสหกิจ</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> Buttons</a>
+                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> ดาวน์โหลดเอกสาร</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
+                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> อัพโหลดเอกสาร</a>
               </li>
             </ul>
           </li>
@@ -58,10 +58,10 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> แบบแจ้งโครงร่างรายงานการปฏิบัติงาน</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> Buttons</a>
+                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> ดาวน์โหลดเอกสาร</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
+                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> อัพโหลดเอกสาร</a>
               </li>
             </ul>
           </li>
@@ -69,23 +69,15 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> แบบสำรองทั่วไป</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> Buttons</a>
+                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> ดาวน์โหลดเอกสาร</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
+                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> อัพโหลดเอกสาร</a>
               </li>
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> แบบประเมินสถานประกอบการ</a>
-            <ul class="nav-dropdown-items">
-              <li class="nav-item">
-                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> Buttons</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
-              </li>
-            </ul>
+            <a class="nav-link " href="#"><i class="icon-puzzle"></i> แบบประเมินสถานประกอบการ</a>
           </li>
 
         </ul>
