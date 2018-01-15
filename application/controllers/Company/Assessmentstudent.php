@@ -27,7 +27,7 @@ class Assessmentstudent extends CI_Controller {
 
 
 		// print_r($data);
-		$this->template->view('Assessmentstudent/Assessmentstudent_view',$data);
+		$this->template->view('company/Assessmentstudent_view',$data);
 		
 	}
 
@@ -37,7 +37,7 @@ class Assessmentstudent extends CI_Controller {
 	}
 
 	public function form(){	
-		$this->template->view('Assessmentstudent/Assessmentstudentform_view');
+		$this->template->view('company/Assessmentstudentform_view');
 	}
 }  
   
