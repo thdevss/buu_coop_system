@@ -15,28 +15,16 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> นิสิต</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> Buttons</a>
+              <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> รายชื่อนิสิต</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
+              <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> ตรวจสอบเอกสารรายบุคคล</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="components-cards.html"><i class="icon-puzzle"></i> Cards</a>
+              <a class="nav-link" href="components-cards.html"><i class="icon-puzzle"></i> ตรวจสอบเอกสารตามประเภท</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="components-forms.html"><i class="icon-puzzle"></i> Forms</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="components-modals.html"><i class="icon-puzzle"></i> Modals</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="components-switches.html"><i class="icon-puzzle"></i> Switches</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="components-tables.html"><i class="icon-puzzle"></i> Tables</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="components-tabs.html"><i class="icon-puzzle"></i> Tabs</a>
+              <a class="nav-link" href="components-forms.html"><i class="icon-puzzle"></i> รายชื่อนิสิตสหกิจ</a>
             </li>
           </ul>
         </li>
@@ -44,50 +32,46 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> ผู้ประกอบการ</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <a class="nav-link" href="icons-font-awesome.html"><i class="icon-star"></i> Font Awesome <span class="badge badge-secondary">4.7</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="icons-simple-line-icons.html"><i class="icon-star"></i> Simple Line Icons</a>
+              <a class="nav-link" href="icons-font-awesome.html"><i class="icon-star"></i> ข้อมูลสถานประกอบการ</a>
             </li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="widgets.html"><i class="icon-calculator"></i> ประกาศข่าวหน้าเว็บ <span class="badge badge-primary">NEW</span></a>
+          <a class="nav-link" href="widgets.html"><i class="icon-calculator"></i> ประกาศข่าวหน้าเว็บ </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="charts.html"><i class="icon-pie-chart"></i> การอบรม</a>
+        <li class="nav-item nav-dropdown">
+          <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การอบรม</a>
+          <ul class="nav-dropdown-items">
+            <li class="nav-item">
+              <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> ข้อมูลโครงการอบรม</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> เช็คชื่อเข้าอบรม</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> จัดการสถานที่อบรม</a>
+            </li>
+          </ul>
         </li>
         <li class="nav-item nav-dropdown">
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การสอบ</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> Login</a>
+              <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> จัดการข้อมูลการสอบ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> Register</a>
+              <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> จัดการข้อมูลนิสิตเข้าสอบ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages-404.html" target="_top"><i class="icon-star"></i> Error 404</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages-500.html" target="_top"><i class="icon-star"></i> Error 500</a>
+              <a class="nav-link" href="pages-404.html" target="_top"><i class="icon-star"></i> จัดการผลการสอบ</a>
             </li>
           </ul>
         </li>
         <li class="nav-item nav-dropdown">
-          <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> Report</a>
+          <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> รายงาน</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages-404.html" target="_top"><i class="icon-star"></i> Error 404</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages-500.html" target="_top"><i class="icon-star"></i> Error 500</a>
+              <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> รายงานการไปสหกิจ</a>
             </li>
           </ul>
         </li>
@@ -95,10 +79,10 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> แบบประเมิน</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> Login</a>
+              <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> จัดการแบบประเมินสถานประกอบการ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> Register</a>
+              <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> จัดการแบบประเมินนิสิตสหกิจศึกษา</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="pages-404.html" target="_top"><i class="icon-star"></i> Error 404</a>

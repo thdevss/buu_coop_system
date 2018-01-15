@@ -11,62 +11,41 @@
             นิสิต
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> ประวัตินิสิต</a>
-            <ul class="nav-dropdown-items">
-              <li class="nav-item">
-                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> Buttons</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="components-cards.html"><i class="icon-puzzle"></i> Cards</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="components-forms.html"><i class="icon-puzzle"></i> Forms</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="components-modals.html"><i class="icon-puzzle"></i> Modals</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="components-switches.html"><i class="icon-puzzle"></i> Switches</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="components-tables.html"><i class="icon-puzzle"></i> Tables</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="components-tabs.html"><i class="icon-puzzle"></i> Tabs</a>
-              </li>
-            </ul>
+            <a class="nav-link" href="#"><i class="icon-puzzle"></i> ประวัตินิสิต</a>
           </li>
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การอบรม</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="icons-font-awesome.html"><i class="icon-star"></i> Font Awesome <span class="badge badge-secondary">4.7</span></a>
+                <a class="nav-link" href="icons-font-awesome.html"><i class="icon-star"></i> ตรวจสอบชั่วโมงอบรม</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="icons-simple-line-icons.html"><i class="icon-star"></i> Simple Line Icons</a>
+                <a class="nav-link" href="icons-simple-line-icons.html"><i class="icon-star"></i> ตรวจสอบประวัติการอบรม</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="icons-simple-line-icons.html"><i class="icon-star"></i> สมัครเข้าร่วมอบรม</a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="widgets.html"><i class="icon-calculator"></i> การสอบสหกิจ</a>
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การสอบสหกิจ</a>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">
+                <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> สมัครสอบสหกิจ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> ประกาศผลสอบ</a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> สหกิจศึกษา</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> Login</a>
+                <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> รายการสมัครที่เปิดรับ</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> Register</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="pages-404.html" target="_top"><i class="icon-star"></i> Error 404</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="pages-500.html" target="_top"><i class="icon-star"></i> Error 500</a>
+                <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> ประกาศผลการสมัครงาน</a>
               </li>
             </ul>
           </li>
