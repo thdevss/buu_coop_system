@@ -17,12 +17,18 @@ class Actionplanform extends CI_Controller {
     }
 
 		public function index(){
-         $data['data'] = $this->Teacher_Actionplanform->planform();
+         $data['data'] = $this->Teacher_Actionplanform->gets_student_list_by_teacher();
         $this->template->view('Teacher/Actionplanform_view',$data);
         }
 
         public function planform (){
-        $data['data'] = $this->Teacher_Actionplanform->planform();
+        $data['data'] = $this->Teacher_Actionplanform->gets_student_list_by_teacher();
         print_r($data);
+    }
+
+    public function ajax_get($student_id)
+    {
+        $data['data'] = $this->Teacher_Actionplanform->get_by_student($student_id);
+        echo json_encode($data);        
     }
 }
