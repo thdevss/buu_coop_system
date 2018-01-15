@@ -4,7 +4,7 @@
 <!-- Breadcrumb -->
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Home</li>
-  <li class="breadcrumb-item"><a href="#">นิสิตสหกิจ</a></li>
+  <li class="breadcrumb-item"><a href="#"><?php echo $user->login_type;?></a></li>
   <li class="breadcrumb-item active">แบบอนุญาติให้นิสิตไปปฏิบัติงานสหกิจ</li>
 </ol>
 <div class="container-fluid">
