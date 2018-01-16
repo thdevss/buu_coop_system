@@ -140,9 +140,9 @@ $autoload['model'] = array(
     'Company_person_login_model' => 'Company_person_login',
     'Login_session_model' => 'Login_session',
 
-    'Teacher/assessment_student_model' => 'Teacher_Assessmentstudent',
+    'Teacher/Assessment_teacher_model' => 'Teacher_Assessmentteacher',
     'Teacher/Actionplanform_model' => 'Teacher_Actionplanform',
-
+    'Teacher/Supervisiondocument_model' => 'Teacher_Supervisiondocument',
 
     'Company/Assessmentstudent_model' => 'Company_Assessmentstudent',
     'Company/Company_address_model' => 'Company_address',
