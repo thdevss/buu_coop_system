@@ -17,19 +17,19 @@
             <?php 
             if(@$status == 'successinsert'){ 
               echo '<div class="alert alert-success" role="alert">
-              <strong>Well done!</strong> You successfully read this important alert message.
+              <strong>สำเร็จ!</strong>
             </div>';
             } else if(@$status == 'successupdate') {
               echo '<div class="alert alert-success" role="alert">
-              <strong>Well done!</strong> You successfully read this important alert message.
+              <strong>สำเร็จ!</strong> 
             </div>';
             } else if (@$status == 'error') {
               echo '<div class="alert alert-danger" role="alert">
-              <strong>Oh snap!</strong> Change a few things up and try submitting again.
+              <strong>ล้มเหลว!</strong>
             </div>';
-            } ?>
+            }?>
       
-            <form action=<?php echo site_url("Coop_student/Reportmanager/index"); ?> method="post" class="form-horizontal">
+            <form action=<?php echo site_url("Coop_student/Reportmanager/post_report"); ?> method="post" class="form-horizontal">
                  <div class="form-group row">
                       <label class="col-md-3" for="text-input">หัวข้อภาษาไทย</label>
                       <div class="col-md-6">
@@ -45,7 +45,7 @@
                     <div class="form-group row">
                       <label class="col-md-3 form-control-label" for="textarea-input">รายละเอียดเนื้อหาของรายงาน</label>
                       <div class="col-md-6">
-                        <textarea id="textarea-input" name="report_detail" rows="9" class="form-control" value="<?php echo @$row->report_detail?>"></textarea>
+                        <textarea id="textarea-input" name="report_detail" rows="9" class="form-control"><?php echo @$row->report_detail?></textarea>
                       </div>
                     </div>
               
