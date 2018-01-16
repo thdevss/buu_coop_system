@@ -7,6 +7,9 @@
         <li class="nav-item">
           <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-toggle="modal" data-target="#selectTermBox"><i class="icon-puzzle"></i> เลือกปีการศึกษา</a>
+        </li>
 
         <li class="nav-title">
           เจ้าหน้าที่
@@ -91,3 +94,36 @@
     </nav>
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>
   </div>
+
+
+<div class="modal fade" id="selectTermBox">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">เลือกปีการศึกษา</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="term_option">ปีการศึกษา</label>
+            <select class="form-control" id="term_option">
+              <?php 
+              foreach($terms as $term) {
+                echo '<option value="'.$term->id.'">'.$term->name.'</option>';
+              }
+              ?>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="changeTermAjax()">เปลี่ยนปีการศึกษา</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิดหน้าต่าง</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="<?php echo base_url('assets/js/officer/term.js?'.time());?>"></script>
