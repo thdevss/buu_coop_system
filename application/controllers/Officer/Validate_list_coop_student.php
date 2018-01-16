@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class assessment_student extends CI_Controller {
+class Validate_list_coop_student extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
@@ -10,16 +10,18 @@ class assessment_student extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'teacher') {
+        if($this->Login_session->check_login()->login_type != 'officer') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
     }
 
 		public function index(){
+
+            $data['data'] = $this->validate_assessment_coop->list();
+        $this->template->view('Officer/validate_assessment_list_coop_view',$data);
+     
+        }
+ 
+
 }
-		public function form(){
-		$this->template->view('Teacher/assessment_student_view');
-	} 
-}
-  

@@ -22,5 +22,7 @@
   <!-- Custom scripts required by this view -->
   <script src="<?php echo base_url('assets/js/views/main.js');?>"></script>
 
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </body>
 </html>

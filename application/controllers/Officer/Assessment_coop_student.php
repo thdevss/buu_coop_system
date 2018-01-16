@@ -16,10 +16,11 @@ class Assessment_coop_student extends CI_Controller {
         }
     }
 
-		public function index(){
+		public function view($student_id){
 
 	
 		$this->template->view('Officer/Assessment_coop_student_view');
-	} 
+    } 
+  
 }
 ?>

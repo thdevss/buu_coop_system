@@ -31,7 +31,7 @@
                 <a class="nav-link" href="icons-font-awesome.html"><i class="icon-star"></i> รายชื่อที่สมัครในตำแหน่งงาน</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="icons-simple-line-icons.html"><i class="icon-star"></i> ประเมินผลการฝึกงาน</a>
+              <?php echo anchor('Company/Assessmentstudent/', '<i class="fa fa-star"></i> ประเมินผลการฝึกงานของนิสิต', 'class="nav-link"');?>
               </li>
             </ul>
           </li>
