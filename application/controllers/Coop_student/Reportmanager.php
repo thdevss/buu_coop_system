@@ -17,11 +17,7 @@ class Reportmanager  extends CI_Controller {
             die();
         }
     }
-    public function get_list(){
-        $data['data'] = $this->Report->get_report($student_id);
-        print_r($data);
-    }
-    public function post_report(){
+    public function index(){
         $student_id = '57660135';
         $data['subject_th'] =  $this->input->post('subject_th');
         $data['subject_en'] = $this->input->post('subject_en');
