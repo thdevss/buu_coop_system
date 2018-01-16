@@ -30,8 +30,8 @@
           <div class="card p-4">
             <div class="card-body">
               <h1>Login</h1>
-              <?php if(@$msg) { ?>
-                    <p class="alert alert-warning"><?php echo $msg;?></p>
+              <?php if(@$status) { ?>
+                    <p class="alert alert-warning">รหัสผู้ใช้ผิดพลาด <b>โปรดตรวจสอบ</b></p>
               <?php } else { ?>
                     <p class="text-muted">Sign In to your account</p>
               <?php } ?>

@@ -4,10 +4,6 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
-  <meta name="author" content="Łukasz Holeczek">
-  <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,AngularJS,Angular,Angular2,Angular 2,Angular4,Angular 4,jQuery,CSS,HTML,RWD,Dashboard,React,React.js,Vue,Vue.js">
-  <link rel="shortcut icon" href="img/favicon.png">
   <title>Dashboard ระบบสหกิจ</title>
 
   <!-- Icons -->
@@ -52,14 +48,15 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          <span class="d-md-down-none"><?php echo $user->login_value;?></span>
+          <span class="d-md-down-none"><?php echo $user_info->fullname;?></span>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <div class="dropdown-header text-center">
             <strong>Account</strong>
           </div>
-          <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> <?php echo $user->login_type;?></a>
-          <a class="dropdown-item" href="<?php echo site_url('member/logout');?>"><i class="fa fa-lock"></i> Logout</a>
+          <a class="dropdown-item" href="#"><img src="http://reg.buu.ac.th/registrar/getstudentimage.asp?id=<?php echo $user->login_value;?>" class="rounded-circle"></a>          
+          <a class="dropdown-item" href="#"><i class="fa fa-users"></i> <?php echo strToLevel($user->login_type);?></a>
+          <a class="dropdown-item" href="<?php echo site_url('member/logout');?>"><i class="fa fa-lock"></i> ออกจากระบบ</a>
         </div>
       </li>
     </ul>
