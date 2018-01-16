@@ -17,6 +17,10 @@ class Reportmanager  extends CI_Controller {
             die();
         }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6986e9c926373bbaed7152caed0795230d15c401
     public function index(){
         $student_id = '57660135';
         $data['subject_th'] =  $this->input->post('subject_th');

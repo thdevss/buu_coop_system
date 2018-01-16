@@ -10,6 +10,7 @@ class Coop_student_info_model extends CI_Model {
     }
 
     public function gets(){
+        $this->db->join('student', 'student.id = coop_student.student_id');
         $this->db->from('coop_student');
         $query = $this->db->get();
         return $query->result();

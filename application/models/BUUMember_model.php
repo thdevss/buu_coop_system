@@ -7,10 +7,12 @@ class BUUMember_model extends CI_Model
             $data = array();
             $data['fullname'] = 'Nuttanon';
             $data['login_type'] = 'teacher';
+            $data['login_value'] = '49173';
         } else if($username == 'pnut') {
             $data = array();
             $data['fullname'] = 'Kamonwan';
             $data['login_type'] = 'officer';
+            $data['login_value'] = '1';
         }
 
         return $data;
@@ -31,6 +33,7 @@ class BUUMember_model extends CI_Model
                     //student
                     $data['login_type'] = 'student';                    
                 }
+                $data['login_value'] = $userdata['code'];
             } else {
                 return $this->xlogin($username, $password);
             }
@@ -38,6 +41,38 @@ class BUUMember_model extends CI_Model
             return $this->xlogin($username, $password);
         }
         return $data;
+    }
+
+    public function get($login_type, $login_value)
+    {
+        if($login_type == 'student') {
+            $this->db->where('id', $login_value);
+            $this->db->from('student');
+            $query = $this->db->get();
+            return $query->result();
+        } else if($login_type == 'coop_student') {
+            $this->db->join('coop_student', 'coop_student.student_id = student.id');
+            $this->db->where('id', $login_value);
+            $this->db->from('student');
+            $query = $this->db->get();
+            return $query->result();
+        } else if($login_type == 'teacher') {
+            $this->db->where('id', $login_value);
+            $this->db->from('teacher');
+            $query = $this->db->get();
+            return $query->result();
+        } else if($login_type == 'officer') {
+            $this->db->where('id', $login_value);
+            $this->db->from('officer');
+            $query = $this->db->get();
+            return $query->result();
+        } else if($login_type == 'company') {
+            $this->db->join('company_person', 'company_person.id = company_person_id');            
+            $this->db->where('username', $login_value);
+            $this->db->from('company_person_login');
+            $query = $this->db->get();
+            return $query->result();
+        }
     }
 
 }
