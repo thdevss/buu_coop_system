@@ -20,53 +20,53 @@
                     <thead>
                       <tr>
                         <th>หัวข้อประเมิน/Items</th>
-                        <th>5</th>
-                        <th>4</th>
-                        <th>3</th>
-                        <th>2</th>
-                        <th>1</th>
+                        <th>5 (ดีมาก)</th>
+                        <th>4 (ดี)</th>
+                        <th>3(ปานกลาง)</th>
+                        <th>2 (พอใช้)</th>
+                        <th>1 (ควรปรับปรุง)</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Pompeius René</td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
+                        <td>	มิติทางสังคมและจริยธรรมสำหรับนักเทคโนโลยีสารสนเทศ</td>
+                        <td style="width:100px"><input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td style="width:100px"><input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td style="width:100px"><input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td style="width:100px"><input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td style="width:100px"><input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
                       </tr>
                       <tr>
-                        <td>Paĉjo Jadon</td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
+                        <td>สัมมนาเทคโนโลยีสารสนเทศ</td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
                       </tr>
                       <tr>
-                        <td>Micheal Mercurius</td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
+                        <td>ปฏิบัติการระบบวางแผนทรัพยากรวิสาหกิจ</td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
                       </tr>
                       <tr>
-                        <td>Ganesha Dubhghall</td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
+                        <td>หัวข้อเลือกสรรทางเทคโนโลยีสารสนเทศ 4</td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
                       </tr>
                       <tr>
-                        <td>Hiroto Šimun</td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
+                        <td>แบบประเมินการให้บริการในภาพรวมของมหาวิทยาลัยบูรพา</td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
+                        <td> <input type="radio" id="contactChoice1" name="contact" value="email" checked></td>
                       </tr>
                     </tbody>
                   </table>
