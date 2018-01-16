@@ -17,11 +17,6 @@ class Reportmanager  extends CI_Controller {
             die();
         }
     }
-    public function b() {
-        $data['data'] = $this->Report->Report_list();
-        $this->template->view('Coop_student/Reportmanager_view',$data);
-
-    }
     public function get_list(){
         $data['data'] = $this->Report->get_report($student_id);
         print_r($data);
