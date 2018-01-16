@@ -1,7 +1,7 @@
 <?php
     defined('BASEPATH') OR exit('No direct script access allowed');
 
-    class Assessment_studentForm extends CI_Controller {
+    class Assessment_coop_student_Form extends CI_Controller {
         public function __construct()
         {
             parent::__construct();

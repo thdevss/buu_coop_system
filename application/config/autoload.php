@@ -154,6 +154,7 @@ $autoload['model'] = array(
     'Term_model' => 'Term',
     'Officer/Assessment_student' => 'Officer_Assessment_student',
     
+    'Officer/Validate_assessment_list_coop_student_model' => 'validate_assessment_coop'
 
     
 
