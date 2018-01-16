@@ -151,12 +151,11 @@ $autoload['model'] = array(
     'Coop_student/Coop_student_info_model' => 'Coop_student',
     'Coop_student/Reportmanager_model' => 'Report',
     'News_model' => 'News',
+    'Student/Train_register_model' => 'Train',
     'Term_model' => 'Term',
     'Officer/Assessment_student' => 'Officer_Assessment_student',
     
     'Officer/Validate_assessment_list_coop_student_model' => 'validate_assessment_coop'
-
-    
 
 
 );
