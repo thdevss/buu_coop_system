@@ -153,7 +153,7 @@ $autoload['model'] = array(
     'News_model' => 'News',
     'Term_model' => 'Term',
     'Officer/Assessment_student' => 'Officer_Assessment_student',
-    
+    'Student/Train_register_model' => 'Train',
 
     
 
