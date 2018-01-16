@@ -29,7 +29,7 @@
             </div>';
             } ?>
       
-            <form action=<?php echo site_url("Coop_student/Reportmanager/post_report"); ?> method="post" class="form-horizontal">
+            <form action=<?php echo site_url("Coop_student/Reportmanager/index"); ?> method="post" class="form-horizontal">
                  <div class="form-group row">
                       <label class="col-md-3" for="text-input">หัวข้อภาษาไทย</label>
                       <div class="col-md-6">
