@@ -3,7 +3,8 @@
 class Member extends CI_Controller {
     public function login()
     {
-        $this->load->view('login/login_view.php');
+        $data['status'] = $this->input->get('status');
+        $this->load->view('login/login_view.php', $data);
     }
 
     public function post_login() 
@@ -24,7 +25,7 @@ class Member extends CI_Controller {
             //ldap login
             $check_ldap = $this->BUUMember->login($username, $password);
             if($check_ldap) {
-                $session_ID = $this->Login_session->set($username, $check_ldap['login_type']);
+                $session_ID = $this->Login_session->set($check_ldap['login_value'], $check_ldap['login_type']);
                 if($session_ID) {
                     $this->session->set_userdata('session_ID', $session_ID);
                     redirect($check_ldap['login_type']);                    
@@ -32,7 +33,7 @@ class Member extends CI_Controller {
             }
         }
 
-        redirect('member/login');
+        redirect('member/login?status=error');
     }
 
     public function logout()
