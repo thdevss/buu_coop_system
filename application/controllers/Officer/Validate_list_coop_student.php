@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Assessment_coop_student extends CI_Controller {
+class Validate_list_coop_student extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
@@ -16,11 +16,12 @@ class Assessment_coop_student extends CI_Controller {
         }
     }
 
-		public function view($student_id){
+		public function index(){
 
-	
-		$this->template->view('Officer/Assessment_coop_student_view');
-    } 
-  
+            $data['data'] = $this->validate_assessment_coop->list();
+        $this->template->view('Officer/validate_assessment_list_coop_view',$data);
+     
+        }
+ 
+
 }
-?>

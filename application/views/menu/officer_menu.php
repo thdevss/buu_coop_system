@@ -18,7 +18,7 @@
               <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> รายชื่อนิสิต</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> ตรวจสอบเอกสารรายบุคคล</a>
+            <?php echo anchor('Officer/Validate_list_coop_student/', '<i class="fa fa-star"></i> ตรวจสอบเอกสารรายบุคคล', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="components-cards.html"><i class="icon-puzzle"></i> ตรวจสอบเอกสารตามประเภท</a>
@@ -82,14 +82,7 @@
               <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> จัดการแบบประเมินสถานประกอบการ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> จัดการแบบประเมินนิสิตสหกิจศึกษา</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages-404.html" target="_top"><i class="icon-star"></i> Error 404</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pages-500.html" target="_top"><i class="icon-star"></i> Error 500</a>
-            </li>
+            <?php echo anchor('Officer/Assessment_coop_student_Form/', '<i class="fa fa-star"></i> จัดการแบบประเมินนิสิตสหกิจศึกษา', 'class="nav-link"');?>
           </ul>
         </li>
         
