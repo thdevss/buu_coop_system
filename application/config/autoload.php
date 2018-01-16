@@ -150,7 +150,8 @@ $autoload['model'] = array(
     'Coop_student/Adimssiblestudent_model' => 'Coop_student_Adimssiblestudent',
     'Coop_student/Coop_student_info_model' => 'Coop_student',
     'Coop_student/Reportmanager_model' => 'Report',
-    'News_model' => 'News'
+    'News_model' => 'News',
+    'Student/Train_register_model' => 'Train',
 
     
 
