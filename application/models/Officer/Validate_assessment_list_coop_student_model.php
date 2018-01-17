@@ -11,5 +11,22 @@ class Validate_assessment_list_coop_student_model extends CI_Model {
         return $query->result();
     }
 
+    public function gets_document()
+    {
+        $this->db->where('term_id', $this->Login_session->check_login()->term_id);
+        $this->db->from('coop_document');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_by_student($student_id, $doc_id) 
+    {
+        $this->db->where('student_id', $student_id);
+        $this->db->where('coop_document_id', $doc_id);
+        $this->db->from('coop_student_has_coop_document');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 
 }

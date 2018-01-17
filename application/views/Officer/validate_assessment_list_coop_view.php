@@ -34,9 +34,17 @@
                         <td class="text-center"><?php echo $row->fullname ?></td>
                         <td class="text-center">3.50</td>
                         <td class="text-center"><?php echo $row->name ?></td>
-                        <td class="text-center"><font color="#006600">ไม่ผ่าน</font></td>
                         <td class="text-center">
-                          <a class="btn btn-primary Document_check" data-studentid="<?php echo $row->student_id;?>">รายละเอียด</a>
+                        <?php
+                        if($row->document) {
+                          echo '<font color="#006600">ครบ</font>';
+                        } else {
+                          echo '<font color="red">ไม่ผ่าน</font>';
+                        }
+                        ?>
+                        </td>
+                        <td class="text-center">
+                          <a class="btn btn-primary document_check_btn" data-studentid="<?php echo $row->student_id;?>">รายละเอียด</a>
                         </td>
                       </tr>
                     <?php 
@@ -54,9 +62,9 @@
   </div>
 </div>
 
-<script src="<?php echo base_url('/assets/js/teacher/actionplan.js?'.time());?>"></script>
+<script src="<?php echo base_url('/assets/js/officer/document_check.js?'.time());?>"></script>
 <!-- The Modal -->
-<div class="modal fade" id="actionplan_student">
+<div class="modal fade" id="document_check_student">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
       
@@ -69,15 +77,11 @@
         <!-- Modal body -->
         <div class="modal-body">
         
-        <table class="table table-bordered" id="actionplan_table">
+        <table class="table table-bordered" id="document_check_table">
                     <thead>
                       <tr>
-                        <th>ID</th>
-                        <th>หัวข้องาน</th>
-                        <th>เดือนที่ 1</th>
-                        <th>เดือนที่ 2</th>
-                        <th>เดือนที่ 3</th>
-                        <th>เดือนที่ 4</th>
+                        <th>รหัสเอกสาร</th>
+                        <th>เอกสาร</th>
                       </tr>
                     </thead>
                     <tbody>
