@@ -48,12 +48,12 @@
                         <textarea id="textarea-input" name="report_detail" rows="9" class="form-control"><?php echo @$row->report_detail?></textarea>
                       </div>
                     </div>
+                    <div class="text-center">
+                  <button type="submit" class="btn btn-md btn-primary"><i class="fa fa-dot-circle-o"></i>บันทึกเอกสาร</button>
+                  <button type="submit" class="btn btn-lg btn-primary"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
+                </div>
               
           </div>
-          <div class="card-footer text-center">
-                  <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i>บันทึกเอกสาร</button>
-                  <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
-                </div>
         </div>
       </div>
     </div>

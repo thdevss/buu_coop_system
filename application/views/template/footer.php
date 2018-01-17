@@ -11,7 +11,6 @@
   <script src="<?php echo base_url('assets/theme/pace-progress/pace.min.js');?>"></script>
 
   <!-- Plugins and scripts required by all views -->
-  <script src="<?php echo base_url('assets/theme/chart.js/dist/Chart.min.js');?>"></script>
 
   <!-- GenesisUI main scripts -->
 
@@ -20,9 +19,19 @@
   <!-- Plugins and scripts required by this views -->
 
   <!-- Custom scripts required by this view -->
-  <script src="<?php echo base_url('assets/js/views/main.js');?>"></script>
 
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
+  <link rel="stylesheet" href="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+  <script src="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+  <script>
+  jQuery(function () {
+    jQuery("#datetime").datetimepicker({
+      format:'YYYY-MM-DD hh:mm:00 a'
+    })
+  });
+  </script>
 </body>
 </html>
