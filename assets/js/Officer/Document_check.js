@@ -5,11 +5,11 @@ jQuery( ".document_check_btn" ).click(function() {
     jQuery.getJSON( SITE_URL+"/Officer/Validate_list_coop_student/get_by_student/"+student_id, function( result ) {
         var items = [];
         jQuery.each( result.data, function( key, val ) {
-            if(val.file == '') {
+            if(val.file != '') {
                 $('#document_check_table tbody').append(
                     '<tr>'+
-                    '<td>'+val.document_code+'</td>'+
-                    '<td>'+val.file+'</td>'+              
+                    '<th >'+val.document_code+'</td>'+
+                    '<td><u><a href="'+BASE_URL+'/'+val.file+'" target="_blank">ดาวน์โหลด</a></u></td>'+              
                     '</tr>');
             } else {
                 $('#document_check_table tbody').append(

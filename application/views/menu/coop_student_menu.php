@@ -22,13 +22,13 @@
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-          <?php echo anchor('Coop_student/admissiblestudent/', '<i class="fa fa-star"></i> แบบอนุญาตให้นิสิตไปปฏิบัติงานสหกิจ', 'class="nav-link"');?>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> แบบอนุญาตให้นิสิตไปปฏิบัติงานสหกิจ</a>          
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-              <?php echo anchor('Coop_student/uploadadmissiblestudent/', '<i class="fa fa-star"></i> ดาวน์โหลดเอกสาร', 'class="nav-link"');?>
+              <?php echo anchor('Coop_student/Permit_form/', '<i class="fa fa-star"></i> ดาวน์โหลดเอกสาร', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
-              <?php echo anchor('Coop_student/uploadadmissiblestudent/', '<i class="fa fa-star"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
+              <?php echo anchor('Coop_student/upload_document/?code=IN-S003', '<i class="fa fa-star"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
               </li>
             </ul>
           </li>
@@ -39,7 +39,7 @@
               <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> ดาวน์โหลดเอกสาร</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> อัพโหลดเอกสาร</a>
+              <?php echo anchor('Coop_student/upload_document/?code=IN-S004', '<i class="fa fa-star"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
             </li>
             </ul>
           </li>
@@ -51,7 +51,7 @@
                 <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> ดาวน์โหลดเอกสาร</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> อัพโหลดเอกสาร</a>
+                <?php echo anchor('Coop_student/upload_document/?code=IN-S005', '<i class="fa fa-star"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
               </li>
             </ul>
           </li>
@@ -62,12 +62,13 @@
                 <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> ดาวน์โหลดเอกสาร</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> อัพโหลดเอกสาร</a>
+                <?php echo anchor('Coop_student/upload_document/?code=IN-S006', '<i class="fa fa-star"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
               </li>
-              <li class="nav-item">
-              <?php echo anchor('Coop_student/Reportmanager/', '<i class="fa fa-star"></i> จัดการหัวข้อรายงาน', 'class="nav-link"');?>
-              </li>
+              
             </ul>
+          </li>
+          <li class="nav-item">
+            <?php echo anchor('Coop_student/Reportmanager/', '<i class="fa fa-star"></i> จัดการหัวข้อรายงาน', 'class="nav-link"');?>
           </li>
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> แบบสำรองทั่วไป</a>
@@ -76,7 +77,7 @@
                 <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> ดาวน์โหลดเอกสาร</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> อัพโหลดเอกสาร</a>
+              7<?php echo anchor('Coop_student/upload_document/?code=IN-S006', '<i class="fa fa-star"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
               </li>
             </ul>
           </li>

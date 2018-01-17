@@ -147,7 +147,7 @@ $autoload['model'] = array(
     'Company/Assessmentstudent_model' => 'Company_Assessmentstudent',
     'Company/Company_address_model' => 'Company_address',
     'Company/Company_info_model' => 'Company',
-    'Coop_student/Adimssiblestudent_model' => 'Coop_student_Adimssiblestudent',
+    'Coop_student/Permit_form_model' => 'Coop_student_Permit_form',
     'Coop_student/Coop_student_info_model' => 'Coop_student',
     'Coop_student/Reportmanager_model' => 'Report',
     'News_model' => 'News',
@@ -156,7 +156,10 @@ $autoload['model'] = array(
     'Officer/Assessment_student' => 'Officer_Assessment_student',
     
     'Officer/Validate_assessment_list_coop_student_model' => 'validate_assessment_coop',
+
     'Officer/Train_register_management_model' => 'Train_register',
 
+
+    'Coop_student/Coop_document_model' => 'Coop_document'
 
 );
