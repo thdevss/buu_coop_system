@@ -17,7 +17,7 @@
                 <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> จัดการข้อมูลบริษัท</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> แผนที่ตั้งบริษัท</a>
+              <?php echo anchor('company/company_map/', '<i class="fa fa-star"></i> แผนที่ตั้งบริษัท', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="components-cards.html"><i class="icon-puzzle"></i> จัดการสาขาย่อย</a>
