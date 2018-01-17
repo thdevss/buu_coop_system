@@ -1,23 +1,29 @@
-jQuery( ".Document_check" ).click(function() {
+jQuery( ".document_check_btn" ).click(function() {
     var student_id = jQuery(this).data('studentid');
-    jQuery("#actionplan_table tbody").empty();
+    jQuery("#document_check_table tbody").empty();
 
-    jQuery.getJSON( SITE_URL+"/teacher/Actionplanform/ajax_get/"+student_id, function( result ) {
+    jQuery.getJSON( SITE_URL+"/Officer/Validate_list_coop_student/get_by_student/"+student_id, function( result ) {
         var items = [];
         jQuery.each( result.data, function( key, val ) {
-            $('#actionplan_table tbody').append(
-                '<tr>'+
-                '<td>ID</td>'+
-                '<td>'+val.work_subject+'</td>'+
-                '<td>1</td>'+
-                '<td>1</td>'+
-                '<td>1</td>'+
-                '<td>1</td>'+                
-                '</tr>');
+            if(val.file == '') {
+                $('#document_check_table tbody').append(
+                    '<tr>'+
+                    '<td>'+val.document_code+'</td>'+
+                    '<td>'+val.file+'</td>'+              
+                    '</tr>');
+            } else {
+                $('#document_check_table tbody').append(
+                    '<tr>'+
+                    '<td>'+val.document_code+'</td>'+
+                    '<td>'+val.file+'</td>'+         
+                    '</tr>');
+
+            }
+            
         });
     });
 
-    $("#actionplan_student").modal()
+    $("#document_check_student").modal()
 
 
 });
