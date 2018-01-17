@@ -34,18 +34,10 @@
                       <label class="col-md-3 form-control-label" for="text-input">หัวข้ออบรม</label>
                       <div class="col-md-4">
                       <select class="form-control" id="ccmonth">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
-                        <option>11</option>
-                        <option>12</option>
+                       <option></option>
+                       <?php foreach ($data as $row) { ?>
+                        <option><?php echo $row->date.":".$row->title ?></option>
+                       <?php  }  ?>
                       </select>
                       </div>
                     </div>
