@@ -60,7 +60,7 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การสอบ</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> จัดการข้อมูลการสอบ</a>
+              <?php echo anchor('Officer/Train_register_management/', '<i class="fa fa-star"></i>  จัดการข้อมูลรับสมัครการสอบ', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> จัดการข้อมูลนิสิตเข้าสอบ</a>
