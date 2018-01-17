@@ -15,13 +15,6 @@
           <div class="card-header"><i class="fa fa-align-justify"></i>แบบอนุญาติให้นิสิตไปปฏิบัติงานสหกิจ</div>
 
               <div class="card-body">
-                <?php 
-                if(@$success) {
-                  echo '<div class="alert alert-success" role="alert"><strong>สำเร็จ!</strong></div>';
-                }
-                
-                echo validation_errors('<div class="alert alert-warning">', '</div>');
-                ?>
 
                 <div class="card-header"><strong> 1.ข้อมูลทั่วไป</strong></div>
               
