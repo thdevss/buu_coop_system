@@ -158,10 +158,29 @@ $autoload['model'] = array(
     'Officer/Validate_assessment_list_coop_student_model' => 'validate_assessment_coop',
 
     'Officer/Train_register_management_model' => 'Train_register',
+    'Officer/Test_Management_model' => 'Test_Management',
+    'Coop_student/Coop_document_model' => 'Coop_document',
+
 
 
     'Coop_student/Coop_document_model' => 'Coop_document',
     
     'Officer/List_coop_student_model' => 'List_coop'
+
+    //add new
+    'DB/Company_address_model' => 'DB_company_address',
+    'DB/Company_benefit_model' => 'DB_company_benefit',
+    'DB/Company_has_coop_company_questionnaire_item_model' => 'DB_company_has_coop_company_questionnaire_item',
+    'DB/Company_model' => 'DB_company',
+    'DB/Coop_document_model' => 'DB_coop_document',
+    'DB/Coop_student_has_coop_document_model' => 'DB_coop_student_has_coop_document',
+    'DB/Coop_student_model' => 'DB_coop_student',
+    'DB/Coop_test_has_student_model' => 'DB_coop_test_has_student',
+    'DB/Coop_test_model' => 'DB_coop_test',
+    'DB/Student_field_model' => 'DB_student_field',
+    'DB/Student_model' => 'DB_student',
+    
+    
+
 
 );
