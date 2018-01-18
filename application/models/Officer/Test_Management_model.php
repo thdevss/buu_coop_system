@@ -11,4 +11,9 @@ class Test_Management_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function get_test_lists()
+    {
+        
+    }
 }

@@ -162,4 +162,19 @@ $autoload['model'] = array(
     'Coop_student/Coop_document_model' => 'Coop_document',
 
 
+    //add new
+    'DB/Company_address_model' => 'DB_Company_address',
+    'DB/Company_benefit_model' => 'DB_Company_benefit',
+    'DB/Company_has_coop_company_questionnaire_item_model' => 'DB_Company_has_coop_company_questionnaire_item',
+    'DB/Company_model' => 'DB_Company',
+    'DB/Coop_document_model' => 'DB_Coop_document',
+    'DB/Coop_student_has_coop_document_model' => 'DB_Coop_student_has_coop_document',
+    'DB/Coop_student_model' => 'DB_Coop_student',
+    'DB/Coop_test_has_student_model' => 'DB_Coop_test_has_student',
+    'DB/Coop_test_model' => 'DB_Coop_test',
+    'DB/Student_field_model' => 'DB_Student_field',
+    'DB/Student_model' => 'DB_Student',
+    
+    
+
 );
