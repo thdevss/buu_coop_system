@@ -20,20 +20,22 @@
                     <thead>
                       <tr bgcolor="MediumSeaGreen">
                         <th class="text-center">รหัสนิสิต</th>
-                        <th class="text-center" >รหัสนิสิต</th>
+                        <th class="text-center" >ชื่อ-สกุล</th>
                         <th class="text-center">ตำแหน่งงาน </th>
                         <th class="text-center">บริษัท</th>
                         <th class="text-center">พี่เลียง</th>
                       </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($data as $row){?>
+                    <?php foreach ($data as $row){ 
+                      ?>
+
                       <tr>
-                        <td class="text-center"><?php echo $row->id ?></td>
-                        <td class="text-center"><?php echo $row->fullname ?></td>
-                        <td class="text-center"><?php echo $row->position_title ?></td>
-                        <td class="text-center"><?php echo $row->name_th ?></td>
-                        <td class="text-center">พี่อวย</td>
+                        <td class="text-center"><?php echo $row['student']->id ?></td>
+                        <td class="text-center"><?php echo $row['student']->fullname ?></td>
+                        <td class="text-center"><?php echo $row['position_title'] ?></td>
+                        <td class="text-center"><?php echo $row['company']->name_th ?></td>
+                        <td class="text-center"><?php echo $row['mentor_person_id']->fullname ?></td>
                       </tr>
                     <?php 
                     }
