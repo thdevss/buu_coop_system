@@ -160,6 +160,8 @@ $autoload['model'] = array(
     'Officer/Train_register_management_model' => 'Train_register',
 
 
-    'Coop_student/Coop_document_model' => 'Coop_document'
+    'Coop_student/Coop_document_model' => 'Coop_document',
+    
+    'Officer/List_coop_student_model' => 'List_coop'
 
 );
