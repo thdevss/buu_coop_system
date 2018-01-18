@@ -63,7 +63,7 @@
               <?php echo anchor('Officer/Train_register_management/', '<i class="fa fa-star"></i>  จัดการข้อมูลรับสมัครการสอบ', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> จัดการข้อมูลนิสิตเข้าสอบ</a>
+            <?php echo anchor('Officer/Test_Management/', '<i class="fa fa-star"></i>  จัดการข้อมูลนิสิตเข้าสอบ', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="pages-404.html" target="_top"><i class="icon-star"></i> จัดการผลการสอบ</a>
