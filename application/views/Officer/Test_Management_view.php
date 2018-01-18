@@ -14,7 +14,7 @@
         <div class="card">
           <div class="card-header"><i class="fa fa-align-justify"></i>จัดการข้อมูลนิสิตเข้าสอบ</div>
             <div class="card-body">
-            <table class="table table-bordered">
+            <table class="table table-bordered datatable">
                     <thead>
                       <tr>
                         <th>รหัสนิสิต</th>
