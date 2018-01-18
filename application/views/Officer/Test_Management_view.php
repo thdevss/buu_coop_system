@@ -25,15 +25,20 @@
                       </tr>
                     </thead>
                     <tbody>
+                      <?php
+                      foreach($data as $row) {
+                        print_r($row);
+                      ?>
+
                       <tr>
-                        <td>Pompeius René</td>
-                        <td>2012/01/01</td>
-                        <td>Member</td>
-                        <td>
-                          <span class="badge badge-success">Active</span>
-                        </td>
+                        <td><?php echo $row['student']->id;?></td>
+                        <td><?php echo $row['student']->fullname;?></td>
+                        <td><?php echo $row['student_field']->name;?></td>
+                        <td><?php echo $row['coop_test']->name;?></td>
+                        
                         <td>Member</td>
                       </tr>
+                      <?php } ?>
                     </tbody>
                   </table>
             </div>
