@@ -158,8 +158,8 @@ $autoload['model'] = array(
     'Officer/Validate_assessment_list_coop_student_model' => 'validate_assessment_coop',
 
     'Officer/Train_register_management_model' => 'Train_register',
+    'Officer/Test_Management_model' => 'Test_Management',
+    'Coop_student/Coop_document_model' => 'Coop_document',
 
-
-    'Coop_student/Coop_document_model' => 'Coop_document'
 
 );
