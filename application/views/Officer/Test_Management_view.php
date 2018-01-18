@@ -26,13 +26,11 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Pompeius René</td>
-                        <td>2012/01/01</td>
-                        <td>Member</td>
-                        <td>
-                          <span class="badge badge-success">Active</span>
-                        </td>
-                        <td>Member</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                       </tr>
                     </tbody>
                   </table>
