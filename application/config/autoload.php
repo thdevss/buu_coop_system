@@ -162,6 +162,11 @@ $autoload['model'] = array(
     'Coop_student/Coop_document_model' => 'Coop_document',
 
 
+
+    'Coop_student/Coop_document_model' => 'Coop_document',
+    
+    'Officer/List_coop_student_model' => 'List_coop'
+
     //add new
     'DB/Company_address_model' => 'DB_company_address',
     'DB/Company_benefit_model' => 'DB_company_benefit',
@@ -176,5 +181,6 @@ $autoload['model'] = array(
     'DB/Student_model' => 'DB_student',
     
     
+
 
 );
