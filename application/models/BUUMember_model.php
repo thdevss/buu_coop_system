@@ -23,6 +23,8 @@ class BUUMember_model extends CI_Model
         $this->ldap->connect();
         if($this->ldap->authenticate('' , $username, $password)) {
             $userdata = $this->ldap->get_data($username,$password);
+            // print_r($userdata);
+            // die();
             if($userdata['ou'] == 'students') {
                 //coop student and student
                 $data['fullname'] = $userdata['fname'].' '.$userdata['lname'];                
