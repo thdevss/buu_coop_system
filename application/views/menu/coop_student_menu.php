@@ -14,7 +14,7 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> ข้อมูลทั่วไป</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <?php echo anchor('Officer/List_coop_student/', '<i class="fa fa-star"></i> ข้อมูลนิสิต', 'class="nav-link"');?>  
+                <?php echo anchor('/', '<i class="fa fa-star"></i> ข้อมูลนิสิต', 'class="nav-link"');?>  
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> จัดการกิจกรรมการฝึกงานแต่ละวัน</a>

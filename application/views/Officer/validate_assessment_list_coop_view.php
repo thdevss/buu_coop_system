@@ -44,7 +44,7 @@
                         ?>
                         </td>
                         <td class="text-center">
-                          <a class="btn btn-primary document_check_btn" data-studentid="<?php echo $row->student_id;?>">รายละเอียด</a>
+                          <a class="btn btn-primary " data-studentid="<?php echo $row->student_id;?>">รายละเอียด</a>
                         </td>
                       </tr>
                     <?php 
