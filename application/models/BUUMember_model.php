@@ -3,16 +3,16 @@ class BUUMember_model extends CI_Model
 {
     public function xlogin($username, $password)
     {
-        if($username == 'nuttanon@buu.ac.th') {
+        if($username == 'nutthanon') {
             $data = array();
-            $data['fullname'] = 'Nuttanon';
+            $data['fullname'] = 'Nutthanon';
             $data['login_type'] = 'teacher';
-            $data['login_value'] = '49173';
+            $data['login_value'] = 'nutthanon';
         } else if($username == 'pnut') {
             $data = array();
             $data['fullname'] = 'Kamonwan';
             $data['login_type'] = 'officer';
-            $data['login_value'] = '1';
+            $data['login_value'] = 'kamonwan';
         }
 
         return $data;
@@ -36,7 +36,23 @@ class BUUMember_model extends CI_Model
                     $data['login_type'] = 'student';                    
                 }
                 $data['login_value'] = $userdata['code'];
+            } else if($userdata['ou'] == 'staff') {
+                //teacher and officer
+
+                //check in teacher
+                if($teacher) {
+                    $data['login_type'] = 'teacher';
+
+                } else {
+                    $officer = $this->Officer->get_by_username($userdata['code']);
+                    if($officer) {
+                        $data['login_type'] = 'officer';
+
+                    }
+
+                }
             } else {
+                //test login
                 return $this->xlogin($username, $password);
             }
         } else {
