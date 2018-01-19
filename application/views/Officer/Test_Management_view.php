@@ -14,7 +14,7 @@
         <div class="card">
           <div class="card-header"><i class="fa fa-align-justify"></i>จัดการข้อมูลนิสิตเข้าสอบ</div>
             <div class="card-body">
-            <table class="table table-bordered">
+            <table class="table table-bordered datatable">
                     <thead>
                       <tr>
                         <th>รหัสนิสิต</th>
@@ -25,13 +25,20 @@
                       </tr>
                     </thead>
                     <tbody>
+                      <?php
+                      foreach($data as $row) {
+                      ?>
+
                       <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+
+                        <td><?php echo $row['student']->id;?></td>
+                        <td><?php echo $row['student']->fullname;?></td>
+                        <td><?php echo $row['student_field']->name;?></td>
+                        <td><?php echo $row['coop_test']->name;?></td>
+                        
+                        <td>Member</td>
                       </tr>
+                      <?php } ?>
                     </tbody>
                   </table>
             </div>
