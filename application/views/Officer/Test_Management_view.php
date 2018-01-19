@@ -12,7 +12,11 @@
     <div class="row" >
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header"><i class="fa fa-align-justify"></i>จัดการข้อมูลนิสิตเข้าสอบ</div>
+          <div class="card-header"><i class="fa fa-align-justify"></i>จัดการข้อมูลนิสิตเข้าสอบ
+          <div class="text-right">
+              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-star"></i> เพิ่ม</button>
+            </div>
+          </div>
             <div class="card-body">
             <table class="table table-bordered datatable">
                     <thead>
@@ -36,7 +40,7 @@
                         <td><?php echo $row['student_field']->name;?></td>
                         <td><?php echo $row['coop_test']->name;?></td>
                         
-                        <td>Member</td>
+                        <td><button type="close" class="btn btn-danger"><i class="fa fa-rss"></i> ลบ</button></td>
                       </tr>
                       <?php } ?>
                     </tbody>
@@ -47,3 +51,62 @@
     </div>
   </div>
 </div>
+
+<!--ส่วนของ ModalLabel -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title icon-magnifier-add"> เพิ่ม</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+              </div>
+              <div class="modal-body">
+              <!--รหัสนิสิต-->
+              <form action="<?php echo site_url('#/#/#');?>" method="post">
+              <div class="form-group row">
+                      <div class="col-md-9">
+                      <label class="col-md-4 form-control-label" for="text-input">รหัสนิสิต</label>
+                      <input type="text" class="form-control" id="" name="" placeholder="กรุณากรอก">
+                      </div>
+                    </div>  
+              <!--รหัสนิสิต-->
+              <!--ชื่อนิสิต-->
+              <div class="form-group row">
+                      <div class="col-md-9">
+                      <label class="col-md-4 form-control-label" for="text-input">ชื่อนิสิต</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="กรุณากรอก">
+                      </div>
+                    </div>  
+                <!--ชื่อนิสิต-->
+                <!--สาขา-->
+                    <div class="form-group row">
+                      <div class="col-md-9">
+                      <label class="col-md-4 form-control-label" for="text-input">สาขา</label>
+                        <input class="form-control" id="" name="" placeholder="กรุณากรอก">                      
+                      </div>
+                    </div> 
+                    <!--สาขา-->
+                    <!--สอบรอบที่-->
+                    <div class="form-group row">
+                      <div class="col-md-9">
+                      <label class="col-md-4 form-control-label" for="text-input">สอบรอบที่</label>
+                        <select id="select" name="select" class="form-control">
+                          <option value="">Please select</option>
+                          <option value="สอบรอบที่1">สอบรอบที่1</option>
+                          <option value="สอบรอบที่2">สอบรอบที่2</option>
+                          <option value="สอบรอบที่3">สอบรอบที่3</option>
+                          <option value="สอบรอบที่4">สอบรอบที่4</option>
+                        </select>
+                      </div>
+                    </div>
+                    <!--สอบรอบที่-->
+              </div>
+              <div class="modal-footer">
+                <button type="close" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-rss"></i> ปิด</button>
+                <button type="submit" class="btn btn-success"><i class="fa fa-magic"></i> บันทึก</button>
+              </div>
+            </div>
+            </div>
+            </div>
+            <!--ส่วนของ ModalLabel -->
