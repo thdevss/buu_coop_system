@@ -14,6 +14,7 @@
   <link href="<?php echo base_url('assets/css/style.css');?>" rel="stylesheet">
 
   <script src="<?php echo base_url('assets/theme/jquery/dist/jquery.min.js');?>"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
   <script>
     var SITE_URL = '<?php echo site_url();?>';
     var BASE_URL = '<?php echo base_url();?>';

@@ -5,7 +5,7 @@
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Home</li>
   <li class="breadcrumb-item"><a href="#">อาจารย์</a></li>
-  <li class="breadcrumb-item active">แบบแจ้งแผนปฏิบัติงานสหกิจศึกษา</li>
+  <li class="breadcrumb-item active">สถิติการฝึกงานที่ผ่านมา</li>
 </ol>
 
 <div class="container-fluid">
@@ -13,85 +13,54 @@
       <div class="row" >
       <!--table รายชื่อนิสิต-->
         <div class="col-lg-12">
-          <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify"></i>แบบแจ้งแผนปฏิบัติงานสหกิจศึกษา</div>
+            <div class="card">
+              <div class="card-header">
+                Bar Chart
+                <div class="card-actions">
+                  <a href="http://www.chartjs.org">
+                    <small class="text-muted">docs</small>
+                  </a>
+                </div>
+              </div>
               <div class="card-body">
-              <table class="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th>รหัสนิสิต</th>
-                        <th>ชื่อ-นามสกุล</th>
-                        <th>สาขาวิชา</th>
-                        <th>สถานประกอบการที่ได้</th>
-                        <th>จังหวัด</th>
-                        <th>รายละเอียด</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($data as $row){?>
-                      <tr>
-                        <td><?php echo $row->student_id ?></td>
-                        <td><?php echo $row->fullname ?></td>
-                        <td><?php echo $row->name ?></td>
-                        <td><?php echo $row->name_th ?></td>
-                        <td><?php echo $row->province ?></td>
-                        <td>
-                          <a class="btn btn-primary openActionplanForm" data-studentid="<?php echo $row->student_id;?>">รายละเอียด</a>
-                        </td>
-                      </tr>
-                    <?php 
-                    }
-                    ?>
-                    </tbody>
-                  </table>
+                <div class="chart-wrapper">
+                  <canvas id="canvas-2"></canvas>
+                  <script>
+                  var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+  var barChartData = {
+    labels : ['January','February','March','April','May','June','July'],
+    datasets : [
+      {
+        backgroundColor : 'rgba(220,220,220,0.5)',
+        borderColor : 'rgba(220,220,220,0.8)',
+        highlightFill: 'rgba(220,220,220,0.75)',
+        highlightStroke: 'rgba(220,220,220,1)',
+        data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+      },
+      {
+        backgroundColor : 'rgba(151,187,205,0.5)',
+        borderColor : 'rgba(151,187,205,0.8)',
+        highlightFill : 'rgba(151,187,205,0.75)',
+        highlightStroke : 'rgba(151,187,205,1)',
+        data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+      }
+    ]
+  }
+  var ctx = document.getElementById('canvas-2');
+  var chart = new Chart(ctx, {
+    type: 'bar',
+    data: barChartData,
+    options: {
+      responsive: true
+    }
+  });
+  </script>
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<script src="<?php echo base_url('/assets/js/teacher/actionplan.js?'.time());?>"></script>
-<!-- The Modal -->
-<div class="modal fade" id="actionplan_student">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">รายละเอียด</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-        
-        <table class="table table-bordered" id="actionplan_table">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>หัวข้องาน</th>
-                        <th>เดือนที่ 1</th>
-                        <th>เดือนที่ 2</th>
-                        <th>เดือนที่ 3</th>
-                        <th>เดือนที่ 4</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                  </table>
-
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</div>
