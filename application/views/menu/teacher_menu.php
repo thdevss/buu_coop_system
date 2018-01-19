@@ -53,8 +53,13 @@
           <li class="nav-item">
             <a class="nav-link" href="widgets.html"><i class="icon-calculator"></i> การสอบสหกิจ</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="charts.html"><i class="icon-pie-chart"></i> สหกิจศึกษา</a>
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> สหกิจ</a>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo site_url('Teacher/company_map');?>"><i class="icon-star"></i> แผนที่</a>
+              </li>
+            </ul>
           </li>
         </ul>
       </nav>
