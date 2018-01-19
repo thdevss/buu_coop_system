@@ -25,8 +25,4 @@ class Supervisiondocument extends CI_Controller {
         $data['data'] = $this->Teacher_Supervisiondocument->planform();
         print_r($data);
     }
-    public function pdf_file_document(){
-        $data['data'] = $this->Teacher_Supervisiondocument->pdf_file_document();
-        print_r($data);
-    }
 }

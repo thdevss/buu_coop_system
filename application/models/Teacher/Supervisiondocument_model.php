@@ -13,16 +13,4 @@ class Supervisiondocument_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-    public function pdf_file_document(){
-        $this->db->select("pdf_file");
-        $this->db->from("coop_student_has_coop_document");
-        $this->db->where("student_id = 57160030");
-
-        $query = $this->db->get();
-        return $query->result();
-
-
-    }
-
-
 }
