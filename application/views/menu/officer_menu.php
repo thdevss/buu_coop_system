@@ -17,9 +17,11 @@
         <li class="nav-item nav-dropdown">
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> นิสิต</a>
           <ul class="nav-dropdown-items">
-          <li class="nav-item">
-          <?php echo anchor('Officer/Student_list', '<i class="fa fa-star"></i>  รายชื่อนิสิต', 'class="nav-link"');?>
-        </li>
+
+            <li class="nav-item">
+            <?php echo anchor('officer/List_coop_student/', '<i class="fa fa-star"></i> รายชื่อนิสิต', 'class="nav-link"');?>
+            </li>
+
             <li class="nav-item">
             <?php echo anchor('Officer/Validate_list_coop_student/', '<i class="fa fa-star"></i> ตรวจสอบเอกสารรายบุคคล', 'class="nav-link"');?>
             </li>
@@ -46,7 +48,7 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การอบรม</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> ข้อมูลโครงการอบรม</a>
+            <?php echo anchor('Officer/Train_list/', '<i class="fa fa-star"></i> ข้อมูลโครงการอบรม', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> เช็คชื่อเข้าอบรม</a>
