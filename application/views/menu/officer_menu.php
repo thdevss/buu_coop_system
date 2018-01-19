@@ -60,13 +60,13 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การสอบ</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <?php echo anchor('Officer/Train_register_management/', '<i class="fa fa-star"></i>  จัดการข้อมูลรับสมัครการสอบ', 'class="nav-link"');?>
+              <?php echo anchor('Officer//', '<i class="fa fa-star"></i>  จัดการข้อมูลรับสมัครการสอบ', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
             <?php echo anchor('Officer/Test_Management/', '<i class="fa fa-star"></i>  จัดการข้อมูลนิสิตเข้าสอบ', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages-404.html" target="_top"><i class="icon-star"></i> จัดการผลการสอบ</a>
+            <?php echo anchor('Officer/Test_result/', '<i class="fa fa-star"></i>  จัดการผลการสอบ', 'class="nav-link"');?>
             </li>
           </ul>
         </li>
