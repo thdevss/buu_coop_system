@@ -41,6 +41,9 @@
       <li class="nav-item d-md-down-none">
         <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
       </li>
+      <li class="nav-item d-md-down-none">
+        <img src="http://reg.buu.ac.th/registrar/getstudentimage.asp?id=57660137" class="rounded-circle" style="width:30px;">            
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
           <span class="d-md-down-none"><?php echo $user_info->fullname;?></span>

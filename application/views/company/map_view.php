@@ -4,7 +4,7 @@
       <!-- Breadcrumb -->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">ระบบสหกิจ</li>
-        <li class="breadcrumb-item"><a href="#"><?php echo $user->login_type;?></a></li>
+        <li class="breadcrumb-item"><a href="#"><?php echo strToLevel($user->login_type);?></a></li>
         <li class="breadcrumb-item active">แผนที่ตั้งบริษัท</li>
       </ol>
 
@@ -18,7 +18,17 @@
                 </div>
                 <div class="card-body">
                   <div class="row">
-                    <div id="map" style="width:100%; height:500px;"></div>
+                    <div class="col-lg-12">
+                      <div id="map" style="width:100%; height:350px;"></div>
+                    </div>
+
+                    <div class="col-lg-12 text-center">
+                      <div style="height:45px;"></div>
+                      <a class="btn btn-lg btn-danger">ยกเลิก</a>
+                      <a class="btn btn-lg btn-primary">บันทึกแผนที่</a>
+                      
+
+                    </div>
                   </div>
                 </div>
               </div>

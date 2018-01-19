@@ -137,7 +137,7 @@ $autoload['language'] = array();
 */
 $autoload['model'] = array(
     'BUUMember_model' => 'BUUMember',
-    'Company_person_login_model' => 'Company_person_login',
+    // 'Company_person_login_model' => 'Company_person_login',
     'Login_session_model' => 'Login_session',
 
     'Teacher/Assessment_teacher_model' => 'Teacher_Assessmentteacher',

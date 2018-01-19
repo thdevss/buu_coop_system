@@ -17,7 +17,7 @@ class Company_person_model extends CI_model
         $this->db->from($this->table_name);
         $query = $this->db->get();
         return $query->result()[0];
-    }
+    }   
 
     public function gets()
     {

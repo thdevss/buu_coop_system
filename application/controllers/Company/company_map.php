@@ -19,9 +19,11 @@ class Company_map extends CI_controller
 
     public function index()
     {
-        $company_id = $this->Company->getByPerson($this->Login_session->check_login()->login_value)->id;
+        $company_person_login = $this->DB_company_person_login->get_by_username($this->Login_session->check_login()->login_value);
+        $company_person = $this->DB_company_person->get($company_person_login->company_person_id);
+        $company_id = $this->DB_company->get($company_person->company_id)->id;
         
-        $data['map'] = $this->Company_address->get($company_id)[0];
+        $data['map'] = $this->DB_company_address->get($company_id)[0];
         $this->template->view('company/map_view', $data);
     }
 
