@@ -18,7 +18,7 @@
               <div class="card-body">
               <table class="table table-bordered datatable" >
                     <thead>
-                      <tr bgcolor="MediumSeaGreen">
+                      <tr bgcolor="99ffff">
                         <th class="text-center">รหัสนิสิต</th>
                         <th class="text-center" >ชื่อ-สกุล</th>
                         <th class="text-center">ตำแหน่งงาน </th>
@@ -51,38 +51,6 @@
     </div>
   </div>
 </div>
-
-<script src="<?php echo base_url('/assets/js/officer/document_check.js?'.time());?>"></script>
-<!-- The Modal -->
-<div class="modal fade" id="document_check_student">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">ตรวจสอบเอกสารรายบุคคล</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-         <table class="table table-bordered" id="document_check_table">
-                    <thead>
-                      <tr>
-                      <th width="60%">เอกสาร</th>
-                      <th width="40%">ดาวน์โหลด</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                  </table>
-
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-        </div>
         
       </div>
     </div>
