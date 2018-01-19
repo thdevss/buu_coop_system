@@ -16,7 +16,7 @@ class Company_address_model extends CI_model
         $this->db->where($this->primary_key, $id);
         $this->db->from($this->table_name);
         $query = $this->db->get();
-        return $query->result();
+        return $query->result()[0];
     }
 
     public function gets()

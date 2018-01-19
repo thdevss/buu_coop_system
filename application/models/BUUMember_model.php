@@ -38,18 +38,17 @@ class BUUMember_model extends CI_Model
                 $data['login_value'] = $userdata['code'];
             } else if($userdata['ou'] == 'staff') {
                 //teacher and officer
-
                 //check in teacher
+                $teacher = $this->Teacher->get($userdata['code']);                
                 if($teacher) {
                     $data['login_type'] = 'teacher';
-
+                    $data['login_value'] = $userdata['code'];                        
                 } else {
-                    $officer = $this->Officer->get_by_username($userdata['code']);
+                    $officer = $this->Officer->get($userdata['code']);
                     if($officer) {
                         $data['login_type'] = 'officer';
-
+                        $data['login_value'] = $userdata['code'];                        
                     }
-
                 }
             } else {
                 //test login

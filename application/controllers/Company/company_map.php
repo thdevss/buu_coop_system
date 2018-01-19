@@ -23,7 +23,7 @@ class Company_map extends CI_controller
         $company_person = $this->DB_company_person->get($company_person_login->company_person_id);
         $company_id = $this->DB_company->get($company_person->company_id)->id;
         
-        $data['map'] = $this->DB_company_address->get($company_id)[0];
+        $data['map'] = $this->DB_company_address->get($company_id);
         $this->template->view('company/map_view', $data);
     }
 

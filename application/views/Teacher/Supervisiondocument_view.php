@@ -35,7 +35,6 @@
                         <td><?php echo $row->name ?></td>
                         <td><?php echo $row->name_th ?></td>
                         <td><?php echo $row->province ?></td>
-                        <td><?php echo $row->pdf_file ?><td>
                         </tr>
                         <?php
                         }
