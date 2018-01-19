@@ -19,14 +19,28 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-lg-12">
-                      <div id="map" style="width:100%; height:350px;"></div>
+                      <table class="table datatable">
+                        <thead>
+                          <tr>
+                            <th></th>
+                            <th>ชื่อสถานประกอบการ</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php foreach($company as $row) { ?>
+                          <tr>
+                            <td><input type="checkbox" class="form-control selectCompanyMap" name="selectCompanyMap[]" value="<?php echo $row->id;?>"></td>
+                            <td><?php echo $row->name_th;?></td>
+                          </tr>
+                          <?php } ?>
+                        </tbody>
+                      </table>
                     </div>
 
                     <div class="col-lg-12 text-center">
                       <div style="height:45px;"></div>
 
-                      <a class="btn btn-lg btn-danger">ยกเลิก</a>
-                      <a class="btn btn-lg btn-primary saveMapBtn">บันทึกแผนที่</a>
+                      <a class="btn btn-lg btn-primary viewMapBtn">ดูแผนที่สถานประกอบการ</a>
                       
                     </div>
                   </div>
@@ -41,82 +55,84 @@
     </main>
 
 
+<!-- The Modal -->
+<div class="modal fade" id="view_company_map">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">แผนที่</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcah51LjCiIIFTqdekv78MHZvqT2NpCLo&callback=initMap"></script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcah51LjCiIIFTqdekv78MHZvqT2NpCLo&callback="></script>
     
 <script>
-  function initMap() {
-    renderMap(<?php echo $map->latitude;?>, <?php echo $map->longitude;?>)
-  }
 
-  function renderMap(latitude, longitude) {
-    var uluru = {lat: latitude, lng: longitude};
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 15,
-      center: uluru
+  $( ".viewMapBtn" ).click(function() {
+          
+    $(".modal-body").html('<div id="map" style="height: 450px;"></div>')
+    
+    var company_ids = new Array()
+    $(':checkbox:checked').each(function(i){
+      company_ids.push($(this).val())
     });
-    var marker = new google.maps.Marker({
-      position: uluru,
-      map: map
-    });
-  }
 
-  $(function() {
-    getUserLocation();
+    var locations = new Array()
+    jQuery.post(SITE_URL+"/teacher/company_map/ajax_post/", { company_id: company_ids }, function(response) {
+      jQuery.each( response.data, function( key, val ) {
+        locations.push({lat: val.company_address.latitude, lng: val.company_address.longitude, title: val.company.name_th})
+      })
+      
+    }, 'json')
+
+    //render map
+    initMap(locations)
+        
+
+    $("#view_company_map").modal()
+
+
+  })
+
+
+
+
+
+
+function initMap(locations) {
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: {lat: -28.024, lng: 140.887}
   });
 
-  function getUserLocation() {
-    if (navigator.geolocation) {
-
-      
-      swal({
-        text: "กำลังดึงพิกัดจากผู้ใช้",
-        icon: "info",
-        showCancelButton: false,
-        closeOnConfirm: false,
-        showLoaderOnConfirm: true,
-        button: false
-      });
-      navigator.geolocation.getCurrentPosition(showPosition, showError);
-    } else {
-      swal({
-        icon: "error",
-        text: "Geolocation is not supported by this browser.",
-      });
-    }
-  }
-  var save_latitude, save_longitude
-
-  function showPosition(position) {
-    swal.close();
-    save_latitude = position.coords.latitude
-    save_longitude = position.coords.longitude
-    renderMap(position.coords.latitude, position.coords.longitude)
-  }
-
-  function showError() {
-    swal.close();
-    swal({
-      icon: "warning",
-      text: "โปรดกดให้สิทธิ์ดึงพิกัดบนบราวเซอร์",
+  var markers = locations.map(function(location, i) {
+    return new google.maps.Marker({
+      position: location,
+      label: labels[i % labels.length]
     });
-  }
+  });
 
-  $( ".saveMapBtn" ).click(function() {
-    var data = {}
-    data['latitude'] = save_latitude
-    data['longitude'] = save_longitude
+}
 
-    jQuery.post(SITE_URL+"/company/company_map/ajax_post/", data, function(response) {
-        //alert
-        swal({
-            title: "ปัดหมุดแผนที่สถานประกอบการเรียบร้อย!",
-            text: "ทำ",
-            icon: "success",
-          })
-          .then((xxx) => {
-            window.location.reload();
-          });
-    }, 'json');
-  })
+
+    
+
 </script>
