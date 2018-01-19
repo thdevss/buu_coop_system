@@ -27,10 +27,10 @@
                     <tbody>
                       <?php
                       foreach($data as $row) {
-                        print_r($row);
                       ?>
 
                       <tr>
+
                         <td><?php echo $row['student']->id;?></td>
                         <td><?php echo $row['student']->fullname;?></td>
                         <td><?php echo $row['student_field']->name;?></td>
