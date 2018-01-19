@@ -29,7 +29,9 @@
       $('.datatable').DataTable();
     } );
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+
+
+
 
 
 </body>

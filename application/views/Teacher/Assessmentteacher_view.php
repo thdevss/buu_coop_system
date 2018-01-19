@@ -38,7 +38,7 @@
                         <td>
                         <div class="container">
                         <!-- Button to Open the Modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">
     รายละเอียด
   </button>
 
@@ -55,7 +55,7 @@
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
         </div>
         
       </div>

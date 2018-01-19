@@ -18,6 +18,7 @@ class Test_Management extends CI_Controller {
     }
 
     public function index(){
+
         $data['data'] = array();
         //get student has test
         foreach($this->DB_coop_test_has_student->gets() as $row) {
@@ -35,9 +36,32 @@ class Test_Management extends CI_Controller {
             array_push($data['data'], $tmp_array);
         }
 
+        $data['coop_test_list'] = $this->DB_coop_test->gets();
 
         $this->template->view('Officer/Test_Management_view',$data);
 
+    }
+    public function add(){
+
+            
+
+
+
+
+
+
+
+
+
+        $term_id = $this->Login_session->check_login()->term_id;
+        $data['coop_test_id'] = $this->input->post('select');
+        $data['student_id'] = $this->input->post('id');
+        $data['coop_test_status'] = 0;
+        $data['coop_test_term_id'] = $term_id;
+        $data['student_term_id'] = $term_id;
+        $this->DB_coop_test_has_student->add($data);
+        
+        redirect('Officer/Test_Management/');
     }
 
 }

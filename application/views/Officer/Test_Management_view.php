@@ -14,7 +14,7 @@
         <div class="card">
           <div class="card-header"><i class="fa fa-align-justify"></i>จัดการข้อมูลนิสิตเข้าสอบ
           <div class="text-right">
-              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-star"></i> เพิ่ม</button>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal"><i class="fa fa-star"></i> เพิ่ม</button>
             </div>
           </div>
             <div class="card-body">
@@ -63,40 +63,24 @@
               </div>
               <div class="modal-body">
               <!--รหัสนิสิต-->
-              <form action="<?php echo site_url('#/#/#');?>" method="post">
+              <form action="<?php echo site_url('Officer/Test_Management/add');?>" method="post">
               <div class="form-group row">
                       <div class="col-md-9">
                       <label class="col-md-4 form-control-label" for="text-input">รหัสนิสิต</label>
-                      <input type="text" class="form-control" id="" name="" placeholder="กรุณากรอก">
+                      <input type="text" class="form-control" id="" name="id" placeholder="กรุณากรอก">
                       </div>
                     </div>  
               <!--รหัสนิสิต-->
-              <!--ชื่อนิสิต-->
-              <div class="form-group row">
-                      <div class="col-md-9">
-                      <label class="col-md-4 form-control-label" for="text-input">ชื่อนิสิต</label>
-                      <input type="text" class="form-control" id="name" name="name" placeholder="กรุณากรอก">
-                      </div>
-                    </div>  
-                <!--ชื่อนิสิต-->
-                <!--สาขา-->
-                    <div class="form-group row">
-                      <div class="col-md-9">
-                      <label class="col-md-4 form-control-label" for="text-input">สาขา</label>
-                        <input class="form-control" id="" name="" placeholder="กรุณากรอก">                      
-                      </div>
-                    </div> 
-                    <!--สาขา-->
                     <!--สอบรอบที่-->
                     <div class="form-group row">
                       <div class="col-md-9">
                       <label class="col-md-4 form-control-label" for="text-input">สอบรอบที่</label>
                         <select id="select" name="select" class="form-control">
                           <option value="">Please select</option>
-                          <option value="สอบรอบที่1">สอบรอบที่1</option>
-                          <option value="สอบรอบที่2">สอบรอบที่2</option>
-                          <option value="สอบรอบที่3">สอบรอบที่3</option>
-                          <option value="สอบรอบที่4">สอบรอบที่4</option>
+
+                          <?php foreach ($coop_test_list as $row) { ?>
+                          <option value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>
+                          <?php } ?>
                         </select>
                       </div>
                     </div>
