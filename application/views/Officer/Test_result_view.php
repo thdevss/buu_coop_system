@@ -14,7 +14,7 @@
         <div class="card">
           <div class="card-header"><i class="fa fa-align-justify"></i>จัดการผลการสอบของนิสิต</div>
                  <div class="card-body text-center  ">
-                 <?php echo form_open_multipart('coop_student/upload_document');?>
+                 <?php echo form_open_multipart('Officer/Test_result');?>
                   <?php 
                   if(@$status == 'success') {
                     echo '<div class="alert alert-success" role="alert"><strong>สำเร็จ!</strong></div>';

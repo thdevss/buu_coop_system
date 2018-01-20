@@ -24,8 +24,8 @@ class Test_result extends CI_Controller {
    
         if($this->input->post('code')) {
             $config['upload_path']          = './uploads/';
-            $config['allowed_types']        = 'docx|pdf';
-            $config['max_size']             = 500;
+            $config['allowed_types']        = '*';
+            $config['max_size']             = 5000;
             $config['encrypt_name'] = true;
             $this->load->library('upload', $config);
 
@@ -34,10 +34,15 @@ class Test_result extends CI_Controller {
             } else {
                 $file = $this->upload->data();            
                 $data['status'] = 'success';
+                print_r($file);
 
                 //insert to db
 
-              //แปลง Excel
+                //แปลง Excel
+                require(FCPATH.'/application/libraries/XLSXReader.php');
+                $xlsx = new XLSXReader($file['full_path']);
+                print_r($sheets = $xlsx->getSheetNames());
+                die();
 
             }
         } else {
