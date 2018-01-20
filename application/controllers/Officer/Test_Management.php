@@ -17,7 +17,33 @@ class Test_Management extends CI_Controller {
         }
     }
 
-    public function index(){
+    public function index($status = ''){
+
+        if($status == 'error_student_id' ){
+            $data['status']['color'] = 'danger';
+            $data['status']['text'] = 'ไม่พบรหัสนิสิตในระบบ';
+        } else if($status == 'error_coop_student') {
+            $data['status']['color'] = 'danger';            
+            $data['status']['text'] = 'เป็นนิสิตสหกิจ';
+        } else if($status == 'error_student_pass'){
+            $data['status']['color'] = 'danger';
+            $data['status']['text'] = 'นิสิตผ่านการสอบแล้ว';
+        }
+        else if($status == 'error_has_student'){
+            $data['status']['color'] = 'danger';            
+            $data['status']['text'] = 'มีนิสิตในรอบการสอบแล้ว';
+        }
+        else if( $status == 'success'){
+            $data['status']['color'] = 'success';            
+            $data['status']['text'] = 'เพิ่มสำเร็จ';
+        }
+        else if( $status == 'success_delete'){
+            $data['status']['color'] = 'success';            
+            $data['status']['text'] = 'ลบสำเร็จ';
+        }
+        else {
+            $data['status'] = '';
+        }
 
         $data['data'] = array();
         //get student has test
@@ -43,25 +69,47 @@ class Test_Management extends CI_Controller {
     }
     public function add(){
 
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('id','รหัสนิสิต','required|numeric|is_unique[coop_student.student_id]');
+        if($this->form_validation->run() == false){
+            return $this->index('error_coop_student');
+            die('0');
             
+        }else{
+            $student_id = $this->input->post('id');
+            $coop_test_id = $this->input->post('select');
+            if(!@$this->DB_student->get($student_id)){
+                return $this->index('error_student_id');
+                die('error_student_id');
+            }
+            if(@$this->DB_coop_test_has_student->check_student_pass($student_id)){
+                return $this->index('error_student_pass');
+                die();
+            }
+            if(@$this->DB_coop_test_has_student->check_student($student_id,$coop_test_id)){
+                return $this->index('error_has_student');
+                die();
+            }
 
+            $term = $this->Login_session->check_login()->term_id;
+            $array['coop_test_id'] = $coop_test_id;
+            $array['coop_test_term_id'] = $term;
+            $array['student_id'] = $student_id;
+            $array['student_term_id'] = $term; 
+            $array['coop_test_status'] = '0';
+            $this->DB_coop_test_has_student->add($array);
+            return $this->index('success');
+        }
 
-
-
-
-
-
-
-
-        $term_id = $this->Login_session->check_login()->term_id;
-        $data['coop_test_id'] = $this->input->post('select');
-        $data['student_id'] = $this->input->post('id');
-        $data['coop_test_status'] = 0;
-        $data['coop_test_term_id'] = $term_id;
-        $data['student_term_id'] = $term_id;
-        $this->DB_coop_test_has_student->add($data);
         
-        redirect('Officer/Test_Management/');
+
     }
+    public function delete(){
+        $array['student_id'] = $this->input->post('student_id');
+        $array['coop_test_id'] = $this->input->post('coop_test_id');
+        $this->DB_coop_test_has_student->delete($array);
+        return $this->index('success_delete');
+    }
+
 
 }
