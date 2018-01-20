@@ -19,9 +19,12 @@
             </div>
           </div>
             <div class="card-body">
-             <!--ส่วนของ Button Modal-->
-            
-             <!--ส่วนของ Button Modal-->
+            <?php 
+            if($status){
+              echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
+            }
+     
+             ?>
                   <table class="table table-bordered datatable">
                     <thead>
                       <tr>
@@ -30,27 +33,23 @@
                         <th>สถานะการรับสมัครสอบ</th>
                       </tr>
                     </thead>
-                    <?php foreach ($data as $row) { ?>
                     <tbody>
+                    <?php foreach ($coop_test as $row) { ?>
                       <tr>
-                        <td><?php echo $row->name ?></td>
-                        <td><?php echo $row->test_date ?></td>
+                        <td><?php echo $row->name; ?></td>
+                        <td><?php echo $row->test_date ; ?></td>
                         <td>
                         <label class="switch switch-text switch-pill switch-success-outline-alt">
-                         <input type="checkbox" class="switch-input" <?php if($row->register_status == 1) echo 'checked=""' ?>>
+                         <input type="checkbox" class="switch-input" checked="">
                          <span class="switch-label" data-on="On" data-off="Off"></span>
                          <span class="switch-handle"></span>
                         </label>
                         </td>
                       </tr>
-                      <?php } ?>
+                    <?php } ?>
                     </tbody>
                   </table>
             </div>
-
-
-
-            
         </div>
       </div>
     </div>
@@ -93,25 +92,17 @@ jQuery(function() {
                 </button>
               </div>
               <div class="modal-body">
-              <!--ปีการศึกษา-->
-              <form action="<?php echo site_url('officer/Train_register_management/post_register_Train');?>" method="post">
-              <div class="form-group row">
-                      <label class="col-md-3 form-control-label" for="text-input">ปีการศึกษา</label>
-                      <div class="col-md-9">
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter year">
-                      </div>
-                    </div>  
-              <!--ปีการศึกษา-->
+            
+              <form action="<?php echo site_url('officer/Test_form/add');?>" method="post">
               <!--สอบรอบที่-->
               <div class="form-group row">
                       <label class="col-md-3 form-control-label" for="text-input">สอบรอบที่</label>
                       <div class="col-md-9">
-                        <select id="select" name="select" class="form-control">
+                        <select id="select" name="select" class="form-control" required>
                           <option value="">Please select</option>
-                          <option value="สอบรอบที่1">สอบรอบที่1</option>
-                          <option value="สอบรอบที่2">สอบรอบที่2</option>
-                          <option value="สอบรอบที่3">สอบรอบที่3</option>
-                          <option value="สอบรอบที่4">สอบรอบที่4</option>
+                          <?php foreach ($coop_test_select as $row){?>
+                          <option value="<?php echo $row ; ?>">การสอบครั้งที่ <?php echo $row ; ?></option>
+                          <?php } ?>
                         </select>
                       </div>
                     </div>
@@ -120,7 +111,7 @@ jQuery(function() {
                     <div class="form-group row">
                       <label class="col-md-3 form-control-label" for="text-input">วันที่สอบ</label>
                       <div class="col-md-9">
-                        <input class="form-control" id="datetimepicker3" name="test_date">                      
+                        <input class="form-control" id="datetimepicker3" name="test_date" required>                      
                       </div>
                     </div>  
               </div>
