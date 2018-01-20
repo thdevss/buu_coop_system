@@ -22,7 +22,7 @@
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> แบบอนุญาตให้นิสิตไปปฏิบัติงานสหกิจ</a>          
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> IN-S003</a>          
             <ul class="nav-dropdown-items">
               <li class="nav-item">
               <?php echo anchor('Coop_student/Permit_form/', '<i class="fa fa-star"></i> ดาวน์โหลดเอกสาร', 'class="nav-link"');?>
@@ -33,7 +33,7 @@
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> แบบแจ้งรายละเอียดการปฏิบัติงาน</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> IN-S004</a>
             <ul class="nav-dropdown-items">
             <li class="nav-item">
               <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> ดาวน์โหลดเอกสาร</a>
@@ -44,7 +44,7 @@
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> แบบแจ้งแผนปฏิบัติงานสหกิจ</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> IN-S005</a>
             
             <ul class="nav-dropdown-items">
               <li class="nav-item">
@@ -56,7 +56,7 @@
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> แบบแจ้งโครงร่างรายงานการปฏิบัติงาน</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> IN-S006</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
                 <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> ดาวน์โหลดเอกสาร</a>
