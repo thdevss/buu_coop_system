@@ -80,10 +80,11 @@
   </div>
 </div>
 
-<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcah51LjCiIIFTqdekv78MHZvqT2NpCLo&callback="></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcah51LjCiIIFTqdekv78MHZvqT2NpCLo&callback=getCurrentLoc"></script>
     
 <script>
+var mapCenterLocation
+var locations = []
 
   $( ".viewMapBtn" ).click(function() {
           
@@ -94,45 +95,83 @@
       company_ids.push($(this).val())
     });
 
-    var locations = new Array()
+    
     jQuery.post(SITE_URL+"/teacher/company_map/ajax_post/", { company_id: company_ids }, function(response) {
       jQuery.each( response.data, function( key, val ) {
-        locations.push({lat: val.company_address.latitude, lng: val.company_address.longitude, title: val.company.name_th})
+        locations.push( [val.company_address.latitude, val.company_address.longitude, val.company.name_th] )
       })
+      //render map
+     initMap()
+        
+
+        $("#view_company_map").modal()
       
     }, 'json')
 
-    //render map
-    initMap(locations)
-        
-
-    $("#view_company_map").modal()
+    
 
 
   })
 
 
+function getCurrentLoc()
+{
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      mapCenterLocation = {lat: 13.281085599999999, lng: 100.9241886}
+    }
+}
+
+function showPosition(position) {
+    mapCenterLocation = {lat: position.coords.latitude, lng: position.coords.longitude}
+}
 
 
 
-
-function initMap(locations) {
+function initMap() {
 
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 10,
-    center: {lat: -28.024, lng: 140.887}
+    zoom: 14,
+    center: mapCenterLocation,
   });
 
-  var markers = locations.map(function(location, i) {
-    return new google.maps.Marker({
-      position: location,
-      label: labels[i % labels.length]
+  var infowindow = new google.maps.InfoWindow();
+
+  var marker, i;
+
+  //first is center
+  bounds  = new google.maps.LatLngBounds();
+
+
+  for (i = 0; i < locations.length; i++) {     
+    console.log(locations[i])
+    
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(locations[i][0], locations[i][1]),
+      map: map,
     });
-  });
+
+    var loc = new google.maps.LatLng(locations[i][0], locations[i][1]);
+    bounds.extend(loc);
+
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        infowindow.setContent(locations[i][2]);
+        infowindow.open(map, marker);
+      }
+    })(marker, i));
+  }
+
+  $('#view_company_map').on('shown.bs.modal', function () {
+      google.maps.event.trigger(map, "resize")
+      map.panToBounds(bounds)
+      
+    }); 
 
 }
 
 
-    
+
 
 </script>
