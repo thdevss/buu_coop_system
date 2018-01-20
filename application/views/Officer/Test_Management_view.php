@@ -18,6 +18,12 @@
             </div>
           </div>
             <div class="card-body">
+            <?php 
+            if($status){
+              echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
+            }
+     
+             ?>
             <table class="table table-bordered datatable">
                     <thead>
                       <tr>
@@ -40,7 +46,14 @@
                         <td><?php echo $row['student_field']->name;?></td>
                         <td><?php echo $row['coop_test']->name;?></td>
                         
-                        <td><button type="close" class="btn btn-danger"><i class="fa fa-rss"></i> ลบ</button></td>
+                        <td>
+                        <form action="<?php echo site_url('Officer/Test_Management/delete'); ?>" method="post">
+                        <input type="hidden"   name="student_id" value="<?php echo $row['student']->id ; ?>">
+                        <input type="hidden"  name="coop_test_id" value="<?php echo $row['coop_test']->id ; ?>">
+                        <button type="submit" class="btn btn-danger btn-submit"><i class="fa fa-rss"></i> ลบ</button>
+
+                        </form>
+                        </td>
                       </tr>
                       <?php } ?>
                     </tbody>
@@ -66,8 +79,8 @@
               <form action="<?php echo site_url('Officer/Test_Management/add');?>" method="post">
               <div class="form-group row">
                       <div class="col-md-9">
-                      <label class="col-md-4 form-control-label" for="text-input">รหัสนิสิต</label>
-                      <input type="text" class="form-control" id="" name="id" placeholder="กรุณากรอก">
+                      <label class="col-md-4 form-control-label" for="text-input"> รหัสนิสิต</label>
+                      <input type="text" class="form-control" id="" name="id"  required placeholder="กรุณากรอก" >
                       </div>
                     </div>  
               <!--รหัสนิสิต-->
@@ -75,10 +88,14 @@
                     <div class="form-group row">
                       <div class="col-md-9">
                       <label class="col-md-4 form-control-label" for="text-input">สอบรอบที่</label>
-                        <select id="select" name="select" class="form-control">
+                        <select id="select" name="select" class="form-control" required>
                           <option value="">Please select</option>
 
-                          <?php foreach ($coop_test_list as $row) { ?>
+                          <?php foreach ($coop_test_list as $row) { 
+                            if($row->register_status != 1){
+                              continue;
+                            }
+                            ?>
                           <option value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>
                           <?php } ?>
                         </select>
@@ -94,3 +111,28 @@
             </div>
             </div>
             <!--ส่วนของ ModalLabel -->
+<script>
+
+
+$('.btn-submit').on('click',function(e){
+    e.preventDefault();
+    var form = $(this).parents('form');
+    swal({
+        title: "คุณแน่ใจใช่ไหม",
+        text: "ลบคำนิสิตที่เลือก",
+        icon: "warning",
+        buttons: true,
+        dabgerMode: true
+    })
+    .then((isConfirm) => {
+      if (isConfirm) {
+        form.submit();
+      } else {
+
+      }
+    })
+
+});
+
+
+</script>

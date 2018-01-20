@@ -16,7 +16,7 @@ class Coop_test_has_student_model extends CI_model
         $this->db->where($this->primary_key, $id);
         $this->db->from($this->table_name);
         $query = $this->db->get();
-        return $query->result();
+        return $query->result()[0];
     }
 
     public function gets()
@@ -37,9 +37,26 @@ class Coop_test_has_student_model extends CI_model
         return $this->db->update($this->table_name, $array);
     }
 
-    public function delete($id)
+    public function delete($array)
     {
-        $this->db->where('id', $id);        
+        foreach($array as $k => $v) {
+            $this->db->where($k, $v);
+        }       
         return $this->db->delete($this->table_name);
     }
+    public function check_student_pass($student_id){
+        $this->db->where('student_id',$student_id);
+        $this->db->where('coop_test_status','1');
+        $this->db->from($this->table_name);
+        $query = $this->db->get();
+        return $query->result()[0];
+    }
+    public function check_student($student_id,$coop_test_id){
+        $this->db->where('student_id',$student_id);
+        $this->db->where('coop_test_id',$coop_test_id);
+        $this->db->from($this->table_name);
+        $query = $this->db->get();
+        return $query->result()[0];
+    }
+
 }
