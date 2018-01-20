@@ -62,7 +62,7 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การสอบ</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <?php echo anchor('Officer//', '<i class="fa fa-star"></i>  จัดการข้อมูลรับสมัครการสอบ', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Test_form/', '<i class="fa fa-star"></i>  จัดการข้อมูลรับสมัครการสอบ', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
             <?php echo anchor('Officer/Test_Management/', '<i class="fa fa-star"></i>  จัดการข้อมูลนิสิตเข้าสอบ', 'class="nav-link"');?>
@@ -111,7 +111,8 @@
         <form>
           <div class="form-group">
             <label for="term_option">ปีการศึกษา</label>
-            <select class="form-control" id="term_option">
+            <select class="form-control" id="term_option" required>
+              <option>please select</option>
               <?php 
               foreach($terms as $term) {
                 echo '<option value="'.$term->id.'">'.$term->name.'</option>';
@@ -122,8 +123,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="changeTermAjax()">เปลี่ยนปีการศึกษา</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิดหน้าต่าง</button>
+        <button type="button" class="btn btn-primary" onclick="changeTermAjax()">เปลี่ยนปีการศึกษา</button>        
       </div>
     </div>
   </div>

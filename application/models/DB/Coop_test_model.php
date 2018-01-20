@@ -44,4 +44,23 @@ class Coop_test_model extends CI_model
         $this->db->where('id', $id);        
         return $this->db->delete($this->table_name);
     }
+
+    public function get_by_name($name)
+    {
+        $this->db->where('term_id', $this->Login_session->check_login()->term_id);
+        $this->db->where('name', $name);
+        $this->db->from($this->table_name);
+        $query = $this->db->get();
+        return @$query->result()[0];
+    }
+
+    public function get_last_time()
+    {
+        $this->db->where('term_id', $this->Login_session->check_login()->term_id);
+        $this->db->order_by('test_date', 'DESC');
+        $this->db->from($this->table_name);
+        $this->db->select('test_date');
+        $query = $this->db->get();
+        return $query->result()[0]->test_date;
+    }    
 }
