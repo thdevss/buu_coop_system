@@ -29,7 +29,7 @@
             <?php echo anchor('Officer/validate_assessment_type_coop/', '<i class="fa fa-star"></i> ตรวจสอบเอกสารตามประเภท', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="components-forms.html"><i class="icon-puzzle"></i> รายชื่อนิสิตสหกิจ</a>
+            <?php echo anchor('Officer/List_coop_student/', '<i class="fa fa-star"></i> รายชื่อนิสิตสหกิจ', 'class="nav-link"');?>
             </li>
           </ul>
         </li>
