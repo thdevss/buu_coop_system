@@ -13,6 +13,7 @@ class Coop_test_model extends CI_model
 
     public function get($id)
     {
+        $this->db->where('term_id', $this->Login_session->check_login()->term_id);
         $this->db->where($this->primary_key, $id);
         $this->db->from($this->table_name);
         $query = $this->db->get();
@@ -21,6 +22,7 @@ class Coop_test_model extends CI_model
 
     public function gets()
     {
+        $this->db->where('term_id', $this->Login_session->check_login()->term_id);
         $this->db->from($this->table_name);
         $query = $this->db->get();
         return $query->result();

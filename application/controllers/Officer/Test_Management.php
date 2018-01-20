@@ -100,9 +100,6 @@ class Test_Management extends CI_Controller {
             $this->DB_coop_test_has_student->add($array);
             return $this->index('success');
         }
-
-        
-
     }
     public function delete(){
         $array['student_id'] = $this->input->post('student_id');
