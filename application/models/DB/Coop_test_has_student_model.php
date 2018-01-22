@@ -33,9 +33,11 @@ class Coop_test_has_student_model extends CI_model
         return $this->db->insert($this->table_name, $array);
     }
 
-    public function update($id, $array)
+    public function update($where_array, $array)
     {
-        $this->db->where($this->primary_key, $id);
+        foreach($where_array as $k => $v) {
+            $this->db->where($k, $v);
+        }
         return $this->db->update($this->table_name, $array);
     }
 

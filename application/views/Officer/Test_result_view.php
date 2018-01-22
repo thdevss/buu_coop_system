@@ -14,19 +14,14 @@
         <div class="card">
           <div class="card-header"><i class="fa fa-align-justify"></i>จัดการผลการสอบของนิสิต</div>
                  <div class="card-body text-center  ">
-                 <?php echo form_open_multipart('Officer/Test_result');?>
-                  <?php 
-                  if(@$status == 'success') {
-                    echo '<div class="alert alert-success" role="alert"><strong>สำเร็จ!</strong></div>';
-                  } else if(@$status == 1) {
-                    echo '<div class="alert alert-info" role="alert"><strong>ข้อควรรู้!</strong> โปรดอัพโหลดไฟล์ .pdf, .docx ขนาดไม่เกิน 500kb</div>';
-                  } else {
-                    echo '<div class="alert alert-warning" role="alert"><strong>ผิดพลาด!</strong> '.@$status.'</div>';
-                  }
+                 <div class="alert alert-info" role="alert"><strong>ข้อควรรู้!</strong> โปรดอัพโหลดไฟล์ .xlsx ขนาดไม่เกิน 1,500kb</div>
 
-                  if(@$old_document) {
-                    echo '<div class="alert alert-warning" role="alert"><strong>โปรดระวัง!</strong> เอกสารชุดนี้เคยถูกอัพโหลดแล้ว, <a href="'.base_url($old_document->pdf_file).'">คลิ้กเพื่อดูไฟล์</a></div>';
+                 <?php echo form_open_multipart('Officer/Test_result/upload');?>
+                  <?php 
+                  if($status){
+                    echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
                   }
+          
                   ?>
                   <div class="row">
                   <div class="text-center col-sm-4">
@@ -35,7 +30,7 @@
                   <div class="text-center col-sm-4">
                   <div class="form-group">
                       <label for="ccmonth">สอบครั้งที่</label>
-                      <select class="form-control" id="" name="">
+                      <select class="form-control" id="coop_test_id" name="coop_test_id">
                         <option>--กรุณาเลือก--</option>
                         <?php foreach ($coop_test as $row) { ?>
                         <option value="<?php echo $row->id; ?>" ><?php echo $row->name; ?> </option>
