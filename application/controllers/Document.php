@@ -34,6 +34,18 @@ class Document extends CI_Controller {
         $this->load->view('Document/IN-S002_view');
     }
 
+    public function in_s001() 
+    {
+        $html = $this->load->view('Document/IN-S001_view', array(), true);
+
+        $this->load->library('mpdf60/mpdf');
+        $mpdf = new mPdf('th', 'A4', '0', 'THSaraban');
+        $mpdf->SetDisplayMode('fullpage');
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+        exit;
+    }
+
     
 
 
