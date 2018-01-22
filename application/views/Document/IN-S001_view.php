@@ -1,130 +1,244 @@
-<!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <table align="center" width="900px" border="0">
-    <tbody>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <td><img src="<?php echo base_url('assets/img/buu_logo.jpg');?>" width="150" height="150" border="0" align="center" ></td>
-    <td></td>
-    <td><p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ใบสมัครเป็นนิสิตสหกิจศึกษา</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IN-S001</p>
-    <p>วิชาสหกิจศึกษา คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา</p>
-    <p>Cooperative Education --- Faculty of Informatics Burapha University</p>
-    </td>
-    <td></td>
-    </tbody>
 
-    </table>
+<table width="100%">
+    <tr>
+        <td width="10%">
+            <img src="<?php echo ('assets/img/buu_logo.jpg');?>" width="90" height="90" border="0" align="center" >
+        </td>
 
-    <table align="center" width="900px" border="0">
-    <tbody>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <td><b>1. ชื่อ-นามสกุล&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>(ไทย)&nbsp;นาย/น.ส.&nbsp;.........................................................................................................................<p>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    (English) Mr./Miss...................................................................................................................</p>
-    <p>รหัส..............................................................................ชั้นปี......................................................................................</p>
-    <p>หลักสูตร.......................................................................สาขาวิชา..............................................................................</p>
-    <p>จำนวนหน่วยกิตที่เรียนมาแล้ว.............................................หน่วยกิต........................................................................</p></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    </tbody>
-    </table>
+        <td width="80%">
+            <center>
+            
+		        <B>ใบสมัครเป็นนิสิตสหกิจศึกษา</B><br>
+         
+            
+                วิชาสหกิจศึกษา คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา<br>
+	       
+            
+            Cooperative Education --- Faculty of Informatics Burapha University
+	        
+            </center>
+        </td>
 
-    <table align="center" width="900px" border="0">
-    <tbody>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <td><b>2. ที่อยู่ตามทะเบียนบ้าน</b>
-    <p>บ้านเลขที่............................................................ถนน................................................ตำบล.....................................</p>
-    <p>อำเภอ..............................................................................จังหวัด..............................................................................</p>
-    <p>หลักสูตร.....................................................สาขาวิชา...........................................รหัสไปรษณีย์...............................</p>
-    <p>โทรศัพท์.............................................โทรสาร......................................E-mail........................................................</p></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    </tbody>
-    </table>
+        <td width="10%" valign="top">
+            <div align="right">IN-S001</div>
+        </td>
+    </tr>
 
-    <table align="center" width="900px" border="0">
-    <tbody>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <td><b>3. ที่อยู่ปัจจุบัน</b>
-    <p> <input type="checkbox" name="vehicle" value="Bike"> หอพัก..................................ห้อง.......................โทรศัพท์.................................มือถือ.........................................</p>
-    <p> <input type="checkbox" name="vehicle" value="Bike"> อื่นๆ ระบุที่อยู่</p>
-    <p>บ้านเลขที่..............................................ถนน.........................................................ตำบล...........................................</p>
-    <p>อำเภอ...................................................จังหวัด.................................................รหัสไปรษณีย์...................................</p>
-    <p>โทรศัพท์.............................................โทรสาร...........................................E-mail....................................................</p></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    </tbody>
+</table>
+<br>
+<table width="100%">
+    <tr>
+        <td width="25%" align="right" valign="top">
+            <B>1. ชื่อ-นามสกุล</B>
+        </td>
+
+        <td width="75%">
+            
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(ไทย) นาย/น.ส. ................................................................................<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(English) Mr./Miss............................................................................<br><br><br>
+
+        </td>
+
+    </tr>
+
+</table>
+
+<table width="100%">
+    <tr>
+        <td width="100%" align="light" valign="top">
+            รหัส...........................................................ชั้นปี.................................................................................<br><br>
+            หลักสูตร.......................................................สาขาวิชา........................................................................<br><br>
+            จำนวนหน่วยกิตที่เรียนมาแล้ว.......................................หน่วยกิต GPAX..............................................
+        </td>
+
+    </tr>
+
+</table>
+
+<table width="100%">
+    <tr>
+        <td width="30%" align="right" valign="top">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>2. ที่อยู่ตามทะเบียนบ้าน</B>
+        </td>
+        <td width="70%" align="right" valign="top">
+
+    </tr>
+
+</table>
+
+<table width="100%">
+    <tr>
+        <td width="100%" align="light" valign="top">
+            บ้านเลขที่..............................................ถนน...................................ตำบล............................................<br><br>
+            อำเภอ..............................................จังหวัด...................................รหัสไปรษณีย์...................................<br><br>
+            โทรศัพท์.........................................โทรสาร...................................E-mail.............................................<br><br>
+        </td>
+
+    </tr>
+
+</table>
+
+<table width="100%">
+    <tr>
+        <td width="25%" align="right" valign="top">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>3. ที่อยู่ปัจจุบัน</B>
+        </td>
+        <td width="75%" align="right" valign="top">
+
+    </tr>
+
+</table>
+
+<table width="100%">
+    <tr>
+        <td width="100%" align="light" valign="top">
+        <input type="checkbox" name="" value=""> หอพัก...................................ห้อง........โทรศัพท์.........................................มือ..................................<br><br>
+        <input type="checkbox" name="" value=""> อื่นๆ ระบุที่อยู่<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;บ้านเลขที่..............................................ถนน...................................ตำบล........................................<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;อำเภอ.........................................จังหวัด...................................รหัสไปรษณีย์....................................<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;โทรศัพท์.........................................โทรสาร...................................E-mail.........................................<br><br>
+        </td>
+
+    </tr>
+
+</table>
+
+<table width="100%">
+    <tr>
+        <td width="80%" align="light" valign="top">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>4. ผู้ปกครองของนิสิต(นิสิตจะต้องได้รับอนุญาตจากผู้ปกครองในการไป<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ปฏิบัติงานโดยโครงการฯจะแจ้งให้ผู้ปกครองทราบต่อไป</B>
+        </td>
+        <td width="20%" align="light" valign="top">
+        </td>
+    </tr>
+
+</table>
+
+<table width="100%">
+    <tr>
+        <td width="100%" align="light" valign="top">
+            ชื่อ...........................................................ความสัมพันธ์กับนิสิต.............................................................<br><br>
+            ที่อยู่ บ้านเลขที่..............................................ถนน...................................ตำบล.....................................<br><br>
+            อำเภอ.........................................จังหวัด...................................รหัสไปรษณีย์.........................................<br><br>
+            โทรศัพท์.........................................โทรสาร...................................E-mail.............................................<br><br>
+        </td>
+
+    </tr>
+
+</table>
+
+<table width="100%">
+    <tr>
+        <td width="100%" align="light" valign="top">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>5. ภาคการศึกษาที่คาดว่าจะไปปฏิบัติงานสหกิจศึกษา ภาคการศึกษาที่........ปีกาศึกษา.......</B><br><br>
+        </td>
+    </tr>
+
+</table>
+
+<table width="100%">
+    <tr>
+        <td width="100%" align="light" valign="top">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        ลงชื่อนิสิต..................................................<br><br>
+        </td>
+
+    </tr>
+
+</table>
+
+<table width="100%">
+    <tr>
+        <td width="100%" align="light" valign="top">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        (...................................................)<br><br>
+        </td>
+
+    </tr>
+
+</table>
+
+<table width="100%">
+    <tr>
+        <td width="100%" align="light" valign="top">
+        
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        วันที่..............................................
+        </td>
+
+    </tr>
+
+</table>
+<br>
+<table width="100%">
+    <tr>
+        <td width="100%" align="light" valign="top">
+        
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา<br><br>
+        </td>
+
+    </tr>
+
+</table>
+
+<table width="100%">
+    <tr>
+        <td width="50%" align="light" valign="top">
+        
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       
+        169 ถ.ลงหาดบางแสน ต.แสนสุข อ.เมือง จ.ชลบุรี 20131<br><br>
+        </td>
+
+    </tr>
+
+</table>
+
+<table width="100%">
+    <tr>
+        <td width="100%" align="light" valign="top">
+        
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        โทรศัพท์ 038-103060-1โทรสาร 038-393245<br><br>
+        </td>
+
+    </tr>
+
+</table>
+
+<table width="100%">
+    <tr>
+        <td width="100%" align="light" valign="top">
+        
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        E-mail: kamonwans@buu.ac.thwebsite : http://www.informatics.buu.ac.th/coop<br><br>
+        </td>
+
+    </tr>
+
+</table>
 
 
-    </table>
-
-    <table align="center" width="900px" border="0">
-    <tbody>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <td><b>4. ผู้ปกครองของนิสิต(นิสิตจะต้องได้รับอนุญาตจากผู้ปกครองในการไปปฏิบัติงานโดยโครงการฯจะ<br>
-    แจ้งให้ผู้ปกครองทราบต่อไป)</b>
-    <p>ชื่อ................................................................................ความสัมพันธ์กับนิสิต............................................................</p>
-    <p>ที่อยู่ บ้านเลขที่.........................................................ถนน.........................................ตำบล.......................................</p>
-    <p>อำเภอ...................................................จังหวัด.................................................รหัสไปรษณีย์...................................</p>
-    <p>โทรศัพท์.............................................โทรสาร...........................................E-mail....................................................</p></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    </tbody>
-    </table>
-
-    <table align="center" width="900px" border="0">
-    <tbody>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <td><b>5. ภาคการศึกษาที่คาดว่าจะไปปฏิบัติงานสหกิจศึกษา ภาคการศึกษาที่................ปีการศึกษา....................</b>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    ลงชื่อนิสิต....................................................................</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    (......................................................................)</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    วันที่.......................................................................</p><br>
-    <b><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;
-    69 ถ.ลงหาดบางแสน ต.แสนสุข อ.เมือง จ.ชลบุรี 20131</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    โทรศัพท์ 038-103060-1 โทรสาร 038-393245</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    E-mail: kamonwans@buu.ac.th website : http://www.informatics.buu.ac.th/coop</p></b>
-    </td>
-    <td></td>
-    <td></td>
-    <td></td>
-    </tbody>
-    </table>
