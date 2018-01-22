@@ -15,6 +15,9 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i>จัดการข้อมูลการอบรม</div>
+            <div class="text-right">
+            <?php echo anchor('Officer/Train_list/add/', '<i class="icon-plus"></i> เพิ่มการอบรม', 'class="btn  btn-info"');?>
+            </div>
               <div class="card-body">
               <?php if(@$_GET['delete'] == 1) { ?>
                 <div class="alert alert-warning">สำเร็จ </div>

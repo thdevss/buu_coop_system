@@ -6,91 +6,66 @@
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Home</li>
   <li class="breadcrumb-item"><a href="#"><?php echo $user->login_type;?></a></li>
-  <li class="breadcrumb-item active">เเก้ไขข้อมูลโครงการอบรม</li>
+  <li class="breadcrumb-item active">เพิ่มข้อมูลโครงการอบรม</li>
 </ol>
 <div class="container-fluid">
     <div class="animated fadeIn">
         <div class="row" >
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><i class="fa fa-align-justify"></i>เเก้ไขข้อมูลโครงการอบรม</div>
+                    <div class="card-header"><i class="fa fa-align-justify"></i>เพิ่มข้อมูลโครงการอบรม</div>
                     <div class="card-body ">             
                         <form id="permit_form" >
                             <div class="form-group col-md-6">
                                 <label for="fullname">ประเภทโครงการ</label>          
-                                <select class="form-control" type="text" class="form-control" name="train_type" id="train_type">
-                                <?php 
-                                foreach($train_type as $t) {
-                                    if($t->id == @$data->train_type_id) {
-                                        echo '<option value="'.$t->id.'" selected>'.$t->name.'</option>';
-                                    } else {
-                                        echo '<option value="'.$t->id.'" >'.$t->name.'</option>';                           
-                                    }
-                                } 
-                                ?>               
-                                </select>
+                                <input class="form-control" type="text" class="form-control" name="train_type" id="train_type">
                             </div> 
                             <div class="col-md-6"></div>
 
                             <div class="form-group col-md-6">
                                 <label for="student_code">ชื่อโครงการ</label>
-                                <input type="text" class="form-control" id="title" placeholder="" name="title" value="<?php echo $data->title?>">
+                                <input type="text" class="form-control" id="title" placeholder="" name="title" value="">
                             </div> 
                             <div class="col-md-6"></div>
                             
                             <div class="form-group col-md-6">
                                 <label for="student_field">วิทยากร</label>
-                                <input type="text" class="form-control" id="lecturer" placeholder="" name="lecturer" value="<?php echo $data->lecturer ?>">
+                                <input type="text" class="form-control" id="lecturer" placeholder="" name="lecturer" value="">
                             </div>
                             <div class="col-md-6"></div>
 
                             <div class="form-group col-md-6">
                                 <label for="city">จำนวนที่นั่งเปิดรับ</label>
-                                <input type="text" class="form-control" id="number_of_seat" placeholder="" name="number_of_seat" value="<?php echo $data->number_of_seat ?>">
+                                <input type="text" class="form-control" id="number_of_seat" placeholder="" name="number_of_seat" value="">
                             </div>
                             <div class="col-md-6"></div>
 
                             <div class="form-group col-md-6">
                                 <label for="city">วันที่อบรม</label>
-                                <input type="text" class="form-control" id="" placeholder="" name="date" value="<?php echo $data->date ?>">    
+                                <input type="text" class="form-control" id="" placeholder="" name="date" value="">    
                             </div>
                             <div class="col-md-6"></div>
                             
                             <div class="form-group col-md-6">
                                 <label for="room">เลือกห้อง</label>  
-                                <select class="form-control" type="text" class="form-control" name="train_location" id="train_location">
-                                <?php 
-                                foreach($train_location as $r) {
-                                    if($r->id == $data->train_location_id) {
-                                        echo '<option value="'.$r->id.'" selected>'.$r->room.'</option>';
-                                    } else {
-                                        echo '<option value="'.$r->id.'" >'.$r->room.'</option>';       
-                                    }
-                                } 
-                                ?>
-                                </select>
+                                <input class="form-control" type="text" class="form-control" name="train_location" id="train_location">
                             </div>
                             <div class="col-md-6"></div>
                             
                             <div class="form-group col-md-6">
                                 <label for="city">ระยะเวลาเปิดรับสมัคร</label>                 
-                                <input type="text" class="form-control" id="register_period" placeholder="" name="register_period" value"<?php echo $data->register_period ?>">
+                                <input type="text" class="form-control" id="register_period" placeholder="" name="register_period" value"">
                             </div>
                             <div class="col-md-6"></div>   
 
-                            </div> 
+                            <!-- </div>  -->
                             
                             
                             <div class="col-md-6"></div> 
 
                             <div class="col-md-6"> 
-                            <td class="text-center">
-                            <button type="button" class="btn btn-danger" ><i class="btn  btn-danger"></i>ยกเลิก</button>
-                            <button type="button" class="btn btn-primary" ><i class="btn  btn-primary"></i>บันทึกเอกสาร</button>
-                            <!-- <?php echo anchor('Officer/Train_list/add/'.$row['train']->id, '<i class="icon-trash"></i> ยกเลิก', 'class="btn  btn-danger"');?>
-                            <?php echo anchor('Officer/Train_list/add/'.$row['train']->id, '<i class="icon-pencil"></i> บันทึกเอกสาร', 'class="btn  btn-primary"');?> -->
-                            </td>
-                    
+                                <button type="submit" class="btn btn-sm btn-secondary" name="print" value="1"><i></i>ยกเลิก</button>
+                                <button type="submit" class="btn btn-sm btn-success" name="save" value="1"><i></i>บันทึก</button>                
                             </div>
 
                             <div class="col-md-6"></div>
