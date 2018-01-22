@@ -62,5 +62,15 @@ class Coop_test_model extends CI_model
         $this->db->select('test_date');
         $query = $this->db->get();
         return $query->result()[0]->test_date;
-    }    
+    }   
+    
+    public function get_open_register()
+    {
+        $this->db->where('term_id', $this->Login_session->check_login()->term_id);
+        $this->db->where('register_status', '1');
+        $this->db->order_by('name', 'ASC');
+        $this->db->from($this->table_name);
+        $query = $this->db->get();
+        return $query->result()[0];
+    }
 }
