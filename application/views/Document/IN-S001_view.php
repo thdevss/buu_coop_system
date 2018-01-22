@@ -5,25 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>IN-S001</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
 <body>
     <table align="center" width="900px" border="0">
-    <tbody>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <td><img src="<?php echo base_url('assets/img/buu_logo.jpg');?> " width="150" height="150" border="0" align="center" ></td>
-    <td></td>
-    <td><p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ใบสมัครเป็นนิสิตสหกิจศึกษา</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IN-S001</p>
-    <p>วิชาสหกิจศึกษา คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา</p>
-    <p>Cooperative Education --- Faculty of Informatics Burapha University</p>
-    </td>
-    </tbody>
+            <tr>
+                <td><img src="<?php echo ('assets/img/buu_logo.jpg');?>" width="150" height="150" border="0" align="center" ></td>
+                <td>
+                    <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ใบสมัครเป็นนิสิตสหกิจศึกษา</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IN-S001</p>
+                    <p>วิชาสหกิจศึกษา คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา</p>
+                    <p>Cooperative Education --- Faculty of Informatics Burapha University</p>
+                </td>
+            </tr>
     </table>
 
-    <table align="center" width="900px" border="0">
+    <!-- <table align="center" width="900px" border="0">
     <tbody>
     <tr></tr>
     <tr></tr>
@@ -38,6 +33,6 @@
     <td></td>
     <td></td>
     </tbody>
-    </table>
+    </table> -->
 </body>
 </html>
