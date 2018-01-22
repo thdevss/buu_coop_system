@@ -9,7 +9,7 @@
   <meta name="author" content="Lukasz Holeczek">
   <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
 
-  <title>CoreUI Bootstrap 4 Admin Template</title>
+  <title>ระบบสหกิจ | มหาวิทยาลัยบูรพา</title>
 
   <!-- Icons -->
   <link href="<?php echo base_url('assets/theme/font-awesome/css/font-awesome.min.css');?>" rel="stylesheet">

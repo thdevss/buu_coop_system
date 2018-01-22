@@ -31,10 +31,10 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การสอบสหกิจ</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> สมัครสอบสหกิจ</a>
+                <a class="nav-link" href="<?php echo site_url('student/test');?>" target="_top"><i class="icon-star"></i> สมัครสอบสหกิจ</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> ประกาศผลสอบ</a>
+                <a class="nav-link" href="<?php echo site_url('student/test/result');?>" target="_top"><i class="icon-star"></i> ประกาศผลสอบ</a>
               </li>
             </ul>
           </li>

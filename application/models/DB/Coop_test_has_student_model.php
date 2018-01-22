@@ -63,4 +63,11 @@ class Coop_test_has_student_model extends CI_model
         return $query->result()[0];
     }
 
+    public function gets_by_student($student_id){
+        $this->db->where('student_id',$student_id);
+        $this->db->order_by('coop_test_id', 'ASC');        
+        $this->db->from($this->table_name);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }

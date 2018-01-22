@@ -24,8 +24,8 @@ class Test_result extends CI_Controller {
             $data['status']['color'] = 'success';
             $data['status']['text'] = 'บันทึกผลการสอบเรียบร้อย';
         } else if($status == 'error_upload' ){
-            $data['status']['color'] = 'success';
-            $data['status']['text'] = 'บันทึกผลการสอบเรียบร้อย';
+            $data['status']['color'] = 'danger';
+            $data['status']['text'] = 'ไม่รองรับไฟล์ โปรดตรวจสอบ';
         } 
         else {
             $data['status'] = '';
