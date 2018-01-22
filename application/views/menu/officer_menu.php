@@ -17,11 +17,9 @@
         <li class="nav-item nav-dropdown">
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> นิสิต</a>
           <ul class="nav-dropdown-items">
-
             <li class="nav-item">
             <?php echo anchor('officer/List_coop_student/', '<i class="fa fa-star"></i> รายชื่อนิสิต', 'class="nav-link"');?>
             </li>
-
             <li class="nav-item">
             <?php echo anchor('Officer/Validate_list_coop_student/', '<i class="fa fa-star"></i> ตรวจสอบเอกสารรายบุคคล', 'class="nav-link"');?>
             </li>
@@ -29,11 +27,11 @@
             <?php echo anchor('Officer/validate_assessment_type_coop/', '<i class="fa fa-star"></i> ตรวจสอบเอกสารตามประเภท', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/List_coop_student/', '<i class="fa fa-star"></i> รายชื่อนิสิตสหกิจ', 'class="nav-link"');?>
+              <a class="nav-link" href="components-forms.html"><i class="icon-puzzle"></i> รายชื่อนิสิตสหกิจ</a>
             </li>
           </ul>
         </li>
-        <li class="nav-item nav-dropdown">
+        <li class="nav-item nav-dropdown">  
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> ผู้ประกอบการ</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
@@ -62,7 +60,7 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การสอบ</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <?php echo anchor('Officer/Test_form/', '<i class="fa fa-star"></i>  จัดการข้อมูลรับสมัครการสอบ', 'class="nav-link"');?>
+              <?php echo anchor('Officer//', '<i class="fa fa-star"></i>  จัดการข้อมูลรับสมัครการสอบ', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
             <?php echo anchor('Officer/Test_Management/', '<i class="fa fa-star"></i>  จัดการข้อมูลนิสิตเข้าสอบ', 'class="nav-link"');?>
@@ -111,8 +109,7 @@
         <form>
           <div class="form-group">
             <label for="term_option">ปีการศึกษา</label>
-            <select class="form-control" id="term_option" required>
-              <option>please select</option>
+            <select class="form-control" id="term_option">
               <?php 
               foreach($terms as $term) {
                 echo '<option value="'.$term->id.'">'.$term->name.'</option>';
@@ -123,8 +120,8 @@
         </form>
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="changeTermAjax()">เปลี่ยนปีการศึกษา</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิดหน้าต่าง</button>
-        <button type="button" class="btn btn-primary" onclick="changeTermAjax()">เปลี่ยนปีการศึกษา</button>        
       </div>
     </div>
   </div>

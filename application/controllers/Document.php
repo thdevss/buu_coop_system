@@ -39,6 +39,12 @@ class Document extends CI_Controller {
         // $this->m_pdf->pdf->Output($pdfFilePath, "D");        
     }
 
+
+    public function in_s002() {
+        $this->load->view('Document/IN-S002_view');
+    }
+
     
+
 
 }
