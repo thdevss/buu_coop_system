@@ -80,13 +80,13 @@ class Train_location extends CI_Controller {
 
     }
 
-    public function delete($room_id)
+    public function delete()
     {
         //check if exist
         $this->load->library('form_validation');        
         $this->form_validation->set_rules('id', 'id', 'trim|required|numeric');
-        
         if ($this->form_validation->run() != FALSE) {
+            $room_id = $this->input->post('id');            
             if($this->DB_train_location->get($room_id)) {
                 //delete
                 $this->DB_train_location->delete($room_id);
