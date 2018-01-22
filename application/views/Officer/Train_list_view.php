@@ -14,14 +14,18 @@
       <!--table รายชื่อนิสิต-->
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify"></i>จัดการข้อมูลการอบรม</div>
-            <div class="text-right">
-            <?php echo anchor('Officer/Train_list/add/', '<i class="icon-plus"></i> เพิ่มการอบรม', 'class="btn  btn-info"');?>
+            <div class="card-header">
+              <i class="fa fa-align-justify"></i> จัดการข้อมูลการอบรม
+              <a class="btn btn-primary float-right" href="<?php echo site_url('officer/Train_list/add');?>">เพิ่มการอบรม</a>
+
             </div>
               <div class="card-body">
-              <?php if(@$_GET['delete'] == 1) { ?>
-                <div class="alert alert-warning">สำเร็จ </div>
-              <?php }?>
+              <?php 
+                  if($status){
+                    echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
+                  }
+          
+                ?>
               <table class="table table-bordered datatable" >
                     <thead>
                       <tr bgcolor="">
@@ -44,8 +48,12 @@
                         <td class="text-center"><?php echo $row['train']->number_of_hour ?></td>
                         <td class="text-center"><?php echo $row['train']->number_of_seat ?></td>
                         <td class="text-center">
-                        <?php echo anchor('Officer/Train_list/edit/'.$row['train']->id, '<i class="icon-pencil"></i> เเก้ไขข้อมูล', 'class="btn  btn-primary"');?>
-                        <?php echo anchor('Officer/Train_list/delete/'.$row['train']->id, '<i class="icon-trash"></i> ลบ', 'class="btn  btn-danger"');?>
+                            <form action="<?php echo site_url('Officer/Train_list/delete'); ?>" class="form-inline" method="post">
+                              <input type="hidden" name="id" value="<?php echo $row['train']->id ; ?>">
+                              <?php echo anchor('Officer/Train_list/edit/'.$row['train']->id, '<i class="icon-pencil"></i> เเก้ไขข้อมูล', 'class="btn  btn-primary"');?>                              
+                              <p style="width:10px;"></p>
+                              <button type="submit" class="btn btn-danger btn-submit"><i class="fa fa-rss"></i> ลบ</button>
+                            </form>
                         </td>
                       </tr>
                     <?php 

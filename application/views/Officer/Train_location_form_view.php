@@ -17,19 +17,15 @@
                         <form id="train_location_form">
                             <input type="hidden" name="id" id="id" value="<?php echo @$row->id;?>">
                             <div class="row">
-                                <div class="col-sm-3"></div>
-                                <div class="form-group col-sm-6">
+                                <div class="form-group col-md-6 offset-md-3">
                                     <label for="building">ชื่อตึก</label>          
                                     <input value="<?php echo @$row->building;?>" class="form-control" type="text" name="building" id="building">
                                 </div>
-                                <div class="col-sm-3"></div>
 
-                                <div class="col-sm-3"></div>
-                                <div class="form-group col-sm-6">
+                                <div class="form-group col-md-6 offset-md-3">
                                     <label for="room">ชื่อห้อง</label>          
                                     <input value="<?php echo @$row->room;?>" class="form-control" type="text" name="room" id="room">
                                 </div>
-                                <div class="col-sm-3"></div>
 
                                 <div class="col-sm-12 text-center">
                                     <button type="reset" class="btn btn-warning" name="" value="1"><i class="fa fa-dot-circle-o"></i> ยกเลิก</button>                                
