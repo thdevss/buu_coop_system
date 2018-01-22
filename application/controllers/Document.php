@@ -21,4 +21,7 @@ class Document extends CI_Controller {
         $this->load->view('Document/IN-S001_view');
     }
 
+    public function in_s002() {
+        $this->load->view('Document/IN-S002_view');
+    }
 }
