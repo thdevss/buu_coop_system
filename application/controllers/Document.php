@@ -19,7 +19,7 @@ class Document extends CI_Controller {
 
     public function index() 
     {
-        $html = $this->load->view('Document/test', array(), true);
+        $html = $this->load->view('Document/IN-S001_view', array(), true);
 
         $this->load->library('mpdf60/mpdf');
         $mpdf = new mPdf('th', 'A4', '0', 'THSaraban');
@@ -30,13 +30,9 @@ class Document extends CI_Controller {
     }
 
 
-    public function in_s002() {
-        $this->load->view('Document/IN-S002_view');
-    }
-
-    public function in_s001() 
+    public function in_s002() 
     {
-        $html = $this->load->view('Document/IN-S001_view', array(), true);
+        $html = $this->load->view('Document/IN-S002_view', array(), true);
 
         $this->load->library('mpdf60/mpdf');
         $mpdf = new mPdf('th', 'A4', '0', 'THSaraban');
