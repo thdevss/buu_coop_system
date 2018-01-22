@@ -53,7 +53,11 @@ class Train_list extends CI_Controller {
 
             $this->template->view('Officer/Edit_Train_list_view', $data);
         }
+        public function add(){
+            $this->template->view('Officer/Add_Train_list_view');
 
+    
+        }
 
 
 
