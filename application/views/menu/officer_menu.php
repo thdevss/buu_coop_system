@@ -46,10 +46,10 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การอบรม</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-            <?php echo anchor('Officer/Train_list/', '<i class="fa fa-star"></i> ข้อมูลโครงการอบรม', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Train_list/', '<i class="fa fa-star"></i> ข้อมูลโครงการอบรม', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> เช็คชื่อเข้าอบรม</a>
+              <?php echo anchor('Officer/Train_check_student/', '<i class="fa fa-star"></i>  เช็คชื่อเข้าอบรม', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
               <?php echo anchor('Officer/Train_location/', '<i class="fa fa-star"></i>  จัดการสถานที่อบรม', 'class="nav-link"');?>

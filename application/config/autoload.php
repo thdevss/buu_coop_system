@@ -209,7 +209,8 @@ $autoload['model'] = array(
     'DB/Train_model' => 'DB_train',
     'DB/Train_check_student_model' => 'DB_train_check_student',
     'DB/Train_location_model' => 'DB_train_location',
-    'DB/Train_type_model' => 'DB_train_type'
+    'DB/Train_type_model' => 'DB_train_type',
+    'DB/Train_set_check_model' => 'DB_train_set_check'
     
     
 
