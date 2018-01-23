@@ -17,7 +17,7 @@
             <div class="card-header">
               <i class="fa fa-align-justify"></i> จัดการข้อมูลสถานประกอบการ
                 <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">
-                เพิ่มสถานประกอบการ
+                เพิ่มเจ้าหน้าที่
                 </button>
             </div>
               <div class="card-body">
@@ -25,14 +25,15 @@
                   if($status){
                     echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
                   }
-          
                 ?>
               <table class="table table-bordered datatable" >
                     <thead>
                       <tr bgcolor="">
                         <th class="text-center" >ลำดับ</th>
-                        <th class="text-center">ชื่อสถานประกอบการ</th>
-                        <th class="text-center">จำนวนเจ้าหน้าที่</th>
+                        <th class="text-center">ชื่อ</th>
+                        <th class="text-center">E-mail</th>
+                        <th class="text-center">ตำเเหน่ง</th>
+                        <th class="text-center">สาขา</th>
                         <th class="text-center"></th>
                       </tr>
                     </thead>
@@ -42,15 +43,21 @@
                         <td class="text-center">
                         <?php echo $i++; ?>
                         </td>
-                        <td class="text-center"><?php echo $row->name_th;?></td>
-                        <td class="text-center"><?php echo $row->total_employee; ?></td>
+                        <td class="text-center"><?php echo $row['company_person']->fullname;?></td>
+                        <td class="text-center"><?php echo $row['company_person']->email; ?></td>
+                        <td class="text-center"><?php echo $row['company_person']->position;?></td>
+                         <?php if($row['company']->parent_id == 0){
+                           echo'<td class="text-center"> สาขาหลัก</td>';
+                            }else{
+                              echo'<td class="text-center"> สาขาย่อย</td>';
+                        }?>   
                         <td class="form-inline">
-                              <?php echo anchor('/officer/Officer_company/list/'.$row->id, '<i class="icon-people"></i> เจ้าหน้าที่', 'class="btn  btn-primary"');?>                              
-                              <div style="width:2%"></div>
-                              <?php echo anchor('Officer/Train_list/edit/'.$row->id, '<i class="icon-share-alt"></i> สาขาย่อย', 'class="btn  btn-primary"');?>                              
-                              <div style="width:2%"></div>
-                              <?php echo anchor('Officer/Train_list/edit/'.$row->id, '<i class="icon-star"></i> รายละเอียด', 'class="btn  btn-primary"');?>                              
-                         
+                        <form action="<?php echo site_url('Officer/Officer_company/delete/'); ?>" method="post">
+                        <input type="hidden"   name="company_person_id" value="<?php echo $row['company_person']->id ; ?>">
+                        <input type="hidden"   name="company_id" value="<?php echo $row['company']->id ; ?>">
+                        
+                        <button type="submit" class="btn btn-danger btn-submit"><i class="fa fa-rss"></i> ลบ</button>
+                        </form>        
                         </td>
                       </tr>
                     <?php 
@@ -66,10 +73,7 @@
       </div>
     </div>
   </div>
-</div>
-
-
-        
+</div>   
       </div>
     </div>
   </div>
@@ -98,3 +102,26 @@
 </div>
 <!-- /.modal-dialog -->
 </div>
+<script>
+$('.btn-submit').on('click',function(e){
+    e.preventDefault();
+    var form = $(this).parents('form');
+    swal({
+        title: "คุณแน่ใจใช่ไหม",
+        text: "ลบคำนิสิตที่เลือก",
+        icon: "warning",
+        buttons: true,
+        dabgerMode: true
+    })
+    .then((isConfirm) => {
+      if (isConfirm) {
+        form.submit();
+      } else {
+
+      }
+    })
+
+});
+
+
+</script>

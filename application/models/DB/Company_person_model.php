@@ -42,4 +42,12 @@ class Company_person_model extends CI_model
         $this->db->where('id', $id);        
         return $this->db->delete($this->table_name);
     }
+
+    public function gets_by_company_id($company_id)
+    {
+        $this->db->where('company_id', $company_id);
+        $this->db->from($this->table_name);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
