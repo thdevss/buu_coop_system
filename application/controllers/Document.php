@@ -23,6 +23,7 @@ class Document extends CI_Controller {
 
         $this->load->library('mpdf60/mpdf');
         $mpdf = new mPdf('th', 'A4', '0', 'THSaraban');
+        $mpdf->SetTitle('IN-S001.pdf');
         $mpdf->SetDisplayMode('fullpage');
         $mpdf->WriteHTML($html);
         $mpdf->Output();
@@ -36,6 +37,59 @@ class Document extends CI_Controller {
 
         $this->load->library('mpdf60/mpdf');
         $mpdf = new mPdf('th', 'A4', '0', 'THSaraban');
+        $mpdf->SetTitle('IN-S001.pdf');
+        $mpdf->SetDisplayMode('fullpage');
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+        exit;
+    }
+
+    public function IN_S003()
+    {
+        $html = $this->load->view('Document/IN-S003_view', array(), true);
+
+        $this->load->library('mpdf60/mpdf');
+        $mpdf = new mPdf('th', 'A4', '0', 'THSaraban');
+        $mpdf->SetTitle('IN-S003.pdf');
+        $mpdf->SetDisplayMode('fullpage');
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+        exit;
+    }
+
+    public function IN_S004()
+    {
+        $html = $this->load->view('Document/IN-S004_view', array(), true);
+
+        $this->load->library('mpdf60/mpdf');
+        $mpdf = new mPdf('th', 'A4', '0', 'THSaraban');
+        $mpdf->SetTitle('IN-S004.pdf');
+        $mpdf->SetDisplayMode('fullpage');
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+        exit;
+    }
+
+    public function IN_S005()
+    {
+        $html = $this->load->view('Document/IN-S005_view', array(), true);
+
+        $this->load->library('mpdf60/mpdf');
+        $mpdf = new mPdf('th', 'A4', '0', 'THSaraban');
+        $mpdf->SetTitle('IN-S005.pdf');
+        $mpdf->SetDisplayMode('fullpage');
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+        exit;
+    }
+
+    public function IN_S006()
+    {
+        $html = $this->load->view('Document/IN-S006_view', array(), true);
+
+        $this->load->library('mpdf60/mpdf');
+        $mpdf = new mPdf('th', 'A4', '0', 'THSaraban');
+        $mpdf->SetTitle('IN-S006.pdf');
         $mpdf->SetDisplayMode('fullpage');
         $mpdf->WriteHTML($html);
         $mpdf->Output();
