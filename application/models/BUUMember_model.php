@@ -3,7 +3,7 @@ class BUUMember_model extends CI_Model
 {
     public function xlogin($username, $password)
     {
-        if($username == 'nutthanonxxxx') {
+        if($username == 'nutthanon9') {
             $data = array();
             $data['fullname'] = 'Nutthanon';
             $data['login_type'] = 'teacher';
