@@ -74,25 +74,29 @@
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      <h4 class="modal-title">เพิ่ม | สถานประกอบการ</h4>
+      <h4 class="modal-title">เพิ่มสถานประกอบการ</h4>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">×</span>
       </button>
     </div>
-    <div class="modal-body">
-      <div class="col-md-12">
-        <b>ชื่อสถานประกอบการ</b><br></br>
-        <input type="text" id="text-input" name="text-input" class="form-control" placeholder="ชื่อบริษัท">
-     </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
-      <button type="button" class="btn btn-success">บันทึก</button>
-    </div>
+
+    <form action="<?php echo site_url('Officer/company/post_add');?>" method="post">
+      <div class="modal-body">
+        <div class="col-md-12">
+          <label>ชื่อสถานประกอบการ</label>
+          <input type="text" id="company_name" name="company_name" class="form-control" placeholder="ชื่อบริษัท">
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+        <button type="submit" class="btn btn-success">บันทึก</button>
+      </div>
+    </form>
   </div>
   <!-- /.modal-content -->
 </div>
