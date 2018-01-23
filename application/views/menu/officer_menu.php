@@ -35,7 +35,7 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> ผู้ประกอบการ</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <?php echo anchor('Officer/List_company/', '<i class="fa fa-star"></i> ข้อมูลสถานประกอบการ', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Company/', '<i class="fa fa-star"></i> ข้อมูลสถานประกอบการ', 'class="nav-link"');?>
             </li>
           </ul>
         </li>
