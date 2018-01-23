@@ -52,7 +52,7 @@
               <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> เช็คชื่อเข้าอบรม</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> จัดการสถานที่อบรม</a>
+              <?php echo anchor('Officer/Train_location/', '<i class="fa fa-star"></i>  จัดการสถานที่อบรม', 'class="nav-link"');?>
             </li>
           </ul>
         </li>

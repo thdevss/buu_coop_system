@@ -77,3 +77,31 @@
     </div>
   </div>
 </div>
+
+
+
+<script>
+
+
+$('.btn-submit').on('click',function(e){
+    e.preventDefault();
+    var form = $(this).parents('form');
+    swal({
+        title: "คุณแน่ใจใช่ไหม",
+        text: "ที่จะลบข้อมูลที่เลือก",
+        icon: "warning",
+        buttons: true,
+        dabgerMode: true
+    })
+    .then((isConfirm) => {
+      if (isConfirm) {
+        form.submit();
+      } else {
+
+      }
+    })
+
+});
+
+
+</script>

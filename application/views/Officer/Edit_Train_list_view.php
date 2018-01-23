@@ -14,8 +14,14 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header"><i class="fa fa-align-justify"></i>เเก้ไขข้อมูลโครงการอบรม</div>
-                    <div class="card-body ">             
-                        <form id="permit_form" >
+                    <div class="card-body ">    
+                        <?php 
+                        if($status){
+                            echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
+                        }
+                        ?>             
+                        <form action="<?php echo site_url('Officer/Train_list/post_edit');?>" method="post">
+                            <input type="hidden" name="id" value="<?php echo $data->id;?>">
                             <div class="form-group col-md-6 offset-md-3">
                                 <label for="fullname">ประเภทโครงการ</label>          
                                 <select class="form-control" type="text" class="form-control" name="train_type" id="train_type">
@@ -47,6 +53,12 @@
                             <div class="form-group col-md-6 offset-md-3">
                                 <label for="city">จำนวนที่นั่งเปิดรับ</label>
                                 <input type="text" class="form-control" id="number_of_seat" placeholder="" name="number_of_seat" value="<?php echo $data->number_of_seat ?>">
+                            </div>
+                            <div class="col-md-6"></div>
+
+                            <div class="form-group col-md-6 offset-md-3">
+                                <label for="number_of_hour">จำนวนชั่วโมงที่ได้รับ</label>
+                                <input type="number" class="form-control" id="number_of_hour" placeholder="" name="number_of_hour" value="<?php echo $data->number_of_hour;?>">
                             </div>
                             <div class="col-md-6"></div>
 
@@ -86,7 +98,7 @@
 
                             <div class="col-md-12 text-center"> 
                                 <button type="button" class="btn btn-danger" ><i class="btn  btn-danger"></i>ยกเลิก</button>
-                                <button type="button" class="btn btn-primary" ><i class="btn  btn-primary"></i>บันทึกเอกสาร</button>
+                                <button type="submit" class="btn btn-primary" ><i class="btn  btn-primary"></i>บันทึกเอกสาร</button>
                             </div>
 
                             </div> 
