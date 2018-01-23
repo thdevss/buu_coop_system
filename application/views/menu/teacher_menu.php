@@ -40,6 +40,17 @@
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> รายชื่อนิสิตที่ปรึกษา</a>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo site_url('Teacher/#');?>"><i class="icon-star"></i> แบบแจ้งแผนปฎิบัติการสหกิจ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo site_url('Teacher/Daily_activity');?>"><i class="icon-star"></i> กิจกรรมการฝึกงานในแต่ละวัน</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การอบรม</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
