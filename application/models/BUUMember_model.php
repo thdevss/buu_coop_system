@@ -3,7 +3,7 @@ class BUUMember_model extends CI_Model
 {
     public function xlogin($username, $password)
     {
-        if($username == 'nutthanon') {
+        if($username == 'nutthanon9') {
             $data = array();
             $data['fullname'] = 'Nutthanon';
             $data['login_type'] = 'teacher';
@@ -28,7 +28,7 @@ class BUUMember_model extends CI_Model
             if($userdata['ou'] == 'students') {
                 //coop student and student
                 $data['fullname'] = $userdata['fname'].' '.$userdata['lname'];                
-                if($this->Coop_student->get($userdata['code'])) {
+                if($this->DB_coop_student->get($userdata['code'])) {
                     //coop student
                     $data['login_type'] = 'coop_student';
                 } else {
@@ -39,12 +39,12 @@ class BUUMember_model extends CI_Model
             } else if($userdata['ou'] == 'staff') {
                 //teacher and officer
                 //check in teacher
-                $teacher = $this->Teacher->get($userdata['code']);                
+                $teacher = $this->DB_teacher->get($userdata['code']);                
                 if($teacher) {
                     $data['login_type'] = 'teacher';
                     $data['login_value'] = $userdata['code'];                        
                 } else {
-                    $officer = $this->Officer->get($userdata['code']);
+                    $officer = $this->DB_teacher->get($userdata['code']);
                     if($officer) {
                         $data['login_type'] = 'officer';
                         $data['login_value'] = $userdata['code'];                        
