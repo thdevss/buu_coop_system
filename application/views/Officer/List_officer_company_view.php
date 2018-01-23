@@ -15,7 +15,7 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-header">
-              <i class="fa fa-align-justify"></i> จัดการข้อมูลสถานประกอบการ
+              <i class="fa fa-align-justify"></i>เจ้าหน้าที่ในบริษัท
                 <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">
                 เพิ่มเจ้าหน้าที่
                 </button>
@@ -56,7 +56,7 @@
                         <input type="hidden"   name="company_person_id" value="<?php echo $row['company_person']->id ; ?>">
                         <input type="hidden"   name="company_id" value="<?php echo $row['company']->id ; ?>">
                         
-                        <button type="submit" class="btn btn-danger btn-submit"><i class="fa fa-rss"></i> ลบ</button>
+                        <button type="submit" class="btn btn-danger btn-submit"><i class="icon-trash"></i> ลบ</button>
                         </form>        
                         </td>
                       </tr>
