@@ -25,7 +25,13 @@ class Train_list extends CI_Controller {
         } else if($status == 'error_delete' ){
             $data['status']['color'] = 'danger';
             $data['status']['text'] = 'ผิดพลาด โปรดตรวจสอบ';
-        } 
+        } else if($status == 'success_insert' ){
+            $data['status']['color'] = 'success';
+            $data['status']['text'] = 'เพิ่มข้อมูลโครงการการอบรมเรียบร้อย';
+        } else if($status == 'success_update' ){
+            $data['status']['color'] = 'success';
+            $data['status']['text'] = 'แก้ไขข้อมูลแก้อบรมเรียบร้อย';
+        }  
         else {
             $data['status'] = '';
         }
@@ -51,13 +57,13 @@ class Train_list extends CI_Controller {
         if ($this->form_validation->run() != FALSE) {
             $id = $this->input->post('id');            
 
-            if($this->DB_train->get($id)) {
+            if(@$this->DB_train->get($id)) {
                 //delete
                 $this->DB_train->delete($id);
                 return $this->index('success_delete');
                 die();
             } else {
-                return $this->index('error_delete');
+                return $this->index();
                 die();
             }
         } else {
@@ -67,8 +73,23 @@ class Train_list extends CI_Controller {
         
     }
 
-    public function edit($id)
+    public function edit($id, $status = '')
     {
+        if($status == 'error_location') {
+            $data['status']['color'] = 'warning';
+            $data['status']['text'] = 'ไม่เจอสถานที่อบรม';
+        } else if($status == 'error_type') {
+            $data['status']['color'] = 'warning';
+            $data['status']['text'] = 'ไม่เจอประเภทการอบรม';
+        } else if($status != '' && !is_numeric($status)) {
+            $data['status']['color'] = 'danger';
+            $data['status']['text'] = $status;
+        } else {
+            $data['status'] = '';
+        }
+
+        //get id
+
         $data['data'] = $this->DB_train->get($id);
         $data['train_type'] = $this->DB_train_type->gets();
         $data['train_location'] = $this->DB_train_location->gets();
@@ -76,8 +97,21 @@ class Train_list extends CI_Controller {
         $this->template->view('Officer/Edit_Train_list_view', $data);
     }
 
-    public function add()
+    public function add($status = '')
     {
+        if($status == 'error_location') {
+            $data['status']['color'] = 'warning';
+            $data['status']['text'] = 'ไม่เจอสถานที่อบรม';
+        } else if($status == 'error_type') {
+            $data['status']['color'] = 'warning';
+            $data['status']['text'] = 'ไม่เจอประเภทการอบรม';
+        } else if($status != '' ) {
+            $data['status']['color'] = 'danger';
+            $data['status']['text'] = $status;
+        } else {
+            $data['status'] = '';
+        }
+
         $data['train_type'] = $this->DB_train_type->gets();
         $data['train_location'] = $this->DB_train_location->gets();
         $this->template->view('Officer/Add_Train_list_view', $data);
@@ -86,11 +120,106 @@ class Train_list extends CI_Controller {
     public function post_add()
     {
         //insert
+        $this->load->library('form_validation');        
+        $this->form_validation->set_rules('train_type', 'ประเภทการอบรม', 'trim|required|numeric');
+        $this->form_validation->set_rules('title', 'ชื่อโครงการอบรม', 'trim|required');
+        $this->form_validation->set_rules('lecturer', 'วิทยากร', 'trim|required');
+        $this->form_validation->set_rules('number_of_seat', 'จำนวนที่นั่งเปิดรับ', 'trim|required|numeric');
+        $this->form_validation->set_rules('date', 'วันที่อบรม', 'trim|required');
+        $this->form_validation->set_rules('train_location', 'ห้องอบรม', 'trim|required|numeric');
+        $this->form_validation->set_rules('register_period', 'วันเวลาเปิดรับสมัคร', 'trim|required');
+        $this->form_validation->set_rules('number_of_hour', 'จำนวนชั่วโมงที่ได้รับ', 'trim|required|numeric');
+
+        if ($this->form_validation->run() != FALSE) {
+            //check train_location
+            if(!$this->DB_train_location->get($this->input->post('train_location'))) {
+                return $this->add('error_location');
+                die();
+            }
+            //check train_type
+            if(!$this->DB_train_type->get($this->input->post('train_type'))) {
+                return $this->add('error_type');
+                die();
+            }
+
+            //add
+            $insert['train_type_id'] = $this->input->post('train_type');
+            $insert['title'] = $this->input->post('title');
+            $insert['lecturer'] = $this->input->post('lecturer');
+            $insert['number_of_seat'] = $this->input->post('number_of_seat');
+            $insert['date'] = $this->input->post('date');
+            $insert['train_location_id'] = $this->input->post('train_location');
+            $insert['register_period'] = $this->input->post('register_period');
+            $insert['number_of_hour'] = $this->input->post('number_of_hour');
+            
+ 
+            if($this->DB_train->add($insert)) {
+                return $this->index('success_inert');
+                die();
+            } else {
+                return $this->add('error_add');
+                die();
+            }
+        } else {
+            return $this->add(validation_errors());
+            die();
+        }
     }
 
     public function post_edit()
     {
-        //update
+        //insert
+        $this->load->library('form_validation');        
+        $this->form_validation->set_rules('id', 'primary_id', 'trim|required|numeric');
+        $this->form_validation->set_rules('train_type', 'ประเภทการอบรม', 'trim|required|numeric');
+        $this->form_validation->set_rules('title', 'ชื่อโครงการอบรม', 'trim|required');
+        $this->form_validation->set_rules('lecturer', 'วิทยากร', 'trim|required');
+        $this->form_validation->set_rules('number_of_seat', 'จำนวนที่นั่งเปิดรับ', 'trim|required|numeric');
+        $this->form_validation->set_rules('date', 'วันที่อบรม', 'trim|required');
+        $this->form_validation->set_rules('train_location', 'ห้องอบรม', 'trim|required|numeric');
+        $this->form_validation->set_rules('register_period', 'วันเวลาเปิดรับสมัคร', 'trim|required');
+        $this->form_validation->set_rules('number_of_hour', 'จำนวนชั่วโมงที่ได้รับ', 'trim|required|numeric');
+        $id = $this->input->post('id');
+
+        if ($this->form_validation->run() != FALSE) {
+            //check primary key
+            if(!$this->DB_train->get($id)) {
+                return $this->edit($id, 'error_location');
+                die();
+            }
+            //check train_location
+            if(!$this->DB_train_location->get($this->input->post('train_location'))) {
+                return $this->edit($id, 'error_location');
+                die();
+            }
+            //check train_type
+            if(!$this->DB_train_type->get($this->input->post('train_type'))) {
+                return $this->edit($id, 'error_type');
+                die();
+            }
+
+            //add
+            $insert['train_type_id'] = $this->input->post('train_type');
+            $insert['title'] = $this->input->post('title');
+            $insert['lecturer'] = $this->input->post('lecturer');
+            $insert['number_of_seat'] = $this->input->post('number_of_seat');
+            $insert['date'] = $this->input->post('date');
+            $insert['train_location_id'] = $this->input->post('train_location');
+            $insert['register_period'] = $this->input->post('register_period');
+            $insert['number_of_hour'] = $this->input->post('number_of_hour');
+            
+ 
+            if($this->DB_train->update($id, $insert)) {
+                return $this->index('success_update');
+                die();
+            } else {
+                return $this->edit($id, 'error_edit');
+                die();
+            }
+        } else {
+            return $this->edit($id, validation_errors());
+            die();
+        }
     }
 
 
