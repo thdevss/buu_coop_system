@@ -16,7 +16,7 @@
 
               <div class="card-body">
 
-                <div class="card-header"><strong> 1.ข้อมูลทั่วไป</strong></div>
+                <div class="card-header"><strong> 1.ข้อมูลทั่วไป</strong></div><br>
               
                 
 
@@ -97,7 +97,7 @@
                   </div>
               </div>
 
-               <div class="card-header"><strong> 2.การตอบรับอนุญาติให้นิสิตไปปฏิบัติงานสหกิจศึกษา</strong></div>
+               <div class="card-header"><strong> 2.การตอบรับอนุญาติให้นิสิตไปปฏิบัติงานสหกิจศึกษา</strong></div><br>
 
               <div class="row">
               <div class="radio col-sm-12">
@@ -115,9 +115,10 @@
               </div>
 
                 <div class="text-center">
+
                   <button type="submit" class="btn btn-md btn-primary" name="print" value="1"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
                   <button type="submit" class="btn btn-md btn-success" name="save" value="1"><i class="fa fa-dot-circle-o"></i>บันทึกเอกสาร</button>                
-                  
+       
                 </div>
 
                 </form>

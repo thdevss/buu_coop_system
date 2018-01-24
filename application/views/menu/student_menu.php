@@ -11,7 +11,7 @@
             นิสิต
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link" href="#"><i class="icon-puzzle"></i> ประวัตินิสิต</a>
+          <a class="nav-link" href="<?php echo site_url('Student/Student_data');?>" target="_top"><i class="icon-star"></i> ประวัตินิสิต</a>
           </li>
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การอบรม</a>
