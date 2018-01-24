@@ -47,7 +47,7 @@
                         <td class="text-center">
                             <form action="<?php echo site_url('Officer/News/delete');?>" method="post">
                                 <input type="hidden" value="<?php echo $row['news']->id;?>" name="id">
-                                <a href="#" class="btn btn-primary">แก้ไข</a>
+                                <a href="<?php echo site_url('Officer/news/edit/'.$row['news']->id);?>" class="btn btn-primary">แก้ไข</a>
                                 <button type="submit" class="btn btn-delete btn-danger">ลบ</button>
                             </form>
                         </td>
