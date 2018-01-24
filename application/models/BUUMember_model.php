@@ -7,12 +7,12 @@ class BUUMember_model extends CI_Model
             $data = array();
             $data['fullname'] = 'Nuttanon';
             $data['login_type'] = 'teacher';
-            $data['login_value'] = '49173';
+            $data['login_value'] = 'nutthanon';
         } else if($username == 'pnut') {
             $data = array();
             $data['fullname'] = 'Kamonwan';
             $data['login_type'] = 'officer';
-            $data['login_value'] = '1';
+            $data['login_value'] = 'kamonwan';
         }
 
         return $data;
