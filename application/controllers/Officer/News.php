@@ -74,14 +74,15 @@ class News extends CI_Controller {
             $news_id = $this->DB_news->add($insert);
 
             //upload file
-            $config['upload_path']          = './uploads/';
-            $config['allowed_types']        = 'docx|pdf|jpg|jpeg|png';
-            $config['max_size']             = 5128;
-            $config['encrypt_name'] = true;
-            $this->load->library('upload', $config);
+            $count_upload = count($_FILES['news_file']);
+            if(@$_FILES['news_file'][0] > 0) {
 
-            $count_upload = count($_FILES['news_file']['name']);
-            if($count_upload > 0) {
+                $config['upload_path']          = './uploads/';
+                $config['allowed_types']        = 'docx|pdf|jpg|jpeg|png';
+                $config['max_size']             = 5128;
+                $config['encrypt_name'] = true;
+                $this->load->library('upload', $config);
+            
                 for ($i = 0; $i < $count_upload; $i++) {
                     $_FILES['userfile']['name']     = $_FILES['news_file']['name'][$i];
                     $_FILES['userfile']['type']     = $_FILES['news_file']['type'][$i];
@@ -100,12 +101,14 @@ class News extends CI_Controller {
                         $this->DB_news_file->add($insert);
                     }
                 }
+            } else {                            
+                return $this->index('success_add');
             }
 
             return $this->index('success_add');
-        } else {
-            return $this->add(validation_errors());
         }
+        
+        return $this->add(validation_errors());
     }
 
     public function edit($status = '')
