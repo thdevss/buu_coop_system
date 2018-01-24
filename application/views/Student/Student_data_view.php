@@ -35,8 +35,6 @@
                             <tr><td>หน่วยกิตคำนวณ</td><td><font color="#0000ff">128</font></td></tr>
                             <tr><td>หน่วยกิตที่ผ่าน </td><td><font color="#0000ff">128</font></td></tr>
                             <tr><td>GPAX</td><td><font color="#0000ff">4.00</font></td></tr>
-                            
-                            
                         </table>
                     </div>
                 </div>
