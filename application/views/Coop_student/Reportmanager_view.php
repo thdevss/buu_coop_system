@@ -54,10 +54,10 @@
                     </div>
                     </div>
                     <div class="text-center">
-                  <button type="submit" class="btn btn-md btn-primary"><i class="fa fa-dot-circle-o"></i>บันทึกเอกสาร</button>
-                  <button type="submit" class="btn btn-md btn-primary"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
+                      <button type="submit" class="btn btn-md btn-primary"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
+                      <button type="submit" class="btn btn-md btn-success"><i class="fa fa-dot-circle-o"></i>บันทึกเอกสาร</button>
+
                 </div>
-              
           </div>
         </div>
       </div>

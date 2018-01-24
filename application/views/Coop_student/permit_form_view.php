@@ -24,7 +24,7 @@
                  <div class="row">
                  <div class="form-group col-sm-8">
                    <label for="fullname">ชื่อนิสิต นาย/นางสาว</label><code>*</code>
-                   <input type="text" class="form-control" name="fullname" id="fullname" value="<?php echo $student->fullname ?> " >
+                   <input type="text" class="form-control" name="fullname" id="fullname" value="<?php echo $student->fullname ?>">
                   </div>
                  </div>
                  <div class="row">
@@ -115,8 +115,10 @@
               </div>
 
                 <div class="text-center">
-                  <button type="submit" class="btn btn-md btn-primary" name="save" value="1"><i class="fa fa-dot-circle-o"></i>บันทึกเอกสาร</button>                
+
                   <button type="submit" class="btn btn-md btn-primary" name="print" value="1"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
+                  <button type="submit" class="btn btn-md btn-success" name="save" value="1"><i class="fa fa-dot-circle-o"></i>บันทึกเอกสาร</button>                
+       
                 </div>
 
                 </form>
