@@ -22,10 +22,12 @@ class Main extends CI_Controller {
 	{
         $data['rowNews'] = array();
         foreach($this->DB_news->gets() as $row) {
-            $tmp = $row;
-            $row->file = $this->DB_news_file->gets_by_news($row->id);
+            $tmp['news'] = $row;
+            $tmp['file'] = $this->DB_news_file->gets_by_news($row->id);
+            $tmp['author'] = $this->DB_officer->get($row->officer_id);
             array_push($data['rowNews'], $tmp);
         }
+
 		$this->template->view('template/news_view', $data);
 		
 	}
