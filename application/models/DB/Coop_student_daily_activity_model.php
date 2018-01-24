@@ -42,4 +42,12 @@ class Coop_student_daily_activity_model extends CI_model
         $this->db->where('id', $id);        
         return $this->db->delete($this->table_name);
     }
+
+    public function gets_by_student($student_id)
+    {
+        $this->db->where('student_id', $student_id);
+        $this->db->from($this->table_name);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
