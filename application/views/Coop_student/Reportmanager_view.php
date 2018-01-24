@@ -30,29 +30,42 @@
             }?>
       
             <form action=<?php echo site_url("Coop_student/Reportmanager/post_report"); ?> method="post" class="form-horizontal">
-                 <div class="form-group row">
-                      <label class="col-md-3" for="text-input">หัวข้อภาษาไทย</label>
-                      <div class="col-md-6">
-                        <input type="text" id="text-input" name="subject_th" class="form-control" value="<?php echo @$row->subject_th ?>">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-md-3" for="text-input">หัวข้อภาษาอังกฤษ</label>
-                      <div class="col-md-6"> 
-                        <input type="text" id="text-input" name="subject_en" class="form-control" value="<?php echo @$row->subject_en ?>">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-md-3 form-control-label" for="textarea-input">รายละเอียดเนื้อหาของรายงาน</label>
-                      <div class="col-md-6">
-                        <textarea id="textarea-input" name="report_detail" rows="9" class="form-control"><?php echo @$row->report_detail?></textarea>
-                      </div>
-                    </div>
-                    <div class="text-center">
-                  <button type="submit" class="btn btn-md btn-primary"><i class="fa fa-dot-circle-o"></i>บันทึกเอกสาร</button>
-                  <button type="submit" class="btn btn-lg btn-primary"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
+              <div class="row">
+                <div class="col-sm-4">
                 </div>
-              
+                <div class="col-sm-8">
+
+                      <div class="form-group row">
+                            <div class="col-md-6">
+                            <label class="col-md-6" for="text-input">หัวข้อภาษาไทย</label>
+                              <input type="text" id="text-input" name="subject_th" class="form-control" value="<?php echo @$row->subject_th ?>">
+                            </div>
+                          </div>
+
+                          <div class="form-group row">                     
+                            <div class="col-md-6">
+                            <label class="col-md-6" for="text-input">หัวข้อภาษาอังกฤษ</label>
+                              <input type="text" id="text-input" name="subject_en" class="form-control" value="<?php echo @$row->subject_en ?>">
+                            </div>
+                          </div>
+
+                          <div class="form-group row">                      
+                            <div class="col-md-6">
+                            <label class="col-md-6 form-control-label" for="textarea-input">รายละเอียดเนื้อหาของรายงาน</label>
+                              <textarea id="textarea-input" name="report_detail" rows="9" class="form-control"><?php echo @$row->report_detail?></textarea>
+                            </div>
+                          </div>
+
+                              <div class="form-group row">
+                              <div class="col-md-6">
+                              <div class="text-center">
+                              <button type="submit" class="btn btn-md btn-primary"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
+                              <button type="submit" class="btn btn-md btn-success"><i class="fa fa-dot-circle-o"></i>บันทึกเอกสาร</button>
+                              </div>
+                              </div>
+                              </div>
+                    </div>
+                </div>
           </div>
         </div>
       </div>
