@@ -36,7 +36,7 @@
                         <td class=" text-right">4</td>
                         <td><?php echo $row->name;?></td>
                         <td><?php echo $row->name;?></td>
-                        <td><?php echo anchor('company/assessmentstudent/form/'.$row->student_id, '<i class="fa fa-star"></i> ประเมินผล', 'class="btn btn-secondary"');?></td>
+                        <td><?php echo anchor('company/assessmentstudent/form/'.$row->student_id, '<i class="fa fa-star"></i> ประเมินผล', 'class="btn btn-primary"');?></td>
                       </tr>
                       <?php
                       }

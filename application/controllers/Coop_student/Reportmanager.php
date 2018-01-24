@@ -33,7 +33,7 @@ class Reportmanager  extends CI_Controller {
                 
         $this->load->library('form_validation');
         $this->form_validation->set_rules('subject_th', 'หัวข้อภาษาไทย', 'required');
-        $this->form_validation->set_rules('subject_en', 'หัวข้อภาษาอังกฤษ', 'required');
+        $this->form_validation->set_rules('subject_en', 'หัวข้อภาษาอังกฤษ', 'required|alpha');
         $this->form_validation->set_rules('report_detail', 'รายละเอียดเนื้อหาของรายงาน', 'required');
 
         if ($this->form_validation->run() == FALSE)

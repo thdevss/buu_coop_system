@@ -4,8 +4,8 @@
 <!-- Breadcrumb -->
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Home</li>
-  <li class="breadcrumb-item"><a href="#">เจ้าหน้าที่</a></li>
-  <li class="breadcrumb-item active">รายชื่อนิสิต</li>
+  <li class="breadcrumb-item"><a href="#"><?php echo strToLevel($user->login_type);?></a></li>
+  <li class="breadcrumb-item active">รายการประกาศข่าวสารหน้าเว็บ</li>
 </ol>
 
 <div class="container-fluid">
@@ -14,8 +14,16 @@
       <!--table รายชื่อนิสิต-->
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify"></i>รายชื่อนิสิต</div>
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i>รายการประกาศข่าวสารหน้าเว็บ
+                <a class="btn btn-success float-right" href="<?php echo site_url('Officer/News/add');?>">เพิ่มประกาศข่าวสาร</a>
+            </div>
               <div class="card-body">
+                <?php 
+                if($status){
+                    echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
+                }
+                ?>   
                 <table class="table table-bordered datatable" >
                     <thead>
                         <tr>
@@ -30,41 +38,25 @@
                     <?php foreach ($data as $row){?>
                       <tr>
 
-                        <td class="text-center"><?php echo $row['student']->id;?></td>
-                        <td class="text-center"><?php echo $row['student']->fullname;?></td>
-                        <td></td>
-                        <td class="text-center"><?php echo $row['student_field']->name;?></td>
-                        <td class="text-center"><?php echo $row['student']->coop_status;?></td>
-                        <td class="text-center"><?php echo $row['student']->company_status;?></td>
+                        <td class="text-center"><?php echo $row['news']->date;?></td>
+                        <td class="text-center"><?php echo $row['news']->title;?></td>
+                        <td class="text-center"><?php echo $row['author']->fullname;?></td>
+                        <td class="text-center">
+                            <a href="#" data-newsid="<?php echo $row['news']->id;?>" class="btn btn-secondary">แชร์</a>
+                        </td>
+                        <td class="text-center">
+                            <form action="<?php echo site_url('Officer/News/delete');?>" method="post">
+                                <input type="hidden" value="<?php echo $row['news']->id;?>" name="id">
+                                <a href="#" class="btn btn-primary">แก้ไข</a>
+                                <button type="submit" class="btn btn-delete btn-danger">ลบ</button>
+                            </form>
+                        </td>
                       </tr>
                     <?php 
                     }
                     ?>
                     </table>
-                    <div class="form-group row">
-                    <label class="col-md-9 form-control-label" for="select"></label>
-                    <div class="col-md-9">
-                    <table>
-                    <th>
-                      <select id="select" name="select" class="form-control form-control-md">
-                        <option value="1">เปลี่ยนสถานะ</option>
-                        <option value="2">รอ</option>
-                        <option value="3">รอสัมภาษณ์</option>
-                        <option value="4">รอผลสอบสัมภาษณ์</option>
-                        <option value="5">ผ่าน รอบที่ 1</option>
-                        <option value="6">ผ่าน รอบที่ 2</option>
-                        <option value="7">ผ่าน รอบที่ 3</option>
-                      </select>
-                      </th>
-                      <th>
-                      <span class="input-group-btn">
-                          <button type="button" class="btn btn-success btn-md">บันทึก</button>
-                          </span>
-                    </div>
-                    </th>
-                    </table>
-                    </tbody>
-                </div>
+                    
               </div>
             </div>
           </div>
@@ -75,3 +67,30 @@
 </div>
 
 </main>
+
+
+<script>
+
+
+$('.btn-delete').on('click',function(e){
+    e.preventDefault();
+    var form = $(this).parents('form');
+    swal({
+        title: "คุณแน่ใจใช่ไหม",
+        text: "ที่จะลบข้อมูลที่เลือก",
+        icon: "warning",
+        buttons: true,
+        dabgerMode: true
+    })
+    .then((isConfirm) => {
+      if (isConfirm) {
+        form.submit();
+      } else {
+
+      }
+    })
+
+});
+
+
+</script>

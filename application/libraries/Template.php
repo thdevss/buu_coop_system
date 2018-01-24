@@ -9,7 +9,7 @@ class Template {
         $login_data = $CI->Login_session->check_login();        
         $data['user'] = $login_data;
         $data['user_info'] = $CI->BUUMember->get($login_data->login_type, $login_data->login_value)[0];
-
+        
         if($login_data->login_type == 'officer') {
             $data['terms'] = $CI->Term->gets(); //get terms
         }

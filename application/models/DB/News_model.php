@@ -28,7 +28,8 @@ class News_model extends CI_model
 
     public function add($array)
     {
-        return $this->db->insert($this->table_name, $array);
+        $this->db->insert($this->table_name, $array);
+        return $this->db->insert_id();
     }
 
     public function update($id, $array)
