@@ -29,7 +29,26 @@ class Daily_activity extends CI_controller
             $tmp_array['company_address'] = $this->DB_company_address->get($row->company_id);
             array_push($data['data'], $tmp_array);
         }
-        $this->template->view('teacher/Daily_activity_view',$data);
+        $this->template->view('Teacher/Daily_activity_view',$data);
     }
+   public function list($student_id)
+   {
+       if(!$this->DB_coop_student->get($student_id)){
+           return $this->index();
+
+       }
+        $data['student'] = $this->DB_student->get($student_id);
+        $data['data'] = $this->DB_coop_student_daily_activity->gets_by_student($student_id);
+        $this->template->view('Teacher/Daily_activity_list_view',$data);
+   }
+   public function detail($id)
+   {
+        $data['data'] = @$this->DB_coop_student_daily_activity->get($id);
+
+        if(!$data['data']){
+            show_404();
+       }
+       $this->template->view('Teacher/Daily_detail_view',$data);
+   }
 
 }

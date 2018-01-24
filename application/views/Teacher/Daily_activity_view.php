@@ -43,7 +43,7 @@
                         <td><?php echo $row['student_field']->name; ?></td>
                         <td><?php echo $row['company']->name_th; ?></td>
                         <td><?php echo $row['company_address']->province; ?></td>  
-                        <td><?php echo anchor('#/#/', '<i class="fa fa-star"></i> รายละเอียด', 'class="btn btn-primary"');?></td>
+                        <td><?php echo anchor('Teacher/Daily_activity/list/'.$row['student']->id  , '<i class="fa fa-star"></i> รายละเอียด', 'class="btn btn-primary"');?></td>
                       </tr>
                       <?php } ?>
                     </tbody>
