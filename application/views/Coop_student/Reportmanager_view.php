@@ -36,19 +36,19 @@
                  <div class="form-group row">
                       <div class="col-md-6">
                       <label class="col-md-5" for="text-input">หัวข้อภาษาไทย</label>
-                        <input type="text" id="text-input" name="subject_th" class="form-control" value="<?php echo @$row->subject_th ?>">
+                        <input type="text" id="text-input" name="subject_th" class="form-control" value="<?php echo @$row->subject_th ?>" required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6"> 
                       <label class="col-md-5" for="text-input">หัวข้อภาษาอังกฤษ</label>
-                        <input type="text" id="text-input" name="subject_en" class="form-control" value="<?php echo @$row->subject_en ?>">
+                        <input type="text" id="text-input" name="subject_en" class="form-control" value="<?php echo @$row->subject_en ?>" required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="col-md-6">
                       <label class="col-md-6 form-control-label" for="textarea-input">รายละเอียดเนื้อหาของรายงาน</label>
-                        <textarea id="textarea-input" name="report_detail" rows="9" class="form-control"><?php echo @$row->report_detail?></textarea>
+                        <textarea id="textarea-input" name="report_detail" rows="9" class="form-control" required><?php echo @$row->report_detail?></textarea>
                       </div>
                     </div>
                     </div>
