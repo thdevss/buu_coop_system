@@ -42,4 +42,14 @@ class News_file_model extends CI_model
         $this->db->where('id', $id);        
         return $this->db->delete($this->table_name);
     }
+
+
+    public function gets_by_news($news_id)
+    {
+        $this->db->where('news_id', $news_id);
+
+        $this->db->from($this->table_name);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
