@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class validate_assessment_type_coop extends CI_Controller {
+class Document_code_check extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
@@ -42,7 +42,7 @@ class validate_assessment_type_coop extends CI_Controller {
 
                 array_push($data['data'], $row);
             }
-            $this->template->view('Officer/validate_assessment_type_coop_view', $data);
+            $this->template->view('Officer/Document_code_check_view', $data);
         }
 
         public function get_by_student($student_id)

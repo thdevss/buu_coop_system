@@ -18,7 +18,7 @@
               <div class="card-body">
               <table class="table table-bordered datatable" >
                     <thead>
-                      <tr bgcolor="99ffff">
+                      <tr>
                         <th class="text-center">รหัสนิสิต</th>
                         <th class="text-center" >ชื่อ-สกุล</th>
                         <th class="text-center">ตำแหน่งงาน </th>

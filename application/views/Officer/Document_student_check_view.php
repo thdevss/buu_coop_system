@@ -14,14 +14,17 @@
       <!--table รายชื่อนิสิต-->
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify"></i>ตรวจสอบเอกสารเเยกประเภท</div>
+            <div class="card-header"><i class="fa fa-align-justify"></i>ตรวจสอบเอกสารรายบุคคล</div>
               <div class="card-body">
               <table class="table table-bordered datatable" >
                     <thead>
-                      <tr bgcolor="MediumSeaGreen">
-                        <th class="text-center">รหัสนิสิต</th>
+                      <tr>
+                        <th class="text-center" >รหัสนิสิต</th>
                         <th class="text-center">ชื่อ-นามสกุล</th>
+                        <th class="text-center">GPX</th>
+                        <th class="text-center">สาขาวิชา</th>
                         <th class="text-center">สถานะการส่งเอกสาร</th>
+                        <th class="text-center"></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -29,6 +32,8 @@
                       <tr>
                         <td class="text-center"><?php echo $row->student_id ?></td>
                         <td class="text-center"><?php echo $row->fullname ?></td>
+                        <td class="text-center">3.50</td>
+                        <td class="text-center"><?php echo $row->name ?></td>
                         <td class="text-center">
                         <?php
                         if($row->document) {
@@ -38,7 +43,9 @@
                         }
                         ?>
                         </td>
-            
+                        <td class="text-center">
+                          <a class="btn btn-primary document_check_btn " data-studentid="<?php echo $row->student_id;?>">รายละเอียด</a>
+                        </td>
                       </tr>
                     <?php 
                     }

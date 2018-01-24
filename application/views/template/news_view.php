@@ -27,7 +27,7 @@
                             ดาวน์โหลดไฟล์:
                             <?php 
                             foreach($row->file as $rowFile) {
-                                echo '<a href="'.base_url($rowFile).'" class="btn btn-xs btn-info">'.basename($rowFile).'</a>';
+                                echo '<a href="'.base_url($rowFile->filename).'" class="btn btn-xs btn-info">'.basename($rowFile->filename).'</a>';
                             }
                             ?>
                         </div>
