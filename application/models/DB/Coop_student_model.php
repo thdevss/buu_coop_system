@@ -42,4 +42,12 @@ class Coop_student_model extends CI_model
         $this->db->where('id', $id);        
         return $this->db->delete($this->table_name);
     }
+
+    public function gets_by_teacher($teacher_id)
+    {
+        $this->db->where('teacher_id', $teacher_id);
+        $this->db->from($this->table_name);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
