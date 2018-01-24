@@ -4,7 +4,7 @@
 <!-- Breadcrumb -->
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Home</li>
-  <li class="breadcrumb-item"><a href="#">เจ้าหน้าที่</a></li>
+  <li class="breadcrumb-item"><a href="#"><?php echo $user->login_type;?></a></li>
   <li class="breadcrumb-item active">รายชื่อนิสิต</li>
 </ol>
 
