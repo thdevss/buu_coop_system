@@ -19,8 +19,9 @@ class Daily_activity extends CI_controller
 
     public function index()
     {
+        $teacher_id = $this->Login_session->check_login()->login_value;
         $data['data'] = array();
-        foreach ($this->DB_coop_student->gets() as $row){
+        foreach ($this->DB_coop_student->gets_by_teacher($teacher_id) as $row){
             $tmp_array = array();
             $tmp_array['student'] = $this->DB_student->get($row->student_id);
             $tmp_array['student_field'] = $this->DB_student_field->get($tmp_array['student']->student_field_id);
