@@ -14,7 +14,7 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> ข้อมูลบริษัท</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> จัดการข้อมูลบริษัท</a>
+                <?php echo anchor('company/Company_info/', '<i class="fa fa-star"></i> จัดการข้อมูลบริษัท', 'class="nav-link"');?>                
               </li>
               <li class="nav-item">
               <?php echo anchor('company/company_map/', '<i class="fa fa-star"></i> แผนที่ตั้งบริษัท', 'class="nav-link"');?>
