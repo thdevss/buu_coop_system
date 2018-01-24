@@ -56,6 +56,7 @@ class News extends CI_Controller {
             $data['status'] = '';
         }
 
+        $data['post_url'] = site_url('Officer/News/post_add');
         $this->template->view('Officer/News_form_view', $data);
     }
 
@@ -75,7 +76,8 @@ class News extends CI_Controller {
 
             //upload file
             $count_upload = count($_FILES['news_file']);
-            if(@$_FILES['news_file'][0] > 0) {
+            print_r($_FILES['news_file']);
+            if(@$_FILES['news_file']['name'][0]) {
 
                 $config['upload_path']          = './uploads/';
                 $config['allowed_types']        = 'docx|pdf|jpg|jpeg|png';
@@ -84,11 +86,11 @@ class News extends CI_Controller {
                 $this->load->library('upload', $config);
             
                 for ($i = 0; $i < $count_upload; $i++) {
-                    $_FILES['userfile']['name']     = $_FILES['news_file']['name'][$i];
-                    $_FILES['userfile']['type']     = $_FILES['news_file']['type'][$i];
-                    $_FILES['userfile']['tmp_name'] = $_FILES['news_file']['tmp_name'][$i];
-                    $_FILES['userfile']['error']    = $_FILES['news_file']['error'][$i];
-                    $_FILES['userfile']['size']     = $_FILES['news_file']['size'][$i];
+                    $_FILES['userfile']['name']     = @$_FILES['news_file']['name'][$i];
+                    $_FILES['userfile']['type']     = @$_FILES['news_file']['type'][$i];
+                    $_FILES['userfile']['tmp_name'] = @$_FILES['news_file']['tmp_name'][$i];
+                    $_FILES['userfile']['error']    = @$_FILES['news_file']['error'][$i];
+                    $_FILES['userfile']['size']     = @$_FILES['news_file']['size'][$i];
 
                     if ( ! $this->upload->do_upload('userfile') ) {
                         return $this->edit('error_upload');
@@ -104,16 +106,35 @@ class News extends CI_Controller {
             } else {                            
                 return $this->index('success_add');
             }
-
             return $this->index('success_add');
         }
-        
         return $this->add(validation_errors());
     }
 
-    public function edit($status = '')
+    public function edit($id, $status = '')
     {
+        if($status == 'error_add' ){
+            $data['status']['color'] = 'danger';
+            $data['status']['text'] = 'ผิดพลาด โปรดตรวจสอบ';
+        } else if($status != '' ){
+            $data['status']['color'] = 'danger';
+            $data['status']['text'] = $status;
+        } else {
+            $data['status'] = '';
+        }
 
+        $data['row'] = $this->DB_news->get($id);
+
+        if(!@$data['row']) {
+            redirect('Officer/News');
+            die();
+        }
+
+        $data['files'] = $this->DB_news_file->gets_by_news($id);
+        
+        $data['post_url'] = site_url('Officer/News/post_edit');
+        
+        $this->template->view('Officer/News_form_view', $data);
     }
 
     public function delete()
