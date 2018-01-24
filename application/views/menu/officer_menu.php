@@ -18,16 +18,16 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> นิสิต</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-            <?php echo anchor('officer/List_coop_student/', '<i class="fa fa-star"></i> รายชื่อนิสิต', 'class="nav-link"');?>
+            <?php echo anchor('#', '<i class="fa fa-star"></i> รายชื่อนิสิต', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/Validate_list_coop_student/', '<i class="fa fa-star"></i> ตรวจสอบเอกสารรายบุคคล', 'class="nav-link"');?>
+            <?php echo anchor('Officer/Document_student_check/', '<i class="fa fa-star"></i> ตรวจสอบเอกสารรายบุคคล', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/validate_assessment_type_coop/', '<i class="fa fa-star"></i> ตรวจสอบเอกสารตามประเภท', 'class="nav-link"');?>
+            <?php echo anchor('Officer/Document_code_check/', '<i class="fa fa-star"></i> ตรวจสอบเอกสารตามประเภท', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="components-forms.html"><i class="icon-puzzle"></i> รายชื่อนิสิตสหกิจ</a>
+              <?php echo anchor('officer/Coop_student/', '<i class="fa fa-star"></i> รายชื่อนิสิตสหกิจ', 'class="nav-link"');?>            
             </li>
           </ul>
         </li>
@@ -40,7 +40,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="widgets.html"><i class="icon-calculator"></i> ประกาศข่าวหน้าเว็บ </a>
+          <a class="nav-link" href="<?php echo site_url('Officer/news');?>"><i class="icon-calculator"></i> ประกาศข่าวหน้าเว็บ </a>
         </li>
         <li class="nav-item nav-dropdown">
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การอบรม</a>

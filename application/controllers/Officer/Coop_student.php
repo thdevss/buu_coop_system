@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class List_coop_student extends CI_Controller {
+class Coop_student extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
@@ -16,21 +16,6 @@ class List_coop_student extends CI_Controller {
         }
     }
 
-        // public function index()
-        // {
-        //     $data['data'] = $this->List_coop->list();
-        //     $this->template->view('Officer/List_coop_student_view', $data);
-            
-        // }
-        // public function test(){
-        //     $data['data'] = $this->List_coop->list();
-        //     print_r($data);
-        // }
-
-        // public function get(){
-        //     $data['data'] = $this->Test_Management->test_management();
-        //     print_r($data);
-        // }
     
         public function index()
         {
@@ -58,20 +43,5 @@ class List_coop_student extends CI_Controller {
         }
     
     
-        //test management (lists, form)
-        public function lists()
-        {
-            $data['data'] = $this->Coop_test->get_test_lists();
-            $this->template->view('Officer/Coop_test_form_management_view',$data);
-        }
-        
-        public function post_create()
-        {
-            $data['name'] = $this->input->post('name');
-            $data['select'] = $this->input->post('select');
-            $data['test_date'] = $this->input->post('test_date');
-            print_r($data);
-        }
-        
     
     }
