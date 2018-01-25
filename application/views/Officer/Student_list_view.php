@@ -50,7 +50,7 @@
                         <td class="text-center"><?php echo $row['student_field']->name;?></td>
                         <td class="text-center"><?php echo $row['student']->coop_status;?></td>
                         <td class="text-center"><?php echo $row['student']->company_status;?></td>
-                        <td><a class="btn btn-primary openActionplanForm" data-studentid="<?php echo $row['student']->id;?>">รายละเอียด</a></td>
+                        <td><?php echo anchor('Officer/Student_list/detail/'.$row['student']->id, '<i class="fa fa-star"></i> รายละเอียด', 'class="btn btn-primary" target="_blank"');?></td>
                       </tr>
                     <?php 
                     }
