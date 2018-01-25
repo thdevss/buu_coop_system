@@ -41,10 +41,10 @@
                                 <div class="form-group col-md-6 offset-md-3">                                
                                     <ul class="list-group">
                                         <?php foreach($files as $file) { ?>
-                                        <li class="list-group-item">
+                                        <li class="list-group-item fileList" data-fileid="<?php echo $file->id;?>">
                                             <?php echo $file->filename;?>
                                             <span class="float-right">
-                                                <a href="#">x</a>
+                                                <a class="btn btn-xs btn-danger" onclick="deleteNewsFile('<?php echo $file->id;?>')">x</a>
                                             </span>
                                         </li>
                                         <?php } ?>
@@ -96,5 +96,36 @@ function sendFile(file,editor,welEditable) {
         }
     });
 }
+
+function deleteNewsFile(file_id)
+{
+
+    swal({
+        title: "คุณแน่ใจใช่ไหม",
+        text: "ที่จะลบข้อมูลที่เลือก",
+        icon: "warning",
+        buttons: true,
+        dabgerMode: true
+    })
+    .then((isConfirm) => {
+        if (isConfirm) {
+            //delete in ajax
+            var datastring = "news_file_id="+file_id;
+
+            jQuery.post(SITE_URL+"/officer/news/ajax_delete_file", datastring, function(response) {
+                //delete element
+                if(response.status) {
+                    $("ul.list-group").find("[data-fileid='" + file_id + "']").remove();
+                }
+            }, 'json');
+        }
+    })
+
+    
+
+
+}
+
+
 
 </script>

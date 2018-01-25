@@ -89,7 +89,6 @@ $('.btn-delete').on('click',function(e){
 
       }
     })
-
 });
 
 

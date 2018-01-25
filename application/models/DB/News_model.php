@@ -21,6 +21,7 @@ class News_model extends CI_model
 
     public function gets()
     {
+        $this->db->order_by('id', 'DESC');
         $this->db->from($this->table_name);
         $query = $this->db->get();
         return $query->result();

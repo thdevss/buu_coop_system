@@ -43,6 +43,12 @@ class News_file_model extends CI_model
         return $this->db->delete($this->table_name);
     }
 
+    public function delete_by_news($id)
+    {
+        $this->db->where('news_id', $id);        
+        return $this->db->delete($this->table_name);
+    }
+
 
     public function gets_by_news($news_id)
     {
