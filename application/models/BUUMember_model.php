@@ -8,7 +8,8 @@ class BUUMember_model extends CI_Model
             $data['fullname'] = 'Nutthanon';
             $data['login_type'] = 'teacher';
             $data['login_value'] = 'nutthanon';
-        } else if($username == 'pnut') {
+        }
+         else if($username == 'pnut') {
             $data = array();
             $data['fullname'] = 'Kamonwan';
             $data['login_type'] = 'officer';
