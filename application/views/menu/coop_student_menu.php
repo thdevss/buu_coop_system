@@ -17,7 +17,7 @@
                 <?php echo anchor('/', '<i class="fa fa-star"></i> ข้อมูลนิสิต', 'class="nav-link"');?>  
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> จัดการกิจกรรมการฝึกงานแต่ละวัน</a>
+              <?php echo anchor('Coop_student/Daily_activity/', '<i class="fa fa-star"></i> จัดการกิจกรรมการฝึกงานแต่ละวัน', 'class="nav-link"');?>
               </li>
             </ul>
           </li>
