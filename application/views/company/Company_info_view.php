@@ -20,6 +20,7 @@
                     
                      
                           <label for="name">ชื่อสถานประกอบการ / หน่วยงาน</label>
+                          <?php foreach ($data as $row) { ?>
                               <div class="row">
                               <div class="form-group col-sm-6">
                                 <label>(ภาษาไทย)</label><code>*</code>
@@ -213,7 +214,16 @@
                                 </div>
 
                               </div>
-                             
+
+                              <div class="row">
+
+                                <div class="col-sm-4"></div>
+                                <div class="col-sm-4">
+                                <button type="button" class="btn btn-success"><i class="fa fa-star"></i> บันทึก</button></div>
+                                <div class="col-sm-4"></div>
+
+                                </div>
+
                               <div class="row">
 
                               <div class="col-sm-5"></div>
@@ -295,4 +305,28 @@
           </div>
         </div>
   </main>
+  
+  <script>
+$('.btn-submit').on('click',function(e){
+    e.preventDefault();
+    var form = $(this).parents('form');
+    swal({
+        title: "คุณแน่ใจใช่ไหม",
+        text: "ลบคำนิสิตที่เลือก",
+        icon: "warning",
+        buttons: true,
+        dabgerMode: true
+    })
+    .then((isConfirm) => {
+      if (isConfirm) {
+        form.submit();
+      } else {
+
+      }
+    })
+
+});
+
+
+</script>
       
