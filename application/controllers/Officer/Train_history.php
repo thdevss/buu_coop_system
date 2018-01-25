@@ -15,6 +15,8 @@ class Train_history extends CI_Controller {
         
             // print_r($tmp_array);
             array_push($data['data'], $tmp_array);
+
+            
             
         }
 

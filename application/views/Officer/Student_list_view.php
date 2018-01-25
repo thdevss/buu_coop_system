@@ -16,9 +16,9 @@
           <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i>รายชื่อนิสิต</div>
               <div class="card-body">
-              <table class="table table-bordered datatable" >
+              <table class="table table-bordered datatable">
                     <thead>
-                      <tr bgcolor="MediumSeaGreen">
+                      <tr>
                         <th class="text-center"> </th>
                         <th class="text-center">รหัสนิสิต</th>
                         <th class="text-center" >ชื่อ-สกุล</th>
@@ -26,7 +26,7 @@
                         <th class="text-center">สาขาวิชา</th>
                         <th class="text-center">สถานะสหกิจ</th>
                         <th class="text-center">สถานะจากสถานประกอบการ</th>
-
+                        <th class="text-center"></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -50,6 +50,7 @@
                         <td class="text-center"><?php echo $row['student_field']->name;?></td>
                         <td class="text-center"><?php echo $row['student']->coop_status;?></td>
                         <td class="text-center"><?php echo $row['student']->company_status;?></td>
+                        <td><a class="btn btn-primary openActionplanForm" data-studentid="<?php echo $row['student']->id;?>">รายละเอียด</a></td>
                       </tr>
                     <?php 
                     }
