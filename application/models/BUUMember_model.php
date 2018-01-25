@@ -12,7 +12,7 @@ class BUUMember_model extends CI_Model
             $data = array();
             $data['fullname'] = 'Kamonwan';
             $data['login_type'] = 'officer';
-            $data['login_value'] = 'kamonwan';
+            $data['login_value'] = 'kamonwans';
         }
 
         return $data;

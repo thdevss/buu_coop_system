@@ -74,6 +74,27 @@
 window.onload = function() {
     $('#summernote').summernote({
         height:300,
+        callbacks: {
+            onImageUpload: function(files, editor, welEditable) {
+                sendFile(files[0],editor,welEditable);
+            }
+        }
     });
 }
+function sendFile(file,editor,welEditable) {
+    data = new FormData();
+    data.append("userfile", file);
+    $.ajax({
+        data: data,
+        type: "POST",
+        url: SITE_URL+"/Officer/News/upload_image",
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(url) {
+            $('#summernote').summernote('insertImage', url);
+        }
+    });
+}
+
 </script>

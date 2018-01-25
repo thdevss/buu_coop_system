@@ -76,7 +76,7 @@ class News extends CI_Controller {
 
             //upload file
             $count_upload = count($_FILES['news_file']);
-            print_r($_FILES['news_file']);
+
             if(@$_FILES['news_file']['name'][0]) {
 
                 $config['upload_path']          = './uploads/';
@@ -161,6 +161,24 @@ class News extends CI_Controller {
             die();
         }
         
+    }
+
+    public function upload_image()
+    {
+        $config['upload_path']          = './uploads/';
+        $config['allowed_types']        = 'docx|pdf|jpg|jpeg|png';
+        $config['max_size']             = 5128;
+        $config['encrypt_name'] = true;
+        $this->load->library('upload', $config);
+            
+        if ( ! $this->upload->do_upload('userfile') ) {
+            return $this->edit('error_upload');
+        } else {
+            //add to newsfile
+            $file = $this->upload->data();
+
+            echo base_url('uploads/'.$file['file_name']);
+        }
     }
 
     public function send_email()
