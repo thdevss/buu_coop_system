@@ -92,13 +92,10 @@
                             </div>
                             <div class="col-md-6"></div>   
 
-                            
-                            
-                             
-
-                            <div class="col-md-12 text-center"> 
-                                <button type="button" class="btn btn-danger" ><i class="btn  btn-danger"></i>ยกเลิก</button>
-                                <button type="submit" class="btn btn-primary" ><i class="btn  btn-primary"></i>บันทึกเอกสาร</button>
+                            <div class="text-center"> 
+                                <button type="button" class="btn btn-danger" >ยกเลิก</button>
+                                <button type="submit" class="btn btn-primary" >บันทึกเอกสาร</button>
+                                
                             </div>
 
                             </div> 
