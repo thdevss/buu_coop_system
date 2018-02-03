@@ -42,10 +42,10 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> สหกิจศึกษา</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> รายการสมัครที่เปิดรับ</a>
+              <a class="nav-link" href="<?php echo site_url('student/Report_student_info');?>" target="_top"><i class="icon-star"></i> รายการสมัครที่เปิดรับ</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> ประกาศผลการสมัครงาน</a>
+              <a class="nav-link" href="<?php echo site_url('student/Register_result');?>" target="_top"><i class="icon-star"></i> ประกาศผลการสมัครงาน</a>
               </li>
             </ul>
           </li>
