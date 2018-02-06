@@ -1,7 +1,7 @@
 <?php
 class News_model extends CI_model 
 {
-    public function gets($limit = 3) 
+    public function gets_news($limit = 3) 
     {
         $arr = array();
         $this->db->from('news');
@@ -15,4 +15,26 @@ class News_model extends CI_model
         }
         return $arr;
     }
+
+    public function get_news($news_id)
+    {
+
+    }
+
+    public function insert_news()
+    {
+
+    }
+
+    public function update_news()
+    {
+
+    }
+
+    public function delete_news()
+    {
+
+    }
+
+
 }

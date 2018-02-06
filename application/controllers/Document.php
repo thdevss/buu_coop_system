@@ -57,6 +57,17 @@ class Document extends CI_Controller {
         exit;
     }
 
+    public function IN_S003_word()
+    {
+        $strWordFileName = "Portfolio.doc"; 
+        header("Content-Type: application/vnd.ms-word; name=\"$strWordFileName\""); 
+        header("Content-Disposition: inline; filename=\"$strWordFileName\""); 
+        header("Pragma: no-cache"); 
+
+        $html = $this->load->view('Document/IN-S003_view', array());
+
+    }
+
     public function IN_S004()
     {
         $html = $this->load->view('Document/IN-S004_view', array(), true);
