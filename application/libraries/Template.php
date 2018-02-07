@@ -22,8 +22,8 @@ class Template {
             $CI->load->view('menu/student_menu.php', $data);
         } else if($login_data->login_type == 'coop_student') {
             $CI->load->view('menu/coop_student_menu.php', $data);
-        } else if($login_data->login_type == 'teacher') {
-            $CI->load->view('menu/teacher_menu.php', $data);
+        } else if($login_data->login_type == 'adviser') {
+            $CI->load->view('menu/adviser_menu.php', $data);
         } else if($login_data->login_type == 'officer') {
             $CI->load->view('menu/officer_menu.php', $data);
         }

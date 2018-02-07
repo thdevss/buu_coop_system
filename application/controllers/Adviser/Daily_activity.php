@@ -11,7 +11,7 @@ class Daily_activity extends CI_controller
         }
 
         //check priv
-        if($this->Login_session->check_login()->login_type != 'teacher') {
+        if($this->Login_session->check_login()->login_type != 'adviser') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }

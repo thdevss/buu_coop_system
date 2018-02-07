@@ -10,7 +10,7 @@ class Assessment_teacher extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'teacher') {
+        if($this->Login_session->check_login()->login_type != 'adviser') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }

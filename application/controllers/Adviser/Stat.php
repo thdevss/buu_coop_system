@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Main extends CI_Controller {
+class Stat extends CI_Controller {
 
 	public function __construct()
     {
@@ -12,17 +12,12 @@ class Main extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'teacher') {
+        if($this->Login_session->check_login()->login_type != 'adviser') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
     }
-
-	public function index()
-	{
-        $data['rowNews'] = $this->News->gets_news();
-		$this->template->view('template/news_view', $data);
-		
-	}
-}  
-  
+    public function index(){
+        $this->template->view('Teacher/Stat_view');
+    }
+}
