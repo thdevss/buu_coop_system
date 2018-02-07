@@ -33,9 +33,7 @@ class Company extends CI_Controller {
             $data['status'] = '';
         }
 
-        $data['data'] = array();
-        //get student has test
-        $data['data'] = $this->DB_company->gets() ;
+        $data['data'] = $this->Company->gets_company();
     
         $this->template->view('Officer/List_company_view',$data);
     }

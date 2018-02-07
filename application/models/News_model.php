@@ -1,10 +1,11 @@
 <?php
 class News_model extends CI_model 
 {
-    public function gets_news($limit = 3) 
+    public function gets_news($limit = 10) 
     {
         $arr = array();
         $this->db->from('news');
+        $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
 
         foreach($query->result_array() as $row) {

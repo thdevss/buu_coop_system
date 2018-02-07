@@ -47,4 +47,12 @@ class Student_model extends CI_model {
         return $query->result_array();
 
     }
+
+    public function get_department($department_id)
+    {
+        $this->db->where('id',$department_id);        
+        $this->db->from('department');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }

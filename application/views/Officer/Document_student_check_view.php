@@ -19,7 +19,7 @@
               <table class="table table-bordered datatable" >
                     <thead>
                       <tr>
-                        <th class="text-center" >รหัสนิสิต</th>
+                        <th class="text-center">รหัสนิสิต</th>
                         <th class="text-center">ชื่อ-นามสกุล</th>
                         <th class="text-center">GPX</th>
                         <th class="text-center">สาขาวิชา</th>
@@ -30,13 +30,13 @@
                     <tbody>
                     <?php foreach ($data as $row){?>
                       <tr>
-                        <td class="text-center"><?php echo $row->student_id ?></td>
-                        <td class="text-center"><?php echo $row->fullname ?></td>
+                        <td class="text-center"><?php echo $row['student']['id']; ?></td>
+                        <td class="text-center"><?php echo $row['student']['fullname']; ?></td>
                         <td class="text-center">3.50</td>
-                        <td class="text-center"><?php echo $row->name ?></td>
+                        <td class="text-center"><?php echo $row['department']['name']; ?></td>
                         <td class="text-center">
                         <?php
-                        if($row->document) {
+                        if($row['complete_form']) {
                           echo '<font color="#006600">ครบ</font>';
                         } else {
                           echo '<font color="red">ไม่ผ่าน</font>';
@@ -44,7 +44,7 @@
                         ?>
                         </td>
                         <td class="text-center">
-                          <a class="btn btn-primary document_check_btn " data-studentid="<?php echo $row->student_id;?>">รายละเอียด</a>
+                          <a class="btn btn-primary document_check_btn " data-studentid="<?php echo $row['student']['id'];?>">รายละเอียด</a>
                         </td>
                       </tr>
                     <?php 

@@ -42,14 +42,12 @@
                         <td class="text-center">
                         <?php echo $i++; ?>
                         </td>
-                        <td class="text-center"><?php echo $row->name_th;?></td>
-                        <td class="text-center"><?php echo $row->total_employee; ?></td>
+                        <td class="text-center"><?php echo $row['name_th'];?></td>
+                        <td class="text-center"><?php echo $row['total_employee']; ?></td>
                         <td class="form-inline">
-                              <?php echo anchor('/officer/Officer_company/list/'.$row->id, '<i class="icon-people"></i> เจ้าหน้าที่', 'class="btn  btn-primary"');?>                              
+                              <?php echo anchor('Officer/Trainer/list/'.$row['id'], '<i class="icon-people"></i> เจ้าหน้าที่', 'class="btn  btn-primary"');?>                              
                               <div style="width:2%"></div>
-                              <?php echo anchor('Officer/Train_list/edit/'.$row->id, '<i class="icon-share-alt"></i> สาขาย่อย', 'class="btn  btn-primary"');?>                              
-                              <div style="width:2%"></div>
-                              <?php echo anchor('Officer/Train_list/edit/'.$row->id, '<i class="icon-star"></i> รายละเอียด', 'class="btn  btn-primary"');?>                              
+                              <?php echo anchor('Officer/Company/edit/'.$row['id'], '<i class="icon-star"></i> รายละเอียด', 'class="btn  btn-primary"');?>                              
                          
                         </td>
                       </tr>

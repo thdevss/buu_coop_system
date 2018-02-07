@@ -5,7 +5,7 @@
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Home</li>
   <li class="breadcrumb-item"><a href="#">เจ้าหน้าที่</a></li>
-  <li class="breadcrumb-item active">ตรวจสอบเอกสารรายบุคคล</li>
+  <li class="breadcrumb-item active">ตรวจสอบเอกสารเเยกประเภท</li>
 </ol>
 
 <div class="container-fluid">
@@ -16,7 +16,27 @@
           <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i>ตรวจสอบเอกสารเเยกประเภท</div>
               <div class="card-body">
-              <table class="table table-bordered datatable" >
+
+                <div class="container-fluid">
+                  <form action="" method="post" class="form-horizontal">
+                    <div class="form-group row">
+                      <label class="col-md-2 col-form-label" for="hf-email">เลือกประเภทเอกสาร</label>
+                      <div class="col-md-10">
+                        <select name="form_id" id="form_id" class="form-control">
+                          <option> ------ </option>
+                          <?php
+                          foreach($forms as $form) {
+                            echo '<option value="'.$form['id'].'">'.$form['name'].' - '.$form['document_name'].'</option>';
+                          }
+                          ?>
+                        </select>
+                        <!-- <span class="help-block">Please enter your email</span> -->
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+                <table class="table table-bordered datatable" id="form_search_result">
                     <thead>
                       <tr>
                         <th class="text-center">รหัสนิสิต</th>
@@ -24,26 +44,7 @@
                         <th class="text-center">สถานะการส่งเอกสาร</th>
                       </tr>
                     </thead>
-                    <tbody>
-                    <?php foreach ($data as $row){?>
-                      <tr>
-                        <td class="text-center"><?php echo $row->student_id ?></td>
-                        <td class="text-center"><?php echo $row->fullname ?></td>
-                        <td class="text-center">
-                        <?php
-                        if($row->document) {
-                          echo '<font color="#006600">ครบ</font>';
-                        } else {
-                          echo '<font color="red">ไม่ผ่าน</font>';
-                        }
-                        ?>
-                        </td>
-            
-                      </tr>
-                    <?php 
-                    }
-                    ?>
-                    </tbody>
+                    <tbody></tbody>
                   </table>
                 </div>
               </div>
@@ -55,39 +56,40 @@
   </div>
 </div>
 
-<script src="<?php echo base_url('/assets/js/officer/document_check.js?'.time());?>"></script>
-<!-- The Modal -->
-<div class="modal fade" id="document_check_student">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">ตรวจสอบเอกสารรายบุคคล</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-         <table class="table table-bordered" id="document_check_table">
-                    <thead>
-                      <tr>
-                      <th width="60%">เอกสาร</th>
-                      <th width="40%">ดาวน์โหลด</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                  </table>
+<script>
+$('#form_id').on('change', function (e) {
+    var optionSelected = $("option:selected", this);
+    var valueSelected = this.value;
 
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</div>
+    //get student form search by form code
+    jQuery("#form_search_result tbody").empty();
+
+    jQuery.getJSON( SITE_URL+"/Officer/Coop_Submitted_Form_Search/get_by_form_code/"+valueSelected, function( result ) {
+        var items = [];
+        console.log(result);
+
+        jQuery.each( result.data, function( key, val ) {
+            if(val.form != null) {
+                $('#form_search_result tbody').append(
+                    '<tr>'+
+                    '<td>'+val.student.id+'</td>'+
+                    '<td>'+val.student.fullname+'</td>'+                    
+                    '<td><u>ส่งแล้ว</u></td>'+              
+                    '</tr>');
+            } else {
+                $('#form_search_result tbody').append(
+                  '<tr>'+
+                  '<td>'+val.student.id+'</td>'+
+                  '<td>'+val.student.fullname+'</td>'+                    
+                  '<td><b>ยังไม่ส่ง!</b></td>'+              
+                  '</tr>');
+
+            }
+            
+        });
+    });
+
+});
+
+
+</script>
