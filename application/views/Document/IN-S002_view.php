@@ -111,7 +111,7 @@
                 ชั้นปีที่ _____ เกรดเฉลี่ยภาคการศึกษาที่ผ่านมา ________ เกรดเฉลี่ยสะสม_______<br><br>
                 สถานที่เกิด _______________ วันเดือนปีเกิด___________อายุ ____ เพศ ______<br><br>
                 บัตรประจําตัวประชาชนเลขที่ _______________ สัญชาติ_______ ศาสนา _______<br><br>
-                <td align="left" text="center" border="1"><center>รูปถ่าย 1 (นิ้ว)<br><br> Recent Photo <br>of <br>Applicant <br><br>(1"x1")</center></td>
+                <td stlye="border: 1"><center>รูปถ่าย 1 (นิ้ว)<br><br> Recent Photo <br>of <br>Applicant <br><br>(1"x1")</center></td>
             </tr>
         <tr>
             <td></td>
@@ -139,7 +139,6 @@
             </tr>
         </tbody>
     </table>
-    <br>
 <table width="100%">
     <tr>
         <td width="100%" align="left" valign="top">
@@ -185,14 +184,14 @@
     </tr>
 </table>
 <br>
-<table style="width: 100%;"  align="center">
+<table style="width: 100%;"  align="center"  border="1">
     <tbody>
         <tr  align="center">
-            <td>ระดับ</td>
-            <td>สถานศึกษา</td>
+            <td><center>ระดับ</center></td>
+            <td style="width: 50%"><center>สถานศึกษา</center></td>
             <td>ปีที่เริ่ม</td>
             <td>ปีที่จบ</td>
-            <td>ผลการศึกษา</td>
+            <td><center>ผลการศึกษา</center></td>
         </tr>
         <tr>
             <td>มัธยมศึกษาตอนปลาย</td>
@@ -240,41 +239,40 @@
     </tr>
 </table>
 <br>
-    <table style="width: 100%;" >
+    <table style="width: 100%;"  border="1">
         <tbody>
             <tr><center>
-                <td>หัวข้อฝึกอบรม/ฝึกงาน</td>
-                <td>หน่วยงานที่ให้การฝึกอบรม/ฝึกงาน</td>
+                <td colspan="2" rowspan="2"><center>หัวข้อฝึกอบรม/ฝึกงาน</center></td>
+                <td colspan="2" rowspan="2"><center>หน่วยงานที่ให้การฝึกอบรม/ฝึกงาน</center></td>
                 <td colspan="2"><center>ระยะเวลา</center></td>
-                <td>&nbsp;</td></center>
+                </center>
             </tr>
             <tr>
-            <td colspan="3" align="left"></td>
-                <td align="left">จาก</td>
-                <td>ถึง</td>
+                <td align="left"><center>จาก</center></td>
+                <td><center>ถึง</center></td>
             </tr>
             <tr>
-                <td>1</td>
+                <td colspan="2"></td>
+                <td colspan="2"></td>
                 <td></td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2"></td>
                 <td></td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td>2</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td colspan="2"></td>
+                <td colspan="2"></td>
+                <td></td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td>4</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td colspan="2"></td>
+                <td colspan="2"></td>
+                <td></td>
                 <td>&nbsp;</td>
             </tr>
         </tbody>
@@ -292,9 +290,9 @@
     <tr>
         <td width="100%" ><font size="3" color="">
         ระบุสายงานและลักษณะงานอาชีพที่นิสิตสนใจ( List your career goals, fields of interest and job preferences.)</font><br><br>
-        1. _________________________________________________________________________<br><br>
-        2. _________________________________________________________________________<br><br>
-        3. _________________________________________________________________________<br><br>
+        1. _______________________________________________________________________________<br><br>
+        2. _______________________________________________________________________________<br><br>
+        3. _______________________________________________________________________________<br><br>
     </tr>
 </table>
 <br>
@@ -306,41 +304,33 @@
     </tr>
 </table>
 <br>
-    <table style="width: 100%;" >
+    <table style="width: 100%;" border="1">
         <tbody>
             <tr rowspan="2" align="center">
-                <td>ภาษา</td>
-                <td>ฟัง </td>
-                <td></td>
-                <td></td>
-                <td>พูด</td>
-                <td></td>
-                <td></td>
-                <td>อ่าน</td>
-                <td></td>
-                <td></td>
-                <td>เขียน </td>
-                <td></td>
-                <td></td>
+                <td rowspan="2"><center>ภาษา</center></td>
+                <td colspan="3"><center>ฟัง </td>
+                <td colspan="3"><center>พูด</td>
+                <td colspan="3"><center>อ่าน</td>
+                <td colspan="3"><center>เขียน </td>
             </tr>
             <tr>
-                <td></td>
-                <td>ดี</td>
-                <td>พอใช้</td>
-                <td>ต้องปรับปรุง</td>
-                <td>ดี</td>
-                <td>พอใช้</td>
-                <td>ต้องปรับปรุง</td>
-                <td>ดี</td>
-                <td>พอใช้</td>
-                <td>ต้องปรับปรุง</td>
-                <td>ดี</td>
-                <td>พอใช้</td>
-                <td>ต้องปรับปรุง</td>
+                
+                <td style="width: 7%"><center>ดี</center></td>
+                <td style="width: 7%"><center>พอใช้</center></td>
+                <td style="width: 7%"><center>ต้องปรับปรุง</center></td>
+                <td style="width: 7%"><center>ดี</center></td>
+                <td style="width: 7%"><center>พอใช้</center></td>
+                <td style="width: 7%"><center>ต้องปรับปรุง</center></td>
+                <td style="width: 7%"><center>ดี</center></td>
+                <td style="width: 7%"><center>พอใช้</center></td>
+                <td style="width: 7%"><center>ต้องปรับปรุง</center></td>
+                <td style="width: 7%"><center>ดี</center></td>
+                <td style="width: 7%"><center>พอใช้</center></td>
+                <td style="width: 7%"><center>ต้องปรับปรุง</center></td>
                
             </tr>
             <tr>
-                <td>อังกฤษ</td>
+                <td><center>อังกฤษ</center></td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -355,7 +345,7 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td>จีน </td>
+                <td><center>จีน</center></td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -370,7 +360,7 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td>อื่นๆ ____</td>
+                <td><center>อื่นๆ ____</center></td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -398,11 +388,10 @@
 <table width="100%">
     <tr>
         <td width="100%" >
-       
-        1. _________________________________________________________________________<br><br>
-        2. _________________________________________________________________________<br><br>
-        3. _________________________________________________________________________<br><br>
-        4. _________________________________________________________________________<br><br>
+        1. _______________________________________________________________________________<br><br>
+        2. _______________________________________________________________________________<br><br>
+        3. _______________________________________________________________________________<br><br>
+        4. _______________________________________________________________________________<br><br>
     </tr>
 </table>
 
@@ -447,7 +436,7 @@
     </tr>
 </table>
 <br>
-<table width="100%">
+<table width="100%" >
     <tr>
         <td width="100%" align="left" valign="top">
             <B>ข้าพเจ้าขอรับรองวเาข้อความทั้งหมดเป็นความจริงและถูกต้องทุกประการ</B>
