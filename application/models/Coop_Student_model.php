@@ -23,7 +23,9 @@ class Coop_Student_model extends CI_model {
 
     public function gets_coop_student()
     {
-
+        $this->db->from('coop_student');
+        $query = $this->db->get();
+        return $query->result_array();
     }
     
     public function get_coop_student($student_id)

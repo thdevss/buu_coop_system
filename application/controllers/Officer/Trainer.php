@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Officer_company extends CI_Controller {
+class Trainer extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
@@ -18,7 +18,6 @@ class Officer_company extends CI_Controller {
     }
 
     public function list($id, $status = '')
-
     {
         if($status == 'success_delete' ){
             $data['status']['color'] = 'success';
@@ -32,11 +31,12 @@ class Officer_company extends CI_Controller {
         }
         $data['data'] = array();
         //get student has test
-        foreach($this->DB_company_person->gets_by_company_id($id) as $row) {
+
+        foreach($this->Trainer->gets_trainer_by_company($id) as $row) {
             //get train_type_id
             $tmp_array = array();
             $tmp_array['company_person'] = $row;
-            $tmp_array['company'] = $this->DB_company->get($row->company_id);
+            $tmp_array['company'] = $this->Company->get_company($row['company_id']);
             array_push($data['data'], $tmp_array);
         }      
         $this->template->view('Officer/List_officer_company_view',$data);

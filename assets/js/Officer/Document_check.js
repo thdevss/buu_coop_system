@@ -2,7 +2,7 @@ jQuery( ".document_check_btn" ).click(function() {
     var student_id = jQuery(this).data('studentid');
     jQuery("#document_check_table tbody").empty();
 
-    jQuery.getJSON( SITE_URL+"/Officer/Document_student_check/get_by_student/"+student_id, function( result ) {
+    jQuery.getJSON( SITE_URL+"/Officer/Coop_Submitted_Form_Search/get_by_student/"+student_id, function( result ) {
         var items = [];
         jQuery.each( result.data, function( key, val ) {
             if(val.file != '') {

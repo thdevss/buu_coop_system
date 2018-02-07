@@ -5,7 +5,7 @@
     <nav class="sidebar-nav">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
+          <a class="nav-link" href="<?php echo site_url('Officer/main');?>"><i class="icon-speedometer"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" data-toggle="modal" data-target="#selectTermBox"><i class="icon-puzzle"></i> เลือกปีการศึกษา</a>
@@ -18,13 +18,13 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> นิสิต</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-            <?php echo anchor('#', '<i class="fa fa-star"></i> รายชื่อนิสิต', 'class="nav-link"');?>
+              <?php echo anchor('#', '<i class="fa fa-star"></i> รายชื่อนิสิต', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/Document_student_check/', '<i class="fa fa-star"></i> ตรวจสอบเอกสารรายบุคคล', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Coop_Submitted_Form_Search/by_student', '<i class="fa fa-star"></i> ตรวจสอบเอกสารรายบุคคล', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/Document_code_check/', '<i class="fa fa-star"></i> ตรวจสอบเอกสารตามประเภท', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Coop_Submitted_Form_Search/by_form', '<i class="fa fa-star"></i> ตรวจสอบเอกสารตามประเภท', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
               <?php echo anchor('officer/Coop_student/', '<i class="fa fa-star"></i> รายชื่อนิสิตสหกิจ', 'class="nav-link"');?>            
