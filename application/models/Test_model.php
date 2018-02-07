@@ -2,16 +2,24 @@
 class Test_model extends CI_model {
     public function gets_test() 
     {
+        $this->db->from('coop_test');
+        $query = $this->db->get();
+        return $query->result_array();
 
     }
 
     public function get_test($test_id)
     {
+        $this->db->where('id',$test_id);
+        $this->db->from('coop_test');
+        $query = $this->db->get();
+        return $query->result_array();
 
     }
 
     public function insert_test($array)
     {
+        return $this->db->insert('coop_test',$arrray);
 
     }
 

@@ -24,18 +24,23 @@ class News_model extends CI_model
 
     }
 
-    public function insert_news()
+    public function insert_news($array)
     {
+        return $this->db->insert('news',$array);
 
     }
 
-    public function update_news()
+    public function update_news($news_id,$array)
     {
+        $this->db->where('id',$news_id);
+        return $this->db->update('news',$array);
 
     }
 
-    public function delete_news()
+    public function delete_news($news_id)
     {
+        $this->db->where('id',$news_id);
+        return $this->db->delete('news');
 
     }
 
