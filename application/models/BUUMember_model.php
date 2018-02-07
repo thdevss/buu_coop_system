@@ -6,7 +6,7 @@ class BUUMember_model extends CI_Model
         if($username == 'nutthanon9') {
             $data = array();
             $data['fullname'] = 'Nutthanon';
-            $data['login_type'] = 'teacher';
+            $data['login_type'] = 'adviser';
             $data['login_value'] = 'nutthanon';
         }
          else if($username == 'pnut') {
@@ -76,9 +76,9 @@ class BUUMember_model extends CI_Model
             $this->db->from('student');
             $query = $this->db->get();
             return $query->result();
-        } else if($login_type == 'teacher') {
+        } else if($login_type == 'adviser') {
             $this->db->where('id', $login_value);
-            $this->db->from('teacher');
+            $this->db->from('adviser');
             $query = $this->db->get();
             return $query->result();
         } else if($login_type == 'officer') {
