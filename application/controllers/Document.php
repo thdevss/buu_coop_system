@@ -37,7 +37,7 @@ class Document extends CI_Controller {
 
         $this->load->library('mpdf60/mpdf');
         $mpdf = new mPdf('th', 'A4', '0', 'THSaraban');
-        $mpdf->SetTitle('IN-S001.pdf');
+        $mpdf->SetTitle('IN-S002.pdf');
         $mpdf->SetDisplayMode('fullpage');
         $mpdf->WriteHTML($html);
         $mpdf->Output();
