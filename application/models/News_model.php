@@ -19,6 +19,7 @@ class News_model extends CI_model
 
     public function get_news($news_id)
     {
+        $this->db->where('id', $news_id);
         $this->db->from('news');
         $query = $this->db->get();
         return $query->result_array();

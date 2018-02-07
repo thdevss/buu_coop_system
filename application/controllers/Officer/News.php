@@ -140,7 +140,8 @@ class News extends CI_Controller {
             $insert['title'] = $this->input->post('title');
             $insert['detail'] = $this->input->post('detail');
             $insert['date'] = date('Y-m-d H:i:s');
-            $news_id = $this->News->update_news($this->input->post('id'), $insert);
+            $news_id = $this->input->post('id');
+            $this->News->update_news($this->input->post('id'), $insert);
 
             //upload file
             $count_upload = count($_FILES['news_file']);
