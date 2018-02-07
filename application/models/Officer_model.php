@@ -11,6 +11,5 @@ class Officer_model extends CI_model {
         $this->db->from('officer');
         $query = $this->db->get();
         return $query->result_array();
-        
     }
 }
