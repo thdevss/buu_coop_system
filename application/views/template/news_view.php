@@ -15,12 +15,12 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <?php echo $row['news']->title;?>
-                            <span class="btn btn-info float-right">ผู้ลงประกาศ: <?php echo $row['author']->fullname;?></span>
-                            <span class="btn btn-secondary float-right" style="margin-right:10px;"><?php echo date('Y-m-d H:i', strtotime($row['news']->date));?></span>
+                            <?php echo $row['title'];?>
+                            <span class="btn btn-info float-right">ผู้ลงประกาศ: <?php echo $row['author']['fullname'];?></span>
+                            <span class="btn btn-secondary float-right" style="margin-right:10px;"><?php echo date('Y-m-d H:i', strtotime($row['date']));?></span>
                         </div>
                         <div class="card-body">
-                            <?php echo $row['news']->detail;?>
+                            <?php echo $row['detail'];?>
                         </div>
 
                         <?php if(@$row['file']) { ?>                        
@@ -28,7 +28,7 @@
                             ดาวน์โหลดไฟล์:
                             <?php 
                             foreach($row['file'] as $rowFile) {
-                                echo '<a href="'.base_url($rowFile->filename).'" class="btn btn-xs btn-info">'.basename($rowFile->filename).'</a>';
+                                echo '<a href="'.base_url($rowFile).'" class="btn btn-xs btn-info">'.basename($rowFile).'</a>';
                             }
                             ?>
                         </div>

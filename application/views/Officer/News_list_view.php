@@ -38,16 +38,16 @@
                     <?php foreach ($data as $row){?>
                       <tr>
 
-                        <td class="text-center"><?php echo $row['news']->date;?></td>
-                        <td class="text-center"><?php echo $row['news']->title;?></td>
-                        <td class="text-center"><?php echo $row['author']->fullname;?></td>
+                        <td class="text-center"><?php echo $row['date'];?></td>
+                        <td class="text-center"><?php echo $row['title'];?></td>
+                        <td class="text-center"><?php echo $row['author']['fullname'];?></td>
                         <td class="text-center">
-                            <a href="#" data-newsid="<?php echo $row['news']->id;?>" class="btn btn-secondary">แชร์</a>
+                            <a href="#" data-newsid="<?php echo $row['id'];?>" class="btn btn-secondary">แชร์</a>
                         </td>
                         <td class="text-center">
                             <form action="<?php echo site_url('Officer/News/delete');?>" method="post">
-                                <input type="hidden" value="<?php echo $row['news']->id;?>" name="id">
-                                <a href="<?php echo site_url('Officer/news/edit/'.$row['news']->id);?>" class="btn btn-primary">แก้ไข</a>
+                                <input type="hidden" value="<?php echo $row['id'];?>" name="id">
+                                <a href="<?php echo site_url('Officer/news/edit/'.$row['id']);?>" class="btn btn-primary">แก้ไข</a>
                                 <button type="submit" class="btn btn-delete btn-danger">ลบ</button>
                             </form>
                         </td>

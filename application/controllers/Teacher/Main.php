@@ -20,13 +20,7 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
-        $data['rowNews'] = array();
-        foreach($this->DB_news->gets() as $row) {
-            $tmp['news'] = $row;
-            $tmp['file'] = $this->DB_news_file->gets_by_news($row->id);
-            $tmp['author'] = $this->DB_officer->get($row->officer_id);
-            array_push($data['rowNews'], $tmp);
-        }
+        $data['rowNews'] = $this->News->gets_news();
 		$this->template->view('template/news_view', $data);
 		
 	}

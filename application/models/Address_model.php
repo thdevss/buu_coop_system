@@ -1,5 +1,5 @@
 <?php
-class Address extends CI_model {
+class Address_model extends CI_model {
     public function get_address_by_company($company_id)
     {
         $this->db->where('company_id',$company_id);

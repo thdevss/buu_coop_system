@@ -1,5 +1,5 @@
 <?php
-class Coop_Student_model extends Student_model {
+class Coop_Student_model extends CI_model {
     var $adviser_id;
     var $trainer_id;
     var $job_id;
@@ -28,7 +28,11 @@ class Coop_Student_model extends Student_model {
     
     public function get_coop_student($student_id)
     {
-
+        $this->db->where('student_id', $student_id);
+        $this->db->from('coop_student');
+        $query = $this->db->get();
+        
+        return $query->result_array(); 
     }
 
     public function gets_coop_student_by_company($company_id)
