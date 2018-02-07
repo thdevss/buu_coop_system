@@ -17,9 +17,16 @@ class Term_model extends CI_model
         return $query->result();
     }
 
-    public function set_present_term()
+    public function set_current_term()
     {
         
+    }
+    public function get_current_term()
+    {
+        $this->db->where('is_current',1);
+        $this->db->from('term');
+        $query = $this->db->get();
+        return $query->result_array();
     }
   
 }

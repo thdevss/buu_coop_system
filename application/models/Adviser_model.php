@@ -7,31 +7,46 @@ class Adviser_model extends CI_model {
     
     public function insert_adviser($array)
     {
+        return $this->db->insert('adviser',$array);
 
     }
 
     public function update_adviser($adviser_id, $array) 
     {
+        $this->db->where('adviser_id',$adviser_id);
+        return $this->db->update('adviser',$array);
 
     }
 
     public function delete_adviser($adviser_id)
     {
+        $this->db->where('adviser_id',$adviser_id);
+        return $this->delete('adviser');
 
     }
 
     public function gets_adviser()
     {
+        $this->db->from('adviser');
+        $query = $this->db->get();
+        return $query->result_array();
 
     }
 
     public function get_adviser($adviser_id)
     {
+        $this->db->where('adviser_id',$adviser_id);
+        $this->db->from('adviser');
+        $query = $this->db->get();
+        return $query->result_array();
 
     }
 
     public function add_coop_student($adviser_id, $student_id)
     {
+        $array['adviser_id'] = $adviser_id;
+        $this->db->where('student_id',$student_id);
+        return $this->db->update('coop_student',$array);
 
     }
 }
