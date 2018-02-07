@@ -24,35 +24,37 @@ class BUUMember_model extends CI_Model
         $this->ldap->connect();
         if($this->ldap->authenticate('' , $username, $password)) {
             $userdata = $this->ldap->get_data($username,$password);
-            // print_r($userdata);
-            // die();
             if($userdata['ou'] == 'students') {
                 //coop student and student
                 $data['fullname'] = $userdata['fname'].' '.$userdata['lname'];                
-                if($this->DB_coop_student->get($userdata['code'])) {
+                if($this->Coop_Student->get_coop_student($userdata['code'])) {
                     //coop student
                     $data['login_type'] = 'coop_student';
                 } else {
                     //student
+                    if(!$this->Student->get_student($userdata['code'])) {
+                        //wait api
+                        
+                    }
                     $data['login_type'] = 'student';                    
                 }
                 $data['login_value'] = $userdata['code'];
             } else if($userdata['ou'] == 'staff') {
                 //teacher and officer
                 //check in teacher
-                $teacher = $this->DB_teacher->get($userdata['code']);                
+                $teacher = $this->Adviser->get_adviser($userdata['code']);                
                 if($teacher) {
-                    $data['login_type'] = 'teacher';
+                    $data['login_type'] = 'adviser';
                     $data['login_value'] = $userdata['code'];                        
                 } else {
-                    $officer = $this->DB_officer->get($userdata['code']);
+                    $officer = $this->Officer->get_officer($userdata['code']);
                     if($officer) {
                         $data['login_type'] = 'officer';
                         $data['login_value'] = $userdata['code'];                        
                     }
                 }
             } else {
-                //test login
+                //test login, mockup function
                 return $this->xlogin($username, $password);
             }
         } else {

@@ -1,5 +1,5 @@
 <?php
-class Job extends CI_model {
+class Job_model extends CI_model {
     public function insert_job($array)
     {
         return $this->db->insert('company_job_position',$array);

@@ -1,5 +1,5 @@
 <?php
-class Company_Addessment_Form_model extends CI_model {
+class Company_Assessment_Form_model extends CI_model {
     public function get_form_for_company()
     {
 

@@ -1,5 +1,5 @@
 <?php
-class Officer extends CI_model {
+class Officer_model extends CI_model {
     var $officer_id;
     var $first_name;
     var $last_name;
@@ -11,6 +11,5 @@ class Officer extends CI_model {
         $this->db->from('officer');
         $query = $this->db->get();
         return $query->result_array();
-
     }
 }

@@ -34,13 +34,7 @@ class News extends CI_Controller {
             $data['status'] = '';
         }
 
-        $data['data'] = array();
-        foreach($this->DB_news->gets() as $news) {
-            $tmp = array();
-            $tmp['news'] = $news;
-            $tmp['author'] = $this->DB_officer->get($news->officer_id);
-            array_push($data['data'], $tmp);
-        }
+        $data['data'] = $this->News->gets_news();
         $this->template->view('Officer/News_list_view', $data);
     } 
 
@@ -72,7 +66,7 @@ class News extends CI_Controller {
             $insert['detail'] = $this->input->post('detail');
             $insert['date'] = date('Y-m-d H:i:s');
             $insert['officer_id'] = $this->Login_session->check_login()->login_value;
-            $news_id = $this->DB_news->add($insert);
+            $news_id = $this->News->insert_news($insert);
 
             //upload file
             $count_upload = count($_FILES['news_file']);
@@ -97,10 +91,7 @@ class News extends CI_Controller {
                     } else {
                         //add to newsfile
                         $file = $this->upload->data();
-                        $insert = array();
-                        $insert['news_id'] = $news_id;
-                        $insert['filename'] = $file['file_name'];
-                        $this->DB_news_file->add($insert);
+                        $this->News_File->add_file($news_id, $file['file_name']);
                     }
                 }
             } else {                            
@@ -123,14 +114,14 @@ class News extends CI_Controller {
             $data['status'] = '';
         }
 
-        $data['row'] = $this->DB_news->get($id);
+        $data['row'] = $this->News->get_news($id)[0];
 
         if(!@$data['row']) {
             redirect('Officer/News');
             die();
         }
 
-        $data['files'] = $this->DB_news_file->gets_by_news($id);
+        $data['files'] = $this->News_File->gets_file_by_news($id);
         
         $data['post_url'] = site_url('Officer/News/post_edit');
         
@@ -149,7 +140,7 @@ class News extends CI_Controller {
             $insert['title'] = $this->input->post('title');
             $insert['detail'] = $this->input->post('detail');
             $insert['date'] = date('Y-m-d H:i:s');
-            $news_id = $this->DB_news->update($this->input->post('id'), $insert);
+            $news_id = $this->News->update_news($this->input->post('id'), $insert);
 
             //upload file
             $count_upload = count($_FILES['news_file']);
@@ -174,10 +165,7 @@ class News extends CI_Controller {
                     } else {
                         //add to newsfile
                         $file = $this->upload->data();
-                        $insert = array();
-                        $insert['news_id'] = $news_id;
-                        $insert['filename'] = $file['file_name'];
-                        $this->DB_news_file->add($insert);
+                        $this->News_File->add_file($news_id, $file['file_name']);
                     }
                 }
             } else {                            
@@ -197,10 +185,9 @@ class News extends CI_Controller {
         if ($this->form_validation->run() != FALSE) {
             $news_id = $this->input->post('id');            
 
-            if(@$this->DB_news->get($news_id)) {
+            if(@$this->News->get_news($news_id)) {
                 //delete
-                $this->DB_news_file->delete_by_news($news_id);
-                $this->DB_news->delete($news_id);
+                $this->News->delete_news($news_id);
                 return $this->index('success_delete');
                 die();
             } else {
@@ -241,10 +228,10 @@ class News extends CI_Controller {
         
         if ($this->form_validation->run() != FALSE) {
             $news_file_id = $this->input->post('news_file_id');            
-            $file = @$this->DB_news_file->get($news_file_id);
+            $file = @$this->News_File->get_file($news_file_id);
             if(@$file) {
                 //delete
-                $this->DB_news_file->delete($news_file_id);
+                $this->News_File->delete_file($news_file_id);
                 //unlink
                 @unlink('./uploads/'.$file->filename);
                 $return['status'] = true;
