@@ -1,5 +1,5 @@
 <?php
-class Form extends CI_model {
+class Form_model extends CI_model {
     public function gets_form()
     {
         $this->db->from('coop_document');

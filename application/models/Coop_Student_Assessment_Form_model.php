@@ -1,5 +1,5 @@
 <?php
-class Coop_Student_Addessment_Form_model extends CI_model {
+class Coop_Student_Assessment_Form_model extends CI_model {
     public function get_form_for_coop_student()
     {
 
