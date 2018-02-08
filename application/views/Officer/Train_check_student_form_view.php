@@ -132,7 +132,7 @@ function updateStudentList()
     var datastring = "train_set_check_id="+$("#train_set_check_id").val();
     jQuery.post(SITE_URL+"/officer/Train_check_student/ajax_get", datastring, function(response) {
         if(response.status) {
-            jQuery("#current_student").html(response.rows.count())
+            jQuery("#current_student").html(response.rows.length)
 			$(response.rows).each(function(index, row){ 
 				$('#student_table').append('<tr><td>'+ row.train_check.date_check +'<td> '+row.train_check.student_id+' </td><td> '+row.student.fullname+' </td></tr>');       
 			})
