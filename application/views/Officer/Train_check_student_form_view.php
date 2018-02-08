@@ -32,6 +32,18 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="card">
+                    <div class="card-header"><i class="fa fa-align-justify"></i> ข้อมูลโครงการ</div>
+                    <div class="card-body"> 
+                        <div class="col-sm-6">
+                            <p><b>โครงการอบรม:</b> <?php echo $train['title'];?></p>
+                            <p><b>Note:</b> <?php echo $training_check_student['note'];?></p>
+                            <p><br></p>
+                            <p><b>จำนวนนิสิตที่เข้าร่วม:</b> <span id="current_student"></span>/<?php echo $train['number_of_seat'];?></p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
@@ -120,6 +132,7 @@ function updateStudentList()
     var datastring = "train_set_check_id="+$("#train_set_check_id").val();
     jQuery.post(SITE_URL+"/officer/Train_check_student/ajax_get", datastring, function(response) {
         if(response.status) {
+            jQuery("#current_student").html(response.rows.count())
 			$(response.rows).each(function(index, row){ 
 				$('#student_table').append('<tr><td>'+ row.train_check.date_check +'<td> '+row.train_check.student_id+' </td><td> '+row.student.fullname+' </td></tr>');       
 			})

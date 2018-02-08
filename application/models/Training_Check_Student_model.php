@@ -38,9 +38,27 @@ class Training_Check_Student_model extends CI_model {
         $array['train_set_check_id'] = $check_id;
         $array['student_id'] = $student_id;
         $term = $this->Term->get_current_term();
-        $array['term_id'] = $term[0][id];
+        $array['term_id'] = $term[0]['id'];
         $array['date_check'] = date('Y-m-d H:i:s');
         return $this->db->insert('train_check_student',$array);
-
     }
+
+    public function gets_student_by_check($check_id)
+    {
+        $this->db->where('train_set_check_id',$check_id);
+        $this->db->from('train_check_student');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+
+    public function get_student_by_check($student_id, $check_id)
+    {
+        $this->db->where('student_id',$student_id);
+        $this->db->where('train_set_check_id',$check_id);
+        $this->db->from('train_check_student');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    
 }

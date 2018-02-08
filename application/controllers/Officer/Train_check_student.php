@@ -32,11 +32,11 @@ class Train_check_student extends CI_Controller {
 
         $data['data'] = array();
         //get student has test
-        foreach($this->DB_train->gets() as $row) {
+        foreach($this->Training->gets_training() as $row) {
             //get train_type_id
             $tmp_array = array();
             $tmp_array['train'] = $row;
-            $tmp_array['train_type'] = $this->DB_train_type->get($row->train_type_id);
+            $tmp_array['train_type'] = $this->Training->get_type($row['train_type_id']);
             array_push($data['data'], $tmp_array);
         }
 
@@ -51,7 +51,7 @@ class Train_check_student extends CI_Controller {
         $this->form_validation->set_rules('note', 'Note', 'trim|required');
 
         if ($this->form_validation->run() != FALSE) {
-            if(!$this->DB_train->get($this->input->post('train_id'))) {
+            if(!$this->Training->get_training($this->input->post('train_id'))) {
                 return $this->index('error_train_id');
                 die();
             }
@@ -61,8 +61,8 @@ class Train_check_student extends CI_Controller {
             $train_set_check['note'] = $this->input->post('note');
             $train_set_check['datetime'] = date('Y-m-d H:i:s');
             
-            $train_set_check_id = $this->DB_train_set_check->add($train_set_check);
-            
+            $train_set_check_id = $this->Training_Check_Student->insert_check($train_set_check);
+            $train_set_check_id = $this->db->insert_id();
             redirect('Officer/Train_check_student/check_student/'.$train_set_check_id);
         } else {
             return $this->index(validation_errors());
@@ -72,11 +72,15 @@ class Train_check_student extends CI_Controller {
 
     public function check_student($check_id)
     {
-        if(!$this->DB_train_set_check->get($check_id)) {
+        if(!$this->Training_Check_Student->get_check($check_id)) {
             return $this->index('error_train_id');
             die();
         }
-        $data['check_id'] = $check_id;        
+        $data['check_id'] = $check_id;   
+        $data['training_check_student'] = $this->Training_Check_Student->get_check($check_id)[0];
+        $data['train'] = $this->Training->get_training($data['training_check_student']['train_id'])[0];
+        $data['total_student'] = 100;
+
 
         $this->template->view('Officer/Train_check_student_form_view', $data);
     }
@@ -92,7 +96,7 @@ class Train_check_student extends CI_Controller {
         if ($this->form_validation->run() != FALSE) {
             $train_set_check_id = $this->input->post('train_set_check_id');
         
-            $data['train_set_check'] = @$this->DB_train_set_check->get($train_set_check_id);
+            $data['train_set_check'] = @$this->Training_Check_Student->get_check($train_set_check_id);
             if(!@$data['train_set_check']) {
                 $return['status'] = false;
             } else {
@@ -100,10 +104,10 @@ class Train_check_student extends CI_Controller {
                 
                 $return['rows'] = array();
                 //has
-                foreach($this->DB_train_check_student->gets_student_by_id($train_set_check_id) as $row) {
+                foreach($this->Training_Check_Student->gets_student_by_check($train_set_check_id) as $row) {
                     $tmp = array();
                     $tmp['train_check'] = $row;
-                    $tmp['student'] = $this->DB_student->get($row->student_id);
+                    $tmp['student'] = $this->Student->get_student($row['student_id'])[0];
                     array_push($return['rows'], $tmp);
                 }
             }
@@ -128,20 +132,24 @@ class Train_check_student extends CI_Controller {
             $return['status'] = true;
 
             //check student
-            $data['student'] = @$this->DB_student->get($this->input->post('student_code'));
+            $data['student'] = @$this->Student->get_student($this->input->post('student_code'));
             if(!@$data['student']) {
                 $return['status'] = false;                
             }
 
-
             //check train set
-            $data['train_set_check'] = @$this->DB_train_set_check->get($this->input->post('train_set_check_id'));
+            $data['train_set_check'] = @$this->Training_Check_Student->get_check($this->input->post('train_set_check_id'))[0];
             if(!@$data['train_set_check']) {
                 $return['status'] = false;
             }
 
+            //check student_train_register
+            if(!@$this->Training->check_student_in_training($data['train_set_check']['train_id'], $this->input->post('student_code'))) {
+                $return['status'] = false;
+            }
+
             //check train_check_student
-            if(@$this->DB_train_check_student->get_by_student_train($this->input->post('student_code'), $this->input->post('train_set_check_id'))) {
+            if(@$this->Training_Check_Student->get_student_by_check($this->input->post('student_code'), $this->input->post('train_set_check_id'))) {
                 $return['status'] = false;
             }
 
@@ -150,13 +158,13 @@ class Train_check_student extends CI_Controller {
             if($return['status']) {
                 $return['student'] = $data['student'];                            
                 //insert
-                $array['train_id'] = $data['train_set_check']->train_id;
+                // $array['train_id'] = $data['train_set_check']->train_id;
                 $array['train_set_check_id'] = $this->input->post('train_set_check_id');
                 $array['student_id'] = $this->input->post('student_code');
                 $array['date_check'] = date('Y-m-d H:i:s');
-                $array['term_id'] = $this->Login_session->check_login()->term_id;
+                // $array['term_id'] = $this->Login_session->check_login()->term_id;
                 
-                $this->DB_train_check_student->add($array);
+                $this->Training_Check_Student->add_student($array['student_id'], $array['train_set_check_id']);
                 $return['entry_time'] = $array['date_check'];
             }
         } else {

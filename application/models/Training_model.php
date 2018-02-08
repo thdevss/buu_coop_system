@@ -56,7 +56,16 @@ class Training_model extends CI_model
         $train = $this->get_training($training_id);
         $array['train_train_type_id'] = $train;
         return $this->db->insert('student_train_register',$array); 
+    }
 
+    public function check_student_in_training($training_id, $student_id) 
+    {
+        $this->db->where('train_id', $training_id);
+        $this->db->where('student_id', $student_id);
+        $this->db->from('student_train_register');
+        $query = $this->db->get();
+        // echo $this->db->last_query();
+        return $query->result_array();
     }
   
 
@@ -90,5 +99,20 @@ class Training_model extends CI_model
     {
         $this->db->where('id', $location_id);
         return $this->db->delete('train_location');
+    }
+
+    public function gets_type()
+    {
+        $this->db->from('train_type');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_type($type_id)
+    {
+        $this->db->where('id', $type_id);
+        $this->db->from('train_type');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 }
