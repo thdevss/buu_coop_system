@@ -18,10 +18,10 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <center>
-                        <img src="http://reg.buu.ac.th/registrar/getstudentimage.asp?id=<?php echo $student->id; ?>" class="img-circle" style="width:280px;">
+                        <img src="http://reg.buu.ac.th/registrar/getstudentimage.asp?id=<?php echo $student['id']; ?>" class="img-circle" style="width:280px;">
                         <br></br>
-                        <h4><?php echo $student->id; ?></h4>
-                        <h5><?php echo $student->fullname; ?></h5>
+                        <h4><?php echo $student['id']; ?></h4>
+                        <h5><?php echo $student['fullname']; ?></h5>
                         </center>
                         </div>
                     <div class="col-sm-8">
@@ -29,7 +29,7 @@
                             <tr><h3>ข้อมูลทั่วไป</h3></tr>
                             <tr><td width="25%">ชื่อภาษาอังกฤษ</td><td><font color="#0000ff">Mr. ssssss</font></td</tr>
                             <tr><td>คณะ</td><td><font color="#0000ff">วิทยาการสารสนเทศ</font></td></tr>
-                            <tr><td>คณะ</td><td><font color="#0000ff"><?php echo $student_field->name; ?></font></td></tr>
+                            <tr><td>คณะ</td><td><font color="#0000ff"><?php echo $department['name']; ?></font></td></tr>
                             <tr><td>ชั้นปี </td><td><font color="#0000ff">4</font></td></tr>
                             <tr><td>หลักสูตร</td><td><font color="#0000ff">ปริญญา 4 ปี</font></td></tr>
                             <tr><td>อาจารย์ที่ปรึกษา</td><td><font color="#0000ff">เอกภพ บุญสูงเนิน</font></td</tr>
