@@ -5,10 +5,13 @@ function strToLevel($str)
         return 'นิสิต';
     if($str == 'coop_student')
         return 'นิสิตสหกิจ';
-    if($str == 'teacher')
+    if($str == 'adviser')
         return 'อาจารย์';
     if($str == 'officer')
         return 'เจ้าหน้าที่';  
     if($str == 'company')
-        return 'สถานประกอบการ';                      
+        return 'สถานประกอบการ';         
+        
+        
+    return 'Unknown';
 }

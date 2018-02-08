@@ -27,7 +27,7 @@
               <?php echo anchor('Officer/Coop_Submitted_Form_Search/by_form', '<i class="fa fa-star"></i> ตรวจสอบเอกสารตามประเภท', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-              <?php echo anchor('officer/Coop_student/', '<i class="fa fa-star"></i> รายชื่อนิสิตสหกิจ', 'class="nav-link"');?>            
+              <?php echo anchor('Officer/Coop_student/', '<i class="fa fa-star"></i> รายชื่อนิสิตสหกิจ', 'class="nav-link"');?>            
             </li>
           </ul>
         </li>

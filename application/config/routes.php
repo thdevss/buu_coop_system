@@ -55,7 +55,7 @@ $route['company'] = 'company/main/index';
 $route['student'] = 'student/main/index';
 $route['coop_student'] = 'coop_student/main/index';
 $route['officer'] = 'officer/main/index';
-$route['teacher'] = 'teacher/main/index';
+$route['adviser'] = 'adviser/main/index';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
