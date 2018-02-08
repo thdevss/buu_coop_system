@@ -59,4 +59,36 @@ class Training_model extends CI_model
 
     }
   
+
+    public function insert_location($array)
+    {
+        return $this->db->insert('train_location', $array);
+    }
+
+    public function gets_location()
+    {
+        $this->db->from('train_location');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_location($location_id)
+    {
+        $this->db->where('id', $location_id);
+        $this->db->from('train_location');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function update_location($location_id, $array)
+    {
+        $this->db->where('id', $location_id);
+        return $this->db->update('train_location', $array);
+    }
+
+    public function delete_location($location_id)
+    {
+        $this->db->where('id', $location_id);
+        return $this->db->delete('train_location');
+    }
 }

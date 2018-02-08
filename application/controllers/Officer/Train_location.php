@@ -31,7 +31,7 @@ class Train_location extends CI_Controller {
             $data['status'] = '';
         }
 
-        $data['train_locations'] = $this->DB_train_location->gets();
+        $data['train_locations'] = $this->Training->gets_location();
         $this->template->view('Officer/Train_location_view',$data);
     }
 
@@ -42,7 +42,7 @@ class Train_location extends CI_Controller {
 
     public function edit($room_id)
     {
-        $data['row'] = $this->DB_train_location->get($room_id);
+        $data['row'] = $this->Training->get_location($room_id)[0];
         $this->template->view('Officer/Train_location_form_view',$data);
     }    
 
@@ -62,12 +62,12 @@ class Train_location extends CI_Controller {
             $room_id = $this->input->post('id');
             
             //save
-            if(@$this->DB_train_location->get($room_id)) {
+            if(@$this->Training->get_location($room_id)) {
                 //update                
-                $this->DB_train_location->update($room_id, $data);
+                $this->Training->update_location($room_id, $data);
             } else {
                 //insert
-                $this->DB_train_location->add($data);                
+                $this->Training->insert_location($data);                
             }
 
             $return['status'] = true;
@@ -87,9 +87,9 @@ class Train_location extends CI_Controller {
         $this->form_validation->set_rules('id', 'id', 'trim|required|numeric');
         if ($this->form_validation->run() != FALSE) {
             $room_id = $this->input->post('id');            
-            if($this->DB_train_location->get($room_id)) {
+            if($this->Training->get_location($room_id)) {
                 //delete
-                $this->DB_train_location->delete($room_id);
+                $this->Training->delete_location($room_id);
                 return $this->index('success_delete');
                 die();
             } else {

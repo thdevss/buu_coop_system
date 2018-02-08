@@ -8,14 +8,14 @@ class Company_model extends CI_model {
 
     public function delete_company($company_id)
     {
-        $this->db->where('company_id',$company_id);
+        $this->db->where('id',$company_id);
         return $this->db->delete('company');
 
     }
 
     public function update_company($company_id, $array)
     {
-        $this->db->where('company_id',$company_id);
+        $this->db->where('id',$company_id);
         return $this->db->update('company',$array);
 
     }
@@ -30,7 +30,7 @@ class Company_model extends CI_model {
 
     public function get_company($company_id)
     {
-        $this->db->where('company_id',$company_id);
+        $this->db->where('id',$company_id);
         $this->db->from('company');
         $query = $this->db->get();
         return $query->result_array();
