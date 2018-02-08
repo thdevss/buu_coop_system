@@ -42,5 +42,6 @@ class Trainer_model extends CI_model {
     {
         
         
+        
     }
 }
