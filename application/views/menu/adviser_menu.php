@@ -11,42 +11,16 @@
             อาจารย์
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> ประวัตินิสิต</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> นิสิต</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> Buttons</a>
+                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> รายชื่อนิสิตที่ปรึกษา</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
+              <a class="nav-link" href="<?php echo site_url('Teacher/#');?>"><i class="icon-star"></i> แบบแจ้งแผนปฎิบัติการสหกิจ</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="components-cards.html"><i class="icon-puzzle"></i> Cards</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="components-forms.html"><i class="icon-puzzle"></i> Forms</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="components-modals.html"><i class="icon-puzzle"></i> Modals</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="components-switches.html"><i class="icon-puzzle"></i> Switches</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="components-tables.html"><i class="icon-puzzle"></i> Tables</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="components-tabs.html"><i class="icon-puzzle"></i> Tabs</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> รายชื่อนิสิตที่ปรึกษา</a>
-            <ul class="nav-dropdown-items">
-              <li class="nav-item">
-                <a class="nav-link" href="<?php echo site_url('Teacher/#');?>"><i class="icon-star"></i> แบบแจ้งแผนปฎิบัติการสหกิจ</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<?php echo site_url('Teacher/Daily_activity');?>"><i class="icon-star"></i> กิจกรรมการฝึกงานในแต่ละวัน</a>
+              <a class="nav-link" href="<?php echo site_url('Teacher/Daily_activity');?>"><i class="icon-star"></i> กิจกรรมการฝึกงานในแต่ละวัน</a>
               </li>
             </ul>
           </li>
@@ -61,14 +35,19 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="widgets.html"><i class="icon-calculator"></i> การสอบสหกิจ</a>
-          </li>
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> สหกิจ</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
                 <a class="nav-link" href="<?php echo site_url('Teacher/company_map');?>"><i class="icon-star"></i> แผนที่</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การประเมินผล</a>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo site_url('Teacher/#');?>"><i class="icon-star"></i> ผลการฝึกงานของนักศึกษา</a>
               </li>
             </ul>
           </li>
