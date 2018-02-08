@@ -26,7 +26,9 @@ class Student_list extends CI_Controller {
 
         $this->template->view('Officer/Student_list_view',$data);
     }
-    public function detail(){
+    public function detail($id){
+
+        
 
         $this->template->view('Officer/Student_detail_view');
 

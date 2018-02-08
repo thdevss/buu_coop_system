@@ -17,10 +17,10 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การอบรม</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="icons-font-awesome.html"><i class="icon-star"></i> ตรวจสอบชั่วโมงอบรม</a>
+              <?php echo anchor('Student/Check_hour/', '<i class="fa fa-star"></i> ตรวจสอบชั่วโมงการอบรม', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="icons-simple-line-icons.html"><i class="icon-star"></i> ตรวจสอบประวัติการอบรม</a>
+              <?php echo anchor('Student/Check_history/', '<i class="fa fa-star"></i> ตรวจสอบประวัติการอบรม', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="icons-simple-line-icons.html"><i class="icon-star"></i> สมัครเข้าร่วมอบรม</a>
