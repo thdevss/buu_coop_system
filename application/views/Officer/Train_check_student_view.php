@@ -26,14 +26,14 @@
                                     <select class="form-control" name="train_id">
                                         <option>--- please select ----</option>
                                         <?php foreach($data as $row) { ?>
-                                            <option value="<?php echo $row['train']->id;?>"><?php echo $row['train']->date;?> - <?php echo $row['train']->title;?></option>
+                                            <option value="<?php echo $row['train']['id'];?>"><?php echo $row['train']['date'];?> - <?php echo $row['train']['title'];?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
 
                                 <div class="form-group col-md-6 offset-md-3">
                                     <label for="note">Note</label>          
-                                    <input value="<?php echo @$row->room;?>" class="form-control" type="text" name="note" id="note">
+                                    <input class="form-control" type="text" name="note" id="note">
                                 </div>
 
                                 <div class="col-sm-12 text-center">
