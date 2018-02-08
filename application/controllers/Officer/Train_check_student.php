@@ -79,7 +79,7 @@ class Train_check_student extends CI_Controller {
         $data['check_id'] = $check_id;   
         $data['training_check_student'] = $this->Training_Check_Student->get_check($check_id)[0];
         $data['train'] = $this->Training->get_training($data['training_check_student']['train_id'])[0];
-        $data['total_student'] = 100;
+        $data['total_student'] = $data['train'];
 
 
         $this->template->view('Officer/Train_check_student_form_view', $data);
@@ -132,7 +132,7 @@ class Train_check_student extends CI_Controller {
             $return['status'] = true;
 
             //check student
-            $data['student'] = @$this->Student->get_student($this->input->post('student_code'));
+            $data['student'] = @$this->Student->get_student($this->input->post('student_code'))[0];
             if(!@$data['student']) {
                 $return['status'] = false;                
             }
