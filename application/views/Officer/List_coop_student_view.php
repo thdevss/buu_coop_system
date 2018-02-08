@@ -31,11 +31,11 @@
                       ?>
 
                       <tr>
-                        <td class="text-center"><?php echo $row['student']->id ?></td>
-                        <td class="text-center"><?php echo $row['student']->fullname ?></td>
+                        <td class="text-center"><?php echo $row['student']['id'] ?></td>
+                        <td class="text-center"><?php echo $row['student']['fullname'] ?></td>
                         <td class="text-center"><?php echo $row['position_title'] ?></td>
-                        <td class="text-center"><?php echo $row['company']->name_th ?></td>
-                        <td class="text-center"><?php echo $row['mentor_person_id']->fullname ?></td>
+                        <td class="text-center"><?php echo $row['company']['name_th'] ?></td>
+                        <td class="text-center"><?php echo $row['trainer']['fullname'] ?></td>
                       </tr>
                     <?php 
                     }
