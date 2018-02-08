@@ -24,13 +24,13 @@ class Test_form extends CI_Controller {
             $data['status'] = '';
         }
 
-        $data['coop_test'] = $this->DB_coop_test->gets();
+        $data['coop_test'] = $this->Test->gets_test();
         $data['coop_test_select'] = array();
 
         for($i=1; $i<5; $i++){
             $add_list = true;
             foreach($data['coop_test'] as $r) {
-                if($i == $r->name){
+                if($i == $r['name']){
                     $add_list = false;
                     break;
                 }
@@ -50,7 +50,7 @@ class Test_form extends CI_Controller {
             die('404');
         }else{
             //if dup
-            if($this->DB_coop_test->get_by_name($this->input->post('select'))) {
+            if($this->Test->get_by_name($this->input->post('select'))) {
                 //dup
                 return $this->index('error_dup');                
             } else {

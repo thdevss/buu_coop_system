@@ -50,7 +50,7 @@ class Company extends CI_Controller {
             $insert['name_th'] = $this->input->post('company_name');
             
  
-            if($this->DB_company->add($insert)) {
+            if($this->Company->insert_company($insert)) {
                 return $this->index('success_insert');
                 die();
             } else {

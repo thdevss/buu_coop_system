@@ -21,9 +21,10 @@ class Student_data extends CI_Controller {
 
     public function index(){
         $student_id = $this->Login_session->check_login()->login_value;
-        $data['student'] = $this->DB_student->get($student_id);    
-        $data['student_field'] = $this->DB_student_field->get( $data['student']->student_field_id);
+        $data['student'] = $this->Student->get_student($student_id)[0];     
+        $data['department'] = $this->Student->get_department( $data['student']['department_id'])[0];
         $this->template->view('Student/Student_data_view',$data);
+        // ขอ Api
     }
   
 
