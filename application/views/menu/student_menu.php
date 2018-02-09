@@ -4,7 +4,7 @@
       <nav class="sidebar-nav">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
+            <a class="nav-link" href="<?php echo site_url('Student/main');?>"><i class="icon-speedometer"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
           </li>
 
           <li class="nav-title">
@@ -17,13 +17,13 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การอบรม</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-              <?php echo anchor('Student/Check_hour/', '<i class="fa fa-star"></i> ตรวจสอบชั่วโมงการอบรม', 'class="nav-link"');?>
+              <?php echo anchor('Student/Training/check_hour/', '<i class="fa fa-star"></i> ตรวจสอบชั่วโมงการอบรม', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
-              <?php echo anchor('Student/Check_history/', '<i class="fa fa-star"></i> ตรวจสอบประวัติการอบรม', 'class="nav-link"');?>
+              <?php echo anchor('Student/Training/check_history/', '<i class="fa fa-star"></i> ตรวจสอบประวัติการอบรม', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="icons-simple-line-icons.html"><i class="icon-star"></i> สมัครเข้าร่วมอบรม</a>
+                <?php echo anchor('Student/Training/register/', '<i class="fa fa-star"></i> สมัครเข้าร่วมอบรม', 'class="nav-link"');?>
               </li>
             </ul>
           </li>

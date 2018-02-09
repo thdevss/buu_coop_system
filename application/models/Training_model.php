@@ -58,6 +58,16 @@ class Training_model extends CI_model
         return $this->db->insert('student_train_register',$array); 
     }
 
+    public function get_training_by_student_and_type($student_id, $training_type)
+    {
+        $this->db->where('student_id', $student_id);
+        $this->db->where('train_train_type_id', $training_type);
+        
+        $this->db->from('student_train_register');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function check_student_in_training($training_id, $student_id) 
     {
         $this->db->where('train_id', $training_id);
@@ -112,6 +122,16 @@ class Training_model extends CI_model
     {
         $this->db->where('id', $type_id);
         $this->db->from('train_type');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function get_current_register_period()
+    {
+        $this->db->order_by('register_period', 'asc');
+        // $this->db->limit(1);
+        $this->db->where('register_period <=', date('Y-m-d H:i:s'));
+        $this->db->where('register_period >', date('Y-m-d H:i:s', time()-(86400*2)));
+        $this->db->from('train');
         $query = $this->db->get();
         return $query->result_array();
     }

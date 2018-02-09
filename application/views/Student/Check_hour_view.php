@@ -15,7 +15,7 @@
           <div class="card-header"><i class="fa fa-align-justify"></i>ตรวจสอบชั่วโมงการอบรมทั้งหมด</div>
             <div class="card-body">
             
-            <table class="table table-bordered datatable">
+            <table class="table table-bordered">
                     <thead>
                       <tr>
                         <th></th>
@@ -25,20 +25,15 @@
                       </tr>
                     </thead>
                     <tbody>
+                      <?php foreach($train_type as $row) { ?>
                       <tr>
-                        <td>อบรมเสริมทักษะทางวิชาการ</td>
-                        <td>12</td>
-                        <td>...</td>
-                        <td>...</td>
+                        <td><?php echo $row['name'];?></td>
+                        <td><?php echo $row['total_hour'];?></td>
+                        <td><?php echo $row['check_hour'];?></td>
+                        <td><?php echo $row['total_hour'] - $row['check_hour'];?></td>
+                        
                       </tr>
-                    </tbody>
-                    <tbody>
-                      <tr>
-                        <td>เตรียมความพร้อมสหกิจศึกษา</td>
-                        <td>30</td>
-                        <td>...</td>
-                        <td>...</td>
-                      </tr>
+                      <?php } ?>
                     </tbody>
                   </table>
             </div>
