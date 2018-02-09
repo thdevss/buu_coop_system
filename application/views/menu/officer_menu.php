@@ -82,7 +82,7 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> แบบประเมิน</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> จัดการแบบประเมินสถานประกอบการ</a>
+            <?php echo anchor('Officer/Assessment_company_Form/', '<i class="fa fa-star"></i>  จัดการแบบประเมินสถานประกอบการ', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
             <?php echo anchor('Officer/Assessment_coop_student_Form/', '<i class="fa fa-star"></i> จัดการแบบประเมินนิสิตสหกิจศึกษา', 'class="nav-link"');?>
