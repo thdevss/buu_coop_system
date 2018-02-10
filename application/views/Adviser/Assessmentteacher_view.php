@@ -11,12 +11,12 @@
 <div class="container-fluid">
   <div class="animated fadeIn">
       <div class="row" >
-      <!--table รายชื่อนิสิต-->
         <div class="col-lg-12">
           <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i>การประเมินผลการฝึกงานของนักศึกษา</div>
               <div class="card-body">
-              <table class="table table-bordered">
+
+              <table class="table table-bordered datatable">
                     <thead>
                       <tr>
                         <th>รหัสนิสิต</th>
@@ -24,51 +24,23 @@
                         <th>สาขาวิชา</th>
                         <th>สถานประกอบการที่ได้</th>
                         <th>จังหวัด</th>
-                        <th>รายละเอียด</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($data as $row){?>
                       <tr>
-                        <td><?php echo $row->student_id ?></td>
-                        <td><?php echo $row->fullname ?></td>
-                        <td><?php echo $row->name ?></td>
-                        <td><?php echo $row->name_th ?></td>
-                        <td><?php echo $row->province ?></td>
-                        <td>
-                        <div class="container">
-                        <!-- Button to Open the Modal -->
-                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">
-    รายละเอียด
-  </button>
-
-  <!-- The Modal -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">รายละเอียด</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</div>
-                        </td>
+                      <?php foreach ($data as $row){ ?>
+                        <td><?php echo $row['student']['id']?></td>
+                        <td><?php echo $row['student']['fullname']?></td>
+                        <td><?php echo $row['department']['name']?></td>
+                        <td><?php echo $row['company']['name_th']?></td>
+                        <td><?php echo $row['company_address']['province']?></td>
+                        <td><a class="btn btn-info" href="<?php echo site_url('Adviser/#');?>" target="_blank"> รายละเอียด</a></td> 
                       </tr>
-                    <?php 
-                    }
-                    ?>
+                      <?php } ?>
                     </tbody>
                   </table>
+
                 </div>
               </div>
             </div>

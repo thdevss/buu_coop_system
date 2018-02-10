@@ -47,7 +47,7 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การประเมินผล</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo site_url('Adviser/#');?>"><i class="icon-star"></i> ผลการฝึกงานของนักศึกษา</a>
+                <a class="nav-link" href="<?php echo site_url('Adviser/Assessment_teacher');?>"><i class="icon-star"></i> ผลการฝึกงานของนักศึกษา</a>
               </li>
             </ul>
           </li>

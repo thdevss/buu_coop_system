@@ -4,34 +4,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Student_list extends CI_Controller {
 
     public function index(){
+
         $data['data'] = array();
-        
-        foreach($this->DB_student->gets() as $row) {
-            
-            //get student
+        foreach($this->Student->gets_student() as $row)
+         {
+
             $tmp_array = array();
-            // student
             $tmp_array['student'] = $row;
-
-            //get student field
-            $tmp_array['student_field'] = $this->DB_student_field->get($row->student_field_id);
-        
-
-
-            // print_r($tmp_array);
+            $tmp_array['coop_student_type'] = $this->Student->get_by_coop_status_type($row['coop_status']);
+            $tmp_array['department'] = $this->Student->get_department($row['department_id'])[0];
             array_push($data['data'], $tmp_array);
             
         }
-
-
+        $data['coop_status_type'] = $this->Student->gets_coop_status_type();
         $this->template->view('Officer/Student_list_view',$data);
     }
-    public function detail($id){
 
+    public function student_detail($student_id)
+    {
+        $data['student'] = $this->Student->get_student($student_id);
+        $data['department'] = $this->Student->get_department($data['student']['department_id']);
+   
         
-
+        print_r($data);
         $this->template->view('Officer/Student_detail_view');
-
-
     }
+
+
   }
