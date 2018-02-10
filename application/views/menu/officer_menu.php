@@ -18,7 +18,7 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> นิสิต</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <?php echo anchor('#', '<i class="fa fa-star"></i> รายชื่อนิสิต', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Student_list', '<i class="fa fa-star"></i> รายชื่อนิสิต', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
               <?php echo anchor('Officer/Coop_Submitted_Form_Search/by_student', '<i class="fa fa-star"></i> ตรวจสอบเอกสารรายบุคคล', 'class="nav-link"');?>

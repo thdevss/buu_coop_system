@@ -54,6 +54,10 @@ class Coop_Student_model extends CI_model {
 
     public function gets_coop_student_by_adviser($adviser_id)
     {
+        $this->db->where('adviser_id', $adviser_id);
+        $this->db->from('coop_student');
+        $query = $this->db->get();
+        return $query->result_array();
 
     }
 }

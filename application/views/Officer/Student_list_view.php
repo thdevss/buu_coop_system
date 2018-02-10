@@ -10,12 +10,17 @@
 
 <div class="container-fluid">
   <div class="animated fadeIn">
-      <div class="row" >
+    <div class="row" >
       <!--table รายชื่อนิสิต-->
-        <div class="col-lg-12">
-          <div class="card">
+      <div class="col-lg-12">
+        <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i>รายชื่อนิสิต</div>
-              <div class="card-body">
+          <div class="card-body">
+
+              <!---->
+              
+              <!---->
+
               <table class="table table-bordered datatable">
                     <thead>
                       <tr>
@@ -24,7 +29,7 @@
                         <th class="text-center" >ชื่อ-สกุล</th>
                         <th class="text-center">GPAX</th>
                         <th class="text-center">สาขาวิชา</th>
-                        <th class="text-center">สถานะสหกิจ</th>
+                        <th class="text-center">สถานะ</th>
                         <th class="text-center">สถานะจากสถานประกอบการ</th>
                         <th class="text-center"></th>
                       </tr>
@@ -44,47 +49,45 @@
                         </div>
                         </td>
 
-                        <td class="text-center"><?php echo $row['student']->id;?></td>
-                        <td class="text-center"><?php echo $row['student']->fullname;?></td>
+                        <td class="text-center"><?php echo $row['student']['id'];?></td>
+                        <td class="text-center"><?php echo $row['student']['fullname'];?></td>
                         <td></td>
-                        <td class="text-center"><?php echo $row['student_field']->name;?></td>
-                        <td class="text-center"><?php echo $row['student']->coop_status;?></td>
-                        <td class="text-center"><?php echo $row['student']->company_status;?></td>
-                        <td><?php echo anchor('Officer/Student_list/detail/'.$row['student']->id, '<i class="fa fa-star"></i> รายละเอียด', 'class="btn btn-primary" target="_blank"');?></td>
+                        <td class="text-center"><?php echo $row['department']['name'];?></td>
+                        <td class="text-center"><?php echo $row['coop_student_type'][0]['status_name'];?></td>
+                        <td class="text-center"><?php echo $row['student']['company_status'];?></td>
+                        <td><?php echo anchor('Officer/Student_list/student_detail/'.$row['student']['id'], 'รายละเอียด', 'class="btn btn-primary" target="_blank"');?></td>
                       </tr>
                     <?php 
                     }
                     ?>
                     </table>
-                    <div class="form-group row">
-                    <label class="col-md-9 form-control-label" for="select"></label>
-                    <div class="col-md-9">
-                    <table>
-                    <th>
-                      <select id="select" name="select" class="form-control form-control-md">
-                        <option value="1">เปลี่ยนสถานะ</option>
-                        <option value="2">รอ</option>
-                        <option value="3">รอสัมภาษณ์</option>
-                        <option value="4">รอผลสอบสัมภาษณ์</option>
-                        <option value="5">ผ่าน รอบที่ 1</option>
-                        <option value="6">ผ่าน รอบที่ 2</option>
-                        <option value="7">ผ่าน รอบที่ 3</option>
-                      </select>
-                      </th>
-                      <th>
-                      <span class="input-group-btn">
-                          <button type="button" class="btn btn-success btn-md">บันทึก</button>
-                          </span>
-                    </div>
-                    </th>
-                    </table>
-                    </tbody>
+                    <!---->
+                        <div class="row">
+                          <div class="col-sm-3"></div>
+                              <div class="form-group col-sm-3">
+                              <select id="select" name="select" class="form-control">
+                                <option>---กรุณาเลือก--</option>
+                                <?php foreach ($coop_status_type as $row){?>
+                                <option value="<?php echo $row['id'];?>"> <?php echo $row['status_name'];?></option>
+                                <?php } ?>
+                              </select>
+                          </div>
+                          <div class="col-sm-6"></div>
+                        </div> 
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                            <button type="button" class="btn btn-success">Success</button>
+                            </div>
+                            <div class="col-sm-4"></div>
+                        </div>           
+                    <!---->
                 </div>
               </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+</main>

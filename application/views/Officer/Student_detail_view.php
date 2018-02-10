@@ -17,7 +17,7 @@
                             <div class="card-header"><i class="fa fa-align-justify"></i>รายละเอียดนิสิต</div>
                                 <div class="card-body">
                     <div class="row">
-                    <div class="col-sm-4">555</div>
+                    <div class="col-sm-4">ชื่อ-สกุล</div>
                     <div class="col-sm-4">555</div>
                   <div class="col-sm-4">555</div>
                   </div>

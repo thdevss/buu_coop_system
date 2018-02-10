@@ -55,4 +55,19 @@ class Student_model extends CI_model {
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    public function gets_coop_status_type()
+    {
+        $this->db->from('coop_status_type');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_by_coop_status_type($status_type_id)
+    {
+        $this->db->where('id',$status_type_id);
+        $this->db->from('coop_status_type');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
