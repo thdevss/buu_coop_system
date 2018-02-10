@@ -37,8 +37,15 @@ class Company extends CI_Controller {
     
         $this->template->view('Officer/List_company_view',$data);
     }
-    
-    
+     public function address($id){
+            $data['data'] = $this->Address->get_address_by_company($id)[0];           
+  
+                // print_r($data);
+
+            $this->template->view('Officer/Address_company_view',$data);
+        
+    }
+
     public function post_add()
     {
         //insert
@@ -62,5 +69,7 @@ class Company extends CI_Controller {
             die();
         }
     }
+
+    
 
 }

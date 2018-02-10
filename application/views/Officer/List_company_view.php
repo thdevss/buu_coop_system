@@ -47,8 +47,11 @@
                         <td class="form-inline">
                               <?php echo anchor('Officer/Trainer/list/'.$row['id'], '<i class="icon-people"></i> เจ้าหน้าที่', 'class="btn  btn-primary"');?>                              
                               <div style="width:2%"></div>
-                              <?php echo anchor('Officer/Company/edit/'.$row['id'], '<i class="icon-star"></i> รายละเอียด', 'class="btn  btn-primary"');?>                              
-                         
+                              <?php echo anchor('Officer/Company/edit/'.$row['id'], '<i class="icon-star"></i> รายละเอียด', 'class="btn  btn-primary"');?>   
+                              <div style="width:2%"></div>                           
+                              <?php echo anchor('Officer/Company/address/'.$row['id'], '<i class="icon-institution"></i> ที่อยู่', 'class="btn  btn-primary"');?>             
+                              <div style="width:2%"></div>
+                              <?php echo anchor('Officer/Company/address/'.$row['id'], '<i class="icon-institution"></i> ลบ', 'class="btn  btn-danger"');?>
                         </td>
                       </tr>
                     <?php 
