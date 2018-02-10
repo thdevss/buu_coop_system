@@ -24,13 +24,13 @@ class Test_form extends CI_Controller {
             $data['status'] = '';
         }
 
-        $data['coop_test'] = $this->DB_coop_test->gets();
+        $data['coop_test'] = $this->Test->gets_test();
         $data['coop_test_select'] = array();
 
         for($i=1; $i<5; $i++){
             $add_list = true;
             foreach($data['coop_test'] as $r) {
-                if($i == $r->name){
+                if($i == $r['name']){
                     $add_list = false;
                     break;
                 }
@@ -39,7 +39,8 @@ class Test_form extends CI_Controller {
                 $data['coop_test_select'][] = $i;
             }
         }
-        $data['coop_time_select'] = date('Y-m-d H:i:s', strtotime($this->DB_coop_test->get_last_time())+86400);
+        $data['coop_time_select'] = date('Y-m-d H:i:s', strtotime(@$data['coop_test'][0]['test_date'])+86400);
+        // print_r($data);
         $this->template->view('Officer/Test_form_view',$data);
     }
 
@@ -77,7 +78,7 @@ class Test_form extends CI_Controller {
             //change in db
             $array['register_status'] = $this->input->post('status');
             $coop_test_id = $this->input->post('coop_test_id');            
-            $this->DB_coop_test->update($coop_test_id, $array);
+            $this->Test->update_test($coop_test_id, $array);
             
             $return['status'] = true;
         }

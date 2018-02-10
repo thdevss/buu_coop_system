@@ -20,17 +20,17 @@
                             echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
                         }
                         ?>             
-                        <form action="<?php echo site_url('Officer/Train_list/post_edit');?>" method="post">
-                            <input type="hidden" name="id" value="<?php echo $data->id;?>">
+                        <form action="<?php echo site_url('Officer/Training/post_edit');?>" method="post">
+                            <input type="hidden" name="id" value="<?php echo $data['id'];?>">
                             <div class="form-group col-md-6 offset-md-3">
                                 <label for="fullname">ประเภทโครงการ</label>          
                                 <select class="form-control" type="text" class="form-control" name="train_type" id="train_type">
                                 <?php 
                                 foreach($train_type as $t) {
-                                    if($t->id == @$data->train_type_id) {
-                                        echo '<option value="'.$t->id.'" selected>'.$t->name.'</option>';
+                                    if($t['id'] == @$data['train_type_id']) {
+                                        echo '<option value="'.$t['id'].'" selected>'.$t['name'].'</option>';
                                     } else {
-                                        echo '<option value="'.$t->id.'" >'.$t->name.'</option>';                           
+                                        echo '<option value="'.$t['id'].'" >'.$t['name'].'</option>';                           
                                     }
                                 } 
                                 ?>               
@@ -40,32 +40,32 @@
 
                             <div class="form-group col-md-6 offset-md-3">
                                 <label for="student_code">ชื่อโครงการ</label>
-                                <input type="text" class="form-control" id="title" placeholder="" name="title" value="<?php echo $data->title?>">
+                                <input type="text" class="form-control" id="title" placeholder="" name="title" value="<?php echo $data['title']?>">
                             </div> 
                             <div class="col-md-6"></div>
                             
                             <div class="form-group col-md-6 offset-md-3">
                                 <label for="student_field">วิทยากร</label>
-                                <input type="text" class="form-control" id="lecturer" placeholder="" name="lecturer" value="<?php echo $data->lecturer ?>">
+                                <input type="text" class="form-control" id="lecturer" placeholder="" name="lecturer" value="<?php echo $data['lecturer'] ?>">
                             </div>
                             <div class="col-md-6"></div>
 
                             <div class="form-group col-md-6 offset-md-3">
                                 <label for="city">จำนวนที่นั่งเปิดรับ</label>
-                                <input type="text" class="form-control" id="number_of_seat" placeholder="" name="number_of_seat" value="<?php echo $data->number_of_seat ?>">
+                                <input type="text" class="form-control" id="number_of_seat" placeholder="" name="number_of_seat" value="<?php echo $data['number_of_seat'] ?>">
                             </div>
                             <div class="col-md-6"></div>
 
                             <div class="form-group col-md-6 offset-md-3">
                                 <label for="number_of_hour">จำนวนชั่วโมงที่ได้รับ</label>
-                                <input type="number" class="form-control" id="number_of_hour" placeholder="" name="number_of_hour" value="<?php echo $data->number_of_hour;?>">
+                                <input type="number" class="form-control" id="number_of_hour" placeholder="" name="number_of_hour" value="<?php echo $data['number_of_hour'];?>">
                             </div>
                             <div class="col-md-6"></div>
 
                             <div class="form-group col-md-6 offset-md-3">
                                 <label for="city">วันที่อบรม</label>
                                 <br>
-                                <input type="text" class="form-control datetimepicker" id="" placeholder="" name="date" value="<?php echo $data->date ?>">    
+                                <input type="text" class="form-control datetimepicker" id="" placeholder="" name="date" value="<?php echo $data['date'] ?>">    
                             </div>
                             <div class="col-md-6"></div>
                             
@@ -74,10 +74,10 @@
                                 <select class="form-control" type="text" class="form-control" name="train_location" id="train_location">
                                 <?php 
                                 foreach($train_location as $r) {
-                                    if($r->id == $data->train_location_id) {
-                                        echo '<option value="'.$r->id.'" selected>'.$r->room.'</option>';
+                                    if($r['id'] == $data['train_location_id']) {
+                                        echo '<option value="'.$r['id'].'" selected>'.$r['room'].'</option>';
                                     } else {
-                                        echo '<option value="'.$r->id.'" >'.$r->room.'</option>';       
+                                        echo '<option value="'.$r['id'].'" >'.$r['room'].'</option>';       
                                     }
                                 } 
                                 ?>
@@ -88,7 +88,7 @@
                             <div class="form-group col-md-6 offset-md-3">
                                 <label for="city">ระยะเวลาเปิดรับสมัคร</label>      
                                 <br>           
-                                <input type="text" class="form-control datetimepicker" id="" placeholder="" name="register_period" value="<?php echo $data->register_period ?>">
+                                <input type="text" class="form-control datetimepicker" id="" placeholder="" name="register_period" value="<?php echo $data['register_period'] ?>">
                             </div>
                             <div class="col-md-6"></div>   
 

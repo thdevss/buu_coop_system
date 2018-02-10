@@ -31,7 +31,7 @@ class Test_result extends CI_Controller {
             $data['status'] = '';
         }
 
-        $data['coop_test'] = $this->DB_coop_test->gets();
+        $data['coop_test'] = $this->Test->gets_test();
 
         $this->template->view('Officer/Test_result_view',$data);
         
@@ -45,7 +45,7 @@ class Test_result extends CI_Controller {
         if($this->form_validation->run() != false){
             //check coop test id
             $coop_test_id = $this->input->post('coop_test_id');            
-            if(!$this->DB_coop_test->get($coop_test_id)) {
+            if(!$this->Test->get_test($coop_test_id)) {
                 return $this->index('error_upload');
                 die();
             }
@@ -73,20 +73,17 @@ class Test_result extends CI_Controller {
                 foreach($xlsx->getSheetData($sheet) as $row) {
                     $student_id = trim($row[0]);
                     $result = trim($row[1]);
-                    if($result == 'ผ่าน') {
-                        $result = 1;
+                    // if($result == 'ผ่าน') {
+                    if($result > '49') {                        
+                        $result = 1; //pass test
                     } else {
-                        $result = 2;
+                        $result = 2; //fail test
                     }
 
                     //check student id in test
-                    if($this->DB_coop_test_has_student->check_student($student_id, $coop_test_id)) {
+                    if($this->Test->get_student_by_test_and_student($student_id, $coop_test_id)) {
                         //add data
-                        $where['student_id'] = $student_id;
-                        $where['coop_test_id'] = $coop_test_id;
-                        
-                        $update['coop_test_status'] = $result; //wait fix
-                        $this->DB_coop_test_has_student->update($where, $update);
+                        $this->Test->add_test_result_by_student($student_id, $coop_test_id, $result);
                     }
                     
                 }

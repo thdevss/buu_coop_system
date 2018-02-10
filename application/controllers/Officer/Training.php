@@ -38,11 +38,11 @@ class Training extends CI_Controller {
 
         $data['data'] = array();
         //get student has test
-        foreach($this->DB_train->gets() as $row) {
+        foreach($this->Training->gets_training() as $row) {
             //get train_type_id
             $tmp_array = array();
             $tmp_array['train'] = $row;
-            $tmp_array['train_type'] = $this->DB_train_type->get($row->train_type_id);
+            $tmp_array['train_type'] = $this->Training->get_type($row['train_type_id'])[0];
             array_push($data['data'], $tmp_array);
         }
         $this->template->view('Officer/Train_list_view',$data);
@@ -90,9 +90,10 @@ class Training extends CI_Controller {
 
         //get id
 
-        $data['data'] = $this->DB_train->get($id);
-        $data['train_type'] = $this->DB_train_type->gets();
-        $data['train_location'] = $this->DB_train_location->gets();
+        $data['data'] = $this->Training->get_training($id)[0];
+        $data['train_type'] = $this->Training->gets_type();
+        $data['train_location'] = $this->Training->gets_location();
+
             
         $this->template->view('Officer/Edit_Train_list_view', $data);
     }
@@ -112,8 +113,8 @@ class Training extends CI_Controller {
             $data['status'] = '';
         }
 
-        $data['train_type'] = $this->DB_train_type->gets();
-        $data['train_location'] = $this->DB_train_location->gets();
+        $data['train_type'] = $this->Training->gets_type();
+        $data['train_location'] = $this->Training->gets_location();
         $this->template->view('Officer/Add_Train_list_view', $data);
     }
 
@@ -132,12 +133,12 @@ class Training extends CI_Controller {
 
         if ($this->form_validation->run() != FALSE) {
             //check train_location
-            if(!$this->DB_train_location->get($this->input->post('train_location'))) {
+            if(!$this->Training->get_location($this->input->post('train_location'))) {
                 return $this->add('error_location');
                 die();
             }
             //check train_type
-            if(!$this->DB_train_type->get($this->input->post('train_type'))) {
+            if(!$this->Training->get_type($this->input->post('train_type'))) {
                 return $this->add('error_type');
                 die();
             }
@@ -153,7 +154,7 @@ class Training extends CI_Controller {
             $insert['number_of_hour'] = $this->input->post('number_of_hour');
             
  
-            if($this->DB_train->add($insert)) {
+            if($this->Training->insert_training($insert)) {
                 return $this->index('success_inert');
                 die();
             } else {
@@ -183,17 +184,17 @@ class Training extends CI_Controller {
 
         if ($this->form_validation->run() != FALSE) {
             //check primary key
-            if(!$this->DB_train->get($id)) {
+            if(!$this->Training->get_training($id)) {
                 return $this->edit($id, 'error_location');
                 die();
             }
             //check train_location
-            if(!$this->DB_train_location->get($this->input->post('train_location'))) {
+            if(!$this->Training->get_location($this->input->post('train_location'))) {
                 return $this->edit($id, 'error_location');
                 die();
             }
             //check train_type
-            if(!$this->DB_train_type->get($this->input->post('train_type'))) {
+            if(!$this->Training->get_type($this->input->post('train_type'))) {
                 return $this->edit($id, 'error_type');
                 die();
             }
@@ -209,7 +210,7 @@ class Training extends CI_Controller {
             $insert['number_of_hour'] = $this->input->post('number_of_hour');
             
  
-            if($this->DB_train->update($id, $insert)) {
+            if($this->Training->update_training($id, $insert)) {
                 return $this->index('success_update');
                 die();
             } else {

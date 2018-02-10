@@ -33,7 +33,7 @@
                       <select class="form-control" id="coop_test_id" name="coop_test_id">
                         <option>--กรุณาเลือก--</option>
                         <?php foreach ($coop_test as $row) { ?>
-                        <option value="<?php echo $row->id; ?>" ><?php echo $row->name; ?> </option>
+                        <option value="<?php echo $row['id']; ?>" ><?php echo $row['name']; ?> </option>
                         <?php } ?>
                       </select>
                     </div>

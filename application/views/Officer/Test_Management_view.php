@@ -24,6 +24,27 @@
             }
      
              ?>
+
+              <div class="container-fluid">
+                  <form action="" method="post" class="form-horizontal">
+                    <div class="form-group row">
+                      <label class="col-md-2 col-form-label" for="hf-email">เลือกครั้งการสอบ</label>
+                      <div class="col-md-10">
+                        <select name="form_id" id="form_id" class="form-control">
+                          <option> ------ </option>
+                          <?php
+                          foreach($coop_test_list as $test) { 
+                            echo '<option value="'.$test['id'].'">'.$test['name'].' - '.$test['test_date'].'</option>';
+                          }
+                          ?>
+                        </select>
+                        <!-- <span class="help-block">Please enter your email</span> -->
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+
             <table class="table table-bordered datatable">
                     <thead>
                       <tr>

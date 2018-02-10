@@ -24,12 +24,12 @@
                     echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
                 }
                 ?>   
-                <table class="table table-bordered datatable" >
+                <table class="table table-bordered" id="news_table">
                     <thead>
                         <tr>
                             <th class="text-center">วันที่</th>
                             <th class="text-center">หัวข้อ</th>
-                            <th class="text-center" >ผู้ประกาศ</th>
+                            <th class="text-center">ผู้ประกาศ</th>
                             <th class="text-center"></th>
                             <th class="text-center"></th>
                         </tr>
@@ -42,7 +42,7 @@
                         <td class="text-center"><?php echo $row['title'];?></td>
                         <td class="text-center"><?php echo $row['author']['fullname'];?></td>
                         <td class="text-center">
-                            <a href="#" data-newsid="<?php echo $row['id'];?>" class="btn btn-secondary">แชร์</a>
+                            <a href="#" data-newsid="<?php echo $row['id'];?>" class="btn btn-secondary" data-toggle="modal" data-target="#share_modal">แชร์</a>
                         </td>
                         <td class="text-center">
                             <form action="<?php echo site_url('Officer/News/delete');?>" method="post">
@@ -69,6 +69,60 @@
 </main>
 
 
+<!-- Modal -->
+<div class="modal fade" id="share_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="share_modal_view">แชร์ข่าวสาร</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <a href="#" class="btn btn-info btn-lg">Facebook</a>
+        <a href="#" class="btn btn-info btn-lg">Twitter</a>
+        <a href="#" class="btn btn-info btn-lg">LINE</a>
+        <a href="#" class="btn btn-info btn-lg" data-dismiss="modal" data-toggle="modal" data-target="#sent_email_modal">Email</a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="sent_email_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="sent_email_modal_view">ส่งอีเมลข่าวสาร</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="emails">อีเมล</label>
+            <input type="text" class="form-control" id="emails" name="emails" placeholder="a@a.com, b@b.com">
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">หัวข้อประกาศข่าว</label>
+            <p>xxxxxxxx</p>
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-info">Send Email</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 
 
@@ -90,6 +144,12 @@ $('.btn-delete').on('click',function(e){
       }
     })
 });
+
+$(document).ready(function() {
+    $('#news_table').DataTable( {
+        "order": [[ 0, "desc" ]]
+    } );
+} );
 
 
 </script>
