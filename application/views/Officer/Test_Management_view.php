@@ -30,7 +30,7 @@
                     <div class="form-group row">
                       <label class="col-md-2 col-form-label" for="hf-email">เลือกครั้งการสอบ</label>
                       <div class="col-md-10">
-                        <select name="form_id" id="form_id" class="form-control">
+                        <select name="test_id" id="test_id" class="form-control">
                           <option> ------ </option>
                           <?php
                           foreach($coop_test_list as $test) { 
@@ -45,7 +45,7 @@
                 </div>
 
 
-            <table class="table table-bordered datatable">
+            <table class="table table-bordered datatable" id="test_student_list_result">
                     <thead>
                       <tr>
                         <th>รหัสนิสิต</th>
@@ -56,27 +56,6 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php
-                      foreach($data as $row) {
-                      ?>
-
-                      <tr>
-
-                        <td><?php echo $row['student']->id;?></td>
-                        <td><?php echo $row['student']->fullname;?></td>
-                        <td><?php echo $row['student_field']->name;?></td>
-                        <td><?php echo $row['coop_test']->name;?></td>
-                        
-                        <td>
-                        <form action="<?php echo site_url('Officer/Test_Management/delete'); ?>" method="post">
-                        <input type="hidden"   name="student_id" value="<?php echo $row['student']->id ; ?>">
-                        <input type="hidden"  name="coop_test_id" value="<?php echo $row['coop_test']->id ; ?>">
-                        <button type="submit" class="btn btn-danger btn-submit"><i class="fa fa-rss"></i> ลบ</button>
-
-                        </form>
-                        </td>
-                      </tr>
-                      <?php } ?>
                     </tbody>
                   </table>
             </div>
@@ -98,29 +77,24 @@
               <div class="modal-body">
               <!--รหัสนิสิต-->
               <form action="<?php echo site_url('Officer/Test_Management/add');?>" method="post">
-              <div class="form-group row">
-                      <div class="col-md-9">
-                      <label class="col-md-4 form-control-label" for="text-input"> รหัสนิสิต</label>
+                    <div class="form-group">
+                      <label class=" form-control-label" for="text-input"> รหัสนิสิต</label>
                       <input type="text" class="form-control" id="" name="id"  required placeholder="กรุณากรอก" >
-                      </div>
                     </div>  
-              <!--รหัสนิสิต-->
+                    <!--รหัสนิสิต-->
                     <!--สอบรอบที่-->
-                    <div class="form-group row">
-                      <div class="col-md-9">
-                      <label class="col-md-4 form-control-label" for="text-input">สอบรอบที่</label>
-                        <select id="select" name="select" class="form-control" required>
-                          <option value="">Please select</option>
-
+                    <div class="form-group">
+                      <label class="form-control-label" for="text-input">สอบรอบที่</label>
+                      <select id="select" name="select" class="form-control" required>
+                        <option value="">Please select</option>
                           <?php foreach ($coop_test_list as $row) { 
-                            if($row->register_status != 1){
-                              continue;
-                            }
-                            ?>
-                          <option value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>
+                          if($row['register_status'] != 1){
+                            continue;
+                          }
+                          ?>
+                          <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
                           <?php } ?>
-                        </select>
-                      </div>
+                      </select>
                     </div>
                     <!--สอบรอบที่-->
               </div>
@@ -135,8 +109,10 @@
 <script>
 
 
-$('.btn-submit').on('click',function(e){
-    e.preventDefault();
+// $('.btn-submit').on('click',function(e){
+function confirmDelete()
+{
+    // e.preventDefault();
     var form = $(this).parents('form');
     swal({
         title: "คุณแน่ใจใช่ไหม",
@@ -149,9 +125,45 @@ $('.btn-submit').on('click',function(e){
       if (isConfirm) {
         form.submit();
       } else {
-
+        
       }
     })
+
+    return false;
+}
+// });
+
+
+</script>
+
+
+
+<script>
+$('#test_id').on('change', function (e) {
+    var optionSelected = $("option:selected", this);
+    var valueSelected = this.value;
+
+    //get student test search by test id
+    jQuery("#test_student_list_result tbody").empty();
+
+    jQuery.getJSON( SITE_URL+"/Officer/Test_Management/gets_student_by_test/"+valueSelected, function( result ) {
+        var items = [];
+        console.log(result);
+
+        jQuery.each( result.data, function( key, val ) {
+                $('#test_student_list_result tbody').append(
+                    '<tr>'+
+                    '<td>'+val.student.id+'</td>'+
+                    '<td>'+val.student.fullname+'</td>'+                    
+                    '<td>'+val.department.name+'</td>'+                    
+                    '<td>'+val.coop_test.name+'</td>'+ 
+                    '<td><form onsubmit="return confirmDelete()" action="<?php echo site_url('Officer/Test_Management/delete');?>" method="post"><input type="hidden" name="coop_test_id" value="'+val.coop_test.id+'"><input type="hidden" name="student_id" value="'+val.student.id+'"><button type="submit" class="btn btn-warning btn-submit">ลบ</button></form></td>'+              
+                                 
+                    '</tr>');
+            
+            
+        });
+    });
 
 });
 
