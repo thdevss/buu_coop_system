@@ -22,12 +22,11 @@ class Student_list extends CI_Controller {
 
     public function student_detail($student_id)
     {
-        $data['student'] = $this->Student->get_student($student_id);
-        $data['department'] = $this->Student->get_department($data['student']['department_id']);
-   
-        
+        $data['student'] = $this->Student->get_student($student_id)[0];
+        $data['department'] = $this->Student->get_department($data['student']['department_id'])[0];
+        $data['coop_status_type'] = $this->Student->get_by_coop_status_type($data['student']['coop_status'])[0];
+        $this->template->view('Officer/Student_detail_view',$data);
         print_r($data);
-        $this->template->view('Officer/Student_detail_view');
     }
 
 
