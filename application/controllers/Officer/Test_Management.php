@@ -68,6 +68,28 @@ class Test_Management extends CI_Controller {
         $this->template->view('Officer/Test_Management_view',$data);
 
     }
+
+    public function gets_student_by_test($test_id)
+    {
+        $data['data'] = array();
+        foreach($this->Test->get_student_by_test($test_id) as $row) {
+            //get student
+            $tmp_array = array();
+            $tmp_array['student'] = $this->Student->get_student($row['student_id'])[0];
+
+            //get student field
+            $tmp_array['department'] = $this->Student->get_department($tmp_array['student']['department_id'])[0];
+            
+            //get coop test
+            $tmp_array['coop_test'] = $this->Test->get_test($row['coop_test_id'])[0];
+
+            // print_r($tmp_array);
+            array_push($data['data'], $tmp_array);
+        }
+
+        echo json_encode($data);
+    }
+
     public function add(){
 
         $this->load->library('form_validation');
@@ -79,33 +101,28 @@ class Test_Management extends CI_Controller {
         }else{
             $student_id = $this->input->post('id');
             $coop_test_id = $this->input->post('select');
-            if(!@$this->DB_student->get($student_id)){
+            if(!@$this->Student->get_student($student_id)){
                 return $this->index('error_student_id');
                 die('error_student_id');
             }
-            if(@$this->DB_coop_test_has_student->check_student_pass($student_id)){
+            if(@$this->Test->check_test_pass_by_student($student_id)){
                 return $this->index('error_student_pass');
                 die();
             }
-            if(@$this->DB_coop_test_has_student->check_student($student_id,$coop_test_id)){
+            if(@$this->Test->get_student_by_test_and_student($student_id, $coop_test_id)){
                 return $this->index('error_has_student');
                 die();
             }
 
-            $term = $this->Login_session->check_login()->term_id;
-            $array['coop_test_id'] = $coop_test_id;
-            $array['coop_test_term_id'] = $term;
-            $array['student_id'] = $student_id;
-            $array['student_term_id'] = $term; 
-            $array['coop_test_status'] = '0';
-            $this->DB_coop_test_has_student->add($array);
+            $term = $this->Term->get_current_term()[0]['id'];
+            $this->Test->add_student($student_id, $coop_test_id);
             return $this->index('success');
         }
     }
     public function delete(){
         $array['student_id'] = $this->input->post('student_id');
         $array['coop_test_id'] = $this->input->post('coop_test_id');
-        $this->DB_coop_test_has_student->delete($array);
+        $this->Test->delete_student($array['student_id'], $array['coop_test_id']);
         return $this->index('success_delete');
     }
 

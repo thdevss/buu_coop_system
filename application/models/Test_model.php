@@ -2,6 +2,7 @@
 class Test_model extends CI_model {
     public function gets_test() 
     {
+        
         $this->db->where('term_id', $this->Term->get_current_term()[0]['id']);        
         $this->db->from('coop_test');
         $query = $this->db->get();
@@ -37,7 +38,15 @@ class Test_model extends CI_model {
         $this->db->from('coop_test_has_student');
         $query = $this->db->get();
         return $query->result_array();
+    }
 
+    public function check_test_pass_by_student($student_id)
+    {
+        $this->db->where('coop_test_status', 1);
+        $this->db->where('student_id', $student_id);
+        $this->db->from('coop_test_has_student');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function add_student($student_id, $test_id)
@@ -82,9 +91,16 @@ class Test_model extends CI_model {
     {
         $this->db->where('student_id',$student_id);
         $this->db->where('coop_test_id',$test_id);
-        $array['coop_test_status'] = $result;
         $this->db->from('coop_test_has_student');
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    public function get_student_by_test($test_id)
+    {
+        $this->db->where('coop_test_id',$test_id);
+        $this->db->from('coop_test_has_student');
+        $query = $this->db->get();
+        return $query->result_array();
+    }    
 }
