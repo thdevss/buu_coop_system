@@ -20,14 +20,14 @@
                             echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
                         }
                         ?>            
-                        <form action="<?php echo site_url('Officer/Train_list/post_add');?>" method="post">
+                        <form action="<?php echo site_url('Officer/Training/post_add');?>" method="post">
                             <div class="form-group col-md-6 offset-md-3">
                                 <label for="train_type">ประเภทโครงการ</label>          
                                 <select class="form-control" type="text" class="form-control" name="train_type" id="train_type">
                                     <option value="">--- please select ---</option>
                                     <?php 
                                     foreach($train_type as $t) {
-                                        echo '<option value="'.$t->id.'" >'.$t->name.'</option>';
+                                        echo '<option value="'.$t['id'].'" >'.$t['name'].'</option>';
                                     } 
                                     ?>               
                                 </select>
@@ -71,7 +71,7 @@
                                     <option value="">--- please select ---</option>                                
                                     <?php 
                                     foreach($train_location as $r) {
-                                        echo '<option value="'.$r->id.'" >'.$r->room.'</option>';       
+                                        echo '<option value="'.$r['id'].'" >'.$r['room'].'</option>';       
                                     } 
                                     ?>
                                 </select>

@@ -38,11 +38,11 @@
                     <tbody>
                     <?php foreach ($coop_test as $row) { ?>
                       <tr>
-                        <td><?php echo $row->name; ?></td>
-                        <td><?php echo $row->test_date ; ?></td>
+                        <td><?php echo $row['name']; ?></td>
+                        <td><?php echo $row['test_date'] ; ?></td>
                         <td>
                           <label class="switch switch-text switch-pill switch-success-outline-alt">
-                            <input type="checkbox" class="switch-input" <?php if($row->register_status==1) echo 'checked';?> data-coop_test_id="<?php echo $row->id;?>">
+                            <input type="checkbox" class="switch-input" <?php if($row['register_status']==1) echo 'checked';?> data-coop_test_id="<?php echo $row['id'];?>">
                             <span class="switch-label" data-on="On" data-off="Off"></span>
                             <span class="switch-handle"></span>
                           </label>

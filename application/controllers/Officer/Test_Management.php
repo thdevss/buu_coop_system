@@ -47,22 +47,23 @@ class Test_Management extends CI_Controller {
 
         $data['data'] = array();
         //get student has test
-        foreach($this->DB_coop_test_has_student->gets() as $row) {
-            //get student
-            $tmp_array = array();
-            $tmp_array['student'] = $this->DB_student->get($row->student_id);
+        
+        // foreach($this->DB_coop_test_has_student->gets() as $row) {
+        //     //get student
+        //     $tmp_array = array();
+        //     $tmp_array['student'] = $this->DB_student->get($row->student_id);
 
-            //get student field
-            $tmp_array['student_field'] = $this->DB_student_field->get($tmp_array['student']->student_field_id);
+        //     //get student field
+        //     $tmp_array['student_field'] = $this->DB_student_field->get($tmp_array['student']->student_field_id);
             
-            //get coop test
-            $tmp_array['coop_test'] = $this->DB_coop_test->get($row->coop_test_id);
+        //     //get coop test
+        //     $tmp_array['coop_test'] = $this->DB_coop_test->get($row->coop_test_id);
 
-            // print_r($tmp_array);
-            array_push($data['data'], $tmp_array);
-        }
+        //     // print_r($tmp_array);
+        //     array_push($data['data'], $tmp_array);
+        // }
 
-        $data['coop_test_list'] = $this->DB_coop_test->gets();
+        $data['coop_test_list'] = $this->Test->gets_test();
 
         $this->template->view('Officer/Test_Management_view',$data);
 
