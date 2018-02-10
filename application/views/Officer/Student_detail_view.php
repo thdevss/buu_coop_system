@@ -16,34 +16,45 @@
                           <div class="card-header"><i class="fa fa-align-justify"></i> รายละเอียดนิสิต</div>
                             <div class="card-body">
                               <dl class="row">
-                              <dt class="col-sm-3">ชื่อ-นามสกุล</dt>
+                              <dt class="col-sm-4">ชื่อ-นามสกุล</dt>
                               <dd><?php echo $student['fullname'];?></dd>
                               </dl>
 
                               <dl class="row">
-                              <dt class="col-sm-3">รหัสนิสิต</dt>
+                              <dt class="col-sm-4">รหัสนิสิต</dt>
                               <dd><?php echo $student['id'];?></dd>
                               </dl>
 
                               <dl class="row">
-                              <dt class="col-sm-3">ชั้นปี</dt>
-                              <dd>4</dd>
+                              <dt class="col-sm-4">ชั้นปี</dt>
+                              <dd>รอกลุ่ม Profile</dd>
                               </dl>
 
                               <dl class="row">
-                              <dt class="col-sm-3">หลักสูตร</dt>
+                              <dt class="col-sm-4">หลักสูตร</dt>
+                              <dd>รอกลุ่ม Profile</dd>
+                              </dl>
+
+                              <dl class="row">
+                              <dt class="col-sm-4">สาขา</dt>
                               <dd><?php echo $department['name'];?></dd>
                               </dl>
 
                               <dl class="row">
-                              <dt class="col-sm-3">สาขา</dt>
-                              <dd><?php echo $department['name'];?></dd>
+                              <dt class="col-sm-4">ชื่อเล่น</dt>
+                              <dd>รอกลุ่ม Profile</dd>
                               </dl>
 
                               <dl class="row">
-                              <dt class="col-sm-3">ชื่อเล่น</dt>
-                              <dd>ปืน</dd>
+                              <dt class="col-sm-4">จำนวนหน่วยกิจที่เรียนแล้ว</dt>
+                              <dd>รอกลุ่ม Profile</dd>
                               </dl>
+
+                              <dl class="row">
+                              <dt class="col-sm-4">GPAX</dt>
+                              <dd>รอกลุ่ม Profile</dd>
+                              </dl>
+
                         </div>
                       </div>
                     </div>
@@ -63,16 +74,42 @@
                           <div class="card-header"><i class="fa fa-align-justify"></i> ข้อมูลสหกิจศึกษา</div>
                             <div class="card-body">
                             <dl class="row">
-                              <dt class="col-sm-3">สถานะ</dt>
+                              <dt class="col-sm-4">สถานะ</dt>
+                              <dd>
+                              <?php if($coop_test_status['coop_test_status'] == 0){ ?>
+                              <?php echo 'ไม่พบผลลัพธ์'; ?></dd>
+                              <?php } ?>
+                              </dl>
+
+                              <dl class="row">
+                              <dt class="col-sm-4">สถานะสอบ</dt>
                               <dd><?php echo $coop_status_type['status_name']; ?></dd>
                               </dl>
 
                               <dl class="row">
-                              <dt class="col-sm-3">สถานะสอบ</dt>
-                              <dd><?php echo $coop_status_type['status_name']; ?></dd>
+                              <dt class="col-sm-4">วิชาแกน</dt>
+                              <dd>รอกลุ่ม Profile</dd>
                               </dl>
-                                    
-                        
+
+                              <dl class="row">
+                              <dt class="col-sm-4">จำนวนชั่วโมงอบรม</dt>
+                              <dd></dd>
+                              </dl>
+
+                              <dl class="row">
+                              <dt class="col-sm-4">
+                              <ul>
+                              <li>วิชาการ</li>
+                              <li>เตรียมความพร้อม</li>
+                              </ul>
+                              </dt>
+                              <dd>
+                              <ul>
+                              <li>.</li>
+                              <li>.</li>
+                              </ul>
+                              </dd>
+                              </dl>
                         </div>
                       </div>
                     </div>
@@ -81,9 +118,11 @@
                         <div class="card">
                           <div class="card-header"><i class="fa fa-align-justify"></i> ข้อมูลสถานประกอบการ</div>
                             <div class="card-body">
-                        </div>
+
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>        
+                </div>   
+</main>     
