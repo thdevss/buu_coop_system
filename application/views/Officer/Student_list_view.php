@@ -24,6 +24,7 @@
               <table class="table table-bordered" id="student_table">
                     <thead>
                       <tr>
+                        <th></th>
                         <th class="text-center">รหัสนิสิต</th>
                         <th class="text-center">ชื่อ-สกุล</th>
                         <th class="text-center">GPAX</th>
@@ -89,6 +90,7 @@ $(document).ready(function() {
         },
         "columns": [
             { "data": "student.id" },
+            { "data": "student.id" },            
             { "data": "student.fullname" },
             { "data": "student.gpax" },
             { "data": "department.name" },
@@ -102,7 +104,7 @@ $(document).ready(function() {
     $('#change_student_status').click( function () {
       var current_table_page = $('#student_table').DataTable().page.info().page
       var coop_status_type = jQuery(".coop_status_type_val option:selected").val()
-      var arr = $('#student_table').DataTable().rows('.selected').data()
+      var arr = $('#student_table').DataTable().column(0).checkboxes.selected()
       
       if(!arr[0]) {
         swal("โปรดเลือกนิสิตที่ต้องการเปลี่ยนสถานะ", {

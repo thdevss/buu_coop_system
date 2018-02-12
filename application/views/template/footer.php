@@ -29,9 +29,40 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css">
   <!-- <script src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script> -->
   <script>
-    $(document).ready(function() {
+    $(document).ready(function(){
       $('.datatable').DataTable();
-    } );
+
+      $(".deleteForm").submit(function(event){
+        event.preventDefault();
+      });
+
+      // $(".btn-delete").click(function(event) {
+        // event.preventDefault();
+      
+
+    });
+
+    function confirmDelete(e)
+      {
+        var link = jQuery(e).attr('href')
+        
+        swal({
+          title: "Are you sure?",
+          text: "Once deleted, you will not be able to recover this imaginary file!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            window.location.replace(link);
+          }
+        });
+
+        return false;
+
+
+      }
   </script>
 
 
