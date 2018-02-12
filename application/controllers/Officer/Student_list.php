@@ -39,4 +39,9 @@ class Student_list extends CI_Controller {
        
     }
 
+    public function training_history_student()
+    {
+        $this->template->view('Officer/Training_history_student_view');
+    }
+
   }
