@@ -95,7 +95,7 @@
                               <dl class="row">
                               <dt class="col-sm-4">จำนวนชั่วโมงอบรม</dt>
                               <dd></dd>
-                              <dd class="col-sm-4"><a href="#">ประวัติการอบรม</a></dd>
+                              <dd class="col-sm-4"><a href="<?php echo site_url('Officer/Student_list/training_history_student/'.$student['id']);?>">ประวัติการอบรม</a></dd>
                               </dl>
 
                               <dl class="row">
