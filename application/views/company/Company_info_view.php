@@ -13,246 +13,238 @@
               <div class="row" >
                 <div class="col-lg-12">
                   <div class="card">
-                    <div class="card-header"><i class="fa fa-align-justify"></i>ข้อมูลบริษัท</div>
+                    <div class="card-header"><i class="fa fa-align-justify"></i> รายละเอียดเกี่ยวกับสถานประกอบการ / หน่วยงาน</div>
                       <div class="card-body">
-                      
-                          <label for="name"><B>1. รายละเอียดเกี่ยวกับสถานประกอบการ / หน่วยงาน</B></label><br>
-                    
-                     
-                          <label for="name">ชื่อสถานประกอบการ / หน่วยงาน</label>
-                          <?php foreach ($data as $row) { ?>
-                              <div class="row">
-                              <div class="form-group col-sm-6">
-                                <label>(ภาษาไทย)</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" placeholder="">
-                              </div>
+            
+                        <label for="name">ชื่อสถานประกอบการ / หน่วยงาน</label>
+                                                  
+                          <div class="row">
+                            <div class="form-group col-sm-6">
+                              <label>(ภาษาไทย)</label><code>*</code>
+                               <input type="text" class="form-control" id="" name="" placeholder="<?php echo $company['name_th']; ?>">
+                            </div>
+                          </div>
 
-                              </div>
+                          <div class="row">
+                            <div class="form-group col-sm-6">
+                              <label>(ภาษาอังกฤษ)</label><code>*</code>
+                               <input type="text" class="form-control" id="" name="" placeholder="<?php echo $company['name_en']; ?>">
+                            </div>
+                          </div>
 
-                              <div class="row">
-                              <div class="form-group col-sm-6">
-                                <label>(ภาษาอังกฤษ)</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" placeholder="">
-                              </div>
+                          <div class="row">
+                            <div class="form-group col-sm-3">
+                              <label>ที่อยู่เลขที่</label><code>*</code>
+                               <input type="text" class="form-control" id="" name="" placeholder="<?php echo $company_address['number'];?>">
+                            </div>
 
-                              </div>
-
-                              <div class="row">
-
-                                <div class="form-group col-sm-3">
-                                  <label>ที่อยู่เลขที่</label><code>*</code>
-                                  <input type="text" class="form-control" id="" name="" placeholder="">
-                                </div>
-
-                                <div class="form-group col-sm-5">
-                                  <label>อาคาร</label><code>*</code>
-                                  <input type="text" class="form-control" id="" name="" placeholder="">
-                                </div>
-
-                                <div class="form-group col-sm-4">
-                                  <label>ถนน</label><code>*</code>
-                                  <input type="text" class="form-control" id="" name="" placeholder="">
-                                </div>
-
-                              </div>
-
-                              <div class="row">
-
-                                <div class="form-group col-sm-3">
-                                  <label>ซอย</label><code>*</code>
-                                  <input type="text" class="form-control" id="" name="" placeholder="">
-                                </div>
-
-                                <div class="form-group col-sm-3">
-                                  <label>แขวง</label><code>*</code>
-                                  <input type="text" class="form-control" id="" name="" placeholder="">
-                                </div>
-
-                                <div class="form-group col-sm-3">
-                                  <label>เขต</label><code>*</code>
-                                  <input type="text" class="form-control" id="" name="" placeholder="">
-                                </div>
-
-                                <div class="form-group col-sm-3">
-                                  <label>เขต</label><code>*</code>
-                                  <input type="text" class="form-control" id="" name="" placeholder="">
-                                </div>
-
-                              </div>
-
-                               <div class="row">
-
-                                <div class="form-group col-sm-3">
-                                  <label>รหัสไปรษณีย์</label><code>*</code>
-                                  <input type="text" class="form-control" id="" name="" placeholder="">
-                                </div>
-
-                                <div class="form-group col-sm-4">
-                                  <label>ประเภทกิจการ/ธุรกิจ/ผลิตภัณฑ์/ลักษณะการดำเนินงาน</label><code>*</code>
-                                  <input type="text" class="form-control" id="" najme="" placeholder="">
-                                </div>
-
-                                <div class="form-group col-sm-3">
-                                  <label>จำนวนพนักงาน</label><code>*</code>
-                                  <input type="text" class="form-control" id="" name="" placeholder="">
-                                </div>
-
-                                <div class="form-group col-sm-2">
-                                  <label>คน</label><code>*</code>
-                                  <input type="text" class="form-control" id="" name="" placeholder="">
-                                </div>
-
-                              </div>
-
-                             
-                              <label for="name"><B>ชื่อผู้จัดการสถานประกอบการ / หัวหน้าหน่วยงาน</B></label>
-                             
-
-                              <div class="row">
-
-                              <div class="form-group col-sm-4">
-                                <label>ชื่อ-นามสกุล</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" placeholder="">
-                              </div>
-
-                              </div>
-
-                              <div class="row">
-
-                              <div class="form-group col-sm-4">
-                                <label>ตำแหน่ง</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" placeholder="">
-                              </div>
-
-                              <div class="form-group col-sm-4">
-                                <label>แผนก/ฝ่าย</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" placeholder="">
-                              </div>
-
-                              </div>
-
-                              <div class="row">
-
-                              <div class="form-group col-sm-4">
-                                <label>โทรศัพท์</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" placeholder="">
-                              </div>
-
-                              <div class="form-group col-sm-4">
-                                <label>โทรสาร</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" placeholder="">
-                              </div>
-
-                              </div>
-
-                              <div class="row">
-
-                                <div class="form-group col-sm-4">
-                                  <label>E-mail</label><code>*</code>
-                                  <input type="text" class="form-control" id="" name="" placeholder="">
-                                </div>
-
-                                </div>
-
-                              <label for="name">หากมหาวิทยาลัย ฯ ประสงค์จะติดต่อประสานงานในรายละเอียดกับสถานประกอบการ / หน่วยงาน ขอให้</label>
-
-                                <div class="row">
-                                
-                                <div class="radio col-sm-4 ">
-                                <label>
-                                <input type="radio" id="radio1" name="radios" value="option1"> ติดต่อโดยตรงกับผู้จัดการ / หัวหน้าหน่วยงาน<code>*</code>
-                                </label>
-                                <label>
-                                <input type="radio" id="radio2" name="radios" value="option2"> ติดต่อโดยตรงกับผู้จัดการ / หัวหน้าหน่วยงาน<code>*</code>
-                                </label>
-                                </div>
-
-                              </div>
-
-                              <div class="row">
-
-                              <div class="form-group col-sm-6">
-                                <label>ชื่อ-นามสกุล</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" placeholder="">
-                              </div>
-
-                              </div>
-
-                              <div class="row">
-
-                              <div class="form-group col-sm-4">
-                                <label>ตำแหน่ง</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" placeholder="">
-                              </div>
-
-                              <div class="form-group col-sm-4">
-                                <label>แผนก/ฝ่าย</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" placeholder="">
-                              </div>
-
-                              </div>
-
-                              <div class="row">
-
-                            <div class="form-group col-sm-4">
-                              <label>โทรศัพท์</label><code>*</code>
-                              <input type="text" class="form-control" id="" name="" placeholder="">
+                            <div class="form-group col-sm-5">
+                              <label>อาคาร</label><code>*</code>
+                               <input type="text" class="form-control" id="" name="" placeholder="<?php echo $company_address['building'];?>">
                             </div>
 
                             <div class="form-group col-sm-4">
-                              <label>โทรสาร</label><code>*</code>
-                              <input type="text" class="form-control" id="" name="" placeholder="">
+                              <label>ถนน</label>
+                               <input type="text" class="form-control" id="" name="" placeholder="<?php echo $company_address['road'];?>">
                             </div>
 
+                          </div>
+
+                          <div class="row">
+
+                            <div class="form-group col-sm-3">
+                              <label>ซอย</label>
+                                <input type="text" class="form-control" id="" name="" placeholder="<?php echo $company_address['alley'];?>">
                             </div>
 
-                            <div class="row">
+                            <div class="form-group col-sm-3">
+                              <label>แขวง</label><code>*</code>
+                                 <input type="text" class="form-control" id="" name="" placeholder="<?php echo $company_address['district'];?>">
+                            </div>
 
-                                <div class="form-group col-sm-4">
-                                  <label>E-mail</label><code>*</code>
-                                  <input type="text" class="form-control" id="" name="" placeholder="">
-                                </div>
+                            <div class="form-group col-sm-3">
+                              <label>เขต/อำเภอ</label><code>*</code>
+                                 <input type="text" class="form-control" id="" name="" placeholder="<?php echo $company_address['area'];?>">
+                            </div>
 
-                              </div>
+                            <div class="form-group col-sm-3">
+                              <label>จังหวัด</label><code>*</code>
+                                 <input type="text" class="form-control" id="" name="" placeholder="<?php echo $company_address['province'];?>">
+                            </div>
 
-                              <div class="row">
+                          </div>
 
-                                <div class="col-sm-4"></div>
-                                <div class="col-sm-4">
-                                <button type="button" class="btn btn-success"><i class="fa fa-star"></i> บันทึก</button></div>
-                                <div class="col-sm-4"></div>
+                          <div class="row">
 
-                                </div>
+                            <div class="form-group col-sm-3">
+                              <label>รหัสไปรษณีย์</label><code>*</code>
+                                 <input type="text" class="form-control" id="" name="" placeholder="<?php echo $company_address['postal_code'];?>">
+                            </div>
 
-                              <div class="row">
+                            <div class="form-group col-sm-4">
+                              <label>ประเภทกิจการ/ธุรกิจ/ผลิตภัณฑ์/ลักษณะการดำเนินงาน</label><code>*</code>
+                                 <input type="text" class="form-control" id="" najme="" placeholder="<?php echo $company['company_type'];?>">
+                            </div>
 
-                              <div class="col-sm-5"></div>
-                              <div class="col-sm-5"></div>
-                              <div class="col-sm-2">
+                            <div class="form-group col-sm-3">
+                              <label>จำนวนพนักงาน</label><code>*</code>
+                                 <input type="text" class="form-control" id="" name="" placeholder="<?php echo $company['total_employee'];?>">
+                            </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row" >
+                <div class="col-lg-12">
+                  <div class="card">
+                    <div class="card-header"><i class="fa fa-align-justify"></i> ชื่อผู้จัดการสถานประกอบการ/หัวหน้าหน่วยงาน </div>
+                      <div class="card-body">
+
+                        <div class="row">
+                          <div class="form-group col-sm-6">
+                            <label>ชื่อ-นามสกุล</label><code>*</code>
+                             <input type="text" class="form-control" id="" name="" placeholder="<?php echo $company_person['fullname'];?>">
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-sm-4">
+                            <label>ตำแหน่ง</label><code>*</code>
+                               <input type="text" class="form-control" id="" name="" placeholder="<?php echo $company_person['position'];?>">
+                          </div>
+
+                          <div class="form-group col-sm-4">
+                            <label>แผนก/ฝ่าย</label><code>*</code>
+                               <input type="text" class="form-control" id="" name="" placeholder="<?php echo $company_person['department'];?>">
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-sm-4">
+                            <label>โทรศัพท์</label><code>*</code>
+                               <input type="text" class="form-control" id="" name="" placeholder="<?php echo $company_person['telephone'];?>">
+                          </div>
+
+                          <div class="form-group col-sm-4">
+                            <label>โทรสาร</label>
+                               <input type="text" class="form-control" id="" name="" placeholder="<?php echo $company_person['fax_number'];?>">
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-sm-6">
+                            <label>Email</label><code>*</code>
+                             <input type="email" class="form-control" id="" name="" placeholder="<?php echo $company_person['email'];?>">
+                          </div>
+
+                        </div>
+                            
+                          <label for="name">หากมหาวิทยาลัย ฯ ประสงค์จะติดต่อประสานงานในรายละเอียดกับสถานประกอบการ / หน่วยงาน ขอให้</label>
+
+                        <div class="row">
+                          <div class="radio col-sm-4 ">
+                            <label>
+                              <input type="radio" id="radio1" name="radios" value="option1"> ติดต่อโดยตรงกับผู้จัดการ / หัวหน้าหน่วยงาน<code>*</code>
+                            </label>
+                            <label>
+                              <input type="radio" id="radio2" name="radios" value="option2"> ติดต่อกับบุคคลที่ สถานประกอบการ / หน่วยงาน มอบหมายต่อไปนี้<code>*</code>
+                            </label>
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-sm-6">
+                            <label>ชื่อ-นามสกุล</label><code>*</code>
+                               <input type="text" class="form-control" id="" name="" placeholder="">
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-sm-4">
+                            <label>ตำแหน่ง</label><code>*</code>
+                               <input type="text" class="form-control" id="" name="" placeholder="">
+                          </div>
+
+                          <div class="form-group col-sm-4">
+                            <label>แผนก/ฝ่าย</label><code>*</code>
+                               <input type="text" class="form-control" id="" name="" placeholder="">
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-sm-4">
+                            <label>โทรศัพท์</label><code>*</code>
+                             <input type="text" class="form-control" id="" name="" placeholder="">
+                          </div>
+
+                          <div class="form-group col-sm-4">
+                            <label>โทรสาร</label>
+                             <input type="text" class="form-control" id="" name="" placeholder="">
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group col-sm-6">
+                            <label>Email</label><code>*</code>
+                             <input type="email" class="form-control" id="" name="" placeholder="">
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                              <button type="button" class="btn btn-success"> บันทึก</button>
+                            </div>
+                          <div class="col-sm-4"></div>
+
+                        </div>
+                    </div>
+                  </div>
+
+              <div class="row" >
+                <div class="col-lg-12">
+                  <div class="card">
+                    <div class="card-header"><i class="fa fa-align-justify"></i> ชื่อผู้จัดการสถานประกอบการ/หัวหน้าหน่วยงาน </div>
+                      <div class="card-body">
+
+                        <div class="row">
+                          <div class="col-sm-5"></div>
+                            <div class="col-sm-5"></div>
+                            <div class="col-sm-2">
                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-star"></i> เพิ่มตำแหน่งงาน</button>
-                              </div>
+                            </div>
 
-                              </div>
+                          </div>
                         <br>
-                     <table class="table table-striped datatable">
-                            <thead>
-                              <tr>
-                                <th>ตำแหน่งงาน</th>
-                                <th>ลักษณะงานที่นิสิตต้องปฏิบัติ (Job Description)</th>
-                                <th>จำนวน</th>
-                              </tr>
-                            </thead>
-                            <tbody>
+
+                              <table class="table table-striped datatable">
+                                  <thead>
+                                  <tr>
+                                    <th>ตำแหน่งงาน</th>
+                                    <th>ลักษณะงานที่นิสิตต้องปฏิบัติ (Job Description)</th>
+                                    <th>จำนวน</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  
+                                  <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr>
+                                </tbody>
+                            </table>
                               
-                              <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                              
-                              </div>
+                        </div>
                               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                   <div class="modal-content">
@@ -287,8 +279,6 @@
                                               <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" placeholder=""></textarea>
                                             </div>
                                             </div>
-                                            
-
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
@@ -298,12 +288,16 @@
                                   <!-- /.modal-content -->
                                 </div>
                                 <!-- /.modal-dialog -->
-                              </div>
+                                </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
   </main>
   
   <script>

@@ -20,13 +20,15 @@ class Company_info extends CI_controller
 
         public function index()
         {
-            $tmp = $this->DB_company_person_login->get_by_username($this->Login_session->check_login()->login_value);
-            $tmp = $this->DB_company_person->get($tmp->company_person_id);
-            $data['data'] = $this->DB_company->get($tmp->company_id);
-            $this->template->view('Company/Company_in_view');
+            $tmp = $this->Company_person_login->get_by_username($this->Login_session->check_login()->login_value)[0];
+            $tmp = $this->Trainer->get_trainer($tmp['company_person_id'])[0];
+            $data['company'] = $this->Company->get_company($tmp['company_id'])[0];
+            $data['company_address'] = $this->Address->get_address_by_company($data['company']['id'])[0];
+            $data['company_person'] = $this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];
+            $this->template->view('Company/Company_info_view', $data);
        }
-        public function add_job()
+        public function update()
         {
-            $this->template->view('Company/Company_info_job_view');
+           $this->input->post('option1');
         }
 }

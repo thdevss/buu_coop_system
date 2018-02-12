@@ -20,6 +20,7 @@
               <table class="table table-striped datatable">
                     <thead>
                       <tr>
+                        <th>รหัสนิสิต</th>
                         <th>ชื่อ-สกุล</th>
                         <th>GPAX</th>
                         <th>สาขาวิชา</th>
@@ -28,19 +29,16 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php
-                      foreach ($data as $row){
-                      ?>
+                    <?php foreach($data as $row) { ?>
                       <tr>
-                        <td><?php echo $row->fullname;?></td>
+                        <td><?php echo $row['student']['id'];?></td>
+                        <td><?php echo $row['student']['fullname'];?></td>
                         <td class=" text-right">4</td>
-                        <td><?php echo $row->name;?></td>
-                        <td><?php echo $row->name;?></td>
-                        <td><?php echo anchor('company/assessmentstudent/form/'.$row->student_id, '<i class="fa fa-star"></i> ประเมินผล', 'class="btn btn-primary"');?></td>
+                        <td><?php echo $row['department']['name'];?></td>
+                        <td><?php echo $row['company_job_position']['position_title']?></td>
+                        <td><?php echo anchor('company/assessmentstudent/form/'.$row['assessment_student']['student_id'], 'ประเมินผล', 'class="btn btn-primary"');?></td>
                       </tr>
-                      <?php
-                      }
-                      ?>
+                    <?php } ?>
                     </tbody>
                   </table>
                   <!--table รายชื่อนิสิต-->

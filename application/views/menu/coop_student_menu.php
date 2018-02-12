@@ -82,7 +82,7 @@
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link " href="#"><i class="icon-puzzle"></i> แบบประเมินสถานประกอบการ</a>
+          <?php echo anchor('Coop_student/Assessment_st_company/', '<i class="fa fa-star"></i> แบบประเมินสถานประกอบการ', 'class="nav-link"');?>
           </li>
 
         </ul>

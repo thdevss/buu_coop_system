@@ -20,23 +20,30 @@ class Assessmentstudent extends CI_Controller {
 
 	public function index()
 	{
-
+		$company_id = $this->Company->gets_company($this->Login_session->check_login()->login_value)[0]['id'];
+		$data['company'] = $this->Company->get_company($company_id)[0];
+		$data['data'] = array();
+		foreach($this->Coop_Student->gets_coop_student($data['company']['id']) as $row) {
+			$tmp['assessment_student'] = $row;
+			$tmp['company_job_position'] = $this->Job->get_job($tmp['assessment_student']['company_job_position_id'])[0];
+			$tmp['student'] = $this->Student->get_student($tmp['assessment_student']['student_id'])[0];
+			$tmp['department'] = $this->Student->get_department($tmp['student']['department_id'])[0];
+			array_push($data['data'], $tmp);
+		}
 		
-		$company_id = $this->Company->getByPerson($this->Login_session->check_login()->login_value)->id;
-		$data['data'] = $this->Company_Assessmentstudent->get_list($company_id);
-
-
-		// print_r($data);
-		$this->template->view('company/Assessmentstudent_view',$data);
+	
+		$this->template->view('company/Assessmentstudent_view', $data);
 		
 	}
 
-	public function list_assessment(){
-		$data['data'] = $this->Company_Assessmentstudent->get_list();
+	public function list_assessment()
+	{
+	
 		
 	}
 
-	public function form(){	
+	public function form()
+	{	
 		$this->template->view('company/Assessmentstudentform_view');
 	}
 }  
