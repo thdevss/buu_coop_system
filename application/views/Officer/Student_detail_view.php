@@ -1,3 +1,4 @@
+
 <!-- Main content -->
 <main class="main">
 
@@ -94,6 +95,7 @@
                               <dl class="row">
                               <dt class="col-sm-4">จำนวนชั่วโมงอบรม</dt>
                               <dd></dd>
+                              <dd class="col-sm-4"><a href="<?php echo site_url('Officer/Student_list/training_history_student/'.$student['id']);?>">ประวัติการอบรม</a></dd>
                               </dl>
 
                               <dl class="row">
@@ -105,23 +107,52 @@
                               </dt>
                               <dd>
                               <ul>
-                              <li>.</li>
-                              <li>.</li>
+                              <li></li>
+                              <li></li>
                               </ul>
                               </dd>
                               </dl>
                         </div>
                       </div>
                     </div>
+
+                    <?php
+                    if(@$coop_student) {
+                    ?>
           
                       <div class="col-lg-6">
                         <div class="card">
                           <div class="card-header"><i class="fa fa-align-justify"></i> ข้อมูลสถานประกอบการ</div>
-                            <div class="card-body">
+                          <div class="card-body">
+                            <dl class="row">
+                              <dt class="col-sm-4">ชื่อสถานประกอบการ</dt>
+                              <dd><?php echo $company['name_th'] ?></dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">ตำแหน่งงานที่สมัคร</dt>
+                              <dd><?php echo $company['name_th'] ?></dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">อาจารย์ที่ปรึกษา</dt>
+                              <dd><?php echo $adviser['fullname'] ?></dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">พี่เสี่ยง</dt>
+                              <dd><?php echo $trainer['fullname'] ?></dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">ผลการประเมิน</dt>
+                              <dd><a href="#">ดูผลการประเมิน</a></dd>
+                            </dl>
 
                           </div>
                         </div>
                       </div>
+                    <?php } ?>
                     </div>
                   </div>
                 </div>   

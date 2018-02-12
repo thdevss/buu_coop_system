@@ -58,6 +58,7 @@
                             <button type="button" class="btn btn-success" id="change_student_status">Success</button>                             
                           </div>
                         </div> 
+
                 </div>
               </div>
           </div>
