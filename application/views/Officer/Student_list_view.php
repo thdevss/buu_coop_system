@@ -130,7 +130,7 @@ $(document).ready(function() {
         if (willUpdate) {
           var student_arr = []
           jQuery.each(arr, function( index, value ) {
-            student_arr.push(value.student.id)
+            student_arr.push(value)
           });
 
           console.log(student_arr)
