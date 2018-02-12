@@ -27,23 +27,36 @@
                     <div class="col-sm-8">
                         <table class="table table-bordered ">
                             <tr><h3>ข้อมูลทั่วไป</h3></tr>
-                            <tr><td width="25%">ชื่อภาษาอังกฤษ</td><td><font color="#0000ff">Mr. ssssss</font></td</tr>
-                            <tr><td>คณะ</td><td><font color="#0000ff">วิทยาการสารสนเทศ</font></td></tr>
-                            <tr><td>คณะ</td><td><font color="#0000ff"><?php echo $department['name']; ?></font></td></tr>
-                            <tr><td>ชั้นปี </td><td><font color="#0000ff">4</font></td></tr>
-                            <tr><td>หลักสูตร</td><td><font color="#0000ff">ปริญญา 4 ปี</font></td></tr>
-                            <tr><td>อาจารย์ที่ปรึกษา</td><td><font color="#0000ff">เอกภพ บุญสูงเนิน</font></td</tr>
-                            <tr><td>หน่วยกิตคำนวณ</td><td><font color="#0000ff">128</font></td></tr>
+                            <tr><td width="25%">ชื่อภาษาอังกฤษ</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td</tr>
+                            <tr><td>คณะ</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr>
+                            <tr><td>สาขา</td><td><font color="#0000ff"><?php echo $department['name']; ?></font></td></tr>
+                            <tr><td>ปีการศึกษา </td><td><font color="#0000ff"><?php echo $term['year']; ?>&nbsp;<?php echo $term['name']; ?></font></td></tr>
+                            <tr><td>หลักสูตร</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr>
+                            <tr><td>อาจารย์ที่ปรึกษา</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td</tr>
+                            <tr><td>หน่วยกิตคำนวณ</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr>
 
-                            <tr><td>หน่วยกิตที่ผ่าน </td><td><font color="#0000ff">126</font></td></tr>
-                            <tr><td>GPAX</td><td><font color="#0000ff">3.57</font></td></tr>
+                            <tr><td>หน่วยกิตที่ผ่าน </td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr>
+                            <tr><td>GPAX</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr>
                           </table>
                         <table class="table table-bordered ">
                             <tr><h3>ข้อมูลสหกิจ</h3></tr>
-                            <tr><td width="25%">ชั่วโมงอบรม</td><td><font color="#006600">ผ่าน</font></td</tr>
-                            <tr><td >วิชาเเกน</td><td><font color="#006600">ผ่าน</font></td</tr>
-                            <tr><td>เกรด</td><td><font color="#ff3300">ไม่ผ่าน</font></td</tr>
-                            <tr><td>สถานะการสอบวัดผลรอบ (1,2,3)</td><td><font color="#ff3300">ไม่ผ่าน</font></td></tr>
+                            <tr><td width="25%">ชั่วโมงอบรม</td><td>
+                            <?php if($pass_training) { ?>
+                              <font color="#006600">ผ่าน</font>
+                            <?php } else { ?>
+                              <font color="">ไม่ผ่าน</font>
+                            <?php } ?>
+                            </td></tr>
+                            <tr><td >วิชาเเกน</td><td>รอดึงจากระบบโปรไฟล์</td></tr>
+                            <tr><td>เกรด</td><td><font color="#ff3300">รอดึงจากระบบโปรไฟล์</font></td></tr>
+                            <tr><td>สถานะสถานประกอบการ</td><td>
+                            <?php if($student['company_status'] == '1') { ?>
+                              <font color="#006600">ผ่านการคัดเลือกจากสถานประกอบการ</font>
+                            <?php } else { ?>
+                              <font color="">รอการตอบกลับ</font>
+                            <?php } ?>
+                            </td></tr>
+                            <tr><td>สถานะการสอบวัดผลรอบ (1,2,3)</td><td><font color=""><?php echo $coop_status_type['status_name']; ?></font></td></tr>
                           </table>
                     </div>
                 </div>
