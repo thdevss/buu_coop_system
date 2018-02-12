@@ -51,7 +51,7 @@
                               <div style="width:2%"></div>                           
                               <?php echo anchor('Officer/Company/address/'.$row['id'], '<i class="icon-institution"></i> ที่อยู่', 'class="btn  btn-primary"');?>             
                               <div style="width:2%"></div>
-                              <?php echo anchor('Officer/Company/address/'.$row['id'], '<i class="icon-institution"></i> ลบ', 'class="btn  btn-danger"');?>
+                              <?php echo anchor('Officer/Company/delete/'.$row['id'], '<i class="icon-institution"></i> ลบ', 'class="btn  btn-danger"','class="btn  btn-delete"');?>
                         </td>
                       </tr>
                     <?php 

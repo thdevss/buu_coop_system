@@ -37,15 +37,33 @@ class Company extends CI_Controller {
     
         $this->template->view('Officer/List_company_view',$data);
     }
-     public function address($id){
-            $data['data'] = $this->Address->get_address_by_company($id)[0];           
-  
-                // print_r($data);
+    public function address($id){
+
+            $data['data'] = $this->Address->get_address_by_company($id)[0];  
+            $data['tmp'] = $this->Company->get_company($id)[0];      
+
+            //  print_r($data);
 
             $this->template->view('Officer/Address_company_view',$data);
         
     }
+    public function delete($id)
+    {
+        //check if exist
+        // $this->load->library('form_validation');        
+        // $this->form_validation->set_rules('id', 'id', 'trim|required|numeric');
 
+            // if(@$this->Company->get_company($id)) {
+            //     //delete
+                $this->Company->delete_company($id);
+            //     return $this->index('success_delete');
+            //     die();
+            // } else {
+            //     return $this->index();
+            //     die();
+            // }
+        
+    }
     public function post_add()
     {
         //insert
