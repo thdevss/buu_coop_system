@@ -53,15 +53,15 @@ class Company extends CI_Controller {
         // $this->load->library('form_validation');        
         // $this->form_validation->set_rules('id', 'id', 'trim|required|numeric');
 
-            // if(@$this->Company->get_company($id)) {
-            //     //delete
+            if(@$this->Company->get_company($id)) {
+                //delete
                 $this->Company->delete_company($id);
-            //     return $this->index('success_delete');
-            //     die();
-            // } else {
-            //     return $this->index();
-            //     die();
-            // }
+                return $this->index('success_delete');
+                die();
+            } else {
+                return $this->index();
+                die();
+            }
         
     }
     public function post_add()
