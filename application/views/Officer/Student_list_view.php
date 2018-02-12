@@ -77,7 +77,7 @@
                         <div class="row">
                             <div class="col-sm-4"></div>
                             <div class="col-sm-4">
-                            <button type="button" class="btn btn-success">Success</button>
+                            <button type="button" class="btn btn-success">บันทึก</button>
                             </div>
                             <div class="col-sm-4"></div>
                         </div>           
