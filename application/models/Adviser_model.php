@@ -35,7 +35,7 @@ class Adviser_model extends CI_model {
 
     public function get_adviser($adviser_id)
     {
-        $this->db->where('adviser_id',$adviser_id);
+        $this->db->where('id',$adviser_id);
         $this->db->from('adviser');
         $query = $this->db->get();
         return $query->result_array();

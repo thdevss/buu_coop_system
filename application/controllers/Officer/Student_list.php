@@ -23,12 +23,20 @@ class Student_list extends CI_Controller {
     public function student_detail($student_id)
     {
         $data['student'] = $this->Student->get_student($student_id)[0];
-        $data['department'] = $this->Student->get_department($data['student']['department_id'])[0];
-        $data['coop_status_type'] = $this->Student->get_by_coop_status_type($data['student']['coop_status'])[0];
-        $data['coop_test_status'] = $this->Test->get_test_result_by_student($data['student']['id'])[0];
-        $this->template->view('Officer/Student_detail_view',$data);
-        print_r($data);
+        $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
+        $data['coop_status_type'] = @$this->Student->get_by_coop_status_type($data['student']['coop_status'])[0];
+        $data['coop_test_status'] = @$this->Test->get_test_result_by_student($data['student']['id'])[0];
+        if($data['student']['company_status'] == 1)
+        {
+            $data['coop_student'] = @$this->Coop_Student->get_coop_student($student_id)[0];
+            
+            $data['company'] = @$this->Company->get_company($data['coop_student']['company_id'])[0];
+            $data['trainer'] = @$this->Trainer->get_trainer($data['coop_student']['mentor_person_id'])[0];
+            $data['adviser'] = @$this->Adviser->get_adviser($data['coop_student']['adviser_id'])[0];
+        }
+   
+        $this->template->view('Officer/Student_detail_view', $data);
+       
     }
-
 
   }
