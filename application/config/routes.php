@@ -57,5 +57,9 @@ $route['coop_student'] = 'coop_student/main/index';
 $route['officer'] = 'officer/main/index';
 $route['adviser'] = 'adviser/main/index';
 
+
+//controller route
+$route['get_student_stat_of_training'] = 'student/training/get_student_stat_of_training';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

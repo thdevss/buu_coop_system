@@ -135,4 +135,44 @@ class Training_model extends CI_model
         $query = $this->db->get();
         return $query->result_array();
     }
+
+
+
+    public function get_student_stat_of_training($student_id)
+    {
+        $data['train_type'] = array();
+        foreach($this->Training->gets_type() as $type) {
+            $type['history'] = array();
+            foreach($this->Training->get_training_by_student_and_type($student_id, $type['id']) as $row) {
+                $train_info = $this->Training->get_training($row['train_id'])[0];
+                $row['train'] = $train_info;
+
+                
+                $row['is_complete_train'] = false;
+                //count all checking in train id
+                $check_count = count($this->Training_Check_Student->count_total_check_by_train($row['train_id']));
+                //count student checking in train
+                $student_count = count($this->Training_Check_Student->get_student_by_train($student_id, $row['train_id']));
+                
+                $row['total_hour'] = $train_info['number_of_hour'];
+
+                $per_hour = $train_info['number_of_hour']/$check_count;
+                
+                if($student_count == $check_count) {
+                    $row['is_complete_train'] = true;
+                    $row['check_hour'] = $row['total_hour'];
+                } else {
+                    $row['check_hour'] = $per_hour*$student_count;
+                    $row['is_complete_train'] = false;
+                }
+
+                array_push($type['history'], $row);
+                
+            }
+
+            array_push($data['train_type'], $type);
+        }
+
+        return $data;
+    }
 }
