@@ -21,12 +21,11 @@
               
               <!---->
 
-              <table class="table table-bordered datatable">
+              <table class="table table-bordered" id="student_table">
                     <thead>
                       <tr>
-                        <th class="text-center"> </th>
                         <th class="text-center">รหัสนิสิต</th>
-                        <th class="text-center" >ชื่อ-สกุล</th>
+                        <th class="text-center">ชื่อ-สกุล</th>
                         <th class="text-center">GPAX</th>
                         <th class="text-center">สาขาวิชา</th>
                         <th class="text-center">สถานะ</th>
@@ -35,53 +34,30 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($data as $row){?>
-                      <tr>
-
-                        <td>
-                        <div class="form-group row">
-                      <label class="col-sm-5 form-control-label"></label>
-                      <div class="col-sm-5">
-                        <div class="checkbox">
-                          <label for="checkbox1">
-                            <input type="checkbox" id="checkbox1" name="checkbox1" value="option1">
-                          </label>
-                        </div>
-                        </td>
-
-                        <td class="text-center"><?php echo $row['student']['id'];?></td>
-                        <td class="text-center"><?php echo $row['student']['fullname'];?></td>
-                        <td></td>
-                        <td class="text-center"><?php echo $row['department']['name'];?></td>
-                        <td class="text-center"><?php echo $row['coop_student_type'][0]['status_name'];?></td>
-                        <td class="text-center"><?php echo $row['student']['company_status'];?></td>
-                        <td><?php echo anchor('Officer/Student_list/student_detail/'.$row['student']['id'], 'รายละเอียด', 'class="btn btn-primary" target="_blank"');?></td>
-                      </tr>
-                    <?php 
-                    }
-                    ?>
-                    </table>
+                    </tbody>
+                   
+              </table>
+              <div style="height:40px;"></div>
                     <!---->
-                        <div class="row">
-                          <div class="col-sm-3"></div>
-                              <div class="form-group col-sm-3">
-                              <select id="select" name="select" class="form-control">
-                                <option>---กรุณาเลือก--</option>
+                        <div class="container-fluid row">
+                          <div class="col-sm-12">
+                            <label>เปลี่ยนสถานะนิสิต</label>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                              <select id="select" name="select" class="form-control coop_status_type_val">
+                                <option value="">---กรุณาเลือก--</option>
                                 <?php foreach ($coop_status_type as $row){?>
                                 <option value="<?php echo $row['id'];?>"> <?php echo $row['status_name'];?></option>
                                 <?php } ?>
                               </select>
-                          </div>
-                          <div class="col-sm-6"></div>
-                        </div> 
-                        <div class="row">
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4">
-                            <button type="button" class="btn btn-success">Success</button>
                             </div>
-                            <div class="col-sm-4"></div>
-                        </div>           
-                    <!---->
+                          </div>
+                          <div class="col-sm-4">
+                            <label></label>
+                            <button type="button" class="btn btn-success" id="change_student_status">Success</button>                             
+                          </div>
+                        </div> 
                 </div>
               </div>
           </div>
@@ -91,3 +67,96 @@
   </div>
 </div>
 </main>
+
+
+<script>
+$(document).ready(function() {
+    $('#student_table').DataTable( {
+        'columnDefs': [{
+          'targets': 0,
+          'checkboxes': {
+            'selectRow': true
+          }
+        }],
+        'select': {
+          'style': 'multi'
+        },
+        'order': [[1, 'asc']],
+        "ajax": {
+          "url": "<?php echo site_url('Officer/Student_list/ajax_list');?>",
+          "dataSrc": ""
+        },
+        "columns": [
+            { "data": "student.id" },
+            { "data": "student.fullname" },
+            { "data": "student.gpax" },
+            { "data": "department.name" },
+            { "data": "coop_student_type.status_name" },
+            { "data": "student.company_status" },
+            { "data": "action_box" }  
+        ],
+        
+    } );
+
+    $('#change_student_status').click( function () {
+      var current_table_page = $('#student_table').DataTable().page.info().page
+      var coop_status_type = jQuery(".coop_status_type_val option:selected").val()
+      var arr = $('#student_table').DataTable().rows('.selected').data()
+      
+      if(!arr[0]) {
+        swal("โปรดเลือกนิสิตที่ต้องการเปลี่ยนสถานะ", {
+          icon: "warning",
+        });
+        return;
+      }
+      if(!coop_status_type) {
+        swal("โปรดเลือกสถานะที่ต้องการเปลี่ยน", {
+          icon: "warning",
+        });
+        return;
+      }
+      
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this imaginary file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willUpdate) => {
+        if (willUpdate) {
+          var student_arr = []
+          jQuery.each(arr, function( index, value ) {
+            student_arr.push(value.student.id)
+          });
+
+          console.log(student_arr)
+
+          var data = { students: student_arr, status: coop_status_type }
+          jQuery.post(SITE_URL+"/Officer/Student_list/ajax_change_status/", data, function(response) {
+            if(response.status) {
+              swal("เปลี่ยนสถานะเรียบร้อย", {
+                icon: "success",
+              });
+            } else {
+              swal("ผิดพลาด", {
+                icon: "warning",
+              });
+            }
+            $('.coop_status_type_val').prop('selectedIndex', 0)
+            $('#student_table').DataTable().clear().draw().ajax.reload(function(){ 
+              $('#student_table').DataTable().page( current_table_page ).draw( 'page' );              
+            });            
+            // $('#student_table').DataTable().page( current_table_page ).draw( 'page' );
+
+          }, 'json');
+
+
+          
+        }
+      });
+
+    } );
+} );
+
+</script>
