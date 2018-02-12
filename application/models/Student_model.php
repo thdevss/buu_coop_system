@@ -33,7 +33,7 @@ class Student_model extends CI_model {
 
     }
 
-    public function update_student_status($student_id, $array)
+    public function update_student($student_id, $array)
     {
         $this->db->where('id',$student_id);
         return $this->db->update('student',$array);
