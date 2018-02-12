@@ -13,4 +13,14 @@ class Company_person_login_model extends CI_model
 
         return false;
     }
+
+    public function get_by_username($username)
+    {
+        $this->db->where('username', $username);
+        $this->db->from('company_person_login');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    
 }
