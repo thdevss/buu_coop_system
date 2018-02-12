@@ -17,7 +17,7 @@ class Student_list extends CI_Controller {
         foreach($this->Student->gets_student() as $row)
          {
             $tmp_array = array();
-            $tmp_array['action_box'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$row['id']).'" class="btn btn-info">รายละเอียด</a>';
+            $tmp_array['action_box'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$row['id']).'" class="btn btn-info" onclick="return confirmDelete(this)">รายละเอียด</a>';
             $tmp_array['checkbox'] = '';
             
             $tmp_array['student'] = $row;
