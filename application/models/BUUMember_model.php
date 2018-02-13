@@ -47,7 +47,7 @@ class BUUMember_model extends CI_Model
                     $data['login_type'] = 'adviser';
                     $data['login_value'] = $userdata['code'];                        
                 } else {
-                    $officer = $this->Officer->get_officer($userdata['code']);
+                    $officer = $this->Officer->login($userdata['code']);
                     if($officer) {
                         $data['login_type'] = 'officer';
                         $data['login_value'] = $userdata['code'];                        
@@ -91,6 +91,7 @@ class BUUMember_model extends CI_Model
             $this->db->where('username', $login_value);
             $this->db->from('company_person_login');
             $query = $this->db->get();
+            // echo $this->db->last_query();
             return $query->result();
         }
     }
