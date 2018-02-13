@@ -15,6 +15,8 @@ class Member extends CI_Controller {
         if(strpos($username, 'PN')) {
             //company login
             $member = $this->Trainer->login($username, $password);
+            // print_r($member);
+            // die();
             if($member) {
                 $session_ID = $this->Login_session->set($username, 'company');
                 if($session_ID) {
