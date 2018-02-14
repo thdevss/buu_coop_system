@@ -79,13 +79,16 @@ class Coop_Submitted_Form_Search extends CI_Controller {
         public function get_by_form_code($form_code)
         {
             $array = array();
-            $array['data'] = array();
+            // $array['data'] = array();
             foreach($this->Coop_Student->gets_coop_student() as $r) {
                 $row = array();
                 $row['student'] = $this->Student->get_student($r['student_id'])[0];
                 $row['form'] = @$this->Coop_Submitted_Form_Search->search_form_by_student_and_code($r['student_id'], $form_code)[0];
+                $row['form']['status'] = 'ยังไม่ส่ง';
+                if(@$row['form']['pdf_file'])
+                    $row['form']['status'] = 'ส่งแล้ว';
 
-                array_push($array['data'], $row);
+                array_push($array, $row);
             }
             // foreach($this->Coop_Student->gets_coop_student() as $r) {
             //     $row = array();
