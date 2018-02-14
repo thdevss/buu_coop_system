@@ -20,7 +20,7 @@
               <?php echo anchor('company/company_map/', '<i class="fa fa-star"></i> แผนที่ตั้งบริษัท', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="components-cards.html"><i class="icon-puzzle"></i> จัดการสาขาย่อย</a>
+                <a class="nav-link" href="components-cards.html"><i class="icon-puzzle"></i> จัดการที่อยู่</a>
               </li>
             </ul>
           </li>

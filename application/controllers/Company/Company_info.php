@@ -32,6 +32,6 @@ class Company_info extends CI_controller
 
         public function update()
         {
-            $this->template->view('Company/Company_in_view');
+           
         }
 }
