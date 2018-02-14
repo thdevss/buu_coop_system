@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Reportmanager  extends CI_Controller {
+class Subject_Report  extends CI_Controller {
 
 	public function __construct()
     {
@@ -17,11 +17,11 @@ class Reportmanager  extends CI_Controller {
             die();
         }
     }
-    public function index(){
+    public function form(){
         $student_id = $this->Login_session->check_login()->login_value;
         
         $return['status'] = 'wait';
-        $return['row'] = @$this->Report->get_report($student_id)[0];
+        $return['row'] = @$this->Subject_Report->get_report($student_id)[0];
         $this->template->view('Coop_student/Reportmanager_view', $return);
     }
 
@@ -39,22 +39,22 @@ class Reportmanager  extends CI_Controller {
         if ($this->form_validation->run() == FALSE)
                 {
                     $return['status'] = 'error';
-                    $return['row'] = @$this->Report->get_report($student_id)[0];
+                    $return['row'] = @$this->Subject_Report->get_report($student_id)[0];
                         $this->template->view('Coop_student/Reportmanager_view', $return);
                 }
                 else
                 {
-                    if(@$this->Report->get_report($student_id)[0]) {
+                    if(@$this->Subject_Report->get_report($student_id)[0]) {
                         //update
-                        $this->Report->update($data,$student_id);
+                        $this->Subject_Report->update($data,$student_id);
                         $return['status'] = 'successupdate';
                     } else {
                         //insert
                         $data['student_id'] = $student_id;
-                        $this->Report->insert($data);
+                        $this->Subject_Report->insert($data);
                         $return['status'] = 'successinsert';
                     }
-                    $return['row'] = @$this->Report->get_report($student_id)[0];
+                    $return['row'] = @$this->Subject_Report->get_report($student_id)[0];
                     
                         $this->template->view('Coop_student/Reportmanager_view',$return);
                 }

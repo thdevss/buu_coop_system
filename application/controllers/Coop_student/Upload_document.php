@@ -19,6 +19,11 @@ class Upload_document extends CI_Controller {
     }
 
     public function index()
+    {
+        $this->form();
+    }
+
+    public function form()
 	{
         $student_id = $this->Login_session->check_login()->login_value;
         $document_code = $this->input->post('code');

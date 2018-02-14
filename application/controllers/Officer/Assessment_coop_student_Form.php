@@ -33,7 +33,7 @@
 
                 array_push($data['rows'], $tmp);
             }
-            $this->template->view('Officer/Assessment_studentForm_view', $data);
+            $this->template->view('Officer/Assessment_student_Form_view', $data);
      
         }
     }

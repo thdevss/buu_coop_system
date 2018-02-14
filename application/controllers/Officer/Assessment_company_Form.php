@@ -5,7 +5,7 @@ class Assessment_company_Form extends CI_Controller {
 
     public function index(){
 
-        $this->template->view('officer/Assessment_companyForm_view');
+        $this->template->view('officer/Assessment_company_Form_view');
     }
     
 }

@@ -17,16 +17,22 @@ class Daily_activity extends CI_controller
         }
     }
 
-    public function index()
+    public function lists()
     {
         $student_id = $this->Login_session->check_login()->login_value;
-        $data['data'] = $this->DB_coop_student_daily_activity->gets_by_student($student_id);
+        // $data['data'] = $this->DB_coop_student_daily_activity->gets_by_student($student_id);
  
         $this->template->view('Coop_student/Daily_activity_coop_student_view',$data);
     }
-    public  function edit($id){
-        $data['data'] = $this->DB_coop_student_daily_activity->get($id);
+    public function edit($id)
+    {
+        // $data['data'] = $this->DB_coop_student_daily_activity->get($id);
         $this->template->view('Coop_student/Edit_Daily_activity_coop_student_view',$data);
+    }
+
+    public function add() 
+    {
+
     }
 
 }
