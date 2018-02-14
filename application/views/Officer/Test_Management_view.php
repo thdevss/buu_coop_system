@@ -52,7 +52,6 @@
                         <th>ชื่อนิสิต</th>
                         <th>สาขา</th>
                         <th>สอบรอบที่</th>
-                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -139,12 +138,32 @@ function confirmDelete()
 
 
 <script>
+var table
 $('#test_id').on('change', function (e) {
-    var optionSelected = $("option:selected", this);
-    var valueSelected = this.value;
+    var optionSelected = $("option:selected", this)
+    var valueSelected = this.value
 
     //get student test search by test id
-    jQuery("#test_student_list_result tbody").empty();
+    jQuery("#test_student_list_result tbody").empty()
+
+    if(table)
+      table.destroy();
+
+
+
+    table = $('#form_search_result').DataTable( {
+        'order': [[0, 'asc']],
+        "ajax": {
+          "url": SITE_URL+"/Officer/Coop_Submitted_Form_Search/get_by_form_code/"+valueSelected,
+          "dataSrc": ""
+        },
+        "columns": [
+            { "data": "student.id" },
+            { "data": "student.fullname" },            
+            { "data": "form.status" }
+        ],
+        
+    } );
 
     jQuery.getJSON( SITE_URL+"/Officer/Test_Management/gets_student_by_test/"+valueSelected, function( result ) {
         var items = [];
@@ -157,7 +176,6 @@ $('#test_id').on('change', function (e) {
                     '<td>'+val.student.fullname+'</td>'+                    
                     '<td>'+val.department.name+'</td>'+                    
                     '<td>'+val.coop_test.name+'</td>'+ 
-                    '<td><form onsubmit="return confirmDelete()" action="<?php echo site_url('Officer/Test_Management/delete');?>" method="post"><input type="hidden" name="coop_test_id" value="'+val.coop_test.id+'"><input type="hidden" name="student_id" value="'+val.student.id+'"><button type="submit" class="btn btn-warning btn-submit">ลบ</button></form></td>'+              
                                  
                     '</tr>');
             

@@ -30,7 +30,7 @@ class Coop_student extends CI_Controller {
                 $tmp_array['position_title'] = $this->Job->get_job($row['company_job_position_id'])[0]['position_title'];
                 
                 //get coop test
-                $tmp_array['company'] = $this->Company->get_company($row['company_id'])[0];
+                $tmp_array['company'] = @$this->Company->get_company($row['company_id'])[0];
                 
                 //mentor
                 $tmp_array['trainer'] = $this->Trainer->get_trainer($row['mentor_person_id'])[0];

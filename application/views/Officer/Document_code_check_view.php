@@ -36,7 +36,7 @@
                   </form>
                 </div>
 
-                <table class="table table-bordered datatable" id="form_search_result">
+                <table class="table table-bordered" id="form_search_result">
                     <thead>
                       <tr>
                         <th class="text-center">รหัสนิสิต</th>
@@ -57,37 +57,57 @@
 </div>
 
 <script>
+var table;
 $('#form_id').on('change', function (e) {
     var optionSelected = $("option:selected", this);
     var valueSelected = this.value;
 
     //get student form search by form code
-    jQuery("#form_search_result tbody").empty();
+    // jQuery("#form_search_result tbody").empty();
+    // $('#form_search_result').DataTable().clear().draw()
+    if(table)
+      table.destroy();
 
-    jQuery.getJSON( SITE_URL+"/Officer/Coop_Submitted_Form_Search/get_by_form_code/"+valueSelected, function( result ) {
-        var items = [];
-        console.log(result);
 
-        jQuery.each( result.data, function( key, val ) {
-            if(val.form != null) {
-                $('#form_search_result tbody').append(
-                    '<tr>'+
-                    '<td>'+val.student.id+'</td>'+
-                    '<td>'+val.student.fullname+'</td>'+                    
-                    '<td><u>ส่งแล้ว</u></td>'+              
-                    '</tr>');
-            } else {
-                $('#form_search_result tbody').append(
-                  '<tr>'+
-                  '<td>'+val.student.id+'</td>'+
-                  '<td>'+val.student.fullname+'</td>'+                    
-                  '<td><b>ยังไม่ส่ง!</b></td>'+              
-                  '</tr>');
 
-            }
+    table = $('#form_search_result').DataTable( {
+        'order': [[0, 'asc']],
+        "ajax": {
+          "url": SITE_URL+"/Officer/Coop_Submitted_Form_Search/get_by_form_code/"+valueSelected,
+          "dataSrc": ""
+        },
+        "columns": [
+            { "data": "student.id" },
+            { "data": "student.fullname" },            
+            { "data": "form.status" }
+        ],
+        
+    } );
+
+    // jQuery.getJSON( SITE_URL+"/Officer/Coop_Submitted_Form_Search/get_by_form_code/"+valueSelected, function( result ) {
+    //     var items = [];
+    //     console.log(result);
+
+    //     jQuery.each( result.data, function( key, val ) {
+    //         if(val.form != null) {
+    //             $('#form_search_result tbody').append(
+    //                 '<tr>'+
+    //                 '<td>'+val.student.id+'</td>'+
+    //                 '<td>'+val.student.fullname+'</td>'+                    
+    //                 '<td><u>ส่งแล้ว</u></td>'+              
+    //                 '</tr>');
+    //         } else {
+    //             $('#form_search_result tbody').append(
+    //               '<tr>'+
+    //               '<td>'+val.student.id+'</td>'+
+    //               '<td>'+val.student.fullname+'</td>'+                    
+    //               '<td><b>ยังไม่ส่ง!</b></td>'+              
+    //               '</tr>');
+
+    //         }
             
-        });
-    });
+    //     });
+    // });
 
 });
 
