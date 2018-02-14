@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Student_data extends CI_Controller {
+class Profile extends CI_Controller {
 
     public function __construct()
     {
@@ -19,7 +19,7 @@ class Student_data extends CI_Controller {
     }
 
 
-    public function index(){
+    public function view(){
         $student_id = $this->Login_session->check_login()->login_value;
         $data['student'] = $this->Student->get_student($student_id)[0];     
         $data['department'] = $this->Student->get_department( $data['student']['department_id'])[0];

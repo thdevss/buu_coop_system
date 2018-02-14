@@ -12,89 +12,23 @@
     <div class="animated fadeIn">
         <div class="row" >
             <!--1 box-->
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="card">
                 <div class="card-header"><h5><i class="fa fa-home"> บริษัท <?php echo $tmp['name_th'];?> ( <?php echo $tmp['name_en'];?> )</h5></div></i>
                     <div class="card-body">
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                <div class="form-group row">
-                                <label class="col-md-3 "> <b class="text-center">ละติจุด :</b></label>
-                                    <div class="col-md-9">
-                                    <?php echo $data['latitude'];?>
-                                    </div>
+                        <div id="map" style="height:450px;width:100%;"></div>
+                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                <br>
+                                <div class="card-body p-3 clearfix">
+                                <i class="icon-location-pin bg-primary p-3 font-2xl mr-3 float-left"></i>
+                                <div class="h5 text-primary mb-0 mt-2"><?php echo $data['number'];?> <?php echo $data['building'];?> <?php echo $data['road'];?> <?php echo $data['alley'];?></div>
+                                <div class="text-muted text-uppercase font-weight-bold font-xs">Income</div>
                                 </div>
-                                <div class="form-group row">
-                                <label class="col-md-3"><b class="text-center">ลองติจุด :</b></label>
-                                    <div class="col-md-9">
-                                    <p><?php echo $data['longitude'];?></p>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                <label class="col-md-3"> <b class="text-center">เลขที่ :</b></label>
-                                    <div class="col-md-9">
-                                    <p><?php echo $data['number'];?></p>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                <label class="col-md-3"> <b class="text-center">อาคาร / ตึก :</b></label>
-                                    <div class="col-md-9">
-                                    <p><?php echo $data['building'];?></p>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                <label class="col-md-3"> <b class="text-center">ถนน :</b></label>
-                                    <div class="col-md-9">
-                                    <p><?php echo $data['road'];?></p>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                <label class="col-md-3"> <b class="text-center">ซอย :</b></label>
-                                    <div class="col-md-9">
-                                    <p><?php echo $data['alley'];?></p>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                <label class="col-md-3"> <b class="text-center">เเขวง / ตำบล:</b></label>
-                                    <div class="col-md-9">
-                                    <p><?php echo $data['district'];?></p>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                <label class="col-md-3"> <b class="text-center">เขต / อำเภอ :</b></label>
-                                    <div class="col-md-9">
-                                    <p><?php echo $data['area'];?></p>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                <label class="col-md-3"> <b class="text-center">จังหวัด :</b></label>
-                                    <div class="col-md-9">
-                                    <p><?php echo $data['province'];?></p>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                <label class="col-md-3"> <b class="text-center">รหัสไปรษณี :</b></label>
-                                    <div class="col-md-9">
-                                    <p><?php echo $data['postal_code'];?></p>
-                                    </div>
-                                </div>  
-                        </form>    
+
+                            </form>    
                     </div><!-- close card  -->
                 </div><!-- close card body -->
             </div><!-- close card col-md-6 -->
-
-            <div class="col-md-6">
-                <div class="card">
-                <div class="card-header"><h5><i class="fa fa-globe"> เเผนที่ ( MAP )</h5></div></i>
-                    <div class="card-body">
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
- 
-
-
-                        </form>    
-                    </div><!-- close card  -->
-                </div><!-- close card body -->
-            </div><!-- close card col-md-6 -->
-
 
 
         </div><!-- close row -->
@@ -102,3 +36,18 @@
  </div> <!-- close rocontainerw -->
  
  </main>
+
+ <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcah51LjCiIIFTqdekv78MHZvqT2NpCLo&callback=initMap"></script>
+ <script>
+    function initMap() {
+        var uluru = {lat: <?php echo $data['latitude'];?>, lng: <?php echo $data['longitude'];?>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+    </script>

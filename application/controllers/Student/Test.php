@@ -18,7 +18,7 @@ class Test extends CI_Controller {
         }
     }
 
-	public function index($status = '')
+	public function lists($status = '')
 	{
         $student_id = $this->Login_session->check_login()->login_value;
 

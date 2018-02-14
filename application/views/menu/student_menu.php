@@ -11,7 +11,7 @@
             นิสิต
           </li>
           <li class="nav-item nav-dropdown">
-          <a class="nav-link" href="<?php echo site_url('Student/Student_data');?>" target="_top"><i class="icon-star"></i> ประวัตินิสิต</a>
+          <a class="nav-link" href="<?php echo site_url('Student/Profile/view');?>" target="_top"><i class="icon-star"></i> ประวัตินิสิต</a>
           </li>
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การอบรม</a>
@@ -31,7 +31,7 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การสอบสหกิจ</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo site_url('student/test');?>" target="_top"><i class="icon-star"></i> สมัครสอบสหกิจ</a>
+                <a class="nav-link" href="<?php echo site_url('student/test/lists');?>" target="_top"><i class="icon-star"></i> สมัครสอบสหกิจ</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="<?php echo site_url('student/test/result');?>" target="_top"><i class="icon-star"></i> ประกาศผลสอบ</a>
@@ -42,10 +42,10 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> สหกิจศึกษา</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('student/Report_student_info');?>" target="_top"><i class="icon-star"></i> รายการสมัครที่เปิดรับ</a>
+              <a class="nav-link" href="<?php echo site_url('student/Job/lists');?>" target="_top"><i class="icon-star"></i> รายการสมัครที่เปิดรับ</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('student/Register_result');?>" target="_top"><i class="icon-star"></i> ประกาศผลการสมัครงาน</a>
+              <a class="nav-link" href="<?php echo site_url('student/Job/register_status');?>" target="_top"><i class="icon-star"></i> ประกาศผลการสมัครงาน</a>
               </li>
             </ul>
           </li>
