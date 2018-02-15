@@ -17,6 +17,7 @@
 
               <ul class="nav nav-tabs" role="tablist">
           
+                <?php foreach($train_type as $key => $type) { ?>
                 <li class="nav-item">
                   <a class="nav-link <?php if($key == 0) echo 'active';?>" data-toggle="tab" href="#WW_<?php echo $type['id'];?>" role="tab" aria-controls="WW_<?php echo $type['id'];?>"><?php echo $type['name'];?></a>
                 </li>
