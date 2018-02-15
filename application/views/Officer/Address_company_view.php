@@ -19,12 +19,20 @@
                         <div id="map" style="height:450px;width:100%;"></div>
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <br>
-                                <div class="card-body p-3 clearfix">
-                                <i class="icon-location-pin bg-primary p-3 font-2xl mr-3 float-left"></i>
-                                <div class="h5 text-primary mb-0 mt-2"><?php echo $data['number'];?> <?php echo $data['building'];?> <?php echo $data['road'];?> <?php echo $data['alley'];?></div>
-                                <div class="text-muted text-uppercase font-weight-bold font-xs">Income</div>
+                                <div class="card-body p-3 clearfix" class="border-(3)">
+                                <i class="icon-location-pin p-3 font-2xl mr-3 float-left"></i>
+                                <div class="">ที่อยู่: &nbsp;&nbsp;เลขที่ &nbsp;&nbsp;<?php echo $data['number'];?>&nbsp;&nbsp;อาคาร &nbsp;&nbsp; <?php echo $data['building'];?>&nbsp;&nbsp; ถนน<?php echo $data['road'];?>&nbsp;&nbsp;เเขวง <br>
+                                <?php echo $data['district'];?>&nbsp;&nbsp;เขต<?php echo $data['area'];?>&nbsp;&nbsp;อำเภอ<?php echo $data['area'];?>&nbsp;&nbsp;จังหวัด<?php echo $data['province'];?>&nbsp;&nbsp;<?php echo $data['postal_code'];?></div>
+                                <div class="text-muted text-uppercase font-weight-bold font-xs">ประเทศไทย</div>
                                 </div>
 
+                                <div class="card-body p-3 clearfix">
+                                <i class="icon-phone p-3 font-2xl mr-3 float-left"></i>
+                                <div class="">
+                                <div class="text-muted text-uppercase font-weight-bold font-xs"><?php echo $contact['email'];?></div>
+                                <div class="text-muted text-uppercase font-weight-bold font-xs"><?php echo $contact['telephone'];?></div><br>
+                                </div>
+                                </div>
                             </form>    
                     </div><!-- close card  -->
                 </div><!-- close card body -->
