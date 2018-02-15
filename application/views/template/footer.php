@@ -1,8 +1,8 @@
   </div>
 
   <footer class="app-footer">
-    <span><a href="http://coreui.io">CoreUI</a> © 2017 creativeLabs.</span>
-    <span class="ml-auto">Powered by <a href="http://coreui.io">CoreUI</a></span>
+    <!-- <span><a href="http://coreui.io">CoreUI</a> © 2017 creativeLabs.</span> -->
+    <span class="ml-auto"><img src="<?php echo base_url('assets/img/footer-logo.png');?>" style="height: 40px;"></span>
   </footer>
 
   <!-- Bootstrap and necessary plugins -->

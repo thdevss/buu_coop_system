@@ -4,7 +4,7 @@
       <nav class="sidebar-nav">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
+            <a class="nav-link" href="<?php echo site_url('Adviser/main');?>"><i class="icon-speedometer"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
           </li>
 
           <li class="nav-title">
@@ -14,24 +14,13 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> นิสิต</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo site_url('Adviser/Daily_activity');?>"><i class="icon-puzzle"></i> รายชื่อนิสิตที่ปรึกษา</a>
+                <a class="nav-link" href="<?php echo site_url('Adviser/Coop_student/');?>"><i class="icon-puzzle"></i> รายชื่อนิสิตที่ปรึกษา</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('Adviser/Daily_activity/list');?>"><i class="icon-star"></i> แบบแจ้งแผนปฎิบัติการสหกิจ</a>
+              <a class="nav-link" href="<?php echo site_url('Adviser/#');?>"><i class="icon-star"></i> แบบแจ้งแผนปฎิบัติการสหกิจ</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('Adviser/Daily_activity/detail');?>"><i class="icon-star"></i> กิจกรรมการฝึกงานในแต่ละวัน</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การอบรม</a>
-            <ul class="nav-dropdown-items">
-              <li class="nav-item">
-                <a class="nav-link" href="icons-font-awesome.html"><i class="icon-star"></i> Font Awesome <span class="badge badge-secondary">4.7</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="icons-simple-line-icons.html"><i class="icon-star"></i> Simple Line Icons</a>
+              <a class="nav-link" href="<?php echo site_url('Adviser/Daily_activity/');?>"><i class="icon-star"></i> กิจกรรมการฝึกงานในแต่ละวัน</a>
               </li>
             </ul>
           </li>

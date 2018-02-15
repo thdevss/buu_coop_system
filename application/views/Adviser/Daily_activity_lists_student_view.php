@@ -4,7 +4,7 @@
 <!-- Breadcrumb -->
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Home</li>
-  <li class="breadcrumb-item"><a href="#"><?php echo $user->login_type;?></a></li>
+  <li class="breadcrumb-item"><a href="#"><?php echo strToLevel($user->login_type);?></a></li>
   <li class="breadcrumb-item active">กิจกรรมในการฝึกงานในแต่ละวัน</li>
 </ol>
 <div class="container-fluid">
@@ -38,12 +38,12 @@
                     <tbody>
                     <?php foreach ($data as $row) {?>
                       <tr>
-                        <td><?php echo $row['student']->id; ?></td>
-                        <td><?php echo $row['student']->fullname; ?></td>
-                        <td><?php echo $row['student_field']->name; ?></td>
-                        <td><?php echo $row['company']->name_th; ?></td>
-                        <td><?php echo $row['company_address']->province; ?></td>  
-                        <td><?php echo anchor('Teacher/Daily_activity/list/'.$row['student']->id  , '<i class="fa fa-star"></i> รายละเอียด', 'class="btn btn-primary"');?></td>
+                        <td><?php echo $row['student']['id']; ?></td>
+                        <td><?php echo $row['student']['fullname']; ?></td>
+                        <td><?php echo $row['department']['name']; ?></td>
+                        <td><?php echo $row['company']['name_th']; ?></td>
+                        <td><?php echo $row['company_address']['province']; ?></td>  
+                        <td><?php echo anchor('Adviser/Daily_activity/lists/'.$row['student']['id']  , '<i class="fa fa-star"></i> รายละเอียด', 'class="btn btn-primary"');?></td>
                       </tr>
                       <?php } ?>
                     </tbody>
@@ -54,28 +54,3 @@
     </div>
   </div>
 </div>
-<script>
-
-
-$('.btn-submit').on('click',function(e){
-    e.preventDefault();
-    var form = $(this).parents('form');
-    swal({
-        title: "คุณแน่ใจใช่ไหม",
-        text: "ลบคำนิสิตที่เลือก",
-        icon: "warning",
-        buttons: true,
-        dabgerMode: true
-    })
-    .then((isConfirm) => {
-      if (isConfirm) {
-        form.submit();
-      } else {
-
-      }
-    })
-
-});
-
-
-</script>

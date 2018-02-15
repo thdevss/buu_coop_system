@@ -1,0 +1,50 @@
+<!-- Main content -->
+<main class="main">
+
+<!-- Breadcrumb -->
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Home</li>
+  <li class="breadcrumb-item"><a href="#"><?php echo strToLevel($user->login_type);?></a></li>
+  <li class="breadcrumb-item active">รายชื่อนิสิตในสังกัด</li>
+</ol>
+<div class="container-fluid">
+  <div class="animated fadeIn">
+    <div class="row" >
+      <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header"><i class="fa fa-align-justify"></i> รายชื่อนิสิตในสังกัด</div>
+            <div class="card-body">
+                <table class="table table-bordered datatable">
+                    <thead>
+                      <tr>
+                        <th>รหัสนิสิต</th>
+                        <th>ชื่อ - สกุล</th>
+                        <th>สาขาวิชา</th>
+                        <th>สถานประกอบการ</th>
+                        <th>จังหวัด</th>
+                        <th>หมายเลขงาน</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($data as $row) {?>
+                        <tr>
+                            <td><?php echo $row['student']['id']; ?></td>                      
+                            <td><?php echo $row['student']['fullname']; ?></td>
+                            <td><?php echo $row['department']['name']; ?></td>
+                            <td><?php echo $row['company']['name_th']; ?> (<?php echo $row['company']['name_en']; ?>)</td>
+                            <td><?php echo $row['company_address']['province']; ?></td>
+                            <td>X001</td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>

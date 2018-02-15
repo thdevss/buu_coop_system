@@ -45,7 +45,7 @@
                 </div>
 
 
-            <table class="table table-bordered datatable" id="test_student_list_result">
+            <table class="table table-bordered" id="test_student_list_result">
                     <thead>
                       <tr>
                         <th>รหัสนิสิต</th>
@@ -151,37 +151,21 @@ $('#test_id').on('change', function (e) {
 
 
 
-    table = $('#form_search_result').DataTable( {
+    table = $('#test_student_list_result').DataTable( {
         'order': [[0, 'asc']],
         "ajax": {
-          "url": SITE_URL+"/Officer/Coop_Submitted_Form_Search/get_by_form_code/"+valueSelected,
+          "url": SITE_URL+"/Officer/Test_Management/gets_student_by_test/"+valueSelected,
           "dataSrc": ""
         },
         "columns": [
             { "data": "student.id" },
             { "data": "student.fullname" },            
-            { "data": "form.status" }
+            { "data": "department.name" },
+            { "data": "coop_test.name" }
+            
         ],
         
     } );
-
-    jQuery.getJSON( SITE_URL+"/Officer/Test_Management/gets_student_by_test/"+valueSelected, function( result ) {
-        var items = [];
-        console.log(result);
-
-        jQuery.each( result.data, function( key, val ) {
-                $('#test_student_list_result tbody').append(
-                    '<tr>'+
-                    '<td>'+val.student.id+'</td>'+
-                    '<td>'+val.student.fullname+'</td>'+                    
-                    '<td>'+val.department.name+'</td>'+                    
-                    '<td>'+val.coop_test.name+'</td>'+ 
-                                 
-                    '</tr>');
-            
-            
-        });
-    });
 
 });
 

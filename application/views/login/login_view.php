@@ -52,11 +52,12 @@
               </form>
             </div>
           </div>
-          <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+          <div class="card text-white py-5 d-md-down-none" style="width:44%">
             <div class="card-body text-center">
               <div>
-                <h2>ระบบสหกิจ</h2>
-                <img src="<?php echo base_url('assets/img/it-logo.png');?>" style="width:50%;">
+                <!-- <h2>ระบบสหกิจ</h2> -->
+                <img src="<?php echo base_url('assets/img/footer-logo.png');?>" style="margin-top:50px;">
+                <!-- <img src="<?php echo base_url('assets/img/it-logo.png');?>" style="width:50%;"> -->
               </div>
             </div>
           </div>
