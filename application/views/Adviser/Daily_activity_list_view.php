@@ -4,7 +4,7 @@
 <!-- Breadcrumb -->
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Home</li>
-  <li class="breadcrumb-item"><a href="#"><?php echo $user->login_type;?></a></li>
+  <li class="breadcrumb-item"><a href="#"><?php echo strToLevel($user->login_type);?></a></li>
   <li class="breadcrumb-item active">กิจกรรมในการฝึกงานในแต่ละวัน</li>
 </ol>
 <div class="container-fluid">
@@ -12,7 +12,7 @@
     <div class="row" >
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header"><i class="fa fa-align-justify"></i>กิจกรรมในการฝึกงานในแต่ละวัน ของ <B><?php echo $student->fullname.' '.$student->id; ?></B> 
+          <div class="card-header"><i class="fa fa-align-justify"></i>กิจกรรมในการฝึกงานในแต่ละวัน ของ <B><?php echo $student['fullname'].' '.$student['id']; ?></B> 
           <div class="text-right">
             </div>
           </div>
@@ -34,9 +34,9 @@
                     <tbody>
                       <tr>
                       <?php foreach ($data as $row){ ?>
-                        <td><?php echo $row->date; ?></td>
-                        <td><?php echo $row->activity_subject; ?></td>
-                        <td><?php echo anchor('Teacher/Daily_activity/detail/'.$row->id, '<i class="fa fa-star"></i> รายละเอียด', 'class="btn btn-primary" target="_blank"');?></td>  
+                        <td><?php echo $row['date']; ?></td>
+                        <td><?php echo $row['activity_subject']; ?></td>
+                        <td><?php echo anchor('Adviser/Daily_activity/detail/'.$row['id'], '<i class="fa fa-star"></i> รายละเอียด', 'class="btn btn-primary" target="_blank"');?></td>  
                       </tr>
                       <?php } ?>
                     </tbody>

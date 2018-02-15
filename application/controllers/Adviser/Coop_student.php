@@ -1,5 +1,5 @@
 <?php
-class Daily_activity extends CI_controller
+class Coop_student extends CI_controller
 {
     public function __construct()
     {
@@ -29,28 +29,7 @@ class Daily_activity extends CI_controller
             $tmp_array['company_address'] = $this->Address->get_address_by_company($row['company_id'])[0];
             array_push($data['data'], $tmp_array);
         }
-        $this->template->view('Adviser/Daily_activity_lists_student_view',$data);
-    }
-
-    public function lists($student_id)
-    {
-       if(!$this->Coop_Student->get_coop_student($student_id)){
-           return $this->index();
-
-       }
-        $data['student'] = $this->Student->get_student($student_id)[0];
-        $data['data'] = $this->Daily_Report->gets_report_by_student($student_id);
-        $this->template->view('Adviser/Daily_activity_list_view',$data);
-    }
-
-    public function detail($id)
-    {
-        $data['data'] = @$this->Daily_Report->get_report($id)[0];
-
-        if(!$data['data']){
-            show_404();
-        }
-       $this->template->view('Adviser/Daily_detail_view',$data);
+        $this->template->view('Adviser/Coop_student_view',$data);
     }
 
 }

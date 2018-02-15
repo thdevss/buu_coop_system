@@ -71,7 +71,7 @@ class Test_Management extends CI_Controller {
 
     public function gets_student_by_test($test_id)
     {
-        $data['data'] = array();
+        $data = array();
         foreach($this->Test->get_student_by_test($test_id) as $row) {
             //get student
             $tmp_array = array();
@@ -84,7 +84,7 @@ class Test_Management extends CI_Controller {
             $tmp_array['coop_test'] = $this->Test->get_test($row['coop_test_id'])[0];
 
             // print_r($tmp_array);
-            array_push($data['data'], $tmp_array);
+            array_push($data, $tmp_array);
         }
 
         echo json_encode($data);
