@@ -40,7 +40,8 @@ class Company extends CI_Controller {
     public function address($id){
 
             $data['data'] = $this->Address->get_address_by_company($id)[0];  
-            $data['tmp'] = $this->Company->get_company($id)[0];      
+            $data['tmp'] = $this->Company->get_company($id)[0];  
+            $data['contact'] = $this->Trainer->get_trainer($data['tmp']['contact_person_id'])[0];
 
             //  print_r($data);
 
