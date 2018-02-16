@@ -65,7 +65,7 @@
                 array_push($data['coop_student_questionnaire_item'], $row);
 
             }
-            print_r($data);
+
             $this->template->view('Officer/Assessment_student_Form_item_view',$data);
         }
 
@@ -78,7 +78,7 @@
 
             $this->Coop_Student_Assessment_Form->insert_coop_student_questionnaire_item($array);
 
-            redirect();
+            redirect('Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item/'.$array['subject_id'], 'refresh');
         }
     }
 ?>
