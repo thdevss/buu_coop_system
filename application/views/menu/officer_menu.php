@@ -31,6 +31,16 @@
             </li>
           </ul>
         </li>
+
+         <li class="nav-item nav-dropdown">
+          <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> อาจารย์</a>
+          <ul class="nav-dropdown-items">
+            <li class="nav-item">
+            <?php echo anchor('Officer/#/', '<i class="fa fa-star"></i>  จัดการจับคู่อาจารย์กับนิสิต', 'class="nav-link"');?>
+            </li>
+          </ul>
+        </li>
+
         <li class="nav-item nav-dropdown">  
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> ผู้ประกอบการ</a>
           <ul class="nav-dropdown-items">
@@ -88,6 +98,7 @@
             <?php echo anchor('Officer/Assessment_coop_student_Form/', '<i class="fa fa-star"></i> จัดการแบบประเมินนิสิตสหกิจศึกษา', 'class="nav-link"');?>
           </ul>
         </li>
+       
         
 
       </ul>

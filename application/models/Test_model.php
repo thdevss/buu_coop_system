@@ -102,5 +102,13 @@ class Test_model extends CI_model {
         $this->db->from('coop_test_has_student');
         $query = $this->db->get();
         return $query->result_array();
-    }    
+    }
+    
+    public function check_student($student_id,$coop_test_id){
+        $this->db->where('student_id',$student_id);
+        $this->db->where('coop_test_id',$coop_test_id);
+        $this->db->from('coop_test_has_student');
+        $query = $this->db->get();
+        return $query->result()[0];
+    }
 }
