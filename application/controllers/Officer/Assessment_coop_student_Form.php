@@ -17,7 +17,7 @@
             }
         }
 
-        public function index($status = '') 
+        public function index($status = '') //get coop student questionaire subject
         {   
             if( $status == 'success'){
                 $data['status']['color'] = 'success';            
@@ -31,7 +31,7 @@
             foreach($this->Coop_Student_Assessment_Form->gets_form_for_coop_student() as $row)
             {
                
-                // $temp_array['coop_student_questionnaire_subject'][] = $row;
+                
                 array_push($data['coop_student_questionnaire_subject'], $row);
 
             }
@@ -42,7 +42,7 @@
      
         }
 
-        public function add_coop_student_questionnaire_subject()
+        public function add_coop_student_questionnaire_subject() //insert coop student questionaire subject
         {
             $array['number'] = $this->input->post('number');
             $array['title'] = $this->input->post('title');
@@ -55,7 +55,7 @@
 
         }
 
-        public function get_coop_student_questionnaire_item($id)
+        public function get_coop_student_questionnaire_item($id) //get coop student questionaire item ออกมาตาม id
         { 
             $data['subject'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_subject($id)[0];  
             $data['coop_student_questionnaire_item'] = array();
@@ -65,21 +65,20 @@
                 array_push($data['coop_student_questionnaire_item'], $row);
 
             }
-            // echo $this->db->last_query();
             print_r($data);
             $this->template->view('Officer/Assessment_student_Form_item_view',$data);
         }
 
-        public function add_coop_student_questionnaire_item()
+        public function add_coop_student_questionnaire_item() //insert coop student questionaire item
         {
             $array['subject_id'] =$this->input->post('subject_id');
             $array['subject_term_id'] =$this->input->post('subject_term_id');
             $array['number'] = $this->input->post('number');
             $array['title'] = $this->input->post('title');
+
             $this->Coop_Student_Assessment_Form->insert_coop_student_questionnaire_item($array);
 
-            return $this->get_coop_student_questionnaire_item('success');
-            
+            redirect();
         }
     }
 ?>
