@@ -29,7 +29,8 @@
               <table class="table table-bordered datatable" >
                     <thead>
                       <tr bgcolor="">
-                        <th class="text-center" >วันที่</th>
+                        <th class="text-center">ลำดับ</th>
+                        <th class="text-center">วันที่</th>
                         <th class="text-center">ประเภท</th>
                         <th class="text-center">ชื่อโครงการ</th>
                         <th class="text-center">วิทยากร</th>
@@ -39,14 +40,16 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($data as $row){?>
+                    <?php $i=1;
+                    foreach ($data as $row){?>
                       <tr>
-                        <td class="text-center"><?php echo $row['train']['date'] ?></td>
-                        <td class="text-center"><?php echo $row['train_type']['name'] ?></td>
-                        <td class="text-center"><?php echo $row['train']['title'] ?></td>
-                        <td class="text-center"><?php echo $row['train']['lecturer'] ?></td>
-                        <td class="text-center"><?php echo $row['train']['number_of_hour'] ?></td>
-                        <td class="text-center"><?php echo $row['train']['number_of_seat'] ?></td>
+                        <td class="text-center"><?php echo $i++;?></td>
+                        <td class="text-left"><?php echo thaiDate($row['train']['date']); ?></td>
+                        <td class="text-left"><?php echo $row['train_type']['name'] ?></td>
+                        <td class="text-left"><?php echo $row['train']['title'] ?></td>
+                        <td class="text-left"><?php echo $row['train']['lecturer'] ?></td>
+                        <td class="text-right"><?php echo $row['train']['number_of_hour'] ?></td>
+                        <td class="text-right"><?php echo $row['train']['number_of_seat'] ?></td>
                         <td class="text-center">
                             <form action="<?php echo site_url('Officer/Training /delete'); ?>" class="form-inline" method="post">
                               <input type="hidden" name="id" value="<?php echo $row['train']['id'] ; ?>">
