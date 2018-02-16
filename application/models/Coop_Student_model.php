@@ -18,7 +18,8 @@ class Coop_Student_model extends CI_model {
 
     public function update_coop_student($student_id, $array)
     {
-        
+        $this->db->where('student_id',$student_id);
+        return $this->db->update('coop_student',$array);
     }
 
     public function gets_coop_student()

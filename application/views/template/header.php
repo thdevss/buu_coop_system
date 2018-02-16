@@ -43,7 +43,7 @@
         <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
       </li>
       <li class="nav-item d-md-down-none">
-        <img src="http://reg.buu.ac.th/registrar/getstudentimage.asp?id=<?php echo $user->login_value;?>" class="rounded-circle" style="width:30px;">            
+        <!-- <img src="http://reg.buu.ac.th/registrar/getstudentimage.asp?id=<?php echo $user->login_value;?>" class="rounded-circle" style="width:30px;">             -->
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -53,7 +53,7 @@
           <div class="dropdown-header text-center">
             <strong>Account</strong>
           </div>
-          <a class="dropdown-item" href="#"><img src="http://reg.buu.ac.th/registrar/getstudentimage.asp?id=<?php echo $user->login_value;?>" class="rounded-circle"></a>          
+          <!-- <a class="dropdown-item" href="#"><img src="http://reg.buu.ac.th/registrar/getstudentimage.asp?id=<?php echo $user->login_value;?>" class="rounded-circle"></a>           -->
           <a class="dropdown-item" href="#"><i class="fa fa-users"></i> ประเภท: <?php echo strToLevel($user->login_type);?></a>
           <a class="dropdown-item" href="#"><i class="fa fa-users"></i> <span class="d-md-down-none">ปีการศึกษา: <?php echo $user->term_name;?></span></a>
           <a class="dropdown-item" href="<?php echo site_url('member/logout');?>"><i class="fa fa-lock"></i> ออกจากระบบ</a>
