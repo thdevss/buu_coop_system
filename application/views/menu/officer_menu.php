@@ -31,6 +31,14 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item nav-dropdown">
+          <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-user-following"></i> อาจารย์</a>
+          <ul class="nav-dropdown-items">
+            <li class="nav-item">
+              <?php echo anchor('Officer/Management_student_adviser', '<i class="icon-user-follow"></i> จัดอาจารย์ที่ปรึกษากับนิสิต', 'class="nav-link"');?>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item nav-dropdown">  
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> ผู้ประกอบการ</a>
           <ul class="nav-dropdown-items">
