@@ -18,7 +18,7 @@ class Coop_Student_model extends CI_model {
 
     public function update_coop_student($student_id, $array)
     {
-
+        
     }
 
     public function gets_coop_student()
