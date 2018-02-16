@@ -27,6 +27,7 @@
                 <table class="table table-bordered" id="news_table">
                     <thead>
                         <tr>
+                            <th></th>
                             <th class="text-center">วันที่</th>
                             <th class="text-center">หัวข้อ</th>
                             <th class="text-center">ผู้ประกาศ</th>
@@ -35,12 +36,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($data as $row){?>
+                    <?php 
+                    $i = 1;
+                    foreach ($data as $row) {
+                    ?>
                       <tr>
-
-                        <td class="text-center"><?php echo $row['date'];?></td>
-                        <td class="text-center"><?php echo $row['title'];?></td>
-                        <td class="text-center"><?php echo $row['author']['fullname'];?></td>
+                        <td class="text-center"><?php echo $i++;?></td>
+                        <td class="text-left"><?php echo thaiDate($row['date']);?></td>
+                        <td class="text-left"><?php echo $row['title'];?></td>
+                        <td class="text-left"><?php echo $row['author']['fullname'];?></td>
                         <td class="text-center">
                             <a href="#" data-newsid="<?php echo $row['id'];?>" class="btn btn-secondary" data-toggle="modal" data-target="#share_modal">แชร์</a>
                         </td>
@@ -147,7 +151,7 @@ $('.btn-delete').on('click',function(e){
 
 $(document).ready(function() {
     $('#news_table').DataTable( {
-        "order": [[ 0, "desc" ]]
+        // "order": [[ 1, "desc" ]]
     } );
 } );
 
