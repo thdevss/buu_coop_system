@@ -17,24 +17,69 @@
             }
         }
 
-        public function index() {
-            $data['rows'] = array();
-            foreach($this->Officer_Assessment_student->gets_subject() as $r) {
-                $tmp['headline_name'] = $r->title;
-                $tmp['headline_id'] = $r->id;
-                
-                $tmp['choice'] = array();
-                foreach($this->Officer_Assessment_student->gets_child($r->id) as $rx) {
-                    $rtmp['name'] = $rx->title;
-                    $rtmp['id'] = $rx->id;
-                    
-                    array_push($tmp['choice'], $rtmp);
-                }
-
-                array_push($data['rows'], $tmp);
+        public function index($status = '') 
+        {   
+            if( $status == 'success'){
+                $data['status']['color'] = 'success';            
+                $data['status']['text'] = 'เพิ่มสำเร็จ';
             }
-            $this->template->view('Officer/Assessment_student_Form_view', $data);
+            else {
+                $data['status'] = '';
+            }
+
+            $data['coop_student_questionnaire_subject'] = array();
+            foreach($this->Coop_Student_Assessment_Form->gets_form_for_coop_student() as $row)
+            {
+               
+                // $temp_array['coop_student_questionnaire_subject'][] = $row;
+                array_push($data['coop_student_questionnaire_subject'], $row);
+
+            }
+            print_r($data);
+
+            $this->template->view('Officer/Assessment_student_Form_Subject_view',$data);
+
      
+        }
+
+        public function add_coop_student_questionnaire_subject()
+        {
+            $array['number'] = $this->input->post('number');
+            $array['title'] = $this->input->post('title');
+            $term_id = $this->Term->get_current_term()[0]['id'];
+            $array['term_id'] = $term_id; 
+
+            $this->Coop_Student_Assessment_Form->save_coop_student_form_result($array);
+
+            return $this->index('success');
+
+        }
+
+        public function get_coop_student_questionnaire_item($id)
+        { 
+            $data['subject'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_subject($id)[0];  
+            $data['coop_student_questionnaire_item'] = array();
+            foreach($this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item_by_subject($id) as $row)
+            {
+               
+                array_push($data['coop_student_questionnaire_item'], $row);
+
+            }
+            // echo $this->db->last_query();
+            print_r($data);
+            $this->template->view('Officer/Assessment_student_Form_item_view',$data);
+        }
+
+        public function add_coop_student_questionnaire_item()
+        {
+            $array['subject_id'] =$this->input->post('subject_id');
+            $array['subject_term_id'] =$this->input->post('subject_term_id');
+            $array['number'] = $this->input->post('number');
+            $array['title'] = $this->input->post('title');
+            $this->Coop_Student_Assessment_Form->insert_coop_student_questionnaire_item($array);
+
+            return $this->get_coop_student_questionnaire_item('success');
+            
         }
     }
 ?>
