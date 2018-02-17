@@ -19,18 +19,20 @@
                     <thead>
                       <tr>
                         <th></th>
+                        <th>ประเภทโครงการ</th>
                         <th>จำนวนชั่วโมงทั้งหมด</th>
                         <th>จำนวนชั่วโมงที่เก็บ</th>
                         <th>จำนวนชั่วโมงที่ขาด</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach($train_type as $row) { ?>
+                      <?php $i=1; foreach($train_type as $row) { ?>
                       <tr>
+                        <td class="text-center"><?php echo $i++;?></td>
                         <td><?php echo $row['name'];?></td>
-                        <td><?php echo $row['total_hour'];?></td>
-                        <td><?php echo $row['check_hour'];?></td>
-                        <td><?php echo $row['total_hour'] - $row['check_hour'];?></td>
+                        <td class="text-right"><?php echo $row['total_hour'];?></td>
+                        <td class="text-right"><?php echo $row['check_hour'];?></td>
+                        <td class="text-right"><?php echo $row['total_hour'] - $row['check_hour'];?></td>
                         
                       </tr>
                       <?php } ?>
