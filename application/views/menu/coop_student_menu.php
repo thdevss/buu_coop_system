@@ -77,7 +77,7 @@
                 <a class="nav-link" href="components-buttons.html"><i class="fa fa-download"></i> ดาวน์โหลดเอกสาร</a>
               </li>
               <li class="nav-item">
-              7<?php echo anchor('Coop_student/upload_document/?code=IN-S006', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
+                <?php echo anchor('Coop_student/upload_document/?code=IN-S006', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
               </li>
             </ul>
           </li>
