@@ -27,10 +27,12 @@
               <?php echo anchor('Officer/Coop_Submitted_Form_Search/by_form', '<i class="icon-docs"></i> ตรวจสอบเอกสารตามประเภท', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-              <?php echo anchor('Officer/Coop_student/', '<i class="icon-graduation"></i> รายชื่อนิสิตสหกิจ', 'class="nav-link"');?>            
+
+              <?php echo anchor('Officer/Coop_student/', '<i class="fa fa-star"></i> รายชื่อนิสิตสหกิจ', 'class="nav-link"');?>            
             </li>
           </ul>
         </li>
+
 
 
         <li class="nav-item nav-dropdown">
@@ -96,7 +98,30 @@
             <?php echo anchor('Officer/Assessment_company_Form/', '<i class="fa fa-tasks"></i>  จัดการแบบประเมินสถานประกอบการ', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
+
+            <?php echo anchor('Officer/Assessment_coop_student_Form/', '<i class="fa fa-star"></i> จัดการแบบประเมินนิสิตสหกิจศึกษา', 'class="nav-link"');?>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item nav-dropdown">
+          <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> ตั้งค่าระบบ</a>
+          <ul class="nav-dropdown-items">
+            <li class="nav-item">
+              <?php echo anchor('Officer/setting/lists_job_title', '<i class="fa fa-star"></i>  จัดการตำแหน่งงานสถานประกอบการ', 'class="nav-link"');?>
+            </li>
+            <li class="nav-item">
+              <?php echo anchor('Officer/setting/lists_skill_name', '<i class="fa fa-star"></i>  จัดการทักษะงานสถานประกอบการ', 'class="nav-link"');?>
+            </li>
+            <li class="nav-item">
+            <?php echo anchor('Officer/Test_Management/', '<i class="fa fa-star"></i>  จัดการภาคปีการศึกษา', 'class="nav-link"');?>
+            </li>
+            <li class="nav-item">
+            <?php echo anchor('Officer/Test_result/', '<i class="fa fa-star"></i>  จัดการเอกสาร', 'class="nav-link"');?>
+            </li>
+
             <?php echo anchor('Officer/Assessment_coop_student_Form/', '<i class="fa fa-mortar-board "></i> จัดการแบบประเมินนิสิตสหกิจศึกษา', 'class="nav-link"');?>
+
           </ul>
         </li>
        
