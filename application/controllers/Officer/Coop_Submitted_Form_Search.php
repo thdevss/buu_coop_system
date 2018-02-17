@@ -30,30 +30,7 @@ class Coop_Submitted_Form_Search extends CI_Controller {
 
                 array_push($data['data'], $row);
             }
-            // $rowsDocument = $this->validate_assessment_coop->gets_document();
-            // $checkDocument = array(
-            //     'IN-S003', 'IN-S004', 'IN-S005'
-            // );
 
-            // $data['data'] = array();
-            // foreach($this->validate_assessment_coop->list() as $row) {
-            //     $row->document = false;
-            //     $i=0;
-
-            //     foreach($rowsDocument as $rox) {
-            //         if(in_array($rox->name, $checkDocument)) {
-            //             if(@$this->validate_assessment_coop->get_by_student($row->student_id, $rox->id)[0]) {
-            //                 $i++;
-            //             }
-            //         }
-            //     }
-
-            //     if(count($checkDocument) == $i) {
-            //         $row->document = true; 
-            //     }
-
-            //     array_push($data['data'], $row);
-            // }
             $this->template->view('Officer/Document_student_check_view',$data);
         }
 

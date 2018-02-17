@@ -2,8 +2,7 @@
 class Test_model extends CI_model {
     public function gets_test() 
     {
-        
-        $this->db->where('term_id', $this->Term->get_current_term()[0]['id']);        
+        $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);        
         $this->db->from('coop_test');
         $query = $this->db->get();
         return $query->result_array();
@@ -53,9 +52,9 @@ class Test_model extends CI_model {
     {
         $array['coop_test_id'] = $test_id;
         $term = $this->Term->get_current_term();
-        $array['coop_test_term_id'] = $term[0]['id'];
+        $array['coop_test_term_id'] = $term[0]['term_id'];
         $array['student_id'] = $student_id;
-        $array['student_term_id'] = $term[0]['id'];
+        $array['student_term_id'] = $term[0]['term_id'];
         $array['coop_test_status'] = 0;
         return $this->db->insert('coop_test_has_student',$array);
 

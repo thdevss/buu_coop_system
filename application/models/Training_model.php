@@ -50,11 +50,11 @@ class Training_model extends CI_model
     {
         $array['student_id'] = $student_id;
         $term = $this->Term->get_current_term();
-        $array['student_term_id'] = $term[0]['id'];
+        $array['student_term_id'] = $term[0]['term_id'];
         $array['register_date'] = date('Y-m-y H:i:s'); 
         $array['train_id'] = $training_id;
-        $train = $this->get_training($training_id);
-        $array['train_train_type_id'] = $train;
+        $train = $this->get_training($training_id)[0];
+        $array['train_train_type_id'] = $train['train_type_id'];
         return $this->db->insert('student_train_register',$array); 
     }
 
