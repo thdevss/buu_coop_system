@@ -4,48 +4,48 @@
       <nav class="sidebar-nav">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo site_url('Student/main');?>"><i class="icon-speedometer"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
+            <a class="nav-link" href="<?php echo site_url('Student/main');?>"><i class="icon-home"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
           </li>
 
           <li class="nav-title">
             นิสิต
           </li>
           <li class="nav-item nav-dropdown">
-          <a class="nav-link" href="<?php echo site_url('Student/Profile/view');?>" target="_top"><i class="icon-star"></i> ประวัตินิสิต</a>
+          <a class="nav-link" href="<?php echo site_url('Student/Profile/view');?>" target="_top"><i class="icon-notebook"></i> ประวัตินิสิต</a>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การอบรม</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-book-open"></i> การอบรม</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-              <?php echo anchor('Student/Training/check_hour/', '<i class="fa fa-star"></i> ตรวจสอบชั่วโมงการอบรม', 'class="nav-link"');?>
+              <?php echo anchor('Student/Training/check_hour/', '<i class="fa fa-hourglass-start"></i> ตรวจสอบชั่วโมงการอบรม', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
-              <?php echo anchor('Student/Training/check_history/', '<i class="fa fa-star"></i> ตรวจสอบประวัติการอบรม', 'class="nav-link"');?>
+              <?php echo anchor('Student/Training/check_history/', '<i class="fa fa-history"></i> ตรวจสอบประวัติการอบรม', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
-                <?php echo anchor('Student/Training/register/', '<i class="fa fa-star"></i> สมัครเข้าร่วมอบรม', 'class="nav-link"');?>
+                <?php echo anchor('Student/Training/register/', '<i class="fa fa-registered"></i> สมัครเข้าร่วมอบรม', 'class="nav-link"');?>
               </li>
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การสอบสหกิจ</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-note"></i> การสอบสหกิจ</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo site_url('student/test/lists');?>" target="_top"><i class="icon-star"></i> สมัครสอบสหกิจ</a>
+                <a class="nav-link" href="<?php echo site_url('student/test/lists');?>" target="_top"><i class="fa fa-registered"></i> สมัครสอบสหกิจ</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo site_url('student/test/result');?>" target="_top"><i class="icon-star"></i> ประกาศผลสอบ</a>
+                <a class="nav-link" href="<?php echo site_url('student/test/result');?>" target="_top"><i class="fa fa-file-pdf-o"></i> ประกาศผลสอบ</a>
               </li>
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> สหกิจศึกษา</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-graduation"></i> สหกิจศึกษา</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('student/Job/lists');?>" target="_top"><i class="icon-star"></i> รายการสมัครที่เปิดรับ</a>
+              <a class="nav-link" href="<?php echo site_url('student/Job/lists');?>" target="_top"><i class="icon-list"></i> รายการสมัครที่เปิดรับ</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('student/Job/register_status');?>" target="_top"><i class="icon-star"></i> ประกาศผลการสมัครงาน</a>
+              <a class="nav-link" href="<?php echo site_url('student/Job/register_status');?>" target="_top"><i class="fa fa-file-pdf-o"></i> ประกาศผลการสมัครงาน</a>
               </li>
             </ul>
           </li>
