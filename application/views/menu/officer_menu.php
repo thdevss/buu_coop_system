@@ -28,7 +28,7 @@
             </li>
             <li class="nav-item">
 
-              <?php echo anchor('Officer/Coop_student/', '<i class="fa fa-star"></i> รายชื่อนิสิตสหกิจ', 'class="nav-link"');?>            
+              <?php echo anchor('Officer/Coop_student/', '<i class="fa fa-mortar-board "></i> รายชื่อนิสิตสหกิจ', 'class="nav-link"');?>            
             </li>
           </ul>
         </li>
@@ -39,7 +39,7 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-user-following"></i> อาจารย์</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <?php echo anchor('Officer/Management_student_adviser', '<i class="fa fa-gear fa-lg mt-4 fa-spin"></i> จัดอาจารย์ที่ปรึกษากับนิสิต', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Management_student_adviser', '<i class="fa fa-gear fa-md fa-spin"></i> จัดอาจารย์ที่ปรึกษากับนิสิต', 'class="nav-link"');?>
             </li>
           </ul>
         </li>
@@ -98,35 +98,25 @@
             <?php echo anchor('Officer/Assessment_company_Form/', '<i class="fa fa-tasks"></i>  จัดการแบบประเมินสถานประกอบการ', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-
-            <?php echo anchor('Officer/Assessment_coop_student_Form/', '<i class="fa fa-star"></i> จัดการแบบประเมินนิสิตสหกิจศึกษา', 'class="nav-link"');?>
+            <?php echo anchor('Officer/Assessment_coop_student_Form/', '<i class="fa fa-mortar-board"></i> จัดการแบบประเมินนิสิตสหกิจศึกษา', 'class="nav-link"');?>
             </li>
           </ul>
         </li>
-
         <li class="nav-item nav-dropdown">
-          <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> ตั้งค่าระบบ</a>
+          <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-cogs fa-md fa-spin"></i> ตั้งค่าระบบ</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <?php echo anchor('Officer/setting/lists_job_title', '<i class="fa fa-star"></i>  จัดการตำแหน่งงานสถานประกอบการ', 'class="nav-link"');?>
+              <?php echo anchor('Officer/setting/lists_job_title', '<i class="fa fa-tasks"></i>  จัดการตำแหน่งงานสถานประกอบการ', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-              <?php echo anchor('Officer/setting/lists_skill_name', '<i class="fa fa-star"></i>  จัดการทักษะงานสถานประกอบการ', 'class="nav-link"');?>
+              <?php echo anchor('Officer/setting/lists_skill_name', '<i class="fa fa-tasks"></i>  จัดการทักษะงานสถานประกอบการ', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/Test_Management/', '<i class="fa fa-star"></i>  จัดการภาคปีการศึกษา', 'class="nav-link"');?>
+            <?php echo anchor('Officer/Test_Management/', '<i class="fa fa-tasks"></i>  จัดการภาคปีการศึกษา', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/Test_result/', '<i class="fa fa-star"></i>  จัดการเอกสาร', 'class="nav-link"');?>
-            </li>
-
-            <?php echo anchor('Officer/Assessment_coop_student_Form/', '<i class="fa fa-mortar-board "></i> จัดการแบบประเมินนิสิตสหกิจศึกษา', 'class="nav-link"');?>
-
-          </ul>
+            <?php echo anchor('Officer/Test_result/', '<i class="fa fa-file-text-o"></i>  จัดการเอกสาร', 'class="nav-link"');?>
         </li>
-       
-        
-
       </ul>
     </nav>
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>
