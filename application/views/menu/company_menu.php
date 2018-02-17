@@ -4,34 +4,34 @@
       <nav class="sidebar-nav">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
+            <a class="nav-link" href="index.html"><i class="icon-home"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
           </li>
 
           <li class="nav-title">
             ผู้ประกอบการ
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> ข้อมูลบริษัท</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-address-book-o"></i> ข้อมูลบริษัท</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <?php echo anchor('company/Company_info/', '<i class="fa fa-star"></i> จัดการข้อมูลบริษัท', 'class="nav-link"');?>                
+                <?php echo anchor('company/Company_info/', '<i class="fa fa-edit "></i> จัดการข้อมูลบริษัท', 'class="nav-link"');?>                
               </li>
               <li class="nav-item">
-              <?php echo anchor('company/company_map/', '<i class="fa fa-star"></i> แผนที่ตั้งบริษัท', 'class="nav-link"');?>
+              <?php echo anchor('company/company_map/', '<i class="fa fa-map-pin"></i> แผนที่ตั้งบริษัท', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="components-cards.html"><i class="icon-puzzle"></i> จัดการที่อยู่</a>
+                <a class="nav-link" href="components-cards.html"><i class="fa fa-address-card-o"></i> จัดการที่อยู่</a>
               </li>
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> นิสิต</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-people"></i> นิสิต</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="icons-font-awesome.html"><i class="icon-star"></i> รายชื่อที่สมัครในตำแหน่งงาน</a>
+                <a class="nav-link" href="icons-font-awesome.html"><i class="icon-list"></i> รายชื่อที่สมัครในตำแหน่งงาน</a>
               </li>
               <li class="nav-item">
-              <?php echo anchor('Company/Assessmentstudent/', '<i class="fa fa-star"></i> ประเมินผลการฝึกงานของนิสิต', 'class="nav-link"');?>
+              <?php echo anchor('Company/Assessmentstudent/', '<i class="icon-doc"></i> ประเมินผลการฝึกงานของนิสิต', 'class="nav-link"');?>
               </li>
             </ul>
           </li>

@@ -26,6 +26,7 @@
             <table class="table table-bordered datatable">
                     <thead>
                       <tr>
+                        <th></td>
                         <th>วันที่</th>
                         <th>หัวข้อ</th>
                         <th></th>
@@ -33,10 +34,11 @@
                     </thead>
                     <tbody>
                       <tr>
-                      <?php foreach ($data as $row){ ?>
-                        <td><?php echo $row['date']; ?></td>
+                      <?php $i=1; foreach ($data as $row){ ?>
+                        <td class="text-center"><?php echo $i++; ?></td>
+                        <td><?php echo thaiDate($row['date']); ?></td>
                         <td><?php echo $row['activity_subject']; ?></td>
-                        <td><?php echo anchor('Adviser/Daily_activity/detail/'.$row['id'], '<i class="fa fa-star"></i> รายละเอียด', 'class="btn btn-primary" target="_blank"');?></td>  
+                        <td class="text-center"><?php echo anchor('Adviser/Daily_activity/detail/'.$row['id'], '<i class="fa fa-star"></i> รายละเอียด', 'class="btn btn-primary" target="_blank"');?></td>  
                       </tr>
                       <?php } ?>
                     </tbody>
