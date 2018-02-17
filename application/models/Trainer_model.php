@@ -6,7 +6,13 @@ class Trainer_model extends CI_model {
         $this->db->from('company_person');
         $query = $this->db->get();
         return $query->result_array();
+    }
 
+    public function gets_trainer()
+    {
+        $this->db->from('company_person');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function insert_trainer($array)

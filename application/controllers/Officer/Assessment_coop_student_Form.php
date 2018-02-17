@@ -19,6 +19,10 @@
 
         public function index($status = '') //get coop student questionaire subject
         {   
+            if($status == '') {
+                $status = $this->input->get('status');
+            }
+
             if( $status == 'success'){
                 $data['status']['color'] = 'success';            
                 $data['status']['text'] = 'เพิ่มสำเร็จ';
@@ -27,15 +31,9 @@
                 $data['status'] = '';
             }
 
-            $data['coop_student_questionnaire_subject'] = array();
-            foreach($this->Coop_Student_Assessment_Form->gets_form_for_coop_student() as $row)
-            {
-               
-                
-                array_push($data['coop_student_questionnaire_subject'], $row);
-
-            }
-            print_r($data);
+            $data['coop_student_questionnaire_subject'] = $this->Coop_Student_Assessment_Form->gets_form_for_coop_student();
+            $data['next_number'] = end($data['coop_student_questionnaire_subject'])['number'];
+            $data['next_number'] = (int) $data['next_number']+1;
 
             $this->template->view('Officer/Assessment_student_Form_Subject_view',$data);
 
@@ -46,25 +44,23 @@
         {
             $array['number'] = $this->input->post('number');
             $array['title'] = $this->input->post('title');
-            $term_id = $this->Term->get_current_term()[0]['id'];
+            $term_id = $this->Term->get_current_term()[0]['term_id'];
             $array['term_id'] = $term_id; 
 
             $this->Coop_Student_Assessment_Form->save_coop_student_form_result($array);
 
-            return $this->index('success');
+            // return $this->index('success');
+            redirect('Officer/Assessment_coop_student_Form/index/?status=success', 'refresh');
+            
 
         }
 
         public function get_coop_student_questionnaire_item($id) //get coop student questionaire item ออกมาตาม id
         { 
             $data['subject'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_subject($id)[0];  
-            $data['coop_student_questionnaire_item'] = array();
-            foreach($this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item_by_subject($id) as $row)
-            {
-               
-                array_push($data['coop_student_questionnaire_item'], $row);
-
-            }
+            $data['coop_student_questionnaire_item'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item_by_subject($id);
+            $data['next_number'] = end($data['coop_student_questionnaire_item'])['number'];
+            $data['next_number'] = (float) $data['next_number']+0.1;
 
             $this->template->view('Officer/Assessment_student_Form_item_view',$data);
         }

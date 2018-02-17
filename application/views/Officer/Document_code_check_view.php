@@ -39,9 +39,10 @@
                 <table class="table table-bordered" id="form_search_result">
                     <thead>
                       <tr>
-                        <th class="text-center">รหัสนิสิต</th>
-                        <th class="text-center">ชื่อ-นามสกุล</th>
-                        <th class="text-center">สถานะการส่งเอกสาร</th>
+                        <th></th>
+                        <th class="text-left">รหัสนิสิต</th>
+                        <th class="text-left">ชื่อ-นามสกุล</th>
+                        <th class="text-left">สถานะการส่งเอกสาร</th>
                       </tr>
                     </thead>
                     <tbody></tbody>
@@ -71,12 +72,18 @@ $('#form_id').on('change', function (e) {
 
 
     table = $('#form_search_result').DataTable( {
-        'order': [[0, 'asc']],
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+        } ],
+        'order': [[1, 'asc']],
         "ajax": {
           "url": SITE_URL+"/Officer/Coop_Submitted_Form_Search/get_by_form_code/"+valueSelected,
           "dataSrc": ""
         },
         "columns": [
+            { "data": "student.id" },          
             { "data": "student.id" },
             { "data": "student.fullname" },            
             { "data": "form.status" }
@@ -84,30 +91,12 @@ $('#form_id').on('change', function (e) {
         
     } );
 
-    // jQuery.getJSON( SITE_URL+"/Officer/Coop_Submitted_Form_Search/get_by_form_code/"+valueSelected, function( result ) {
-    //     var items = [];
-    //     console.log(result);
+    table.on( 'order.dt search.dt', function () {
+        table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
 
-    //     jQuery.each( result.data, function( key, val ) {
-    //         if(val.form != null) {
-    //             $('#form_search_result tbody').append(
-    //                 '<tr>'+
-    //                 '<td>'+val.student.id+'</td>'+
-    //                 '<td>'+val.student.fullname+'</td>'+                    
-    //                 '<td><u>ส่งแล้ว</u></td>'+              
-    //                 '</tr>');
-    //         } else {
-    //             $('#form_search_result tbody').append(
-    //               '<tr>'+
-    //               '<td>'+val.student.id+'</td>'+
-    //               '<td>'+val.student.fullname+'</td>'+                    
-    //               '<td><b>ยังไม่ส่ง!</b></td>'+              
-    //               '</tr>');
-
-    //         }
-            
-    //     });
-    // });
 
 });
 

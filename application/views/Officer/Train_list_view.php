@@ -29,7 +29,7 @@
               <table class="table table-bordered datatable" >
                     <thead>
                       <tr bgcolor="">
-                        <th class="text-center">ลำดับ</th>
+                        <th class="text-center"></th>
                         <th class="text-center">วันที่</th>
                         <th class="text-center">ประเภท</th>
                         <th class="text-center">ชื่อโครงการ</th>

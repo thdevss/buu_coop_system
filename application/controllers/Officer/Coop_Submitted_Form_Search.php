@@ -19,11 +19,15 @@ class Coop_Submitted_Form_Search extends CI_Controller {
         public function by_student()
         {
             $data['data'] = array();
+            $cache = array();
+            foreach($this->Student->gets_department() as $tmp) {
+                $cache['department'][$tmp['id']] = $tmp;
+            }
             foreach($this->Coop_Student->gets_coop_student() as $r) {
                 $row = array();
                 $row['complete_form'] = true; //รอการเช็คสถานะ
                 $row['student'] = $this->Student->get_student($r['student_id'])[0];
-                $row['department'] = $this->Student->get_department($row['student']['department_id'])[0];
+                $row['department'] = $cache['department'][$row['student']['department_id']];
 
                 
                 

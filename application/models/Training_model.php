@@ -136,6 +136,14 @@ class Training_model extends CI_model
         return $query->result_array();
     }
 
+    public function gets_student_register_train($training_id)
+    {
+        $this->db->where('train_id', $training_id);
+        $this->db->from('student_train_register');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
 
 
     public function get_student_stat_of_training($student_id)

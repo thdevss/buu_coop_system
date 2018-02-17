@@ -79,7 +79,7 @@ class Train_check_student extends CI_Controller {
         $data['check_id'] = $check_id;   
         $data['training_check_student'] = $this->Training_Check_Student->get_check($check_id)[0];
         $data['train'] = $this->Training->get_training($data['training_check_student']['train_id'])[0];
-        $data['total_student'] = $data['train'];
+        $data['total_student'] = count($this->Training->gets_student_register_train($data['training_check_student']['train_id']));
 
 
         $this->template->view('Officer/Train_check_student_form_view', $data);
@@ -107,6 +107,7 @@ class Train_check_student extends CI_Controller {
                 foreach($this->Training_Check_Student->gets_student_by_check($train_set_check_id) as $row) {
                     $tmp = array();
                     $tmp['train_check'] = $row;
+                    $tmp['train_check']['date_check'] = thaiDate($tmp['train_check']['date_check']);
                     $tmp['student'] = $this->Student->get_student($row['student_id'])[0];
                     array_push($return['rows'], $tmp);
                 }
