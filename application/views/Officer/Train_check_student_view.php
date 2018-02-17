@@ -26,7 +26,7 @@
                                     <select class="form-control" name="train_id">
                                         <option>--- please select ----</option>
                                         <?php foreach($data as $row) { ?>
-                                            <option value="<?php echo $row['train']['id'];?>"><?php echo $row['train']['date'];?> - <?php echo $row['train']['title'];?></option>
+                                            <option value="<?php echo $row['train']['id'];?>"><?php echo thaiDate($row['train']['date']);?> - <?php echo $row['train']['title'];?></option>
                                         <?php } ?>
                                     </select>
                                 </div>

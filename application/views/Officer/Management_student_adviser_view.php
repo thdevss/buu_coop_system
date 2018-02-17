@@ -19,13 +19,14 @@
               <table class="table table-bordered" id="student_table">
                     <thead>
                       <tr>
-                        <th>ลำดับ</th>
-                        <th class="text-center">รหัสนิสิต</th>
-                        <th class="text-center">ชื่อ-สกุล</th>
-                        <th class="text-center">อาจารย์ที่ปรึกษา</th>
-                        <th class="text-center">ชื่อบริษัท</th>
-                        <th class="text-center">เเขวง</th>
-                        <th class="text-center">จังหวัด</th>
+                        <th></th>
+                        <th></th>
+                        <th class="text-left">รหัสนิสิต</th>
+                        <th class="text-left">ชื่อ-สกุล</th>
+                        <th class="text-left">อาจารย์ที่ปรึกษา</th>
+                        <th class="text-left">ชื่อบริษัท</th>
+                        <th class="text-left">แขวง</th>
+                        <th class="text-left">จังหวัด</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -66,22 +67,30 @@
 
 <script>
 $(document).ready(function() {
-    $('#student_table').DataTable( {
-        'columnDefs': [{
+    var table = $('#student_table').DataTable( {
+        'columnDefs': [
+        {
           'targets': 0,
           'checkboxes': {
             'selectRow': true
           }
-        }],
+        }, 
+        {
+              "searchable": false,
+              "orderable": false,
+              "targets": 1
+        }
+        ],
         'select': {
           'style': 'multi'
         },
-        'order': [[1, 'asc']],
+        'order': [[2, 'asc']],
         "ajax": {
           "url": "<?php echo site_url('Officer/Management_student_adviser/ajax_list');?>",
           "dataSrc": ""
         },
         "columns": [
+            { "data": "student.id" },          
             { "data": "student.id" },
             { "data": "student.id" },            
             { "data": "student.fullname" },
@@ -92,6 +101,12 @@ $(document).ready(function() {
         ],
         
     } );
+
+    table.on( 'order.dt search.dt', function () {
+        table.column(1, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
 
     $('#select_adviser_btn').click( function () {
       var current_table_page = $('#student_table').DataTable().page.info().page

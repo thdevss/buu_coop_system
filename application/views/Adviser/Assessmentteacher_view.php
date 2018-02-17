@@ -19,6 +19,7 @@
               <table class="table table-bordered datatable">
                     <thead>
                       <tr>
+                        <th></th>
                         <th>รหัสนิสิต</th>
                         <th>ชื่อ-นามสกุล</th>
                         <th>สาขาวิชา</th>
@@ -29,8 +30,9 @@
                     </thead>
                     <tbody>
                       <tr>
-                      <?php foreach ($data as $row){ ?>
-                        <td><?php echo $row['student']['id']?></td>
+                      <?php $i=1; foreach ($data as $row){ ?>
+                        <td class="text-center"><?php echo $i++; ?></td>
+                        <td class="text-right"><?php echo $row['student']['id']?></td>
                         <td><?php echo $row['student']['fullname']?></td>
                         <td><?php echo $row['department']['name']?></td>
                         <td><?php echo $row['company']['name_th']?></td>

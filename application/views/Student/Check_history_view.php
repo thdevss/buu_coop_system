@@ -29,6 +29,7 @@
                     <table class="table table-bordered datatable">
                       <thead>
                         <tr>
+                          <th></th>
                           <th>วันเวลา</th>
                           <th>จำนวนชั่วโมง</th>
                           <th>หัวข้อ</th>
@@ -37,13 +38,14 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php foreach($type['history'] as $row) { ?>
+                        <?php $i=1; foreach($type['history'] as $row) { ?>
                           <tr>
-                            <td><?php echo $row['train']['date'];?></td>
-                            <td><?php echo $row['total_hour'];?></td>
+                            <td class="text-center"><?php echo $i++;?></td>
+                            <td><?php echo thaiDate($row['train']['date']);?></td>
+                            <td class="text-right"><?php echo $row['total_hour'];?></td>
                             <td><?php echo $row['train']['title'];?></td>
                             <td><?php echo $row['train']['lecturer'];?></td>
-                            <td><?php echo $row['check_hour'];?></td>
+                            <td class="text-right"><?php echo $row['check_hour'];?></td>
 
 
                           </tr>

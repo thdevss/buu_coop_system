@@ -17,6 +17,7 @@
                 <table class="table table-bordered datatable">
                     <thead>
                       <tr>
+                        <th></th>
                         <th>รหัสนิสิต</th>
                         <th>ชื่อ - สกุล</th>
                         <th>สาขาวิชา</th>
@@ -26,8 +27,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($data as $row) {?>
+                        <?php $i=1; foreach($data as $row) {?>
                         <tr>
+                            <td class="text-center"><?php echo $i++; ?></td>
                             <td><?php echo $row['student']['id']; ?></td>                      
                             <td><?php echo $row['student']['fullname']; ?></td>
                             <td><?php echo $row['department']['name']; ?></td>
