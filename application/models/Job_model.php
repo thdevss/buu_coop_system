@@ -16,7 +16,7 @@ class Job_model extends CI_model {
     public function delete_job($job_id) 
     {
         $this->db->where('id', $job_id);
-        $this->db->delete('company_job_position');
+        return $this->db->delete('company_job_position');
 
     }
 
@@ -59,4 +59,44 @@ class Job_model extends CI_model {
         $this->db->insert('company_job_position_has_student',$array);
         
     }
+
+    public function gets_company_job_title()
+    {
+        $this->db->from('company_job_title');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_company_job_title_by_job_title_id($job_title_id)
+    {
+        $this->db->where('job_title_id',$job_title_id);
+        $this->db->from('company_job_title');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function insert_job_title($array)
+    {
+        return $this->db->insert('company_job_title',$array);
+    }
+
+    public function update_job_title($job_title_id,$array)
+    {
+        $this->db->where('job_title_id', $job_title_id);
+        return $this->db->update('company_job_title',$array);
+    }
+
+    public function delete_job_title($job_title_id) 
+    {
+        $this->db->where('job_title_id', $job_title_id);
+        return $this->db->delete('company_job_title');
+
+    }
+    public function check_dup_job_title($job_title)
+    {
+        $this->db->like('job_title',$job_title);
+        $this->db->from('company_job_title');
+        return $this->db->count_all_results();
+    }
+
 }

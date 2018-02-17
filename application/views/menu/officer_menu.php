@@ -31,18 +31,6 @@
             </li>
           </ul>
         </li>
-
-
-         <li class="nav-item nav-dropdown">
-          <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> อาจารย์</a>
-          <ul class="nav-dropdown-items">
-            <li class="nav-item">
-            <?php echo anchor('Officer/#/', '<i class="fa fa-star"></i>  จัดการจับคู่อาจารย์กับนิสิต', 'class="nav-link"');?>
-            </li>
-          </ul>
-        </li>
-
-
         <li class="nav-item nav-dropdown">
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-user-following"></i> อาจารย์</a>
           <ul class="nav-dropdown-items">
@@ -107,6 +95,25 @@
             </li>
             <li class="nav-item">
             <?php echo anchor('Officer/Assessment_coop_student_Form/', '<i class="fa fa-star"></i> จัดการแบบประเมินนิสิตสหกิจศึกษา', 'class="nav-link"');?>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item nav-dropdown">
+          <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> ตั้งค่าระบบ</a>
+          <ul class="nav-dropdown-items">
+            <li class="nav-item">
+              <?php echo anchor('Officer/setting/lists_job_title', '<i class="fa fa-star"></i>  จัดการตำแหน่งงานสถานประกอบการ', 'class="nav-link"');?>
+            </li>
+            <li class="nav-item">
+              <?php echo anchor('Officer/setting/lists_skill_name', '<i class="fa fa-star"></i>  จัดการทักษะงานสถานประกอบการ', 'class="nav-link"');?>
+            </li>
+            <li class="nav-item">
+            <?php echo anchor('Officer/Test_Management/', '<i class="fa fa-star"></i>  จัดการภาคปีการศึกษา', 'class="nav-link"');?>
+            </li>
+            <li class="nav-item">
+            <?php echo anchor('Officer/Test_result/', '<i class="fa fa-star"></i>  จัดการเอกสาร', 'class="nav-link"');?>
+            </li>
           </ul>
         </li>
        
