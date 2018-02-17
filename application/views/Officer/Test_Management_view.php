@@ -164,8 +164,17 @@ $('#test_id').on('change', function (e) {
             { "data": "coop_test.name" }
             
         ],
+        "initComplete": function(settings, json) {
+          //style here
+          $("#test_student_list_result tbody").find('tr').each(function(){
+            var td = $(this).children('td').eq(3);
+            jQuery(td).css('text-align', 'right')
+          });
+        }
         
     } );
+
+    
 
 });
 

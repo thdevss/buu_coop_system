@@ -14,6 +14,16 @@ class Template {
             $data['terms'] = $CI->Term->gets_term(); //get terms
         }
 
+        //profile
+        if(
+            $login_data->login_type == 'student' ||
+            $login_data->login_type == 'coop_student'
+        ) {
+            $data['profile_image'] = 'http://reg.buu.ac.th/registrar/getstudentimage.asp?id='.$data['user']->login_value;
+        } else {
+            $data['profile_image'] = 'http://via.placeholder.com/150x150/000/fff?text='.$data['user_info']->fullname[0];
+        }
+
         $CI->load->view('template/header.php', $data);
 
         if($login_data->login_type == 'company') {

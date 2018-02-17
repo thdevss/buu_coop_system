@@ -32,22 +32,12 @@
           </ul>
         </li>
 
-<!-- 
-         <li class="nav-item nav-dropdown">
-          <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> อาจารย์</a>
-          <ul class="nav-dropdown-items">
-            <li class="nav-item">
-            <?php echo anchor('Officer/#/', '<i class="fa fa-gear fa-lg mt-4 fa-spin"></i>  จัดการจับคู่อาจารย์กับนิสิต', 'class="nav-link"');?>
-            </li>
-          </ul>
-        </li>
- -->
 
         <li class="nav-item nav-dropdown">
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-user-following"></i> อาจารย์</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <?php echo anchor('Officer/Management_student_adviser', '<i class="fa fa-venus-double"></i> จัดอาจารย์ที่ปรึกษากับนิสิต', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Management_student_adviser', '<i class="fa fa-gear fa-lg mt-4 fa-spin"></i> จัดอาจารย์ที่ปรึกษากับนิสิต', 'class="nav-link"');?>
             </li>
           </ul>
         </li>
@@ -134,7 +124,7 @@
             <select class="form-control" id="term_option">
               <?php 
               foreach($terms as $term) {
-                echo '<option value="'.$term->id.'">'.$term->name.'</option>';
+                echo '<option value="'.$term->term_id.'">'.$term->name.'</option>';
               }
               ?>
             </select>

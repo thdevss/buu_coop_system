@@ -29,10 +29,10 @@
                       <table class="table table-bordered datatable" >
                             <thead>
                               <tr bgcolor="">
-                                <th class="text-center" >ลำดับ</th>
-                                <th class="text-center">ชื่อสถานประกอบการ</th>
-                                <th class="text-center">จำนวนเจ้าหน้าที่</th>
-                                <th class="text-center"></th>
+                                <th class="text-left"></th>
+                                <th class="text-left">ชื่อสถานประกอบการ</th>
+                                <th class="text-left">จำนวนเจ้าหน้าที่</th>
+                                <th class=""></th>
                               </tr>
                             </thead>
                             <tbody>
@@ -41,8 +41,8 @@
                                 <td class="text-center">
                                 <?php echo $i++; ?>
                                 </td>
-                                <td class="text-center"><?php echo $row['name_th'];?></td>
-                                <td class="text-center"><?php echo $row['total_employee']; ?></td>
+                                <td class="text-left"><?php echo $row['name_th'];?> (<?php echo $row['name_en'];?>)</td>
+                                <td class="text-right"><?php echo $row['total_employee']; ?></td>
                                 <td class="form-inline">
                                       <?php echo anchor('Officer/Trainer/list/'.$row['id'], '<i class="icon-people"></i> เจ้าหน้าที่', 'class="btn  btn-primary"');?>                              
                                       <div style="width:2%"></div>

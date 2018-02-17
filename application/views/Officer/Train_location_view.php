@@ -28,7 +28,7 @@
               <table class="table table-bordered datatable" >
                     <thead>
                       <tr bgcolor="">
-                        <th class="text-center">ลำดับที่</th>
+                        <th class="text-center"></th>
                         <th class="text-center">ตึก</th>
                         <th class="text-center">ห้อง</th>
                         <th class="text-center"></th>
@@ -41,8 +41,8 @@
                     ?>
                       <tr>
                         <td class="text-center"><?php echo $i++; ?></td>
-                        <td class="text-center"><?php echo $row['building']; ?></td>
-                        <td class="text-center"><?php echo $row['room']?></td>
+                        <td class="text-left"><?php echo $row['building']; ?></td>
+                        <td class="text-left"><?php echo $row['room']?></td>
                         <td class="text-center">
                             <form action="<?php echo site_url('Officer/train_location/delete'); ?>" class="form-inline" method="post">
                                 <input type="hidden" name="id" value="<?php echo $row['id'] ; ?>">

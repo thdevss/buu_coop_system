@@ -25,6 +25,7 @@
                     <thead>
                       <tr>
                         <th></th>
+                        <th></th>
                         <th class="text-center">รหัสนิสิต</th>
                         <th class="text-center">ชื่อ-สกุล</th>
                         <th class="text-center">GPAX</th>
@@ -73,23 +74,33 @@
 
 <script>
 $(document).ready(function() {
-    $('#student_table').DataTable( {
-        'columnDefs': [{
-          'targets': 0,
-          'checkboxes': {
-            'selectRow': true
+    var table = $('#student_table').DataTable( {
+        'columnDefs': [
+          {
+            'targets': 0,
+            "searchable": false,
+            "orderable": false,
+            'checkboxes': {
+              'selectRow': true
+            }
+          },
+          {
+              "searchable": false,
+              "orderable": false,
+              "targets": 1
           }
-        }],
+        ],
         'select': {
           'style': 'multi'
         },
-        'order': [[1, 'asc']],
+        'order': [[2, 'asc']],
         "ajax": {
           "url": "<?php echo site_url('Officer/Student_list/ajax_list');?>",
           "dataSrc": ""
         },
         "columns": [
             { "data": "student.id" },
+            { "data": "student.id" },            
             { "data": "student.id" },            
             { "data": "student.fullname" },
             { "data": "student.gpax" },
@@ -100,6 +111,12 @@ $(document).ready(function() {
         ],
         
     } );
+
+    table.on( 'order.dt search.dt', function () {
+        table.column(1, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
 
     $('#change_student_status').click( function () {
       var current_table_page = $('#student_table').DataTable().page.info().page
