@@ -17,13 +17,12 @@ class Student_list extends CI_Controller {
 
         //cache here
         foreach($this->Student->gets_coop_status_type() as $rrr) {
-            $tmp['coop_student_type'][$rrr['id']] = $rrr;
+            $cache['coop_student_type'][$rrr['id']] = $rrr;
         }
         foreach($this->Student->gets_department() as $rrr) {
-            $tmp['department'][$rrr['id']] = $rrr;
+            $cache['department'][$rrr['id']] = $rrr;
         }
         
-
 
         foreach($this->Student->gets_student() as $row)
         {
@@ -34,13 +33,12 @@ class Student_list extends CI_Controller {
             $tmp_array['student'] = $row;
             $tmp_array['student']['gpax'] = '2.99';
             
-            $tmp_array['coop_student_type'] = $tmp['coop_student_type'][$row['coop_status']];
-            $tmp_array['department'] = $tmp['department'][$row['department_id']];
+            $tmp_array['coop_student_type'] = $cache['coop_student_type'][$row['coop_status']];
+            $tmp_array['department'] = $cache['department'][$row['department_id']];
             // $tmp_array['coop_student_type'] = $this->Student->get_by_coop_status_type($row['coop_status'])[0];
             // $tmp_array['department'] = $this->Student->get_department($row['department_id'])[0];
             array_push($return['data'], $tmp_array);
         }
-
 
         echo json_encode($return['data']);        
     }

@@ -17,10 +17,10 @@ class Student_model extends CI_model {
 
     public function gets_student()
     {
+        $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);
         $this->db->from('student');
         $query = $this->db->get();
         return $query->result_array();
-
     }
 
     public function gets_student_by_department($department_id)
