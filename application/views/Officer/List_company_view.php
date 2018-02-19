@@ -16,7 +16,7 @@
                     <div class="card-header">
                       <i class="fa fa-align-justify"></i> จัดการข้อมูลสถานประกอบการ
                         <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">
-                        เพิ่มสถานประกอบการ
+                        <i class="fa fa-hand-pointer-o"></i> เพิ่มสถานประกอบการ
                         </button>
                     </div>
                       <div class="card-body">
@@ -44,13 +44,13 @@
                                 <td class="text-left"><?php echo $row['name_th'];?> (<?php echo $row['name_en'];?>)</td>
                                 <td class="text-right"><?php echo $row['total_employee']; ?></td>
                                 <td class="form-inline">
-                                      <?php echo anchor('Officer/Trainer/list/'.$row['id'], '<i class="icon-people"></i> เจ้าหน้าที่', 'class="btn  btn-primary"');?>                              
+                                      <?php echo anchor('Officer/Trainer/list/'.$row['id'], '<i class="fa fa-user-circle-o"></i> เจ้าหน้าที่', 'class="btn  btn-primary"');?>                              
                                       <div style="width:2%"></div>
-                                      <?php echo anchor('Officer/Company/edit/'.$row['id'], '<i class="icon-star"></i> รายละเอียด', 'class="btn  btn-primary"');?>   
+                                      <?php echo anchor('Officer/Company/edit/'.$row['id'], '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn  btn-primary"');?>   
                                       <div style="width:2%"></div>                           
-                                      <?php echo anchor('Officer/Company/address/'.$row['id'], '<i class="icon-institution"></i> ที่อยู่', 'class="btn  btn-primary"');?>             
+                                      <?php echo anchor('Officer/Company/address/'.$row['id'], '<i class="fa fa-address-card-o"></i> ที่อยู่', 'class="btn  btn-primary"');?>             
                                       <div style="width:2%"></div>
-                                      <?php echo anchor('Officer/Company/delete/'.$row['id'], '<i class="icon-institution"></i> ลบ', 'class="btn btn-danger" onclick="return confirmDelete(this)"');?>
+                                      <?php echo anchor('Officer/Company/delete/'.$row['id'], '<i class="fa fa-trash-o"></i> ลบ', 'class="btn btn-danger" onclick="return confirmDelete(this)"');?>
                                 </td>
                               </tr>
                             <?php 

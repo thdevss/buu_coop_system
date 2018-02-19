@@ -16,7 +16,7 @@
           <div class="card">
             <div class="card-header">
               <i class="fa fa-align-justify"></i> จัดการข้อมูลการอบรม
-              <a class="btn btn-primary float-right" href="<?php echo site_url('officer/Training/add');?>">เพิ่มการอบรม</a>
+              <a class="btn btn-primary float-right" href="<?php echo site_url('officer/Training/add');?>"><i class="fa fa-hand-pointer-o"></i> เพิ่มการอบรม</a>
 
             </div>
               <div class="card-body">
@@ -53,9 +53,9 @@
                         <td class="text-center">
                             <form action="<?php echo site_url('Officer/Training /delete'); ?>" class="form-inline" method="post">
                               <input type="hidden" name="id" value="<?php echo $row['train']['id'] ; ?>">
-                              <?php echo anchor('Officer/Training/edit/'.$row['train']['id'], '<i class="icon-pencil"></i> เเก้ไขข้อมูล', 'class="btn  btn-primary"');?>                              
+                              <?php echo anchor('Officer/Training/edit/'.$row['train']['id'], '<i class="fa fa-eraser"></i> เเก้ไขข้อมูล', 'class="btn  btn-primary"');?>                              
                               <p style="width:10px;"></p>
-                              <button type="submit" class="btn btn-danger btn-submit"><i class="fa fa-rss"></i> ลบ</button>
+                              <button type="submit" class="btn btn-danger btn-submit"><i class="fa fa-trash-o"></i> ลบ</button>
                             </form>
                         </td>
                       </tr>

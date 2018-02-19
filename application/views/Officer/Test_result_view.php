@@ -48,7 +48,7 @@
                   <input type="hidden" name="code" value="1">
                   
               <div class="text-center" style="margin-top:70px;">
-                  <button type="submit" class="btn btn-lg btn-primary"><i class="fa fa-dot-circle-o"></i>อัพโหลดเอกสาร</button>
+                  <button type="submit" class="btn btn-md btn-primary"><i class="fa fa-upload"></i> อัพโหลดเอกสาร</button>
                 </div>
                 </form>
           </div>

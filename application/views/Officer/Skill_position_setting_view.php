@@ -67,8 +67,8 @@
                                                     <td class="text-center"><?php echo $i++ ;?></td>
                                                     <td class="text-left"><?php echo $row['skill_name']; ?></td>
                                                     <td>
-                                                        <?php echo anchor('Officer/Setting/update_skill_name/'.$row['skill_id'], 'แก้ไข', 'class="btn  btn-primary"');?>                                 
-                                                        <?php echo anchor('Officer/Setting/delete_skill_name/'.$row['skill_id'], 'ลบ', 'class="btn btn-danger" onclick="return confirmDelete(this)"');?>
+                                                        <?php echo anchor('Officer/Setting/update_skill_name/'.$row['skill_id'], '<i class="fa fa-eraser"></i> แก้ไข', 'class="btn  btn-primary"');?>                                 
+                                                        <?php echo anchor('Officer/Setting/delete_skill_name/'.$row['skill_id'], '<i class="fa fa-trash-o"></i> ลบ', 'class="btn btn-danger" onclick="return confirmDelete(this)"');?>
 
                                                     </td>
                                                 </tr>
