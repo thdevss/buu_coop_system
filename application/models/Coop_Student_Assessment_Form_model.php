@@ -31,6 +31,14 @@ class Coop_Student_Assessment_Form_model extends CI_model {
         return $query->result_array();
     }
 
+    public function get_coop_student_questionnaire_item($id)
+    {
+        $this->db->where('id',$id);
+        $this->db->from('coop_student_questionnaire_item');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function insert_coop_student_questionnaire_item($array)
     {
         return $this->db->insert('coop_student_questionnaire_item',$array);
