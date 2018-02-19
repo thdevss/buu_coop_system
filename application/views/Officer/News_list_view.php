@@ -16,7 +16,7 @@
           <div class="card">
             <div class="card-header">
                 <i class="fa fa-align-justify"></i>รายการประกาศข่าวสารหน้าเว็บ
-                <a class="btn btn-success float-right" href="<?php echo site_url('Officer/News/add');?>">เพิ่มประกาศข่าวสาร</a>
+                <a class="btn btn-primary float-right" href="<?php echo site_url('Officer/News/add');?>"><i class="fa fa-hand-pointer-o"></i> เพิ่มประกาศข่าวสาร</a>
             </div>
               <div class="card-body">
                 <?php 
@@ -27,6 +27,7 @@
                 <table class="table table-bordered" id="news_table">
                     <thead>
                         <tr>
+                            <th></th>
                             <th class="text-center">วันที่</th>
                             <th class="text-center">หัวข้อ</th>
                             <th class="text-center">ผู้ประกาศ</th>
@@ -35,20 +36,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($data as $row){?>
+                    <?php 
+                    $i = 1;
+                    foreach ($data as $row) {
+                    ?>
                       <tr>
-
-                        <td class="text-center"><?php echo $row['date'];?></td>
-                        <td class="text-center"><?php echo $row['title'];?></td>
-                        <td class="text-center"><?php echo $row['author']['fullname'];?></td>
+                        <td class="text-center"><?php echo $i++;?></td>
+                        <td class="text-left"><?php echo thaiDate($row['date']);?></td>
+                        <td class="text-left"><?php echo $row['title'];?></td>
+                        <td class="text-left"><?php echo $row['author']['fullname'];?></td>
                         <td class="text-center">
-                            <a href="#" data-newsid="<?php echo $row['id'];?>" class="btn btn-secondary" data-toggle="modal" data-target="#share_modal">แชร์</a>
+                            <a href="#" data-newsid="<?php echo $row['id'];?>" class="btn btn-info" data-toggle="modal" data-target="#share_modal"><i class="fa fa-share"></i> แชร์</a>
                         </td>
                         <td class="text-center">
                             <form action="<?php echo site_url('Officer/News/delete');?>" method="post">
                                 <input type="hidden" value="<?php echo $row['id'];?>" name="id">
-                                <a href="<?php echo site_url('Officer/news/edit/'.$row['id']);?>" class="btn btn-primary">แก้ไข</a>
-                                <button type="submit" class="btn btn-delete btn-danger">ลบ</button>
+                                <a href="<?php echo site_url('Officer/news/edit/'.$row['id']);?>" class="btn btn-primary"><i class="fa fa-eraser"></i> แก้ไข</a>
+                                <button type="submit" class="btn btn-delete btn-danger"><i class="fa fa-trash-o"></i> ลบ</button>
                             </form>
                         </td>
                       </tr>
@@ -80,13 +84,13 @@
         </button>
       </div>
       <div class="modal-body text-center">
-        <a href="#" class="btn btn-info btn-lg">Facebook</a>
-        <a href="#" class="btn btn-info btn-lg">Twitter</a>
-        <a href="#" class="btn btn-info btn-lg">LINE</a>
-        <a href="#" class="btn btn-info btn-lg" data-dismiss="modal" data-toggle="modal" data-target="#sent_email_modal">Email</a>
+        <a href="#" class="btn btn-info btn-md"><i class="fa fa-facebook-square"></i> Facebook</a>
+        <a href="#" class="btn btn-info btn-md"><i class="fa fa-twitter-square"></i> twitter</i></a>
+        <a href="#" class="btn btn-info btn-md"><i class="fa fa-whatsapp"></i> LINE</a>
+        <a href="#" class="btn btn-info btn-md" data-dismiss="modal" data-toggle="modal" data-target="#sent_email_modal"><i class="fa fa-windows"></i> Email</a>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
       </div>
     </div>
   </div>
@@ -147,7 +151,7 @@ $('.btn-delete').on('click',function(e){
 
 $(document).ready(function() {
     $('#news_table').DataTable( {
-        "order": [[ 0, "desc" ]]
+        // "order": [[ 1, "desc" ]]
     } );
 } );
 

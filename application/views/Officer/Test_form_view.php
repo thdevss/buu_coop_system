@@ -30,7 +30,7 @@
                   <table class="table table-bordered datatable">
                     <thead>
                       <tr>
-                        <th>ครั้ง</th>
+                        <th>ครั้งที่</th>
                         <th>วันที่สอบ</th>
                         <th>สถานะการรับสมัครสอบ</th>
                       </tr>
@@ -38,9 +38,9 @@
                     <tbody>
                     <?php foreach ($coop_test as $row) { ?>
                       <tr>
-                        <td><?php echo $row['name']; ?></td>
-                        <td><?php echo $row['test_date'] ; ?></td>
-                        <td>
+                        <td class="text-center"><?php echo $row['name']; ?></td>
+                        <td class="text-left"><?php echo thaiDate($row['test_date']); ?></td>
+                        <td class="text-center">
                           <label class="switch switch-text switch-pill switch-success-outline-alt">
                             <input type="checkbox" class="switch-input" <?php if($row['register_status']==1) echo 'checked';?> data-coop_test_id="<?php echo $row['id'];?>">
                             <span class="switch-label" data-on="On" data-off="Off"></span>

@@ -19,41 +19,22 @@ class Coop_Submitted_Form_Search extends CI_Controller {
         public function by_student()
         {
             $data['data'] = array();
+            $cache = array();
+            foreach($this->Student->gets_department() as $tmp) {
+                $cache['department'][$tmp['id']] = $tmp;
+            }
             foreach($this->Coop_Student->gets_coop_student() as $r) {
                 $row = array();
                 $row['complete_form'] = true; //รอการเช็คสถานะ
                 $row['student'] = $this->Student->get_student($r['student_id'])[0];
-                $row['department'] = $this->Student->get_department($row['student']['department_id'])[0];
+                $row['department'] = $cache['department'][$row['student']['department_id']];
 
                 
                 
 
                 array_push($data['data'], $row);
             }
-            // $rowsDocument = $this->validate_assessment_coop->gets_document();
-            // $checkDocument = array(
-            //     'IN-S003', 'IN-S004', 'IN-S005'
-            // );
 
-            // $data['data'] = array();
-            // foreach($this->validate_assessment_coop->list() as $row) {
-            //     $row->document = false;
-            //     $i=0;
-
-            //     foreach($rowsDocument as $rox) {
-            //         if(in_array($rox->name, $checkDocument)) {
-            //             if(@$this->validate_assessment_coop->get_by_student($row->student_id, $rox->id)[0]) {
-            //                 $i++;
-            //             }
-            //         }
-            //     }
-
-            //     if(count($checkDocument) == $i) {
-            //         $row->document = true; 
-            //     }
-
-            //     array_push($data['data'], $row);
-            // }
             $this->template->view('Officer/Document_student_check_view',$data);
         }
 

@@ -16,7 +16,7 @@
           <div class="card">
             <div class="card-header">
               <i class="fa fa-align-justify"></i> จัดการข้อมูลการอบรม
-              <a class="btn btn-primary float-right" href="<?php echo site_url('officer/Training/add');?>">เพิ่มการอบรม</a>
+              <a class="btn btn-primary float-right" href="<?php echo site_url('officer/Training/add');?>"><i class="fa fa-hand-pointer-o"></i> เพิ่มการอบรม</a>
 
             </div>
               <div class="card-body">
@@ -29,7 +29,8 @@
               <table class="table table-bordered datatable" >
                     <thead>
                       <tr bgcolor="">
-                        <th class="text-center" >วันที่</th>
+                        <th class="text-center"></th>
+                        <th class="text-center">วันที่</th>
                         <th class="text-center">ประเภท</th>
                         <th class="text-center">ชื่อโครงการ</th>
                         <th class="text-center">วิทยากร</th>
@@ -39,20 +40,22 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($data as $row){?>
+                    <?php $i=1;
+                    foreach ($data as $row){?>
                       <tr>
-                        <td class="text-center"><?php echo $row['train']['date'] ?></td>
-                        <td class="text-center"><?php echo $row['train_type']['name'] ?></td>
-                        <td class="text-center"><?php echo $row['train']['title'] ?></td>
-                        <td class="text-center"><?php echo $row['train']['lecturer'] ?></td>
-                        <td class="text-center"><?php echo $row['train']['number_of_hour'] ?></td>
-                        <td class="text-center"><?php echo $row['train']['number_of_seat'] ?></td>
+                        <td class="text-center"><?php echo $i++;?></td>
+                        <td class="text-left"><?php echo thaiDate($row['train']['date']); ?></td>
+                        <td class="text-left"><?php echo $row['train_type']['name'] ?></td>
+                        <td class="text-left"><?php echo $row['train']['title'] ?></td>
+                        <td class="text-left"><?php echo $row['train']['lecturer'] ?></td>
+                        <td class="text-right"><?php echo $row['train']['number_of_hour'] ?></td>
+                        <td class="text-right"><?php echo $row['train']['number_of_seat'] ?></td>
                         <td class="text-center">
                             <form action="<?php echo site_url('Officer/Training /delete'); ?>" class="form-inline" method="post">
                               <input type="hidden" name="id" value="<?php echo $row['train']['id'] ; ?>">
-                              <?php echo anchor('Officer/Training/edit/'.$row['train']['id'], '<i class="icon-pencil"></i> เเก้ไขข้อมูล', 'class="btn  btn-primary"');?>                              
+                              <?php echo anchor('Officer/Training/edit/'.$row['train']['id'], '<i class="fa fa-eraser"></i> เเก้ไขข้อมูล', 'class="btn  btn-primary"');?>                              
                               <p style="width:10px;"></p>
-                              <button type="submit" class="btn btn-danger btn-submit"><i class="fa fa-rss"></i> ลบ</button>
+                              <button type="submit" class="btn btn-danger btn-submit"><i class="fa fa-trash-o"></i> ลบ</button>
                             </form>
                         </td>
                       </tr>

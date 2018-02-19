@@ -4,47 +4,47 @@
       <nav class="sidebar-nav">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo site_url('Adviser/main');?>"><i class="icon-speedometer"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
+            <a class="nav-link" href="<?php echo site_url('Adviser/main');?>"><i class="icon-home"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
           </li>
 
           <li class="nav-title">
             อาจารย์
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> นิสิต</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-people"></i> นิสิต</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo site_url('Adviser/Coop_student/');?>"><i class="icon-puzzle"></i> รายชื่อนิสิตที่ปรึกษา</a>
+                <a class="nav-link" href="<?php echo site_url('Adviser/Coop_student/');?>"><i class="icon-doc"></i> รายชื่อนิสิตที่ปรึกษา</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('Adviser/#');?>"><i class="icon-star"></i> แบบแจ้งแผนปฎิบัติการสหกิจ</a>
+              <a class="nav-link" href="<?php echo site_url('Adviser/#');?>"><i class="icon-docs"></i> แบบแจ้งแผนปฎิบัติการสหกิจ</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('Adviser/Daily_activity/');?>"><i class="icon-star"></i> กิจกรรมการฝึกงานในแต่ละวัน</a>
+              <a class="nav-link" href="<?php echo site_url('Adviser/Daily_activity/');?>"><i class="icon-docs"></i> กิจกรรมการฝึกงานในแต่ละวัน</a>
               </li>
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> สหกิจ</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-graduation"></i> สหกิจ</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo site_url('Adviser/company_map');?>"><i class="icon-star"></i> แผนที่</a>
+                <a class="nav-link" href="<?php echo site_url('Adviser/company_map');?>"><i class="icon-location-pin"></i> แผนที่</a>
               </li>
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> การประเมินผล</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-notebook"></i> การประเมินผล</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo site_url('Adviser/Assessment_teacher');?>"><i class="icon-star"></i> ผลการฝึกงานของนักศึกษา</a>
+                <a class="nav-link" href="<?php echo site_url('Adviser/Assessment_teacher');?>"><i class="icon-docs"></i> ผลการฝึกงานของนักศึกษา</a>
               </li>
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> สถิติ</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-graph"></i> สถิติ</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo site_url('Adviser/Stat');?>"><i class="icon-star"></i> สถิติการฝึกงานที่ผ่านมา</a>
+                <a class="nav-link" href="<?php echo site_url('Adviser/Stat');?>"><i class="icon-screen-desktop"></i> สถิติการฝึกงานที่ผ่านมา</a>
               </li>
             </ul>
           </li>

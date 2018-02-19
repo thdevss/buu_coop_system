@@ -50,11 +50,11 @@ class Training_model extends CI_model
     {
         $array['student_id'] = $student_id;
         $term = $this->Term->get_current_term();
-        $array['student_term_id'] = $term[0]['id'];
+        $array['student_term_id'] = $term[0]['term_id'];
         $array['register_date'] = date('Y-m-y H:i:s'); 
         $array['train_id'] = $training_id;
-        $train = $this->get_training($training_id);
-        $array['train_train_type_id'] = $train;
+        $train = $this->get_training($training_id)[0];
+        $array['train_train_type_id'] = $train['train_type_id'];
         return $this->db->insert('student_train_register',$array); 
     }
 
@@ -132,6 +132,14 @@ class Training_model extends CI_model
         $this->db->where('register_period <=', date('Y-m-d H:i:s'));
         $this->db->where('register_period >', date('Y-m-d H:i:s', time()-(86400*2)));
         $this->db->from('train');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function gets_student_register_train($training_id)
+    {
+        $this->db->where('train_id', $training_id);
+        $this->db->from('student_train_register');
         $query = $this->db->get();
         return $query->result_array();
     }

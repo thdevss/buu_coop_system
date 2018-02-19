@@ -25,7 +25,7 @@
                             <div class="row">
                                 <div class="text-center col-sm-12">
                                     <label class="form-control-label" for="">รอบการสอบ</label>
-                                    <b>รอบที่ <?php echo $coop_test->name;?>: <?php echo $coop_test->test_date;?></b>
+                                    <b>รอบที่ <?php echo $coop_test[0]['name'];?>: <?php echo $coop_test[0]['test_date'];?></b>
                                 </div>
                             </div>
 

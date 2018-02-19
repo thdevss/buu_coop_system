@@ -19,22 +19,27 @@
               <table class="table table-bordered datatable" >
                     <thead>
                       <tr>
-                        <th class="text-center">รหัสนิสิต</th>
-                        <th class="text-center">ชื่อ-นามสกุล</th>
-                        <th class="text-center">GPX</th>
-                        <th class="text-center">สาขาวิชา</th>
-                        <th class="text-center">สถานะการส่งเอกสาร</th>
-                        <th class="text-center"></th>
+                        <th></th>
+                        <th class="text-left">รหัสนิสิต</th>
+                        <th class="text-left">ชื่อ-นามสกุล</th>
+                        <th class="text-left">GPAX</th>
+                        <th class="text-left">สาขาวิชา</th>
+                        <th class="text-left">สถานะการส่งเอกสาร</th>
+                        <th class="text-left"></th>
                       </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($data as $row){?>
+                    <?php 
+                    $i = 1;
+                    foreach ($data as $row){
+                    ?>
                       <tr>
-                        <td class="text-center"><?php echo $row['student']['id']; ?></td>
-                        <td class="text-center"><?php echo $row['student']['fullname']; ?></td>
-                        <td class="text-center">3.50</td>
-                        <td class="text-center"><?php echo $row['department']['name']; ?></td>
-                        <td class="text-center">
+                        <td><?php echo $i++;?></td>
+                        <td class="text-left"><?php echo $row['student']['id']; ?></td>
+                        <td class="text-left"><?php echo $row['student']['fullname']; ?></td>
+                        <td class="text-right">3.50</td>
+                        <td class="text-left"><?php echo $row['department']['name']; ?></td>
+                        <td class="text-left">
                         <?php
                         if($row['complete_form']) {
                           echo '<font color="#006600">ครบ</font>';
@@ -44,7 +49,7 @@
                         ?>
                         </td>
                         <td class="text-center">
-                          <a class="btn btn-primary document_check_btn " data-studentid="<?php echo $row['student']['id'];?>">รายละเอียด</a>
+                          <a class="btn btn-primary document_check_btn " data-studentid="<?php echo $row['student']['id'];?>"><i class="fa fa-list-alt"></i> รายละเอียด</a>
                         </td>
                       </tr>
                     <?php 

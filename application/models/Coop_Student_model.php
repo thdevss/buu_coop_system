@@ -18,11 +18,13 @@ class Coop_Student_model extends CI_model {
 
     public function update_coop_student($student_id, $array)
     {
-
+        $this->db->where('student_id',$student_id);
+        return $this->db->update('coop_student',$array);
     }
 
     public function gets_coop_student()
     {
+        $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);        
         $this->db->from('coop_student');
         $query = $this->db->get();
         return $query->result_array();
@@ -40,6 +42,7 @@ class Coop_Student_model extends CI_model {
     public function gets_coop_student_by_company($company_id)
     {
         $this->db->where('company_id', $company_id);
+        $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);        
         $this->db->from('coop_student');
         $query = $this->db->get();
         
@@ -54,6 +57,7 @@ class Coop_Student_model extends CI_model {
 
     public function gets_coop_student_by_adviser($adviser_id)
     {
+        $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);                
         $this->db->where('adviser_id', $adviser_id);
         $this->db->from('coop_student');
         $query = $this->db->get();

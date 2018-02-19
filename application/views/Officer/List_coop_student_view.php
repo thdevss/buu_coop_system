@@ -16,31 +16,18 @@
           <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i>รายชื่อนิสิตสหกิจ</div>
               <div class="card-body">
-              <table class="table table-bordered datatable" >
+              <table class="table table-bordered" id="student_table">
                     <thead>
                       <tr>
-                        <th class="text-center">รหัสนิสิต</th>
-                        <th class="text-center" >ชื่อ-สกุล</th>
-                        <th class="text-center">ตำแหน่งงาน </th>
-                        <th class="text-center">บริษัท</th>
-                        <th class="text-center">พี่เลียง</th>
+                        <th></th>
+                        <th class="text-left">รหัสนิสิต</th>
+                        <th class="text-left">ชื่อ-สกุล</th>
+                        <th class="text-left">ตำแหน่งงาน</th>
+                        <th class="text-left">บริษัท</th>
+                        <th class="text-left">พี่เลียง</th>
                       </tr>
                     </thead>
-                    <tbody>
-                    <?php foreach ($data as $row){ 
-                      ?>
-
-                      <tr>
-                        <td class="text-center"><?php echo $row['student']['id'] ?></td>
-                        <td class="text-center"><?php echo $row['student']['fullname'] ?></td>
-                        <td class="text-center"><?php echo $row['position_title'] ?></td>
-                        <td class="text-center"><?php echo $row['company']['name_th'] ?></td>
-                        <td class="text-center"><?php echo $row['trainer']['fullname'] ?></td>
-                      </tr>
-                    <?php 
-                    }
-                    ?>
-                    </tbody>
+                    <tbody></tbody>
                   </table>
                 </div>
               </div>
@@ -51,8 +38,43 @@
     </div>
   </div>
 </div>
+
+
+
+</main>
+
+
+<script>
+$(document).ready(function() {
+    var table = $('#student_table').DataTable( {
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+        } ],
+        "order": [[ 1, 'asc' ]],
+        "ajax": {
+          "url": "<?php echo site_url('Officer/Coop_student/ajax_list');?>",
+          "dataSrc": ""
+        },
+        "columns": [
+            { "data": "student.id" },            
+            { "data": "student.id" },
+            { "data": "student.fullname" },
+            { "data": "job_position.position_title" },
+            { "data": "company.name_th" },
+            { "data": "trainer.fullname" }
+        ],
         
-      </div>
-    </div>
-  </div>
-</div>
+        
+    } )
+    table.on( 'order.dt search.dt', function () {
+        table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
+
+
+} );
+
+</script>
