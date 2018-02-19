@@ -35,7 +35,7 @@
             $data['next_number'] = end($data['coop_student_questionnaire_subject'])['number'];
             $data['next_number'] = (int) $data['next_number']+1;
 
-            $this->template->view('Officer/Assessment_student_Form_Subject_view',$data);
+            $this->template->view('Officer/Assessment_coop_student_Form_Subject_view',$data);
 
      
         }
@@ -62,11 +62,13 @@
             $data['next_number'] = end($data['coop_student_questionnaire_item'])['number'];
             $data['next_number'] = (float) $data['next_number']+0.1;
 
-            $this->template->view('Officer/Assessment_student_Form_item_view',$data);
+            $this->template->view('Officer/Assessment_coop_student_Form_item_view',$data);
         }
 
         public function add_coop_student_questionnaire_item() //insert coop student questionaire item
         {
+            // name dup
+
             $array['subject_id'] =$this->input->post('subject_id');
             $array['subject_term_id'] =$this->input->post('subject_term_id');
             $array['number'] = $this->input->post('number');
@@ -75,6 +77,25 @@
             $this->Coop_Student_Assessment_Form->insert_coop_student_questionnaire_item($array);
 
             redirect('Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item/'.$array['subject_id'], 'refresh');
+        }
+
+        public function delete_coop_student_questionnaire_item($id) //delete coop student questionaire item
+        {
+            //delete
+
+            //new sort
+            
+        }
+
+        public function update_coop_student_questionnaire_item()
+        {
+
+        }
+
+        public function get_ajax_item($id)
+        {
+            $return['data'] = @$this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item($id)[0];
+            echo json_encode($return);
         }
     }
 ?>

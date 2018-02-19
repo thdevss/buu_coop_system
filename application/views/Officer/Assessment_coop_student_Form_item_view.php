@@ -32,15 +32,15 @@
                               </tr>
                             </thead>
                             <tbody>
-                            <?php foreach($coop_student_questionnaire_item as $row){?>
+                            <?php foreach($coop_student_questionnaire_item as $row) { ?>
         
                               <tr>
                                 <td><?php echo $row['number'];?></td>
                                 <td><?php echo $row['type'];?></td>
                                 <td><?php echo $row['title'];?></td>
                                 <td>
-                                  <a href="#" class="btn btn-info">แก้ไข</a>
-                                  <a href="#" class="btn btn-danger">ลบ</a>
+                                  <a href="#" data-itemid="<?php echo $row['id'];?>" class="btn btn-info editBtn">แก้ไข</a>
+                                  <a href="<?php echo site_url('officer/Assessment_coop_student_Form/delete_coop_student_questionnaire_item/'.$row['id']);?>" class="btn btn-danger" onclick="return confirmDelete()">ลบ</a>
                                 </td>
                               </tr>
 
