@@ -93,24 +93,23 @@
                               </dl>
 
                               <dl class="row">
-                              <dt class="col-sm-4">จำนวนชั่วโมงอบรม</dt>
-                              <dd></dd>
-                              <dd class="col-sm-4"><a href="<?php echo site_url('Officer/Student_list/training_history_student/'.$student['id']);?>">ประวัติการอบรม</a></dd>
+                                <dt class="col-sm-4">จำนวนชั่วโมงอบรม</dt>
+                                <dd><a href="<?php echo site_url('Officer/Student_list/training_history_student/'.$student['id']);?>">ประวัติการอบรมของนิสิตคนนี้</a></dd>
                               </dl>
 
                               <dl class="row">
-                              <dt class="col-sm-4">
-                              <ul>
-                              <li>วิชาการ</li>
-                              <li>เตรียมความพร้อม</li>
-                              </ul>
-                              </dt>
-                              <dd>
-                              <ul>
-                              <li></li>
-                              <li></li>
-                              </ul>
-                              </dd>
+                                <dt class="col-sm-4">
+                                  <ul>
+                                    <li>วิชาการ</li>
+                                    <li>เตรียมความพร้อม</li>
+                                  </ul>
+                                </dt>
+                                <dd>
+                                  <ul class="list-unstyled">
+                                    <li><?php echo $train_type[0]['check_hour'];?> / <?php echo $train_type[0]['total_hour'];?></li>
+                                    <li><?php echo $train_type[1]['check_hour'];?> / <?php echo $train_type[1]['total_hour'];?></li>
+                                  </ul>
+                                </dd>
                               </dl>
                         </div>
                       </div>
