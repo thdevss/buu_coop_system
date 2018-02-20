@@ -77,7 +77,7 @@ class Student_list extends CI_Controller {
 
     public function student_detail($student_id)
     {
-        $data['student'] = $this->Student->get_student($student_id)[0];
+        $data['student'] = @$this->Student->get_student($student_id)[0];
         $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
         $data['coop_status_type'] = @$this->Student->get_by_coop_status_type($data['student']['coop_status'])[0];
         $data['coop_test_status'] = @$this->Test->get_test_result_by_student($data['student']['id'])[0];
@@ -89,14 +89,43 @@ class Student_list extends CI_Controller {
             $data['trainer'] = @$this->Trainer->get_trainer($data['coop_student']['mentor_person_id'])[0];
             $data['adviser'] = @$this->Adviser->get_adviser($data['coop_student']['adviser_id'])[0];
         }
-   
+        $data['train_type'] = array();
+        $train_type = $this->Training->get_student_stat_of_training($student_id);
+        foreach($train_type['train_type'] as $type) {
+            $tmp['name'] = $type['name'];
+            $tmp['total_hour'] = $type['total_hour'];
+            $tmp['check_hour'] = 0;
+            //calc total hour
+            foreach($type['history'] as $history) {
+                $tmp['check_hour'] += $history['check_hour'];
+            }
+
+            array_push($data['train_type'], $tmp);
+        }
+
+
         $this->template->view('Officer/Student_detail_view', $data);
        
     }
 
     public function training_history_student($student_id)
     {
-        $this->template->view('Officer/Training_history_student_view');
+
+        $data['train_type'] = array();
+        $train_type = $this->Training->get_student_stat_of_training($student_id);
+        foreach($train_type['train_type'] as $type) {
+            $tmp['name'] = $type['name'];
+            $tmp['total_hour'] = $type['total_hour'];
+            $tmp['check_hour'] = 0;
+            //calc total hour
+            foreach($type['history'] as $history) {
+                $tmp['check_hour'] += $history['check_hour'];
+            }
+            $tmp['history'] = $type['history'];
+
+            array_push($data['train_type'], $tmp);
+        }
+        $this->template->view('Officer/Training_history_student_view', $data);
     }
 
   }

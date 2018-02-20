@@ -152,7 +152,7 @@ class Training_model extends CI_model
         foreach($this->Training->gets_type() as $type) {
             $type['history'] = array();
             foreach($this->Training->get_training_by_student_and_type($student_id, $type['id']) as $row) {
-                $train_info = $this->Training->get_training($row['train_id'])[0];
+                $train_info = @$this->Training->get_training($row['train_id'])[0];
                 $row['train'] = $train_info;
 
                 
@@ -164,7 +164,10 @@ class Training_model extends CI_model
                 
                 $row['total_hour'] = $train_info['number_of_hour'];
 
-                $per_hour = $train_info['number_of_hour']/$check_count;
+                if($check_count > 0)
+                    $per_hour = $train_info['number_of_hour']/$check_count;
+                else
+                    $check_count = 0;
                 
                 if($student_count == $check_count) {
                     $row['is_complete_train'] = true;
