@@ -38,7 +38,7 @@
                         <td class="text-center"><?php echo $i++; ?></td>
                         <td><?php echo thaiDate($row['date']); ?></td>
                         <td><?php echo $row['activity_subject']; ?></td>
-                        <td class="text-center"><?php echo anchor('Adviser/Daily_activity/detail/'.$row['id'], '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn btn-primary" target="_blank"');?></td>  
+                        <td class="text-center"><?php echo anchor('Adviser/Daily_activity/detail/'.$row['report_id'], '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn btn-primary" target="_blank"');?></td>  
                       </tr>
                       <?php } ?>
                     </tbody>

@@ -13,12 +13,19 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <i class="fa fa-align-justify"></i> <B>หัวข้อ</B>: <?php echo $data['activity_subject']; ?>
+          <div class="btn btn-dark">
+            <i class="fa fa-align-justify"></i> หัวข้อ: <?php echo $data['activity_subject']; ?>
+          </div>
           </div>
             <div class="card-body">
-                <?php echo $data['activity_content'];?>
+                <p><?php echo $data['activity_content'];?></p>
             </div>
-            <div class="card-footer"><i class="fa fa-thermometer-4"></i> <B>กิจกรรมการฝึกงานในวันที่</B>: <?php echo $data['date']; ?> 
+            <div class="card-footer">
+            <div class="pull-right">
+            <div class="btn btn-dark">
+            <i class="fa fa-clock-o fa-spin"></i> กิจกรรมการฝึกงานในวันที่: <?php echo thaiDate($data['date']); ?>
+            </div> 
+            </div>
           </div>
         </div>
       </div>

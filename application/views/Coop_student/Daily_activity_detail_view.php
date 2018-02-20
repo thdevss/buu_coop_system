@@ -13,14 +13,18 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <i class="fa fa-align-justify"></i> หัวข้อ :<?php echo $coop_student_daily_detail['activity_subject'];?>
+          <div class="btn btn-dark">
+            <i class="fa fa-align-justify"></i> หัวข้อ: <?php echo $coop_student_daily_detail['activity_subject'];?>
+          </div>
           </div>
             <div class="card-body">
                 <p><?php echo $coop_student_daily_detail['activity_content'];?>
             </div>
             <div class="card-footer">
             <div class="pull-right">
-            <i class="fa fa-clock-o"></i> กิจกรรมการฝึกงานในวันที่ : <?php echo thaiDate($coop_student_daily_detail['date']);?>
+            <div class="btn btn-dark">
+            <i class="fa fa-clock-o fa-spin"></i> กิจกรรมการฝึกงานในวันที่: <?php echo thaiDate($coop_student_daily_detail['date']);?>
+            </div>
             </div>
           </div>
         </div>
