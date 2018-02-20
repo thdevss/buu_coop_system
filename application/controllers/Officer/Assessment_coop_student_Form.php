@@ -68,13 +68,20 @@
         public function add_coop_student_questionnaire_item() //insert coop student questionaire item
         {
             // name dup
-
             $array['subject_id'] =$this->input->post('subject_id');
-            $array['subject_term_id'] =$this->input->post('subject_term_id');
+            $array['term_id'] = $this->Term->get_current_term()[0]['term_id'];
             $array['number'] = $this->input->post('number');
             $array['title'] = $this->input->post('title');
+            $array['type'] = $this->input->post('type');
+            
 
-            $this->Coop_Student_Assessment_Form->insert_coop_student_questionnaire_item($array);
+            if($this->Coop_Student_Assessment_Form->check_item_dup($array['number'], $array['subject_id'])) {
+                //is dup, cant insert
+                echo "<script>alert('xxxxx')</script>";
+            } else {
+                //can insert
+                $this->Coop_Student_Assessment_Form->insert_coop_student_questionnaire_item($array);
+            }
 
             redirect('Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item/'.$array['subject_id'], 'refresh');
         }
@@ -82,14 +89,44 @@
         public function delete_coop_student_questionnaire_item($id) //delete coop student questionaire item
         {
             //delete
+            $data = @$this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item($id)[0];
+            if(!$data) {
+                //is dup, cant delete
+                echo "<script>alert('xxxxx');window.history.back();</script>";
+                die();
+            } else {
+                //can delete
+                $this->Coop_Student_Assessment_Form->delete_item($id);
+            }
+
 
             //new sort
+            $this->Coop_Student_Assessment_Form->sort_item($data['subject_id']);
+            
+
+            redirect('Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item/'.$data['subject_id'], 'refresh');
+            
             
         }
 
         public function update_coop_student_questionnaire_item()
         {
+            //update
+            $item_id = $this->input->post('item_id');
+            $array['title'] = $this->input->post('title');
+            $array['type'] = $this->input->post('type');
 
+            $data = @$this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item($item_id)[0];
+            if(!$data) {
+                //is dup, cant edit
+                echo "<script>alert('xxxxx');window.history.back();</script>";
+                die();
+            } else {
+                //can edit
+                $this->Coop_Student_Assessment_Form->update_item($item_id, $array);
+            }
+ 
+            redirect('Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item/'.$data['subject_id'], 'refresh');
         }
 
         public function get_ajax_item($id)

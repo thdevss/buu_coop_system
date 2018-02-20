@@ -55,7 +55,7 @@
         })
         .then((willDelete) => {
           if (willDelete) {
-            window.location.replace(link);
+            window.location.replace(link)
           }
         });
 
