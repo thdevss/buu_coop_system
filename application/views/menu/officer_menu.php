@@ -37,7 +37,7 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-user-following"></i> อาจารย์</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <?php echo anchor('Officer/Management_student_adviser', '<i class="fa fa-gear fa-lg mt-4 fa-spin"></i> จัดอาจารย์ที่ปรึกษากับนิสิต', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Management_student_adviser', '<i class="fa fa-gear fa-lg  fa-spin"></i> จัดอาจารย์ที่ปรึกษากับนิสิต', 'class="nav-link"');?>
             </li>
           </ul>
         </li>
