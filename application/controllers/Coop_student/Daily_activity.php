@@ -20,17 +20,27 @@ class Daily_activity extends CI_controller
     public function lists()
     {
         $student_id = $this->Login_session->check_login()->login_value;
-        // $data['data'] = $this->DB_coop_student_daily_activity->gets_by_student($student_id);
- 
+        $data['coop_student_daily'] = $this->Daily_Report->gets_report_by_student($student_id);
         $this->template->view('Coop_student/Daily_activity_coop_student_view',$data);
     }
     public function edit($id)
     {
-        // $data['data'] = $this->DB_coop_student_daily_activity->get($id);
-        $this->template->view('Coop_student/Edit_Daily_activity_coop_student_view',$data);
+        
+        $this->template->view('Coop_student/Edit_Daily_activity_coop_student_view');
     }
 
     public function add() 
+    {
+        
+    }
+
+    public function datail($report_id)
+    {
+        $data['coop_student_daily_detail'] = $this->Daily_Report->get_report($report_id)[0];
+        $this->template->view('Coop_student/Detail_Daily_activity_view',$data);
+    }
+
+    public function delete()
     {
 
     }

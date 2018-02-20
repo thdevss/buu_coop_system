@@ -21,7 +21,7 @@
 
               </li>
               <li class="nav-item">
-              <?php echo anchor('Coop_student/Daily_activity/', '<i class="fa fa-edit "></i> จัดการกิจกรรมการฝึกงานแต่ละวัน', 'class="nav-link"');?>
+              <?php echo anchor('Coop_student/Daily_activity/lists', '<i class="fa fa-edit "></i> จัดการกิจกรรมการฝึกงานแต่ละวัน', 'class="nav-link"');?>
               </li>
             </ul>
           </li>
