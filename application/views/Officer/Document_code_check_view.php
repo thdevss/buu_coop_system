@@ -84,7 +84,7 @@ $('#form_id').on('change', function (e) {
         },
         "columns": [
             { "data": "student.id" },          
-            { "data": "student.id" },
+            { "data": "student.id_link" },
             { "data": "student.fullname" },            
             { "data": "form.status" }
         ],
