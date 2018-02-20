@@ -46,6 +46,7 @@
             $array['title'] = $this->input->post('title');
             $term_id = $this->Term->get_current_term()[0]['term_id'];
             $array['term_id'] = $term_id; 
+         
 
             $this->Coop_Student_Assessment_Form->save_coop_student_form_result($array);
 
@@ -61,7 +62,9 @@
             $data['coop_student_questionnaire_item'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item_by_subject($id);
             $data['next_number'] = end($data['coop_student_questionnaire_item'])['number'];
             $data['next_number'] = (float) $data['next_number']+0.1;
-
+           
+            $data['form_subject'] = $this->Coop_Student_Assessment_Form->gets_form_for_coop_student();
+        
             $this->template->view('Officer/Assessment_coop_student_Form_item_view',$data);
         }
 
