@@ -43,7 +43,7 @@
                         <td><?php echo $row['department']['name']; ?></td>
                         <td><?php echo $row['company']['name_th']; ?></td>
                         <td><?php echo $row['company_address']['province']; ?></td>  
-                        <td><?php echo anchor('Adviser/Daily_activity/lists/'.$row['student']['id']  , '<i class="fa fa-star"></i> รายละเอียด', 'class="btn btn-primary"');?></td>
+                        <td><?php echo anchor('Adviser/Daily_activity/lists/'.$row['student']['id']  , '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn btn-primary"');?></td>
                       </tr>
                       <?php } ?>
                     </tbody>
