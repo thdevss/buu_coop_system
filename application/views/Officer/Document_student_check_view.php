@@ -49,7 +49,7 @@
                         ?>
                         </td>
                         <td class="text-center">
-                          <a class="btn btn-primary document_check_btn " data-studentid="<?php echo $row['student']['id'];?>">รายละเอียด</a>
+                          <a class="btn btn-primary document_check_btn " data-studentid="<?php echo $row['student']['id'];?>"><i class="fa fa-list-alt"></i> รายละเอียด</a>
                         </td>
                       </tr>
                     <?php 

@@ -14,10 +14,14 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-address-book-o"></i> ข้อมูลทั่วไป</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <?php echo anchor('/', '<i class="fa fa-address-card-o"></i> ข้อมูลนิสิต', 'class="nav-link"');?>  
+
+                <?php echo anchor('Coop_student/Coop_detail/', '<i class="fa fa-star"></i> ข้อมูลนิสิต', 'class="nav-link"');?>  
+
+             
+
               </li>
               <li class="nav-item">
-              <?php echo anchor('Coop_student/Daily_activity/', '<i class="fa fa-edit "></i> จัดการกิจกรรมการฝึกงานแต่ละวัน', 'class="nav-link"');?>
+              <?php echo anchor('Coop_student/Daily_activity/lists', '<i class="fa fa-edit "></i> จัดการกิจกรรมการฝึกงานแต่ละวัน', 'class="nav-link"');?>
               </li>
             </ul>
           </li>
@@ -77,7 +81,7 @@
                 <a class="nav-link" href="components-buttons.html"><i class="fa fa-download"></i> ดาวน์โหลดเอกสาร</a>
               </li>
               <li class="nav-item">
-              7<?php echo anchor('Coop_student/upload_document/?code=IN-S006', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
+                <?php echo anchor('Coop_student/upload_document/?code=IN-S006', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
               </li>
             </ul>
           </li>

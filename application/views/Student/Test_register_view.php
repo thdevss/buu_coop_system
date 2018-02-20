@@ -34,7 +34,7 @@
                                 <?php if(!$already_register) { ?>
                                 <form action="<?php echo site_url('student/test/register');?>" method="post">
                                     <input type="hidden" name="confirm" value="1">
-                                    <button type="submit" class="btn btn-lg btn-primary"><i class="fa fa-dot-circle-o"></i> ลงชื่อสมัครสอบ</button>
+                                    <button type="submit" class="btn btn-md btn-primary"><i class="fa fa-registered"></i> ลงชื่อสมัครสอบ</button>
                                 </form>
                                 <?php } ?>
                             </div>

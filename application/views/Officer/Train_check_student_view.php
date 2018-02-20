@@ -37,8 +37,8 @@
                                 </div>
 
                                 <div class="col-sm-12 text-center">
-                                    <button type="reset" class="btn btn-warning" name="" value="1"><i class="fa fa-dot-circle-o"></i> ยกเลิก</button>                                
-                                    <button type="submit" class="btn btn-primary" name="save" value="1"><i class="fa fa-dot-circle-o"></i> บันทึกข้อมูล</button>                
+                                    <button type="reset" class="btn btn-warning" name="" value="1"> ยกเลิก</button>                                
+                                    <button type="submit" class="btn btn-success" name="save" value="1"> บันทึกข้อมูล</button>                
                                 </div>
                             </div>
                         </form>

@@ -19,8 +19,9 @@ class Company_map extends CI_controller
 
     public function index()
     {
-        $data['company'] = $this->DB_company->gets();
-        $this->template->view('teacher/map_list_view', $data);
+        // $data['company'] = $this->DB_company->gets();
+        $data['company'] = '';  
+        $this->template->view('adviser/map_list_view', $data);
     }
 
     public function ajax_post()

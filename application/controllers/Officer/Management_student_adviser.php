@@ -31,6 +31,7 @@ class Management_student_adviser extends CI_controller{
             // $tmp_array['student'] = $this->Student->get_student($row['student_id'])[0];
             
             $tmp_array['student'] = $cache['student'][$row['student_id']];
+            $tmp_array['student']['id'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$tmp_array['student']['id']).'">'.$tmp_array['student']['id'].'</a>';            
             if(!$row['adviser_id']) {
                 $tmp_array['adviser']['fullname'] = '-';
             } else {

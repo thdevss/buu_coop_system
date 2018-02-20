@@ -14,7 +14,7 @@
         <div class="card">
           <div class="card-header"><i class="fa fa-align-justify"></i>จัดการข้อมูลนิสิตเข้าสอบ
           <div class="text-right">
-              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal"><i class="fa fa-star"></i> เพิ่ม</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-hand-pointer-o"></i> เพิ่ม</button>
             </div>
           </div>
             <div class="card-body">
@@ -98,8 +98,8 @@
                     <!--สอบรอบที่-->
               </div>
               <div class="modal-footer">
-                <button type="close" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-rss"></i> ปิด</button>
-                <button type="submit" class="btn btn-success"><i class="fa fa-magic"></i> บันทึก</button>
+                <button type="close" class="btn btn-danger" data-dismiss="modal"> ปิด</button>
+                <button type="submit" class="btn btn-success"> บันทึก</button>
               </div>
             </div>
             </div>
