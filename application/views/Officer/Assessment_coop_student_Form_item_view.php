@@ -15,14 +15,32 @@
                   <div class="card">
                     <div class="card-header">
                       <i class="fa fa-align-justify"></i> จัดการหัวข้อย่อยแบบประเมินผลการฝึกงานของนิสิตสหกิจ
-                        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#add_item_form">
+                        <button type="button" class="btn btn-primary float-right icon-plus" data-toggle="modal" data-target="#add_item_form">
                           เพิ่มหัวข้อการประเมิน
                         </button>
                     </div>
                       <div class="card-body">
-                    
-                    
-                      <table class="table table-bordered datatable" >
+                      <div class="row">
+                          <div class="col-lg-6">
+                            <select name="form_subject" id="form_subject" class="form-control">
+                              <option>----</option>
+                                <?php
+                                foreach($form_subject as $form) {
+                                  if($subject['id'] == $form['id']) {
+                                    echo '<option value="'.$form['id'].'" selected>'.$form['number'].' - '.$form['title'].'</option>';
+                                  } else {
+                                    echo '<option value="'.$form['id'].'">'.$form['number'].' - '.$form['title'].'</option>';
+                                  }
+                                }
+                                ?>
+                            </select>
+                            </div>
+                            <div class="col-lg-6 text-right">
+                              <a href="<?php echo site_url('officer/Assessment_coop_student_Form');?>" class="btn btn-info" >กลับไปยังหัวข้อหลัก</a>
+                            </div>
+                        </div>
+                        <br><br>
+                      <table class="table table-bordered " >
                             <thead>
                               <tr bgcolor="">
                                 <th>ลำดับหัวข้อย่อย</th>
@@ -39,8 +57,8 @@
                                 <td><?php echo $row['type'];?></td>
                                 <td><?php echo $row['title'];?></td>
                                 <td>
-                                  <a href="#" data-itemid="<?php echo $row['id'];?>" class="btn btn-info editBtn">แก้ไข</a>
-                                  <a href="<?php echo site_url('officer/Assessment_coop_student_Form/delete_coop_student_questionnaire_item/'.$row['id']);?>" class="btn btn-danger" onclick="return confirmDelete(this)">ลบ</a>
+                                  <a href="#" data-itemid="<?php echo $row['id'];?>" class="btn btn-info editBtn icon-pencil">แก้ไข</a>
+                                  <a href="<?php echo site_url('officer/Assessment_coop_student_Form/delete_coop_student_questionnaire_item/'.$row['id']);?>" class="btn btn-danger icon-trash" onclick="return confirmDelete(this)">ลบ</a>
                                 </td>
                               </tr>
 
@@ -172,8 +190,9 @@
         </div>
       <!-- /.modal-dialog -->
 </div>
-
-
+<script>
+jQuery(".dataTables_length").hide(); jQuery(".dataTables_filter").hide();
+</script>
 <script>
 jQuery(".editBtn").click(function(event) {
   var item_id = jQuery(this).data('itemid')
@@ -197,4 +216,7 @@ jQuery(".editBtn").click(function(event) {
   }, "json" );
 })
 
+jQuery("#form_subject").change(function(event) {
+  window.location.assign(SITE_URL+"/officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item/"+jQuery(this).val())
+})
 </script>

@@ -1,4 +1,5 @@
 <!-- Main content -->
+
 <main class="main">
 
 <!-- Breadcrumb -->
@@ -24,9 +25,7 @@
                           if($status){
                             echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
                           }
-                  
                         ?>
-                    
                       <table class="table table-bordered datatable" >
                             <thead>
                               <tr bgcolor="">
@@ -37,7 +36,6 @@
                             </thead>
                             <tbody>
                             <?php foreach($coop_student_questionnaire_subject as $row){ ?>
-                    
                               <tr>
                                 <td><?php echo $row['number'];?></td>
                                 <td><?php echo $row['title'];?></td>
@@ -89,8 +87,11 @@
                 <button type="submit" class="btn btn-success">บันทึก</button>
               </div>
             </form>
+
+            
           </div>
           <!-- /.modal-content -->
         </div>
+        
       <!-- /.modal-dialog -->
 </div>
