@@ -13,17 +13,18 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header"><i class="fa fa-align-justify"></i>กิจกรรมในการฝึกงานในแต่ละวัน
-          <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">
-          <i class="fa fa-hand-pointer-o"></i> เพิ่มกิจกรรมในการฝึกงาน
-          </button>
+          <a class="btn btn-primary float-right" href="<?php echo site_url('Coop_student/Daily_activity/add');?>">
+            <i class="fa fa-hand-pointer-o"></i> เพิ่มกิจกรรมในการฝึกงาน
+          </a>
           </div>
             <div class="card-body">
               <table class="table table-bordered datatable">
                 <thead>
                   <tr>
-                  <th></th>
-                  <th>วันที่</th>
-                  <th>หัวข้อ</th>
+                    <th></th>
+                    <th>วันที่</th>
+                    <th>หัวข้อ</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>  
@@ -31,10 +32,11 @@
                   <tr>
                     <td class="text-center"><?php echo $i++;?></td>
                     <td class="text-left"><?php echo thaiDate($row['date']);?></td>
+                    <td class="text-left"><?php echo $row['activity_subject'];?></td>
                     <td>
-                      <?php echo anchor('Coop_student/Daily_activity/datail/'.$row['id'] , '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn btn-primary"');?>
-                      <?php echo anchor('Coop_student/Daily_activity/edit/'.$row['id'] , '<i class="fa fa-eraser"></i> เเก้ไข','class="btn btn-primary"');?>
-                      <?php echo anchor('Coop_student/Daily_activity/delete'.$row['id'] , '<i class="fa fa-trash-o"></i> ลบ', 'class="btn btn-danger"');?>
+                      <?php echo anchor('Coop_student/Daily_activity/datail/'.$row['report_id'] , '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn btn-primary"');?>
+                      <?php echo anchor('Coop_student/Daily_activity/update/'.$row['report_id'] , '<i class="fa fa-eraser"></i> เเก้ไข','class="btn btn-primary"');?>
+                      <?php echo anchor('Coop_student/Daily_activity/delete/'.$row['report_id'] , '<i class="fa fa-trash-o"></i> ลบ', 'class="btn btn-danger" onclick="return confirmDelete(this)"');?>
                     </td>
                   </tr> 
                 <?php } ?>   
@@ -42,52 +44,12 @@
               </table>
             </div>
         </div>
-
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title">เพิ่มกิจกรรมในการฝึกงาน</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">×</span>
-                    </button>
-                      </div>
-                      <form action="<?php echo site_url('');?>" method="post">
-                        <div class="modal-body">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label for="activity_subject">หัวข้อ</label>
-                              <input type="text" id="activity_subject" name="activity_subject" class="form-control" placeholder="กรุณากรอก" required>
-                            </div>
-
-                            <div class="form-group">
-                              <label for="activity_content">รายละเอียด</label>
-                              <textarea id="activity_content" name="activity_content" class="form-control" placeholder="กรุณากรอก"  rows="9" required></textarea>
-                            </div>
-
-                            <div class="form-group">
-                              <label for="register_period">วันที่</label>
-                              <br>
-                              <input type="text" class="form-control datetimepicker" id="register_period" placeholder="" name="register_period" value"">
-                            </div>
-
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
-                          <button type="submit" class="btn btn-success">บันทึก</button>
-                        </div>
-                      </form>
-                    </div>
-                    <!-- /.modal-content -->
-                  </div>
-                <!-- /.modal-dialog -->
-          </div>
-
       </div>
     </div>
   </div>
 </div>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.16/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.16/jquery.datetimepicker.css" />
 <script>
