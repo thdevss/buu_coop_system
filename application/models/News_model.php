@@ -1,8 +1,11 @@
 <?php
 class News_model extends CI_model 
 {
-    public function gets_news($limit = 10) 
+    public function gets_news($limit = 10, $show_hide = 0) 
     {
+        if($show_hide < 1) {
+            $this->db->where('is_hide', 0);
+        }
         $arr = array();
         $this->db->from('news');
         $this->db->order_by('id', 'DESC');
