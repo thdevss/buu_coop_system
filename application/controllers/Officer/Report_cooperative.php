@@ -30,8 +30,11 @@ class Report_cooperative extends CI_Controller {
         print_r($_POST);
         $company_id = $this->input->post('company_id');
         $department_id = $this->input->post('department_id');
-        if($company_id =='0'){
-        //    get all
+
+        if($company_id =='0'||$deparment ==''){
+            redirect('Officer/Report_cooperative/','refresh');
+        } else{
+            $data['company_by_id'] = $this->Company->get_company($company_id);
         }
       
     }
