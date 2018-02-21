@@ -15,7 +15,8 @@
                   <div class="card">
                     <div class="card-header">
                       <i class="fa fa-align-justify"></i> จัดการหัวข้อย่อยแบบประเมินผลการฝึกงานของนิสิตสหกิจ
-                        <button type="button" class="btn btn-primary float-right icon-plus" data-toggle="modal" data-target="#add_item_form">
+                        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#add_item_form">
+                          <i class="icon-plus"></i>
                           เพิ่มหัวข้อการประเมิน
                         </button>
                     </div>
@@ -57,8 +58,8 @@
                                 <td><?php echo $row['type'];?></td>
                                 <td><?php echo $row['title'];?></td>
                                 <td>
-                                  <a href="#" data-itemid="<?php echo $row['id'];?>" class="btn btn-info editBtn icon-pencil">แก้ไข</a>
-                                  <a href="<?php echo site_url('officer/Assessment_coop_student_Form/delete_coop_student_questionnaire_item/'.$row['id']);?>" class="btn btn-danger icon-trash" onclick="return confirmDelete(this)">ลบ</a>
+                                  <a href="#" data-itemid="<?php echo $row['id'];?>" class="btn btn-info editBtn"><i class="icon-pencil"></i> แก้ไข</a>
+                                  <a href="<?php echo site_url('officer/Assessment_coop_student_Form/delete_coop_student_questionnaire_item/'.$row['id']);?>" class="btn btn-danger" onclick="return confirmDelete(this)"><i class="icon-trash"></i> ลบ</a>
                                 </td>
                               </tr>
 
