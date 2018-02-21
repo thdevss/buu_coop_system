@@ -16,8 +16,8 @@
                     <div class="card">
                         <div class="card-header">
                             <?php echo $row['title'];?>
-                            <span class="badge badge-info float-right">ผู้ลงประกาศ: <?php echo $row['author']['fullname'];?></span>
-                            <span class="badge badge-pill badge-warning float-right" style="margin-right:10px;"><?php echo date('Y-m-d H:i', strtotime($row['date']));?></span>
+                            <span class="btn btn-dark float-right">ผู้ลงประกาศ: <?php echo $row['author']['fullname'];?></span>
+                            <span class="btn btn-dark float-right" style="margin-right:10px;"><?php echo date('Y-m-d H:i', strtotime($row['date']));?></span>
                         </div>
                         <div class="card-body">
                             <?php echo $row['detail'];?>
