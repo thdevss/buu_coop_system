@@ -3,6 +3,7 @@ class Coop_Student_Assessment_Form_model extends CI_model {
     public function gets_form_for_coop_student()
     {
         $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);                
+        $this->db->order_by('number', 'asc');
         $this->db->from('coop_student_questionnaire_subject');
         $query = $this->db->get();
         return $query->result_array();
@@ -51,6 +52,15 @@ class Coop_Student_Assessment_Form_model extends CI_model {
     public function get_coop_student_questionnaire_subject($id)
     {        
         $this->db->where('id',$id);
+        $this->db->from('coop_student_questionnaire_subject');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function check_subject_dup($number) 
+    {
+        $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);                
+        $this->db->where('number',$number);
         $this->db->from('coop_student_questionnaire_subject');
         $query = $this->db->get();
         return $query->result_array();

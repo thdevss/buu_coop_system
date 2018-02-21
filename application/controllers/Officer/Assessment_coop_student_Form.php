@@ -17,6 +17,8 @@
             }
         }
 
+        //subject
+
         public function index($status = '') //get coop student questionaire subject
         {   
             if($status == '') {
@@ -26,6 +28,9 @@
             if( $status == 'success'){
                 $data['status']['color'] = 'success';            
                 $data['status']['text'] = 'เพิ่มสำเร็จ';
+            } else if( $status == 'error'){
+                $data['status']['color'] = 'warning';            
+                $data['status']['text'] = 'เลขหัวข้อซ้ำในระบบ';
             }
             else {
                 $data['status'] = '';
@@ -35,10 +40,11 @@
             $data['next_number'] = end($data['coop_student_questionnaire_subject'])['number'];
             $data['next_number'] = (int) $data['next_number']+1;
 
-            $this->template->view('Officer/Assessment_coop_student_Form_Subject_view',$data);
+            $this->template->view('Officer/Coop_student_assessment_form_subject_view',$data);
 
      
         }
+        
 
         public function add_coop_student_questionnaire_subject() //insert coop student questionaire subject
         {
@@ -47,14 +53,27 @@
             $term_id = $this->Term->get_current_term()[0]['term_id'];
             $array['term_id'] = $term_id; 
          
-
-            $this->Coop_Student_Assessment_Form->save_coop_student_form_result($array);
+            if($this->Coop_Student_Assessment_Form->check_subject_dup($array['number'])) {
+                //is dup, cant insert
+                redirect('Officer/Assessment_coop_student_Form/index/?status=error', 'refresh');                
+                
+            } else {
+                //can insert
+                $this->Coop_Student_Assessment_Form->save_coop_student_form_result($array);
+                redirect('Officer/Assessment_coop_student_Form/index/?status=success', 'refresh');                
+            }
 
             // return $this->index('success');
-            redirect('Officer/Assessment_coop_student_Form/index/?status=success', 'refresh');
             
 
         }
+
+
+
+
+
+
+        //item
 
         public function get_coop_student_questionnaire_item($id) //get coop student questionaire item ออกมาตาม id
         { 
@@ -65,7 +84,7 @@
            
             $data['form_subject'] = $this->Coop_Student_Assessment_Form->gets_form_for_coop_student();
         
-            $this->template->view('Officer/Assessment_coop_student_Form_item_view',$data);
+            $this->template->view('Officer/Coop_student_assessment_form_item_view',$data);
         }
 
         public function add_coop_student_questionnaire_item() //insert coop student questionaire item
