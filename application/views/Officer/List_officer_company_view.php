@@ -33,7 +33,7 @@
                         <th class="text-center">ชื่อ</th>
                         <th class="text-center">E-mail</th>
                         <th class="text-center">ตำเเหน่ง</th>
-                        <th class="text-center">สาขา</th>
+        
                         <th class="text-center"></th>
                       </tr>
                     </thead>
@@ -43,19 +43,14 @@
                         <td class="text-center">
                         <?php echo $i++; ?>
                         </td>
-                        <td class="text-center"><?php echo $row['company_person']->fullname;?></td>
-                        <td class="text-center"><?php echo $row['company_person']->email; ?></td>
-                        <td class="text-center"><?php echo $row['company_person']->position;?></td>
-                         <?php if($row['company']->parent_id == 0){
-                           echo'<td class="text-center"> สาขาหลัก</td>';
-                            }else{
-                              echo'<td class="text-center"> สาขาย่อย</td>';
-                        }?>   
+                        <td class="text-center"><?php echo $row['company_person']['fullname'];?></td>
+                        <td class="text-center"><?php echo $row['company_person']['email']; ?></td>
+                        <td class="text-center"><?php echo $row['company_person']['position'];?></td> 
                         <td class="form-inline">
                         <form action="<?php echo site_url('Officer/Officer_company/delete/'); ?>" method="post">
-                        <input type="hidden"   name="company_person_id" value="<?php echo $row['company_person']->id ; ?>">
-                        <input type="hidden"   name="company_id" value="<?php echo $row['company']->id ; ?>">
-                        
+                        <button type="submit" class="btn btn-info btn-submit"><i class="icon-pencil "></i> เเก้ไข</button>
+                        <!-- <input type="hidden"   name="company_person_id" value="<?php echo $row['company_person']['id'] ; ?>">
+                        <input type="hidden"   name="company_id" value="<?php echo $row['company']['id'] ; ?>">                          -->
                         <button type="submit" class="btn btn-danger btn-submit"><i class="icon-trash"></i> ลบ</button>
                         </form>        
                         </td>

@@ -68,6 +68,12 @@ class Report_cooperative extends CI_Controller {
                 array_push($tmp['company'], $tmpc);
             }
             array_push($data['department'], $tmp);
+
+
+        if($company_id =='0'||$deparment ==''){
+            redirect('Officer/Report_cooperative/','refresh');
+        } else{
+            $data['company_by_id'] = $this->Company->get_company($company_id);
         }
 
 

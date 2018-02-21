@@ -43,7 +43,7 @@ class Company extends CI_Controller {
             $data['tmp'] = $this->Company->get_company($id)[0];  
             $data['contact'] = $this->Trainer->get_trainer($data['tmp']['contact_person_id'])[0];
 
-            //  print_r($data);
+            // print_r($data);
 
             $this->template->view('Officer/Address_company_view',$data);
         
