@@ -38,6 +38,8 @@ class Trainer extends CI_Controller {
             $tmp_array['company_person'] = $row;
             $tmp_array['company'] = $this->Company->get_company($row['company_id']);
             array_push($data['data'], $tmp_array);
+
+           // print_r($data);
         }      
         $this->template->view('Officer/List_officer_company_view',$data);
     }
