@@ -46,7 +46,7 @@
                         <td class="text-left"><?php echo $row['title'];?></td>
                         <td class="text-left"><?php echo $row['author']['fullname'];?></td>
                         <td class="text-center">
-                            <a href="#" data-newsid="<?php echo $row['id'];?>" class="btn btn-info" data-toggle="modal" data-target="#share_modal"><i class="fa fa-share"></i> แชร์</a>
+                            <a href="#" data-newsid="<?php echo $row['id'];?>" class="btn btn-info btn-share" data-toggle="modal" data-target="#share_modal"><i class="fa fa-share"></i> แชร์</a>
                         </td>
                         <td class="text-center">
                             <form action="<?php echo site_url('Officer/News/delete');?>" method="post">
@@ -84,10 +84,20 @@
         </button>
       </div>
       <div class="modal-body text-center">
-        <a href="#" class="btn btn-info btn-md"><i class="fa fa-facebook-square"></i> Facebook</a>
-        <a href="#" class="btn btn-info btn-md"><i class="fa fa-twitter-square"></i> twitter</i></a>
-        <a href="#" class="btn btn-info btn-md"><i class="fa fa-whatsapp"></i> LINE</a>
-        <a href="#" class="btn btn-info btn-md" data-dismiss="modal" data-toggle="modal" data-target="#sent_email_modal"><i class="fa fa-windows"></i> Email</a>
+        <a target="_blank" class="btn btn-info btn-md btn-facebook">
+          <span>Facebook</span>
+        </a>
+        <a target="_blank" class="btn btn-info btn-md btn-twitter">
+          <span>Twitter</span>
+        </a>
+        <a target="_blank" class="btn btn-info btn-md btn-spotify text btn-line">
+          <i class="fa fa-whatsapp"></i>
+          <span>LINE</span>
+        </a>
+        <a target="_blank" class="btn btn-info btn-md btn-openid text btn-email data-dismiss="modal" data-toggle="modal" data-target="#sent_email_modal"">
+          <i class="fa fa-windows"></i> 
+          <span>Email</span>
+        </a>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
@@ -128,6 +138,21 @@
 </div>
 
 <script>
+$('.btn-share').on('click',function(e){
+  e.preventDefault();
+  var news_id = jQuery(this).data("newsid")
+
+  jQuery(".btn-facebook").attr('href', 'https://www.facebook.com/sharer/sharer.php?u='+SITE_URL+'/news/'+news_id)
+  jQuery(".btn-twitter").attr('href', 'https://twitter.com/home?status='+SITE_URL+'/news/'+news_id)
+  jQuery(".btn-line").attr('href', 'https://social-plugins.line.me/lineit/share?url='+SITE_URL+'/news/'+news_id)
+  
+
+
+  jQuery("#share_modal").modal('show')
+});
+
+
+
 
 
 $('.btn-delete').on('click',function(e){

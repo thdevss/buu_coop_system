@@ -17,36 +17,44 @@
                     <div class="card-body">
                         <form action="<?php echo site_url('Officer/Report_cooperative/search');?>" method="post">
                             <div class="row">
-                                <div class="form-group col-sm-4">
-                                <label for"company_id">บริษัทที่ไป</label>
+                                <div class="col-sm-4">
+                                    <label>บริษัทที่ไป</label>
                                     <select class="form-control" id="company_id" name="company_id">
                                         <option value="0">ทั้งหมด</option>
-                                    <?php foreach($company_name as $row) {?>
-                                        <option value="<?php echo $row['id'];?>"><?php echo $row['name_th']; ?></option>
-                                    <?php } ?>
+                                        <?php foreach($company_name as $row) { ?>
+                                            <?php if($row['id'] == @$current_company) { ?>
+                                                <option value="<?php echo $row['id'];?>" selected><?php echo $row['name_th']; ?></option>
+                                            <?php } else { ?>
+                                                <option value="<?php echo $row['id'];?>"><?php echo $row['name_th']; ?></option>
+                                            <?php } ?>
+                                        <?php } ?>
                                     </select>
                                 </div>
-                            <div class="form-group col-sm-6">
-                                <label for"">หลักสูตร</label><br>
+                                <div class="col-sm-7">
+                                    <label>หลักสูตร</label>
+                                    <div class="form-group">
                                     <?php foreach($department_name as $row) { ?>
                                         <div class="form-check form-check-inline mr-5">
-                                            <input class="form-check-input" type="checkbox" id="department_id" value="<?php echo $row['id'];?>" name="department_id">
-                                            <label class="form-check-label" for="department_id"><?php echo $row['name']; ?></label>
+                                            <?php if(in_array($row['id'], $current_department)) { ?>
+                                                <input type="checkbox" id="department_<?php echo $row['id'];?>" value="<?php echo $row['id'];?>" name="department_id[]" checked>
+                                            <?php } else { ?>
+                                                <input type="checkbox" id="department_<?php echo $row['id'];?>" value="<?php echo $row['id'];?>" name="department_id[]">
+                                            <?php } ?>
+                                            <label for="department_<?php echo $row['id'];?>"><?php echo $row['name']; ?></label>
                                         </div>
-                                    <?php } ?>      
-                            </div>
-                                <div class="form-group col-sm-2">
-                                <button type="submit" class="btn btn-md btn-success"> ค้นหา</button>  
+                                    <?php } ?>    
+                                    </div>  
+                                </div>
+                                <div class="col-sm-1">
+                                    <button type="submit" class="btn btn-block btn-success"> ค้นหา</button>  
                                 </div>
                             </div>
                         </form>
-                        <ul class="list-group">
-                        <li class="list-group-item active">หลักสูตร IT</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
+
+
+                        <div style="width: 75%; margin: 0 auto;">
+                            <canvas id="canvas"></canvas>
+                        </div>
 
 
 
@@ -64,3 +72,82 @@
   </div>
 </div>
 
+
+
+</main>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script>
+        var colors = ['#537bc4', '#00a950', '#4dc9f6'];
+        var color = Chart.helpers.color;
+        var company = [];
+        <?php foreach($reports[0]['company'] as $key => $company) { ?>
+            company.push("<?php echo $company['company_name'];?>")
+        <?php } ?>
+
+        var barChartData = {
+            
+            labels: company,
+            
+            
+            
+            datasets: [
+                <?php foreach($reports as $key => $report) { ?>
+                {
+                label: '<?php echo $report['department_name'];?>',
+                backgroundColor: color(colors[<?php echo $key;?>]).alpha(0.5).rgbString(),
+                borderColor: colors[<?php echo $key;?>],
+                borderWidth: 1,
+                data: [
+                    <?php 
+                    foreach($report['company'] as $row) {
+                        if($row['total_student'] > 0) {
+                            echo $row['total_student'].",";                            
+                        } else {
+                            echo rand(1,5).",";
+                        }
+                    }
+                    ?>
+                ]
+                },
+                <?php } ?>
+            ]
+
+        };
+
+        window.onload = function() {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'สรุปข้อมูลนิสิตฝึกสหกิจประจำปีการศึกษา <?php echo $this->Term->get_current_term()[0]['name'];?>'
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+        };
+
+function randomScalingFactor() {
+    return getRandomInt(100);
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+</script>

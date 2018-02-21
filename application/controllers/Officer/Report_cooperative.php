@@ -22,18 +22,88 @@ class Report_cooperative extends CI_Controller {
     {
         $data['company_name'] = $this->Company->gets_company();
         $data['department_name'] = $this->Student->gets_department();
-        $this->template->view('Officer/Report_cooperative_view',$data);
+        //    get all
+        $data['reports'] = $this->get_stat_all();
+        $data['current_department'] = array();
+
+        $this->template->view('Officer/Report_cooperative_view', $data);
     }
 
     public function search()
     {
-        print_r($_POST);
         $company_id = $this->input->post('company_id');
         $department_id = $this->input->post('department_id');
-        if($company_id =='0'){
-        //    get all
+        if($company_id == "0") {
+            $data['reports'] = $this->get_stat_all();
+        } else {
+            $data['reports'] = $this->get_stat($company_id, $department_id);
         }
-      
+        $data['current_company'] = $company_id;
+        $data['current_department'] = $department_id;
+        
+        $data['company_name'] = $this->Company->gets_company();        
+        $data['department_name'] = $this->Student->gets_department();
+
+        $this->template->view('Officer/Report_cooperative_view', $data);
+    }
+
+    private function get_stat_all()
+    {
+        //cache
+        $cache = array();
+        $cache['company'] = $this->Company->gets_company();
+        //cache
+        $data = array();
+        $data['department'] = array();
+
+        foreach($this->Student->gets_department() as $department) {
+            $tmp = array();
+            $tmp['department_name'] = $department['name'];
+            $tmp['company'] = array();
+            //get company
+            foreach($cache['company'] as $company) {
+                $tmpc = array();
+                $tmpc['company_name'] = $company['name_th'];
+                $tmpc['total_student'] = count($this->Coop_Student->gets_coop_student_by_department_company($department['id'], $company['id']));
+                array_push($tmp['company'], $tmpc);
+            }
+            array_push($data['department'], $tmp);
+        }
+
+
+        return $data['department'];
+    }
+
+
+    private function get_stat($company_id, $department_id)
+    {
+        //cache
+        $cache = array();
+        $cache['company'] = $this->Company->get_company($company_id);
+        //cache
+        $data = array();
+        $data['department'] = array();
+
+        foreach($this->Student->gets_department() as $department) {
+            if(!in_array($department['id'], $department_id)) {
+                continue;
+            }
+            
+            $tmp = array();
+            $tmp['department_name'] = $department['name'];
+            $tmp['company'] = array();
+            //get company
+            foreach($cache['company'] as $company) {
+                $tmpc = array();
+                $tmpc['company_name'] = $company['name_th'];
+                $tmpc['total_student'] = count($this->Coop_Student->gets_coop_student_by_department_company($department['id'], $company['id']));
+                array_push($tmp['company'], $tmpc);
+            }
+            array_push($data['department'], $tmp);
+        }
+
+
+        return $data['department'];
     }
 
    
