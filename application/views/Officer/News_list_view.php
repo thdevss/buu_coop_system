@@ -43,7 +43,14 @@
                       <tr>
                         <td class="text-center"><?php echo $i++;?></td>
                         <td class="text-left"><?php echo thaiDate($row['date']);?></td>
-                        <td class="text-left"><?php echo $row['title'];?></td>
+                        <td class="text-left">
+                          <?php echo $row['title'];?>
+                          <?php 
+                          if($row['is_hide'] == '1') {
+                            echo '<span class="badge badge-warning">ถูกซ่อน</span>';
+                          }
+                          ?>
+                        </td>
                         <td class="text-left"><?php echo $row['author']['fullname'];?></td>
                         <td class="text-center">
                             <a href="#" data-newsid="<?php echo $row['id'];?>" class="btn btn-info btn-share" data-toggle="modal" data-target="#share_modal"><i class="fa fa-share"></i> แชร์</a>
@@ -52,6 +59,8 @@
                             <form action="<?php echo site_url('Officer/News/delete');?>" method="post">
                                 <input type="hidden" value="<?php echo $row['id'];?>" name="id">
                                 <a href="<?php echo site_url('Officer/news/edit/'.$row['id']);?>" class="btn btn-primary"><i class="fa fa-eraser"></i> แก้ไข</a>
+                                <a href="<?php echo site_url('Officer/news/hide_status/'.$row['id']);?>" class="btn btn-secondary" onclick="return confirmDelete(this);"><i class="fa fa-eraser"></i> <?php if($row['is_hide'] == '1') echo 'โชว์ข่าว'; else echo 'ซ่อนข่าว'; ?></a>
+                                
                                 <button type="submit" class="btn btn-delete btn-danger"><i class="fa fa-trash-o"></i> ลบ</button>
                             </form>
                         </td>

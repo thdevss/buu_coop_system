@@ -27,14 +27,17 @@ class News extends CI_Controller {
         } else if($status == 'error_delete' ){
             $data['status']['color'] = 'danger';
             $data['status']['text'] = 'ผิดพลาด ลบไม่ได้';
-        }  else if($status != '' ){
+        } else if($status == 'success_hide_status' ){
+            $data['status']['color'] = 'primary';
+            $data['status']['text'] = 'เปลี่ยนสถานะการโชว์ข่าวสำเร็จ';
+        } else if($status != '' ){
             $data['status']['color'] = 'danger';
             $data['status']['text'] = $status;
         } else {
             $data['status'] = '';
         }
 
-        $data['data'] = $this->News->gets_news();
+        $data['data'] = $this->News->gets_news(null, 1);
         $this->template->view('Officer/News_list_view', $data);
     } 
 
@@ -175,6 +178,24 @@ class News extends CI_Controller {
             return $this->index('success_add');
         }
         return $this->add(validation_errors());
+    }    
+
+    public function hide_status($news_id)
+    {
+        $news_data = $this->News->get_news($news_id)[0];
+        if(@$news_data) {
+            $insert['is_hide'] = '1';            
+            if($news_data['is_hide'] == '1') {
+                $insert['is_hide'] = '0';
+            }
+            $this->News->update_news($news_id, $insert);
+            return $this->index('success_hide_status');
+            die();
+        } else {
+            return $this->index();
+            die();
+        }
+        
     }    
 
     public function delete()
