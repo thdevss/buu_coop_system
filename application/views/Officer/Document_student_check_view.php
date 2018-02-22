@@ -35,7 +35,7 @@
                     ?>
                       <tr>
                         <td><?php echo $i++;?></td>
-                        <td class="text-left"><?php echo $row['student']['id']; ?></td>
+                        <td class="text-left"><?php echo $row['student']['id_link']; ?></td>
                         <td class="text-left"><?php echo $row['student']['fullname']; ?></td>
                         <td class="text-right">3.50</td>
                         <td class="text-left"><?php echo $row['department']['name']; ?></td>
