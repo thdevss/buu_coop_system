@@ -1,3 +1,4 @@
+
 <!-- Main content -->
 <main class="main">
 
@@ -5,58 +6,87 @@
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Home</li>
   <li class="breadcrumb-item"><a href="#"><?php echo $user->login_type;?></a></li>
-  <li class="breadcrumb-item active">ข้อมูลทั่วไป</li>
+  <li class="breadcrumb-item active">รายชื่อนิสิต</li>
 </ol>
-<div class="container-fluid">
-  <div class="animated fadeIn">
-  <div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-block">
-        <h5 class="card-title">ข้อมูลทั่วไป</h5>
-        <p class="text-left">
-        <dl class="row">
-        <dt class="col-sm-3">บริษัท</dt>
-        <dd class="col-sm-9">...</dd>
-        <dt class="col-sm-3">ตำแหน่ง</dt>
-        <dd class="col-sm-9">...</dd>
-        <dt class="col-sm-6">อาจารย์ที่ปรึกษา</dt>
-        <dd class="col-sm-3">...</dd>
-        </dl>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-block">
-        <h5 class="card-title">ข้อมูลนิสิต</h5>
-        <p class="text-left">
-        <dl class="row">
-        <dt class="col-sm-3">ชื่อ-สกุล</dt>
-        <dd class="col-sm-9">...</dd>
 
-        <dt class="col-sm-3">รหัสนิสิต</dt>
-        <dd class="col-sm-9">...</dd>
+                <div class="container-fluid">
+                  <div class="animated fadeIn">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="card">
+                          <div class="card-header"><i class="fa fa-align-justify"></i> ข้อมูลบริษัท</div>
+                            <div class="card-body">
+                              <dl class="row">
+                              <dt class="col-sm-4">ชื่อบริษัท</dt>
+                              <dd></dd>
+                              </dl>
 
-        <dt class="col-sm-3">ชั้นปี</dt>
-        <dd class="col-sm-9">...</dd>
+                              <dl class="row">
+                              <dt class="col-sm-4">ตำแหน่ง</dt>
+                              <dd></dd>
+                              </dl>
 
-        <dt class="col-sm-3">หลักสูตร</dt>
-        <dd class="col-sm-9">...</dd>
+                              <dl class="row">
+                              <dt class="col-sm-4">อาจารย์ที่ปรึกษา</dt>
+                              <dd>รอกลุ่ม Profile</dd>
+                              </dl>
+                        </div>
+                      </div>
+                    </div>
 
-        <dt class="col-sm-6">สาขาวิชา</dt>
-        <dd class="col-sm-3">...</dd>
+                      <div class="col-lg-6">
+                        <div class="card">
+                         <div class="card-header"><i class="fa fa-align-justify"></i> ข้อมูลนิสิต</div>
+                            <div class="card-body">
+                              <dl class="row">
+                                <dt class="col-sm-4">ชื่อ-นามสกุล</dt>
+                                <dd></dd>
+                                </dl>
 
-        <dt class="col-sm-6">จำนวนหน่วยกิตที่เรียนมาแล้ว</dt>
-        <dd class="col-sm-3">...</dd>
+                                <dl class="row">
+                                <dt class="col-sm-4">รหัสนิสิต</dt>
+                                <dd></dd>
+                                </dl>
 
-        <dt class="col-sm-6">GPAX</dt>
-        <dd class="col-sm-3">...</dd>
-        </dl>
-      </div>
-    </div>
-  </div>
-</div>
-  </div>
-</div>
-</main>
+                                <dl class="row">
+                                <dt class="col-sm-4">ชั้นปี</dt>
+                                <dd>รอกลุ่ม Profile</dd>
+                                </dl>
+
+                                <dl class="row">
+                                <dt class="col-sm-4">หลักสูตร</dt>
+                                <dd>รอกลุ่ม Profile</dd>
+                                </dl>
+
+                                <dl class="row">
+                                <dt class="col-sm-4">สาขา</dt>
+                                <dd></dd>
+                                </dl>
+
+                                <dl class="row">
+                                <dt class="col-sm-4">ชื่อเล่น</dt>
+                                <dd>รอกลุ่ม Profile</dd>
+                                </dl>
+
+                                <dl class="row">
+                                <dt class="col-sm-4">จำนวนหน่วยกิจที่เรียนแล้ว</dt>
+                                <dd>รอกลุ่ม Profile</dd>
+                                </dl>
+
+                                <dl class="row">
+                                <dt class="col-sm-4">GPAX</dt>
+                                <dd>รอกลุ่ม Profile</dd>
+                                </dl>
+
+                                    
+                       
+                            </div>
+                        </div>
+                      </div>
+     
+                  </div>
+
+                </div>
+              </div>
+            </div>   
+</main>     
