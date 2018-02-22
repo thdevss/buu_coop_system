@@ -8,7 +8,9 @@
           <a class="nav-link" href="<?php echo site_url('Officer/main');?>"><i class="icon-home"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" data-toggle="modal" data-target="#selectTermBox"><i class="fa fa-calendar"></i> เลือกปีการศึกษา</a>
+          <!-- <a class="nav-link" href="#" data-toggle="modal" data-target="#selectTermBox"><i class="fa fa-calendar"></i> เลือกปีการศึกษา</a> -->
+          <a class="nav-link" href="#" data-toggle="modal" data-target="#selectTermBox"><i class="fa fa-calendar"></i> ปีการศึกษา: <b><?php echo $current_term['name'];?></b></a>
+          
         </li>
 
         <li class="nav-title">
@@ -137,9 +139,14 @@
           <div class="form-group">
             <label for="term_option">ปีการศึกษา</label>
             <select class="form-control" id="term_option">
+              <option> ------ </option>
               <?php 
               foreach($terms as $term) {
-                echo '<option value="'.$term->term_id.'">'.$term->name.'</option>';
+                if($current_term['term_id'] == $term->term_id) {
+                  echo '<option value="'.$term->term_id.'" selected>'.$term->name.'</option>';
+                } else {
+                  echo '<option value="'.$term->term_id.'">'.$term->name.'</option>';                  
+                }
               }
               ?>
             </select>

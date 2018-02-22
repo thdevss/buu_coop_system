@@ -46,7 +46,7 @@ class Test extends CI_Controller {
             $data['status'] = '';
         }
 
-        print_r($data);
+        // print_r($data);
 
 		$this->template->view('student/test_register_view', $data);
 		
