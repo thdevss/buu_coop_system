@@ -41,8 +41,10 @@
 
       });
 
-      $('body').toggleClass('sidebar-minimized');
-      resizeBroadcast();
+      $('.sidebar-minimizer').click()
+
+      // $('body').toggleClass('sidebar-minimized');
+      
 
       $(".deleteForm").submit(function(event){
         event.preventDefault();
