@@ -88,7 +88,7 @@ class Company_info extends CI_controller
                 $array_company_person['telephone'] = $this->input->post('telephone');
                 $array_company_person['fax_number'] = $this->input->post('fax_number');
                 $array_company_person['email'] = $this->input->post('email');
-                $array_company_person['select1'] = $this->input->post('select1');
+                // $array_company_person['select1'] = $this->input->post('select1');
                 $array_company_person['name_en'] = $this->input->post('name_en');
 
                 
