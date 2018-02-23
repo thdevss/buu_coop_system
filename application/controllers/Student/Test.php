@@ -63,11 +63,11 @@ class Test extends CI_Controller {
             die();
         } else {
             //get current test id
-            $data['coop_test'] = $this->DB_coop_test->get_open_register();
-            $data['student'] = $this->DB_student->get($student_id);
+            $data['coop_test'] = $this->Test->get_open_register();
+            $data['student'] = $this->Student->get_student($student_id)[0];
 
             //check already register?
-            if(@$this->DB_coop_test_has_student->check_student($student_id, $data['coop_test']->id)) {
+            if(@$this->Test->check_student($student_id, $data['coop_test']['id'])) {
                 return $this->index('error_student_dup');
                 die();
             }
@@ -91,17 +91,27 @@ class Test extends CI_Controller {
     {
         $student_id = $this->Login_session->check_login()->login_value;
         
-        $data = array();
-        $data['rows'] = array();
-        foreach($this->DB_coop_test_has_student->gets_by_student($student_id) as $row) {
-            //get testdate
-            $coop_test = $this->DB_coop_test->get($row->coop_test_id);
+        // $data = array();
+        // $data['rows'] = array();
+        // foreach($this->Test->get_test_result_by_student($student_id) as $row) {
+        //     //get testdate
+        //     $coop_test = $this->Test->get_test($row['coop_test_id']);
 
-            $row->test_date = $coop_test->test_date;
-            $row->name = $coop_test->name;
+        //     // $row['test_date'] = $coop_test['test_date'];
+        //     // $row['name'] = $coop_test['name'];
+        //     // $row[''] = 
             
-            array_push($data['rows'], $row);
+        //     array_push($data['rows'], $row);
+        // }
+        $data['data'] = array();
+        foreach($this->Test->get_test_result_by_student($student_id) as $row) {
+            $temp_array = array();
+            $temp_array['test_result'] = $row;
+            $temp_array['coop_test'] = $this->Test->get_test($row['coop_test_id'])[0];
+
+            array_push($data['data'], $temp_array);
         }
+
 		$this->template->view('student/test_result_view', $data);        
     }
 }  

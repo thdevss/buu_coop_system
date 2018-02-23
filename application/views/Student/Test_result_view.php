@@ -28,15 +28,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach($rows as $row) { ?>
+                                           <?php foreach($data as $row) { ?>
                                             <tr>
-                                                <th scope="row"><?php echo $row->test_date;?></th>
-                                                <td>การสอบครั้งที่ <?php echo $row->name;?></td>
+                                                <th scope="row"><?php echo $row['coop_test']['test_date']; ?> </th>
+                                                <td>การสอบครั้งที่ <?php echo $row['coop_test']['name']; ?></td>
                                                 <td>
                                                 <?php 
-                                                if($row->coop_test_status == '1') {
+                                                if($row['test_result']['coop_test_status'] == '1') {
                                                     echo '<span class="btn btn-success">สอบผ่าน</span>';
-                                                } else if($row->coop_test_status == '2') {
+                                                } else if($row['test_result']['coop_test_status'] == '2') {
                                                     echo '<span class="btn btn-warning">สอบตก</span>';
                                                 } else {
                                                     echo '<span class="btn btn-info">รอผลการสอบ</span>';                                                    
