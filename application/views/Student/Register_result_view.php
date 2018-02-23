@@ -15,21 +15,8 @@
           <div class="card-header"><i class="fa fa-align-justify"></i> ประกาศผลการสมัครงาน
           </div>
             <div class="card-body">
-           
+              
 
-
-
-
-
-
-
-
-
-
-
-
-
-           
             </div>
         </div>
       </div>
