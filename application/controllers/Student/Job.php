@@ -21,8 +21,11 @@ class Job extends CI_Controller {
 
     public function lists()
     {
-        
-        $this->template->view('Student/Report_student_info_view');
+        $data['company'] = $this->Company->gets_company();
+        $data['job'] = $this->Job->gets_job_title();
+
+
+        $this->template->view('Student/Report_student_info_view',$data);
     }
 
     public function register_form_company()
@@ -35,6 +38,7 @@ class Job extends CI_Controller {
         
         $this->template->view('Student/Register_result_view');
     }
+   
 
 
 }

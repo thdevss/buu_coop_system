@@ -17,20 +17,24 @@
             <div class="card-body">
             <!--ส่วนของเลือกเพื่อนกรองคำค้นหา-->
             <div class="row text-center">
-            <div class="form-group col-sm-3"></div>
-                <div class="form-group col-sm-3">
+             <div class="form-group col-sm-3"></div>
+                    <div class="form-group col-sm-3">
                       <label for="ccmonth">บริษัท</label>
                       <select class="form-control" id="" name="">
-                        <option>--กรุณาเลือก--</option>
-                        <option value="">1</option>
+                      <option>--กรุณาเลือก--</option>
+                      <?php foreach($company as $row) {?>
+                        <option value=""><?php echo $row['name_th']; ?></option>
+                      <?php } ?>
                       </select>
                     </div>
 
-                <div class="form-group col-sm-3">
+                    <div class="form-group col-sm-3">
                       <label for="ccmonth">ตำแหน่งงาน</label>
                       <select class="form-control" id="" name="">
                         <option>--กรุณาเลือก--</option>
-                        <option value="">1</option>
+                      <?php foreach($job as $row) {?>
+                        <option value=""><?php echo $row['job_title']; ?></option>
+                      <?php } ?>
                       </select>
                     </div>
                 </div>

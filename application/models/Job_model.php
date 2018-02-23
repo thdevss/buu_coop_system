@@ -98,5 +98,11 @@ class Job_model extends CI_model {
         $this->db->from('company_job_title');
         return $this->db->count_all_results();
     }
+    public function gets_job_title()
+    {
+        $this->db->from('company_job_title');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
 }
