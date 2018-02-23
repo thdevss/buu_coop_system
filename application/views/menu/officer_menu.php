@@ -5,7 +5,7 @@
     <nav class="sidebar-nav">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url('Officer/main');?>"><i class="icon-home"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
+          <a class="nav-link" href="<?php echo site_url('Officer/main');?>"><i class="icon-home"></i> ประกาศข่าวสาร</a>
         </li>
         <li class="nav-item">
           <!-- <a class="nav-link" href="#" data-toggle="modal" data-target="#selectTermBox"><i class="fa fa-calendar"></i> เลือกปีการศึกษา</a> -->
@@ -123,7 +123,7 @@
         </li>
       </ul>
     </nav>
-    <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+    <button class="sidebar-minimizer brand-minimizer sidebar-minimized" type="button"></button>
   </div>
 
 
