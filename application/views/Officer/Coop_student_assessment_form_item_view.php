@@ -15,10 +15,9 @@
                   <div class="card">
                     <div class="card-header">
                       <i class="fa fa-align-justify"></i> จัดการหัวข้อย่อยแบบประเมินผลการฝึกงานของนิสิตสหกิจ
-                        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#add_item_form">
-                          <i class="icon-plus"></i>
-                          เพิ่มหัวข้อการประเมิน
-                        </button>
+
+                      <a href="<?php echo site_url('officer/Assessment_coop_student_Form');?>" class="btn btn-info float-right" >กลับไปยังหัวข้อหลัก</a>
+                        
                     </div>
                       <div class="card-body">
                       <div class="row">
@@ -37,7 +36,11 @@
                             </select>
                             </div>
                             <div class="col-lg-6 text-right">
-                              <a href="<?php echo site_url('officer/Assessment_coop_student_Form');?>" class="btn btn-info" >กลับไปยังหัวข้อหลัก</a>
+                              <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#add_item_form">
+                                <i class="icon-plus"></i>
+                                เพิ่มหัวข้อการประเมิน
+                              </button>
+                              
                             </div>
                         </div>
                         <br><br>

@@ -30,7 +30,19 @@
   <!-- <script src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script> -->
   <script>
     $(document).ready(function(){
-      $('.datatable').DataTable();
+      $('.datatable').DataTable({
+        'columnDefs': [
+        {
+              "searchable": false,
+              "orderable": false,
+              "targets": 0
+        }
+        ],
+
+      });
+
+      $('body').toggleClass('sidebar-minimized');
+      resizeBroadcast();
 
       $(".deleteForm").submit(function(event){
         event.preventDefault();

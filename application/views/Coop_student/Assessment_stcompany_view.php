@@ -5,7 +5,7 @@
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Home</li>
   <li class="breadcrumb-item"><a href="#"><?php echo $user->login_type;?></a></li>
-  <li class="breadcrumb-item active">แบบประเมินสถานประกอบการที่ให้ความอนุเคราะห์รับนักศึกษาฝึกงาน</li>
+  <li class="breadcrumb-item active">แบบประเมินบริษัท</li>
 </ol>
 
 <div class="container-fluid">
@@ -13,7 +13,7 @@
       <div class="row" >
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify"></i>แบบประเมินสถานประกอบการที่ให้ความอนุเคราะห์รับนักศึกษาฝึกงาน</div>
+            <div class="card-header"><i class="fa fa-align-justify"></i>แบบประเมินบริษัท</div>
               <div class="card-body">
 
               <table class="table table-responsive-sm table-bordered">

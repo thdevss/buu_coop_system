@@ -43,6 +43,8 @@ class Training extends CI_Controller {
             $tmp_array = array();
             $tmp_array['train'] = $row;
             $tmp_array['train_type'] = $this->Training->get_type($row['train_type_id'])[0];
+            $tmp_array['train_location'] = $this->Training->get_location($row['train_location_id'])[0];
+            
             array_push($data['data'], $tmp_array);
         }
         $this->template->view('Officer/Train_list_view',$data);

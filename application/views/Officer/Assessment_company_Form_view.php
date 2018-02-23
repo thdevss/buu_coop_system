@@ -7,7 +7,7 @@
         <li class="breadcrumb-item active">จัดการแบบประเมินสถานประกอบการ</li>
       </ol>
 <div class="card">
-<div class="card-header"><i class="fa fa-align-justify"></i>จัดการแบบประเมินสถานประกอบการ</div>
+<div class="card-header"><i class="fa fa-align-justify"></i>จัดการแบบประเมินบริษัท</div>
       <div class="card-body">
               <form action="<?php echo site_url('officer/Assessment_companyForm/save');?>" method="post" class="form-horizontal">
                 <div class="row">    
