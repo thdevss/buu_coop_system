@@ -12,7 +12,7 @@
     <div class="row" >
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header"><i class="fa fa-align-justify"></i>ตรวจสอบประวัติการอบรม</div>
+          <div class="card-header"><i class="fa fa-align-justify"></i> ตรวจสอบประวัติการอบรม</div>
             <div class="card-body">
             
               <ul class="nav nav-tabs" role="tablist">

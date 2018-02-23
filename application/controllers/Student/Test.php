@@ -63,25 +63,26 @@ class Test extends CI_Controller {
             die();
         } else {
             //get current test id
-            $data['coop_test'] = $this->Test->get_open_register();
+            $data['coop_test'] = $this->Test->get_open_register()[0];
             $data['student'] = $this->Student->get_student($student_id)[0];
+    
 
             //check already register?
             if(@$this->Test->check_student($student_id, $data['coop_test']['id'])) {
-                return $this->index('error_student_dup');
+                return $this->lists('error_student_dup');
                 die();
             }
-
+           
             //register
-            $array['coop_test_id'] = $data['coop_test']->id;
-            $array['coop_test_term_id'] = $data['coop_test']->term_id;
-            $array['student_term_id'] = $data['student']->term_id;
-            $array['student_id'] = $data['student']->id;
+            $array['coop_test_id'] = $data['coop_test']['id'];
+            $array['coop_test_term_id'] = $data['coop_test']['term_id'];
+            $array['student_term_id'] = $data['student']['term_id'];
+            $array['student_id'] = $data['student']['id'];
             $array['coop_test_status'] = '0';
             
-            $this->DB_coop_test_has_student->add($array);
+            $this->Test->insert_student_to_test($array);
 
-            return $this->index('success');
+            return $this->lists('success');
 
         }
     }

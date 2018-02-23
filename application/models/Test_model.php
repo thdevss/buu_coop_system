@@ -108,7 +108,7 @@ class Test_model extends CI_model {
         $this->db->where('coop_test_id',$coop_test_id);
         $this->db->from('coop_test_has_student');
         $query = $this->db->get();
-        return $query->result()[0];
+        return $query->result_array();
     }
 
     public function get_open_register()
@@ -116,8 +116,13 @@ class Test_model extends CI_model {
         $this->db->where('term_id', $this->Login_session->check_login()->term_id);
         $this->db->where('register_status', '1');
         $this->db->order_by('name', 'ASC');
-        $this->db->from($this->table_name);
+        $this->db->from('coop_test');
         $query = $this->db->get();
-        return $query->result()[0];
+        return $query->result_array();
+    }
+
+    public function insert_student_to_test($array)
+    {
+        return $this->db->insert('coop_test_has_student',$array);
     }
 }
