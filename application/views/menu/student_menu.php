@@ -17,10 +17,10 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-book-open"></i> การอบรม</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-              <?php echo anchor('Student/Training/check_hour/', '<i class="fa fa-hourglass-start"></i> ตรวจสอบชั่วโมงการอบรม', 'class="nav-link"');?>
+              <?php echo anchor('Student/Training/check_hour/', '<i class="fa fa-hourglass-start"></i> ตรวจสอบชั่วโมงอบรม', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
-              <?php echo anchor('Student/Training/check_history/', '<i class="fa fa-history"></i> ตรวจสอบประวัติการอบรม', 'class="nav-link"');?>
+              <?php echo anchor('Student/Training/check_history/', '<i class="fa fa-history"></i> ตรวจสอบประวัติอบรม', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
                 <?php echo anchor('Student/Training/register/', '<i class="fa fa-registered"></i> สมัครเข้าร่วมอบรม', 'class="nav-link"');?>
@@ -45,7 +45,7 @@
               <a class="nav-link" href="<?php echo site_url('student/Job/lists');?>" target="_top"><i class="icon-list"></i> รายการสมัครที่เปิดรับ</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('student/Job/register_status');?>" target="_top"><i class="fa fa-file-pdf-o"></i> ประกาศผลการสมัครงาน</a>
+              <a class="nav-link" href="<?php echo site_url('student/Job/register_status');?>" target="_top"><i class="fa fa-file-pdf-o"></i> ประกาศผลการสมัคร</a>
               </li>
             </ul>
           </li>
