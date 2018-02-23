@@ -22,7 +22,7 @@ class Company_info extends CI_controller
         {
             if($status == 'success' ){
                 $data['status']['color'] = 'success';
-                $data['status']['text'] = 'สำเร็จ';
+                $data['status']['text'] = 'แก้ไขสำเร็จ';
             }else{
                 $data['status'] = '';
             }
@@ -68,42 +68,42 @@ class Company_info extends CI_controller
                 // update company
                 $company_id = $this->input->post('id');
                 $trainer_id = $this->input->post('headoffice_person_id');
-                $array['name_th'] = $this->input->post('name_th');
-                $array['name_en'] = $this->input->post('name_en');
-                $array['total_employee'] = $this->input->post('total_employee');
-                $array['company_type'] = $this->input->post('company_type');
+                $array_company['name_th'] = $this->input->post('name_th');
+                $array_company['name_en'] = $this->input->post('name_en');
+                $array_company['total_employee'] = $this->input->post('total_employee');
+                $array_company['company_type'] = $this->input->post('company_type');
                 // update company address
-                $array['number'] = $this->input->post('number');
-                $array['building'] = $this->input->post('building');
-                $array['alley'] = $this->input->post('alley');
-                $array['road'] = $this->input->post('road');
-                $array['district'] = $this->input->post('district');
-                $array['area'] = $this->input->post('area');
-                $array['province'] = $this->input->post('province');
-                $array['postal_code'] = $this->input->post('postal_code');
+                $array_company_address['number'] = $this->input->post('number');
+                $array_company_address['building'] = $this->input->post('building');
+                $array_company_address['alley'] = $this->input->post('alley');
+                $array_company_address['road'] = $this->input->post('road');
+                $array_company_address['district'] = $this->input->post('district');
+                $array_company_address['area'] = $this->input->post('area');
+                $array_company_address['province'] = $this->input->post('province');
+                $array_company_address['postal_code'] = $this->input->post('postal_code');
                 // update company person
-                $array['fullname'] = $this->input->post('fullname');
-                $array['position'] = $this->input->post('position');
-                $array['department'] = $this->input->post('department');
-                $array['telephone'] = $this->input->post('telephone');
-                $array['fax_number'] = $this->input->post('fax_number');
-                $array['email'] = $this->input->post('email');
-                $array['select1'] = $this->input->post('select1');
-                $array['name_en'] = $this->input->post('name_en');
+                $array_company_person['fullname'] = $this->input->post('fullname');
+                $array_company_person['position'] = $this->input->post('position');
+                $array_company_person['department'] = $this->input->post('department');
+                $array_company_person['telephone'] = $this->input->post('telephone');
+                $array_company_person['fax_number'] = $this->input->post('fax_number');
+                $array_company_person['email'] = $this->input->post('email');
+                $array_company_person['select1'] = $this->input->post('select1');
+                $array_company_person['name_en'] = $this->input->post('name_en');
 
-                print_r($array);
+                
 
                 // update on table
-                // $this->Company->update_company($company_id, $array);
-                // $this->Address->update_address($company_id, $array);
-                // $this->Trainer->update_trainer($trainer_id, $array);
+                $this->Company->update_company($company_id, $array_company);
+                $this->Address->update_address($company_id, $array_company_address);
+                $this->Trainer->update_trainer($trainer_id, $array_company_person);
 
-                // return $this->index('sucess');
+                redrirect('Company/Company_info/index/?status=success','refresh');
 
 
-            // }
+            
 
-            // echo json_encode($return);
+          
 
         }
 }
