@@ -34,6 +34,7 @@
                         <th class="text-center">ประเภท</th>
                         <th class="text-center">ชื่อโครงการ</th>
                         <th class="text-center">วิทยากร</th>
+                        <th class="text-center">สถานที่อบรม</th>                        
                         <th class="text-center">จำนวนชั่วโมง</th>
                         <th class="text-center">จำนวนที่นั่ง</th>
                         <th class="text-center"></th>
@@ -48,6 +49,7 @@
                         <td class="text-left"><?php echo $row['train_type']['name'] ?></td>
                         <td class="text-left"><?php echo $row['train']['title'] ?></td>
                         <td class="text-left"><?php echo $row['train']['lecturer'] ?></td>
+                        <td class="text-left"><?php echo $row['train_location']['room'] ?></td>                        
                         <td class="text-right"><?php echo $row['train']['number_of_hour'] ?></td>
                         <td class="text-right"><?php echo $row['train']['number_of_seat'] ?></td>
                         <td class="text-center">
@@ -105,6 +107,8 @@ $('.btn-submit').on('click',function(e){
     })
 
 });
+
+
 
 
 </script>

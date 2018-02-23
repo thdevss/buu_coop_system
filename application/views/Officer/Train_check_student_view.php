@@ -32,7 +32,7 @@
                                 </div>
 
                                 <div class="form-group col-md-6 offset-md-3">
-                                    <label for="note">Note</label>          
+                                    <label for="note">บันทึกช่วยจำ</label>          
                                     <input class="form-control" type="text" name="note" id="note">
                                 </div>
 

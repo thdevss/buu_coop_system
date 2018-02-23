@@ -20,34 +20,25 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-people"></i> จัดการนิสิต</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <?php echo anchor('Officer/Student_list', '<i class="icon-list"></i> รายชื่อนิสิต', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Student_list', '<i class="icon-list"></i> เปลี่ยนสถานะ', 'class="nav-link"');?>
             </li>
-            <li class="nav-item">
-              <?php echo anchor('Officer/Coop_Submitted_Form_Search/by_student', '<i class="icon-doc"></i> ตรวจสอบเอกสารรายบุคคล', 'class="nav-link"');?>
-            </li>
-            <li class="nav-item">
-              <?php echo anchor('Officer/Coop_Submitted_Form_Search/by_form', '<i class="icon-docs"></i> ตรวจสอบเอกสารตามประเภท', 'class="nav-link"');?>
-            </li>
-            <li class="nav-item">
-
-              <?php echo anchor('Officer/Coop_student/', '<i class="fa fa-mortar-board "></i> รายชื่อนิสิตสหกิจ', 'class="nav-link"');?>            
-            </li>
+            
           </ul>
         </li>
 
 
 
         <li class="nav-item nav-dropdown">
-          <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-user-following"></i> จัดการอาจารย์</a>
+          <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-mortar-board"></i> จัดการอาจารย์</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <?php echo anchor('Officer/Management_student_adviser', '<i class="fa fa-gear fa-lg  fa-spin"></i> อาจารย์ที่ปรึกษากับนิสิต', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Management_student_adviser', '<i class="fa fa-tripadvisor"></i> อ.ที่ปรึกษากับนิสิต', 'class="nav-link"');?>
             </li>
           </ul>
         </li>
 
         <li class="nav-item nav-dropdown">  
-          <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-drivers-license-o"></i> จัดการผู้ประกอบการ</a>
+          <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-building"></i> จัดการผู้ประกอบการ</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
               <?php echo anchor('Officer/Company/', '<i class="fa fa-address-book-o"></i> ข้อมูลสถานประกอบการ', 'class="nav-link"');?>
@@ -55,10 +46,10 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url('Officer/news');?>"><i class="icon-calculator"></i> ประกาศข่าวหน้าเว็บ </a>
+          <a class="nav-link" href="<?php echo site_url('Officer/news');?>"><i class="fa fa-bullhorn"></i> ประกาศข่าวหน้าเว็บ </a>
         </li>
         <li class="nav-item nav-dropdown">
-          <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-handshake-o"></i> จัดการการอบรม</a>
+          <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-book"></i> จัดการการอบรม</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
               <?php echo anchor('Officer/Training/', '<i class="fa fa-address-book-o"></i> ข้อมูลโครงการอบรม', 'class="nav-link"');?>
@@ -72,7 +63,7 @@
           </ul>
         </li>
         <li class="nav-item nav-dropdown">
-          <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-tasks"></i> จัดการสอบ</a>
+          <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-check"></i> จัดการสอบ</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
               <?php echo anchor('Officer/Test_form/', '<i class="fa fa-leanpub"></i> ข้อมูลรับสมัครการสอบ', 'class="nav-link"');?>
@@ -89,35 +80,46 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-graph"></i> รายงาน</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <?php echo anchor('Officer/Report_cooperative/', '<i class="fa fa-tasks"></i> รายงานการไปสหกิจ', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Coop_student/', '<i class="fa fa-handshake-o"></i> รายชื่อนิสิตสหกิจ', 'class="nav-link"');?>            
             </li>
+            <li class="nav-item">
+              <?php echo anchor('Officer/Coop_Submitted_Form_Search/by_student', '<i class="icon-doc"></i> การส่งเอกสาร (บุคคล)', 'class="nav-link"');?>
+            </li>
+            <li class="nav-item">
+              <?php echo anchor('Officer/Coop_Submitted_Form_Search/by_form', '<i class="icon-docs"></i> การส่งเอกสาร (ประเภท)', 'class="nav-link"');?>
+            </li>
+
+            <li class="nav-item">
+              <?php echo anchor('Officer/Report_cooperative/', '<i class="fa fa-tasks"></i> สรุปภาพรวม', 'class="nav-link"');?>
+            </li>
+            
           </ul>
         </li>
         <li class="nav-item nav-dropdown">
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-file-o"></i> จัดการแบบประเมิน</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-            <?php echo anchor('Officer/Assessment_company_Form/', '<i class="fa fa-tasks"></i> แบบประเมินสถานประกอบการ', 'class="nav-link"');?>
+            <?php echo anchor('Officer/Assessment_company_Form/', '<i class="fa fa-tasks"></i> แบบประเมินบริษัท', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/Assessment_coop_student_Form/', '<i class="fa fa-mortar-board"></i> แบบประเมินนิสิตสหกิจศึกษา', 'class="nav-link"');?>
+            <?php echo anchor('Officer/Assessment_coop_student_Form/', '<i class="fa fa-mortar-board"></i> แบบประเมินนิสิต', 'class="nav-link"');?>
             </li>
           </ul>
         </li>
         <li class="nav-item nav-dropdown">
-          <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-cogs fa-md fa-spin"></i> ตั้งค่าระบบ</a>
+          <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-cogs fa-md fa-spin"></i> ตั้งค่า</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <?php echo anchor('Officer/setting/lists_job_title', '<i class="fa fa-tasks"></i> ตำแหน่งงานสถานประกอบการ', 'class="nav-link"');?>
+              <?php echo anchor('Officer/setting/lists_job_title', '<i class="fa fa-gear"></i> จัดการตำแหน่งงาน', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-              <?php echo anchor('Officer/setting/lists_skill_name', '<i class="fa fa-tasks"></i> ทักษะงานสถานประกอบการ', 'class="nav-link"');?>
+              <?php echo anchor('Officer/setting/lists_skill_name', '<i class="fa fa-gear"></i> จัดการประเภททักษะ', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/Test_Management/', '<i class="fa fa-tasks"></i> ภาคปีการศึกษา', 'class="nav-link"');?>
+            <?php echo anchor('Officer/#/', '<i class="fa fa-gear"></i> ภาคปีการศึกษา', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/Test_result/', '<i class="fa fa-file-text-o"></i> เอกสาร', 'class="nav-link"');?>
+            <?php echo anchor('Officer/#/', '<i class="fa fa-gear"></i> กำหนดเอกสาร', 'class="nav-link"');?>
         </li>
       </ul>
     </nav>

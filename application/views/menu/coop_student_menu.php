@@ -85,7 +85,7 @@
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-          <?php echo anchor('Coop_student/Assessment_st_company/', '<i class="fa fa-file-o"></i> แบบประเมินสถานประกอบการ', 'class="nav-link"');?>
+          <?php echo anchor('Coop_student/Assessment_st_company/', '<i class="fa fa-file-o"></i> แบบประเมินบริษัท', 'class="nav-link"');?>
           </li>
 
         </ul>
