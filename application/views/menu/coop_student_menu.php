@@ -17,7 +17,7 @@
                 <?php echo anchor('Coop_student/Coop_detail/', '<i class="fa fa-user-o"></i> ข้อมูลนิสิต', 'class="nav-link"');?>  
               </li>
               <li class="nav-item">
-              <?php echo anchor('Coop_student/Daily_activity/lists', '<i class="fa fa-edit "></i> จัดการกิจกรรมการฝึกงานแต่ละวัน', 'class="nav-link"');?>
+              <?php echo anchor('Coop_student/Daily_activity/lists', '<i class="fa fa-edit "></i> การฝึกงานแต่ละวัน', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
                 <?php echo anchor('Coop_student/Workplace/', '<i class="fa fa-address-book-o"></i> แจ้งพิกัดงาน', 'class="nav-link"');?>  
