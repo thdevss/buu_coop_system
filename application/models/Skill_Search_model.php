@@ -17,4 +17,12 @@ class Skill_Search_model extends CI_model {
         return $query->result_array();
         
     }
+
+    public function skill_by_id($skill_id)
+    {
+        $this->db->where('skill_id',$skill_id);
+        $this->db->from('skill');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
