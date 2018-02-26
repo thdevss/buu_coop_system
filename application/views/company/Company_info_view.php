@@ -4,7 +4,7 @@
 <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Home</li>
-        <li class="breadcrumb-item"><a href="#"><?php echo $user->login_type;?></a></li>
+        <li class="breadcrumb-item"><a href="#"><?php echo strToLevel($user->login_type);?></a></li>
         <li class="breadcrumb-item active">ข้อมูลบริษัท</li>
     </ol>
 
@@ -23,11 +23,12 @@
                 
             </ul>
             <!-- fieldsets -->
-            <fieldset>
+            <fieldset id="form_step1">
                 
                 <h3 class="fs-subtitle">ขั้นที่ 1</h3>
    
                 <div class="card">
+                    
                   <div class="card-header"><i class="fa fa-align-justify"></i> รายละเอียดเกี่ยวกับสถานประกอบการ / หน่วยงาน </div>
                     <div class="card-body">
                        <label for="name">ชื่อสถานประกอบการ / หน่วยงาน</label>
@@ -35,33 +36,32 @@
                         <div class="row">
                             <div class="form-group col-sm-6">
                                 <label>(ภาษาไทย)</label><code>*</code>
-                                <input type="text" class="form-control" id="name_th" name="name_th" placeholder="<?php echo $company['name_th']; ?>" required>
-                                <input type="hidden"  id="id" name="id" value="<?php echo $company['id']; ?>">
-                                <input type="hidden"  id="id" name="id" value="<?php echo $company['headoffice_person_id']; ?>">
+                                <input type="text" class="form-control" id="name_th" name="name_th" value="<?php echo $company['name_th']; ?>" required>
+                                <input type="hidden"  id="company_id" name="company_id" value="<?php echo $company['id']; ?>">
                             </div>
                         </div>
 
                         <div class="row">
                           <div class="form-group col-sm-6">
                             <label>(ภาษาอังกฤษ)</label><code>*</code>
-                               <input type="text" class="form-control" id="name_en" name="name_en" placeholder="<?php echo $company['name_en']; ?>" required>
+                               <input type="text" class="form-control" id="name_en" name="name_en" value="<?php echo $company['name_en']; ?>" required>
                           </div>
                         </div>
 
                         <div class="row">
                           <div class="form-group col-sm-3">
                             <label>ที่อยู่เลขที่</label><code>*</code>
-                               <input type="text" class="form-control" id="number" name="number" placeholder="<?php echo $company_address['number'];?>" required>
+                               <input type="text" class="form-control" id="number" name="number" value="<?php echo $company_address['number'];?>" required>
                           </div>
 
                           <div class="form-group col-sm-5">
                             <label>อาคาร</label><code>*</code>
-                               <input type="text" class="form-control" id="building" name="building" placeholder="<?php echo $company_address['building'];?>" required>
+                               <input type="text" class="form-control" id="building" name="building" value="<?php echo $company_address['building'];?>" required>
                           </div>
 
                           <div class="form-group col-sm-4">
                             <label>ถนน</label>
-                               <input type="text" class="form-control" id="road" name="road" placeholder="<?php echo $company_address['road'];?>" required>
+                               <input type="text" class="form-control" id="road" name="road" value="<?php echo $company_address['road'];?>" required>
                           </div>
 
                         </div>
@@ -70,22 +70,22 @@
 
                           <div class="form-group col-sm-3">
                             <label>ซอย</label>
-                               <input type="text" class="form-control" id="alley" name="alley" placeholder="<?php echo $company_address['alley'];?>" required>
+                               <input type="text" class="form-control" id="alley" name="alley" value="<?php echo $company_address['alley'];?>" required>
                           </div>
 
                           <div class="form-group col-sm-3">
                             <label>แขวง</label><code>*</code>
-                               <input type="text" class="form-control" id="district" name="district" placeholder="<?php echo $company_address['district'];?>" required>
+                               <input type="text" class="form-control" id="district" name="district" value="<?php echo $company_address['district'];?>" required>
                           </div>
 
                           <div class="form-group col-sm-3">
                             <label>เขต/อำเภอ</label><code>*</code>
-                               <input type="text" class="form-control" id="area" name="area" placeholder="<?php echo $company_address['area'];?>" required>
+                               <input type="text" class="form-control" id="area" name="area" value="<?php echo $company_address['area'];?>" required>
                           </div>
 
                           <div class="form-group col-sm-3">
                             <label>จังหวัด</label><code>*</code>
-                               <input type="text" class="form-control" id="province" name="province" placeholder="<?php echo $company_address['province'];?>" required>
+                               <input type="text" class="form-control" id="province" name="province" value="<?php echo $company_address['province'];?>" required>
                             </div>
 
                         </div>
@@ -94,17 +94,17 @@
 
                           <div class="form-group col-sm-3">
                             <label>รหัสไปรษณีย์</label><code>*</code>
-                               <input type="text" class="form-control" id="postal_code" name="postal_code" placeholder="<?php echo $company_address['postal_code'];?>" required>
+                               <input type="text" class="form-control" id="postal_code" name="postal_code" value="<?php echo $company_address['postal_code'];?>" required>
                           </div>
 
                           <div class="form-group col-sm-4">
                             <label>ประเภทกิจการ/ธุรกิจ/ผลิตภัณฑ์/ลักษณะการดำเนินงาน</label><code>*</code>
-                               <input type="text" class="form-control" id="company_type" name="company_type" placeholder="<?php echo $company['company_type'];?>" required>
+                               <input type="text" class="form-control" id="company_type" name="company_type" value="<?php echo $company['company_type'];?>" required>
                           </div>
 
                           <div class="form-group col-sm-3">
                             <label>จำนวนพนักงาน</label><code>*</code>
-                               <input type="text" class="form-control" id="total_employee" name="total_employee" placeholder="<?php echo $company['total_employee'];?>" required>
+                               <input type="text" class="form-control" id="total_employee" name="total_employee" value="<?php echo $company['total_employee'];?>" required>
                           </div>
 
                         </div>
@@ -112,10 +112,10 @@
                     </div>
                 </div>
         
-               <input type="submit" name="next" class="next action-button" value="ต่อไป" />
+               <input type="button" name="next" class="next action-button" id="save_step1_btn" value="ต่อไป" />
             </fieldset>
 
-            <fieldset>
+            <fieldset id="form_step2">
 
                 <h3 class="fs-subtitle">ขั้นที่ 2</h3>
 
@@ -127,7 +127,7 @@
                         <div class="row">
                             <div class="form-group col-sm-6">
                                 <label>ชื่อ-นามสกุล</label><code>*</code>
-                                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="<?php echo $company_person['fullname'];?>" required>
+                                <input type="text" class="form-control" id="fullname" name="fullname" value="<?php echo $company_person['fullname'];?>" required>
                             </div>
 
                         </div>
@@ -135,12 +135,12 @@
                         <div class="row">
                             <div class="form-group col-sm-4">
                                 <label>ตำแหน่ง</label><code>*</code>
-                                <input type="text" class="form-control" id="position" name="position" placeholder="<?php echo $company_person['position'];?>" required>
+                                <input type="text" class="form-control" id="position" name="position" value="<?php echo $company_person['position'];?>" required>
                             </div>
 
                             <div class="form-group col-sm-4">
                                 <label>แผนก/ฝ่าย</label><code>*</code>
-                                <input type="text" class="form-control" id="department" name="department" placeholder="<?php echo $company_person['department'];?>" required>
+                                <input type="text" class="form-control" id="department" name="department" value="<?php echo $company_person['department'];?>" required>
                             </div>
 
                         </div>
@@ -148,12 +148,12 @@
                         <div class="row">
                             <div class="form-group col-sm-4">
                                 <label>โทรศัพท์</label><code>*</code>
-                                <input type="text" class="form-control" id="telephone" name="telephone" placeholder="<?php echo $company_person['telephone'];?>" required>
+                                <input type="text" class="form-control" id="telephone" name="telephone" value="<?php echo $company_person['telephone'];?>" required>
                             </div>
 
                             <div class="form-group col-sm-4">
                                 <label>โทรสาร</label>
-                                <input type="text" class="form-control" id="fax_number" name="fax_number" placeholder="<?php echo $company_person['fax_number'];?>" required>
+                                <input type="text" class="form-control" id="fax_number" name="fax_number" value="<?php echo $company_person['fax_number'];?>" required>
                             </div>
 
                         </div>
@@ -161,7 +161,7 @@
                         <div class="row">
                             <div class="form-group col-sm-6">
                                 <label>Email</label><code>*</code>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="<?php echo $company_person['email'];?>" required>
+                                <input type="email" class="form-control" id="email" name="email" value="<?php echo $company_person['email'];?>" required>
                             </div>
 
                         </div>
@@ -208,7 +208,7 @@
                 </div>
 
                 <input type="button" name="previous" class="previous action-button" value="ย้อนกลับ" />
-                <input type="submit" name="next" class="next action-button" value="ต่อไป" />
+                <input type="button" name="next" class="next action-button" id="save_step2_btn" value="ต่อไป" />
             </fieldset>
 
 
@@ -216,7 +216,7 @@
 
 
 
-            <fieldset>
+            <fieldset id="form_step3">
 
                 <h3 class="fs-subtitle">ขั้นที่ 3</h3>
 
@@ -295,7 +295,7 @@
                                             <div class="row">
                                                 <div class="form-group col-sm-12">
                                                     <label class="col-md-8 form-control-label" for="textarea-input">ลักษณะงานที่นิสิตต้องปฏิบัติงาน<code>*</code></label>
-                                                    <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" placeholder=""></textarea>
+                                                    <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" value=""></textarea>
                                                 </div>
                                             </div>
 
@@ -336,12 +336,13 @@ var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 
-$(".next").click(function(){
+// $(".next").click(function(){
+function next_page(e) {
 	if(animating) return false;
 	animating = true;
 	
-	current_fs = $(this).parent();
-	next_fs = $(this).parent().next();
+	current_fs = $(e).parent();
+	next_fs = $(e).parent().next();
 	
 	//activate next step on progressbar using the index of next_fs
 	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
@@ -372,7 +373,8 @@ $(".next").click(function(){
 		//this comes from the custom easing plugin
 		easing: 'easeInOutBack'
 	});
-});
+}
+// });
 
 $(".previous").click(function(){
 	if(animating) return false;
@@ -562,3 +564,24 @@ $(document).ready(function(){
 
 
 </style>
+
+
+<script>
+jQuery.ajaxSetup({
+    async: false
+})
+jQuery("#save_step1_btn").click(function(e){
+    jQuery.post(SITE_URL+"/Company/Company_info/save_step1", jQuery('#form_step1 :input').serialize(), function(data, status){
+        console.log(data)
+        if(data.status) {
+            next_page(e)
+        } else {
+            alert('xxxx')
+        }
+    }, 'json');
+    
+})
+jQuery("#save_step2_btn").click(function(){
+    alert(jQuery('#form_step2 :input').serialize())
+})
+</script>

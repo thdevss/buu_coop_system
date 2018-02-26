@@ -16,7 +16,7 @@ class Company_info extends CI_controller
                 redirect($this->Login_session->check_login()->login_type);
                 die();
            }
-       }
+        }
 
         public function index($status= '')
         {
@@ -35,7 +35,46 @@ class Company_info extends CI_controller
             $data['company_employee'] = $this->Trainer->gets_trainer_by_company($data['company']['id']);
             $data['company_job'] = $this->Job->gets_job_by_company($tmp['company_id']);
             $this->template->view('Company/Company_info_view', $data);
-       }
+        }
+
+        public function save_step1()
+        {
+            //save company info
+            $company_id = $this->input->post('id');
+            $array_company['name_th'] = $this->input->post('name_th');
+            $array_company['name_en'] = $this->input->post('name_en');
+            $array_company['total_employee'] = $this->input->post('total_employee');
+            $array_company['company_type'] = $this->input->post('company_type');
+
+            $return['post'] = $_POST;
+            $return['status'] = true;
+            // $return['status'] = false;            
+            echo json_encode($return);
+
+            //save company address
+
+        }
+
+        public function save_step2()
+        {
+            //if, this company has headoffice id
+                //update person data
+
+            //else, insert person data -> headoffice id
+
+            //=================================================
+
+            //if, select1 not null -> contact_person is select1
+
+            //else, contact_person == headoffice id
+
+        }
+
+        public function save_step3()
+        {
+            //job position
+
+        }
 
         public function update()
         {

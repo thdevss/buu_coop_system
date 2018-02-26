@@ -92,7 +92,7 @@ $(document).ready(function() {
         "columns": [
             { "data": "student.id" },          
             { "data": "student.id" },
-            { "data": "student.id" },            
+            { "data": "student.id_link" },            
             { "data": "student.fullname" },
             { "data": "adviser.fullname" },
             { "data": "company.name_th" },
