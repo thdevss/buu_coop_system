@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Setting extends CI_Controller {
 
+    public function edit_term(){
+        $this->template->view('officer/setting_term_view',@$data);
+    }
+    public function edit_document(){
+        $this->template->view('officer/setting_document_view',@$data);
+    }
+
     public function lists_job_title($status = ''){
         if($status == '') {
             $status = $this->input->get('status');

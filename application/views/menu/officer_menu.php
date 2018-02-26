@@ -116,10 +116,10 @@
               <?php echo anchor('Officer/setting/lists_skill_name', '<i class="fa fa-gear"></i> จัดการประเภททักษะ', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/#/', '<i class="fa fa-gear"></i> ภาคปีการศึกษา', 'class="nav-link"');?>
+            <?php echo anchor('Officer/setting/edit_term', '<i class="fa fa-gear"></i> ภาคปีการศึกษา', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/#/', '<i class="fa fa-gear"></i> กำหนดเอกสาร', 'class="nav-link"');?>
+            <?php echo anchor('Officer/setting/edit_document', '<i class="fa fa-gear"></i> กำหนดเอกสาร', 'class="nav-link"');?>
         </li>
       </ul>
     </nav>
