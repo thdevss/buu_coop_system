@@ -140,6 +140,7 @@ $(document).ready(function(){
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+       
             <div class="modal-header">
                 <h4 class="modal-title">เพิ่มตำแหน่งงาน</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -149,22 +150,23 @@ $(document).ready(function(){
             <div class="modal-body">
                 <div class="row">
                     <div class="form-group col-sm-4">
-                        <label for="ccmonth">ตำแหน่ง</label><code>*</code>
-                        <select class="form-control" id="ccmonth">
-                            <option>Programer</option>
-                            <option>Testor</option>
-                            <option>IT support</option>
+                        <label for="job_title_id">ตำแหน่ง</label><code>*</code>
+                        <select class="form-control" id="job_title_id" name="job_title_id">
+                            <option>--กรุณาเลือก--</option>
+                        <?php foreach($job_title as $row) {?>
+                            <option value="<?php echo $row['job_title_id'];?>"><?php echo $row['job_title'];?></option>
+                        <?php } ?>
                         </select>
                     </div>
                     <div class="form-group col-sm-3">
-                        <label>จำนวน</label><code>*</code>
-                        <input type="number" class="form-control" id="" name="">
+                        <label for="number_of_employee">จำนวน</label><code>*</code>
+                        <input type="number" min="1" class="form-control" id="number_of_employee" name="number_of_employee">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-12">
                         <label class="col-md-8 form-control-label" for="textarea-input">ลักษณะงานที่นิสิตต้องปฏิบัติงาน<code>*</code></label>
-                        <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" value=""></textarea>
+                        <textarea id="textarea-input" name="job_description" rows="9" class="form-control" value=""></textarea>
                     </div>
                 </div>
             </div>
@@ -172,7 +174,8 @@ $(document).ready(function(){
                 <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
                 <button type="button" class="btn btn-success">บันทึก</button>
             </div>
-                                            
+
+                                           
         </div>
     </div>
 </div>            

@@ -19,10 +19,10 @@
     var SITE_URL = '<?php echo site_url();?>';
     var BASE_URL = '<?php echo base_url();?>';
   </script>
-  <link href="https://fonts.googleapis.com/css?family=Taviraj" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Athiti" rel="stylesheet">
   <style>
   *, a, .btn, b, i {
-    font-family: 'Taviraj', serif;
+    font-family: 'Athiti', serif;
   }
   .btn {
     color:#fff !important;

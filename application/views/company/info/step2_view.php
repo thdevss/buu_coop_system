@@ -23,56 +23,14 @@
                     </div>
                     <div class="card-body">
 
-                        <div class="row">
-                            <div class="form-group col-sm-6">
-                                <label>ชื่อ-นามสกุล</label><code>*</code>
-                                <input type="text" class="form-control" id="fullname" name="fullname" value="<?php echo $company_person['fullname'];?>" required>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-sm-4">
-                                <label>ตำแหน่ง</label><code>*</code>
-                                <input type="text" class="form-control" id="position" name="position" value="<?php echo $company_person['position'];?>" required>
-                            </div>
-
-                            <div class="form-group col-sm-4">
-                                <label>แผนก/ฝ่าย</label><code>*</code>
-                                <input type="text" class="form-control" id="department" name="department" value="<?php echo $company_person['department'];?>" required>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-sm-4">
-                                <label>โทรศัพท์</label><code>*</code>
-                                <input type="text" class="form-control" id="telephone" name="telephone" value="<?php echo $company_person['telephone'];?>" required>
-                            </div>
-
-                            <div class="form-group col-sm-4">
-                                <label>โทรสาร</label>
-                                <input type="text" class="form-control" id="fax_number" name="fax_number" value="<?php echo $company_person['fax_number'];?>" required>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-sm-6">
-                                <label>Email</label><code>*</code>
-                                <input type="email" class="form-control" id="email" name="email" value="<?php echo $company_person['email'];?>" required>
-                            </div>
-
-                        </div>
-
                         <label for="name">หากมหาวิทยาลัย ฯ ประสงค์จะติดต่อประสานงานในรายละเอียดกับสถานประกอบการ / หน่วยงาน ขอให้</label>
 
                         <div class="row">
                             <div class="radio col-sm-6 ">
                                 <label>
-                                <input type="radio" id="hide" name="radios">
+                                <input type="radio" id="hide" name="radios" value="0">
                                 </label>
-                                <label>
+                                <label for="hide">
                                     ติดต่อโดยตรงกับผู้จัดการ / หัวหน้าหน่วยงาน<code>*</code>
                                 </label>
                             </div>
@@ -82,9 +40,9 @@
                         <div class="row">
                             <div class="radio col-sm-6 ">
                                 <label>
-                                <input type="radio" id="show" name="radios">
+                                <input type="radio" id="show" name="radios" value="1">
                                 </label>
-                                <label>
+                                <label for="show">
                                 ติดต่อกับบุคคลที่ สถานประกอบการ / หน่วยงาน มอบหมายต่อไปนี้<code>*</code>
                                 </label>
                             </div>
@@ -93,8 +51,8 @@
 
                         <div class="row">
                             <div class="col-md-12" id="show_select" style="display:none;">
-                                <select id="select1" name="select1" class="form-control">
-                                <option value="0">Please select</option>
+                                <select id="contact_person_id" name="contact_person_id" class="form-control">
+                                <option >Please select</option>
                                     <?php foreach($company_employee as $row){ ?>
                                 <option value="<?php echo $row['id'];?> "><?php echo $row['fullname']."/".$row['position']."/".$row['department']."/".$row['telephone']."/".$row['fax_number']."/".$row['email'];?></option>
                                     <?php } ?>
