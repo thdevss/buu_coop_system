@@ -16,6 +16,7 @@ class Setting extends CI_Controller {
         if($status == '') {
             $status = $this->input->get('status');
         }
+
         if( $status == 'success'){
             $data['status']['color'] = 'success';            
             $data['status']['text'] = 'เพิ่มสำเร็จ';
@@ -88,6 +89,7 @@ class Setting extends CI_Controller {
         if($status == '') {
             $status = $this->input->get('status');
         }
+        
         if( $status == 'success'){
             $data['status']['color'] = 'success';            
             $data['status']['text'] = 'เพิ่มสำเร็จ';
@@ -120,12 +122,12 @@ class Setting extends CI_Controller {
     public function add_skill_name()
     {
         if($this->Skill->check_dup_skill_name($this->input->post('skill_name'))){
-            redirect('Officer/setting/lists_skill_name/?status=dup_data', 'fefresh');
+            redirect('Officer/setting/lists_skill_name/?status=dup_data', 'refresh');
         }
         else{
         $array['skill_name'] = $this->input->post('skill_name');
         $this->Skill->insert_skill($array);
-        redirect('Officer/setting/lists_skill_name/?status=success', 'fefresh');
+        redirect('Officer/setting/lists_skill_name/?status=success', 'refresh');
         }
 
     }

@@ -35,7 +35,7 @@
                                                     <td class="text-center"></td>
                                                     <td class="text-left"><?php echo $row['name']."-".$row['document_name'];?>
                                                       <button type="button" class="badge badge-pill badge-warning" data-toggle="modal" data-target="#warningModal">
-                                                      กำหนดส่ง
+                                                      กำหนดส่ง...
                                                       </button>
                                                     </td>
                                                     <td class="text-center">
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group col-md-6 offset-md-3">
-                                      <label for="city">กำหนดวันส่ง</label>
+                                      <label for="">กำหนดวันส่ง</label>
                                       <input type="text" class="form-control datetimepicker" id="" placeholder="" name="">    
                                     </div>    
                                 </div>
