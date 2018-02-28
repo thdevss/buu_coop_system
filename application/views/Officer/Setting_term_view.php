@@ -59,26 +59,20 @@
                                                     <label class="form-control-label" for="text-input">ภาคเรียน</label>
                                                     <select id="select" name="select" class="form-control" required>
                                                         <option value="">Please select</option>
-                                                        <?php foreach ($coop_test_list as $row) { 
-                                                        if($row['register_status'] != 1){
-                                                            continue;
-                                                        }
-                                                        ?>
-                                                        <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
-                                                        <?php } ?>
+                                                        <option value="1">ที่ 1</option>
+                                                        <option value="2">ที่ 2</option>
+                                                       
                                                     </select>
                                                 </div>
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="text-input">ปีการศึกษา</label>
                                                         <select id="select" name="select" class="form-control" required>
                                                             <option value="">Please select</option>
-                                                            <?php foreach ($coop_test_list as $row) { 
-                                                            if($row['register_status'] != 1){
-                                                                continue;
-                                                            }
-                                                            ?>
-                                                            <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
-                                                            <?php } ?>
+                                                        <?php
+                                                        $year = date('Y')+543;
+                                                        for($i=$year-2; $i<$year+10; $i++) { ?>
+                                                            <option value="<?php echo $i;?>"><?php echo $i;?></option>
+                                                        <?php } ?>
                                                         </select>
                                                     </div>
                                                 </form>

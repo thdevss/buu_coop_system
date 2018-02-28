@@ -7,7 +7,9 @@ class Setting extends CI_Controller {
         $this->template->view('officer/setting_term_view',@$data);
     }
     public function edit_document(){
-        $this->template->view('officer/setting_document_view',@$data);
+        // get coop_document
+        $data['coop_document'] = $this->Form->gets_form();
+        $this->template->view('officer/setting_document_view',$data);
     }
 
     public function lists_job_title($status = ''){
