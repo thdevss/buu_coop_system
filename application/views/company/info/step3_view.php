@@ -4,7 +4,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Home</li>
         <li class="breadcrumb-item"><a href="#"><?php echo strToLevel($user->login_type);?></a></li>
-        <li class="breadcrumb-item active">ข้อมูลบริษัท</li>
+        <li class="breadcrumb-item active">ข้อมูลสถานประกอบการ</li>
     </ol>
 
 
@@ -17,7 +17,8 @@
                 </ul>
 
                 <div class="card">
-                    <form action="<?php echo site_url('company/info/post_step3');?>" method="post">
+                    <form action="<?php echo $form_url;?>" method="post">
+                    <input type="hidden" name="company_id" value="<?php echo $company['id'];?>">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> เพิ่มตำแหน่งงาน 
                     </div>

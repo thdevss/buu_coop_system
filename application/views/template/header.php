@@ -19,13 +19,19 @@
     var SITE_URL = '<?php echo site_url();?>';
     var BASE_URL = '<?php echo base_url();?>';
   </script>
-  <link href="https://fonts.googleapis.com/css?family=Athiti" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
   <style>
   *, a, .btn, b, i {
-    font-family: 'Athiti', serif;
+    font-family: 'Kanit', serif;
   }
   .btn {
     color:#fff !important;
+  }
+  .sidebar .nav-link i, .sidebar .navbar .dropdown-toggle i, .navbar .sidebar .dropdown-toggle i {
+    color: #fff;
+  }
+  .sidebar {
+    background: #01579b;
   }
   </style>
 </head>
