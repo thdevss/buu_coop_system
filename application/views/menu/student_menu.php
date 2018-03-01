@@ -45,7 +45,10 @@
               <a class="nav-link" href="<?php echo site_url('student/Job/lists');?>" target="_top"><i class="icon-list"></i> รายการสมัครที่เปิดรับ</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('student/Job/register_status');?>" target="_top"><i class="fa fa-file-pdf-o"></i> ประกาศผลการสมัคร</a>
+              <a class="nav-link" href="<?php echo site_url('student/Job/register_status');?>" target="_top"><i class="fa fa-bell-o"></i> ประกาศผลการสมัคร</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="<?php echo site_url('student/Skill/');?>" target="_top"><i class="fa fa-check"></i> ทักษะที่ถนัด</a>
               </li>
             </ul>
           </li>
