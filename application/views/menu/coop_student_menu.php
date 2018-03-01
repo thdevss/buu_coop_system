@@ -74,7 +74,7 @@
             <?php echo anchor('Coop_student/Reportmanager/', '<i class="fa fa-gavel"></i> จัดการหัวข้อรายงาน', 'class="nav-link"');?>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-file-text-o"></i> แบบสำรองทั่วไป</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-file-text-o"></i> แบบคำร้องทั่วไป</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
                 <a class="nav-link" href="components-buttons.html"><i class="fa fa-download"></i> ดาวน์โหลดเอกสาร</a>

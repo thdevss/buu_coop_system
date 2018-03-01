@@ -80,15 +80,35 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">เพิ่ม | สถานประกอบการ</h4>
+        <h4 class="modal-title">เพิ่ม | เจ้าหน้าที่</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="col-md-12">
-          <b>ชื่อสถานประกอบการ</b><br></br>
-          <input type="text" id="text-input" name="text-input" class="form-control" placeholder="ชื่อบริษัท">
+          <b>ชื่อ-นามสกุล</b><code>*</code><br></br>
+          <input type="text" id="text-input" name="text-input" class="form-control" placeholder="ชื่อ-นามสกุล">
+      </div>
+      <div class="col-md-12">
+          <b>E-mail</b><code>*</code><br></br>
+          <input type="text" id="text-input" name="text-input" class="form-control" placeholder="E-mail">
+      </div>
+      <div class="col-md-12">
+          <b>ตำเเหน่ง</b><code>*</code><br></br>
+          <input type="text" id="text-input" name="text-input" class="form-control" placeholder="ตำเเหน่ง">
+      </div>
+      <div class="col-md-12">
+          <b>เเผนกงาน</b><code>*</code><br></br>
+          <input type="text" id="text-input" name="text-input" class="form-control" placeholder="เเผนกงาน">
+      </div>
+      <div class="col-md-12">
+          <b>เบอร์โทร</b><br></br>
+          <input type="text" id="text-input" name="text-input" class="form-control" placeholder="เบอร์โทร">
+      </div>
+      <div class="col-md-12">
+          <b>FAX</b><br></br>
+          <input type="text" id="text-input" name="text-input" class="form-control" placeholder="FAX">
       </div>
       </div>
       <div class="modal-footer">

@@ -35,8 +35,8 @@
                                 <div class="col-sm-7">
                                     <div class="card-body p-3 clearfix" class="border-(3)">
                                         <i class="icon-phone p-3 font-2xl mr-3 float-left"></i>
-                                        <div class= text-clearfix font-weight-bold font-xs"><?php echo $contact['telephone'];?></div>
-                                        <div class= text-clearfix font-weight-bold font-xs"><?php echo $contact['email'];?></div>
+                                        <div class= "text-clearfix font-weight-bold font-xs"><?php echo $contact['telephone'];?></div>
+                                        <div class= "text-clearfix font-weight-bold font-xs"><?php echo $contact['email'];?></div>
                                         <div class="text-muted text-clearfix font-weight-bold font-xs"><a href="<?php echo $tmp['website_url'];?>" target="_blank"><?php echo $tmp['website_url'];?></a></div>
                                      </div>
                                 </div>
