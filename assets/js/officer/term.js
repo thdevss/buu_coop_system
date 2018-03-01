@@ -1,8 +1,17 @@
 function changeTermAjax()
 {
-    var student_id = jQuery(this).data('studentid')
     var term_id = jQuery('#term_option').find(":selected").val()
 
+    changeTerm(term_id)
+}
+
+$('#term_option_menu').change(function() {
+    changeTerm(jQuery(this).val())
+})
+
+
+function changeTerm(term_id)
+{
     var data = { term_id: term_id }
     jQuery.post(SITE_URL+"/officer/change_term/ajax_change/", data, function(response) {
         // Do something with the request
@@ -18,8 +27,4 @@ function changeTermAjax()
           });
 
     }, 'json');
-
-    
-
-
 }

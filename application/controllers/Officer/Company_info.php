@@ -87,6 +87,8 @@ class Company_info extends CI_controller
             $data['company_employee'] = $this->Trainer->gets_trainer_by_company($data['company']['id']);
 
             $data['form_url'] = site_url('officer/company_info/post_step2');
+            $data['back_url'] = site_url('officer/company_info/step1/'.$company_id);
+
             $this->template->view('Company/info/step2_view', $data);
         }
 
@@ -125,6 +127,7 @@ class Company_info extends CI_controller
             $data['company_job'] = $this->Job->gets_job_by_company($tmp['company_id']);
             $data['job_title'] = $this->Job->gets_job_title();
             $data['form_url'] = site_url('officer/company_info/post_step3');
+            $data['back_url'] = site_url('officer/company_info/step2/'.$company_id);
 
             $this->template->view('Company/info/step3_view', $data);
         }

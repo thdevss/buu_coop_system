@@ -48,6 +48,24 @@
 
 
     <ul class="nav navbar-nav ml-auto">
+
+      <?php if($user->login_type == 'officer') { ?>
+      <li class="nav-item d-md-down-none">
+        <select class="form-control" id="term_option_menu">
+          <option> ---เลือกปีการศึกษา--- </option>
+          <?php 
+          foreach($terms as $term) {
+            if($current_term['term_id'] == $term->term_id) {
+              echo '<option value="'.$term->term_id.'" selected>ปีการศึกษา '.$term->name.'</option>';
+            } else {
+              echo '<option value="'.$term->term_id.'">ปีการศึกษา '.$term->name.'</option>';                  
+            }
+          }
+          ?>
+        </select>
+      </li>
+      <?php } ?>
+
       <li class="nav-item d-md-down-none">
         <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a>
       </li>

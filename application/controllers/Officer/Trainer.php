@@ -17,7 +17,7 @@ class Trainer extends CI_Controller {
         }
     }
 
-    public function list($id, $status = '')
+    public function lists($id, $status = '')
     {
         if($status == 'success_delete' ){
             $data['status']['color'] = 'success';
@@ -41,7 +41,7 @@ class Trainer extends CI_Controller {
 
            // print_r($data);
         }      
-        $this->template->view('Officer/List_officer_company_view',$data);
+        $this->template->view('Officer/List_trainer_view',$data);
     }
    
     public function delete()
