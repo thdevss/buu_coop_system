@@ -52,7 +52,7 @@
       <?php if($user->login_type == 'officer') { ?>
       <li class="nav-item d-md-down-none">
         <select class="form-control" id="term_option_menu">
-          <option> ---เลือกปีการศึกษา--- </option>
+          <option disabled> --- เลือกปีการศึกษา --- </option>
           <?php 
           foreach($terms as $term) {
             if($current_term['term_id'] == $term->term_id) {
