@@ -11,7 +11,6 @@
 <div class="container-fluid">
   <div class="animated fadeIn">
       <div class="row" >
-      <!--table รายชื่อนิสิต-->
         <div class="col-lg-12">
           <div class="card">
             <div class="card-header">
@@ -61,41 +60,45 @@
                     </tbody>
                   </table>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
       </div>
-    </div>
   </div>
-</div>   
+</div>
+
+
+</main>
+
+
+
+
+
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">เพิ่ม | สถานประกอบการ</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12">
+          <b>ชื่อสถานประกอบการ</b><br></br>
+          <input type="text" id="text-input" name="text-input" class="form-control" placeholder="ชื่อบริษัท">
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-success">บันทึก</button>
       </div>
     </div>
+    <!-- /.modal-content -->
   </div>
-</div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h4 class="modal-title">เพิ่ม | สถานประกอบการ</h4>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">×</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="col-md-12">
-        <b>ชื่อสถานประกอบการ</b><br></br>
-        <input type="text" id="text-input" name="text-input" class="form-control" placeholder="ชื่อบริษัท">
-     </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
-      <button type="button" class="btn btn-success">บันทึก</button>
-    </div>
-  </div>
-  <!-- /.modal-content -->
-</div>
-<!-- /.modal-dialog -->
+  <!-- /.modal-dialog -->
 </div>
 <script>
 $('.btn-submit').on('click',function(e){

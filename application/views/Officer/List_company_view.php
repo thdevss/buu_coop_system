@@ -44,7 +44,7 @@
                                 <td class="text-left"><?php echo $row['name_th'];?> (<?php echo $row['name_en'];?>)</td>
                                 <td class="text-right"><?php echo $row['total_employee']; ?></td>
                                 <td class="form-inline">
-                                      <?php echo anchor('Officer/Trainer/list/'.$row['id'], '<i class="fa fa-user-circle-o"></i> เจ้าหน้าที่', 'class="btn  btn-primary"');?>                              
+                                      <?php echo anchor('Officer/Trainer/lists/'.$row['id'], '<i class="fa fa-user-circle-o"></i> เจ้าหน้าที่', 'class="btn  btn-primary"');?>                              
                                       <div style="width:2%"></div>
                                       <?php echo anchor('Officer/Company_info/step1/'.$row['id'], '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn  btn-primary"');?>   
                                       <div style="width:2%"></div>                           

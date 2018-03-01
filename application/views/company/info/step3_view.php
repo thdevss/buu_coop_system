@@ -54,7 +54,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-right">
-                            <a href="<?php echo site_url('company/info/step2');?>" class="btn btn-secondary"> < ย้อนกลับ </a>                        
+                            <a href="<?php echo $back_url;?>" class="btn btn-secondary"> < ย้อนกลับ </a>                        
                             <button type="submit" class="btn btn-success">บันทึก > </button>
                             
                         </div>
