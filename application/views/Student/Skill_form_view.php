@@ -23,9 +23,17 @@
                             <div class="form-group row">
                               <label class="col-md-2 col-form-label">เลือกทักษะที่ถนัด</label>
                                 <div class="col-md-10 col-form-label">
-                                <?php foreach($skill as $key => $row) {?>
+                                <?php 
+                                $checked = false;
+                                foreach($skill as $key => $row) { 
+                                    if(in_array($row['skill_id'], $has_skill)) {
+                                        $checked = true;
+                                    } else {
+                                        $checked = false;
+                                    }
+                                ?>
                                     <div class="form-check form-check-inline mr-5">
-                                    <input class="form-check-input" type="checkbox" id="<?php echo $key;?>" value="<?php echo $row['skill_id'];?>" name="skill[]">
+                                    <input class="form-check-input" type="checkbox" id="<?php echo $key;?>" value="<?php echo $row['skill_id'];?>" name="skill[]" <?php if($checked) echo 'checked'; ?>>
                                     <label class="form-check-label" for="<?php echo $key;?>"><?php echo $row['skill_name'];?></label>
                                     </div>
                                 <?php } ?>

@@ -36,7 +36,12 @@ class Skill extends CI_Controller {
         else {
             $data['status'] = '';
         }
-        
+        $student_id = $this->Login_session->check_login()->login_value;
+
+        $data['has_skill'] = array();
+        foreach($this->Skill_Search->search_skill_by_student($student_id) as $has_skill) {
+            $data['has_skill'][] = $has_skill['skill_id'];
+        }
         $data['skill'] = $this->Skill->gets_skill();
         $this->template->view('Student/Skill_form_view',$data);
     }
@@ -49,12 +54,13 @@ class Skill extends CI_Controller {
         else
         {
             $student_id = $this->Login_session->check_login()->login_value;
+            //delete old skill
+            $this->Skill_Search->delete_by_student($student_id);
             foreach($this->input->post('skill') as $skill){
-             $insert = array();
-             $insert['student_id'] = $student_id;
-             $insert['skill_id'] = $skill;
-             $this->Skill_Search->insert_student_has_skill($insert);
-            
+                $insert = array();
+                $insert['student_id'] = $student_id;
+                $insert['skill_id'] = $skill;
+                $this->Skill_Search->insert_student_has_skill($insert);
             }
            
             redirect('Student/Skill/index/?status=success','refresh');
