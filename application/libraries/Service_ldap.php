@@ -76,7 +76,7 @@ class Service_ldap {
                 'email' => $info[0]['mail'][0],
                 'code' => $info[0]['cn'][0],
                 'ou' => str_replace('OU=', '', explode(",", $info[0]['dn'])[1]),
-                'company' => $info[0]['company'][0]
+                'company' => @$info[0]['company'][0]
                 );
             return $person_data;
             //echo $info[0]['givenname'][0]." ".$info[0]['sn'][0]." ".$info[0]['mail'][0];
