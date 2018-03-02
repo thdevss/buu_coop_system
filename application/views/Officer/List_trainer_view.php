@@ -28,10 +28,10 @@
               <table class="table table-bordered datatable" >
                     <thead>
                       <tr bgcolor="">
-                        <th class="text-center" >ลำดับ</th>
-                        <th class="text-center">ชื่อ</th>
-                        <th class="text-center">E-mail</th>
-                        <th class="text-center">ตำเเหน่ง</th>
+                        <th></th>
+                        <th>ชื่อ</th>
+                        <th>E-mail</th>
+                        <th>ตำเเหน่ง</th>
         
                         <th class="text-center"></th>
                       </tr>
@@ -42,14 +42,14 @@
                         <td class="text-center">
                         <?php echo $i++; ?>
                         </td>
-                        <td class="text-center"><?php echo $row['company_person']['fullname'];?></td>
-                        <td class="text-center"><?php echo $row['company_person']['email']; ?></td>
-                        <td class="text-center"><?php echo $row['company_person']['position'];?></td> 
+                        <td class="text-left"><?php echo $row['company_person']['fullname'];?></td>
+                        <td class="text-left"><?php echo $row['company_person']['email']; ?></td>
+                        <td class="text-left"><?php echo $row['company_person']['position'];?></td> 
                         <td class="form-inline">
-                        <form action="<?php echo site_url('Officer/Officer_company/delete/'); ?>" method="post">
+                        <form action="<?php echo site_url('Officer/Trainer/delete/'); ?>" method="post">
                         <button type="submit" class="btn btn-info btn-submit"><i class="icon-pencil "></i> เเก้ไข</button>
-                        <!-- <input type="hidden"   name="company_person_id" value="<?php echo $row['company_person']['id'] ; ?>">
-                        <input type="hidden"   name="company_id" value="<?php echo $row['company']['id'] ; ?>">                          -->
+                        <input type="hidden"   name="company_person_id" value="<?php echo $row['company_person']['id'] ; ?>">
+                        <input type="hidden"   name="company_id" value="<?php echo $row['company']['id'] ; ?>">
                         <button type="submit" class="btn btn-danger btn-submit"><i class="icon-trash"></i> ลบ</button>
                         </form>        
                         </td>
@@ -69,57 +69,57 @@
 
 </main>
 
-
-
-
-
-
-
-
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">เพิ่ม | เจ้าหน้าที่</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
+
+    <form action="<?php echo site_url('Officer/Trainer/add_employee');?>" method="post">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">เพิ่ม | เจ้าหน้าที่</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="col-md-12">
+            <label for"fullna me">ชื่อ-นามสกุล</label><code>*</code>
+            <input type="text" id="fullname" name="fullname" class="form-control" placeholder="ชื่อ-นามสกุล" value="" required>
+            <input type="hidden" id="company_id" name="company_id" value="<?php echo $data[0]['company_person']['company_id'];?>">
+          </div>
+          <div class="col-md-12">
+          <label for"email">E-mail</label><code>*</code>
+            <input type="email" id="email" name="email" class="form-control" placeholder="E-mail" required>
+          </div>
+          <div class="col-md-12">
+          <label for"position">ตำเเหน่ง</label><code>*</code>
+            <input type="text" id="position" name="position" class="form-control" placeholder="ตำเเหน่ง" required>
+          </div>
+          <div class="col-md-12">
+          <label for"department">เเผนกงาน</label><code>*</code>
+            <input type="text" id="department" name="department" class="form-control" placeholder="เเผนกงาน" required>
+          </div>
+          <div class="col-md-12">
+          <label for"telephone">เบอร์โทร</label>
+            <input type="text" id="telephone" name="telephone" class="form-control" placeholder="เบอร์โทร" required>
+          </div>
+          <div class="col-md-12">
+          <label for"fax_number">FAX</label>
+            <input type="text" id="fax_number" name="fax_number" class="form-control" placeholder="FAX">
+          </div>
+   
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+          <button type="submit" class="btn btn-success">บันทึก</button>
+        </div>
       </div>
-      <div class="modal-body">
-        <div class="col-md-12">
-          <b>ชื่อ-นามสกุล</b><code>*</code><br></br>
-          <input type="text" id="text-input" name="text-input" class="form-control" placeholder="ชื่อ-นามสกุล">
-      </div>
-      <div class="col-md-12">
-          <b>E-mail</b><code>*</code><br></br>
-          <input type="text" id="text-input" name="text-input" class="form-control" placeholder="E-mail">
-      </div>
-      <div class="col-md-12">
-          <b>ตำเเหน่ง</b><code>*</code><br></br>
-          <input type="text" id="text-input" name="text-input" class="form-control" placeholder="ตำเเหน่ง">
-      </div>
-      <div class="col-md-12">
-          <b>เเผนกงาน</b><code>*</code><br></br>
-          <input type="text" id="text-input" name="text-input" class="form-control" placeholder="เเผนกงาน">
-      </div>
-      <div class="col-md-12">
-          <b>เบอร์โทร</b><br></br>
-          <input type="text" id="text-input" name="text-input" class="form-control" placeholder="เบอร์โทร">
-      </div>
-      <div class="col-md-12">
-          <b>FAX</b><br></br>
-          <input type="text" id="text-input" name="text-input" class="form-control" placeholder="FAX">
-      </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
-        <button type="button" class="btn btn-success">บันทึก</button>
-      </div>
-    </div>
+    </form>
     <!-- /.modal-content -->
   </div>
   <!-- /.modal-dialog -->
 </div>
+
 <script>
 $('.btn-submit').on('click',function(e){
     e.preventDefault();

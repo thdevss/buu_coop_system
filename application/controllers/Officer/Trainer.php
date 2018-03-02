@@ -19,28 +19,44 @@ class Trainer extends CI_Controller {
 
     public function lists($id, $status = '')
     {
-        if($status == 'success_delete' ){
-            $data['status']['color'] = 'success';
-            $data['status']['text'] = 'ทำการลบเรียบร้อย';
-        } else if($status == 'error_delete' ){
-            $data['status']['color'] = 'danger';
-            $data['status']['text'] = 'ผิดพลาด โปรดตรวจสอบ';
-        } 
+        if($status == '') {
+            $status = $this->input->get('status');
+        }
+
+        if( $status == 'success'){
+            $data['status']['color'] = 'success';            
+            $data['status']['text'] = 'เพิ่มสำเร็จ';
+        }
+        else if($status == 'error_input'){
+            $data['status']['color'] = 'warning';            
+            $data['status']['text'] = 'เพิ่มไม่สำเร็จ';
+
+        }
+        else if($status == 'success_delete'){
+            $data['status']['color'] = 'success';            
+            $data['status']['text'] = 'ลบสำเร็จ';
+
+        }
+        else if($status == 'error_delete'){
+            $data['status']['color'] = 'warning';            
+            $data['status']['text'] = 'ลบไม่สำเร็จ';
+
+        }
         else {
             $data['status'] = '';
         }
+
         $data['data'] = array();
         //get student has test
-
         foreach($this->Trainer->gets_trainer_by_company($id) as $row) {
             //get train_type_id
             $tmp_array = array();
             $tmp_array['company_person'] = $row;
-            $tmp_array['company'] = $this->Company->get_company($row['company_id']);
+            $tmp_array['company'] = $this->Company->get_company($row['company_id'])[0];
             array_push($data['data'], $tmp_array);
 
-           // print_r($data);
         }      
+        
         $this->template->view('Officer/List_trainer_view',$data);
     }
    
@@ -51,24 +67,59 @@ class Trainer extends CI_Controller {
         $this->form_validation->set_rules('company_person_id', 'company_person_id', 'trim|required|numeric');
         $this->form_validation->set_rules('company_id', 'company_id', 'trim|required|numeric');
         $company_id = $this->input->post('company_id');
-    
         if ($this->form_validation->run() != FALSE) {
             $company_person_id = $this->input->post('company_person_id');
 
-            if($this->DB_company_person->get($company_person_id)) {
+            if($this->Trainer->get_trainer($company_person_id)) {
                 //delete
-                $this->DB_company_person->delete($company_person_id);
-                return $this->list($company_id, 'success_delete');
+                $this->Trainer->delete_trainer($company_person_id);
+                return $this->lists($company_id, 'success_delete');
                 die();
             } else {
-                return $this->list($company_id, 'error_delete');
+                return $this->lists($company_id, 'error_delete');
                 die();
             }
         } else {
-            return $this->list($company_id, 'error_delete');
+            return $this->lists($company_id, 'error_delete');
             die();
         }
         
+    }
+
+    public function add_employee()
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('fullname','ชื่อ-นามสกุล','required');
+        $this->form_validation->set_rules('position','ตำเเหน่ง','required');
+        $this->form_validation->set_rules('department','เเผนกงาน','required');
+        $this->form_validation->set_rules('telephone','เบอร์โทร','required|numeric');
+        $this->form_validation->set_rules('fax_number','FAX');
+        $this->form_validation->set_rules('email','E-mail','required|valid_email');
+        $this->form_validation->set_rules('company_id','company_id','required');
+        $array['company_id'] = $this->input->post('company_id');
+        if($this->form_validation->run() == false){
+
+            redirect('Officer/Trainer/lists/'.$array['company_id'].'/?status=error_input','refresh');
+        }
+        else{
+
+            $array['fullname'] = $this->input->post('fullname');
+            $array['position'] = $this->input->post('position');
+            $array['department'] = $this->input->post('department');
+            $array['telephone'] = $this->input->post('telephone');
+            $array['fax_number'] = $this->input->post('fax_number');
+            $array['email'] = $this->input->post('email');
+            $array['company_id'] = $this->input->post('company_id');
+            $this->Trainer->insert_trainer($array);
+
+        }
+            redirect('Officer/Trainer/lists/'.$array['company_id'].'/?status=success','refresh');
+    }
+
+    public function edit()
+    {
+       
+
     }
 
 
