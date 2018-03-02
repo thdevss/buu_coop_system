@@ -46,7 +46,7 @@ class BUUMember_model extends CI_Model
                 $teacher = $this->Adviser->get_adviser($userdata['code']);                
                 if($teacher) {
                     $data['login_type'] = 'adviser';
-                    $data['login_value'] = $userdata['code'];                        
+                    $data['login_value'] = $userdata['code'];                         
                 } else {
                     $officer = $this->Officer->get_officer($userdata['code']);
                     if($officer) {

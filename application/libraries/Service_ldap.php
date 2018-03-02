@@ -81,7 +81,7 @@ class Service_ldap {
             return $person_data;
             //echo $info[0]['givenname'][0]." ".$info[0]['sn'][0]." ".$info[0]['mail'][0];
         }
-
+ 
 
         /**
          * Close LDAP connection
