@@ -162,4 +162,4 @@
     </div>
   </div>
 </div>
-<script src="<?php echo base_url('assets/js/officer/term.js?'.time());?>"></script>
+<script src="<?php echo base_url('assets/js/officer_js/term.js?'.time());?>"></script>

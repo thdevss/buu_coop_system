@@ -67,7 +67,7 @@
   </div>
 </div>
 
-<script src="<?php echo base_url('/assets/js/officer/document_check.js?'.time());?>"></script>
+<script src="<?php echo base_url('/assets/js/officer_js/document_check.js?'.time());?>"></script>
 <!-- The Modal -->
 <div class="modal fade" id="document_check_student">
     <div class="modal-dialog modal-lg">

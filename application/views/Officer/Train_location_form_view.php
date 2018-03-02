@@ -42,4 +42,4 @@
 
 </main>
 
-<script src="<?php echo base_url('/assets/js/officer/train_location_form.js?'.time());?>"></script>
+<script src="<?php echo base_url('/assets/js/officer_js/train_location_form.js?'.time());?>"></script>
