@@ -24,7 +24,7 @@
                     echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
                 }
                 ?>   
-                <table class="table table-bordered" id="news_table">
+                <table class="table table-bordered datatable">
                     <thead>
                         <tr>
                             <th></th>

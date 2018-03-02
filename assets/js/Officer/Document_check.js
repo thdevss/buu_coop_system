@@ -17,7 +17,6 @@ jQuery( ".document_check_btn" ).click(function() {
                     '<td>'+val.document_code+'</td>'+
                     '<td>'+val.file+'</td>'+         
                     '</tr>');
-
             }
             
         });
