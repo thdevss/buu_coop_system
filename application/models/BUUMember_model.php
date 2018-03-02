@@ -24,6 +24,7 @@ class BUUMember_model extends CI_Model
         $this->ldap->connect();
         if($this->ldap->authenticate('' , $username, $password)) {
             $userdata = $this->ldap->get_data($username,$password);
+            print_r($userdata);
             if($userdata['ou'] == 'students') {
                 //coop student and student
                 $data['fullname'] = $userdata['fname'].' '.$userdata['lname'];                
@@ -45,9 +46,9 @@ class BUUMember_model extends CI_Model
                 $teacher = $this->Adviser->get_adviser($userdata['code']);                
                 if($teacher) {
                     $data['login_type'] = 'adviser';
-                    $data['login_value'] = $userdata['code'];                        
+                    $data['login_value'] = $userdata['code'];                         
                 } else {
-                    $officer = $this->Officer->login($userdata['code']);
+                    $officer = $this->Officer->get_officer($userdata['code']);
                     if($officer) {
                         $data['login_type'] = 'officer';
                         $data['login_value'] = $userdata['code'];                        
