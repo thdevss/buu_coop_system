@@ -9,7 +9,6 @@ $('#term_option_menu').change(function() {
     changeTerm(jQuery(this).val())
 })
 
-
 function changeTerm(term_id)
 {
     var data = { term_id: term_id }
