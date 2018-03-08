@@ -141,7 +141,7 @@
           <div class="form-group">
             <label for="term_option">ปีการศึกษา</label>
             <select class="form-control" id="term_option">
-              <option> ------ </option>
+              <option disabled> ------ </option>
               <?php 
               foreach($terms as $term) {
                 if($current_term['term_id'] == $term->term_id) {
