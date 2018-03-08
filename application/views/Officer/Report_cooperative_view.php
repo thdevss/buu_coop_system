@@ -35,7 +35,7 @@
                                     <div class="form-group">
                                     <?php foreach($department_name as $row) { ?>
                                         <div class="form-check form-check-inline mr-5">
-                                            <?php if(in_array($row['id'], $current_department)) { ?>
+                                            <?php if(@in_array($row['id'], $current_department)) { ?>
                                                 <input type="checkbox" id="department_<?php echo $row['id'];?>" value="<?php echo $row['id'];?>" name="department_id[]" checked>
                                             <?php } else { ?>
                                                 <input type="checkbox" id="department_<?php echo $row['id'];?>" value="<?php echo $row['id'];?>" name="department_id[]">
@@ -133,7 +133,10 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true, 
+                                callback: function(val) {
+                                    return Number.isInteger(val) ? val : null;
+                                }
                             }
                         }]
                     }
