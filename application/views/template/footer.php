@@ -28,10 +28,12 @@
   <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.9/js/dataTables.checkboxes.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css">
   <!-- <script src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
   <script>
     $(document).ready(function(){
 
       var table = $('.datatable').DataTable({
+        
         'columnDefs': [
         {
               "searchable": false,
@@ -47,7 +49,6 @@
         } );
       } ).draw();
 
-      $('.sidebar-minimizer').click()
 
       // $('body').toggleClass('sidebar-minimized');
       

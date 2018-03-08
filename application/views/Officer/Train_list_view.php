@@ -26,7 +26,7 @@
                   }
           
                 ?>
-              <table class="table table-bordered datatable" >
+              <table class="table table-bordered" id="train_table">
                     <thead>
                       <tr bgcolor="">
                         <th class="text-center"></th>
@@ -44,7 +44,7 @@
                     <?php $i=1;
                     foreach ($data as $row){?>
                       <tr>
-                        <td class="text-center"><?php echo $i++;?></td>
+                        <td class="text-center"></td>
                         <td class="text-left"><?php echo thaiDate($row['train']['date']); ?></td>
                         <td class="text-left"><?php echo $row['train_type']['name'] ?></td>
                         <td class="text-left"><?php echo $row['train']['title'] ?></td>
@@ -108,7 +108,54 @@ $('.btn-submit').on('click',function(e){
 
 });
 
+$(document).ready(function() {
+
+    var dataSrc = [];
+
+    var table = $('#train_table').DataTable( {
+        'columnDefs': [
+       
+        {
+              "searchable": false,
+              "orderable": false,
+              "targets": 0
+        }
+        ],
+        
+        'initComplete': function(){
+          var api = this.api();
+
+          // Populate a dataset for autocomplete functionality
+          // using data from first, second and third columns
+          api.cells('tr', [2, 3, 4, 5, 6, 7]).every(function(){
+              // Get cell data as plain text
+              var data = $('<div>').html(this.data()).text();           
+              if(dataSrc.indexOf(data) === -1){ dataSrc.push(data); }
+          });
+                
+          // Sort dataset alphabetically
+          dataSrc.sort();
+                
+          // Initialize Typeahead plug-in
+          $('.dataTables_filter input[type="search"]', api.table().container())
+              .typeahead({
+                source: dataSrc,
+                afterSelect: function(value){
+                    api.search(value).draw();
+                }
+              }
+          );
+        }
+        
+    } );
+
+    table.on( 'order.dt search.dt', function () {
+        table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
 
 
+})
 
 </script>

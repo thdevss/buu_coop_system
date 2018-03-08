@@ -85,8 +85,10 @@ class Report_cooperative extends CI_Controller {
         $data['department'] = array();
 
         foreach($this->Student->gets_department() as $department) {
-            if(!in_array($department['id'], $department_id)) {
-                continue;
+            if($department_id) {
+                if(!in_array($department['id'], $department_id)) {
+                    continue;
+                }  
             }
             
             $tmp = array();

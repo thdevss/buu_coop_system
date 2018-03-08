@@ -16,7 +16,7 @@
           <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i>ตรวจสอบเอกสารรายบุคคล</div>
               <div class="card-body">
-              <table class="table table-bordered datatable" >
+              <table class="table table-bordered" id="table" >
                     <thead>
                       <tr>
                         <th></th>
@@ -103,3 +103,60 @@
     </div>
   </div>
 </div>
+
+
+
+
+<script>
+
+
+$(document).ready(function() {
+
+  var dataSrc = [];
+
+  var table = $('#table').DataTable( {
+      'columnDefs': [
+    
+      {
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+      }
+      ],
+      
+      'initComplete': function(){
+        var api = this.api();
+
+        // Populate a dataset for autocomplete functionality
+        // using data from first, second and third columns
+        api.cells('tr', [1, 2, 3, 4, 5]).every(function(){
+            // Get cell data as plain text
+            var data = $('<div>').html(this.data()).text();           
+            if(dataSrc.indexOf(data) === -1){ dataSrc.push(data); }
+        });
+              
+        // Sort dataset alphabetically
+        dataSrc.sort();
+              
+        // Initialize Typeahead plug-in
+        $('.dataTables_filter input[type="search"]', api.table().container())
+            .typeahead({
+              source: dataSrc,
+              afterSelect: function(value){
+                  api.search(value).draw();
+              }
+            }
+        );
+      }
+      
+  } );
+
+  table.on( 'order.dt search.dt', function () {
+      table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+          cell.innerHTML = i+1;
+      } );
+  } ).draw();
+
+
+})
+</script>
