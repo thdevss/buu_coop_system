@@ -86,9 +86,14 @@ $(document).ready(function() {
             }
           },
           {
-              "searchable": false,
-              "orderable": false,
-              "targets": 1
+            "searchable": false,
+            "orderable": false,
+            "targets": [1, 6]
+          },
+          {
+            "targets": [ 9 ],
+            "visible": false,
+            "searchable": true,
           }
         ],
         'select': {
@@ -106,9 +111,11 @@ $(document).ready(function() {
             { "data": "student.fullname" },
             { "data": "student.gpax" },
             { "data": "department.name" },
-            { "data": "coop_student_type.status_name" },
+            { "data": "coop_student_type.select_box" },
             { "data": "student.company_status" },
-            { "data": "action_box" }  
+            { "data": "action_box" },
+            { "data": "coop_student_type.status_name" },
+            
         ],
 
         'initComplete': function(){
@@ -116,7 +123,7 @@ $(document).ready(function() {
 
             // Populate a dataset for autocomplete functionality
             // using data from first, second and third columns
-            api.cells('tr', [2, 3, 4, 5, 6, 7]).every(function(){
+            api.cells('tr', [2, 3, 4, 5, 9, 7]).every(function(){
                 // Get cell data as plain text
                 var data = $('<div>').html(this.data()).text();           
                 if(dataSrc.indexOf(data) === -1){ dataSrc.push(data); }
@@ -145,64 +152,81 @@ $(document).ready(function() {
     } ).draw();
 
     $('#change_student_status').click( function () {
-      var current_table_page = $('#student_table').DataTable().page.info().page
       var coop_status_type = jQuery(".coop_status_type_val option:selected").val()
       var arr = $('#student_table').DataTable().column(0).checkboxes.selected()
+
+      change_coop_type_ajax(arr, coop_status_type)
+    });
+
+    // function change_coop_type(student_id, ele)
+    // {
+    //   change_coop_type_ajax(student_id, jQuery(ele).val())
+    // }
+
+
+});
+
+function change_coop_type(student_id, coop_val)
+{
+  change_coop_type_ajax([student_id], coop_val)
+}
+
+
+function change_coop_type_ajax(arr, coop_status_type)
+{
+  var current_table_page = $('#student_table').DataTable().page.info().page
+  if(!arr) {
+    swal("โปรดเลือกนิสิตที่ต้องการเปลี่ยนสถานะ", {
+      icon: "warning",
+    });
+    return;
+  }
+  if(!coop_status_type) {
+    swal("โปรดเลือกสถานะที่ต้องการเปลี่ยน", {
+      icon: "warning",
+    });
+    return;
+  }
       
-      if(!arr[0]) {
-        swal("โปรดเลือกนิสิตที่ต้องการเปลี่ยนสถานะ", {
-          icon: "warning",
-        });
-        return;
-      }
-      if(!coop_status_type) {
-        swal("โปรดเลือกสถานะที่ต้องการเปลี่ยน", {
-          icon: "warning",
-        });
-        return;
-      }
-      
-      swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this imaginary file!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willUpdate) => {
-        if (willUpdate) {
-          var student_arr = []
-          jQuery.each(arr, function( index, value ) {
-            student_arr.push(value)
+  swal({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to recover this imaginary file!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willUpdate) => {
+    if (willUpdate) {
+      var student_arr = []
+      jQuery.each(arr, function( index, value ) {
+        student_arr.push(value)
+      });
+
+
+
+      var data = { students: student_arr, status: coop_status_type }
+      console.log(data)
+
+      jQuery.post(SITE_URL+"/Officer/Student_list/ajax_change_status/", data, function(response) {
+        if(response.status) {
+          swal("เปลี่ยนสถานะเรียบร้อย", {
+            icon: "success",
           });
-
-          console.log(student_arr)
-
-          var data = { students: student_arr, status: coop_status_type }
-          jQuery.post(SITE_URL+"/Officer/Student_list/ajax_change_status/", data, function(response) {
-            if(response.status) {
-              swal("เปลี่ยนสถานะเรียบร้อย", {
-                icon: "success",
-              });
-            } else {
-              swal("ผิดพลาด", {
-                icon: "warning",
-              });
-            }
-            $('.coop_status_type_val').prop('selectedIndex', 0)
-            $('#student_table').DataTable().clear().draw().ajax.reload(function(){ 
-              $('#student_table').DataTable().page( current_table_page ).draw( 'page' );              
-            });            
-            // $('#student_table').DataTable().page( current_table_page ).draw( 'page' );
-
-          }, 'json');
+        } else {
+          swal("ผิดพลาด", {
+            icon: "warning",
+          });
+        }
+        $('.coop_status_type_val').prop('selectedIndex', 0)
+        $('#student_table').DataTable().clear().draw().ajax.reload(function(){ 
+          $('#student_table').DataTable().page( current_table_page ).draw( 'page' );              
+        });            
+        // $('#student_table').DataTable().page( current_table_page ).draw( 'page' ); 
+      }, 'json');
 
 
           
-        }
-      });
-
-    } );
-} );
-
+    }
+  });
+}
 </script>
