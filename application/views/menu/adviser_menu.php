@@ -44,6 +44,11 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-graph"></i> สถิติ</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
+                <a class="nav-link" href="<?php echo site_url('Adviser/Report_cooperative');?>"><i class="icon-graph"></i> สถิติปีบัจจุบัน</a>
+              </li>
+            </ul>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">
                 <a class="nav-link" href="<?php echo site_url('Adviser/Stat');?>"><i class="icon-screen-desktop"></i> สถิติการฝึกงานที่ผ่านมา</a>
               </li>
             </ul>
