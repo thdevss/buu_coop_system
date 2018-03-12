@@ -53,12 +53,16 @@
                         <td class="text-right"><?php echo $row['train']['number_of_hour'] ?></td>
                         <td class="text-right"><?php echo $row['train']['number_of_seat'] ?></td>
                         <td class="text-center">
-                            <form action="<?php echo site_url('Officer/Training /delete'); ?>" class="form-inline" method="post">
-                              <input type="hidden" name="id" value="<?php echo $row['train']['id'] ; ?>">
-                              <?php echo anchor('Officer/Training/edit/'.$row['train']['id'], '<i class="fa fa-eraser"></i> เเก้ไขข้อมูล', 'class="btn  btn-primary"');?>                              
-                              <p style="width:10px;"></p>
-                              <button type="submit" class="btn btn-danger btn-submit"><i class="fa fa-trash-o"></i> ลบ</button>
-                            </form>
+                          <div class="btn-group-vertical">
+                              <form action="<?php echo site_url('Officer/Training /delete'); ?>" class="form-inline" method="post">
+                                <input type="hidden" name="id" value="<?php echo $row['train']['id'] ; ?>">
+                                <?php echo anchor('Officer/Training/student_list/'.$row['train']['id'], '<i class="fa fa-list"></i> รายชื่อนิสิต', 'class="btn  btn-primary"');?>
+                                <p style="width:5px;"></p>
+                                <?php echo anchor('Officer/Training/edit/'.$row['train']['id'], '<i class="fa fa-eraser"></i> เเก้ไขข้อมูล', 'class="btn  btn-primary"');?>                              
+                                <p style="width:5px;"></p>
+                                <button type="submit" class="btn btn-danger btn-submit"><i class="fa fa-trash-o"></i> ลบ</button>
+                              </form>
+                            </div> 
                         </td>
                       </tr>
                     <?php 
