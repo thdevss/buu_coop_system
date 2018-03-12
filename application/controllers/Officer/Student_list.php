@@ -34,6 +34,18 @@ class Student_list extends CI_Controller {
             $tmp_array['student']['gpax'] = '2.99';
             
             $tmp_array['coop_student_type'] = $cache['coop_student_type'][$row['coop_status']];
+            $coop_type_Render = '<select onchange="change_coop_type('.$row['id'].', this.value)">';
+            foreach($cache['coop_student_type'] as $key => $coop_type) {
+                if($key == $row['coop_status']) {
+                    $coop_type_Render .= '<option value="'.$key.'" selected>'.$coop_type['status_name'].'</option>';
+                } else {
+                    $coop_type_Render .= '<option value="'.$key.'">'.$coop_type['status_name'].'</option>';
+                }
+            }
+            $coop_type_Render .= '</select>';
+            $tmp_array['coop_student_type']['status_name'] = str_replace(" ", "", $tmp_array['coop_student_type']['status_name']);
+            $tmp_array['coop_student_type']['select_box'] = $coop_type_Render;
+            
             $tmp_array['department'] = $cache['department'][$row['department_id']];
             // $tmp_array['coop_student_type'] = $this->Student->get_by_coop_status_type($row['coop_status'])[0];
             // $tmp_array['department'] = $this->Student->get_department($row['department_id'])[0];

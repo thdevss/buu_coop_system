@@ -71,17 +71,22 @@ $(document).ready(function() {
 
     var table = $('#student_table').DataTable( {
         'columnDefs': [
-        {
-          'targets': 0,
-          'checkboxes': {
-            'selectRow': true
+          {
+            'targets': 0,
+            'checkboxes': {
+              'selectRow': true
+            }
+          }, 
+          {
+            "searchable": false,
+            "orderable": false,
+            "targets": [1, 4]
+          },
+          {
+            "targets": [ 8 ],
+            "visible": false,
+            "searchable": true,
           }
-        }, 
-        {
-              "searchable": false,
-              "orderable": false,
-              "targets": 1
-        }
         ],
         'select': {
           'style': 'multi'
@@ -96,10 +101,11 @@ $(document).ready(function() {
             { "data": "student.id" },
             { "data": "student.id_link" },            
             { "data": "student.fullname" },
-            { "data": "adviser.fullname" },
+            { "data": "adviser.select_box" },
             { "data": "company.name_th" },
             { "data": "company_address.area" },
             { "data": "company_address.province" },
+            { "data": "adviser.fullname" },
         ],
 
         'initComplete': function(){
@@ -107,7 +113,7 @@ $(document).ready(function() {
 
           // Populate a dataset for autocomplete functionality
           // using data from first, second and third columns
-          api.cells('tr', [2, 3, 4, 5, 6, 7]).every(function(){
+          api.cells('tr', [2, 3, 8, 5, 6, 7]).every(function(){
               // Get cell data as plain text
               var data = $('<div>').html(this.data()).text();           
               if(dataSrc.indexOf(data) === -1){ dataSrc.push(data); }
@@ -136,11 +142,24 @@ $(document).ready(function() {
     } ).draw();
 
     $('#select_adviser_btn').click( function () {
-      var current_table_page = $('#student_table').DataTable().page.info().page
-      var adviser_id = jQuery(".adviser_val option:selected").val()
       var arr = $('#student_table').DataTable().column(0).checkboxes.selected()
+      var adviser_id = jQuery(".adviser_val option:selected").val()
       
-      if(!arr[0]) {
+      update_student_into_adviser(arr, adviser_id)
+
+    });
+});
+
+function update_student_into_adviser(student_id, adviser_id)
+{
+  update_student_into_adviser_ajax([student_id], adviser_id)
+}
+
+function update_student_into_adviser_ajax(arr, adviser_id)
+{
+  var current_table_page = $('#student_table').DataTable().page.info().page
+      
+      if(!arr) {
         swal("โปรดเลือกนิสิตที่ต้องการเพิ่ม", {
           icon: "warning",
         });
@@ -163,11 +182,11 @@ $(document).ready(function() {
       .then((willUpdate) => {
         if (willUpdate) {
           var student_arr = []
-          jQuery.each(arr, function( index, value ) {
+          jQuery.each(arr[0], function( index, value ) {            
             student_arr.push(value)
           });
 
-          console.log(student_arr)
+
 
           var data = { students: student_arr, adviser: adviser_id }
           jQuery.post(SITE_URL+"/Officer/Management_student_adviser/ajax_change_status/", data, function(response) {
@@ -184,7 +203,6 @@ $(document).ready(function() {
             $('#student_table').DataTable().clear().draw().ajax.reload(function(){ 
               $('#student_table').DataTable().page( current_table_page ).draw( 'page' );              
             });            
-            // $('#student_table').DataTable().page( current_table_page ).draw( 'page' );
 
           }, 'json');
 
@@ -192,8 +210,6 @@ $(document).ready(function() {
           
         }
       });
-
-    } );
-} );
+}
 
 </script>

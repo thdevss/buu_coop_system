@@ -37,6 +37,18 @@ class Management_student_adviser extends CI_controller{
             } else {
                 $tmp_array['adviser'] = @$cache['adviser'][$row['adviser_id']];                
             }
+
+            $adviser_Render = '<select onchange="update_student_into_adviser('.$row['student_id'].', this.value)">';
+            foreach($cache['adviser'] as $key => $adviser) {
+                if($key == $row['adviser_id']) {
+                    $adviser_Render .= '<option value="'.$key.'" selected>'.$adviser['fullname'].'</option>';
+                } else {
+                    $adviser_Render .= '<option value="'.$key.'">'.$adviser['fullname'].'</option>';
+                }
+            }
+            $adviser_Render .= '</select>';
+            $tmp_array['adviser']['select_box'] = $adviser_Render;
+            
             
             if(!$row['company_id']) {
                 $tmp_array['company']['name_th'] = '-';
