@@ -16,7 +16,7 @@
                     <div class="card-header">
                       <i class="fa fa-align-justify"></i> จัดการหัวข้อย่อยแบบประเมินผลสถานประกอบการ
 
-                      <a href="<?php echo site_url('officer/Assessment_company_Form');?>" class="btn btn-info  float-right" >กลับไปยังหัวข้อหลัก</a>
+                      <a href="<?php echo site_url('officer/Assessment_company_Form');?>" class="btn btn-warning  float-right" >กลับไปยังหัวข้อหลัก</a>
                         
                     </div>
                       <div class="card-body">
@@ -46,9 +46,10 @@
                       <table class="table table-bordered " >
                             <thead>
                               <tr bgcolor="">
-                                <th>ลำดับหัวข้อย่อย</th>
-                                <th>การให้คะแนน</th>
+                                <th>ลำดับ</th>
+                                <th>ประเภท</th>
                                 <th>หัวข้อย่อยการประเมิน</th>
+                                <th>รายละเอียด</th>
                                 <th></th>
                               </tr>
                             </thead>
@@ -59,9 +60,13 @@
                                 <td><?php echo $row['number'];?></td>
                                 <td><?php echo $row['type'];?></td>
                                 <td><?php echo $row['title'];?></td>
+                                <td><?php echo $row['description'];?></td>
                                 <td>
-                                  <a href="#" data-itemid="<?php echo $row['id'];?>" class="btn btn-info editBtn"><i class="icon-pencil"></i> แก้ไข</a>
-                                  <a href="<?php echo site_url('officer/Assessment_company_Form/delete_company_questionnaire_item/'.$row['id']);?>" class="btn btn-danger" onclick="return confirmDelete(this)"><i class="icon-trash"></i> ลบ</a>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                <a href="#" data-itemid="<?php echo $row['id'];?>" class="btn btn-info editBtn"><i class="icon-pencil"></i> แก้ไข</a>
+                                <a href="<?php echo site_url('officer/Assessment_company_Form/delete_company_questionnaire_item/'.$row['id']);?>" class="btn btn-danger" onclick="return confirmDelete(this)"><i class="icon-trash"></i> ลบ</a>
+                                </div>
+                
                                 </td>
                               </tr>
 
@@ -107,6 +112,12 @@
                     <label>ชื่อหัวข้อย่อยการประเมิน</label>
                     <input type="text" id="title" name="title" class="form-control" placeholder="กรุณากรอก" required>
                   </div>
+
+                  <div class="form-group">
+                    <label>รายละเอียดหัวข้อ</label>
+                    <textarea class="form-control" name="description"></textarea>
+                  </div>
+                
 
                   <div class="form-group row">
                     <label class="col-md-4 col-form-label">การให้คะแนน</label>

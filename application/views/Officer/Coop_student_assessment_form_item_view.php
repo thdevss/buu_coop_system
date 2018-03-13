@@ -108,7 +108,6 @@
                     <label>ชื่อหัวข้อย่อยการประเมิน</label>
                     <input type="text" id="title" name="title" class="form-control" placeholder="กรุณากรอก" required>
                   </div>
-
                   <div class="form-group row">
                     <label class="col-md-4 col-form-label">การให้คะแนน</label>
                     <div class="col-md-4 col-form-label">
