@@ -104,5 +104,12 @@ class Job_model extends CI_model {
         $query = $this->db->get();
         return $query->result_array();
     }
+    public function get_student_by_company_id($company_job_position_company_id)
+    {
+        $this->db->where('company_job_position_company_id',$company_job_position_company_id);
+        $this->db->from('company_job_position_has_student');
+        $qurey = $this->db->get();
+        return $qurey->result_array();
+    }
 
 }
