@@ -9,7 +9,7 @@
         </li>
         <li class="nav-item">
           <!-- <a class="nav-link" href="#" data-toggle="modal" data-target="#selectTermBox"><i class="fa fa-calendar"></i> เลือกปีการศึกษา</a> -->
-          <a class="nav-link" href="#" data-toggle="modal" data-target="#selectTermBox"><i class="fa fa-calendar"></i> ปีการศึกษา: <b><?php echo $current_term['name'];?></b></a>
+          <a class="nav-link" href="#" data-toggle="modal" data-target="#selectTermBox"><i class="icon-clock"></i> ปีการศึกษา: <b><?php echo $current_term['name'];?></b></a>
           
         </li>
 

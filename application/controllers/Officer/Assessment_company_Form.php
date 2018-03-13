@@ -99,6 +99,8 @@
             $array['number'] = $this->input->post('number');
             $array['title'] = $this->input->post('title');
             $array['type'] = $this->input->post('type');
+            $array['description'] = $this->input->post('description');
+
             
 
             if($this->Company_Assessment_Form->check_item_dup($array['number'], $array['subject_id'])) {

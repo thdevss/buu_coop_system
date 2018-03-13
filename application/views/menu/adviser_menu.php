@@ -28,7 +28,7 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-graduation"></i> สหกิจ</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo site_url('Adviser/company_map');?>"><i class="icon-location-pin"></i> แผนที่</a>
+                <a class="nav-link" href="<?php echo site_url('Adviser/company_map');?>"><i class="icon-map"></i> แผนที่</a>
               </li>
             </ul>
           </li>

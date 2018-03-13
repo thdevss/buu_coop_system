@@ -25,7 +25,7 @@
                              <div class="row">
                                 <div class="col-sm-5">
                                     <div class="card-body p-3 clearfix" class="border-(3)" >
-                                        <i class="icon-location-pin p-3 font-2xl mr-3 float-left"></i>
+                                        <i class="icon-map p-3 font-2xl mr-3 float-left"></i>
                                         <div class="">
                                             ที่อยู่: &nbsp;&nbsp;เลขที่ &nbsp;&nbsp;<?php echo $data['number'];?>&nbsp;&nbsp;อาคาร &nbsp;&nbsp; <?php echo $data['building'];?>&nbsp;&nbsp; ถนน<?php echo $data['road'];?>&nbsp;&nbsp;
                                             เเขวง <?php echo $data['district'];?>&nbsp;&nbsp;เขต<?php echo $data['area'];?>&nbsp;&nbsp;อำเภอ<?php echo $data['area'];?>&nbsp;&nbsp;จังหวัด<?php echo $data['province'];?>&nbsp;&nbsp;<?php echo $data['postal_code'];?>&nbsp;&nbsp;ประเทศไทย
