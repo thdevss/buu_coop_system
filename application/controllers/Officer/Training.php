@@ -225,6 +225,98 @@ class Training extends CI_Controller {
         }
     }
 
+    public function student_list($training_id)
+    {
+        //to pdf
+        foreach($this->Training->gets_student_register_train($training_id) as $key => $student) {
+            $student_info = $this->Student->get_student($student['student_id'])[0];
+            $data['students'][] = array(
+                'student_id' => $student['student_id'],
+                'student_fullname' => $student_info['fullname'],
+                'student_barcode' => 'https://barcode.tec-it.com/barcode.ashx?data='.$student['student_id'].'&code=Code128&dpi=96&dataseparator=',
+            );
+        }
+
+        //training info
+        $data['training'] = $this->Training->get_training($training_id)[0];
+        $data['training']['train_type'] = $this->Training->get_type($data['training']['train_type_id'])[0];
+        $data['training']['train_location'] = $this->Training->get_location($data['training']['train_location_id'])[0];
+        
+        // print_r($data);
+        $html = $this->load->view('Officer/Student_list_report.php', $data, true);
+        echo $html;
+
+
+        // $this->load->library('mpdf60/mpdf');
+        // $mpdf = new mPdf('th', 'A4', '0', 'THSaraban');
+        // $mpdf->SetTitle('IN-S001.pdf');
+        // $mpdf->SetDisplayMode('fullpage');
+        // $mpdf->WriteHTML($html);
+        // $mpdf->Output();
+        exit;
+    }
+
+    public function student_list_excel($training_id)
+    {
+        //to excel
+        require(FCPATH.'/application/libraries/XLSXWriter/xlsxwriter.class.php');
+        require(FCPATH.'/application/libraries/XLSXWriter/xlsxwriterplus.class.php');
+        
+
+        $filename = "example.xlsx";
+        header('Content-disposition: attachment; filename="'.XLSXWriter::sanitize_filename($filename).'"');
+        header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        header('Content-Transfer-Encoding: binary');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+
+        $writer = new XLSWriterPlus();
+        //get student
+        $header = array(
+            '' => 'string',
+            '' => 'string',
+            '' => 'string',
+            '' => 'string',
+            '' => 'string'
+        );
+        
+        $rows[] = array(
+            'รายชื่อนิสิตเข้าร่วมอบรมโครงการ xxx yyyy วันที่ xx-xx-2018', '', '', '', ''
+        );
+        $rows[] = array(
+            'ลำดับ',
+            'บาร์โค้ด',
+            'รหัสนิสิต',
+            'ชื่อ - นามสกุล',
+            'ลายเซ็นต์',
+        );
+
+        foreach($this->Training->gets_student_register_train($training_id) as $key => $student) {
+            $student_info = $this->Student->get_student($student['student_id'])[0];
+            $rows[] = array(
+                ++$key,
+                '',
+                $student['student_id'],
+                $student_info['fullname'],
+                ''
+            );
+        }
+        $format = array(
+            'font'=>'THSarabunPSK',
+            'font-size'=>16, 
+            'wrap_text'=>true
+        );
+
+        $writer = new XLSXWriter();
+        $writer->setAuthor('from Cooperative System, BUU');
+        foreach($rows as $row) {
+            $writer->writeSheetRow('Sheet1', $row, $format);            
+        }
+        $writer->markMergedCell('Sheet1', $start_row=0, $start_col=0, $end_row=0, $end_col=4);
+            
+        $writer->writeToStdOut();
+    }
+
 
 
 
