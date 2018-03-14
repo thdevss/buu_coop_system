@@ -11,10 +11,13 @@ class Train_check_student extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'officer') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'officer') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+        
     }
 
     public function index($status = '')
@@ -174,6 +177,52 @@ class Train_check_student extends CI_Controller {
 
         
         echo json_encode($return);
+    }
+
+
+    function get_train_check_set_by_train($training_id)
+    {
+        $return = array();
+        foreach($this->Training_Check_Student->gets_check($training_id) as $key => $row) {
+            $return[] = array(
+                'check_id' => (int) $row['id'],
+                'check_no' => ++$key,
+                'check_date' => thaiDate($row['datetime']),
+                'check_title' => $row['note'],
+                'check_button' => '<a href="'.site_url('/Officer/Train_check_student/student_list/'.$row['id']).'" class="btn btn-info"><i class="fa fa-list"></i> รายชื่อนิสิต</a>'
+            );
+        }
+
+        echo json_encode($return);
+    }
+
+    public function student_list($check_id)
+    {
+        //to pdf
+        foreach($this->Training_Check_Student->gets_student_by_check($check_id) as $key => $student) {
+            $student_info = $this->Student->get_student($student['student_id'])[0];
+            $data['students'][] = array(
+                'student_id' => $student['student_id'],
+                'student_fullname' => $student_info['fullname'],
+                'student_barcode' => 'https://barcode.tec-it.com/barcode.ashx?data='.$student['student_id'].'&code=Code128&dpi=96&dataseparator=',
+            );
+        }
+
+        //training info
+        //get training id
+        $data['train_check_set'] = $this->Training_Check_Student->get_check($check_id)[0];
+        $training_id = $data['train_check_set']['train_id'];
+        $data['training'] = $this->Training->get_training($training_id)[0];
+        $data['training']['train_type'] = $this->Training->get_type($data['training']['train_type_id'])[0];
+        $data['training']['train_location'] = $this->Training->get_location($data['training']['train_location_id'])[0];
+
+        $data['training']['note'] = $data['train_check_set']['note']." เช็คชื่อเมื่อ: ".thaiDate($data['train_check_set']['datetime'], true);
+        
+        // add breadcrumbs
+        $this->breadcrumbs->push('รายชื่อนิสิตเข้าร่วมอบรม', '/Officer/training/student_list/'.$training_id);
+
+        $this->template->view('Officer/Student_list_report', $data);
+
     }
 
 

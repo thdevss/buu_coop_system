@@ -10,11 +10,14 @@ class Training extends CI_Controller {
             redirect('member/login');
 		}
 		
-		//check priv
-        if($this->Login_session->check_login()->login_type != 'officer') {
+		$user = $this->Login_session->check_login();
+        if($user->login_type != 'officer') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+        $this->breadcrumbs->push('จัดการการอบรม', '/Officer/Training');            
     }
 
     public function index($status = '')
@@ -241,19 +244,13 @@ class Training extends CI_Controller {
         $data['training'] = $this->Training->get_training($training_id)[0];
         $data['training']['train_type'] = $this->Training->get_type($data['training']['train_type_id'])[0];
         $data['training']['train_location'] = $this->Training->get_location($data['training']['train_location_id'])[0];
+        $data['training']['note'] = thaiDate($data['training']['date'], true);
         
-        // print_r($data);
-        $html = $this->load->view('Officer/Student_list_report.php', $data, true);
-        echo $html;
+        // add breadcrumbs
+        $this->breadcrumbs->push('รายชื่อนิสิตเข้าร่วมอบรม', '/Officer/training/student_list/'.$training_id);
 
+        $this->template->view('Officer/Student_list_report', $data);
 
-        // $this->load->library('mpdf60/mpdf');
-        // $mpdf = new mPdf('th', 'A4', '0', 'THSaraban');
-        // $mpdf->SetTitle('IN-S001.pdf');
-        // $mpdf->SetDisplayMode('fullpage');
-        // $mpdf->WriteHTML($html);
-        // $mpdf->Output();
-        exit;
     }
 
     public function student_list_excel($training_id)

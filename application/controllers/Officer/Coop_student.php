@@ -50,7 +50,7 @@ class Coop_student extends CI_Controller {
                 $tmp_array['student']['id'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$tmp_array['student']['id']).'">'.$tmp_array['student']['id'].'</a>';
                 $tmp_array['job_position'] = $cache['job'][$row['company_job_position_id']];
                 $tmp_array['company'] = @$cache['company'][$row['company_id']];
-                $tmp_array['trainer'] = $cache['trainer'][$row['mentor_person_id']];
+                $tmp_array['trainer'] = @$cache['trainer'][$row['mentor_person_id']];
 
                 // print_r($tmp_array);
                 array_push($return['data'], $tmp_array);
