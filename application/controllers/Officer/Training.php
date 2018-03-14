@@ -16,8 +16,7 @@ class Training extends CI_Controller {
             die();
         }
 
-        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
-        $this->breadcrumbs->push('จัดการการอบรม', '/Officer/Training');            
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor           
     }
 
     public function index($status = '')
@@ -50,6 +49,10 @@ class Training extends CI_Controller {
             
             array_push($data['data'], $tmp_array);
         }
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('จัดการข้อมูลการอบรม', '/');
+
         $this->template->view('Officer/Train_list_view',$data);
     }
    
@@ -99,7 +102,10 @@ class Training extends CI_Controller {
         $data['train_type'] = $this->Training->gets_type();
         $data['train_location'] = $this->Training->gets_location();
 
-            
+        // add breadcrumbs
+        $this->breadcrumbs->push('จัดการข้อมูลการอบรม', '/Officer/Training/index');
+        $this->breadcrumbs->push('เเก้ไขข้อมูลโครงการอบรม', '/Officer/Training/edit'.$id);
+
         $this->template->view('Officer/Edit_Train_list_view', $data);
     }
 
@@ -120,6 +126,11 @@ class Training extends CI_Controller {
 
         $data['train_type'] = $this->Training->gets_type();
         $data['train_location'] = $this->Training->gets_location();
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('จัดการข้อมูลการอบรม', '/Officer/Training/index');
+        $this->breadcrumbs->push('เพิ่มข้อมูลโครงการอบรม', '/');
+
         $this->template->view('Officer/Add_Train_list_view', $data);
     }
 
@@ -247,6 +258,7 @@ class Training extends CI_Controller {
         $data['training']['note'] = thaiDate($data['training']['date'], true);
         
         // add breadcrumbs
+        $this->breadcrumbs->push('จัดการข้อมูลการอบรม', '/Officer/Training/index');
         $this->breadcrumbs->push('รายชื่อนิสิตเข้าร่วมอบรม', '/Officer/training/student_list/'.$training_id);
 
         $this->template->view('Officer/Student_list_report', $data);
