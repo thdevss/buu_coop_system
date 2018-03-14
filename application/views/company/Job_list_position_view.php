@@ -101,7 +101,7 @@ $(document).ready(function() {
         },
         'order': [[2, 'asc']],
         "ajax": {
-          "url": "<?php echo site_url('Officer/Student_list/ajax_list');?>",
+          "url": "<?php echo site_url('#/#/#');?>",
           "dataSrc": ""
         },
         "columns": [
