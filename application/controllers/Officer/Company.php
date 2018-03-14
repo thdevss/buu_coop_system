@@ -16,6 +16,7 @@ class Company extends CI_Controller {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+
         // $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }

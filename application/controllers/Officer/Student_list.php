@@ -2,12 +2,34 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Student_list extends CI_Controller {
+    public function __construct()
+    {
+        parent::__construct();
+        if(!$this->Login_session->check_login()) {
+            $this->session->sess_destroy();
+            redirect('member/login');
+		}
+		
+        //check priv
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'officer') {
+            redirect($this->Login_session->check_login()->login_type);
+            die();
+        }
+
+        // $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+    }
 
     public function index(){
 
         $data['data'] = array();
         
         $data['coop_status_type'] = $this->Student->gets_coop_status_type();
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('รายชื่อนิสิต', '/Officer/Student_list/index');
+
         $this->template->view('Officer/Student_list_view',$data);
     }
 
@@ -115,6 +137,8 @@ class Student_list extends CI_Controller {
             array_push($data['train_type'], $tmp);
         }
 
+        // add breadcrumbs
+        $this->breadcrumbs->push('รายละเอียดนิสิต', '/Officer/Student_list/student_detail');
 
         $this->template->view('Officer/Student_detail_view', $data);
        

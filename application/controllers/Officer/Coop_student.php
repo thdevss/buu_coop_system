@@ -10,16 +10,24 @@ class Coop_student extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'officer') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'officer') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+
+        // $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
     
         public function index()
         {   
             $data = array();
+
+            // add breadcrumbs
+            $this->breadcrumbs->push('รายชื่อนิสิตสหกิจ', '/Officer/Coop_student/index');
+
             $this->template->view('Officer/List_coop_student_view', $data);
         }
 
