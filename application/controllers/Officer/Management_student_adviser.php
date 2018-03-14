@@ -1,10 +1,31 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Management_student_adviser extends CI_controller{
+    public function __construct()
+    {
+        parent::__construct();
+        if(!$this->Login_session->check_login()) {
+            $this->session->sess_destroy();
+            redirect('member/login');
+		}
+		
+        //check priv
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'officer') {
+            redirect($this->Login_session->check_login()->login_type);
+            die();
+        }
+
+        // $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+    }
     public function index()
     {
         $data = array();
         $data['adviser'] = @$this->Adviser->gets_adviser();
+
+        // addBreadcrumb
+        $this->breadcrumbs->push('จัดอาจารย์ที่ปรึกษากับนิสิต', '/Officer/Management_student_adviser/index');
         $this->template->view('Officer/Management_student_adviser_view',$data);
     }
     public function ajax_list()

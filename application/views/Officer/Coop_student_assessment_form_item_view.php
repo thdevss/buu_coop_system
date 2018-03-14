@@ -2,11 +2,9 @@
 <main class="main">
 
 <!-- Breadcrumb -->
-<ol class="breadcrumb">
-  <li class="breadcrumb-item">Home</li>
-  <li class="breadcrumb-item"><a href="#"><?php echo strToLevel($user->login_type);?></a></li>
-  <li class="breadcrumb-item active">จัดการหัวข้อย่อยแบบประเมินผลการฝึกงานของนิสิตสหกิจ</li>
-</ol>
+<?php echo $this->breadcrumbs->show(); ?> 
+
+
         <div class="container-fluid">
           <div class="animated fadeIn">
               <div class="row" >
@@ -16,14 +14,14 @@
                     <div class="card-header">
                       <i class="fa fa-align-justify"></i> จัดการหัวข้อย่อยแบบประเมินผลการฝึกงานของนิสิตสหกิจ
 
-                      <a href="<?php echo site_url('officer/Assessment_coop_student_Form');?>" class="btn btn-info float-right" >กลับไปยังหัวข้อหลัก</a>
+                      <a href="<?php echo site_url('officer/Assessment_coop_student_Form');?>" class="btn btn-warning float-right" >กลับไปยังหัวข้อหลัก</a>
                         
                     </div>
                       <div class="card-body">
                       <div class="row">
                           <div class="col-lg-6">
                             <select name="form_subject" id="form_subject" class="form-control">
-                              <option>----</option>
+                              <option disabled>----</option>
                                 <?php
                                 foreach($form_subject as $form) {
                                   if($subject['id'] == $form['id']) {

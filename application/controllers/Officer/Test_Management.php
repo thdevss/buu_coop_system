@@ -11,10 +11,14 @@ class Test_Management extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'officer') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'officer') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+
+        // $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
     public function index($status = ''){
@@ -64,6 +68,9 @@ class Test_Management extends CI_Controller {
         // }
 
         $data['coop_test_list'] = $this->Test->gets_test();
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('จัดการข้อมูลรับสมัครการสอบ', '/Officer/Test_Management/index');
 
         $this->template->view('Officer/Test_Management_view',$data);
 

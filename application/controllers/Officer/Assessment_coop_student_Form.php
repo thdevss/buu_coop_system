@@ -11,10 +11,14 @@
             }
             
             //check priv
-            if($this->Login_session->check_login()->login_type != 'officer') {
-                redirect($this->Login_session->check_login()->login_type);
-                die();
-            }
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'officer') {
+            redirect($this->Login_session->check_login()->login_type);
+            die();
+        }
+
+        // $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
         }
 
         //subject
@@ -39,6 +43,9 @@
             $data['coop_student_questionnaire_subject'] = $this->Coop_Student_Assessment_Form->gets_form_for_coop_student();
             $data['next_number'] = end($data['coop_student_questionnaire_subject'])['number'];
             $data['next_number'] = (int) $data['next_number']+1;
+
+            // add breadcrumbs
+            $this->breadcrumbs->push('จัดการแบบฟอร์มประเมินผลการฝึกงานของนิสิต', '/Officer/Assessment_coop_student_Form/index');
 
             $this->template->view('Officer/Coop_student_assessment_form_subject_view',$data);
 
@@ -83,6 +90,10 @@
             $data['next_number'] = (float) $data['next_number']+0.1;
            
             $data['form_subject'] = $this->Coop_Student_Assessment_Form->gets_form_for_coop_student();
+
+            // add breadcrumbs
+            $this->breadcrumbs->push('จัดการแบบฟอร์มประเมินผลการฝึกงานของนิสิต', '/Officer/Assessment_coop_student_Form/index');
+            $this->breadcrumbs->push('จัดการหัวข้อย่อยแบบประเมินผลการฝึกงานของนิสิตสหกิจ', '/Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item'.$id);
         
             $this->template->view('Officer/Coop_student_assessment_form_item_view',$data);
         }
