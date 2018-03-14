@@ -10,11 +10,14 @@ class Company extends CI_Controller {
             redirect('member/login');
 		}
 		
-		//check priv
-        if($this->Login_session->check_login()->login_type != 'officer') {
+        //check priv
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'officer') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+        $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
     public function index($status = '')
@@ -35,25 +38,25 @@ class Company extends CI_Controller {
 
         $data['data'] = $this->Company->gets_company();
     
+        // add breadcrumbs
+        $this->breadcrumbs->push('จัดการข้อมูลสถานประกอบการ', '/Officer/Company/index');
+
         $this->template->view('Officer/List_company_view',$data);
     }
-    public function address($id){
+    public function address($company_id){
 
-            $data['data'] = $this->Address->get_address_by_company($id)[0];  
-            $data['tmp'] = $this->Company->get_company($id)[0];  
-            $data['contact'] = $this->Trainer->get_trainer($data['tmp']['contact_person_id'])[0];
+        $data['data'] = $this->Address->get_address_by_company($company_id)[0];  
+        $data['tmp'] = $this->Company->get_company($company_id)[0];  
+        $data['contact'] = $this->Trainer->get_trainer($data['tmp']['contact_person_id'])[0];
 
-            
+        // add breadcrumbs
+        $this->breadcrumbs->push('จัดการข้อมูลสถานประกอบการ', '/Officer/Company/index');
+        $this->breadcrumbs->push('ที่อยู่สถานประกอบการ', '/Officer/Company/address/'.$company_id);
 
-            $this->template->view('Officer/Address_company_view',$data);
-        
+        $this->template->view('Officer/Address_company_view',$data);
     }
     public function delete($id)
     {
-        //check if exist
-        // $this->load->library('form_validation');        
-        // $this->form_validation->set_rules('id', 'id', 'trim|required|numeric');
-
             if(@$this->Company->get_company($id)) {
                 //delete
                 $this->Company->delete_company($id);
