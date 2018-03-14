@@ -10,10 +10,14 @@ class News extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'officer') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'officer') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+
+        // $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
     public function index($status = '')
@@ -38,6 +42,10 @@ class News extends CI_Controller {
         }
 
         $data['data'] = $this->News->gets_news(null, 1);
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('รายการประกาศข่าวสารหน้าเว็ป', '/Officer/News/index');
+
         $this->template->view('Officer/News_list_view', $data);
     } 
 
@@ -54,6 +62,11 @@ class News extends CI_Controller {
         }
 
         $data['post_url'] = site_url('Officer/News/post_add');
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('รายการประกาศข่าวสารหน้าเว็ป', '/Officer/News/index');
+        $this->breadcrumbs->push('แบบฟอร์มเพิ่มประกาศข่าวสาร', '/Officer/News/add/');
+
         $this->template->view('Officer/News_form_view', $data);
     }
 
@@ -127,7 +140,11 @@ class News extends CI_Controller {
         $data['files'] = $this->News_File->gets_file_by_news($id);
         
         $data['post_url'] = site_url('Officer/News/post_edit');
-        
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('รายการประกาศข่าวสารหน้าเว็ป', '/Officer/News/index');
+        $this->breadcrumbs->push('แบบฟอร์มแก้ไขประกาศข่าวสาร', '/Officer/News/edit/'.$id);
+
         $this->template->view('Officer/News_form_view', $data);
     }
 

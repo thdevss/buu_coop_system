@@ -11,10 +11,14 @@
             }
             
             //check priv
-            if($this->Login_session->check_login()->login_type != 'officer') {
-                redirect($this->Login_session->check_login()->login_type);
-                die();
-            }
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'officer') {
+            redirect($this->Login_session->check_login()->login_type);
+            die();
+        }
+
+        // $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
         }
 
         //subject
@@ -39,6 +43,9 @@
             $data['company_questionnaire_subject'] = $this->Company_Assessment_Form->gets_form_for_company();
             $data['next_number'] = end($data['company_questionnaire_subject'])['number'];
             $data['next_number'] = (int) $data['next_number']+1;
+
+            // add breadcrumbs
+            $this->breadcrumbs->push('จัดการแบบฟอร์มประเมินผลสถานประกอบการ', '/Officer/Assessment_company_Form/index');
 
             $this->template->view('Officer/Company_assessment_form_subject_view',$data);
 
@@ -87,6 +94,10 @@
             $data['next_number'] = (float) $data['next_number']+0.1;
            
             $data['form_subject'] = $this->Company_Assessment_Form->gets_form_for_company();
+
+            // add breadcrumbs
+            $this->breadcrumbs->push('จัดการแบบฟอร์มประเมินผลสถานประกอบการ', '/Officer/Assessment_company_Form/index');
+            $this->breadcrumbs->push('จัดการหัวข้อย่อยแบบประเมินผลสถานประกอบการ', '/Officer/Assessment_company_Form/get_company_questionnaire_item'.$id);
         
             $this->template->view('Officer/Company_assessment_form_item_view',$data);
         }

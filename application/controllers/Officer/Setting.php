@@ -3,12 +3,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Setting extends CI_Controller {
 
+    public function __construct()
+    {
+        parent::__construct();
+        if(!$this->Login_session->check_login()) {
+            $this->session->sess_destroy();
+            redirect('member/login');
+		}
+		
+		//check priv
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'officer') {
+            redirect($this->Login_session->check_login()->login_type);
+            die();
+        }
+
+        // $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+    }
+
     public function edit_term(){
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('จัดการปีการศึกษา', '/Officer/Setting/edit_term');
+
         $this->template->view('officer/setting_term_view',@$data);
     }
     public function edit_document(){
         // get coop_document
         $data['coop_document'] = $this->Form->gets_form();
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('จัดการเอกสารที่นิสิตต้องส่ง', '/Officer/Setting/edit_document');
+        
         $this->template->view('officer/setting_document_view',$data);
     }
 
@@ -42,6 +69,12 @@ class Setting extends CI_Controller {
 
         $data['form_type'] = 'insert';
         $data['company_job_title'] = $this->Job->gets_company_job_title();
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('จัดการตำแหน่งงาน', '/Officer/Setting/lists_job_title');
+        $this->breadcrumbs->push('เพิ่มตำแหน่งงาน', '/');
+        
+
         $this->template->view('officer/Job_position_setting_view',$data);
     }
 
@@ -73,6 +106,11 @@ class Setting extends CI_Controller {
             $data['status'] = null;
             $data['job_title_by_id'] = $this->Job->get_company_job_title_by_job_title_id($job_title_id)[0];
             $data['company_job_title'] = $this->Job->gets_company_job_title();
+
+            // add breadcrumbs
+            $this->breadcrumbs->push('จัดการตำแหน่งงาน', '/Officer/Setting/lists_job_title');
+            $this->breadcrumbs->push('แก้ไขตำแหน่งงาน', '/Officer/Setting/update_job_title'.$job_title_id);
+
             $this->template->view('officer/Job_position_setting_view',$data);
         }
 
@@ -115,6 +153,11 @@ class Setting extends CI_Controller {
 
         $data['form_type'] = 'insert';
         $data['skill'] = $this->Skill->gets_skill();
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('จัดการประเภททักษะ', '/Officer/Setting/lists_skill_name');
+        $this->breadcrumbs->push('เพิ่มประเภททักษะ', '/');
+
         $this->template->view('Officer/Skill_position_setting_view', $data);
 
     }
@@ -145,6 +188,11 @@ class Setting extends CI_Controller {
             $data['status'] = null;
             $data['skill'] = $this->Skill->gets_skill();
             $data['skill_by_skill_id'] = $this->Skill->get_skill($skill_id)[0];
+
+            // add breadcrumbs
+            $this->breadcrumbs->push('จัดการประเภททักษะ', '/Officer/Setting/lists_skill_name');
+            $this->breadcrumbs->push('แก้ไขประเภททักษะ', '/Officer/Setting/update_skill_name'.$skill_id);
+
             $this->template->view('Officer/Skill_position_setting_view',$data);
 
         }

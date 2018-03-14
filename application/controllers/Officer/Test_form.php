@@ -11,10 +11,14 @@ class Test_form extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'officer') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'officer') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+
+        // $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
     public function index($status = ''){
         if($status == 'success' ){
@@ -41,6 +45,10 @@ class Test_form extends CI_Controller {
         }
         $data['coop_time_select'] = date('Y-m-d H:i:s', strtotime(@$data['coop_test'][0]['test_date'])+86400);
         // print_r($data);
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('จัดการข้อมูลรับสมัครการสอบ', '/Officer/Test_form/index');
+        
         $this->template->view('Officer/Test_form_view',$data);
     }
 

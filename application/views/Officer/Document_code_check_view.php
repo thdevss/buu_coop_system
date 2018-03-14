@@ -2,11 +2,8 @@
 <main class="main">
 
 <!-- Breadcrumb -->
-<ol class="breadcrumb">
-  <li class="breadcrumb-item">Home</li>
-  <li class="breadcrumb-item"><a href="#">เจ้าหน้าที่</a></li>
-  <li class="breadcrumb-item active">ตรวจสอบเอกสารเเยกประเภท</li>
-</ol>
+<?php echo $this->breadcrumbs->show(); ?>
+
 
 <div class="container-fluid">
   <div class="animated fadeIn">

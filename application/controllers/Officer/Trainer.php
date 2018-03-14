@@ -11,10 +11,12 @@ class Trainer extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'officer') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'officer') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
     public function lists($id, $status = '')
@@ -55,7 +57,11 @@ class Trainer extends CI_Controller {
             $tmp_array['company'] = $this->Company->get_company($row['company_id'])[0];
             array_push($data['data'], $tmp_array);
 
-        }      
+        }
+        
+        // add breadcrumbs
+        $this->breadcrumbs->push('จัดการข้อมูลสถานประกอบการ', '/Officer/Company/index');
+        $this->breadcrumbs->push('เจ้าหน้าที่ในบริษัท', '/Officer/Trainer/lists/'.$id);
         
         $this->template->view('Officer/List_trainer_view',$data);
     }

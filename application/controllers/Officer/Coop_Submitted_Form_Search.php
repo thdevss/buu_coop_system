@@ -10,10 +10,14 @@ class Coop_Submitted_Form_Search extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'officer') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'officer') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+
+            // $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
+            $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
         public function by_student()
@@ -35,6 +39,9 @@ class Coop_Submitted_Form_Search extends CI_Controller {
 
                 array_push($data['data'], $row);
             }
+            
+            // add breadcrumbs
+            $this->breadcrumbs->push('ตรวจสอบเอกสารรายบุคคล', '/Officer/Coop_Submitted_Form_Search/by_student');
 
             $this->template->view('Officer/Document_student_check_view',$data);
         }
@@ -114,6 +121,9 @@ class Coop_Submitted_Form_Search extends CI_Controller {
 
             //     array_push($data['data'], $row);
             // }
+            // add breadcrumbs
+            $this->breadcrumbs->push('ตรวจสอบเอกสารเเยกประเภท', '/Officer/Coop_Submitted_Form_Search/by_form');
+
             $this->template->view('Officer/Document_code_check_view', $data);
         }
         
