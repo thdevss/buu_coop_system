@@ -2,12 +2,12 @@
 
 <!-- Main content -->
 <main class="main">
+<!--breadcrumb-->
+<?php echo $this->breadcrumbs->show(); ?>
 
-<ol class="breadcrumb">
-  <li class="breadcrumb-item">Home</li>
-  <li class="breadcrumb-item"><a href="#"><?php echo strToLevel($user->login_type);?></a></li>
-  <li class="breadcrumb-item active">เเก้ไขข้อมูลโครงการอบรม</li>
-</ol>
+
+
+
 <div class="container-fluid">
     <div class="animated fadeIn">
         <div class="row" >

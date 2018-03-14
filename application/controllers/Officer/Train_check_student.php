@@ -43,6 +43,9 @@ class Train_check_student extends CI_Controller {
             array_push($data['data'], $tmp_array);
         }
 
+        // add breadcrumbs
+        $this->breadcrumbs->push('เช็คชื่อเข้าอบรม', '/Officer/Train_check_student/index');
+
         $this->template->view('Officer/Train_check_student_view',$data);
     }
 
@@ -198,6 +201,7 @@ class Train_check_student extends CI_Controller {
 
     public function student_list($check_id)
     {
+        $data['students'] = [];
         //to pdf
         foreach($this->Training_Check_Student->gets_student_by_check($check_id) as $key => $student) {
             $student_info = $this->Student->get_student($student['student_id'])[0];
@@ -219,6 +223,7 @@ class Train_check_student extends CI_Controller {
         $data['training']['note'] = $data['train_check_set']['note']." เช็คชื่อเมื่อ: ".thaiDate($data['train_check_set']['datetime'], true);
         
         // add breadcrumbs
+        $this->breadcrumbs->push('เช็คชื่อเข้าอบรม', '/Officer/Train_check_student/index');
         $this->breadcrumbs->push('รายชื่อนิสิตเข้าร่วมอบรม', '/Officer/training/student_list/'.$training_id);
 
         $this->template->view('Officer/Student_list_report', $data);

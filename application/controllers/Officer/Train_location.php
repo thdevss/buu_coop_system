@@ -11,11 +11,13 @@ class Train_location extends CI_Controller {
             redirect('member/login');
 		}
 		
-		//check priv
-        if($this->Login_session->check_login()->login_type != 'officer') {
+		$user = $this->Login_session->check_login();
+        if($user->login_type != 'officer') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
     public function index($status = '')
@@ -32,17 +34,30 @@ class Train_location extends CI_Controller {
         }
 
         $data['train_locations'] = $this->Training->gets_location();
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('จัดการสถานที่อบรม', '/');
+
         $this->template->view('Officer/Train_location_view',$data);
     }
 
     public function add($status = '')
     {
+        // add breadcrumbs
+        $this->breadcrumbs->push('จัดการสถานที่อบรม', '/Officer/Train_location/index');
+        $this->breadcrumbs->push('จัดการสถานที่อบรม', '/Officer/Train_location/add');
+
         $this->template->view('Officer/Train_location_form_view');
     }
 
     public function edit($room_id)
     {
         $data['row'] = $this->Training->get_location($room_id)[0];
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('จัดการสถานที่อบรม', '/Officer/Train_location/index');
+        $this->breadcrumbs->push('จัดการสถานที่อบรม', '/Officer/Train_location/edit'.$room_id);
+
         $this->template->view('Officer/Train_location_form_view',$data);
     }    
 

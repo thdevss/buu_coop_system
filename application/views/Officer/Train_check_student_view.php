@@ -2,14 +2,33 @@
 <main class="main">
 
 <!-- Breadcrumb -->
-<ol class="breadcrumb">
-  <li class="breadcrumb-item">Home</li>
-  <li class="breadcrumb-item"><a href="#"><?php echo strToLevel($user->login_type);?></a></li>
-  <li class="breadcrumb-item active">เช็คชื่อเข้าอบรม</li>
-</ol>
+<?php echo $this->breadcrumbs->show(); ?>
+
+
+
+
 <div class="container-fluid">
     <div class="animated fadeIn">
         <div class="row" >
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header"><i class="fa fa-align-justify"></i> รายการเช็คชื่อ</div>
+                    <div class="card-body">
+                        <table class="table table-bordered" id="ajax_table">
+                            <thead>
+                                <tr>
+                                    <th>ครั้งที่</th>
+                                    <th>วันที่</th>
+                                    <th>บันทึกช่วยทำ</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-header"><i class="fa fa-align-justify"></i> เช็คชื่อเข้าอบรม</div>
@@ -46,24 +65,6 @@
                 </div>
             </div>
 
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header"><i class="fa fa-align-justify"></i> รายการเช็คชื่อ</div>
-                    <div class="card-body">
-                        <table class="table table-bordered" id="ajax_table">
-                            <thead>
-                                <tr>
-                                    <th>ครั้งที่</th>
-                                    <th>วันที่</th>
-                                    <th>โครงการ</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
 
     </div>
