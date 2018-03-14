@@ -23,7 +23,7 @@
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label for="building">โครงการ</label>          
-                                    <select class="form-control" name="train_id">
+                                    <select class="form-control" name="train_id" id="train_id">
                                         <option>--- please select ----</option>
                                         <?php foreach($data as $row) { ?>
                                             <option value="<?php echo $row['train']['id'];?>"><?php echo thaiDate($row['train']['date']);?> - <?php echo $row['train']['title'];?></option>
@@ -50,28 +50,16 @@
                 <div class="card">
                     <div class="card-header"><i class="fa fa-align-justify"></i> รายการเช็คชื่อ</div>
                     <div class="card-body">
-                        <table class="table table-bordered" id="student_table">
+                        <table class="table table-bordered" id="ajax_table">
                             <thead>
                                 <tr>
-                                  <th></th>
-                                  <th>วันที่</th>
-                                  <th>ครั้งที่</th>
-                                  <th>โครงการ</th>
-                                  <th></th>
-                                    
+                                    <th>ครั้งที่</th>
+                                    <th>วันที่</th>
+                                    <th>โครงการ</th>
+                                    <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                  <td class="text-center"></td>
-                                  <td class="text-left"></td>
-                                  <td class="text-right"></td>
-                                  <td class="text-left"></td>
-                                  <td class="text-center">
-                                    <?php echo anchor('Officer/Training/#/'.$row['train']['id'], '<i class="fa fa-list"></i> รายชื่อนิสิต', 'class="btn  btn-primary"');?>
-                                  </td>
-                                </tr>
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
@@ -82,3 +70,71 @@
 </div>
 
 </main>
+
+
+
+<script>
+var table;
+$('#train_id').on('change', function (e) {
+    var optionSelected = $("option:selected", this);
+    var valueSelected = this.value;
+
+    if(table)
+      table.destroy();
+
+
+    var dataSrc = [];
+    table = $('#ajax_table').DataTable( {
+        "columnDefs": [ {
+            "searchable": false,
+            "orderable": false,
+            "targets": 0
+        } ],
+        'order': [[1, 'asc']],
+        "ajax": {
+          "url": SITE_URL+"/Officer/Train_check_student/get_train_check_set_by_train/"+valueSelected,
+          "dataSrc": ""
+        },
+        "columns": [
+            { "data": "check_no" },          
+            { "data": "check_date" },
+            { "data": "check_title" },            
+            { "data": "check_button" }
+        ],
+        'initComplete': function(){
+          var api = this.api();
+
+          // Populate a dataset for autocomplete functionality
+          // using data from first, second and third columns
+          api.cells('tr', [1, 2]).every(function(){
+              // Get cell data as plain text
+              var data = $('<div>').html(this.data()).text();           
+              if(dataSrc.indexOf(data) === -1){ dataSrc.push(data); }
+          });
+                
+          // Sort dataset alphabetically
+          dataSrc.sort();
+                
+          // Initialize Typeahead plug-in
+          $('.dataTables_filter input[type="search"]', api.table().container())
+              .typeahead({
+                source: dataSrc,
+                afterSelect: function(value){
+                    api.search(value).draw();
+                }
+              }
+          );
+        }
+        
+    } );
+
+    table.on( 'order.dt search.dt', function () {
+        table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
+
+
+});
+
+</script>

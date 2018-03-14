@@ -8,14 +8,17 @@ class Training_Check_Student_model extends CI_model {
 
     public function get_check($check_id)
     {
-        $this->db->where('id',$check_id);
+        $this->db->where('id', $check_id);
         $this->db->from('train_set_check');
         $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function gets_check()
+    public function gets_check($training_id = 0)
     {
+        if($training_id > 0) {
+            $this->db->where('train_id', $training_id);
+        }
         $this->db->from('train_set_check');
         $query = $this->db->get();
         return $query->result_array();
