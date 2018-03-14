@@ -61,7 +61,7 @@ $autoload['packages'] = array();
 $autoload['libraries'] = array(
     'session', 'template', 
     'service_ldap' => 'ldap',
-    'database', 'form_validation'
+    'database', 'form_validation', 'breadcrumbs'
 );
 
 /*

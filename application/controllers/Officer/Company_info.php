@@ -11,11 +11,14 @@ class Company_info extends CI_controller
                 redirect('member/login');
             }
 
-            //check priv
-            if($this->Login_session->check_login()->login_type != 'officer') {
+            $user = $this->Login_session->check_login();
+            if($user->login_type != 'officer') {
                 redirect($this->Login_session->check_login()->login_type);
                 die();
-           }
+            }
+            $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
+            $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+            $this->breadcrumbs->push('จัดการข้อมูลสถานประกอบการ', '/Officer/Company/index');            
         }
 
         public function step1($company_id) 
@@ -23,6 +26,9 @@ class Company_info extends CI_controller
             $data['company'] = $this->Company->get_company($company_id)[0];
             $data['company_address'] = $this->Address->get_address_by_company($data['company']['id'])[0];
             $data['form_url'] = site_url('officer/company_info/post_step1');
+
+            // add breadcrumbs
+            $this->breadcrumbs->push('รายละเอียดเกี่ยวกับสถานประกอบการ/หน่วยงาน', '/Officer/company_info/step1/'.$company_id);
             
             $this->template->view('Company/info/step1_view', $data);
         }
@@ -89,6 +95,9 @@ class Company_info extends CI_controller
             $data['form_url'] = site_url('officer/company_info/post_step2');
             $data['back_url'] = site_url('officer/company_info/step1/'.$company_id);
 
+            // add breadcrumbs
+            $this->breadcrumbs->push('ชื่อผู้จัดการสถานประกอบการ/หัวหน้าหน่วยงาน', '/Officer/company_info/step2/'.$company_id);
+
             $this->template->view('Company/info/step2_view', $data);
         }
 
@@ -129,6 +138,8 @@ class Company_info extends CI_controller
             $data['form_url'] = site_url('officer/company_info/post_step3');
             $data['back_url'] = site_url('officer/company_info/step2/'.$company_id);
 
+            $this->breadcrumbs->push('เพิ่มตำแหน่งงาน', '/Officer/company_info/step2/'.$company_id);
+            
             $this->template->view('Company/info/step3_view', $data);
         }
 
