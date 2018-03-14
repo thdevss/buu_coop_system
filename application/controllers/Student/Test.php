@@ -12,10 +12,13 @@ class Test extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'student') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'student') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+      
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
 	public function lists($status = '')
@@ -47,7 +50,7 @@ class Test extends CI_Controller {
         }
 
         // print_r($data);
-
+        $this->breadcrumbs->push('สมัครสอบวัดผลสหกิจ', '/Student/Training/lists');
 		$this->template->view('student/test_register_view', $data);
 		
     }
@@ -112,7 +115,7 @@ class Test extends CI_Controller {
 
             array_push($data['data'], $temp_array);
         }
-
+        $this->breadcrumbs->push('ประกาศผลสอบวัดผลสหกิจ', '/Student/Training/result');
 		$this->template->view('student/test_result_view', $data);        
     }
 }  
