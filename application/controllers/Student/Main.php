@@ -12,10 +12,13 @@ class Main extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'student') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'student') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+      
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
 	public function index()

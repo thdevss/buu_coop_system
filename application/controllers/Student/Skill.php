@@ -12,10 +12,13 @@ class Skill extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'student') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'student') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+      
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
     public function index($status= '')
@@ -43,6 +46,7 @@ class Skill extends CI_Controller {
             $data['has_skill'][] = $has_skill['skill_id'];
         }
         $data['skill'] = $this->Skill->gets_skill();
+        $this->breadcrumbs->push('ทักษะที่ถนัด', '/Student/Skill/index');
         $this->template->view('Student/Skill_form_view',$data);
     }
 

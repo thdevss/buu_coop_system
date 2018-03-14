@@ -12,10 +12,13 @@ class Job extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'student') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'student') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+          //add ->breadcrumbs
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
 
@@ -36,6 +39,8 @@ class Job extends CI_Controller {
         array_push($data['data'], $temp);
 
         }
+            //add ->breadcrumbs
+        $this->breadcrumbs->push('รายการสมัคร ตำแหน่งงาน และสถานประกอบการ', '/Student/Job/lists');
         $this->template->view('Student/Report_student_info_view',$data);
     }
 
@@ -46,12 +51,15 @@ class Job extends CI_Controller {
 
     public function register_form_company()
     {
+        //add ->breadcrumbs
+        $this->breadcrumbs->push('รายการสมัคร ตำแหน่งงาน และสถานประกอบการ', '/Student/Job/lists');
+        $this->breadcrumbs->push('แบบฟอร์มยื่นสมัครกับบริษัท', '/Student/Job/register_form_company');
         $this->template->view('Student/Register_form_company_view');
     }
 
     public function register_status()
     {
-        
+        $this->breadcrumbs->push('ประกาศผลการสมัครงาน', '/Student/Job/register_status');
         $this->template->view('Student/Register_result_view');
     }
    

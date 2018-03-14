@@ -11,11 +11,14 @@ class Profile extends CI_Controller {
             redirect('member/login');
 		}
 		
-		//check priv
-        if($this->Login_session->check_login()->login_type != 'student') {
+        //check priv
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'student') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+      
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
 
@@ -44,7 +47,7 @@ class Profile extends CI_Controller {
                 $data['pass_training'] = false;
             }
         }
-
+        $this->breadcrumbs->push('ข้อมูลนิสิต', '/Student/Profile/view');
         $this->template->view('Student/Student_data_view',$data);
         
         // ขอ Api

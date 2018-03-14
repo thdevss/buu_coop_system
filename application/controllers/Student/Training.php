@@ -12,10 +12,13 @@ class Training extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'student') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'student') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+      
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
     public function register()
@@ -26,7 +29,7 @@ class Training extends CI_Controller {
             
             array_push($data['data'], $row);
         }
-   
+        $this->breadcrumbs->push('สมัครเข้าร่วมอบรม', '/Student/Training/register');
         $this->template->view('Student/Train_register_view',$data);
         
     }
@@ -49,7 +52,7 @@ class Training extends CI_Controller {
         }
 
         // $data['train_type'] = $this->Training->gets_type();
-        
+        $this->breadcrumbs->push('ตรวจสอบชั่วโมงการอบรมทั้งหมด', '/Student/Training/check_hour');
         $this->template->view('Student/Check_hour_view', $data);
     }
 
@@ -58,6 +61,8 @@ class Training extends CI_Controller {
 
         // print_r($data);
         $data = $this->Training->get_student_stat_of_training($student_id);
+        //add breadcrumbs
+        $this->breadcrumbs->push('ตรวจสอบประวัติการอบรม', '/Student/Training/check_history');
         $this->template->view('Student/Check_history_view', $data);
     }
 
