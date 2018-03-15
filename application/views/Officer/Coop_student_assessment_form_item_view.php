@@ -106,11 +106,16 @@
                     <label>ชื่อหัวข้อย่อยการประเมิน</label>
                     <input type="text" id="title" name="title" class="form-control" placeholder="กรุณากรอก" required>
                   </div>
+                  <div class="form-group">
+                  <label>รายละเอียดหัวข้อ</label>
+                  <textarea class="form-control" name="description"></textarea>
+                </div>
+                  
                   <div class="form-group row">
                     <label class="col-md-4 col-form-label">การให้คะแนน</label>
                     <div class="col-md-4 col-form-label">
                       <div class="form-check form-check-inline mr-1">
-                      <input class="form-check-input" type="radio" id="inline-radio1" value="score" name="type" required>
+                      <input class="form-check-input" type="radio" id="inline-radio1" value="score" name="type" required checked>
                       <label class="form-check-label" for="inline-radio1">คะแนน 1 - 5</label>
                       </div>
                     </div>
