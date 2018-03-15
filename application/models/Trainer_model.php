@@ -37,12 +37,12 @@ class Trainer_model extends CI_model {
 
     public function get_trainer($trainer_id)
     {
-        $this->db->where('id',$trainer_id);
+        $this->db->where('id', $trainer_id);
         $this->db->from('company_person');
         $query = $this->db->get();
         return $query->result_array();
-
     }
+
 
     public function login($username, $password)
     {
