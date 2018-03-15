@@ -16,6 +16,7 @@
           <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i>ประเมินผลการฝึกงานของนิสิตสหกิจ</div>
               <div class="card-body">
+              <form action="<?php echo site_url('Company/Assessmentstudent/save/'.$student_id);?>" method="post">
               <table class="table table-bordered">
                     <thead>
                       <tr>
@@ -28,54 +29,33 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td><B>1.ผลสำเร็จของงาน/Work Achievement</B>
-                          <p>1.1.ปริมาณงาน(Quantity of work)</p>
-                        </td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                      </tr>
-                      <tr>
-                        <td>1.2.คุณภาพงาน(Quality of work)
-                          <p></p>
-                        </td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                      </tr>
-                      <tr>
-                        <td><B>2.ความรู้ความสามารถ/Knowledge and Ability</B>
-                          <p>2.1.ความรู้ความมามารถทางวิชาการ/(Academic ability)</P>
-                        </td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                      </tr>
-                      <tr>
-                        <td>2.2.ความสามารถในการเรียนรู้และประยุกต์วิชาการ(Ability to learn and apply knowledge)</td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                      </tr>
-                      <tr>
-                        <td>2.3.ความรู้ความชำนาญด้านปฏิบัติการ(Practical Ability)</td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                        <td><input type="radio"></td>
-                      </tr>
+                      <?php foreach ($data as $row) { ?>
+                        <tr>
+                          <td><b><?php echo $row['questionnaire_subject']['number']." ".$row['questionnaire_subject']['title'];?></b></td>
+                        </tr>
+                    
+                      <?php foreach($row['questionnaire_item'] as $item) {?>
+                        <tr>
+                          <td>
+                            <p><?php echo $item['number']." ".$item['title'];?></p>
+                            <p><?php echo $item['description'];?></p>
+                          </td>
+                          <?php for($i=5;$i>=1;$i--) { ?>
+                            <td>
+                              <input class="form-check-input" type="radio" value="<?php echo $i;?>" name="result_<?php echo $item['number'];?>" style="margin-left: unset !important; position: unset !important;">
+                            </td>
+                          <?php } ?>
+                        </tr>
+
+                      <?php } ?>
+                      <?php } ?>
                     </tbody>
                   </table>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-md btn-success"><i class=""></i> บันทึก</button>
+                    <button type="reset" class="btn btn-md btn-danger"><i class=""></i> ยกเลิก</button>
+                  </div>
+                  </form>
                 </div>
               </div>
             </div>
