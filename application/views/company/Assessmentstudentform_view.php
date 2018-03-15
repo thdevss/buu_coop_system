@@ -2,11 +2,8 @@
 <main class="main">
 
 <!-- Breadcrumb -->
-<ol class="breadcrumb">
-  <li class="breadcrumb-item">Home</li>
-  <li class="breadcrumb-item"><a href="#"><?php echo $user->login_type;?></a></li>
-  <li class="breadcrumb-item active">ประเมินผลการฝึกงานของนิสิตสหกิจ</li>
-</ol>
+<?php echo $this->breadcrumbs->show(); ?>
+
 
 <div class="container-fluid">
   <div class="animated fadeIn">
@@ -42,7 +39,7 @@
                           </td>
                           <?php for($i=5;$i>=1;$i--) { ?>
                             <td>
-                              <input class="form-check-input" type="radio" value="<?php echo $i;?>" name="result_<?php echo $item['number'];?>" style="margin-left: unset !important; position: unset !important;">
+                              <input class="form-check-input" type="radio" value="<?php echo $i;?>" id="result_<?php echo $item['number'];?>" name="result_<?php echo $item['number'];?>" style="margin-left: unset !important; position: unset !important;">
                             </td>
                           <?php } ?>
                         </tr>
