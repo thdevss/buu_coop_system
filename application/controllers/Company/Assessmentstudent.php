@@ -42,9 +42,27 @@ class Assessmentstudent extends CI_Controller {
 		
 	}
 
-	public function form()
+	public function form($student_id)
 	{	
-		$this->template->view('company/Assessmentstudentform_view');
+
+		$data['student_id'] = $student_id;
+		$data['data'] = array();
+		foreach($this->Coop_Student_Assessment_Form->gets_form_for_coop_student() as $row)
+		{
+
+			$tmp_array = array();
+			$tmp_array['questionnaire_subject'] = $row;
+			$tmp_array['questionnaire_item'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item_by_subject($row['id']);
+			array_push($data['data'], $tmp_array);
+
+		}
+			
+			$this->template->view('company/Assessmentstudentform_view', $data);
+	}
+
+	public function save()
+	{
+		print_r($_POST);
 	}
 }  
   
