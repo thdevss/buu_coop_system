@@ -121,7 +121,7 @@
                     <label class="col-md-4 col-form-label">การให้คะแนน</label>
                     <div class="col-md-4 col-form-label">
                       <div class="form-check form-check-inline mr-1">
-                      <input class="form-check-input" type="radio" id="inline-radio1" value="score" name="type" required>
+                      <input class="form-check-input" type="radio" id="inline-radio1" value="score" name="type" required checked>
                       <label class="form-check-label" for="inline-radio1">คะแนน 1 - 5</label>
                       </div>
                     </div>

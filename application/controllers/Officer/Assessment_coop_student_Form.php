@@ -149,6 +149,8 @@
             $item_id = $this->input->post('item_id');
             $array['title'] = $this->input->post('title');
             $array['type'] = $this->input->post('type');
+            $array['descriptions'] = $this->input->post('descriptions');
+        
 
             $data = @$this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item($item_id)[0];
             if(!$data) {
