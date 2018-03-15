@@ -17,7 +17,7 @@
                         <div class="card-header">
                             <?php echo $row['title'];?>
                             <span class="btn btn-dark float-right">ผู้ลงประกาศ: <?php echo $row['author']['fullname'];?></span>
-                            <span class="btn btn-dark float-right" style="margin-right:10px;"><?php echo date('Y-m-d H:i', strtotime($row['date']));?></span>
+                            <span class="btn btn-dark float-right" style="margin-right:10px;"><?php echo thaiDate(date('Y-m-d H:i', strtotime($row['date'])), true);?></span>
                         </div>
                         <div class="card-body">
                             <?php echo $row['detail'];?>
