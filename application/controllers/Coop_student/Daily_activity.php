@@ -11,22 +11,29 @@ class Daily_activity extends CI_controller
         }
 
         //check priv
-        if($this->Login_session->check_login()->login_type != 'coop_student') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'coop_student') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+        //add breadcrumbs
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
     public function lists()
     {
         $student_id = $this->Login_session->check_login()->login_value;
         $data['coop_student_daily'] = $this->Daily_Report->gets_report_by_student($student_id);
-        $this->template->view('Coop_student/Daily_activity_view', $data);
+        $this->breadcrumbs->push('กิจกรรมในการฝึกงานในแต่ละวัน', '/Coop_student/Daily_activity/lists');
+        $this->template->view('Coop_student/Daily_activity_view',$data);
+  
     }
     public function update($report_id)
     {
         $data['form_type'] = 'update';
         $data['row'] = $this->Daily_Report->get_report($report_id)[0];
+        $this->breadcrumbs->push('กิจกรรมในการฝึกงานในแต่ละวัน', '/Coop_student/Daily_activity/lists');
+        $this->breadcrumbs->push('แบบฟอร์มเเก้ไขกิจกรรมฝึกงานในแต่ละวัน', '/Coop_student/Daily_activity/lists/update');
         $this->template->view('Coop_student/Daily_activity_form_view', $data);
     }
 
@@ -56,6 +63,8 @@ class Daily_activity extends CI_controller
     public function add() 
     {
         $data['form_type'] = 'insert';
+        $this->breadcrumbs->push('กิจกรรมในการฝึกงานในแต่ละวัน', '/Coop_student/Daily_activity/lists/');
+        $this->breadcrumbs->push('แบบฟอร์มเพิ่มกิจกรรมฝึกงานในแต่ละวัน', '/');
         $this->template->view('Coop_student/Daily_activity_form_view', $data);
     }
 
@@ -74,7 +83,10 @@ class Daily_activity extends CI_controller
 
     public function datail($report_id)
     {
+       
         $data['coop_student_daily_detail'] = $this->Daily_Report->get_report($report_id)[0];
+        $this->breadcrumbs->push('กิจกรรมในการฝึกงานในแต่ละวัน', '/Coop_student/Daily_activity/lists/',$report_id);
+        $this->breadcrumbs->push('แบบฟอร์มเพิ่มกิจกรรมฝึกงานในแต่ละวัน', '/');
         $this->template->view('Coop_student/Daily_activity_detail_view', $data);
     }
 

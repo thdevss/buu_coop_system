@@ -11,10 +11,13 @@ class Daily_activity extends CI_controller
         }
 
         //check priv
-        if($this->Login_session->check_login()->login_type != 'adviser') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'adviser') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+        //add breadcrumbs
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
     public function index()
@@ -29,6 +32,7 @@ class Daily_activity extends CI_controller
             $tmp_array['company_address'] = $this->Address->get_address_by_company($row['company_id'])[0];
             array_push($data['data'], $tmp_array);
         }
+        $this->breadcrumbs->push('รายละเอียดเกี่ยวกับสถานประกอบการ ', '/Company/Daily_activity/index');
         $this->template->view('Adviser/Daily_activity_lists_student_view',$data);
     }
 
@@ -50,6 +54,7 @@ class Daily_activity extends CI_controller
         if(!$data['data']){
             show_404();
         }
+       $this->breadcrumbs->push('รายละเอียดเกี่ยวกับสถานประกอบการ ', '/Company/Daily_activity/detail');
        $this->template->view('Adviser/Daily_detail_view',$data);
     }
 

@@ -12,10 +12,13 @@ class Assessmentstudent extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'company') {
+		$user = $this->Login_session->check_login();
+        if($user->login_type != 'company') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+        //add breadcrumbs
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
 	public function index()
@@ -31,7 +34,7 @@ class Assessmentstudent extends CI_Controller {
 			array_push($data['data'], $tmp);
 		}
 		
-	
+		$this->breadcrumbs->push('ประเมินผลการฝึกงานของนิสิตสหกิจ ', '/Company/Job_list_position/index');
 		$this->template->view('company/Assessmentstudent_view', $data);
 		
 	}
@@ -44,6 +47,8 @@ class Assessmentstudent extends CI_Controller {
 
 	public function form()
 	{	
+		$this->breadcrumbs->push('ประเมินผลการฝึกงานของนิสิตสหกิจ ', '/Company/Job_list_position/index');
+		$this->breadcrumbs->push('รายละเอียดเกี่ยวกับสถานประกอบการ ', '/Company/Job_list_position/form');
 		$this->template->view('company/Assessmentstudentform_view');
 	}
 }  
