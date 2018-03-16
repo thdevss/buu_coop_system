@@ -78,7 +78,10 @@ class Trainer extends CI_Controller {
 
             if($this->Trainer->get_trainer($company_person_id)) {
                 //delete
-                $this->Trainer->delete_trainer($company_person_id);
+                $this->Trainer->update_trainer($company_person_id, array(
+                    'person_active' => 0
+                ));
+                // $this->Trainer->delete_trainer($company_person_id);
                 return $this->lists($company_id, 'success_delete');
                 die();
             } else {
@@ -106,9 +109,8 @@ class Trainer extends CI_Controller {
         if($this->form_validation->run() == false){
 
             redirect('Officer/Trainer/lists/'.$array['company_id'].'/?status=error_input','refresh');
-        }
-        else{
-
+        } else {
+            //success
             $array['fullname'] = $this->input->post('fullname');
             $array['position'] = $this->input->post('position');
             $array['department'] = $this->input->post('department');
@@ -116,10 +118,23 @@ class Trainer extends CI_Controller {
             $array['fax_number'] = $this->input->post('fax_number');
             $array['email'] = $this->input->post('email');
             $array['company_id'] = $this->input->post('company_id');
+            $array['person_username'] = $this->input->post('email');
+
+            $password_gen = generateStrongPassword(8);
+            $array['person_password'] = password_hash($password_gen, PASSWORD_DEFAULT);
+            
             $this->Trainer->insert_trainer($array);
 
+            //sent email to person
+            $to = $array['email'];
+            $subject = 'แจ้งข้อมูลเข้าใช้งานระบบสหกิจศึกษา มหาวิทยาลัยบูรพา';
+            $msg = 'Username: '.$array['person_username'].' | Password: '.$password_gen.' | http://localhost:8080/';
+            echo $msg;
+            // mail($to, $subject, $msg);
+
         }
-            redirect('Officer/Trainer/lists/'.$array['company_id'].'/?status=success','refresh');
+        
+        redirect('Officer/Trainer/lists/'.$array['company_id'].'/?status=success','refresh');
     }
 
     public function edit()

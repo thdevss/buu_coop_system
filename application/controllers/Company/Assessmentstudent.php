@@ -24,7 +24,7 @@ class Assessmentstudent extends CI_Controller {
 
 	public function index()
 	{
-		$company_id = $this->Company->gets_company($this->Login_session->check_login()->login_value)[0]['id'];
+		$company_id = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0]['company_id'];
 		$data['company'] = $this->Company->get_company($company_id)[0];
 		$data['data'] = array();
 		foreach($this->Coop_Student->gets_coop_student($data['company']['id']) as $row) {
