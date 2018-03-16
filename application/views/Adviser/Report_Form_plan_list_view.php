@@ -11,7 +11,7 @@
       <!--table รายชื่อนิสิต-->
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify"></i> รายละเอียดแบบแจ้งแผนปฎิบัติการสหกิจ ของ <B><?php echo $student['fullname'].' '.$student['id']; ?></B> </div>
+            <div class="card-header"><i class="fa fa-align-justify"></i> รายละเอียดแบบแจ้งแผนปฎิบัติการสหกิจ ของ <?php echo $student['fullname'].' '.$student['id']; ?></div>
               <div class="card-body">
               <form action="" method="post">
               <table class="table table-bordered datatable">
