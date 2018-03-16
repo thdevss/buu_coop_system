@@ -34,11 +34,34 @@ class Assessment_teacher extends CI_Controller {
                 array_push($data['data'],$tmp_array);
             }
 
-            // add breadcrumbs
-            $this->breadcrumbs->push('การประเมินผลการฝึกงานของนักศึกษา', '/Adviser/Assessment_teacher/index');
+                // add breadcrumbs
+                $this->breadcrumbs->push('การประเมินผลการฝึกงานของนักศึกษา', '/Adviser/Assessment_teacher/index');
 
-            $this->template->view('Adviser/Assessmentteacher_view',$data);
+                $this->template->view('Adviser/Assessmentteacher_view',$data);
           
+        }
+
+        public function form($student_id)
+        {	
+    
+            $data['student_id'] = $student_id;
+            $data['student'] = $this->Student->get_student($data['student_id'])[0];
+            $data['data'] = array();
+            foreach($this->Coop_Student_Assessment_Form->gets_form_for_coop_student() as $row)
+            {
+    
+                $tmp_array = array();
+                $tmp_array['questionnaire_subject'] = $row;
+                $tmp_array['questionnaire_item'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item_by_subject($row['id']);
+                array_push($data['data'], $tmp_array);
+    
+            }
+                
+                // add breadcrumbs
+                $this->breadcrumbs->push('การประเมินผลการฝึกงานของนักศึกษา', '/Adviser/Assessment_teacher/index');
+                $this->breadcrumbs->push('แบบการประเมินผลการฝึกงานของนิสิตสหกิจ', '/Adviser/Assessment_teacher/form');
+
+                $this->template->view('Adviser/Assessmentteacherform_view', $data);
         }
 
 }

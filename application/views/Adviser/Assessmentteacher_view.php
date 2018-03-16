@@ -35,7 +35,7 @@
                         <td><?php echo $row['department']['name']?></td>
                         <td><?php echo $row['company']['name_th']?></td>
                         <td><?php echo $row['company_address']['province']?></td>
-                        <td><a class="btn btn-primary" href="<?php echo site_url('Adviser/#');?>" target="_blank"><i class="fa fa-list-alt"></i> รายละเอียด</a></td> 
+                        <td><a class="btn btn-primary" href="<?php echo site_url('Adviser/Assessment_teacher/form/'.$row['student']['id']);?>" target="_blank"><i class="fa fa-list-alt"></i> รายละเอียด</a></td> 
                       </tr>
                       <?php } ?>
                     </tbody>
