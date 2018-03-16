@@ -44,7 +44,9 @@ class Student_list extends CI_Controller {
         foreach($this->Student->gets_department() as $rrr) {
             $cache['department'][$rrr['id']] = $rrr;
         }
-        
+        foreach($this->Company->gets_company_status_type() as $rrr) {
+            $cache['company_status_type'][$rrr['id']] = $rrr;
+        }
 
         foreach($this->Student->gets_student() as $row)
         {
@@ -54,6 +56,8 @@ class Student_list extends CI_Controller {
             
             $tmp_array['student'] = $row;
             $tmp_array['student']['gpax'] = '2.99';
+            $tmp_array['student']['company_status'] = @$cache['company_status_type'][$row['company_status']]['status_name'];
+            
             
             $tmp_array['coop_student_type'] = $cache['coop_student_type'][$row['coop_status']];
             $coop_type_Render = '<select onchange="change_coop_type('.$row['id'].', this.value)">';

@@ -4,7 +4,7 @@
       <nav class="sidebar-nav">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html"><i class="icon-home"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
+            <a class="nav-link" href="<?php echo site_url('company/');?>"><i class="icon-home"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
           </li>
 
           <li class="nav-title">
@@ -19,9 +19,9 @@
               <li class="nav-item">
               <?php echo anchor('company/company_map/', '<i class="fa fa-map-pin"></i> แผนที่ตั้งบริษัท', 'class="nav-link"');?>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" href="components-cards.html"><i class="fa fa-address-card-o"></i> จัดการที่อยู่</a>
-              </li>
+              </li> -->
             </ul>
           </li>
           <li class="nav-item nav-dropdown">

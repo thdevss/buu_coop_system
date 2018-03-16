@@ -19,11 +19,12 @@ class Company_map extends CI_controller
 
     public function index()
     {
-        $company_person_login = $this->Company_person_login->get_by_username($this->Login_session->check_login()->login_value);
-        $company_person = $this->DB_company_person->get($company_person_login->company_person_id);
-        $company_id = $this->DB_company->get($company_person->company_id)->id;
-        
-        $data['map'] = $this->DB_company_address->get($company_id);
+        $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
+
+        $company_id = $tmp['company_id'];
+
+        $data['map'] = $this->Address->get_address_by_company($company_id)[0];
+
         $this->template->view('company/map_view', $data);
     }
 
@@ -32,16 +33,15 @@ class Company_map extends CI_controller
         $insert['latitude'] = $this->input->post('latitude');
         $insert['longitude'] = $this->input->post('longitude');
 
-        $company_person_login = $this->DB_company_person_login->get_by_username($this->Login_session->check_login()->login_value);
-        $company_person = $this->DB_company_person->get($company_person_login->company_person_id);
-        $company_id = $this->DB_company->get($company_person->company_id)->id;
+        $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
+        $company_id = $tmp['company_id'];
 
         $arr = array(
             'status' => false,
             'txt' => 'err',            
         );
 
-        if($this->DB_company_address->update($company_id, $insert)) {
+        if($this->Address->update_address($company_id, $insert)) {
             $arr['status'] = true;
             $arr['txt'] = 'ok';            
         }

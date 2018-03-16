@@ -25,7 +25,7 @@
                     <div class="col-lg-12 text-center">
                       <div style="height:45px;"></div>
 
-                      <a class="btn btn-lg btn-danger">ยกเลิก</a>
+                      <a class="btn btn-lg btn-warning" onclick="getUserLocation()">ดึงพิกัดปัจจุบัน</a>
                       <a class="btn btn-lg btn-primary saveMapBtn">บันทึกแผนที่</a>
                       
                     </div>
@@ -46,7 +46,7 @@
     
 <script>
   function initMap() {
-    renderMap(<?php echo $map->latitude;?>, <?php echo $map->longitude;?>)
+    renderMap(<?php echo $map['latitude'];?>, <?php echo $map['longitude'];?>)
   }
 
   function renderMap(latitude, longitude) {
@@ -61,9 +61,7 @@
     });
   }
 
-  $(function() {
-    getUserLocation();
-  });
+
 
   function getUserLocation() {
     if (navigator.geolocation) {

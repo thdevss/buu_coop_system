@@ -28,7 +28,6 @@
                         <th class="text-center">สาขาวิชา</th>
                         <th class="text-center">ตำแหน่งที่สมัคร</th>
                         <th class="text-center">สถานะสถานประกอบการ</th>
-                        <th class="text-center"></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -43,9 +42,9 @@
                           </div>
                           <div class="col-sm-4">
                             <div class="form-group">
-                              <select id="select" name="select" class="form-control coop_status_type_val">
+                              <select id="select" name="select" class="form-control company_status_type_val">
                                 <option value="">---กรุณาเลือก--</option>
-                                <?php foreach ($coop_status_type as $row){?>
+                                <?php foreach ($company_status_Type as $row){ ?>
                                 <option value="<?php echo $row['id'];?>"> <?php echo $row['status_name'];?></option>
                                 <?php } ?>
                               </select>
@@ -85,11 +84,6 @@ $(document).ready(function() {
             "searchable": false,
             "orderable": false,
             "targets": [1, 6]
-          },
-          {
-            "targets": [ 9 ],
-            "visible": false,
-            "searchable": true,
           }
         ],
         'select': {
@@ -97,7 +91,7 @@ $(document).ready(function() {
         },
         'order': [[2, 'asc']],
         "ajax": {
-          "url": "<?php echo site_url('#/#/#');?>",
+          "url": "<?php echo site_url('Company/Job_list_position/ajax_list');?>",
           "dataSrc": ""
         },
         "columns": [
@@ -107,11 +101,8 @@ $(document).ready(function() {
             { "data": "student.fullname" },
             { "data": "student.gpax" },
             { "data": "department.name" },
-            { "data": "coop_student_type.select_box" },
-            { "data": "student.company_status" },
-            { "data": "action_box" },
-            { "data": "coop_student_type.status_name" },
-            
+            { "data": "job_position.position_title" },
+            { "data": "company_status_type.select_box" },
         ],
 
         'initComplete': function(){
@@ -119,7 +110,7 @@ $(document).ready(function() {
 
             // Populate a dataset for autocomplete functionality
             // using data from first, second and third columns
-            api.cells('tr', [2, 3, 4, 5, 9, 7]).every(function(){
+            api.cells('tr', [2, 3, 4, 5, 7]).every(function(){
                 // Get cell data as plain text
                 var data = $('<div>').html(this.data()).text();           
                 if(dataSrc.indexOf(data) === -1){ dataSrc.push(data); }
@@ -148,10 +139,10 @@ $(document).ready(function() {
     } ).draw();
 
     $('#change_student_status').click( function () {
-      var coop_status_type = jQuery(".coop_status_type_val option:selected").val()
+      var company_status_type_val = jQuery(".company_status_type_val option:selected").val()
       var arr = $('#student_table').DataTable().column(0).checkboxes.selected()
 
-      change_coop_type_ajax(arr, coop_status_type)
+      change_company_type_ajax(arr, company_status_type_val)
     });
 
     // function change_coop_type(student_id, ele)
@@ -162,13 +153,13 @@ $(document).ready(function() {
 
 });
 
-function change_coop_type(student_id, coop_val)
+function change_company_type(student_id, coop_val)
 {
-  change_coop_type_ajax([student_id], coop_val)
+  change_company_type_ajax([student_id], coop_val)
 }
 
 
-function change_coop_type_ajax(arr, coop_status_type)
+function change_company_type_ajax(arr, company_status_type)
 {
   var current_table_page = $('#student_table').DataTable().page.info().page
   if(!arr) {
@@ -177,7 +168,7 @@ function change_coop_type_ajax(arr, coop_status_type)
     });
     return;
   }
-  if(!coop_status_type) {
+  if(!company_status_type) {
     swal("โปรดเลือกสถานะที่ต้องการเปลี่ยน", {
       icon: "warning",
     });
@@ -200,10 +191,10 @@ function change_coop_type_ajax(arr, coop_status_type)
 
 
 
-      var data = { students: student_arr, status: coop_status_type }
+      var data = { students: student_arr, status: company_status_type }
       console.log(data)
 
-      jQuery.post(SITE_URL+"/Officer/Student_list/ajax_change_status/", data, function(response) {
+      jQuery.post(SITE_URL+"/Company/Job_list_position/ajax_change_status/", data, function(response) {
         if(response.status) {
           swal("เปลี่ยนสถานะเรียบร้อย", {
             icon: "success",
@@ -213,7 +204,7 @@ function change_coop_type_ajax(arr, coop_status_type)
             icon: "warning",
           });
         }
-        $('.coop_status_type_val').prop('selectedIndex', 0)
+        $('.company_status_type_val').prop('selectedIndex', 0)
         $('#student_table').DataTable().clear().draw().ajax.reload(function(){ 
           $('#student_table').DataTable().page( current_table_page ).draw( 'page' );              
         });            
