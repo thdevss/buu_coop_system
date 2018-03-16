@@ -24,7 +24,7 @@ class Company_info extends CI_controller
         public function step1($company_id) 
         {
             $data['company'] = $this->Company->get_company($company_id)[0];
-            $data['company_address'] = $this->Address->get_address_by_company($data['company']['id'])[0];
+            $data['company_address'] = @$this->Address->get_address_by_company($data['company']['id'])[0];
             $data['form_url'] = site_url('officer/company_info/post_step1');
 
             // add breadcrumbs
@@ -89,8 +89,8 @@ class Company_info extends CI_controller
         {
             $data['company'] = $this->Company->get_company($company_id)[0];
 
-            $data['company_person'] = $this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];
-            $data['company_employee'] = $this->Trainer->gets_trainer_by_company($data['company']['id']);
+            $data['company_person'] = @$this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];
+            $data['company_employee'] = @$this->Trainer->gets_trainer_by_company($data['company']['id']);
 
             $data['form_url'] = site_url('officer/company_info/post_step2');
             $data['back_url'] = site_url('officer/company_info/step1/'.$company_id);
@@ -138,6 +138,8 @@ class Company_info extends CI_controller
             $data['form_url'] = site_url('officer/company_info/post_step3');
             $data['back_url'] = site_url('officer/company_info/step2/'.$company_id);
 
+            $data['work_form_url'] = site_url('officer/company_info/');
+
             $this->breadcrumbs->push('เพิ่มตำแหน่งงาน', '/Officer/company_info/step2/'.$company_id);
             
             $this->template->view('Company/info/step3_view', $data);
@@ -147,6 +149,21 @@ class Company_info extends CI_controller
         {
             echo "<script>alert('ok')</script>";
             redirect('officer/company/', 'refresh');
+        }
+        
+        //job section
+        public function job_add()
+        {
+            $data['company_id'] = $this->input->post('company_id');
+            $data['position_title'] = $this->Job->get_company_job_title_by_job_title_id($this->input->post('job_title_id'))[0]['job_title'];
+            $data['number_of_employee'] = $this->input->post('number_of_employee');
+            $data['job_description'] = $this->input->post('job_description');
+            $data['term_id'] = $this->Term->get_current_term()[0]['term_id'];
+
+            $this->Job->insert_job($data);
+            
+            redirect('/officer/company_info/step3/'.$data['company_id'], 'refresh');
+            // return $this->step3($data['company_id']);
         }
 
 
