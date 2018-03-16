@@ -36,4 +36,11 @@ class Company_model extends CI_model {
         return $query->result_array();
 
     }
+
+    public function gets_company_status_type()
+    {
+        $this->db->from('company_status_type');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }

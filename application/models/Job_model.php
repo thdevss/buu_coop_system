@@ -114,4 +114,10 @@ class Job_model extends CI_model {
         return $qurey->result_array();
     }
 
+    public function update_student($student_id, $array)
+    {
+        $this->db->where('student_id', $student_id);
+        return $this->db->update('company_job_position_has_student', $array);
+    }
+
 }
