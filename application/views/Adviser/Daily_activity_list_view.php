@@ -10,7 +10,7 @@
     <div class="row" >
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header"><i class="fa fa-align-justify"></i>กิจกรรมในการฝึกงานในแต่ละวัน ของ <B><?php echo $student['fullname'].' '.$student['id']; ?></B> 
+          <div class="card-header"><i class="fa fa-align-justify"></i>กิจกรรมในการฝึกงานในแต่ละวัน ของ <?php echo $student['fullname'].' '.$student['id']; ?> 
           <div class="text-right">
             </div>
           </div>
