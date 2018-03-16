@@ -17,7 +17,7 @@
                 <a class="nav-link" href="<?php echo site_url('Adviser/Coop_student/');?>"><i class="icon-doc"></i> รายชื่อนิสิตที่ปรึกษา</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('Adviser/#');?>"><i class="icon-docs"></i> แบบแจ้งแผนปฎิบัติการสหกิจ</a>
+              <a class="nav-link" href="<?php echo site_url('Adviser/Report_Form_plan/');?>"><i class="icon-docs"></i> แบบแจ้งแผนปฎิบัติการสหกิจ</a>
               </li>
               <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url('Adviser/Daily_activity/');?>"><i class="icon-docs"></i> กิจกรรมการฝึกงานในแต่ละวัน</a>
