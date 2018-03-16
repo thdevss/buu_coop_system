@@ -4,15 +4,15 @@
 <!-- Breadcrumb -->
 <?php echo $this->breadcrumbs->show(); ?>
 
+
 <div class="container-fluid">
   <div class="animated fadeIn">
       <div class="row" >
       <!--table รายชื่อนิสิต-->
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify"></i>ประเมินผลการฝึกงานของนิสิตสหกิจ</div>
+            <div class="card-header"><i class="fa fa-align-justify"></i>ประเมินผลการฝึกงานของนิสิตสหกิจ ของ <?php echo $student['fullname']." ".$student['id'];?></div>
               <div class="card-body">
-              <form action="<?php echo site_url('Company/Assessmentstudent/save/'.$student_id);?>" method="post">
               <table class="table table-bordered">
                     <thead>
                       <tr>
@@ -47,11 +47,6 @@
                       <?php } ?>
                     </tbody>
                   </table>
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-md btn-success"><i class=""></i> บันทึก</button>
-                    <button type="reset" class="btn btn-md btn-danger"><i class=""></i> ยกเลิก</button>
-                  </div>
-                  </form>
                 </div>
               </div>
             </div>

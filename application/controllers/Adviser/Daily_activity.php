@@ -17,7 +17,9 @@ class Daily_activity extends CI_controller
             die();
         }
 
+
         
+
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
@@ -33,6 +35,7 @@ class Daily_activity extends CI_controller
             $tmp_array['company_address'] = $this->Address->get_address_by_company($row['company_id'])[0];
             array_push($data['data'], $tmp_array);
         }
+
 
         // add breadcrumbs
         $this->breadcrumbs->push('กิจกรรมในการฝึกงานในแต่ละวัน', '/Adviser/Daily_activity/index');
@@ -65,12 +68,14 @@ class Daily_activity extends CI_controller
             show_404();
         }
 
+
         // add breadcrumbs
         $this->breadcrumbs->push('กิจกรรมในการฝึกงานในแต่ละวัน', '/Adviser/Daily_activity/index');
         $this->breadcrumbs->push('รายการกิจกรรมฝึกงาน', '/Adviser/Daily_activity/lists/'.$data['data']['student_id']);
         $this->breadcrumbs->push('รายละเอียดกิจกรรมฝึกงาน', '/Adviser/Daily_activity/detail/'.$id);
 
         $this->template->view('Adviser/Daily_detail_view',$data);
+
     }
 
 }

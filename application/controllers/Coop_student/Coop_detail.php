@@ -50,7 +50,7 @@ class Coop_detail extends CI_Controller {
                 $data['pass_training'] = false;
             }
         }
-        $this->breadcrumbs->push('ตรวจสอบชั่วโมงการอบรมทั้งหมด', '/Student/Coop_detail/index');
+        $this->breadcrumbs->push('ข้อมูลนิสิต', '/Student/Coop_detail/index');
         $this->template->view('Coop_student/Coop_detail_view',$data);
 
     }

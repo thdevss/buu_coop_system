@@ -12,20 +12,25 @@ class Job_list_position extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'company') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'company') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+        //add breadcrumbs
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
 	public function index()
 	{
+
         $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
         $company_id = $tmp['company_id'];
         $data['trainer_id'] = $tmp['id'];
         $data['company_status_Type'] = $this->Company->gets_company_status_type();
         // print_r($this->Job->get_student_by_company_id($data['trainer_id']));
-		$this->template->view('Company/Job_list_position_view', $data);
+        $this->breadcrumbs->push('รายละเอียดเกี่ยวกับสถานประกอบการ ', '/Company/Job_list_position/index');
+		    $this->template->view('Company/Job_list_position_view', $data);
     }
     
     public function ajax_list()
@@ -116,6 +121,7 @@ class Job_list_position extends CI_Controller {
 
         echo json_encode($data);
     }
+
 
 
 }  

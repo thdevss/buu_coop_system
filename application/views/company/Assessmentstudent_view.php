@@ -2,7 +2,8 @@
 <main class="main">
 
 <!-- Breadcrumb -->
-<?php echo $this->breadcrumbs->show(); ?>
+
+
 
 
 <div class="container-fluid">
