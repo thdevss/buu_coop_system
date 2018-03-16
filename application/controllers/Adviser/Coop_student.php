@@ -17,7 +17,6 @@ class Coop_student extends CI_controller
             die();
         }
 
-        
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
@@ -34,8 +33,10 @@ class Coop_student extends CI_controller
             array_push($data['data'], $tmp_array);
         }
 
+
         // add breadcrumbs
         $this->breadcrumbs->push('รายชื่อนิสิตในสังกัด', '/Adviser/Coop_student/index');
+
 
         $this->template->view('Adviser/Coop_student_view',$data);
     }

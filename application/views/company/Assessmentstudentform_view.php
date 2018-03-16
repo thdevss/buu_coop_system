@@ -4,7 +4,6 @@
 <!-- Breadcrumb -->
 <?php echo $this->breadcrumbs->show(); ?>
 
-
 <div class="container-fluid">
   <div class="animated fadeIn">
       <div class="row" >

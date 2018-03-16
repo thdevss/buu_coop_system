@@ -12,10 +12,13 @@ class Info extends CI_controller
             }
 
             //check priv
-            if($this->Login_session->check_login()->login_type != 'company') {
+            $user = $this->Login_session->check_login();
+            if($user->login_type != 'company') {
                 redirect($this->Login_session->check_login()->login_type);
                 die();
-           }
+            }
+            //add breadcrumbs
+            $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
         }
 
         public function step1() 
@@ -27,7 +30,14 @@ class Info extends CI_controller
             
             $data['form_url'] = site_url('company/info/post_step1');
             
-
+            		$user = $this->Login_session->check_login();
+        if($user->login_type != 'company') {
+            redirect($this->Login_session->check_login()->login_type);
+            die();
+        }
+        //add breadcrumbs
+            $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+            $this->breadcrumbs->push('รายละเอียดเกี่ยวกับสถานประกอบการ / หน่วยงาน ', '/Company/info/step1');
             $this->template->view('Company/info/step1_view', $data);
         }
 

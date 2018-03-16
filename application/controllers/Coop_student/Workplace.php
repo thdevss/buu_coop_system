@@ -12,10 +12,13 @@ class Workplace extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'coop_student') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'coop_student') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+        //add breadcrumbs
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
     public function index($status = '')
@@ -33,6 +36,7 @@ class Workplace extends CI_Controller {
 
         $student_id = $this->Login_session->check_login()->login_value;
         $data['map'] = $this->Coop_Student->get_coop_student($student_id)[0];
+        $this->breadcrumbs->push(' แจ้งพิกัดงาน', '/Coop_student/Daily_activity/index');
         $this->template->view('Coop_student/Workplace_view',$data);
     }
 
