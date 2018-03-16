@@ -88,9 +88,9 @@ class BUUMember_model extends CI_Model
             $query = $this->db->get();
             return $query->result();
         } else if($login_type == 'company') {
-            $this->db->join('company_person', 'company_person.id = company_person_id');            
-            $this->db->where('username', $login_value);
-            $this->db->from('company_person_login');
+            // $this->db->join('company_person', 'company_person.id = company_person_id');            
+            $this->db->where('person_username', $login_value);
+            $this->db->from('company_person');
             $query = $this->db->get();
             // echo $this->db->last_query();
             return $query->result();

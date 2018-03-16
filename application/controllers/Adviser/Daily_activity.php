@@ -16,7 +16,10 @@ class Daily_activity extends CI_controller
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
-        //add breadcrumbs
+
+
+        
+
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
@@ -32,7 +35,12 @@ class Daily_activity extends CI_controller
             $tmp_array['company_address'] = $this->Address->get_address_by_company($row['company_id'])[0];
             array_push($data['data'], $tmp_array);
         }
-        $this->breadcrumbs->push('รายละเอียดเกี่ยวกับสถานประกอบการ ', '/Company/Daily_activity/index');
+
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('กิจกรรมในการฝึกงานในแต่ละวัน', '/Adviser/Daily_activity/index');
+        
+
         $this->template->view('Adviser/Daily_activity_lists_student_view',$data);
     }
 
@@ -44,6 +52,11 @@ class Daily_activity extends CI_controller
        }
         $data['student'] = $this->Student->get_student($student_id)[0];
         $data['data'] = $this->Daily_Report->gets_report_by_student($student_id);
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('กิจกรรมในการฝึกงานในแต่ละวัน', '/Adviser/Daily_activity/index');
+        $this->breadcrumbs->push('รายการกิจกรรมฝึกงาน', '/Adviser/Daily_activity/lists/'.$student_id);
+
         $this->template->view('Adviser/Daily_activity_list_view',$data);
     }
 
@@ -54,8 +67,15 @@ class Daily_activity extends CI_controller
         if(!$data['data']){
             show_404();
         }
-       $this->breadcrumbs->push('รายละเอียดเกี่ยวกับสถานประกอบการ ', '/Company/Daily_activity/detail');
-       $this->template->view('Adviser/Daily_detail_view',$data);
+
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('กิจกรรมในการฝึกงานในแต่ละวัน', '/Adviser/Daily_activity/index');
+        $this->breadcrumbs->push('รายการกิจกรรมฝึกงาน', '/Adviser/Daily_activity/lists/'.$data['data']['student_id']);
+        $this->breadcrumbs->push('รายละเอียดกิจกรรมฝึกงาน', '/Adviser/Daily_activity/detail/'.$id);
+
+        $this->template->view('Adviser/Daily_detail_view',$data);
+
     }
 
 }

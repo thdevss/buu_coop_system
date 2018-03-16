@@ -12,18 +12,22 @@ class Assessmentstudent extends CI_Controller {
 		}
 		
 		//check priv
-		$user = $this->Login_session->check_login();
+
+        $user = $this->Login_session->check_login();
+
         if($user->login_type != 'company') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
-        //add breadcrumbs
+
+        // $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
+
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
 	public function index()
 	{
-		$company_id = $this->Company->gets_company($this->Login_session->check_login()->login_value)[0]['id'];
+		$company_id = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0]['company_id'];
 		$data['company'] = $this->Company->get_company($company_id)[0];
 		$data['data'] = array();
 		foreach($this->Coop_Student->gets_coop_student($data['company']['id']) as $row) {
@@ -34,7 +38,11 @@ class Assessmentstudent extends CI_Controller {
 			array_push($data['data'], $tmp);
 		}
 		
-		$this->breadcrumbs->push('ประเมินผลการฝึกงานของนิสิตสหกิจ ', '/Company/Job_list_position/index');
+
+		// add breadcrumbs
+		$this->breadcrumbs->push('รายชื่อนิสิตฝึกงานของนิสิตสหกิจ', '/Company/Assessmentstudent/index');
+
+
 		$this->template->view('company/Assessmentstudent_view', $data);
 		
 	}
@@ -45,11 +53,32 @@ class Assessmentstudent extends CI_Controller {
 		
 	}
 
-	public function form()
+	public function form($student_id)
 	{	
-		$this->breadcrumbs->push('ประเมินผลการฝึกงานของนิสิตสหกิจ ', '/Company/Job_list_position/index');
-		$this->breadcrumbs->push('รายละเอียดเกี่ยวกับสถานประกอบการ ', '/Company/Job_list_position/form');
-		$this->template->view('company/Assessmentstudentform_view');
+
+
+		$data['student_id'] = $student_id;
+		$data['data'] = array();
+		foreach($this->Coop_Student_Assessment_Form->gets_form_for_coop_student() as $row)
+		{
+
+			$tmp_array = array();
+			$tmp_array['questionnaire_subject'] = $row;
+			$tmp_array['questionnaire_item'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item_by_subject($row['id']);
+			array_push($data['data'], $tmp_array);
+
+		}
+			// add breadcrumbs
+			$this->breadcrumbs->push('รายชื่อนิสิตฝึกงานของนิสิตสหกิจ', '/Company/Assessmentstudent/index');
+			$this->breadcrumbs->push('ประเมินผลการฝึกงานของนิสิตสหกิจ', '/Company/Assessmentstudent/form');
+
+			$this->template->view('company/Assessmentstudentform_view', $data);
+	}
+
+	public function save()
+	{
+		print_r($_POST);
+
 	}
 }  
   

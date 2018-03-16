@@ -1,5 +1,5 @@
 <?php
-class Coop_student extends CI_controller
+class Report_Form_plan extends CI_controller
 {
     public function __construct()
     {
@@ -17,6 +17,7 @@ class Coop_student extends CI_controller
             die();
         }
 
+        
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
@@ -33,12 +34,24 @@ class Coop_student extends CI_controller
             array_push($data['data'], $tmp_array);
         }
 
-
         // add breadcrumbs
-        $this->breadcrumbs->push('รายชื่อนิสิตในสังกัด', '/Adviser/Coop_student/index');
+        $this->breadcrumbs->push('แบบแจ้งแผนปฎิบัติการสหกิจ', '/Adviser/Report_Form_plan/index');
 
+        $this->template->view('Adviser/Report_Form_plan_view',$data);
+    }
 
-        $this->template->view('Adviser/Coop_student_view',$data);
+    public function title_plan($student_id)
+    {
+        
+        $data['coop_student_plan'] = $this->Coop_Student->get_coop_student_plan_by($student_id);
+        $data['student'] = $this->Student->get_student($student_id)[0];
+        
+
+         // add breadcrumbs
+        $this->breadcrumbs->push('แบบแจ้งแผนปฎิบัติการสหกิจ', '/Adviser/Report_Form_plan/index');
+        $this->breadcrumbs->push('รายละเอียดแบบแจ้งแผนปฎิบัติการสหกิจ', '/Adviser/Report_Form_plan/title_plan');
+
+        $this->template->view('Adviser/Report_Form_plan_list_view',@$data);
     }
 
 }

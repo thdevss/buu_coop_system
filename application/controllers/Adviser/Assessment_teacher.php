@@ -10,10 +10,14 @@ class Assessment_teacher extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'adviser') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'adviser') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+
+        
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
         public function index()
@@ -29,8 +33,35 @@ class Assessment_teacher extends CI_Controller {
                 $tmp_array['company_address'] = $this->Address->get_address_by_company($row['company_id'])[0];
                 array_push($data['data'],$tmp_array);
             }
-            $this->template->view('Adviser/Assessmentteacher_view',$data);
+
+                // add breadcrumbs
+                $this->breadcrumbs->push('การประเมินผลการฝึกงานของนักศึกษา', '/Adviser/Assessment_teacher/index');
+
+                $this->template->view('Adviser/Assessmentteacher_view',$data);
           
+        }
+
+        public function form($student_id)
+        {	
+    
+            $data['student_id'] = $student_id;
+            $data['student'] = $this->Student->get_student($data['student_id'])[0];
+            $data['data'] = array();
+            foreach($this->Coop_Student_Assessment_Form->gets_form_for_coop_student() as $row)
+            {
+    
+                $tmp_array = array();
+                $tmp_array['questionnaire_subject'] = $row;
+                $tmp_array['questionnaire_item'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item_by_subject($row['id']);
+                array_push($data['data'], $tmp_array);
+    
+            }
+                
+                // add breadcrumbs
+                $this->breadcrumbs->push('การประเมินผลการฝึกงานของนักศึกษา', '/Adviser/Assessment_teacher/index');
+                $this->breadcrumbs->push('แบบการประเมินผลการฝึกงานของนิสิตสหกิจ', '/Adviser/Assessment_teacher/form');
+
+                $this->template->view('Adviser/Assessmentteacherform_view', $data);
         }
 
 }

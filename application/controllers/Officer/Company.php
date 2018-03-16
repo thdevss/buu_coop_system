@@ -81,7 +81,8 @@ class Company extends CI_Controller {
             
  
             if($this->Company->insert_company($insert)) {
-                return $this->index('success_insert');
+                // return $this->index('success_insert');
+                redirect('/Officer/Company_info/step1/'.$this->db->insert_id(), 'refresh');
                 die();
             } else {
                 return $this->index('error_add');

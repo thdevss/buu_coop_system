@@ -72,6 +72,9 @@ class Daily_activity extends CI_controller
     {
         $array = array();
         $array['date'] = $this->input->post('date');
+        if($array['date'] == '') {
+            $array['date'] = date('Y-m-d H:i:s');
+        }
         $array['activity_subject'] = $this->input->post('activity_subject');
         $array['activity_content'] = $this->input->post('activity_content');
         $array['student_id'] = $this->Login_session->check_login()->login_value;

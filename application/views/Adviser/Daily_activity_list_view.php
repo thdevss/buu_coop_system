@@ -2,17 +2,15 @@
 <main class="main">
 
 <!-- Breadcrumb -->
-<ol class="breadcrumb">
-  <li class="breadcrumb-item">Home</li>
-  <li class="breadcrumb-item"><a href="#"><?php echo strToLevel($user->login_type);?></a></li>
-  <li class="breadcrumb-item active">กิจกรรมในการฝึกงานในแต่ละวัน</li>
-</ol>
+<?php echo $this->breadcrumbs->show(); ?>
+
+
 <div class="container-fluid">
   <div class="animated fadeIn">
     <div class="row" >
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header"><i class="fa fa-align-justify"></i>กิจกรรมในการฝึกงานในแต่ละวัน ของ <B><?php echo $student['fullname'].' '.$student['id']; ?></B> 
+          <div class="card-header"><i class="fa fa-align-justify"></i>กิจกรรมในการฝึกงานในแต่ละวัน ของ <?php echo $student['fullname'].' '.$student['id']; ?> 
           <div class="text-right">
             </div>
           </div>

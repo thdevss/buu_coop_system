@@ -12,7 +12,7 @@ class Member extends CI_Controller {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
 
-        if(strpos($username, 'PN')) {
+        if(filter_var($username, FILTER_VALIDATE_EMAIL)) {
             //company login
             $member = $this->Trainer->login($username, $password);
             // print_r($member);
