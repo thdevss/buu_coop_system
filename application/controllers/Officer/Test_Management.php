@@ -123,7 +123,8 @@ class Test_Management extends CI_Controller {
                 die();
             }
 
-            $term = $this->Term->get_current_term()[0]['id'];
+            
+            $term = $this->Term->get_current_term()[0]['term_id'];
             $this->Test->add_student($student_id, $coop_test_id);
             return $this->index('success');
         }
