@@ -10,10 +10,14 @@ class Assessment_teacher extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'adviser') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'adviser') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+
+        
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
         public function index()
@@ -29,6 +33,10 @@ class Assessment_teacher extends CI_Controller {
                 $tmp_array['company_address'] = $this->Address->get_address_by_company($row['company_id'])[0];
                 array_push($data['data'],$tmp_array);
             }
+
+            // add breadcrumbs
+            $this->breadcrumbs->push('การประเมินผลการฝึกงานของนักศึกษา', '/Adviser/Assessment_teacher/index');
+
             $this->template->view('Adviser/Assessmentteacher_view',$data);
           
         }

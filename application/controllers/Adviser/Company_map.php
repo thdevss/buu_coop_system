@@ -11,16 +11,24 @@ class Company_map extends CI_controller
         }
 
         //check priv
-        if($this->Login_session->check_login()->login_type != 'adviser') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'adviser') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+
+        
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
     public function index()
     {
         // $data['company'] = $this->DB_company->gets();
-        $data['company'] = '';  
+        $data['company'] = '';
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('แผนที่ตั้งบริษัท', '/Adviser/Company_map/index');
+
         $this->template->view('adviser/map_list_view', $data);
     }
 
