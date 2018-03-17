@@ -157,9 +157,15 @@ class Trainer extends CI_Controller {
             $data['status'] = '';
         }
         //print_r($trainer_id);
-       $data['person'] = $this->Trainer->get_trainer($trainer_id)[0];
+        $data['person'] = $this->Trainer->get_trainer($trainer_id)[0];
         // print_r($data);
-       $this->template->view('Officer/Edit_person_trainer_view',$data);
+
+         // add breadcrumbs
+         $this->breadcrumbs->push('จัดการข้อมูลสถานประกอบการ', '/Officer/Company/index');
+         $this->breadcrumbs->push('เจ้าหน้าที่ในบริษัท', '/Officer/Trainer/lists/'.$trainer_id);
+         $this->breadcrumbs->push('เเก้ไขข้อมูลเจ้าหน้าที่', '/');
+
+         $this->template->view('Officer/Edit_person_trainer_view',$data);
     }
 
     public function edit($trainer_id)
