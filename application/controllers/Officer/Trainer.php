@@ -39,6 +39,11 @@ class Trainer extends CI_Controller {
             $data['status']['text'] = 'ลบสำเร็จ';
 
         }
+        else if($status == 'success_update'){
+            $data['status']['color'] = 'success';            
+            $data['status']['text'] = 'แก้ไขสำเร็จ';
+
+        }
         else if($status == 'error_delete'){
             $data['status']['color'] = 'warning';            
             $data['status']['text'] = 'ลบไม่สำเร็จ';
@@ -143,9 +148,9 @@ class Trainer extends CI_Controller {
             $status = $this->input->get('status');
         }
 
-        if($status == 'error_input'){
+        if($status == 'error_update'){
             $data['status']['color'] = 'warning';            
-            $data['status']['text'] = 'เพิ่มไม่สำเร็จ';
+            $data['status']['text'] = 'แกไข้ไม่สำเร็จ';
 
         }
         else {
@@ -167,7 +172,7 @@ class Trainer extends CI_Controller {
         $this->form_validation->set_rules('email','E-mail','required|valid_email');
         if($this->form_validation->run() == false){
 
-            redirect('Officer/Trainer/edit_form/'.$trainer_id.'/?status=error_input','refresh');
+            redirect('Officer/Trainer/edit_form/'.$trainer_id.'/?status=error_update','refresh');
         } else {
             //success
 
@@ -178,7 +183,7 @@ class Trainer extends CI_Controller {
             $this->Trainer->update_trainer($trainer_id,$array);
         }
         
-            redirect('Officer/Trainer/lists/'.$company_id.'/?status=success','refresh');
+            redirect('Officer/Trainer/lists/'.$company_id.'/?status=success_update','refresh');
     }
 
             
