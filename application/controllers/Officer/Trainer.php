@@ -58,7 +58,7 @@ class Trainer extends CI_Controller {
             array_push($data['data'], $tmp_array);
 
         }
-        
+        // print_r($data);
         // add breadcrumbs
         $this->breadcrumbs->push('จัดการข้อมูลสถานประกอบการ', '/Officer/Company/index');
         $this->breadcrumbs->push('เจ้าหน้าที่ในบริษัท', '/Officer/Trainer/lists/'.$id);
@@ -137,14 +137,56 @@ class Trainer extends CI_Controller {
         redirect('Officer/Trainer/lists/'.$array['company_id'].'/?status=success','refresh');
     }
 
-    public function edit()
+    public function edit_form($trainer_id, $status = '')
     {
-       
+        if($status == '') {
+            $status = $this->input->get('status');
+        }
 
+        if($status == 'error_input'){
+            $data['status']['color'] = 'warning';            
+            $data['status']['text'] = 'เพิ่มไม่สำเร็จ';
+
+        }
+        else {
+            $data['status'] = '';
+        }
+        //print_r($trainer_id);
+       $data['person'] = $this->Trainer->get_trainer($trainer_id)[0];
+        // print_r($data);
+       $this->template->view('Officer/Edit_person_trainer_view',$data);
     }
 
+    public function edit($trainer_id)
+    {
+        $company_id = $this->input->post('company_id');
+        // print_r($company_id);
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('fullname','ชื่อ-นามสกุล','required');
+        $this->form_validation->set_rules('position','ตำเเหน่ง','required');
+        $this->form_validation->set_rules('email','E-mail','required|valid_email');
+        if($this->form_validation->run() == false){
 
+            redirect('Officer/Trainer/edit_form/'.$trainer_id.'/?status=error_input','refresh');
+        } else {
+            //success
 
+            $array['fullname'] = $this->input->post('fullname');
+            $array['email'] = $this->input->post('email');
+            $array['position'] = $this->input->post('position');
 
+            $this->Trainer->update_trainer($trainer_id,$array);
+        }
+        
+            redirect('Officer/Trainer/lists/'.$company_id.'/?status=success','refresh');
+    }
+
+            
 
 }
+
+
+
+
+
+
