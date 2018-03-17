@@ -43,7 +43,7 @@
                         <td class="text-left"><?php echo $row['company_person']['position'];?></td> 
                         <td class="form-inline">
                         <form action="<?php echo site_url('Officer/Trainer/delete/'); ?>" method="post">
-                        <button type="submit" class="btn btn-info btn-submit"><i class="icon-pencil "></i> เเก้ไข</button>
+                        <?php echo anchor('Officer/Trainer/edit_form/'.$row['company_person']['id'], '<i class="icon-pencil "></i> แก้ไข', 'class="btn btn-info"');?>
                         <input type="hidden"   name="company_person_id" value="<?php echo $row['company_person']['id'] ; ?>">
                         <input type="hidden"   name="company_id" value="<?php echo $row['company']['id'] ; ?>">
                         <button type="submit" class="btn btn-danger btn-submit"><i class="icon-trash"></i> ลบ</button>
