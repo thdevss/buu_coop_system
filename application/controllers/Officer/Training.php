@@ -241,9 +241,27 @@ class Training extends CI_Controller {
 
     public function student_list($training_id)
     {
+        $data['status'] = [];
+        if($this->input->get('status') == 'success_upload') {
+            $data['status'] = [
+                'text' => 'สำเร็จ',
+                'color' => 'success'
+            ];
+        } else if($this->input->get('status') == 'error_upload') {
+            $data['status'] = [
+                'text' => 'ผิดพลาด',
+                'color' => 'warning'
+            ];
+        } else if($this->input->get('status') == 'error_training_id') {
+            $data['status'] = [
+                'text' => 'ไม่พบรายการการอบรม',
+                'color' => 'danger'
+            ];
+        }
+
         //to pdf
         foreach($this->Training->gets_student_register_train($training_id) as $key => $student) {
-            $student_info = $this->Student->get_student($student['student_id'])[0];
+            $student_info = @$this->Student->get_student($student['student_id'])[0];
             $data['students'][] = array(
                 'student_id' => $student['student_id'],
                 'student_fullname' => $student_info['fullname'],
@@ -263,6 +281,56 @@ class Training extends CI_Controller {
 
         $this->template->view('Officer/Student_list_report', $data);
 
+    }
+
+    public function upload_student_list()
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('training_id','IDการอบรม','required|numeric');
+        if($this->form_validation->run() != false){
+            //check coop test id
+            $training_id = $this->input->post('training_id');            
+            if(!$this->Training->get_training($training_id)) {
+                rediretct('/Officer', 'refresh');
+                die();
+            }
+
+            $config['upload_path']          = './uploads/';
+            $config['allowed_types']        = 'xlsx';
+            $config['max_size']             = 1500;
+            $config['encrypt_name'] = true;
+            $this->load->library('upload', $config);
+
+            if ( ! $this->upload->do_upload('userfile')) {
+                $data['status'] = $this->upload->display_errors();
+                print_r($data);
+                redirect('Officer/Training/student_list/'.$training_id.'?status=error_upload', 'refresh');
+                die();
+            } else {
+                
+                $file = $this->upload->data();            
+                //insert to db
+
+                //แปลง Excel
+                require(FCPATH.'/application/libraries/XLSXReader.php');
+                $xlsx = new XLSXReader($file['full_path']);
+                $sheet = $xlsx->getSheetNames()[1];
+                foreach($xlsx->getSheetData($sheet) as $key => $row) {
+                    if($key == 0) {
+                        continue;
+                    }
+                    
+                    $student_id = trim($row[1]);
+                    $this->Training->add_student_to_training($training_id, $student_id);
+                }
+                unlink($file['full_path']);
+                redirect('Officer/Training/student_list/'.$training_id.'?status=success_upload', 'refresh');
+                die();
+            }
+        } else {
+            redirect('Officer/Training/student_list/'.$training_id.'?status=error_training_id', 'refresh');
+            die();  
+        }
     }
 
     public function student_list_excel($training_id)

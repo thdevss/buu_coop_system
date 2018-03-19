@@ -10,8 +10,13 @@
       <!--table รายชื่อนิสิต-->
         <div class="col-lg-12">
         <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify"></i> รายชื่อผู้เข้าร่วมอบรมเก็บชั่วโมง<?php echo $training['train_type']['name'];?> โครงการ <?php echo $training['title'];?> <?php echo $training['note'];?></div>
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i> รายชื่อผู้เข้าร่วมอบรมเก็บชั่วโมง<?php echo $training['train_type']['name'];?> โครงการ <?php echo $training['title'];?> <?php echo $training['note'];?>
+                <a class="btn btn-primary float-right" href="#" data-toggle="modal" data-target="#excel_form"><i class="fa fa-hand-pointer-o"></i> อัพโหลดรายชื่อจาก Google Form</a>
+                
+            </div>
             <div class="card-body">
+                <?php if($status){ echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>'; } ?>
                 <table class="table table-bordered" id="student_table">
                     <thead>
                         <tr>
@@ -143,3 +148,31 @@ $(document).ready(function() {
 
 
 </script>
+
+<!-- Modal -->
+<div id="excel_form" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <form action="<?php echo site_url('Officer/Training/upload_student_list');?>" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="training_id" value="<?php echo $training['id'];?>">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">แบบฟอร์มอัพโหลดไฟล์จาก Google Form</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>                
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="userfile">ไฟล์ Excel</label>
+                    <input type="file" id="userfile" name="userfile" class="form-control">
+                    <span class="help-block">รองรับไฟล์ .xlsx</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+        </form>
+
+    </div>
+</div>
