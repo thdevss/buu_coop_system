@@ -46,7 +46,7 @@ class Training_model extends CI_model
 
     }
 
-    public function add_student($training_id, $student_id) 
+    public function add_student_to_training($training_id, $student_id) 
     {
         $array['student_id'] = $student_id;
         $term = $this->Term->get_current_term();
