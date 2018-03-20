@@ -15,7 +15,7 @@ class Template {
         }
 
         $data['current_term'] = $CI->Term->get_current_term()[0];
-
+        // print_r($data);
         //profile
         if(
             $login_data->login_type == 'student' ||
