@@ -1,8 +1,23 @@
 <?php
 
 class Member extends CI_Controller {
+    public function __construct()
+    {
+        parent::__construct();
+		//check priv
+       
+      
+    }
+
     public function login()
     {
+        $user = $this->Login_session->check_login();
+        // print_r($user);
+        if(@$user->login_type) {
+            redirect($this->Login_session->check_login()->login_type);
+            die();
+        }
+        
         $data['status'] = $this->input->get('status');
         $this->load->view('login/login_view.php', $data);
     }

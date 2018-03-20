@@ -144,10 +144,10 @@
               <option disabled> ------ </option>
               <?php 
               foreach($terms as $term) {
-                if($current_term['term_id'] == $term->term_id) {
-                  echo '<option value="'.$term->term_id.'" selected>'.$term->name.'</option>';
+                if($current_term['term_id'] == $term['term_id']) {
+                  echo '<option value="'.$term['term_id'].'" selected>'.$term['name'].'</option>';
                 } else {
-                  echo '<option value="'.$term->term_id.'">'.$term->name.'</option>';                  
+                  echo '<option value="'.$term['term_id'].'">'.$term['name'].'</option>';                  
                 }
               }
               ?>
