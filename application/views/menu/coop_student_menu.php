@@ -51,7 +51,7 @@
             
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="components-buttons.html"><i class="fa fa-download"></i> ดาวน์โหลดเอกสาร</a>
+              <?php echo anchor('Coop_student/IN_S005/', '<i class="fa fa-file"></i> แบบแจ้งแผนปฏิบัติงานสหกิจศึกษา ', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
                 <?php echo anchor('Coop_student/upload_document/?code=IN-S005', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
