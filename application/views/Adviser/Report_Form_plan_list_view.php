@@ -14,47 +14,39 @@
             <div class="card-header"><i class="fa fa-align-justify"></i> รายละเอียดแบบแจ้งแผนปฎิบัติการสหกิจ ของ <?php echo $student['fullname'].' '.$student['id']; ?></div>
               <div class="card-body">
               <form action="" method="post">
-              <table class="table table-bordered datatable">
-                    <thead>
-                      <tr>
-                        <th></th>
-                        <th>หัวข้องาน</th>
-                        <th>เดือนที่ 1</th>
-                        <th>เดือนที่ 2</th>
-                        <th>เดือนที่ 3</th>
-                        <th>เดือนที่ 4</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <?php $i=1; foreach($coop_student_plan as $row) { ?>
-                        <tr>
-                          <td class="text-center"><?php echo $i++;?></td>
-                          <td><?php echo $row['work_subject'];?></td>
-                        <!-- เดือนที่1 -->
-                          <td class="text-left"><div class="progress mb-3">
-                          <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                            </div>
-                          </td>
-                        <!-- เดือนที่2 -->
-                          <td><div class="progress mb-3">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                        <!-- เดือนที่3 -->
-                          <td><div class="progress mb-3">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                        <!-- เดือนที่4 -->
-                          <td><div class="progress mb-3">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                          
-                        </tr>
-                    <?php } ?>
-                    </tbody>
-                  </table>
+              <table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <th rowspan="2" class="text-left">ลำดับ</th>
+                      <th rowspan="2" colspan="6" style="width:60%">หัวข้องาน</th>      
+                      <td colspan="4" >เดือนที่ 1</td>
+                      <td colspan="4" >เดือนที่ 2</td>
+                      <td colspan="4" >เดือนที่ 3</td>
+                      <td colspan="4" >เดือนที่ 4</td>
+                  </tr>
+                  <tr>
+                      <!-- <th>หัวข้อประเมิน/Items</th>       -->
+                      <th>1</th><th>2</th><th>3</th> <th>4</th>
+                      <th>1</th><th>2</th><th>3</th> <th>4</th>
+                      <th>1</th><th>2</th><th>3</th> <th>4</th>
+                      <th>1</th><th>2</th><th>3</th> <th>4</th> 
+                  </tr>
+              </thead>
+                      <tbody>
+                          <?php for($i=1;$i<=12;$i++) { ?>
+                              <tr>
+                              <th class="text-left"> <?php echo $i?></th>
+                                  <td colspan="6"><input type="text" class="form-control" id="name" placeholder="ชื่องาน"></td>
+                            
+                                  <?php for($K=0;$K<=15;$K++) { ?>
+                                      <td>                       
+                                      <input class="form-check-input" type="checkbox" value=" " name=" " style="margin-left: unset !important; position: unset !important;">
+                                      </td>    <?php } ?>                            
+                              </tr>
+                                  
+                          <?php } ?>
+                      </tbody>
+              </table>
                 </div>
               </div>
             </div>
