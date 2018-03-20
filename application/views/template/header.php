@@ -55,10 +55,10 @@
           <option disabled> --- เลือกปีการศึกษา --- </option>
           <?php 
           foreach($terms as $term) {
-            if($current_term['term_id'] == $term->term_id) {
-              echo '<option value="'.$term->term_id.'" selected>ปีการศึกษา '.$term->name.'</option>';
+            if($current_term['term_id'] == $term['term_id']) {
+              echo '<option value="'.$term['term_id'].'" selected>ปีการศึกษา '.$term['name'].'</option>';
             } else {
-              echo '<option value="'.$term->term_id.'">ปีการศึกษา '.$term->name.'</option>';                  
+              echo '<option value="'.$term['term_id'].'">ปีการศึกษา '.$term['name'].'</option>';                  
             }
           }
           ?>
@@ -85,7 +85,7 @@
           </div>
           <a class="dropdown-item" href="#"><img src="<?php echo $profile_image;?>" class="rounded-circle"></a>          
           <a class="dropdown-item" href="#"><i class="fa fa-users"></i> ประเภท: <?php echo strToLevel($user->login_type);?></a>
-          <a class="dropdown-item" href="#"><i class="fa fa-users"></i> <span class="d-md-down-none">ปีการศึกษา: <?php echo $user->term_name;?></span></a>
+          <a class="dropdown-item" href="#"><i class="fa fa-users"></i> <span class="d-md-down-none">ปีการศึกษา: <?php echo $current_term['name'];?></span></a>
           <a class="dropdown-item" href="<?php echo site_url('member/logout');?>"><i class="fa fa-lock"></i> ออกจากระบบ</a>
         </div>
       </li>
