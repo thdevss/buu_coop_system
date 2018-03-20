@@ -74,12 +74,23 @@ class Coop_Student_model extends CI_model {
         return $query->result_array();
     }
 
-    public function get_coop_student_plan_by($student_id)
+    public function get_coop_student_plan($student_id)
     {
         $this->db->where('student_id',$student_id);
         $this->db->from('coop_student_plan');
         $query = $this->db->get();
         return $query->result_array();
+    }
 
+    public function insert_plan($student_id, $planArr)
+    {
+        $planArr['student_id'] = $student_id;
+        return $this->db->insert('coop_student_plan', $planArr);
+    }
+
+    public function delete_plan($student_id)
+    {
+        $this->db->where('student_id',$student_id);        
+        return $this->db->delete('coop_student_plan');
     }
 }
