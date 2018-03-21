@@ -64,9 +64,14 @@ class Coop_Student_model extends CI_model {
         return $query->result_array();
     }
 
-    public function gets_coop_student_by_department_company($department_id, $company_id)
+    public function gets_coop_student_by_department_company($department_id, $company_id, $term_id = 0)
     {
-        $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);                
+        if($term_id == 0) {
+            $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);                            
+        } else {
+            $this->db->where('term_id', $term_id);                
+        }
+
         $this->db->where('department_id', $department_id);
         $this->db->where('company_id', $company_id);
         $this->db->from('coop_student');

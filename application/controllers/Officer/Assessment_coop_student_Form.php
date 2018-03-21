@@ -66,7 +66,7 @@
                 
             } else {
                 //can insert
-                $this->Coop_Student_Assessment_Form->save_coop_student_form_result($array);
+                $this->Coop_Student_Assessment_Form->save_coop_student_form_subject($array);
                 redirect('Officer/Assessment_coop_student_Form/index/?status=success', 'refresh');                
             }
 

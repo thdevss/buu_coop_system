@@ -24,11 +24,13 @@ class Report_cooperative extends CI_Controller {
 
     public function index()
     {
+        $data['term_report'] = $this->Term->get_current_term()[0];        
         $data['company_name'] = $this->Company->gets_company();
         $data['department_name'] = $this->Student->gets_department();
         //    get all
-        $data['reports'] = $this->get_stat_all();
+        $data['reports'] = $this->get_stat_all($data['term_report']['term_id']);
         $data['current_department'] = array();
+        $data['terms'] = $this->Term->gets_term();
 
         // add breadcrumbs
         $this->breadcrumbs->push('สถิติการฝึกงานที่ผ่านมา', '/Adviser/Report_cooperative/index');
@@ -38,15 +40,24 @@ class Report_cooperative extends CI_Controller {
 
     public function search()
     {
+        
         $company_id = $this->input->post('company_id');
         $department_id = $this->input->post('department_id');
+        $term_id = $this->input->post('term_id');
+
+        $data['term_report'] = $this->Term->get_term($term_id)[0];
+
         if($company_id == "0") {
-            $data['reports'] = $this->get_stat_all();
+            $data['reports'] = $this->get_stat_all($data['term_report']['term_id']);
         } else {
-            $data['reports'] = $this->get_stat($company_id, $department_id);
+            $data['reports'] = $this->get_stat($company_id, $department_id, $data['term_report']['term_id']);
         }
         $data['current_company'] = $company_id;
         $data['current_department'] = $department_id;
+        $data['terms'] = $this->Term->gets_term();
+        
+        // print_r($data);
+ 
         
         $data['company_name'] = $this->Company->gets_company();        
         $data['department_name'] = $this->Student->gets_department();
@@ -54,7 +65,7 @@ class Report_cooperative extends CI_Controller {
         $this->template->view('Adviser/Report_cooperative_view', $data);
     }
 
-    private function get_stat_all()
+    private function get_stat_all($term_id)
     {
         //cache
         $cache = array();
@@ -71,7 +82,7 @@ class Report_cooperative extends CI_Controller {
             foreach($cache['company'] as $company) {
                 $tmpc = array();
                 $tmpc['company_name'] = $company['name_th'];
-                $tmpc['total_student'] = count($this->Coop_Student->gets_coop_student_by_department_company($department['id'], $company['id']));
+                $tmpc['total_student'] = count($this->Coop_Student->gets_coop_student_by_department_company($department['id'], $company['id'], $term_id));
                 array_push($tmp['company'], $tmpc);
             }
             array_push($data['department'], $tmp);
@@ -82,7 +93,7 @@ class Report_cooperative extends CI_Controller {
     }
 
 
-    private function get_stat($company_id, $department_id)
+    private function get_stat($company_id, $department_id, $term_id)
     {
         //cache
         $cache = array();
@@ -105,7 +116,7 @@ class Report_cooperative extends CI_Controller {
             foreach($cache['company'] as $company) {
                 $tmpc = array();
                 $tmpc['company_name'] = $company['name_th'];
-                $tmpc['total_student'] = count($this->Coop_Student->gets_coop_student_by_department_company($department['id'], $company['id']));
+                $tmpc['total_student'] = count($this->Coop_Student->gets_coop_student_by_department_company($department['id'], $company['id'], $term_id));
                 array_push($tmp['company'], $tmpc);
             }
             array_push($data['department'], $tmp);

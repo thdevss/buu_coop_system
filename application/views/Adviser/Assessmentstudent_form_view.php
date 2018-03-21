@@ -38,7 +38,7 @@
                           </td>
                           <?php for($i=5;$i>=1;$i--) { ?>
                             <td>
-                              <input class="form-check-input" type="radio" value="<?php echo $i;?>" id="result_<?php echo $item['number'];?>" name="result_<?php echo $item['number'];?>" style="margin-left: unset !important; position: unset !important;">
+                              <input class="form-check-input" type="radio" value="<?php echo $i;?>" id="result_<?php echo $item['number'];?>" name="result_<?php echo $item['number'];?>" style="margin-left: unset !important; position: unset !important;" disabled <?php if(@$result[$item['id']] == $i) echo 'checked'; ?>>
                             </td>
                           <?php } ?>
                         </tr>

@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Assessment_teacher extends CI_Controller {
+class Assessmentstudent extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
@@ -35,9 +35,9 @@ class Assessment_teacher extends CI_Controller {
             }
 
                 // add breadcrumbs
-                $this->breadcrumbs->push('การประเมินผลการฝึกงานของนักศึกษา', '/Adviser/Assessment_teacher/index');
+                $this->breadcrumbs->push('การประเมินผลการฝึกงานของนักศึกษา', '/Adviser/Assessmentstudent/index');
 
-                $this->template->view('Adviser/Assessmentteacher_view',$data);
+                $this->template->view('Adviser/Assessmentstudent_list_view',$data);
           
         }
 
@@ -56,12 +56,17 @@ class Assessment_teacher extends CI_Controller {
                 array_push($data['data'], $tmp_array);
     
             }
+            
+            $data['result'] = [];
+            foreach($this->Coop_Student_Assessment_Form->get_coop_student_form_result($student_id) as $result) {
+                $data['result'][$result['item_id']] = $result['score'];
+            }
                 
                 // add breadcrumbs
-                $this->breadcrumbs->push('การประเมินผลการฝึกงานของนักศึกษา', '/Adviser/Assessment_teacher/index');
-                $this->breadcrumbs->push('แบบการประเมินผลการฝึกงานของนิสิตสหกิจ', '/Adviser/Assessment_teacher/form');
+                $this->breadcrumbs->push('การประเมินผลการฝึกงานของนักศึกษา', '/Adviser/Assessmentstudent/index');
+                $this->breadcrumbs->push('แบบการประเมินผลการฝึกงานของนิสิตสหกิจ', '/Adviser/Assessmentstudent/form');
 
-                $this->template->view('Adviser/Assessmentteacherform_view', $data);
+                $this->template->view('Adviser/Assessmentstudent_form_view', $data);
         }
 
 }
