@@ -47,6 +47,13 @@
                                       <input type="text" class="form-control" name="work_subject[<?php echo $i;?>]" placeholder="ชื่องาน" value="<?php echo @$rows[$i]['work_subject'];?>">
                                     </td>
                                   
+
+                                        <?php for($K=0;$K<=15;$K++) { ?>
+                                            <td>                       
+                                            <input class="form-check-input" type="checkbox" value=" " name=" " style="margin-left: unset !important; position: unset !important;">
+                                            </td>    <?php } ?>                            
+                                    </tr>                        
+
                                         <?php 
                                         if(@$rows[$i]['date_period']) {
                                           $choice = explode(",", $rows[$i]['date_period']);
@@ -60,6 +67,7 @@
                                         <?php } ?>                            
                                     </tr>
                                         
+
                                 <?php } ?>
                             </tbody>
                     </table>
