@@ -30,18 +30,20 @@
                                                 <th>สถานะการปีการศึกษา(ปัจจุบัน)</th>
                                             </tr>
                                             </thead>
-                                            <tbody>                                         
+                                            <tbody>   
+                                                <?php foreach($terms as $term) { ?>                                      
                                                 <tr>
-                                                    <td class="text-center">1</td>
-                                                    <td class="text-left">1/2560</td>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-left"><?php echo $term['name'];?></td>
                                                     <td class="text-center">
-                                                    <label class="switch switch-text switch-pill switch-success-outline-alt">
-                                                        <input type="checkbox" class="switch-input">
-                                                        <span class="switch-label" data-on="On" data-off="Off"></span>
-                                                        <span class="switch-handle"></span>
-                                                    </label>
+                                                        <label class="switch switch-text switch-pill switch-success-outline-alt">
+                                                            <input type="checkbox" value="<?php echo $term['term_id'];?>" name="current_term" class="switch-input" <?php if($term['is_current'] == '1') echo 'checked';?>>
+                                                            <span class="switch-label" data-on="On" data-off="Off"></span>
+                                                            <span class="switch-handle"></span>
+                                                        </label>
                                                     </td>
-                                                </tr>                                   
+                                                </tr> 
+                                                <?php } ?>                                  
                                             </tbody>
                                         </table>
                                         </div>                                   
@@ -54,11 +56,17 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             </button>
                                         </div>
-                                            <div class="modal-body">
-                                                <form action="<?php echo site_url('Officer/Test_Management/add');?>" method="post">
+                                        <form action="<?php echo site_url('Officer/setting/post_new_term');?>" method="post">
+                                        <div class="modal-body">
+                                                <?php
+                                                if(@$status) {
+                                                    echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
+                                                }
+                                                ?>
+                                                
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="text-input">ภาคเรียน</label>
-                                                    <select id="select" name="select" class="form-control" required>
+                                                    <select id="semester" name="semester" class="form-control" required>
                                                         <option value="">Please select</option>
                                                         <option value="1">ที่ 1</option>
                                                         <option value="2">ที่ 2</option>
@@ -67,21 +75,22 @@
                                                 </div>
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="text-input">ปีการศึกษา</label>
-                                                        <select id="select" name="select" class="form-control" required>
+                                                        <select id="year" name="year" class="form-control" required>
                                                             <option value="">Please select</option>
-                                                        <?php
-                                                        $year = date('Y')+543;
-                                                        for($i=$year-2; $i<$year+10; $i++) { ?>
-                                                            <option value="<?php echo $i;?>"><?php echo $i;?></option>
-                                                        <?php } ?>
+                                                            <?php
+                                                            $year = date('Y')+543;
+                                                            for($i=$year-2; $i<$year+10; $i++) { ?>
+                                                                <option value="<?php echo $i;?>"><?php echo $i;?></option>
+                                                            <?php } ?>
                                                         </select>
                                                     </div>
-                                                </form>
+                                                
                                             </div>
-                                                <div class="modal-footer">
-                                                    <button type="close" class="btn btn-danger" data-dismiss="modal"> ปิด</button>
-                                                    <button type="submit" class="btn btn-success"> บันทึก</button>
-                                                </div>
+                                            <div class="modal-footer">
+                                                <button type="close" class="btn btn-danger" data-dismiss="modal"> ปิด</button>
+                                                <button type="submit" class="btn btn-success"> บันทึก</button>
+                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>                       
@@ -97,3 +106,35 @@
  </div> <!-- close rocontainerw -->
  
  </main>
+
+
+<script>
+$("input:checkbox").on('click', function() {
+    var $box = $(this);
+    if ($box.is(":checked")) {
+        var group = "input:checkbox[name='" + $box.attr("name") + "']";
+        $(group).prop("checked", false);
+        $box.prop("checked", true);
+    } else {
+        $box.prop("checked", false);
+    }
+
+    // get val true
+    // alert($box.val())
+    if($box.prop("checked")) {
+        var datastring = "term_id="+$box.val()
+        jQuery.post(SITE_URL+"/officer/Setting/post_current_term", datastring, function(response) {
+            if(response.status) {
+                toastr["success"]("ok ja")
+            } else {
+                toastr["error"]("err ja")
+            }
+        }, 'json');
+    }
+
+});
+
+
+
+
+</script>

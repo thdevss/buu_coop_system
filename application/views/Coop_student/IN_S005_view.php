@@ -11,8 +11,14 @@
       <!--table รายชื่อนิสิต-->
         <div class="col-lg-12">
           <div class="card">
+            <form action="<?php echo site_url('Coop_student/IN_S005/save');?>" method="post">
             <div class="card-header"><i class="fa fa-align-justify"></i>แผนปฏิบัติงานสหกิจศึกษา</div>
               <div class="card-body">
+                <?php 
+                if(@$status) {
+                  echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
+                }   
+                ?>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -32,24 +38,45 @@
                         </tr>
                     </thead>
                             <tbody>
-                                <?php for($i=1;$i<=12;$i++) { ?>
+                                <?php for($i=0;$i<12;$i++) { $no = $i; ?>
                                     <tr>
-                                    <th class="text-left"> <?php echo $i?></th>
-                                        <td colspan="6"><input type="text" class="form-control" id="name" placeholder="ชื่องาน"></td>
+                                    <td class="text-left">
+                                      <?php echo ++$no; ?>
+                                    </td>
+                                    <td colspan="6">
+                                      <input type="text" class="form-control" name="work_subject[<?php echo $i;?>]" placeholder="ชื่องาน" value="<?php echo @$rows[$i]['work_subject'];?>">
+                                    </td>
                                   
+
                                         <?php for($K=0;$K<=15;$K++) { ?>
                                             <td>                       
                                             <input class="form-check-input" type="checkbox" value=" " name=" " style="margin-left: unset !important; position: unset !important;">
                                             </td>    <?php } ?>                            
                                     </tr>                        
+
+                                        <?php 
+                                        if(@$rows[$i]['date_period']) {
+                                          $choice = explode(",", $rows[$i]['date_period']);
+                                        } else {
+                                          $choice = [];
+                                        }
+                                        for($K=0;$K<16;$K++) { ?>
+                                          <td>                       
+                                            <input <?php if(in_array($K, $choice)) echo 'checked'; ?> class="form-check-input" type="checkbox" value="<?php echo $K;?>" name="date_period[<?php echo $i;?>][]" style="margin-left: unset !important; position: unset !important;">
+                                          </td>    
+                                        <?php } ?>                            
+                                    </tr>
+                                        
+
                                 <?php } ?>
                             </tbody>
                     </table>
                     <center>
-                    <button type="submit" class="btn btn-md btn-primary" name="print" value="1"><i ></i>พิมพ์เอกสาร</button>
-                  <button type="submit" class="btn btn-md btn-success" name="save" value="1"><i ></i>บันทึกเอกสาร</button>     
+                      <button type="button" class="btn btn-md btn-primary" name="print" value="1"><i ></i>พิมพ์เอกสาร</button>
+                      <button type="submit" class="btn btn-md btn-success" name="save" value="1"><i ></i>บันทึกเอกสาร</button>     
                     </center>                           
                  </div>
+                 </form>
               </div>
             </div>
           </div>

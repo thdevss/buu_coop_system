@@ -1,5 +1,5 @@
 <?php
-class Report_Form_plan extends CI_controller
+class Map_student_list extends CI_controller
 {
     public function __construct()
     {
@@ -17,7 +17,6 @@ class Report_Form_plan extends CI_controller
             die();
         }
 
-        
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
@@ -34,28 +33,28 @@ class Report_Form_plan extends CI_controller
             array_push($data['data'], $tmp_array);
         }
 
-        // add breadcrumbs
-        $this->breadcrumbs->push('แบบแจ้งแผนปฎิบัติการสหกิจ', '/Adviser/Report_Form_plan/index');
 
-        $this->template->view('Adviser/Report_Form_plan_list',$data);
+        // add breadcrumbs
+        $this->breadcrumbs->push('รายการสถานที่ฝึกงาน', '/Adviser/Map_student_list/index');
+
+
+        $this->template->view('Adviser/Map_list_view',$data);
     }
 
-    public function title_plan($student_id)
+    public function map($student_id)
     {
-        
-
-        $data['coop_student_plan'] = $this->Coop_Student->get_coop_student_plan($student_id);
-
-        $data['rows'] = $this->Coop_Student->get_coop_student_plan($student_id);
-
+        // print_r($student_id);
+        $data['map'] = $this->Coop_Student->get_coop_student($student_id)[0];
         $data['student'] = $this->Student->get_student($student_id)[0];
-        
+        $data['company'] = $this->Company->get_company($data['map']['company_id'])[0];
+        $data['department'] = $this->Student->get_department($data['student']['department_id'])[0];
+        // print_r($data);
+        // add breadcrumbs
+        $this->breadcrumbs->push('รายการสถานที่ฝึกงาน', '/Adviser/Map_student_list/index');
+        $this->breadcrumbs->push('แสดงพิกัดงาน', '/');
 
-         // add breadcrumbs
-        $this->breadcrumbs->push('แบบแจ้งแผนปฎิบัติการสหกิจ', '/Adviser/Report_Form_plan/index');
-        $this->breadcrumbs->push('รายละเอียดแบบแจ้งแผนปฎิบัติการสหกิจ', '/Adviser/Report_Form_plan/title_plan');
+        $this->template->view('Adviser/Map_student_view',$data);
 
-        $this->template->view('Adviser/Report_Form_plan_view',@$data);
     }
 
 }

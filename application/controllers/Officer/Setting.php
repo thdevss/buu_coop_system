@@ -22,13 +22,57 @@ class Setting extends CI_Controller {
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
-    public function edit_term(){
+    public function edit_term()
+    {
+        $data['status'] = [];
+        if($this->input->get('form_status') == 'success') {
+            $data['status'] = [
+                'text' => 'สำเร็จ',
+                'color' => 'success'
+            ];
+        } else if($this->input->get('form_status') == 'error') {
+            $data['status'] = [
+                'text' => 'ผิดพลาด',
+                'color' => 'warning'
+            ];
+        }
 
         // add breadcrumbs
         $this->breadcrumbs->push('จัดการปีการศึกษา', '/Officer/Setting/edit_term');
-
-        $this->template->view('officer/setting_term_view',@$data);
+        $data['terms'] = $this->Term->gets_term();
+        $this->template->view('officer/setting_term_view', $data);
     }
+
+    public function post_current_term()
+    {
+        $return['status'] = false;
+        $term_id = $this->input->post('term_id');
+        if($this->Term->get_term($term_id)) {
+            if($this->Term->set_current_term($term_id)) {
+                $return['status'] = true;
+            }
+        }
+        echo json_encode($return);
+    }
+
+    public function post_new_term()
+    {
+        //add term
+        $insert['name'] = $this->input->post('semester')."/".$this->input->post('year');
+        $insert['year'] = $this->input->post('year');
+        $insert['semester'] = $this->input->post('semester');
+        $insert['is_current'] = 0;
+        if($this->Term->add_term($insert)) {
+            redirect('Officer/setting/edit_term?form_status=success');
+        } else {
+            redirect('Officer/setting/edit_term?form_status=error');
+        }
+        //add student....
+        //wait API
+    }
+
+
+
     public function edit_document(){
         // get coop_document
         $data['coop_document'] = $this->Form->gets_form();

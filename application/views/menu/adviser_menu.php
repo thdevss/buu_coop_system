@@ -28,7 +28,7 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-graduation"></i> สหกิจ</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo site_url('Adviser/company_map');?>"><i class="icon-map"></i> แผนที่</a>
+                <a class="nav-link" href="<?php echo site_url('Adviser/Map_student_list/');?>"><i class="icon-map"></i> แสดงพิกัดงาน</a>
               </li>
             </ul>
           </li>
@@ -36,7 +36,7 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-notebook"></i> การประเมินผล</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo site_url('Adviser/Assessment_teacher');?>"><i class="icon-docs"></i> ผลการฝึกงานของนักศึกษา</a>
+                <a class="nav-link" href="<?php echo site_url('Adviser/Assessmentstudent');?>"><i class="icon-docs"></i> ผลการฝึกงานของนักศึกษา</a>
               </li>
             </ul>
           </li>
@@ -44,12 +44,7 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-graph"></i> สถิติ</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo site_url('Adviser/Report_cooperative');?>"><i class="icon-graph"></i> สถิติปีบัจจุบัน</a>
-              </li>
-            </ul>
-            <ul class="nav-dropdown-items">
-              <li class="nav-item">
-                <a class="nav-link" href="<?php echo site_url('Adviser/Stat');?>"><i class="icon-screen-desktop"></i> สถิติการฝึกงานที่ผ่านมา</a>
+                <a class="nav-link" href="<?php echo site_url('Adviser/Report_cooperative');?>"><i class="icon-graph"></i> รายงานการไปสหกิจ</a>
               </li>
             </ul>
           </li>

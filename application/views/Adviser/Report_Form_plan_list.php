@@ -10,7 +10,7 @@
     <div class="row" >
       <div class="col-sm-12">
         <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify"></i> รายการสถานที่ฝึกงาน</div>
+            <div class="card-header"><i class="fa fa-align-justify"></i> แบบแจ้งแผนปฎิบัติการสหกิจ</div>
             <div class="card-body">
                 <table class="table table-bordered datatable">
                     <thead>
@@ -22,19 +22,20 @@
                         <th>สถานประกอบการ</th>
                         <th>จังหวัด</th>
                         <th></th>
+                        
                       </tr>
                     </thead>
                     <tbody>
                         <?php $i=1; foreach($data as $row) {?>
                         <tr>
                             <td class="text-center"><?php echo $i++; ?></td>
-                            <td><?php echo $row['student']['id']; ?></td>                      
-                            <td><?php echo $row['student']['fullname']; ?></td>
-                            <td><?php echo $row['department']['name']; ?></td>
-                            <td><?php echo $row['company']['name_th']; ?> (<?php echo $row['company']['name_en']; ?>)</td>
-                            <td><?php echo $row['company_address']['province']; ?></td>
-                            <td>
-                            <?php echo anchor('Adviser/Map_student_list/map/'.$row['student']['id']  , '<i class="fa fa-map-o"></i> แผนที่', 'class="btn btn-primary" target="_blank"');?>
+                            <td class="text-left"><?php echo $row['student']['id']; ?></td>                      
+                            <td class="text-left"><?php echo $row['student']['fullname']; ?></td>
+                            <td class="text-left"><?php echo $row['department']['name']; ?></td>
+                            <td class="text-left"><?php echo $row['company']['name_th']; ?> (<?php echo $row['company']['name_en']; ?>)</td>
+                            <td class="text-left"><?php echo $row['company_address']['province']; ?></td>
+                            <td class="text-center">
+                                <?php echo anchor('Adviser/Report_Form_plan/title_plan/'.$row['student']['id']  , '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn btn-primary"');?>
                             </td>
                         </tr>
                         <?php } ?>
@@ -46,4 +47,7 @@
     </div>
   </div>
 </div>
+
+
+
 </main>
