@@ -7,47 +7,65 @@
 
 <div class="container-fluid">
   <div class="animated fadeIn">
-    <div class="row" >
-      <div class="col-sm-12">
-        <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify"></i> แบบแจ้งแผนปฎิบัติการสหกิจ</div>
-            <div class="card-body">
-                <table class="table table-bordered datatable">
-                    <thead>
-                      <tr>
-                        <th></th>
-                        <th>รหัสนิสิต</th>
-                        <th>ชื่อ - สกุล</th>
-                        <th>สาขาวิชา</th>
-                        <th>สถานประกอบการ</th>
-                        <th>จังหวัด</th>
-                        <th></th>
-                        
-                      </tr>
-                    </thead>
-                    <tbody>
-                        <?php $i=1; foreach($data as $row) {?>
-                        <tr>
-                            <td class="text-center"><?php echo $i++; ?></td>
-                            <td class="text-left"><?php echo $row['student']['id']; ?></td>                      
-                            <td class="text-left"><?php echo $row['student']['fullname']; ?></td>
-                            <td class="text-left"><?php echo $row['department']['name']; ?></td>
-                            <td class="text-left"><?php echo $row['company']['name_th']; ?> (<?php echo $row['company']['name_en']; ?>)</td>
-                            <td class="text-left"><?php echo $row['company_address']['province']; ?></td>
-                            <td class="text-center">
-                                <?php echo anchor('Adviser/Report_Form_plan/title_plan/'.$row['student']['id']  , '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn btn-primary"');?>
-                            </td>
-                        </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+      <div class="row" >
+      <!--table รายชื่อนิสิต-->
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header"><i class="fa fa-align-justify"></i> รายละเอียดแบบแจ้งแผนปฎิบัติการสหกิจ ของ <?php echo $student['fullname'].' '.$student['id']; ?></div>
+              <div class="card-body">
+              <form action="" method="post">
+              <table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <th rowspan="2" class="text-left">ลำดับ</th>
+                      <th rowspan="2" colspan="6" style="width:60%">หัวข้องาน</th>      
+                      <td colspan="4" >เดือนที่ 1</td>
+                      <td colspan="4" >เดือนที่ 2</td>
+                      <td colspan="4" >เดือนที่ 3</td>
+                      <td colspan="4" >เดือนที่ 4</td>
+                  </tr>
+                  <tr>
+                      <!-- <th>หัวข้อประเมิน/Items</th>       -->
+                      <th>1</th><th>2</th><th>3</th> <th>4</th>
+                      <th>1</th><th>2</th><th>3</th> <th>4</th>
+                      <th>1</th><th>2</th><th>3</th> <th>4</th>
+                      <th>1</th><th>2</th><th>3</th> <th>4</th> 
+                  </tr>
+              </thead>
+                      <tbody>
+                      <?php // for($i=0;$i<12;$i++) { $no = $i; ?>
+                      <?php foreach($rows as $i => $row) { $no = $i; ?>
+                                    <tr>
+                                    <td class="text-left">
+                                      <?php echo ++$no; ?>
+                                    </td>
+                                    <td colspan="6">
+                                      <input type="text" class="form-control" name="work_subject[<?php echo $i;?>]" placeholder="ชื่องาน" value="<?php echo @$row['work_subject'];?>" disabled>
+                                    </td>
+                                  
+                                        <?php 
+                                        if(@$row['date_period']) {
+                                          $choice = explode(",", $row['date_period']);
+                                        } else {
+                                          $choice = [];
+                                        }
+                                        for($K=0;$K<16;$K++) { ?>
+                                          <td>                       
+                                            <input <?php if(in_array($K, $choice)) echo 'checked'; ?> class="form-check-input" type="checkbox" value="<?php echo $K;?>" name="date_period[<?php echo $i;?>][]" style="margin-left: unset !important; position: unset !important;" disabled>
+                                          </td>    
+                                        <?php } ?>                            
+                                    </tr>
+                                        
+                                <?php } ?>
+                      </tbody>
+              </table>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-</main>
+      
