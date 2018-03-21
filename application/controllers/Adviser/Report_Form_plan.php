@@ -37,13 +37,13 @@ class Report_Form_plan extends CI_controller
         // add breadcrumbs
         $this->breadcrumbs->push('แบบแจ้งแผนปฎิบัติการสหกิจ', '/Adviser/Report_Form_plan/index');
 
-        $this->template->view('Adviser/Report_Form_plan_view',$data);
+        $this->template->view('Adviser/Report_Form_plan_list',$data);
     }
 
     public function title_plan($student_id)
     {
         
-        $data['coop_student_plan'] = $this->Coop_Student->get_coop_student_plan_by($student_id);
+        $data['rows'] = $this->Coop_Student->get_coop_student_plan($student_id);
         $data['student'] = $this->Student->get_student($student_id)[0];
         
 
@@ -51,7 +51,7 @@ class Report_Form_plan extends CI_controller
         $this->breadcrumbs->push('แบบแจ้งแผนปฎิบัติการสหกิจ', '/Adviser/Report_Form_plan/index');
         $this->breadcrumbs->push('รายละเอียดแบบแจ้งแผนปฎิบัติการสหกิจ', '/Adviser/Report_Form_plan/title_plan');
 
-        $this->template->view('Adviser/Report_Form_plan_list_view',@$data);
+        $this->template->view('Adviser/Report_Form_plan_view',@$data);
     }
 
 }
