@@ -14,7 +14,20 @@
                     <div class="card-body">
                         <form action="<?php echo site_url('Adviser/Report_cooperative/search');?>" method="post">
                             <div class="row">
-                                <div class="col-sm-4">
+                                <div class="col-sm-2">
+                                    <label>ภาคการศึกษา</label>
+                                    <select class="form-control" id="term_id" name="term_id">
+                                        <option value="0">ทั้งหมด</option>
+                                        <?php foreach($terms as $term) { ?>
+                                            <?php if($term['term_id'] == @$term_report['term_id']) { ?>
+                                                <option value="<?php echo $term['term_id'];?>" selected><?php echo $term['name']; ?></option>
+                                            <?php } else { ?>
+                                                <option value="<?php echo $term['term_id'];?>"><?php echo $term['name']; ?></option>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
                                     <label>บริษัทที่ไป</label>
                                     <select class="form-control" id="company_id" name="company_id">
                                         <option value="0">ทั้งหมด</option>
@@ -48,8 +61,9 @@
                             </div>
                         </form>
 
+                        <hr>
 
-                        <div style="width: 75%; margin: 0 auto;">
+                        <div style="width: 100%; margin: 0 auto;">
                             <canvas id="canvas"></canvas>
                         </div>
 
@@ -125,7 +139,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'สรุปข้อมูลนิสิตฝึกสหกิจประจำปีการศึกษา <?php echo $this->Term->get_current_term()[0]['name'];?>'
+                        text: 'สรุปข้อมูลนิสิตฝึกสหกิจประจำปีการศึกษา <?php echo $term_report['name'];?>'
                     },
                     scales: {
                         yAxes: [{
