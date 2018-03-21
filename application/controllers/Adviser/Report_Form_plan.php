@@ -43,7 +43,11 @@ class Report_Form_plan extends CI_controller
     public function title_plan($student_id)
     {
         
+
+        $data['coop_student_plan'] = $this->Coop_Student->get_coop_student_plan($student_id);
+
         $data['rows'] = $this->Coop_Student->get_coop_student_plan($student_id);
+
         $data['student'] = $this->Student->get_student($student_id)[0];
         
 
