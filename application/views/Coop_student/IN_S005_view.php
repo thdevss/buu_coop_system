@@ -41,8 +41,7 @@
                                             <td>                       
                                             <input class="form-check-input" type="checkbox" value=" " name=" " style="margin-left: unset !important; position: unset !important;">
                                             </td>    <?php } ?>                            
-                                    </tr>
-                                        
+                                    </tr>                        
                                 <?php } ?>
                             </tbody>
                     </table>
