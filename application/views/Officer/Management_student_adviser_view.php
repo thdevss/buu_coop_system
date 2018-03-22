@@ -141,7 +141,7 @@ $(document).ready(function() {
       var arr = $('#student_table').DataTable().column(0).checkboxes.selected()
       var adviser_id = jQuery(".adviser_val option:selected").val()
       
-      update_student_into_adviser(arr, adviser_id)
+      update_student_into_adviser_ajax(arr, adviser_id)
 
     });
 });
@@ -178,7 +178,7 @@ function update_student_into_adviser_ajax(arr, adviser_id)
       .then((willUpdate) => {
         if (willUpdate) {
           var student_arr = []
-          jQuery.each(arr[0], function( index, value ) {            
+          jQuery.each(arr, function( index, value ) {            
             student_arr.push(value)
           });
 
