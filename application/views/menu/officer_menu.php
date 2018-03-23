@@ -8,10 +8,14 @@
           <a class="nav-link" href="<?php echo site_url('Officer/main');?>"><i class="icon-home"></i> ประกาศข่าวสาร</a>
         </li>
         <li class="nav-item">
-          <!-- <a class="nav-link" href="#" data-toggle="modal" data-target="#selectTermBox"><i class="fa fa-calendar"></i> เลือกปีการศึกษา</a> -->
           <a class="nav-link" href="#" data-toggle="modal" data-target="#selectTermBox"><i class="icon-clock"></i> ปีการศึกษา: <b><?php echo $current_term['name'];?></b></a>
-          
         </li>
+
+        <?php if(@$user_info->is_adviser == 1) { ?>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo site_url('Officer/main/change_to_adviser');?>"><i class="fa fa-exchange"></i> กลับสู่เมนูอาจารย์</a>
+        </li>
+        <?php } ?>
 
         <li class="nav-title">
           เจ้าหน้าที่
