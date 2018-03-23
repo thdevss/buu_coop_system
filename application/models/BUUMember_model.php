@@ -83,6 +83,20 @@ class BUUMember_model extends CI_Model
             $query = $this->db->get();
             return $query->result();
         } else if($login_type == 'officer') {
+            //check teacher first
+            $this->db->where('id', $login_value);
+            $this->db->from('adviser');
+            $query = $this->db->get();
+            if($query->result()) {
+                $arr = [];
+                foreach($query->result() as $row) {
+                    $row->is_adviser = 1;
+                    $arr[] = $row;
+                }
+                return $arr;
+            }
+            //after, check officer lists
+
             $this->db->where('id', $login_value);
             $this->db->from('officer');
             $query = $this->db->get();

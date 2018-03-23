@@ -22,7 +22,21 @@ class Main extends CI_Controller {
 	{
         $data['rowNews'] = $this->News->gets_news();
 		$this->template->view('template/news_view', $data);
-		
-	}
+    }
+    
+    public function change_to_officer()
+    {
+        $login_data = $this->Login_session->check_login();        
+        $data['user_info'] = $this->BUUMember->get($login_data->login_type, $login_data->login_value)[0];
+        if($data['user_info']->is_officer == 1) {
+            $session_ID = $this->Login_session->set($login_data->login_value, 'officer');
+            if($session_ID) {
+                $this->session->set_userdata('session_ID', $session_ID);
+                redirect($check_ldap['login_type']);                    
+            }
+        } else {
+            redirect('/adviser');                    
+        }
+    }
 }  
   
