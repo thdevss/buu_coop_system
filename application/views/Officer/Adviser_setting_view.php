@@ -11,7 +11,7 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <i class="fa fa-align-justify"></i>จัดการอาจารย์การให้สิทธิ์
+            <i class="fa fa-align-justify"></i>เปลี่ยนสิทธิ์อาจารย์
             <div class="text-right">
             </div>
           </div>
