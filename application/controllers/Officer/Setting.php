@@ -254,6 +254,11 @@ class Setting extends CI_Controller {
     {
         $data['adviser'] = $this->Adviser->gets_adviser();
         // print_r($data);
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('เปลี่ยนสิทธิ์อาจารย์', '/Officer/Setting/adviser_setting');
+        $this->breadcrumbs->push('เปลี่ยนสิทธิ์อาจารย์', '/');
+        
         $this->template->view('Officer/Adviser_setting_view',$data);
     }
 
