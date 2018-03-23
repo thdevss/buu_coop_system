@@ -13,7 +13,7 @@ class Adviser_model extends CI_model {
 
     public function update_adviser($adviser_id, $array) 
     {
-        $this->db->where('adviser_id',$adviser_id);
+        $this->db->where('id',$adviser_id);
         return $this->db->update('adviser',$array);
 
     }
