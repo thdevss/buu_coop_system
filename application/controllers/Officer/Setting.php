@@ -249,5 +249,32 @@ class Setting extends CI_Controller {
         redirect('Officer/setting/lists_skill_name/?status=Success_delete', 'refersh');
 
     }
+
+    public function adviser_setting()
+    {
+        $data['adviser'] = $this->Adviser->gets_adviser();
+        // print_r($data);
+        $this->template->view('Officer/Adviser_setting_view',$data);
+    }
+
+    public function post_adviser_setting()
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('status', 'สถานะ', 'required|numeric|in_list[0,1]');
+
+        $return['status'] = false;
+
+        if ($this->form_validation->run()) {
+            //change in db
+            $array['is_officer'] = $this->input->post('status');
+            $adviser_id = $this->input->post('adviser_id');            
+            $this->Adviser->update_adviser($adviser_id, $array);
+            
+            $return['status'] = true;
+        }
+
+        echo json_encode($return);
+
+	} 
     
 }
