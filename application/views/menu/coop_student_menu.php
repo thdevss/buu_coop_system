@@ -25,7 +25,7 @@
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-doc"></i> IN-S003</a>          
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-file-text-o"></i> IN-S003</a>          
             <ul class="nav-dropdown-items">
               <li class="nav-item">
               <?php echo anchor('Coop_student/Permit_form/', '<i class="fa fa-download"></i> ดาวน์โหลดเอกสาร', 'class="nav-link"');?>
@@ -36,7 +36,7 @@
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-doc"></i> IN-S004</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-file-text-o"></i> IN-S004</a>
             <ul class="nav-dropdown-items">
             <li class="nav-item">
               <a class="nav-link" href="components-buttons.html"><i class="fa fa-download"></i> ดาวน์โหลดเอกสาร</a>
@@ -47,7 +47,7 @@
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-doc"></i> IN-S005</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-file-text-o"></i> IN-S005</a>
             
             <ul class="nav-dropdown-items">
               <li class="nav-item">
@@ -59,7 +59,7 @@
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-doc"></i> IN-S006</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-file-text-o"></i> IN-S006</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
                 <?php echo anchor('Coop_student/Subject_report/form', '<i class="fa fa-download"></i> ดาวน์โหลดเอกสาร', 'class="nav-link"');?>
@@ -71,20 +71,27 @@
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-file-text-o"></i> แบบคำร้องทั่วไป</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-file-text-o"></i> IN-S007</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
                 <a class="nav-link" href="components-buttons.html"><i class="fa fa-download"></i> ดาวน์โหลดเอกสาร</a>
               </li>
               <li class="nav-item">
-                <?php echo anchor('Coop_student/upload_document/?code=IN-S006', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
+                <?php echo anchor('Coop_student/upload_document/?code=IN-S007', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
               </li>
             </ul>
           </li>
           <li class="nav-item nav-dropdown">
-          <?php echo anchor('Coop_student/Assessment_company/form', '<i class="fa fa-file-o"></i> แบบประเมินบริษัท', 'class="nav-link"');?>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-file-text-o"></i> IN-S008</a>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item nav-dropdown">
+               <?php echo anchor('Coop_student/Assessment_company/form', '<i class="fa fa-file-o"></i> ดาวน์โหลดเอกสาร', 'class="nav-link"');?>
+              </li>
+              <li class="nav-item">
+                <?php echo anchor('Coop_student/upload_document/?code=IN-S008', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
+              </li>
+            </ul>
           </li>
-
         </ul>
       </nav>
       <button class="sidebar-minimizer brand-minimizer" type="button"></button>
