@@ -145,7 +145,7 @@
                                <input type="text" class="form-control" id="alley" name="alley" value="" required>                                   
                           </div>
                           <div class="form-group col-sm-8">
-                               <label>E-mail</label><code></code>
+                               <label>E-mail</label><code>*</code>
                                <input type="text" class="form-control" id="alley" name="alley" value="" required>                                   
                           </div>
                         </div>
@@ -176,11 +176,18 @@
                         <option value="1">วิทยาการสารสนเทศ</option>                      
                         </div></select>                                          
                       </div>
-                        <div class="form-group col-sm-8">
-                               <label>ตำแหน่งงานที่นักศึกษาปฏิบัติ (Job Position) </label><code>*</code>
-                               <input type="text" class="form-control" id="alley" name="alley" value="" required>                                                     
-                         </div>
-                          <div class="form-group col-sm-8">
+                      <div class="form-group col-sm-5">
+                               <label>ตำแหน่งงานที่นักศึกษาปฏิบัติ (Job Position)(เลือก)</label><code>*</code>
+                               <select id="select2" name="select2" class="form-control form-control-md">
+                                  <option value="0">-----------------ตำแหน่งงานที่นักศึกษาปฏิบัติ (Job Position)----------------</option>
+                                  <option value="1">โปรเเกรมเมอร์</option>
+                                  <option value="2">Developer</option>
+                                  <option value="3">Admin</option>
+                                  <option value="3">Support</option>
+                                  <option value="3">System design</option>                                
+                                  </div></select>                                                
+                          </div>
+                          <div class="form-group col-sm-12">
                                <label>ลักษณะงานที่นักศึกษาปฏิบัติ (Job Description)</label><code></code>
                                <input type="text" class="form-control" id="alley" name="alley" value="" required>                                   
                           </div>

@@ -35,25 +35,25 @@ class IN_S004 extends CI_Controller {
             //     array_push($data['data'], $tmp_array);
     
             // }
-            $data['status'] = [];
-            if($this->input->get('status') == 'success') {
-                $data['status'] = [
-                    'text' => 'สำเร็จ',
-                    'color' => 'success'
-                ];
-            } else if($this->input->get('status') == 'error') {
-                $data['status'] = [
-                    'text' => 'ผิดพลาด',
-                    'color' => 'warning'
-                ];
-            }
+            // $data['status'] = [];
+            // if($this->input->get('status') == 'success') {
+            //     $data['status'] = [
+            //         'text' => 'สำเร็จ',
+            //         'color' => 'success'
+            //     ];
+            // } else if($this->input->get('status') == 'error') {
+            //     $data['status'] = [
+            //         'text' => 'ผิดพลาด',
+            //         'color' => 'warning'
+            //     ];
+            // }
     
             $student_id = $this->Login_session->check_login()->login_value;            
             $data['student'] = $this->Student->get_student($student_id)[0];
             $data['rows'] = $this->Coop_Student->get_coop_student_plan($student_id);
                 
             // add breadcrumbs
-            $this->breadcrumbs->push('แบบแจ้งแผนปฏิบัติงานสหกิจศึกษา', 'Coop_student/IN_S005_view');
+            $this->breadcrumbs->push('แบบแจ้งรายละเอียดการปฏิบัติงาน และแผนที่ตั้งสถานประกอบการ', 'Coop_student/IN_S004_view');
             $this->template->view('Coop_student/IN_S004_view', @$data);
 
 
