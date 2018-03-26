@@ -98,4 +98,17 @@ class Coop_Student_model extends CI_model {
         $this->db->where('student_id',$student_id);        
         return $this->db->delete('coop_student_plan');
     }
+
+    public function get_permit_form_by_student($student_id)
+    {
+        $this->db->where('student_id', $student_id);
+        $this->db->from('coop_student_permit');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function save_permit_form_by_student($array)
+    {
+        return $this->db->replace('coop_student_permit', $array);
+    }    
 }
