@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Subject_Report  extends CI_Controller {
+class Subject_report  extends CI_Controller {
 
 	public function __construct()
     {
@@ -17,20 +17,37 @@ class Subject_Report  extends CI_Controller {
             die();
         }
     }
-    public function form(){
+    public function form($status = ''){
+        if($status == '') {
+            $status = $this->input->get('status');
+        }
+
+        if( $status == 'success'){
+            $data['status']['color'] = 'success';            
+            $data['status']['text'] = 'บันทึกสำเร็จ';
+        }
+        else if($status == 'error_input'){
+            $data['status']['color'] = 'warning';            
+            $data['status']['text'] = 'เพิ่มไม่สำเร็จ';
+
+        }
+
+    
+        else {
+            $data['status'] = '';
+        }
         $student_id = $this->Login_session->check_login()->login_value;
-        
-        $return['status'] = 'wait';
-        $return['row'] = @$this->Subject_Report->get_report($student_id)[0];
-        $this->template->view('Coop_student/Reportmanager_view', $return);
+        // print_r($student_id);
+
+        $data['subject_report'] = @$this->Subject_Report->get_report($student_id)[0];
+        print_r($data);
+        $this->template->view('Coop_student/Reportmanager_view', $data);
     }
 
     public function post_report(){
+
+        // print_r($_POST);
         $student_id = $this->Login_session->check_login()->login_value;
-        $data['subject_th'] =  $this->input->post('subject_th');
-        $data['subject_en'] = $this->input->post('subject_en');
-        $data['report_detail'] = $this->input->post('report_detail');
-                
         $this->load->library('form_validation');
         $this->form_validation->set_rules('subject_th', 'หัวข้อภาษาไทย', 'required');
         $this->form_validation->set_rules('subject_en', 'หัวข้อภาษาอังกฤษ', 'required|alpha');
@@ -38,26 +55,18 @@ class Subject_Report  extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE)
                 {
-                    $return['status'] = 'error';
-                    $return['row'] = @$this->Subject_Report->get_report($student_id)[0];
-                        $this->template->view('Coop_student/Reportmanager_view', $return);
-                }
-                else
-                {
-                    if(@$this->Subject_Report->get_report($student_id)[0]) {
-                        //update
-                        $this->Subject_Report->update($data,$student_id);
-                        $return['status'] = 'successupdate';
-                    } else {
-                        //insert
-                        $data['student_id'] = $student_id;
-                        $this->Subject_Report->insert($data);
-                        $return['status'] = 'successinsert';
-                    }
-                    $return['row'] = @$this->Subject_Report->get_report($student_id)[0];
-                    
-                        $this->template->view('Coop_student/Reportmanager_view',$return);
+                    redirect('Coop_student/Subject_report/form/?status=error_input','refresh');
+
+                }else{
+                    $array['student_id'] = $student_id ;
+                    $array['subject_th'] = $this->input->post('subject_th');
+                    $array['subject_en'] = $this->input->post('subject_en');
+                    $array['report_detail'] = $this->input->post('report_detail');
+
+                    $this->Subject_Report->save($array);
+                
                 }
                     
-    }
+                redirect('Coop_student/Subject_report/form/?status=success','refresh');
+                }
 }

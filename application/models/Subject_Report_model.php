@@ -3,18 +3,26 @@ class Subject_Report_model extends CI_model
 {
     public function get_report($student_id)
     {
+        $this->db->where('student_id',$student_id);
+        $this->db->from('coop_student_subject_report');
+        $query = $this->db->get();
+        return $query->result_array();
 
     }
 
-    public function update()
+    public function update($student_id, $array)
     {
+        $this->db->where('student_id', $student_id);
+        return $this->db->update('coop_student_subject_report', $array);
 
     }
 
-    public function insert()
+    public function save($array)
     {
+        return $this->db->replace('coop_student_subject_report', $array);
 
     }
+
 
 
 }
