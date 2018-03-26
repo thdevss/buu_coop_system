@@ -40,7 +40,7 @@ class Subject_report  extends CI_Controller {
         // print_r($student_id);
 
         $data['subject_report'] = @$this->Subject_Report->get_report($student_id)[0];
-        print_r($data);
+        // print_r($data);
         $this->template->view('Coop_student/Reportmanager_view', $data);
     }
 
