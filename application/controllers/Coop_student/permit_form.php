@@ -9,21 +9,30 @@ class permit_form  extends CI_Controller {
         if(!$this->Login_session->check_login()) {
             $this->session->sess_destroy();
             redirect('member/login');
-		}
-		
-		//check priv
-        if($this->Login_session->check_login()->login_type != 'coop_student') {
+        }
+
+        //check priv
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'coop_student') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+        
     }
 
     public function index()
     {
         $student_id = $this->Login_session->check_login()->login_value;
 
-        $data['permit'] = @$this->Coop_student_Permit_form->get_by_student($student_id)[0];
-        $data['student'] = @$this->Coop_student->get($student_id)[0];
+        // $data['permit'] = @$this->Coop_student_Permit_form->get_by_student($student_id)[0];
+        $data['permit'] = @$this->Coop_Student->get_permit_form_by_student($student_id)[0];
+        $data['student'] = @$this->Student->get_student($student_id)[0];
+        $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
+
+        $this->breadcrumbs->push('ดาวน์โหลดเอกสารแบบอนุญาติให้นิสิตไปปฏิบัติงานสหกิจ (IN-S003)', '/Coop_student/Permit_form');
+        
 
         $this->template->view('Coop_student/permit_form_view',$data);
 
@@ -68,27 +77,20 @@ class permit_form  extends CI_Controller {
             if(!$data['allow_choice']) {
                 $data['allow_choice'] = 0;
             }
-            //save
-            if(@$this->Coop_student_Permit_form->get_by_student($student_id)[0]) {
-                //update
-                $this->Coop_student_Permit_form->update($student_id, $data);
-            } else {
-                //insert
-                $this->Coop_student_Permit_form->insert($student_id, $data);                
-            }
+            $data['student_id'] =  $student_id;
 
-            if($this->input->post('print') == '1') {
-                //print page
-                $return['status'] = true;
-                $return['print'] = true;
-            } else {
-                $return['status'] = true;
+            //save
+            if($this->Coop_Student->save_permit_form_by_student($data)) {
+                if($this->input->post('print') == '1') {
+                    //print page
+                    $return['status'] = true;
+                    $return['print'] = true;
+                } else {
+                    $return['status'] = true;
+                }     
             }
-            
         } else {
-        
            $return['status'] = false;
-           
            $return['message'] = strip_tags(validation_errors());
         }
 
@@ -97,8 +99,5 @@ class permit_form  extends CI_Controller {
         
     }
 
-    public function print()
-    {
-        echo 'printprint';
-    }
+
 }

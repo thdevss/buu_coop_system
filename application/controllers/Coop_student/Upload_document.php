@@ -9,13 +9,17 @@ class Upload_document extends CI_Controller {
         if(!$this->Login_session->check_login()) {
             $this->session->sess_destroy();
             redirect('member/login');
-		}
-		
-		//check priv
-        if($this->Login_session->check_login()->login_type != 'coop_student') {
+        }
+
+        //check priv
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'coop_student') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+        
     }
 
     public function index()
@@ -30,7 +34,7 @@ class Upload_document extends CI_Controller {
         if(!$document_code) 
             $document_code = $this->input->get('code');
 
-        if(!$data['document'] = $this->Coop_document->get_by_name($document_code)[0]) {
+        if(!$data['document'] = $this->Form->get_form_by_name($document_code)[0]) {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
@@ -49,18 +53,20 @@ class Upload_document extends CI_Controller {
                 $data['status'] = 'success';
 
                 //insert to db
-                @$this->Coop_document->delete_by_student($student_id, $data['document']->id);
+                @$this->Coop_Submitted_Form_Search->delete_form_by_student_and_code($student_id, $data['document']['id']);
                 $insert['pdf_file'] = '/uploads/'.$file['file_name'];
-                $insert['coop_document_id'] = $data['document']->id;
+                $insert['coop_document_id'] = $data['document']['id'];
                 $insert['student_id'] = $student_id;
-                $this->Coop_document->insert_by_student($insert);
+                $this->Coop_Submitted_Form_Search->insert_form_by_student_and_code($insert);
             }
         } else {
             $data['status'] = '1';
 
-            //check old document
-            $data['old_document'] = @$this->Coop_document->get_by_student($student_id, $data['document']->id)[0];
         }
+        //check old document        
+        $data['old_document'] = @$this->Coop_Submitted_Form_Search->search_form_by_student_and_code($student_id, $data['document']['id'])[0];
+        $this->breadcrumbs->push('อัพโหลดเอกสาร'.$data['document']['document_name'].' ('.$data['document']['name'].')', '/Coop_student/upload_document/?code='.$data['document']['name']);
+        
 
         $this->template->view('Coop_student/upload_document_view', $data);
         

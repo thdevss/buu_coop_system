@@ -5,17 +5,23 @@ class Form_model extends CI_model {
         $this->db->from('coop_document');
         $query = $this->db->get();
         return $query->result_array();
-
     }
 
     public function get_form_by_code($form_code)
     {
-        $this->db->where('id',$form_code);
+        $this->db->where('id', $form_code);
         $this->db->from('coop_document');
         $query = $this->db->get();
         return $query->result_array();
-
     }
+
+    public function get_form_by_name($form_name)
+    {
+        $this->db->where('name', $form_name);
+        $this->db->from('coop_document');
+        $query = $this->db->get();
+        return $query->result_array();
+    }    
 
     public function submit_document($student_id, $form_code, $file)
     {
