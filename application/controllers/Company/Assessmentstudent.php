@@ -94,7 +94,7 @@ class Assessmentstudent extends CI_Controller {
 			$insert = [
 				'item_id' => $item_id,
 				'student_id' => $student_id,
-				'company_person_id' => $trainer['id'],
+				'trainer_id' => $trainer['id'],
 				'company_id' => $trainer['company_id'],
 				'datetime' => date('Y-m-d H:i:s'),
 				'term_id' => $term_id
