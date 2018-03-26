@@ -12,10 +12,13 @@ class Subject_report  extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'coop_student') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'coop_student') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+      
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
     public function form($status = ''){
         if($status == '') {
@@ -31,8 +34,6 @@ class Subject_report  extends CI_Controller {
             $data['status']['text'] = 'เพิ่มไม่สำเร็จ';
 
         }
-
-    
         else {
             $data['status'] = '';
         }
@@ -41,6 +42,10 @@ class Subject_report  extends CI_Controller {
 
         $data['subject_report'] = @$this->Subject_Report->get_report($student_id)[0];
         // print_r($data);
+        
+        // Breadcrumb
+        $this->breadcrumbs->push('จัดการหัวข้อรายงาน', '/Coop_student/Subject_report/form');
+
         $this->template->view('Coop_student/Reportmanager_view', $data);
     }
 
