@@ -10,22 +10,19 @@ class Company_Assessment_Form_model extends CI_model {
 
     }
 
-    public function save_company_forms_subject($array)
+    public function save_company_form_result($array)
     {
         return $this->db->insert('company_questionnaire_subject',$array);
     }
 
-    public function save_company_form_result($array)
+    public function get_result_for_company($student_id)
     {
-        return $this->db->replace('company_has_company_questionnaire_item',$array);
-    }
+        
+        // $this->db->where('id',$student_id);
+        // $this->db->from('company_questionnaire_subject');
+        // $query = $this->db->get();
+        // return $query->result_array();
 
-    public function get_company_form_result($company_id)
-    {
-        $this->db->where('company_id', $company_id);
-        $this->db->from('company_has_company_questionnaire_item');
-        $query = $this->db->get();
-        return $query->result_array();
     }
 
     public function get_company_questionnaire_item_by_subject($id)
