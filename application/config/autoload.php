@@ -165,5 +165,6 @@ $autoload['model'] = array(
     'Training_Check_Student_model' => 'Training_Check_Student',
     'Training_model' => 'Training',
     'News_File_model' => 'News_File',
+    'Subject_Report_model' => 'Subject_Report',
     
 );
