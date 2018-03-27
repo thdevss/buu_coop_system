@@ -110,5 +110,28 @@ class Coop_Student_model extends CI_model {
     public function save_permit_form_by_student($array)
     {
         return $this->db->replace('coop_student_permit', $array);
-    }    
+    }
+    
+    public function get_coop_student_dorm_by_student($student_id)
+    {
+        $this->db->where('student_id', $student_id);
+        $this->db->from('coop_student_dorm');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_coop_student_emergency_contact_by_student($student_id)
+    {
+        $this->db->where('student_id', $student_id);
+        $this->db->from('coop_student_emergency_contact');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function save_emergency_contact($array)
+    {
+        return $this->db->replace('coop_student_emergency_contact', $array);
+
+    }
+
 }
