@@ -75,7 +75,7 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-file-text-o"></i> IN-S007</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="components-buttons.html"><i class="fa fa-download"></i> ดาวน์โหลดเอกสาร</a>
+                <?php echo anchor('Coop_student/IN_S007/', '<i class="fa fa-download"></i> ดาวน์โหลดเอกสาร', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
                 <?php echo anchor('Coop_student/upload_document/?code=IN-S007', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
