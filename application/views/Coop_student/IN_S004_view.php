@@ -34,7 +34,7 @@
                                     <input type="text" class="form-control" id="number" name="number" value="<?php echo $company_person['telephone']; ?>" required disabled >                                                        
                                 </div>
                                 <div class="form-group col-sm-5">
-                                    <label>โทรสาร</label><code></code>
+                                    <label>โทรสาร</label>
                                     <input type="text" class="form-control" id="building" name="building" value="<?php echo $company_person['fax_number']; ?>" required disabled >                                       
                                 </div>
                               <div class="form-group col-sm-4">
@@ -107,7 +107,7 @@
                             </div>
 
                             <div class="form-group col-sm-4">
-                               <label>โทรสาร</label><code></code>
+                               <label>โทรสาร</label>
                                <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['fax_number']; ?>" required disabled >                                   
                             </div>
 
@@ -137,7 +137,7 @@
                                <input type="text" class="form-control" id="" name="" value="<?php echo $trainer['telephone']; ?>" required disabled >                                                     
                             </div>
                             <div class="form-group col-sm-4">
-                               <label>โทรสาร</label><code></code>
+                               <label>โทรสาร</label>
                                <input type="text" class="form-control" id="" name="" value="<?php echo $trainer['fax_number']; ?>" required disabled >                                   
                             </div>
                             <div class="form-group col-sm-8">
@@ -218,7 +218,7 @@
                                <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['telephone']; ?>" required disabled >                          
                           </div>
                           <div class="form-group col-sm-4">
-                               <label>โทรสาร </label><code>*</code>
+                               <label>โทรสาร</label>
                                <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['fax_number']; ?>" required disabled >                          
                           </div>                
                         </div>
@@ -298,7 +298,7 @@
                                <input type="text" class="form-control" id="telephone" name="telephone" value="<?php echo $coop_student_emergency_contact['telephone'] ;?>" required>                          
                           </div>
                           <div class="form-group col-sm-4">
-                               <label>โทรสาร </label><code>*</code>
+                               <label>โทรสาร </label>
                                <input type="text" class="form-control" id="fax_number" name="fax_number" value="<?php echo $coop_student_emergency_contact['fax_number'] ;?>" >                          
                           </div>                       
                         </div>
