@@ -22,7 +22,8 @@ class IN_S007 extends CI_Controller {
 
     public function index()
     {
-            $this->template->view('Coop_student/IN_S007_view');
+        $this->breadcrumbs->push('แบบคำร้องทั่วไป', 'Coop_student/IN_S007_view');
+        $this->template->view('Coop_student/IN_S007_view');
     }
     
     public function save()
