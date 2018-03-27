@@ -27,6 +27,7 @@
               <?php echo anchor('Officer/Student_list', '<i class="icon-list"></i> เปลี่ยนสถานะ', 'class="nav-link"');?>
             </li>
             
+            
           </ul>
         </li>
 
@@ -38,6 +39,10 @@
             <li class="nav-item">
               <?php echo anchor('Officer/Management_student_adviser', '<i class="fa fa-tripadvisor"></i> อ.ที่ปรึกษากับนิสิต', 'class="nav-link"');?>
             </li>
+            <li class="nav-item">
+              <?php echo anchor('Officer/Management_student_adviser/map_view', '<i class="icon-list"></i> แผนที่', 'class="nav-link"');?>
+            </li>
+
           </ul>
         </li>
 
