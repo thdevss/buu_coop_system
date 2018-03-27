@@ -73,10 +73,10 @@
                                     &nbsp;&nbsp;&nbsp;<input class="form-check-input" type="radio" id="" value="option1" name="inline-radios" disabled>
                                       <label class="form-check-label" for="inline-radio1">ติดต่อกับผู้จัดการโดยตรง</label>
                                     </div>
-
+                                    <br>
                                     <div class="form-check form-check-inline mr-1">
                                     &nbsp;&nbsp;&nbsp;<input class="form-check-input" type="radio" id="" value="option2" name="inline-radios" checked>
-                                    &nbsp;&nbsp;&nbsp;<label class="form-check-label" for="inline-radio2">มอบหมายให้บุคคลต่อไปนี้ประสานงานแทน</label>
+                                    <label class="form-check-label" for="inline-radio2">มอบหมายให้บุคคลต่อไปนี้ประสานงานแทน</label>
                                     </div>
 
                                 <?php } ?>
