@@ -118,4 +118,21 @@ class Management_student_adviser extends CI_controller{
 
         echo json_encode($data);
     }
+
+
+    public function map_view()
+    {
+        $this->breadcrumbs->push('แผนที่', '/Officer/Management_student_adviser/map_view');
+        $data = [];
+
+        foreach($this->Company->gets_company() as $company) {
+            $tmp['company_name_th'] = $company['name_th'];
+            $tmp['map'] = @$this->Address->get_address_by_company($company['id'])[0];
+            if(@$tmp['map']) {
+                $data['company'][] = $tmp;
+            }
+        }
+
+        $this->template->view('Officer/Coop_student_map_view',$data);
+    }
 }

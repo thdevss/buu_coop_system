@@ -8,7 +8,7 @@ class Address_model extends CI_model {
         return $query->result_array();
     }
 
-    public function gets_address($array) 
+    public function gets_address() 
     {
         $this->db->from('company_address');
         $query = $this->db->get();
