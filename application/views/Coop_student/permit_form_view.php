@@ -112,8 +112,8 @@
               </div>
 
                 <div class="text-center">
-
-                  <button type="submit" class="btn btn-md btn-primary" name="print" value="1"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
+                  <input type="hidden" name="print" id="print" value="0">
+                  <button type="submit" class="btn btn-md btn-primary" value="1" onclick="print_form();"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
                   <button type="submit" class="btn btn-md btn-success" name="save" value="1"><i class="fa fa-dot-circle-o"></i>บันทึกเอกสาร</button>                
        
                 </div>
