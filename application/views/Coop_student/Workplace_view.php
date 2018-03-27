@@ -70,7 +70,9 @@
     function initMap() {
         var uluru = 
         
-        genMap({lat: <?php echo $map['site_latitude'];?>, lng: <?php echo $map['site_longitude'];?>})
+        <?php if($map['site_latitude'] && $map['site_longitude']) { ?>
+            genMap({lat: <?php echo $map['site_latitude'];?>, lng: <?php echo $map['site_longitude'];?>})
+        <?php } ?>
     }
 
 
