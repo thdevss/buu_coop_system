@@ -33,7 +33,6 @@ class permit_form  extends CI_Controller {
 
         $this->breadcrumbs->push('ดาวน์โหลดเอกสารแบบอนุญาติให้นิสิตไปปฏิบัติงานสหกิจ (IN-S003)', '/Coop_student/Permit_form');
         
-
         $this->template->view('Coop_student/permit_form_view',$data);
 
     }
@@ -81,7 +80,7 @@ class permit_form  extends CI_Controller {
 
             //save
             if($this->Coop_Student->save_permit_form_by_student($data)) {
-                if($this->input->post('print') == '1') {
+                if($this->input->post('print')) {
                     //print page
                     $return['status'] = true;
                     $return['print'] = true;
@@ -95,8 +94,36 @@ class permit_form  extends CI_Controller {
         }
 
         echo json_encode($return);
-        
-        
+    }
+
+    public function print_data()
+    {
+        $student_id = $this->Login_session->check_login()->login_value;
+
+        $data['permit'] = @$this->Coop_Student->get_permit_form_by_student($student_id)[0];
+        $data['student'] = @$this->Student->get_student($student_id)[0];
+        $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
+
+        $template_file = "template/IN-S003-N.docx";        
+        if($data['permit']['allow_choice'] == 1) {
+            $template_file = "template/IN-S003-Y.docx";
+        }
+        $save_filename = "download/".$student_id."-IN-S003.docx";
+        $data_array = [
+            "student_fullname_th" => $data['student']['fullname'],
+            "student_id" => $student_id,
+            "student_course" => "วทบ. เทคโนโลยีสารสนเทศ 4 ปี",
+            "student_department" => $data['department']['name'],
+        ];
+
+        $data_array = array_merge($data_array, $data['permit']);
+        // print_r($data_array);
+        // die();
+
+        $result = $this->service_docx->print_data($data_array, $template_file, $save_filename);
+        // print_r($result);
+        redirect(base_url($result['full_url']), 'refresh');
+
     }
 
 
