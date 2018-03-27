@@ -16,6 +16,10 @@
                             if($status){
                             echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
                             }
+                            if(!$map['site_latitude'] && !$map['site_longitude']) {
+                                echo '<div class="alert alert-warning">โปรดระบุพิกัดที่ทำงาน</div>';
+
+                            }
                         ?>
                         </div>
 
@@ -68,8 +72,6 @@
     }
 
     function initMap() {
-        var uluru = 
-        
         <?php if($map['site_latitude'] && $map['site_longitude']) { ?>
             genMap({lat: <?php echo $map['site_latitude'];?>, lng: <?php echo $map['site_longitude'];?>})
         <?php } ?>
