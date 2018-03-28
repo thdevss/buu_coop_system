@@ -12,12 +12,18 @@
           <div class="card-header"><i class="fa fa-align-justify"></i>แบบอนุญาติให้นิสิตไปปฏิบัติงานสหกิจ</div>
 
               <div class="card-body">
+                <?php 
+                echo validation_errors('<div class="alert alert-warning">', '</div>');
+                if(@$status) {
+                  echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
+                }
+                ?>
 
                 <div class="card-header"><strong> 1.ข้อมูลทั่วไป</strong></div><br>
               
                 
 
-                <form id="permit_form">
+                <form id="permit_form" method="post" action="<?php echo site_url('Coop_Student/permit_form/post/');?>">
                  <div class="row">
                  <div class="form-group col-sm-8">
                    <label for="fullname">ชื่อนิสิต นาย/นางสาว</label><code>*</code>
@@ -30,12 +36,12 @@
                    <input type="text" class="form-control" id="student_code" name="student_code" value="<?php echo $student['id'] ?>">
                   </div>
                   <div class="form-group col-sm-4">
-                   <label for="student_field">สาขาวิชา</label><code>*</code>
-                   <input type="text" class="form-control" id="student_field" name="student_field" value="<?php echo $department['name'] ?>">
+                   <label for="department">สาขาวิชา</label><code>*</code>
+                   <input type="text" class="form-control" id="department" name="department" value="<?php echo $department['name'] ?>">
                 </div>
                 <div class="form-group col-sm-4">
                    <label for="city">หลักสูตร</label><code>*</code>
-                   <input type="text" class="form-control" id="city" placeholder="">
+                   <input type="text" class="form-control" id="student_course" name="student_course" value="<?php echo $student['student_course'] ?>" placeholder="">
                   </div>
               </div>
               <div class="row">
@@ -112,9 +118,8 @@
               </div>
 
                 <div class="text-center">
-                  <input type="hidden" name="print" id="print" value="0">
-                  <button type="submit" class="btn btn-md btn-primary" value="1" onclick="print_form();"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
-                  <button type="submit" class="btn btn-md btn-success" name="save" value="1"><i class="fa fa-dot-circle-o"></i>บันทึกเอกสาร</button>                
+                  <button type="submit" class="btn btn-md btn-primary" name="print" value="1"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
+                  <button type="submit" class="btn btn-md btn-success" name="print" value="0"><i class="fa fa-dot-circle-o"></i>บันทึกเอกสาร</button>                
        
                 </div>
 
@@ -125,5 +130,3 @@
     </div>
   </div>
 </div>
-
-<script src="<?php echo base_url('/assets/js/coop_student/permit_form.js?'.time());?>"></script>
