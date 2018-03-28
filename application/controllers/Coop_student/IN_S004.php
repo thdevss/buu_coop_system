@@ -172,7 +172,7 @@ class IN_S004 extends CI_Controller {
             "trainer_dapartment" => $data['trainer']['department'],
             "trainer_telephone" => $data['trainer']['telephone'],
             "trainer_fax_number" => $data['trainer']['fax_number'],
-            "trainer_emaill" => $data['trainer']['email'],
+            "trainer_email" => $data['trainer']['email'],
             "student_name_fullnam" => $data['student_name']['fullname'],
             "student_name_id" => $data['student_name']['id'],
             "student_department_name" => $data['student_department']['name'],
