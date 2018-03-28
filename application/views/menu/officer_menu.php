@@ -92,13 +92,16 @@
               <?php echo anchor('Officer/Coop_student/', '<i class="fa fa-handshake-o"></i> รายชื่อนิสิตสหกิจ', 'class="nav-link"');?>            
             </li>
             <li class="nav-item">
-              <?php echo anchor('Officer/Coop_Submitted_Form_Search/by_student', '<i class="icon-doc"></i> การส่งเอกสาร (บุคคล)', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Coop_Submitted_Form_Search/by_student', '<i class="icon-doc"></i> ส่งเอกสาร (บุคคล)', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-              <?php echo anchor('Officer/Coop_Submitted_Form_Search/by_form', '<i class="icon-docs"></i> การส่งเอกสาร (ประเภท)', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Coop_Submitted_Form_Search/by_form', '<i class="icon-docs"></i> ส่งเอกสาร (ประเภท)', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-              <?php echo anchor('Officer/Coop_student_assessment_result/', '<i class="fa fa-tasks"></i> อาจารย์ประเมินนิตสิต', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Coop_student_assessment_result/', '<i class="fa fa-check-square-o"></i> สถานประกอบการประเมินนิสิต', 'class="nav-link"');?>
+            </li>
+            <li class="nav-item">
+              <?php echo anchor('Officer/Company_assessment_result/', '<i class="fa fa-check-square-o"></i> นิสิตประเมินสถานประกอบการ', 'class="nav-link"');?>
             </li>
 
             <li class="nav-item">
