@@ -13,7 +13,10 @@
                     if($status){
                         echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
                     }
+                        echo validation_errors('<div class="alert alert-warning">','</div>');
                     ?>
+
+
                      <!-- ข้อ 1 -->
                      <label for="name"><b>๑.	ชื่อ/ที่อยู่สถานประกอบการ </b></label>
                         <div class="row">
@@ -307,8 +310,8 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success">บันทึก </button>
-                            <button type="reset" class="btn btn-secondary">ยกเลิก </button>
+                            <button type="submit" class="btn btn-md btn-primary" value="1" name="print"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
+                            <button type="submit" class="btn btn-md btn-success" value="0" name="print"><i class="fa fa-dot-circle-o"></i> บันทึก </button>
                         </div>
                     </div>
                     </form>
@@ -316,6 +319,7 @@
             </div>
         </div>
 </main>
+
 
 
 <style>
