@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Coop_student extends CI_Controller {
+class Company_assessment_result extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
@@ -26,9 +26,9 @@ class Coop_student extends CI_Controller {
             $data = array();
 
             // add breadcrumbs
-            $this->breadcrumbs->push('รายชื่อนิสิตสหกิจ', '/Officer/Coop_student/index');
+            $this->breadcrumbs->push('รายชื่อนิสิตสหกิจ', '/Officer/Company_assessment_result/index');
 
-            $this->template->view('Officer/List_coop_student_view', $data);
+            $this->template->view('Officer/Company_assessment_result_list_view', $data);
         }
 
         public function ajax_list()
@@ -59,13 +59,24 @@ class Coop_student extends CI_Controller {
                 $tmp_array['job_position'] = $cache['job'][$row['company_job_position_id']];
                 $tmp_array['company'] = @$cache['company'][$row['company_id']];
                 $tmp_array['trainer'] = @$cache['trainer'][$row['trainer_id']];
-
+                $tmp_array['button'] = '<a href="'.site_url('Officer/Company_assessment_result/assessment_detail/'.$row['student_id']).'" class="btn btn-info"><i class="fa fa-list-alt"></i> ผลการประเมิน</a>';
                 // print_r($tmp_array);
                 array_push($return['data'], $tmp_array);
             }
     
             echo json_encode($return['data']);
         }
+
+        public function assessment_detail($student_id)
+        {
+
+
+            // add breadcrumbs
+            $this->breadcrumbs->push('รายชื่อนิสิตสหกิจ', '/Officer/Company_assessment_result/index');
+            $this->breadcrumbs->push('แบบการประเมินผลการฝึกงานของนิสิตสหกิจ', '/Officer/Company_assessment_result/assessment_detail');
+
+            $this->template->view('Officer/Company_assessment_result_score_view');
+        } 
     
     
     
