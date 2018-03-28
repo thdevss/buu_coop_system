@@ -37,7 +37,7 @@ function initMap() {
     var locations = [
         <?php 
         foreach($company as $row) {
-            echo '["'.$row['company_name_th'].'", '.$row['map']['latitude'].', '.$row['map']['longitude'].', 4],';
+            echo '["'.$row['company_name_th'].'", '.$row['map']['latitude'].', '.$row['map']['longitude'].', "'.$row['pin_color'].'", "'.$row['message'].'"],';
         } 
         ?>
       
@@ -58,7 +58,8 @@ function initMap() {
     for (i = 0; i < locations.length; i++) { 
         marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            map: map
+            map: map,
+            icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|'+locations[i][3]
         });
         loc = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
         bounds.extend(loc);
@@ -66,7 +67,7 @@ function initMap() {
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
             //get company data from ajax
-            infowindow.setContent("สถานประกอบการ: <b>"+locations[i][0]+"</b><br>มีนิสิตไปฝึกงาน 15 คน");
+            infowindow.setContent("สถานประกอบการ: <b>"+locations[i][0]+"</b><br>"+locations[i][4]);
             infowindow.open(map, marker);
         }
       })(marker, i));

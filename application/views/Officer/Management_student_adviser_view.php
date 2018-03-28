@@ -89,7 +89,7 @@ $(document).ready(function() {
         },
         'order': [[2, 'asc']],
         "ajax": {
-          "url": "<?php echo site_url('Officer/Management_student_adviser/ajax_list');?>",
+          "url": "<?php echo site_url('Officer/Management_student_adviser/ajax_list?company_id='.$this->input->get('company_id'));?>",
           "dataSrc": ""
         },
         "columns": [
