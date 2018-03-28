@@ -97,11 +97,14 @@
             <li class="nav-item">
               <?php echo anchor('Officer/Coop_Submitted_Form_Search/by_form', '<i class="icon-docs"></i> การส่งเอกสาร (ประเภท)', 'class="nav-link"');?>
             </li>
+            <li class="nav-item">
+              <?php echo anchor('Officer/Coop_student_assessment_result/', '<i class="fa fa-tasks"></i> อาจารย์ประเมินนิตสิต', 'class="nav-link"');?>
+            </li>
 
             <li class="nav-item">
               <?php echo anchor('Officer/Report_cooperative/', '<i class="fa fa-tasks"></i> สรุปภาพรวม', 'class="nav-link"');?>
             </li>
-            
+                        
           </ul>
         </li>
         <li class="nav-item nav-dropdown">
