@@ -64,7 +64,11 @@ class Upload_document extends CI_Controller {
 
         }
         //check old document        
-        $data['old_document'] = @$this->Coop_Submitted_Form_Search->search_form_by_student_and_code($student_id, $data['document']['id'])[0];
+        $old_doc = @$this->Coop_Submitted_Form_Search->search_form_by_student_and_code($student_id, $data['document']['id'])[0];
+        $data['old_document'] = '';        
+        if($old_doc['pdf_file'] != '') {
+            $data['old_document'] = $old_doc;
+        }
         $this->breadcrumbs->push('อัพโหลดเอกสาร'.$data['document']['document_name'].' ('.$data['document']['name'].')', '/Coop_student/upload_document/?code='.$data['document']['name']);
         
 

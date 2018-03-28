@@ -26,6 +26,19 @@ class permit_form  extends CI_Controller {
     {
         $student_id = $this->Login_session->check_login()->login_value;
 
+        $status = $this->input->get('status');
+        if( $status == 'success'){
+            $data['status']['color'] = 'success';            
+            $data['status']['text'] = 'บันทึกสำเร็จ';
+        }
+        else if($status == 'error'){
+            $data['status']['color'] = 'warning';            
+            $data['status']['text'] = 'ผิดพลาด';
+        }
+        else {
+            $data['status'] = '';
+        }
+
         // $data['permit'] = @$this->Coop_student_Permit_form->get_by_student($student_id)[0];
         $data['permit'] = @$this->Coop_Student->get_permit_form_by_student($student_id)[0];
         $data['student'] = @$this->Student->get_student($student_id)[0];
@@ -80,20 +93,19 @@ class permit_form  extends CI_Controller {
 
             //save
             if($this->Coop_Student->save_permit_form_by_student($data)) {
-                if($this->input->post('print')) {
+                if($this->input->post('print') == "1") {
                     //print page
-                    $return['status'] = true;
-                    $return['print'] = true;
+                    $this->print_data();
                 } else {
-                    $return['status'] = true;
+                    redirect('coop_student/permit_form?status=success');
                 }     
+            } else {
+                redirect('coop_student/permit_form?status=error');
             }
         } else {
-           $return['status'] = false;
-           $return['message'] = strip_tags(validation_errors());
+           
+           $this->index();
         }
-
-        echo json_encode($return);
     }
 
     public function print_data()
@@ -107,12 +119,13 @@ class permit_form  extends CI_Controller {
         $template_file = "template/IN-S003-N.docx";        
         if($data['permit']['allow_choice'] == 1) {
             $template_file = "template/IN-S003-Y.docx";
-        }
+        } 
+
         $save_filename = "download/".$student_id."-IN-S003.docx";
         $data_array = [
             "student_fullname_th" => $data['student']['fullname'],
             "student_id" => $student_id,
-            "student_course" => "วทบ. เทคโนโลยีสารสนเทศ 4 ปี",
+            "student_course" => $data['student']['student_course'],
             "student_department" => $data['department']['name'],
         ];
 
@@ -121,8 +134,23 @@ class permit_form  extends CI_Controller {
         // die();
 
         $result = $this->service_docx->print_data($data_array, $template_file, $save_filename);
-        // print_r($result);
-        redirect(base_url($result['full_url']), 'refresh');
+
+        //insert to db
+        $coop_document_id = $this->Form->get_form_by_name('IN-S003', $this->Login_session->check_login()->term_id)[0]['id'];
+        $word_file = '/uploads/'.basename($save_filename);
+        $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file);
+
+
+        // redirect(base_url($result['full_url']), 'refresh');
+        echo "
+            <img src='".base_url('assets/img/loading.gif')."' />
+            <script>
+                window.location = '".base_url($result['full_url'])."';
+                setTimeout(function(){
+                    window.location = '".site_url()."';
+                }, 1500);
+            </script>
+        ";
 
     }
 
