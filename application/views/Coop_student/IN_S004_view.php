@@ -240,6 +240,8 @@
 
                                         </div>
                                     </div>
+                                    <div class="col-md-6 col-form-label"></div>
+
                                     <div class="col-md-6 col-form-label">
                                         <div class="form-check checkbox">
                                         &nbsp;&nbsp;&nbsp;<input class="form-check-input" type="radio" value="1" id="radio2"  name="newsletter_receive" <?php if ($coop_student['newsletter_receive'] == 1) echo 'checked'; ?> >
