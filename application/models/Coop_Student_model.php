@@ -41,8 +41,8 @@ class Coop_Student_model extends CI_model {
 
     public function gets_coop_student_by_company($company_id)
     {
+        $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);                
         $this->db->where('company_id', $company_id);
-        $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);        
         $this->db->from('coop_student');
         $query = $this->db->get();
         
@@ -131,7 +131,17 @@ class Coop_Student_model extends CI_model {
     public function save_emergency_contact($array)
     {
         return $this->db->replace('coop_student_emergency_contact', $array);
+    }
 
+    public function gets_coop_student_no_adviser_by_company($company_id)
+    {
+        $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);                
+        $this->db->where('adviser_id', '');
+        $this->db->where('company_id', $company_id);
+        $this->db->from('coop_student');
+        $query = $this->db->get();
+        
+        return $query->result_array();
     }
 
 }
