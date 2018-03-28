@@ -217,7 +217,25 @@ class IN_S004 extends CI_Controller {
 
         $result = $this->service_docx->print_data($data_array, $template_file, $save_filename);
         // print_r($result);
-        redirect(base_url($result['full_url']), 'refresh');
+        // redirect(base_url($result['full_url']), 'refresh');
+
+        //insert to db
+        $coop_document_id = $this->Form->get_form_by_name('IN-S004', $this->Login_session->check_login()->term_id)[0]['id'];
+        $word_file = '/uploads/'.basename($save_filename);
+        $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file);
+
+
+        // redirect(base_url($result['full_url']), 'refresh');
+        echo "
+            <img src='".base_url('assets/img/loading.gif')."' />
+            <script>
+                window.location = '".base_url($result['full_url'])."';
+                setTimeout(function(){
+                    window.location = '".site_url()."';
+                }, 1500);
+            </script>
+        ";
+
 
     }
 
