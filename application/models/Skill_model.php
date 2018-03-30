@@ -43,4 +43,27 @@ class Skill_model extends CI_model {
         $this->db->from('skill');
         return $this->db->count_all_results();
     }
+
+    public function gets_skill_category()
+    {
+        $this->db->from('skill_category');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_skill_category_by_id($skill_category_id)
+    {
+        $this->db->where('skill_category_id', $skill_category_id);
+        $this->db->from('skill_category');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function gets_skill_by_category_id($skill_category_id)
+    {
+        $this->db->where('skill_category_id', $skill_category_id);
+        $this->db->from('skill');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
