@@ -41,13 +41,21 @@ class Skill extends CI_Controller {
         }
         $student_id = $this->Login_session->check_login()->login_value;
 
-        $data['has_skill'] = array();
-        foreach($this->Skill_Search->search_skill_by_student($student_id) as $has_skill) {
-            $data['has_skill'][] = $has_skill['skill_id'];
+        // $data['has_skill'] = array();
+        // foreach($this->Skill_Search->search_skill_by_student($student_id) as $has_skill) {
+        //     $data['has_skill'][] = $has_skill['skill_id'];
+        // }
+        $data['skills'] = array();
+        foreach ($this->Skill->gets_skill_category() as $row) {
+        $tmp_array = array();
+        $tmp_array = $row;
+        $tmp_array['skill_category'] = $this->Skill->gets_skill_by_category_id($row['skill_category_id']);
+        array_push($data['skills'], $tmp_array);
         }
-        $data['skill'] = $this->Skill->gets_skill();
+
         $this->breadcrumbs->push('ทักษะที่ถนัด', '/Student/Skill/index');
-        $this->template->view('Student/Skill_form_view',$data);
+        // print_r($data);
+        $this->template->view('Student/Skill_form_view',@$data);
     }
 
     public function save()
