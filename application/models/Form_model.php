@@ -45,12 +45,13 @@ class Form_model extends CI_model {
         return $query->result_array();
     }    
 
-    public function submit_document($student_id, $form_code, $pdf_file, $word_file)
+    public function submit_document($student_id, $form_code, $pdf_file, $word_file, $document_subject = NULL)
     {
         $array['student_id'] = $student_id;
         $array['coop_document_id'] = $form_code;
         $array['pdf_file'] = $pdf_file;
         $array['word_file'] = $word_file;
+        $array['document_subject'] = $document_subject;
 
         //check if exist
         $this->db->where('student_id', $student_id);

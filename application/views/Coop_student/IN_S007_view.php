@@ -14,47 +14,44 @@
             <form action="<?php echo site_url('Coop_student/IN_S007/save');?>" method="post">
                 <div class="card-header"><i class="fa fa-align-justify"></i>แบบคำร้องทั่วไป</div>
                     <div class="card-body">
+                    <?php 
+                    if($status){
+                        echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
+                    }
+                        echo validation_errors('<div class="alert alert-warning">','</div>');
+                    ?>
                     <div class="row">
                             <div class="form-group col-sm-10">           
                                 <label>เรื่อง (ภาษาไทย)</label><code>*</code>
-                                <input type="text" class="form-control" id="name_th" name="name_th" value="" required>
+                                <input type="text" class="form-control" id="petition_subject" name="petition_subject" value="" required>
                             </div>
                             <div class="form-group col-sm-8">           
                                 <label>ชื่อ - นามสกุล (ภาษาไทย)</label><code>*</code>
-                                <input type="text" class="form-control" id="name_th" name="name_th" value="" required>
+                                <input type="text" class="form-control" value="<?php echo $student['fullname'];?>" disabled>
                             </div>
                             <div class="form-group col-sm-4">           
                                 <label>รหัสนิสิต </label><code>*</code>
-                                <input type="text" class="form-control" id="name_th" name="name_th" value="" required>
+                                <input type="text" class="form-control" value="<?php echo $student['id'];?>" disabled>
                             </div>
                               <div class="form-group col-sm-4">
                                 <label>หลักสูตร(เลือก)</label><code>*</code>
-                                <select id="select2" name="select2" class="form-control form-control-md">
-                                    <option value="0">---------------------  กรุณาเลือกหลักสูตร  --------------------</option>
-                                    <option value="1">รอดึง</option>
-                                    <option value="2">รอดึง</option>                            
-                                    </div></select>                                                
+                                <input type="text" class="form-control" value="<?php echo $student['student_course'];?>" disabled>                                                                            
                             </div>
                             <div class="form-group col-sm-4">
                                <label>สาขาวิชา(เลือก)</label><code>*</code>
-                               <select id="select2" name="select2" class="form-control form-control-md">
-                                  <option value="0">---------------------  กรุณาเลือกสาขาวิชา  --------------------</option>
-                                  <option value="1">เทคโนโลยีสารสนเทศ</option>
-                                  <option value="2">วิทยาการคอมพิวเตอร์</option>
-                                  <option value="3">วิศวกรรมซอร์ฟเเวร์</option>                               
-                                  </div></select>                                                
+                               <input type="text" class="form-control" value="<?php echo $department['name'];?>" disabled>
                           </div>
                             <div class="form-group col-sm-6">           
                                 <label>ชื่ออาจารย์ที่ปรึกษาวิชาการ (ภาษาไทย)</label><code>*</code>
-                                <input type="text" class="form-control" id="name_th" name="name_th" value="" required>
+                                <input type="text" class="form-control" value="<?php echo $adviser['fullname'];?>" disabled>
                             </div>
                             <div class="form-group col-sm-4">           
                                 <label>โทรศัพท์มือถือ </label><code>*</code>
-                                <input type="text" class="form-control" id="name_th" name="name_th" value="" required>
+                                <input type="text" class="form-control" value="" disabled>
                             </div>
                             <div class="form-group col-sm-8">           
                                 <label>อีเมล์  </label><code>*</code>
-                                <input type="text" class="form-control" id="name_th" name="name_th" value="" required>
+                                <input type="text" class="form-control" value="" disabled>
                             </div>
                             <div class="form-group col-sm-8">           
                                 <label>มีความประสงค์  </label><code>*</code>

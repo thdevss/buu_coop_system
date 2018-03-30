@@ -22,14 +22,119 @@ class IN_S007 extends CI_Controller {
 
     public function index()
     {
-        // $data[''] = $this->
-        $this->breadcrumbs->push('แบบคำร้องทั่วไป', 'Coop_student/IN_S007_view');
-        $this->template->view('Coop_student/IN_S007_view');
+        $student_id = $this->Login_session->check_login()->login_value;            
+
+        $this->breadcrumbs->push('แบบคำร้องทั่วไป', 'Coop_student/IN_S007');
+        $data['rows'] = $this->Coop_Student->gets_general_petition_by_student($student_id);
+
+        if( $status == 'success'){
+            $data['status']['color'] = 'success';            
+            $data['status']['text'] = 'บันทึกสำเร็จ';
+        } else if($status == 'error_document'){
+            $data['status']['color'] = 'warning';            
+            $data['status']['text'] = 'ไม่สามารถเข้าถึงได้';
+        } else {
+            $data['status'] = '';
+        }
+
+        $this->template->view('Coop_student/IN_S007_list_view', $data);
+    }
+
+    public function form() 
+    {
+        $status = $this->input->get('status');
+    
+        if( $status == 'success'){
+            $data['status']['color'] = 'success';            
+            $data['status']['text'] = 'บันทึกสำเร็จ';
+        } else if($status == 'error_input'){
+            $data['status']['color'] = 'warning';            
+            $data['status']['text'] = 'เพิ่มไม่สำเร็จ';
+        } else {
+            $data['status'] = '';
+        }
+
+        $this->breadcrumbs->push('แบบคำร้องทั่วไป', 'Coop_student/IN_S007');
+        $this->breadcrumbs->push('เพิ่มแบบคำร้องทั่วไป', 'Coop_student/IN_S007/form');
+
+        
+        $student_id = $this->Login_session->check_login()->login_value;            
+        $data['coop_student'] = @$this->Coop_Student->get_coop_student($student_id)[0];
+        $data['adviser'] = @$this->Adviser->get_adviser($data['coop_student']['adviser_id'])[0];
+        $data['student'] = @$this->Student->get_student($student_id)[0];
+        $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
+
+        $this->template->view('Coop_Student/IN_S007_view', $data);
     }
     
     public function save()
     {
+        $student_id = $this->Login_session->check_login()->login_value;            
+        // print_r($_POST);
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('petition_subject', 'หัวข้อเรื่องแบบคำร้องทั่วไป', 'required');
+        $this->form_validation->set_rules('petition_purpose', 'วัตถุประสงค์', 'required');
+        $this->form_validation->set_rules('petition_reason', 'เหตุผล', 'required');
+        if ($this->form_validation->run()) {
+            //save
+            $insertArr['student_id'] = $student_id;
+            $insertArr['petition_subject'] = $this->input->post('petition_subject');
+            $insertArr['petition_purpose'] = $this->input->post('petition_purpose');
+            $insertArr['petition_reason'] = $this->input->post('petition_reason');
+            if($last_id = $this->Coop_Student->save_general_petition($insertArr)) {
+                if($this->input->post('print') == 1){
+                    $this->print_data($last_id);
+                }else {
+                    redirect('Coop_student/IN_S007/?status=success','refresh');
+                }
+
+            } else {
+                redirect('Coop_student/IN_S007/form/?status=error_input','refresh');                
+            }
             
+
+        } else {
+            //redirect
+            $this->form();
+        }
+    }
+
+    public function print_data($petition_id)
+    {
+        //check, is owner document
+        $student_id = $this->Login_session->check_login()->login_value;    
+        $petition_data = $this->Coop_Student->get_general_petition($petition_id)[0];
+        if($petition_data['student_id'] != $student_id) {
+            //redirect
+            redirect('Coop_student/IN_S007/?status=error_document','refresh');                
+        } else {
+            //print
+            $template_file = "template/IN-S007.docx";
+            $save_filename = "download/".$student_id."-IN-S007-".$petition_data['petition_subject'].".docx";
+            $data_array = [
+                
+            ];
+
+            $result = $this->service_docx->print_data($data_array, $template_file, $save_filename);
+
+            //insert to db
+            $coop_document_id = $this->Form->get_form_by_name('IN-S007', $this->Login_session->check_login()->term_id)[0]['id'];
+            $word_file = '/uploads/'.basename($save_filename);
+            $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file, $petition_data['petition_subject']);
+
+
+            // redirect(base_url($result['full_url']), 'refresh');
+            echo "
+                <img src='".base_url('assets/img/loading.gif')."' />
+                <script>
+                    window.location = '".base_url($result['full_url'])."';
+                    setTimeout(function(){
+                        window.location = '".site_url()."';
+                    }, 1500);
+                </script>
+            ";
+        }
+
     }
 
 }

@@ -144,4 +144,29 @@ class Coop_Student_model extends CI_model {
         return $query->result_array();
     }
 
+
+    public function gets_general_petition_by_student($student_id)
+    {
+        $this->db->where('student_id', $student_id);
+        $this->db->from('coop_student_general_petition');
+        $query = $this->db->get();
+        
+        return $query->result_array();
+    }
+
+    public function get_general_petition($petition_id)
+    {
+        $this->db->where('petition_id', $petition_id);
+        $this->db->from('coop_student_general_petition');
+        $query = $this->db->get();
+        
+        return $query->result_array();
+    }
+
+    public function save_general_petition($insertArr)
+    {
+    $this->db->insert('coop_student_general_petition', $insertArr);
+    return $this->db->last_id();
+    }
+
 }
