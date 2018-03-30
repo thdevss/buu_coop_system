@@ -259,13 +259,25 @@ class Setting extends CI_Controller {
         }
 
         $data['form_type'] = 'insert';
-        $data['skill'] = $this->Skill->gets_skill();
 
+        $data['data'] = array();
+        foreach ($this->Skill->gets_skill_category() as $row) {
+
+            $tmp_array = array();
+            $tmp_array['skill_category'] = $row;
+            $tmp_array['skill'] = $this->Skill->gets_skill_by_category_id($row['skill_category_id']);
+            array_push($data['data'], $tmp_array);
+        }
+        
+
+        
+
+        // print_r($data);
         // add breadcrumbs
         $this->breadcrumbs->push('จัดการประเภททักษะ', '/Officer/Setting/lists_skill_name');
         $this->breadcrumbs->push('เพิ่มประเภททักษะ', '/');
 
-        $this->template->view('Officer/Skill_position_setting_view', $data);
+        $this->template->view('Officer/Skill_position_setting_view', @$data);
 
     }
 
@@ -275,6 +287,7 @@ class Setting extends CI_Controller {
             redirect('Officer/setting/lists_skill_name/?status=dup_data', 'refresh');
         }
         else{
+        $array['skill_category_id'] = $this->input->post('skill_category_id');
         $array['skill_name'] = $this->input->post('skill_name');
         $this->Skill->insert_skill($array);
         redirect('Officer/setting/lists_skill_name/?status=success', 'refresh');
@@ -293,9 +306,21 @@ class Setting extends CI_Controller {
         else{
             $data['form_type'] = 'update';
             $data['status'] = null;
-            $data['skill'] = $this->Skill->gets_skill();
-            $data['skill_by_skill_id'] = $this->Skill->get_skill($skill_id)[0];
+            // $data['skill'] = $this->Skill->gets_skill();
 
+            $data['skill_by_skill_id'] = $this->Skill->get_skill($skill_id)[0];
+            $data['skill_category_by_id'] = $this->Skill->get_skill_category_by_id($data['skill_by_skill_id']['skill_category_id'])[0];
+
+            $data['data'] = array();
+            foreach ($this->Skill->gets_skill_category() as $row) {
+
+                $tmp_array = array();
+                $tmp_array['skill_category'] = $row;
+                $tmp_array['skill'] = $this->Skill->gets_skill_by_category_id($row['skill_category_id']);
+                array_push($data['data'], $tmp_array);
+            }
+
+            
             // add breadcrumbs
             $this->breadcrumbs->push('จัดการประเภททักษะ', '/Officer/Setting/lists_skill_name');
             $this->breadcrumbs->push('แก้ไขประเภททักษะ', '/Officer/Setting/update_skill_name'.$skill_id);
