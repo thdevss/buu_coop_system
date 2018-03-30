@@ -31,7 +31,7 @@
                                         <tbody>
                                            <?php foreach($data as $row) { ?>
                                             <tr>
-                                                <th scope="row"><?php echo $row['coop_test']['test_date']; ?> </th>
+                                                <th scope="row"><?php echo thaiDate($row['coop_test']['test_date']); ?> </th>
                                                 <td>การสอบครั้งที่ <?php echo $row['coop_test']['name']; ?></td>
                                                 <td>
                                                 <?php 
