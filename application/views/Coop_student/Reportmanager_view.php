@@ -20,7 +20,7 @@
                   <div class="col-sm-4">
                   </div>
                   <div class="col-sm-8">
-                        <form action=<?php echo site_url("Coop_student/Subject_report/post_report"); ?> method="post" class="form-horizontal">
+                        <form action=<?php echo site_url("Coop_student/IN_S006/post_report"); ?> method="post" class="form-horizontal">
                           <div class="form-group row">
                             <div class="col-md-6">
                               <label class="col-md-5" for="text-input">หัวข้อภาษาไทย</label>
@@ -45,8 +45,8 @@
                     </div>
                   </div>
                       <div class="text-center">
-                        <button type="submit" class="btn btn-md btn-primary"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
-                        <button type="submit" class="btn btn-md btn-success"><i class="fa fa-dot-circle-o"></i>บันทึกเอกสาร</button>
+                        <button type="submit" class="btn btn-md btn-primary" value="1" name="print"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
+                        <button type="submit" class="btn btn-md btn-success" value="0" name="print"><i class="fa fa-dot-circle-o"></i> บันทึก </button>
                       </div>
                     </form>
             </div>
