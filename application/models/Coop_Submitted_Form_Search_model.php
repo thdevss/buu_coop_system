@@ -27,12 +27,15 @@ class Coop_Submitted_Form_Search_model extends CI_model {
         return $query->result_array();
     }
 
-    // public function delete_form_by_student_and_code($student_id, $form_code)
-    // {
-    //     $this->db->where('student_id',$student_id);
-    //     $this->db->where('coop_document_id',$form_code);
-    //     return $this->db->delete('coop_student_has_coop_document');
-    // }
+    public function delete_form_by_student_and_code($student_id, $form_code, $document_subject = NULL)
+    {
+        if($document_subject) {
+            $this->db->where('document_subject',$document_subject);
+        }
+        $this->db->where('student_id',$student_id);
+        $this->db->where('coop_document_id',$form_code);
+        return $this->db->delete('coop_student_has_coop_document');
+    }
 
     public function insert_form_by_student_and_code($array) 
     {

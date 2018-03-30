@@ -166,7 +166,7 @@ class Coop_Student_model extends CI_model {
     public function save_general_petition($insertArr)
     {
     $this->db->insert('coop_student_general_petition', $insertArr);
-    return $this->db->last_id();
+    return $this->db->insert_id();
     }
 
 }

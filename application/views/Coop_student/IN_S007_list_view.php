@@ -12,7 +12,7 @@
         <div class="card">
           <div class="card-header">
             <i class="fa fa-align-justify"></i> รายการแบบคำร้องทั่วไป
-            <a class="btn btn-primary float-right" href="<?php echo site_url('Coop_Student/IN_S007/add');?>">
+            <a class="btn btn-primary float-right" href="<?php echo site_url('Coop_Student/IN_S007/form');?>">
                 <i class="fa fa-hand-pointer-o"></i> เพิ่มแบบคำร้องทั่วไป
             </a>
           </div>

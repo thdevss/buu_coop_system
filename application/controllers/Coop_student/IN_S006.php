@@ -102,7 +102,7 @@ class IN_S006 extends CI_Controller {
                     $template_file = "template/IN-S006.docx";        
                     $save_filename = "download/".$student_id."-IN-S006.docx";
                     $data_array = [
-                        "student_fullname_th" => $data['student']['fullname'],
+                        "student_fullname" => $data['student']['fullname'],
                         "student_id" => $data['student']['id'],
                         "student_course" => $data['student']['student_course'],
                         "department_name" => $data['department']['name'],
@@ -112,7 +112,7 @@ class IN_S006 extends CI_Controller {
                         "company_alley" => $data['company_address']['alley'],
                         "company_district" => $data['company_address']['district'],
                         "company_area" => $data['company_address']['area'],
-                        "{company_province" => $data['company_address']['province'],
+                        "company_province" => $data['company_address']['province'],
                         "company_postal_code" => $data['company_address']['postal_code'],
                         "company_person_telephone" => $data['company_person']['telephone'],
                         "company_person_fax_number" => $data['company_person']['fax_number'],

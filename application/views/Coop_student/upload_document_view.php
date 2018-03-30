@@ -21,15 +21,30 @@
                     echo '<div class="alert alert-warning" role="alert"><strong>ผิดพลาด!</strong> '.@$status.'</div>';
                   }
                   
-                  if(@$old_document) {
+                  if(@$old_document && $document['name'] != 'IN-S007') {
                     echo '<div class="alert alert-warning" role="alert"><strong>โปรดระวัง!</strong> เอกสารชุดนี้เคยถูกอัพโหลดแล้ว, <a href="'.base_url($old_document['pdf_file']).'">คลิ้กเพื่อดูไฟล์</a></div>';
                   }
                   ?>
 
-                 <div class="text-center">
+                  <?php if($document['name'] == 'IN-S007') { ?>
+                  <div class="text-center">
+                      <label class="form-control-label" for="">เลือกหัวข้อแบบคำร้องทั่วไป</label>
+                      <select class="form-control" style="width:50%; margin: 0 auto;" name="document_subject" required>
+                        <option disabled> ---- </option>
+                        <?php foreach($ins007 as $row) { ?>
+                          <option><?php echo $row['petition_subject'];?></option>
+                        <?php } ?>
+                        
+
+                      </select>
+                  </div>
+                  <div style="height:20px;"></div>
+                  <?php } ?>
+
+                  <div class="text-center">
                       <label class="form-control-label" for="file-input">เลือกไฟล์เอกสาร</label>
-                        <input type="file" name="file-input">
-                </div>
+                      <input type="file" name="file-input">
+                  </div>
                   <input type="hidden" name="code" value="<?php echo $document['name'];?>">
                   
               <div class="text-center" style="margin-top:70px;">
