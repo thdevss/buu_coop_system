@@ -39,16 +39,16 @@ class IN_S004 extends CI_Controller {
                 $data['status'] = '';
             }
             $student_id = $this->Login_session->check_login()->login_value;            
-            $data['coop_student'] = $this->Coop_Student->get_coop_student($student_id)[0];
-            $data['company'] = $this->Company->get_company($data['coop_student']['company_id'])[0];
-            $data['company_address'] = $this->Address->get_address_by_company($data['coop_student']['company_id'])[0];
-            $data['company_person'] = $this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];
-            $data['contact_person'] = $this->Trainer->get_trainer($data['company']['contact_person_id'])[0];
-            $data['trainer'] = $this->Trainer->get_trainer($data['coop_student']['trainer_id'])[0];
-            $data['student_name'] = $this->Student->get_student($data['coop_student']['student_id'])[0];
-            $data['student_department'] =$this->Student->get_department($data['student_name']['department_id'])[0];
-            $data['company_job_position'] = $this->Job->get_job($data['coop_student']['company_job_position_id'])[0];
-            $data['coop_student_dorm'] = $this->Coop_Student->get_coop_student_dorm_by_student($data['coop_student']['student_id'])[0];
+            $data['coop_student'] = @$this->Coop_Student->get_coop_student($student_id)[0];
+            $data['company'] = @$this->Company->get_company($data['coop_student']['company_id'])[0];
+            $data['company_address'] = @$this->Address->get_address_by_company($data['coop_student']['company_id'])[0];
+            $data['company_person'] = @$this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];
+            $data['contact_person'] = @$this->Trainer->get_trainer($data['company']['contact_person_id'])[0];
+            $data['trainer'] = @$this->Trainer->get_trainer($data['coop_student']['trainer_id'])[0];
+            $data['student_name'] = @$this->Student->get_student($data['coop_student']['student_id'])[0];
+            $data['student_department'] = @$this->Student->get_department($data['student_name']['department_id'])[0];
+            $data['company_job_position'] = @$this->Job->get_job($data['coop_student']['company_job_position_id'])[0];
+            $data['coop_student_dorm'] = @$this->Coop_Student->get_coop_student_dorm_by_student($data['coop_student']['student_id'])[0];
             $data['coop_student_emergency_contact'] = @$this->Coop_Student->get_coop_student_emergency_contact_by_student($student_id)[0];
             // print_r($data);
                 
@@ -119,16 +119,16 @@ class IN_S004 extends CI_Controller {
     {
         $student_id = $this->Login_session->check_login()->login_value;
 
-        $data['coop_student'] = $this->Coop_Student->get_coop_student($student_id)[0];
-        $data['company'] = $this->Company->get_company($data['coop_student']['company_id'])[0];
-        $data['company_address'] = $this->Address->get_address_by_company($data['coop_student']['company_id'])[0];
-        $data['company_person'] = $this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];
-        $data['contact_person'] = $this->Trainer->get_trainer($data['company']['contact_person_id'])[0];
-        $data['trainer'] = $this->Trainer->get_trainer($data['coop_student']['trainer_id'])[0];
-        $data['student_name'] = $this->Student->get_student($data['coop_student']['student_id'])[0];
-        $data['student_department'] =$this->Student->get_department($data['student_name']['department_id'])[0];
-        $data['company_job_position'] = $this->Job->get_job($data['coop_student']['company_job_position_id'])[0];
-        $data['coop_student_dorm'] = $this->Coop_Student->get_coop_student_dorm_by_student($data['coop_student']['student_id'])[0];
+        $data['coop_student'] = @$this->Coop_Student->get_coop_student($student_id)[0];
+        $data['company'] = @$this->Company->get_company($data['coop_student']['company_id'])[0];
+        $data['company_address'] = @$this->Address->get_address_by_company($data['coop_student']['company_id'])[0];
+        $data['company_person'] = @$this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];
+        $data['contact_person'] = @$this->Trainer->get_trainer($data['company']['contact_person_id'])[0];
+        $data['trainer'] = @$this->Trainer->get_trainer($data['coop_student']['trainer_id'])[0];
+        $data['student_name'] = @$this->Student->get_student($data['coop_student']['student_id'])[0];
+        $data['student_department'] = @$this->Student->get_department($data['student_name']['department_id'])[0];
+        $data['company_job_position'] = @$this->Job->get_job($data['coop_student']['company_job_position_id'])[0];
+        $data['coop_student_dorm'] = @$this->Coop_Student->get_coop_student_dorm_by_student($data['coop_student']['student_id'])[0];
         $data['coop_student_emergency_contact'] = @$this->Coop_Student->get_coop_student_emergency_contact_by_student($student_id)[0];
 
 
