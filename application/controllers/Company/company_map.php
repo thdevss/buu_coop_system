@@ -19,11 +19,19 @@ class Company_map extends CI_controller
 
     public function index()
     {
+        $status = $this->input->get('status');
+        if( $status == 'success'){
+            $data['status']['color'] = 'success';            
+            $data['status']['text'] = 'UPDATE สถานที่สำเร็จ';
+        }else {
+            $data['status'] = '';
+        }
+
         $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
 
         $company_id = $tmp['company_id'];
 
-        $data['map'] = $this->Address->get_address_by_company($company_id)[0];
+        $data['map'] = @$this->Address->get_address_by_company($company_id)[0];
 
         $this->template->view('company/map_view', $data);
     }

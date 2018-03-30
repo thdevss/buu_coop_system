@@ -1,12 +1,7 @@
     <!-- Main content -->
     <main class="main">
 
-      <!-- Breadcrumb -->
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">ระบบสหกิจ</li>
-        <li class="breadcrumb-item"><a href="#"><?php echo strToLevel($user->login_type);?></a></li>
-        <li class="breadcrumb-item active">แผนที่ตั้งบริษัท</li>
-      </ol>
+      <?php echo $this->breadcrumbs->show(); ?>
 
       <div class="container-fluid">
         <div class="animated fadeIn">
@@ -17,6 +12,15 @@
                   ปักหมุดแผนที่สถานประกอบการ
                 </div>
                 <div class="card-body">
+                  <?php 
+                  if($status){
+                    echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
+                  }
+                  
+                  if(!$map['latitude'] && !$map['longitude']) {
+                    echo '<div class="alert alert-warning">โปรดระบุพิกัดที่ทำงาน</div>';
+                  }
+                  ?>
                   <div class="row">
                     <div class="col-lg-12">
                       <div id="map" style="width:100%; height:350px;"></div>
@@ -46,7 +50,9 @@
     
 <script>
   function initMap() {
+    <?php if($map['latitude'] && $map['longitude']) { ?>
     renderMap(<?php echo $map['latitude'];?>, <?php echo $map['longitude'];?>)
+    <?php } ?>
   }
 
   function renderMap(latitude, longitude) {
