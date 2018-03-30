@@ -45,7 +45,7 @@
                         <form action="<?php echo site_url('Officer/Trainer/delete/'); ?>" method="post">
                         <?php echo anchor('Officer/Trainer/edit_form/'.$row['company_person']['id'], '<i class="icon-pencil "></i> แก้ไข', 'class="btn btn-info"');?>
                         <input type="hidden"   name="company_person_id" value="<?php echo $row['company_person']['id'] ; ?>">
-                        <input type="hidden"   name="company_id" value="<?php echo $row['company']['id'] ; ?>">
+                        <input type="hidden"   name="company_id" value="<?php echo $company['id'] ; ?>">
                         <button type="submit" class="btn btn-danger btn-submit"><i class="icon-trash"></i> ลบ</button>
                         </form>        
                         </td>
@@ -81,7 +81,7 @@
           <div class="col-md-12">
             <label for"fullna me">ชื่อ-นามสกุล</label><code>*</code>
             <input type="text" id="fullname" name="fullname" class="form-control" placeholder="ชื่อ-นามสกุล" value="" required>
-            <input type="hidden" id="company_id" name="company_id" value="<?php echo $data[0]['company_person']['company_id'];?>">
+            <input type="hidden" id="company_id" name="company_id" value="<?php echo $company['id'];?>">
           </div>
           <div class="col-md-12">
           <label for"email">E-mail</label><code>*</code>

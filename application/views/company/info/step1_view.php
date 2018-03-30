@@ -91,7 +91,6 @@
                                <input type="text" class="form-control" id="province" name="province" value="<?php echo set_value('province', $company_address['province']);?>" required>
                                <?php echo form_error('province', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                            
                             </div>
-
                         </div>
 
                         <div class="row">
@@ -187,13 +186,16 @@
 
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/jquery.thailand/dependencies/JQL.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/jquery.thailand/dependencies/typeahead.bundle.js');?>"></script>
+
 <link rel="stylesheet" href="<?php echo base_url('assets/plugins/jquery.thailand/dist/jquery.Thailand.min.css');?>">
-<script type="text/javascript" src="<?php echo base_url('assets/plugins/jquery.thailand/dist/jquery.Thailand.min.js');?>"></script>
+<script type="text/javascript" src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dist/jquery.Thailand.min.js"></script>
 <script>
-$.Thailand({
-    $district: $('#district'), // input ของตำบล
-    $amphoe: $('#area'), // input ของอำเภอ
-    $province: $('#province'), // input ของจังหวัด
-    $zipcode: $('#postal_code'), // input ของรหัสไปรษณีย์
-});
+
+    $.Thailand({
+        $district: $('#district'), // input ของตำบล
+        $amphoe: $('#area'), // input ของอำเภอ
+        $province: $('#province'), // input ของจังหวัด
+        $zipcode: $('#postal_code'), // input ของรหัสไปรษณีย์
+    })
+
 </script>

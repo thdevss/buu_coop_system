@@ -23,8 +23,17 @@ class Address_model extends CI_model {
     public function update_address($company_id, $array)
     {
         $this->db->where('company_id',$company_id);
-        return $this->db->update('company_address',$array);
-
+        $this->db->from('company_address');
+        $query = $this->db->get();
+        if(count($query->result_array()) > 0) {
+            //update
+            $this->db->where('company_id',$company_id);            
+            return $this->db->update('company_address',$array);            
+        } else {
+            //insert
+            $array['company_id'] = $company_id;
+            return $this->db->insert('company_address',$array);            
+        }  
     }
 
     public function delete_address($company_id)
