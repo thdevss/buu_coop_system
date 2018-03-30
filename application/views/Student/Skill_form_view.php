@@ -3,11 +3,7 @@
 
 <!-- Breadcrumb -->
 <?php echo $this->breadcrumbs->show(); ?>
-<!-- <ol class="breadcrumb">
-  <li class="breadcrumb-item">Home</li>
-  <li class="breadcrumb-item"><a href="#"><?php echo $user->login_type;?></a></li>
-  <li class="breadcrumb-item active">ทักษะที่ถนัด</li>
-</ol> -->
+
 <div class="container-fluid">
     <div class="animated fadeIn">
         <div class="row" >
@@ -20,25 +16,50 @@
                                 echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
                             }
                         ?>
-                    <table class="table table-bordered datatable">
-                    <thead>
-                      <tr>
-                    <?php foreach ($skills as $skill ) { ?>
-                        <th><?php echo $skill['skill_category_name']; ?></th>
-                    <?php } ?>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    
-                        <tr>
-                            <td class="text-left"></td>
-                                                     
-                        </tr>
-                   
-                    </tbody>
-                    
-                </table>
-                        
+
+                        <form action="<?php echo site_url('Student/Skill/save');?>" method="post">
+                        <div class="row">
+                            <?php foreach ($skills as $skill_category) { ?>
+                            <div class="col">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th><?php echo $skill_category['skill_category_name']; ?></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach($skill_category['skills'] as $key => $skill) { 
+                                    $checked = false;
+                                    if(in_array($skill['skill_id'], @$has_skill)) {
+                                        $checked = true;
+                                    } else {
+                                       $checked = false;
+                                    }    
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="<?php echo $key;?>" value="<?php echo $skill['skill_id'];?>" name="skill[]" <?php if($checked) echo 'checked'; ?>>
+                                                    <label class="form-check-label" for="<?php echo $key;?>"><?php echo $skill['skill_name'];?></label>
+                                                </div>
+                                                
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <?php } ?>
+
+                            <div style="height:40px;"></div>
+                            <button type="submit" class="btn btn-success btn-block">บันทึก</button>
+                            
+                        </div>
+                        </form>
+
+
+
                     </div>
                 </div>
             </div>
@@ -46,7 +67,11 @@
     </div>
 </div>
 
-
+<style>
+.form-check-input {
+    margin-left: unset;
+}
+</style>
 
  <!-- <form action="<?php echo site_url('Student/Skill/save');?>" method="post">
                             <div class="form-group row">
