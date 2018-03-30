@@ -45,6 +45,7 @@
     $(document).ready(function(){
 
       var table = $('.datatable').DataTable({
+        "autoWidth": false,
         
         'columnDefs': [
         {
@@ -62,16 +63,12 @@
       } ).draw();
 
 
-      // $('body').toggleClass('sidebar-minimized');
-      
+
 
       $(".deleteForm").submit(function(event){
         event.preventDefault();
       });
 
-      // $(".btn-delete").click(function(event) {
-        // event.preventDefault();
-      
 
     });
 
