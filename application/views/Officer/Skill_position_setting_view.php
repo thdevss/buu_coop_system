@@ -78,7 +78,7 @@
                                         <?php foreach ($data as $skills) { ?>                                        
                                         <div class="tab-pane" id="<?php echo $skills['skill_category']['skill_category_id']; ?>" role="tabpanel">
                                     
-                                            <table class="table table-bordered datatable">
+                                            <table class="table table-bordered " id="tabletable_<?php echo $skills['skill_category']['skill_category_id']; ?>">
                                                 <thead>
                                                     <tr>
                                                         <td></td>
@@ -102,6 +102,18 @@
                                             </table>
 
                                         </div> 
+                                        <script>
+                                        $(document).ready(function(){
+                                            var table = $('#tabletable_<?php echo $skills['skill_category']['skill_category_id']; ?>').DataTable({
+                                                "autoWidth": false, 'columnDefs': [{"searchable": false, "orderable": false, "targets": 0}],
+                                            });
+                                            table.on( 'order.dt search.dt', function () {
+                                                table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                                                    cell.innerHTML = i+1;   
+                                                } );
+                                            } ).draw();
+                                        })
+                                        </script>
                                         <?php } ?>
                                     </div>  
                                                                             
