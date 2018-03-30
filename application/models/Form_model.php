@@ -1,7 +1,21 @@
 <?php
 class Form_model extends CI_model {
-    public function gets_form()
+    public function gets_form($term_id = 0)
     {
+        if($term_id != 0) {
+            $this->db->where('term_id', $term_id);
+        } 
+        $this->db->from('coop_document');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_form($document_id, $term_id = 0)
+    {
+        $this->db->where('id', $document_id);
+        if($term_id != 0) {
+            $this->db->where('term_id', $term_id);
+        } 
         $this->db->from('coop_document');
         $query = $this->db->get();
         return $query->result_array();
@@ -60,5 +74,12 @@ class Form_model extends CI_model {
             //insert
             return $this->db->insert('coop_student_has_coop_document', $array);
         }
+    }
+
+
+    public function update_form($document_id, $array)
+    {
+        $this->db->where('id', $document_id);
+        return $this->db->update('coop_document', $array);
     }
 }
