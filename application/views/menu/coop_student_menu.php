@@ -63,7 +63,7 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-file-text-o"></i> IN-S006</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <?php echo anchor('Coop_student/Subject_report/form', '<i class="fa fa-download"></i> ดาวน์โหลดเอกสาร', 'class="nav-link"');?>
+                <?php echo anchor('Coop_student/IN_S006/form', '<i class="fa fa-download"></i> ดาวน์โหลดเอกสาร', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
                 <?php echo anchor('Coop_student/upload_document/?code=IN-S006', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
