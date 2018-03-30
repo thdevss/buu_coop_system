@@ -27,6 +27,7 @@ class IN_S007 extends CI_Controller {
         $this->breadcrumbs->push('แบบคำร้องทั่วไป', 'Coop_student/IN_S007');
         $data['rows'] = $this->Coop_Student->gets_general_petition_by_student($student_id);
 
+        $status = $this->input->get('status');
         if( $status == 'success'){
             $data['status']['color'] = 'success';            
             $data['status']['text'] = 'บันทึกสำเร็จ';
@@ -74,7 +75,7 @@ class IN_S007 extends CI_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('petition_subject', 'หัวข้อเรื่องแบบคำร้องทั่วไป', 'required');
         $this->form_validation->set_rules('petition_purpose', 'วัตถุประสงค์', 'required');
-        $this->form_validation->set_rules('petition_reason', 'เหตุผล', 'required');
+        $this->form_validation->set_rules('petition_reason', 'เนื่องจาก', 'required');
         if ($this->form_validation->run()) {
             //save
             $insertArr['student_id'] = $student_id;
@@ -104,16 +105,28 @@ class IN_S007 extends CI_Controller {
         //check, is owner document
         $student_id = $this->Login_session->check_login()->login_value;    
         $petition_data = $this->Coop_Student->get_general_petition($petition_id)[0];
+
+        $data['coop_student'] = @$this->Coop_Student->get_coop_student($student_id)[0];
+        $data['adviser'] = @$this->Adviser->get_adviser($data['coop_student']['adviser_id'])[0];
+        $data['student'] = @$this->Student->get_student($student_id)[0];
+        $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
+
         if($petition_data['student_id'] != $student_id) {
             //redirect
             redirect('Coop_student/IN_S007/?status=error_document','refresh');                
         } else {
             //print
             $template_file = "template/IN-S007.docx";
-            $save_filename = "download/".$student_id."-IN-S007-".$petition_data['petition_subject'].".docx";
+            $save_filename = "download/".$student_id."-IN-S007-id".$petition_data['petition_id'].".docx";
             $data_array = [
-                
+                'student_fullname' => $data['student']['fullname'],
+                'student_id' => $student_id,
+                'student_course' => $data['student']['student_course'],
+                'department_name' => $data['department']['name'],
+                'adviser_fullname' => $data['adviser']['fullname'],
+                'date' => thaiDate(date('Y-m-d H:i:s')),
             ];
+            $data_array = array_merge($data_array, $petition_data);
 
             $result = $this->service_docx->print_data($data_array, $template_file, $save_filename);
 

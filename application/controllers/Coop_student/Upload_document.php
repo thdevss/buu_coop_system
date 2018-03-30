@@ -53,10 +53,16 @@ class Upload_document extends CI_Controller {
                 $data['status'] = 'success';
 
                 //insert to db
-                @$this->Coop_Submitted_Form_Search->delete_form_by_student_and_code($student_id, $data['document']['id']);
                 $insert['pdf_file'] = '/uploads/'.$file['file_name'];
                 $insert['coop_document_id'] = $data['document']['id'];
                 $insert['student_id'] = $student_id;
+                if($this->input->post('document_subject')) {
+                    $insert['document_subject'] = $this->input->post('document_subject');
+                    @$this->Coop_Submitted_Form_Search->delete_form_by_student_and_code($student_id, $data['document']['id'], $insert['document_subject']);                    
+                    
+                } else {
+                    @$this->Coop_Submitted_Form_Search->delete_form_by_student_and_code($student_id, $data['document']['id']);                    
+                }
                 $this->Coop_Submitted_Form_Search->insert_form_by_student_and_code($insert);
             }
         } else {
@@ -71,6 +77,9 @@ class Upload_document extends CI_Controller {
         }
         $this->breadcrumbs->push('อัพโหลดเอกสาร'.$data['document']['document_name'].' ('.$data['document']['name'].')', '/Coop_student/upload_document/?code='.$data['document']['name']);
         
+        if($data['document']['name'] == 'IN-S007') {
+            $data['ins007'] = $this->Coop_Student->gets_general_petition_by_student($student_id);            
+        }
 
         $this->template->view('Coop_student/upload_document_view', $data);
         

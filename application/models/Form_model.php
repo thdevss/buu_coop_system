@@ -56,14 +56,17 @@ class Form_model extends CI_model {
         //check if exist
         $this->db->where('student_id', $student_id);
         $this->db->where('coop_document_id', $form_code);
+        $this->db->where('document_subject', $document_subject);
         $this->db->from('coop_student_has_coop_document');
-        $this->db->get();
-        if($this->db->count_all_results()) {
+        $query = $this->db->get();
+        if(count($query->result()) > 0) {
             //update
             $this->db->where('student_id', $student_id);
             $this->db->where('coop_document_id', $form_code);
             unset($array['student_id']);
             unset($array['coop_document_id']);
+            unset($array['document_subject']);
+            
             if($array['pdf_file'] == '') {
                 unset($array['pdf_file']);                
             }

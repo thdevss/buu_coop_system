@@ -55,11 +55,11 @@
                             </div>
                             <div class="form-group col-sm-8">           
                                 <label>มีความประสงค์  </label><code>*</code>
-                                <textarea id="textarea-input" name="textarea-input" rows="4" class="form-control" placeholder="Content.."></textarea>
+                                <textarea id="petition_purpose" name="petition_purpose" rows="4" class="form-control" placeholder="Content.."></textarea>
                             </div>
                             <div class="form-group col-sm-8">           
                                 <label>เนื่องจาก   </label><code>*</code>
-                                <textarea id="textarea-input" name="textarea-input" rows="4" class="form-control" placeholder="Content.."></textarea>
+                                <textarea id="petition_reason" name="petition_reason" rows="4" class="form-control" placeholder="Content.."></textarea>
                             </div>
                         </div>
 
