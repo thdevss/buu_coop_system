@@ -73,7 +73,19 @@ class Setting extends CI_Controller {
 
 
 
-    public function edit_document(){
+    public function edit_document()
+    {
+        $status = $this->input->get('status');
+        if( $status == 'success'){
+            $data['status']['color'] = 'success';            
+            $data['status']['text'] = 'ตั้งค่าสำเร็จ';
+        } else if($status == 'error'){
+            $data['status']['color'] = 'warning';            
+            $data['status']['text'] = 'ผิดพลาด';
+
+        } else {
+            $data['status'] = '';
+        }
         // get coop_document
         $data['coop_document'] = $this->Form->gets_form();
 
@@ -81,6 +93,57 @@ class Setting extends CI_Controller {
         $this->breadcrumbs->push('จัดการเอกสารที่นิสิตต้องส่ง', '/Officer/Setting/edit_document');
         
         $this->template->view('officer/setting_document_view',$data);
+    }
+
+    public function post_edit_document() 
+    {
+        $term_id =  $this->Login_session->check_login()->term_id;
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('document_id', 'เลขเอกสาร', 'required|numeric');
+        $this->form_validation->set_rules('document_deadline_datetime', 'วันเวลากำหนดส่ง', 'required');
+
+        if($this->form_validation->run()) {
+            $document_id = $this->input->post('document_id');
+            if($this->Form->get_form($document_id, $term_id)) {
+                $updateArr = [
+                    'document_deadline' => $this->input->post('document_deadline_datetime')
+                ];
+                $this->Form->update_form($document_id, $updateArr);
+                redirect('Officer/setting/edit_document?status=success', 'refresh');
+            } else {
+                redirect('Officer/setting/edit_document?status=error', 'refresh');                
+            }
+
+        } else {
+            redirect('Officer/setting/edit_document?status=error', 'refresh');
+        }
+    }
+
+    public function update_document_status()
+    {
+        $term_id =  $this->Login_session->check_login()->term_id;
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('status', 'สถานะ', 'required|numeric|in_list[0,1]');
+        $this->form_validation->set_rules('document_id', 'เลขเอกสาร', 'required|numeric');
+
+        $return['status'] = false;
+
+        if ($this->form_validation->run()) {
+            //change in db
+            $document_id = $this->input->post('document_id');
+            if($this->Form->get_form($document_id, $term_id)) {
+                $updateArr = [
+                    'document_active' => $this->input->post('status')
+                ];
+                $this->Form->update_form($document_id, $updateArr);
+
+                $return['status'] = true;                
+            }
+        }
+
+        echo json_encode($return);
     }
 
     public function lists_job_title($status = ''){

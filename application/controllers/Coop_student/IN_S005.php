@@ -35,19 +35,19 @@ class IN_S005 extends CI_Controller {
             //     array_push($data['data'], $tmp_array);
     
             // }
-            $data['status'] = [];
-            if($this->input->get('status') == 'success') {
-                $data['status'] = [
-                    'text' => 'สำเร็จ',
-                    'color' => 'success'
-                ];
-            } else if($this->input->get('status') == 'error') {
-                $data['status'] = [
-                    'text' => 'ผิดพลาด',
-                    'color' => 'warning'
-                ];
+            $status = $this->input->get('status');
+            if( $status == 'success'){
+                $data['status']['color'] = 'success';            
+                $data['status']['text'] = 'บันทึกสำเร็จ';
             }
-    
+            else if($status == 'error'){
+                $data['status']['color'] = 'warning';            
+                $data['status']['text'] = 'ผิดพลาด';
+            }
+            else {
+                $data['status'] = '';
+            }
+        
             $student_id = $this->Login_session->check_login()->login_value;            
             $data['student'] = $this->Student->get_student($student_id)[0];
             $data['rows'] = $this->Coop_Student->get_coop_student_plan($student_id);
@@ -75,7 +75,62 @@ class IN_S005 extends CI_Controller {
                 }
             }
 
-            redirect('Coop_student/IN_S005/?status=success', 'refresh');
+            //save
+
+                if($this->input->post('print') == "1") {
+                    //print page
+                    $this->print_data();
+                } else {
+                    redirect('coop_student/IN_S005?status=success');
+                }     
+           
+        }
+
+        public function print_data()
+        {
+            $student_id = $this->Login_session->check_login()->login_value;
+    
+            $data['coop_student'] = @$this->Coop_Student->get_coop_student($student_id)[0];
+            $data['student'] = @$this->Student->get_student($student_id)[0];
+            $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
+            $data['company'] = @$this->Company->get_company($data['coop_student']['company_id'])[0];
+    
+            $template_file = "template/IN-S005.docx";
+    
+            $save_filename = "download/".$student_id."-IN-S005.docx";
+            $data_array = [
+                "student_fullname" => $data['student']['fullname'],
+                "student_id" => $student_id,
+                "department_name" => $data['department']['name'],
+                "company_name" => $data['company']['name_th'],
+            ];
+
+            foreach($this->Coop_Student->get_coop_student_plan($student_id) as $i => $row) {
+                $data_array['work_'.++$i] = $row['work_subject'];
+            }
+    
+            print_r($data_array);
+            // die();
+    
+            $result = $this->service_docx->print_data($data_array, $template_file, $save_filename);
+    
+            //insert to db
+            $coop_document_id = $this->Form->get_form_by_name('IN-S005', $this->Login_session->check_login()->term_id)[0]['id'];
+            $word_file = '/uploads/'.basename($save_filename);
+            $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file);
+    
+    
+            // redirect(base_url($result['full_url']), 'refresh');
+            echo "
+                <img src='".base_url('assets/img/loading.gif')."' />
+                <script>
+                    window.location = '".base_url($result['full_url'])."';
+                    setTimeout(function(){
+                        window.location = '".site_url()."';
+                    }, 1500);
+                </script>
+            ";
+    
         }
 
 }

@@ -22,20 +22,38 @@ class Coop_Submitted_Form_Search extends CI_Controller {
 
         public function by_student()
         {
+            $term_id =  $this->Login_session->check_login()->term_id;
+
             $data['data'] = array();
             $cache = array();
             foreach($this->Student->gets_department() as $tmp) {
                 $cache['department'][$tmp['id']] = $tmp;
             }
+            
+            $document_active_arr = [];
+            foreach($this->Form->gets_form($term_id) as $doc) {
+                if($doc['document_active'] == 1) {
+                    $document_active_arr[] = $doc['id'];
+                }
+            }
+            // $document_active = implode(",", $document_active_arr);
+
             foreach($this->Coop_Student->gets_coop_student() as $r) {
                 $row = array();
-                $row['complete_form'] = true; //รอการเช็คสถานะ
+                //check document in document active
+                $row['complete_form'] = false;
+                
+                $doc_count = $this->Coop_Submitted_Form_Search->search_form_by_student_and_codes($r['student_id'], $document_active_arr); //รอการเช็คสถานะ
+
+                if(count($doc_count) >= count($document_active_arr)) {
+                    $row['complete_form'] = true;
+                }
+
+
+
                 $row['student'] = $this->Student->get_student($r['student_id'])[0];
                 $row['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$row['student']['id']).'">'.$row['student']['id'].'</a>';
                 $row['department'] = $cache['department'][$row['student']['department_id']];
-
-                
-                
 
                 array_push($data['data'], $row);
             }
@@ -68,26 +86,28 @@ class Coop_Submitted_Form_Search extends CI_Controller {
         public function get_by_form_code($form_code)
         {
             $array = array();
-            // $array['data'] = array();
-            foreach($this->Coop_Student->gets_coop_student() as $r) {
-                $row = array();
-                $row['student'] = $this->Student->get_student($r['student_id'])[0];
-                $row['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$row['student']['id']).'">'.$row['student']['id'].'</a>';                
-                $row['form'] = @$this->Coop_Submitted_Form_Search->search_form_by_student_and_code($r['student_id'], $form_code)[0];
-                $row['form']['status'] = 'ยังไม่ส่ง';
-                if(@$row['form']['pdf_file'])
-                    $row['form']['status'] = 'ส่งแล้ว';
+            $document = $this->Form->get_form($form_code)[0];
+            if($document) {
+                foreach($this->Coop_Student->gets_coop_student() as $r) {
+                    
+                    $row = array();
+                    $row['student'] = $this->Student->get_student($r['student_id'])[0];
+                    $row['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$row['student']['id']).'">'.$row['student']['id'].'</a>';                
+                    $row['form'] = @$this->Coop_Submitted_Form_Search->search_form_by_student_and_code($r['student_id'], $form_code)[0];
 
-                array_push($array, $row);
+                    $row['form']['status'] = 'ยังไม่ส่ง';
+                    if(@$row['form']['pdf_file']) {
+                        $late_status = '';
+                        if($row['form']['document_sent_date'] >= $document['document_deadline']) {
+                            $late_status = ' (<span style="color: red;">ส่งช้า</span>)';
+                        }
+                        $row['form']['status'] = 'ส่งแล้ว'.$late_status;
+                    }
+
+                    array_push($array, $row);
+                }
             }
-            // foreach($this->Coop_Student->gets_coop_student() as $r) {
-            //     $row = array();
-            //     $row['student'] = $this->Student->get_student($r['student_id'])[0];
-            //     $row['form'] = @$this->Coop_Submitted_Form_Search->search_form_by_student_and_code($r['student_id'], $form_code)[0];
-
-            //     array_push($array['data'], $row);
-            // }
-
+            
             echo json_encode($array);
         }
 
