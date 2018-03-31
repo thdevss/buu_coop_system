@@ -55,7 +55,7 @@
                             <p>ลักษณะบริษัท: <?php echo $row['company_name'][0]['company_type'];?></p>                            
                             <p>เริ่มทำงาน: <?php echo $row['company_name'][0]['work_start_time'];?>-<?php echo $row['company_name'][0]['work_end_time'];?></p>
                             <p>เว็ปไซต์:  <a href="<?php echo $row['company_name'][0]['website_url'];?>"><?php echo $row['company_name'][0]['website_url'];?></a> </p>
-                              <?php echo anchor('Student/Job/register_form_company', '<i class="icon-pencil"></i> กรอกใบสมัคร', 'class="btn btn-primary"');?> 
+                              <?php echo anchor('Student/Job/register_form_company/'.$row['company_name'][0]['id'].'/'.$row['company_job_position']['id'], '<i class="icon-pencil"></i> กรอกใบสมัคร', 'class="btn btn-primary"');?> 
                           </div>
                   
                           <div class="card-footer">

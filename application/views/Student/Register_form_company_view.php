@@ -13,24 +13,21 @@
           <div class="card-header"><i class="fa fa-align-justify"></i> แบบฟอร์มยื่นสมัครกับบริษัท
           </div>
             <div class="card-body">
-            <div class="card-header text-center">
-                  <strong>ข้อมูลส่วนนิสิต (APPLICANT 'S INFORMATION)</strong>
+            <div class="alert alert-dark text-center" role="alert">
+                  <strong>ข้อมูลส่วนนิสิต (APPLICANT'S INFORMATION)</strong>
                 </div>
                 <div class="card-body">
                   <div class="row">
 
                     <!--ส่วนของกรอกชื่อ-->
                       <div class="form-group col-sm-6">
-                        <label for="name">ชื่อ(Name)</label><code>*</code>
-                        <input type="text" class="form-control" id="" name="" placeholder="กรุณากรอก" required>
+                        <label for="fullname">ชื่อ-นามสกุล</label><code>*</code>
+                        <input type="text" class="form-control" id="fullname" name="fullname" placeholder="กรุณากรอก" required>
                       </div>
                     <!--ส่วนของกรอกชื่อ-->
 
                     <!--ส่วนของกรอกนามสกุล-->
-                      <div class="form-group col-sm-6">
-                        <label for="name">นามสกุล(Surname)</label><code>*</code>
-                        <input type="text" class="form-control" id="" name="" placeholder="กรุณากรอก" required>
-                      </div>
+                      
                     <!--ส่วนของกรอกนามสกุล-->
 
                   </div>
@@ -82,7 +79,7 @@
                     <div class="form-check col-sm-2">
                           <input class="form-check-input" type="radio" value="" id="radio2" name="radios">
                           <label class="form-check-label" for="radio2">
-                            วิทยาการสารสนเทศ
+                           เทคโนโลยีสารสนเทศ
                           </label>
                         </div>
                         
@@ -97,8 +94,8 @@
 
                     <div class="row">
                     <div class="col-sm-12">
-                    <div class="card-header text-center">
-                  <strong>ชื่อสถานประกอบการที่ต้องการสมัคร รอบที่:</strong>
+                    <div class="alert alert-dark text-center" role="alert">
+                     <strong>ชื่อสถานประกอบการที่ต้องการสมัคร รอบที่:</strong>
                     </div>
                     </div>
                     </div>
@@ -123,7 +120,7 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="card-header text-center"><strong>ข้อมูลส่วนนิสิต (APPLICANT 'S INFORMATION)</strong>
+                            <div class="alert alert-dark text-center" role="alert"><strong>ข้อมูลส่วนนิสิต (APPLICANT 'S INFORMATION)</strong>
                         </div>
                     </div>
                     </div>
@@ -137,14 +134,11 @@
                       </div>
 
                       <div class="form-group col-sm-6">
-                      <label for="name">ชื่อ(Name)</label><code>*</code>
+                      <label for="name">ชื่อ-นามสกุล(TH)</label><code>*</code>
                       <input type="text" class="form-control" id="" name="" placeholder="กรุณากรอก" required>
                       </div>
 
-                      <div class="form-group col-sm-6">
-                      <label for="name">นามสกุล(Surname)</label><code>*</code>
-                      <input type="text" class="form-control" id="" name="" placeholder="กรุณากรอก" required>
-                      </div>
+                      
 
                       <div class="form-group col-sm-6">
                       <label for="name">Name</label><code>*</code>
@@ -255,7 +249,7 @@
                       </div>
 
                       <div class="form-group col-sm-12">
-                      <label><strong>บุคคลที่ติดต่อได้ในกรณีฉุกเฉิน</strong></label>
+                      <div class="alert alert-dark text-center" role="alert"><strong>บุคคลที่ติดต่อได้ในกรณีฉุกเฉิน</strong></div>
                       </div>
 
                       <div class="form-group col-sm-4">
@@ -287,7 +281,7 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="card-header text-center"><strong>ข้อมูลครอบครัว (FAMILY DETAILS)</strong>
+                            <div class="alert alert-dark text-center" role="alert"><strong>ข้อมูลครอบครัว (FAMILY DETAILS)</strong>
                         </div>
                     </div>
                     </div>
@@ -335,7 +329,7 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="card-header text-center"><strong>ประวัติการศึกษา (EDUCATIONAL HISTORY)</strong>
+                            <div class="alert alert-dark text-center" role="alert"><strong>ประวัติการศึกษา (EDUCATIONAL HISTORY)</strong>
                         </div>
                     </div>
                     </div>
@@ -369,7 +363,7 @@
 
                   <div class="row">
                         <div class="col-sm-12">
-                            <div class="card-header text-center"><strong>ประวัติการอบรม และกิจกรรมนอกหลักสูตร</strong>
+                            <div class="alert alert-dark text-center" role="alert"><strong>ประวัติการอบรม และกิจกรรมนอกหลักสูตร</strong>
                         </div>
                     </div>
                     </div>
@@ -399,7 +393,7 @@
 
                   <div class="row">
                         <div class="col-sm-12">
-                            <div class="card-header text-center"><strong>จุดหมายงานอาชีพ (CAREER VISION)</strong>
+                            <div class="alert alert-dark text-center" role="alert"><strong>จุดหมายงานอาชีพ (CAREER VISION)</strong>
                         </div>
                     </div>
                     </div>
@@ -415,7 +409,7 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="card-header text-center"><strong>ความสามารถทางภาษา (LANGUAGE PROFICIENCY)</strong>
+                            <div class="alert alert-dark text-center" role="alert"><strong>ความสามารถทางภาษา (LANGUAGE PROFICIENCY)</strong>
                         </div>
                     </div>
                     </div>
@@ -449,7 +443,7 @@
 
                 <div class="row">
                         <div class="col-sm-12">
-                            <div class="card-header text-center"><strong>ความสามารถทางคอมพิวเตอร์</strong>
+                            <div class="alert alert-dark text-center" role="alert"><strong>ความสามารถทางคอมพิวเตอร์</strong>
                         </div>
                     </div>
                     </div>
@@ -465,7 +459,7 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="card-header text-center"><strong>โปรดอธิบายให้ผู้อื่นรู้จักตัวท่านดีขึ้น</strong>
+                            <div class="alert alert-dark text-center" role="alert"><strong>โปรดอธิบายให้ผู้อื่นรู้จักตัวท่านดีขึ้น</strong>
                         </div>
                     </div>
                     </div>
@@ -481,12 +475,14 @@
                      <!--br-->
                      <br>
                     <!--br-->
+                    <form action="<?php echo site_url('Student/Job/print_data/'.$company['id'].'/'.$company_job_position['position_title']);?>" method="post">
                     <div class="row">
                         <div class="col-sm-5"></div>
                         <div class="col-sm-6">
-                        <button type="button" class="btn btn-outline-primary active">พิมพ์เอกสาร</button>
+                        <button type="submit" class="btn btn-md btn-primary"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
                         </div>
                     </div>
+                    </form>
                     
 
 
