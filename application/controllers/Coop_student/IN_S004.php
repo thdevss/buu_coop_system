@@ -42,6 +42,7 @@ class IN_S004 extends CI_Controller {
             $data['coop_student'] = @$this->Coop_Student->get_coop_student($student_id)[0];
             $data['company'] = @$this->Company->get_company($data['coop_student']['company_id'])[0];
             $data['company_address'] = @$this->Address->get_address_by_company($data['coop_student']['company_id'])[0];
+            $data['company_persons'] = @$this->Trainer->gets_trainer_by_company($data['company']['id']);
             $data['company_person'] = @$this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];
             $data['contact_person'] = @$this->Trainer->get_trainer($data['company']['contact_person_id'])[0];
             $data['trainer'] = @$this->Trainer->get_trainer($data['coop_student']['trainer_id'])[0];
@@ -64,7 +65,7 @@ class IN_S004 extends CI_Controller {
             $student_id = $this->Login_session->check_login()->login_value;            
             // print_r($_POST);
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('newsletter_receive', 'ไม่รับ โดยจะติดตามข่าวสาร');
+            $this->form_validation->set_rules('newsletter_receive', 'ตั้งค่ารับข่าวสาร');
             $this->form_validation->set_rules('fullname', 'ชื่อ - สกุล', 'required');
             $this->form_validation->set_rules('number', 'เลขที่', 'required');
             $this->form_validation->set_rules('alley', 'ซอย', 'required');
@@ -74,14 +75,15 @@ class IN_S004 extends CI_Controller {
             $this->form_validation->set_rules('province', 'จังหวัดซอย', 'required');
             $this->form_validation->set_rules('postal_code', 'รหัสไปรษณีย์', 'required');
             $this->form_validation->set_rules('telephone', 'โทรศัพท์', 'required');
-            $this->form_validation->set_rules('fax_number', 'โทรสารซอย');
+            $this->form_validation->set_rules('fax_number', 'โทรสาร');
+
+            $this->form_validation->set_rules('trainer_id', 'ผู้นิเทศงาน', 'required|numeric');
+            
 
 
-            if ($this->form_validation->run() == FALSE)
-                {
+            if ($this->form_validation->run() == FALSE) {
                     $this->index();
-
-            }else {
+            } else {
                     $array_emergency_contact['student_id'] = $student_id ;
                     $array_emergency_contact['fullname'] = $this->input->post('fullname');
                     $array_emergency_contact['number'] = $this->input->post('number');
@@ -94,6 +96,7 @@ class IN_S004 extends CI_Controller {
                     $array_emergency_contact['telephone'] = $this->input->post('telephone');
                     $array_emergency_contact['fax_number'] = $this->input->post('fax_number');
                     $array['newsletter_receive'] = $this->input->post('newsletter_receive');
+                    $array['trainer_id'] = $this->input->post('trainer_id');
 
                     $sql_status = false;
                     $sql_status = $this->Coop_Student->save_emergency_contact($array_emergency_contact);
@@ -115,7 +118,7 @@ class IN_S004 extends CI_Controller {
                 }
         }
 
-        public function print_data()
+    public function print_data()
     {
         $student_id = $this->Login_session->check_login()->login_value;
 
@@ -237,6 +240,68 @@ class IN_S004 extends CI_Controller {
         ";
 
 
+    }
+
+    public function ajax_save_trainer()
+    {
+        $data = array();
+        $data['status'] = false;
+        $data['text'] = 'ผิดพลาด';
+        $data['color'] = 'warning';
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('fullname','ชื่อ-นามสกุล','required');
+        $this->form_validation->set_rules('position','ตำเเหน่ง','required');
+        $this->form_validation->set_rules('department','เเผนกงาน','required');
+        $this->form_validation->set_rules('telephone','เบอร์โทร','required|numeric');
+        $this->form_validation->set_rules('fax_number','FAX');
+        $this->form_validation->set_rules('email','E-mail','required|valid_email|is_unique[company_person.email]');
+
+        if($this->form_validation->run() != false){
+
+            $company_person = @$this->Trainer->get_trainer_by_email($this->input->post('email'))[0];
+            if($company_person) {
+                $data['text'] = 'มีพนักงานนิเทศงานอยู่แล้ว โปรดเลือกจากรายชื่อ';
+            } else {
+
+                $password_gen = generateStrongPassword(8);
+                $password_gen_db = password_hash($password_gen, PASSWORD_DEFAULT);
+
+                $student_id = $this->Login_session->check_login()->login_value;
+                $coop_student = @$this->Coop_Student->get_coop_student($student_id)[0];
+
+                $array['company_id'] = $coop_student['company_id'];
+
+                $array['fullname'] = $this->input->post('fullname');
+                $array['position'] = $this->input->post('position');
+                $array['department'] = $this->input->post('department');
+                $array['telephone'] = $this->input->post('telephone');
+                $array['fax_number'] = $this->input->post('fax_number');
+                $array['email'] = $this->input->post('email');
+                $array['person_username'] = $array['email'];
+
+                $array['person_password'] = $password_gen_db;
+                
+                $this->Trainer->insert_trainer($array);
+                $data['last_id'] = $this->db->insert_id();
+                
+                $to = $array['email'];
+                $subject = 'แจ้งข้อมูลเข้าใช้งานระบบสหกิจศึกษา มหาวิทยาลัยบูรพา';
+                $msg = 'Username: '.$array['person_username'].' | Password: '.$password_gen.' | '.site_url();
+                //sentmail here
+                $this->cache->file->save('userpass_'.$data['last_id'], $msg, 86400*365);
+
+                $data['status'] = true;
+                $data['text'] = 'เปลี่ยนสถานะสำเร็จ';
+                $data['color'] = 'success';
+            }
+            
+        } else {
+            $data['text'] = strip_tags(validation_errors());
+            
+        }
+
+        echo json_encode($data);
     }
 
 

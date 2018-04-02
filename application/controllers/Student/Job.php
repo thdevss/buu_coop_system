@@ -67,8 +67,9 @@ class Job extends CI_Controller {
 
     public function register_status()
     {
+        $data = []; //รอ
         $this->breadcrumbs->push('ประกาศผลการสมัครงาน', '/Student/Job/register_status');
-        $this->template->view('Student/Register_result_view',$data);
+        $this->template->view('Student/Register_result_view', $data);
     }
 
     public function print_data($company_id, $company_job_position_id)
