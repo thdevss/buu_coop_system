@@ -191,7 +191,7 @@ class Job extends CI_Controller {
 
         $result = $this->service_docx->print_data($data_array, $template_file, $save_filename);
         // print_r($result);
-        // redirect(base_url($result['full_url']), 'refresh');
+        //redirect(base_url($result['full_url']), 'refresh');
         
         //insert to db
         $coop_document_id = $this->Form->get_form_by_name('IN-S002', $this->Login_session->check_login()->term_id)[0]['id'];
