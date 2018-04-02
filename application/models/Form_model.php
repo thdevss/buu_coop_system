@@ -45,7 +45,7 @@ class Form_model extends CI_model {
         return $query->result_array();
     }    
 
-    public function submit_document($student_id, $form_code, $pdf_file, $word_file, $document_subject = NULL)
+    public function submit_document($student_id, $form_code, $pdf_file, $word_file, $document_subject = 1)
     {
         $array['student_id'] = $student_id;
         $array['coop_document_id'] = $form_code;
