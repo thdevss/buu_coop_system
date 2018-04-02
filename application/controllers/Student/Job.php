@@ -57,7 +57,7 @@ class Job extends CI_Controller {
         $data['department'] = $this->Student->get_department($data['student']['department_id'])[0];
         $data['company'] = $this->Company->get_company($company_id)[0];
         $data['company_job_position'] = $this->Skilled_Job_Search->search_skill_by_job($company_job_position_id)[0];
-        //  print_r($data);
+        // print_r($data);
 
         //add ->breadcrumbs
         $this->breadcrumbs->push('รายการสมัคร ตำแหน่งงาน และสถานประกอบการ', '/Student/Job/lists');
@@ -76,6 +76,15 @@ class Job extends CI_Controller {
         
         $student_id = $this->Login_session->check_login()->login_value;
         
+        // input form view
+        // $student_telephone = $this->input->post('student_telephone');
+        // $student_phone = $this->input->post('student_phone');
+        // $student_email = $this->input->post('student_email');
+        // $Age = $this->input->post('age');
+        // $Sex = $this->input->post('sex');
+        // $height = $this->input->post('height');
+        // $weight = $this->input->post('weight');
+       
         $data['student'] = @$this->Student->get_student($student_id)[0];
         $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
         $data['company'] = @$this->Company->get_company($company_id)[0];
@@ -89,7 +98,7 @@ class Job extends CI_Controller {
         $data_array = [
                 "student_fullname" => $data['student']['fullname'],           
                 "student_id" => $student_id,
-                "student_telephone" => "029582351",
+                "student_telephone" => "024779640",
                 "student_phone" =>  "093 995 8573",
                 "student_email" => "santikon12@gmail.com",
                 "ch_cs" => "",

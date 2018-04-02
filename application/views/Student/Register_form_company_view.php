@@ -22,7 +22,7 @@
                     <!--ส่วนของกรอกชื่อ-->
                       <div class="form-group col-sm-6">
                         <label for="fullname">ชื่อ-นามสกุล</label><code>*</code>
-                        <input type="text" class="form-control" id="fullname" name="fullname" placeholder="กรุณากรอก" required>
+                        <input type="text" class="form-control" id="fullname" name="fullname"  value="<?php echo $student['fullname'];?>" required>
                       </div>
                     <!--ส่วนของกรอกชื่อ-->
 
@@ -37,7 +37,7 @@
                      <!--ส่วนของรหัสนิสิต-->
                       <div class="form-group col-sm-4">
                         <label for="ccnumber">รหัสนิสิต</label><code>*</code>
-                        <input type="text" class="form-control" id="" name="" placeholder="กรุณากรอก" required>
+                        <input type="text" class="form-control" id="" name="" value="<?php echo $student['id']; ?>" required>
                       </div>
                      <!--ส่วนของรหัสนิสิต-->
                      <!--ส่วนของโทรศัพท์-->
@@ -70,21 +70,21 @@
                   <label>สาขา</label><code>*</code>
                   </div>
                   <div class="form-check col-sm-2">
-                          <input class="form-check-input" type="radio" value="" id="radio1" name="radios">
+                          <input class="form-check-input" type="radio" value="" id="radio1" name="radios" <?php if($department['id']== 2) echo "checked" ?> >
                           <label class="form-check-label" for="radio1">
                             วิทยาการคอมพิวเตอร์
                           </label>
                         </div>
 
                     <div class="form-check col-sm-2">
-                          <input class="form-check-input" type="radio" value="" id="radio2" name="radios">
+                          <input class="form-check-input" type="radio" value="" id="radio2" name="radios" <?php if($department['id']== 1) echo "checked" ?> >
                           <label class="form-check-label" for="radio2">
                            เทคโนโลยีสารสนเทศ
                           </label>
                         </div>
                         
                     <div class="form-check col-sm-2">
-                          <input class="form-check-input" type="radio" value="" id="radio3" name="radios">
+                          <input class="form-check-input" type="radio" value="" id="radio3" name="radios" <?php if($department['id']== 3) echo "checked" ?> >
                           <label class="form-check-label" for="radio3">
                             วิศวกรรมซอฟต์แวร์
                           </label>
@@ -106,14 +106,14 @@
                     <!--ส่วนของชื่อสถานประกอบการ-->
                     <div class="form-group col-sm-6">
                         <label for="name">ชื่อสถานประกอบการ</label><code>*</code>
-                        <input type="text" class="form-control" id="" name="" placeholder="กรุณากรอก" required>
+                        <input type="text" class="form-control" id="" name="" value="<?php echo $company['name_th']; ?>" required>
                       </div>
                     <!--ส่วนของชื่อสถานประกอบการ-->
 
                     <!--ส่วนของตำแหน่งการสมัครงาน-->
                     <div class="form-group col-sm-6">
                         <label for="name">สมัครงานในตำแหน่ง</label><code>*</code>
-                        <input type="text" class="form-control" id="" name="" placeholder="กรุณากรอก" required>
+                        <input type="text" class="form-control" id="" name="" value="<?php echo $company_job_position['position_title']; ?>" required>
                       </div>
                     <!--ส่วนของตำแหน่งการสมัครงาน-->
                     </div>
