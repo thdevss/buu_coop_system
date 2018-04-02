@@ -11,7 +11,7 @@
           <div class="card">
             <div class="card-header">
               <i class="fa fa-align-justify"></i>เจ้าหน้าที่ในบริษัท
-                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#company_person_form">
                 เพิ่มเจ้าหน้าที่
                 </button>
             </div>
@@ -65,56 +65,83 @@
 
 </main>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
 
-    <form action="<?php echo site_url('Officer/Trainer/add_employee');?>" method="post">
 
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">เพิ่ม | เจ้าหน้าที่</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="col-md-12">
-            <label for"fullna me">ชื่อ-นามสกุล</label><code>*</code>
-            <input type="text" id="fullname" name="fullname" class="form-control" placeholder="ชื่อ-นามสกุล" value="" required>
-            <input type="hidden" id="company_id" name="company_id" value="<?php echo $company['id'];?>">
-          </div>
-          <div class="col-md-12">
-          <label for"email">E-mail</label><code>*</code>
-            <input type="email" id="email" name="email" class="form-control" placeholder="E-mail" required>
-          </div>
-          <div class="col-md-12">
-          <label for"position">ตำเเหน่ง</label><code>*</code>
-            <input type="text" id="position" name="position" class="form-control" placeholder="ตำเเหน่ง" required>
-          </div>
-          <div class="col-md-12">
-          <label for"department">เเผนกงาน</label><code>*</code>
-            <input type="text" id="department" name="department" class="form-control" placeholder="เเผนกงาน" required>
-          </div>
-          <div class="col-md-12">
-          <label for"telephone">เบอร์โทร</label>
-            <input type="text" id="telephone" name="telephone" class="form-control" placeholder="เบอร์โทร" required>
-          </div>
-          <div class="col-md-12">
-          <label for"fax_number">FAX</label>
-            <input type="text" id="fax_number" name="fax_number" class="form-control" placeholder="FAX">
-          </div>
+
+<style>
+.modal-dialog {
+    max-width: 800px;
+}
+</style>
+<!-- The Modal -->
+<div class="modal fade" id="company_person_form">
+    <div class="modal-dialog model-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">เพิ่มผู้นิเทศงาน</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <form action="<?php echo site_url('Officer/Trainer/add_employee');?>" method="post" id="save_trainer">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="fullname">ชื่อ-นามสกุล</label><code>*</code>
+                        <input type="text" id="fullname" name="fullname" class="form-control" placeholder="ชื่อ-นามสกุล" value="" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for"email">E-mail</label><code>*</code>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="E-mail" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for"position">ตำเเหน่ง</label><code>*</code>
+                        <input type="text" id="position" name="position" class="form-control" placeholder="ตำเเหน่ง" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for"department">แผนกงาน</label><code>*</code>
+                        <input type="text" id="department" name="department" class="form-control" placeholder="เเผนกงาน" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for"telephone">เบอร์โทร</label>
+                        <input type="text" id="telephone" name="telephone" class="form-control" placeholder="เบอร์โทร" required>
+                    </div>  
+                    <div class="form-group col-md-12">
+                        <label for"fax_number">FAX</label>
+                        <input type="text" id="fax_number" name="fax_number" class="form-control" placeholder="FAX">
+                    </div>
    
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <input type="hidden" id="company_id" name="company_id" value="<?php echo $company['id'];?>">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Save</button>
+                
+            </div>
+            </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
-          <button type="submit" class="btn btn-success">บันทึก</button>
-        </div>
-      </div>
-    </form>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
+    </div>
 </div>
+<script>
+jQuery(document).ready(function(){
+    jQuery("#save_trainer").validate();
+});
+
+
+jQuery( "#save_trainer" ).submit(function( event ) {
+    event.preventDefault();
+
+    if(jQuery("#save_trainer").valid()) {
+      jQuery( "#save_trainer" )[0].submit();
+    }
+});
+
+</script>
+
 
 <script>
 $('.btn-submit').on('click',function(e){

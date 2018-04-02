@@ -15,6 +15,7 @@
                     }
                         echo validation_errors('<div class="alert alert-warning">','</div>');
                     ?>
+                    <form action="<?php echo site_url('Coop_student/IN_S004/save');?>" method="post">
 
 
                      <!-- ข้อ 1 -->
@@ -120,33 +121,28 @@
                             </div>
                         </div>
                     <?php } ?>
-                        <!-- ข้อ 2 -->
+
+                    <!-- ข้อ 2 -->
                     <label for="name"><b>๒.	ผู้นิเทศงาน </b></label>
                         <div class="row">
-                            <div class="form-group col-sm-6">
-                               <label>ชื่อ-นามสกุล</label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $trainer['fullname']; ?>" required disabled >                          
+                            <div class="form-group col-sm-10">
+                                <select class="form-control" name="trainer_id" id="trainer_lists">
+                                    <option> ------- </option>
+                                    <?php 
+                                    foreach($company_persons as $person) { 
+                                        $checked = '';
+                                        if($person['id'] == @$coop_student['trainer_id']) {
+                                            $checked = 'selected';
+                                        }
+                                        echo '<option value="'.$person['id'].'" '.$checked.'>'.$person['fullname'].' (อีเมล: '.$person['email'].') (เบอร์โทรศัพท์: '.$person['telephone'].') </option>';
+                                    } 
+                                    ?>
+                                </select>
                             </div>
-                            <div class="form-group col-sm-4">
-                                <label>ตำแหน่ง</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" value="<?php echo $trainer['position']; ?>" required disabled >                                                           
+                            <div class="form-group col-sm-2">
+                                <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#company_person_form"> + เพิ่มผู้นิเทศงาน</a>
                             </div>
-                            <div class="form-group col-sm-4">
-                                <label>แผนก</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" value="<?php echo $trainer['department']; ?>" required disabled >                                                                                     
-                            </div>
-                            <div class="form-group col-sm-4">
-                               <label>โทรศัพท์ </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $trainer['telephone']; ?>" required disabled >                                                     
-                            </div>
-                            <div class="form-group col-sm-4">
-                               <label>โทรสาร</label>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $trainer['fax_number']; ?>" required disabled >                                   
-                            </div>
-                            <div class="form-group col-sm-8">
-                               <label>E-mail</label><code></code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $trainer['email']; ?>" required disabled >                                   
-                            </div>
+                            
                         </div>
                      <!-- ข้อ 3 -->
                      <label for="name"><b>๓. งานที่มอบหมายนิสิต</b></label>
@@ -227,7 +223,7 @@
                         </div>
                       <!-- ปิดข้อ 4 -->
                          <!-- ข้อ 5 -->
-                    <form action="<?php echo site_url('Coop_student/IN_S004/save');?>" method="post">
+                    
                     <label for="name"><b>๕. การรับเอกสารติดต่อจากทางมหาวิทยาลัย </b></label>
                         <div class="row">
                 
@@ -324,60 +320,6 @@
 
 
 
-<style>
-/*progressbar*/
-#progressbar {
-	margin-bottom: 30px;
-	overflow: hidden;
-	/*CSS counters to number the steps*/
-	counter-reset: step;
-}
-#progressbar li {
-	list-style-type: none;
-	color: #000;
-	text-transform: uppercase;
-	font-size: 9px;
-	width: 33.33%;
-	/* width: 25%; */
-    text-align: center;
-	float: left;
-	position: relative;
-}
-#progressbar li:before {
-	content: counter(step);
-	counter-increment: step;
-	width: 20px;
-	line-height: 20px;
-	display: block;
-	font-size: 10px;
-	color: #333;
-	background: white;
-	border-radius: 3px;
-	margin: 0 auto 5px auto;
-}
-/*progressbar connectors*/
-#progressbar li:after {
-	content: '';
-	width: 100%;
-	height: 2px;
-	background: white;
-	position: absolute;
-	left: -50%;
-	top: 9px;
-	z-index: -1; /*put it behind the numbers*/
-}
-#progressbar li:first-child:after {
-	/*connector not needed before the first step*/
-	content: none; 
-}
-/*marking active/completed steps green*/
-/*The number of the step and the connector before it = green*/
-#progressbar li.active:before,  #progressbar li.active:after{
-	background: #27AE60;
-	color: white;
-}
-</style>
-
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/jquery.thailand/dependencies/JQL.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/jquery.thailand/dependencies/typeahead.bundle.js');?>"></script>
 <link rel="stylesheet" href="<?php echo base_url('assets/plugins/jquery.thailand/dist/jquery.Thailand.min.css');?>">
@@ -389,4 +331,98 @@ $.Thailand({
     $province: $('#province'), // input ของจังหวัด
     $zipcode: $('#postal_code'), // input ของรหัสไปรษณีย์
 });
+</script>
+
+<style>
+.modal-dialog {
+    max-width: 800px;
+}
+</style>
+<!-- The Modal -->
+<div class="modal fade" id="company_person_form">
+    <div class="modal-dialog model-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">เพิ่มผู้นิเทศงาน</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <form id="save_trainer">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="fullname">ชื่อ-นามสกุล</label><code>*</code>
+                        <input type="text" id="fullname" name="fullname" class="form-control" placeholder="ชื่อ-นามสกุล" value="" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for"email">E-mail</label><code>*</code>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="E-mail" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for"position">ตำเเหน่ง</label><code>*</code>
+                        <input type="text" id="position" name="position" class="form-control" placeholder="ตำเเหน่ง" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for"department">แผนกงาน</label><code>*</code>
+                        <input type="text" id="department" name="department" class="form-control" placeholder="เเผนกงาน" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for"telephone">เบอร์โทร</label>
+                        <input type="text" id="telephone" name="telephone" class="form-control" placeholder="เบอร์โทร" required>
+                    </div>  
+                    <div class="form-group col-md-12">
+                        <label for"fax_number">FAX</label>
+                        <input type="text" id="fax_number" name="fax_number" class="form-control" placeholder="FAX">
+                    </div>
+   
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Save</button>
+                
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+jQuery(document).ready(function(){
+    jQuery("#save_trainer").validate();
+});
+
+jQuery( "#save_trainer" ).submit(function( event ) {
+    event.preventDefault();
+
+    if(jQuery("#save_trainer").valid()) {
+        //post ajax
+        jQuery.post("<?php echo site_url('Coop_Student/IN_S004/ajax_save_trainer');?>", jQuery("#save_trainer").serialize(), function(result){
+            jQuery("#company_person_form").modal('hide');
+
+            if(result.status) {
+                jQuery('#trainer_lists').append($('<option>', {
+                    selected: true,
+                    value: result.last_id,
+                    text: jQuery("#save_trainer input[name=fullname]").val()+' (อีเมล: '+jQuery("#save_trainer input[name=email]").val()+') (เบอร์โทรศัพท์: '+jQuery("#save_trainer input[name=telephone]").val()+')'
+                }));
+                
+                swal("สำเร็จ", result.text, result.color);                
+            } else {
+                swal("ผิดพลาด", result.text, result.color);
+            }
+            jQuery("#save_trainer input").val(null);
+            
+
+            
+        }, 'json');
+
+        
+    }
+});
+
+
 </script>

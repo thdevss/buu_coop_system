@@ -135,10 +135,11 @@ class Trainer extends CI_Controller {
                 $to = $company_person['email'];
                 $subject = 'แจ้งข้อมูลเข้าใช้งานระบบสหกิจศึกษา มหาวิทยาลัยบูรพา';
                 $msg = 'Username: '.$company_person['person_username'].' | Password: '.$password_gen.' | '.site_url();
-                echo $msg;
+                $this->cache->file->save('userpass_'.$company_person['id'], $msg, 86400*365);    
+                // echo $msg;
                 // mail($to, $subject, $msg);
 
-                // redirect('Officer/Trainer/lists/'.$array['company_id'].'/?status=success','refresh');
+                redirect('Officer/Trainer/lists/'.$array['company_id'].'/?status=success','refresh');
                 
 
             } else {
@@ -165,12 +166,13 @@ class Trainer extends CI_Controller {
             $to = $array['email'];
             $subject = 'แจ้งข้อมูลเข้าใช้งานระบบสหกิจศึกษา มหาวิทยาลัยบูรพา';
             $msg = 'Username: '.$array['person_username'].' | Password: '.$password_gen.' | http://localhost:8080/';
-            echo $msg;
+            $this->cache->file->save('userpass_'.$this->db->insert_id(), $msg, 86400*365);
+            // echo $msg;
             // mail($to, $subject, $msg);
 
         }
         
-        // redirect('Officer/Trainer/lists/'.$array['company_id'].'/?status=success','refresh');
+        redirect('Officer/Trainer/lists/'.$array['company_id'].'/?status=success','refresh');
     }
 
     public function edit_form($trainer_id, $status = '')
