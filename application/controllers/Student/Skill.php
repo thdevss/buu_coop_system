@@ -36,6 +36,11 @@ class Skill extends CI_Controller {
             $data['status']['text'] = 'กรุณาเลือก';
 
         }
+        else if($status == 'select_before'){
+            $data['status']['color'] = 'info';            
+            $data['status']['text'] = 'กรุณาเลือกทักษะ';
+
+        }
         else {
             $data['status'] = '';
         }
