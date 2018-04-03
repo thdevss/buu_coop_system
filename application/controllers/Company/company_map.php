@@ -11,10 +11,13 @@ class Company_map extends CI_controller
         }
 
         //check priv
-        if($this->Login_session->check_login()->login_type != 'company') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'company') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+        //add breadcrumbs
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
     public function index()
@@ -32,7 +35,7 @@ class Company_map extends CI_controller
         $company_id = $tmp['company_id'];
 
         $data['map'] = @$this->Address->get_address_by_company($company_id)[0];
-
+        $this->breadcrumbs->push('ปักหมุดแผนที่สถานประกอบการ', '/Company/company_map');
         $this->template->view('company/map_view', $data);
     }
 

@@ -50,6 +50,8 @@ class Coop_detail extends CI_Controller {
                 $data['pass_training'] = false;
             }
         }
+        $data['student_profile'] = $this->Student->get_student_data_from_profile($student_id);
+        
         $this->breadcrumbs->push('ข้อมูลนิสิต', '/Student/Coop_detail/index');
         $this->template->view('Coop_student/Coop_detail_view',$data);
 

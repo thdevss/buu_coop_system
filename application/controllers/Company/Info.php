@@ -36,7 +36,7 @@ class Info extends CI_controller
             die();
         }
         //add breadcrumbs
-            $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+            // $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
             $this->breadcrumbs->push('รายละเอียดเกี่ยวกับสถานประกอบการ / หน่วยงาน ', '/Company/info/step1');
             $this->template->view('Company/info/step1_view', $data);
         }
