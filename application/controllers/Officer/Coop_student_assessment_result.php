@@ -89,7 +89,7 @@ class Coop_student_assessment_result extends CI_Controller {
                 
                 // add breadcrumbs
                 $this->breadcrumbs->push('รายชื่อนิสิตสหกิจ', '/Officer/Coop_student_assessment_result/index');
-                $this->breadcrumbs->push('แบบการประเมินผลการฝึกงานของนิสิตสหกิจ', '/Officer/Coop_student_assessment_result/assessment_detail');
+                $this->breadcrumbs->push('ผลประเมินนิสิต', '/Officer/Coop_student_assessment_result/assessment_detail');
 
                 $this->template->view('Officer/Coop_student_assessment_result_ score_view', $data);
         } 

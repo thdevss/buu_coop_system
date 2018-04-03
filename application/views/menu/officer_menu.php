@@ -98,10 +98,10 @@
               <?php echo anchor('Officer/Coop_Submitted_Form_Search/by_form', '<i class="icon-docs"></i> ส่งเอกสาร (ประเภท)', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-              <?php echo anchor('Officer/Coop_student_assessment_result/', '<i class="fa fa-check-square-o"></i> สถานประกอบการประเมินนิสิต', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Coop_student_assessment_result/', '<i class="fa fa-check-square-o"></i> ผลประเมินนิสิต', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-              <?php echo anchor('Officer/Company_assessment_result/', '<i class="fa fa-check-square-o"></i> นิสิตประเมินสถานประกอบการ', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Company_assessment_result/', '<i class="fa fa-check-square-o"></i> ผลประเมินบริษัท', 'class="nav-link"');?>
             </li>
 
             <li class="nav-item">
