@@ -12,10 +12,10 @@ class BUUMember_model extends CI_Model
             $data['fullname'] = 'Kamonwan';
             $data['login_type'] = 'officer';
             $data['login_value'] = 'kamonwans';
-        } else if($username == '57160150') {
-            $data['fullname'] = '57160150';
-            $data['login_type'] = 'coop_student';
-            $data['login_value'] = '57160150';
+        } else if($username == '57660135') {
+            $data['fullname'] = '57660135';
+            $data['login_type'] = 'student';
+            $data['login_value'] = '57660135';
         }
 
         return $data;

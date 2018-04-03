@@ -35,7 +35,7 @@
                               <td>
                                 <font color="#0000ff">
                                   <?php 
-                                  if(isset($student_profile['Teacher_NameTH']) && $student_profile['Teacher_LNameTH'] == "None") {
+                                  if(isset($student_profile['Teacher_NameTH']) && $student_profile['Teacher_LNameTH'] != "None") {
                                     echo $student_profile['Teacher_NameTH'].' '.$student_profile['Teacher_LNameTH'];
                                   } else {
                                     echo " - ";
