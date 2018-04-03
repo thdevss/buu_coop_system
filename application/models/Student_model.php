@@ -72,9 +72,15 @@ class Student_model extends CI_model {
 
     public function get_student_data_from_profile($student_id)
     {
-        // $file = file_get_contents('mockup-student.json');
-        $file = file_get_contents('http://10.80.34.5:9991/public/api/v1/student/'.$student_id);
-        $api = json_decode($file, true);
+        $ch = curl_init();
+        $timeout = 5;
+        curl_setopt($ch, CURLOPT_URL, 'http://10.80.34.5:9991/public/api/v1/student/'.$student_id);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        $api = json_decode($result, true);
 
         if($api['status'] == "true") {
             return $api['result'];
