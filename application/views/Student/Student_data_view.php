@@ -25,12 +25,25 @@
                     <div class="col-sm-8">
                         <table class="table table-bordered ">
                             <tr><h3>ข้อมูลทั่วไป</h3></tr>
-                            <tr><td width="25%">ชื่อภาษาอังกฤษ</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td</tr>
-                            <tr><td>คณะ</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr>
+                            <tr><td width="25%">ชื่อภาษาอังกฤษ</td><td><font color="#0000ff"><?php echo $student_profile['Student_Name_Eng'].' '.$student_profile['Student_Lname_ENG'];?></font></td</tr>
+                            <tr><td>คณะ</td><td><font color="#0000ff">วิทยาการสารสนเทศ</font></td></tr>
                             <tr><td>สาขา</td><td><font color="#0000ff"><?php echo $department['name']; ?></font></td></tr>
                             <tr><td>ปีการศึกษา </td><td><font color="#0000ff"><?php echo $term['year']; ?>&nbsp;<?php echo $term['name']; ?></font></td></tr>
-                            <tr><td>หลักสูตร</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr>
-                            <tr><td>อาจารย์ที่ปรึกษา</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td</tr>
+                            <tr><td>หลักสูตร</td><td><font color="#0000ff"><?php echo $student_profile['Course'];?></font></td></tr>
+                            <tr>
+                              <td>อาจารย์ที่ปรึกษา</td>
+                              <td>
+                                <font color="#0000ff">
+                                  <?php 
+                                  if(isset($student_profile['Teacher_NameTH'])) {
+                                    echo $student_profile['Teacher_NameTH'].' '.$student_profile['Teacher_LNameTH'];
+                                  } else {
+                                    echo " - ";
+                                  }
+                                  ?>
+                                </font>
+                              </td>
+                            </tr>
                             <tr><td>หน่วยกิตคำนวณ</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr>
 
                             <tr><td>หน่วยกิตที่ผ่าน </td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr>
@@ -46,7 +59,6 @@
                             <?php } ?>
                             </td></tr>
                             <tr><td >วิชาเเกน</td><td>รอดึงจากระบบโปรไฟล์</td></tr>
-                            <tr><td>เกรด</td><td><font color="#ff3300">รอดึงจากระบบโปรไฟล์</font></td></tr>
                             <tr><td>สถานะสถานประกอบการ</td><td>
                             <?php if($student['company_status'] == '1') { ?>
                               <font color="#006600">ผ่านการคัดเลือกจากสถานประกอบการ</font>

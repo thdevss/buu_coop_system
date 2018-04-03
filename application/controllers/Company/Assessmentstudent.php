@@ -32,10 +32,18 @@ class Assessmentstudent extends CI_Controller {
 		$data['data'] = array();
 		foreach($this->Coop_Student->gets_coop_student($data['company']['id']) as $row) {
 			$tmp['assessment_student'] = $row;
-			$tmp['company_job_position'] = $this->Job->get_job($tmp['assessment_student']['company_job_position_id'])[0];
-			$tmp['student'] = $this->Student->get_student($tmp['assessment_student']['student_id'])[0];
-			$tmp['department'] = $this->Student->get_department($tmp['student']['department_id'])[0];
-			array_push($data['data'], $tmp);
+			$tmp['company_job_position'] = @$this->Job->get_job($tmp['assessment_student']['company_job_position_id'])[0];
+			$tmp['student'] = @$this->Student->get_student($tmp['assessment_student']['student_id'])[0];
+			$tmp['department'] = @$this->Student->get_department($tmp['student']['department_id'])[0];
+
+			if(
+				$tmp['department'] &&
+				$tmp['student'] &&
+				$tmp['company_job_position'] &&
+				$tmp['assessment_student']
+			) {
+				array_push($data['data'], $tmp);
+			}
 		}
 		
 

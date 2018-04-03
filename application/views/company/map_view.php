@@ -63,16 +63,42 @@
     });
     var marker = new google.maps.Marker({
       position: uluru,
-      map: map
+      map: map,
+      draggable: true,
+    });
+    google.maps.event.addListener(marker, 'dragend', function() {
+      geocodePosition(marker.getPosition());
     });
   }
+
+  function geocodePosition(pos) 
+  {
+        geocoder = new google.maps.Geocoder();
+        geocoder.geocode
+        ({
+            latLng: pos
+        }, 
+            function(results, status) 
+            {
+                if (status == google.maps.GeocoderStatus.OK) 
+                {
+                    console.log(pos.lat())
+                    console.log(pos.lng())
+                    save_latitude = pos.lat()
+                    save_longitude = pos.lng()
+                } 
+                else 
+                {
+
+                }
+            }
+        );
+    }
 
 
 
   function getUserLocation() {
-    if (navigator.geolocation) {
-
-      
+    if (navigator.geolocation) {      
       swal({
         text: "กำลังดึงพิกัดจากผู้ใช้",
         icon: "info",
