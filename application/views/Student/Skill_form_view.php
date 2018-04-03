@@ -39,8 +39,8 @@
                                         <tr>
                                             <td>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="<?php echo $key;?>" value="<?php echo $skill['skill_id'];?>" name="skill[]" <?php if($checked) echo 'checked'; ?>>
-                                                    <label class="form-check-label" for="<?php echo $key;?>"><?php echo $skill['skill_name'];?></label>
+                                                    <input class="form-check-input" type="checkbox" id="key_<?php echo $skill['skill_id'];?>" value="<?php echo $skill['skill_id'];?>" name="skill[]" <?php if($checked) echo 'checked'; ?>>
+                                                    <label class="form-check-label" for="key_<?php echo $skill['skill_id'];?>"><?php echo $skill['skill_name'];?></label>
                                                 </div>
                                                 
                                             </td>
