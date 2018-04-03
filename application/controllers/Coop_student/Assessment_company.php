@@ -57,7 +57,7 @@ class Assessment_company extends CI_Controller {
 		}
 		
 		$data['result'] = [];
-		foreach($this->Company_Assessment_Form->get_company_form_result($coop_student['company_id']) as $result) {
+		foreach($this->Company_Assessment_Form->get_company_form_item_result_by_company_and_student($coop_student['company_id'], $student_id) as $result) {
 			$data['result'][$result['item_id']] = $result['score'];
 		}
 		// print_r($data);

@@ -20,20 +20,38 @@ class Company_Assessment_Form_model extends CI_model {
         return $this->db->replace('company_has_company_questionnaire_item',$array);
     }
 
-    public function get_company_form_result($company_id)
+    public function get_company_form_item_result_by_company_and_student($company_id, $student_id)
     {
+        $this->db->where('student_id', $student_id);
         $this->db->where('company_id', $company_id);
+        
         $this->db->from('company_has_company_questionnaire_item');
         $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function get_company_questionnaire_item_by_subject($id)
+    public function get_company_questionnaire_item_by_subject($subject_id)
     {
         $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);        
         $this->db->order_by('number', 'asc');
-        $this->db->where('subject_id',$id);
+        $this->db->where('subject_id',$subject_id);
         $this->db->from('company_questionnaire_item');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_company_questionnaire_item_avg_result_by_subject_and_company($subject_id, $company_id)
+    {
+        $this->db->where('company_questionnaire_item.term_id', $this->Term->get_current_term()[0]['term_id']);        
+        $this->db->where('company_has_company_questionnaire_item.company_id',$company_id);
+        $this->db->where('company_questionnaire_item.subject_id',$subject_id);        
+        $this->db->where('company_questionnaire_item.type','score');
+        $this->db->select('avg(company_has_company_questionnaire_item.score) as avg_score, company_questionnaire_item.number, company_questionnaire_item.title, company_questionnaire_item.description');
+        $this->db->from('company_questionnaire_item');        
+        $this->db->join('company_has_company_questionnaire_item', 'company_has_company_questionnaire_item.item_id = company_questionnaire_item.id');
+        $this->db->order_by('company_questionnaire_item.number', 'asc');
+        $this->db->group_by('company_questionnaire_item.number');
+
         $query = $this->db->get();
         return $query->result_array();
     }

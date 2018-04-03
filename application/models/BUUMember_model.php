@@ -3,17 +3,19 @@ class BUUMember_model extends CI_Model
 {
     public function xlogin($username, $password)
     {
+        $data = array();
         if($username == 'nutthanon9') {
-            $data = array();
             $data['fullname'] = 'Nutthanon';
             $data['login_type'] = 'adviser';
             $data['login_value'] = 'nutthanon';
-        }
-         else if($username == 'pnut') {
-            $data = array();
+        } else if($username == 'pnut') {
             $data['fullname'] = 'Kamonwan';
             $data['login_type'] = 'officer';
             $data['login_value'] = 'kamonwans';
+        } else if($username == '57160150') {
+            $data['fullname'] = '57160150';
+            $data['login_type'] = 'coop_student';
+            $data['login_value'] = '57160150';
         }
 
         return $data;

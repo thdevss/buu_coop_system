@@ -35,46 +35,11 @@ class Company_assessment_result extends CI_Controller {
             }
 
             // add breadcrumbs
-            $this->breadcrumbs->push('รายชื่อนิสิตสหกิจ', '/Officer/Company_assessment_result/index');
+            $this->breadcrumbs->push('รายชื่อสถานประกอบการ', '/Officer/Company_assessment_result/index');
 
             $this->template->view('Officer/Company_assessment_result_list_view', $data);
         }
 
-        // public function ajax_list()
-        // {
-        //     $cache = array();
-        //     foreach($this->Student->gets_student() as $tmp) {
-        //         $cache['student'][$tmp['id']]['fullname'] = $tmp['fullname'];
-        //         $cache['student'][$tmp['id']]['id'] = $tmp['id'];
-        //     }
-        //     foreach($this->Job->gets_job() as $tmp) {
-        //         $cache['job'][$tmp['id']]['position_title'] = $tmp['position_title'];
-        //     }
-        //     foreach($this->Company->gets_company() as $tmp) {
-        //         $cache['company'][$tmp['id']]['name_th'] = $tmp['name_th'];
-        //     }
-        //     foreach($this->Trainer->gets_trainer() as $tmp) {
-        //         $cache['trainer'][$tmp['id']]['fullname'] = $tmp['fullname'];
-        //     }
-
-        //     $return = array();
-        //     $return['data'] = array();
-
-        //     foreach($this->Coop_Student->gets_coop_student() as $row) {
-        //         //get student
-        //         $tmp_array = array();
-        //         $tmp_array['student'] = $cache['student'][$row['student_id']];
-        //         $tmp_array['student']['id'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$tmp_array['student']['id']).'">'.$tmp_array['student']['id'].'</a>';
-        //         $tmp_array['job_position'] = $cache['job'][$row['company_job_position_id']];
-        //         $tmp_array['company'] = @$cache['company'][$row['company_id']];
-        //         $tmp_array['trainer'] = @$cache['trainer'][$row['trainer_id']];
-        //         $tmp_array['button'] = '<a href="'.site_url('Officer/Company_assessment_result/assessment_detail/'.$row['student_id']).'" class="btn btn-info"><i class="fa fa-list-alt"></i> ผลการประเมิน</a>';
-        //         // print_r($tmp_array);
-        //         array_push($return['data'], $tmp_array);
-        //     }
-    
-        //     echo json_encode($return['data']);
-        // }
 
         public function assessment_detail($company_id)
         {
@@ -84,20 +49,15 @@ class Company_assessment_result extends CI_Controller {
             {
                 $tmp_array = array();
                 $tmp_array['questionnaire_subject'] = $row;
-                $tmp_array['questionnaire_item'] = $this->Company_Assessment_Form->get_company_questionnaire_item_by_subject($row['id']);
-                array_push($data['data'], $tmp_array);
+                $tmp_array['questionnaire_item'] = $this->Company_Assessment_Form->get_company_questionnaire_item_avg_result_by_subject_and_company($row['id'], $company_id);
+                if( count($tmp_array['questionnaire_item']) > 0 ) {
+                    array_push($data['data'], $tmp_array);
+                }
             }
-		
-            $data['result'] = [];
-            foreach($this->Company_Assessment_Form->get_company_form_result($company_id) as $result) {
-                $data['result'][$result['item_id']] = $result['score'];
-            }
-            // print_r($data);
-            // die();
 
             // add breadcrumbs
             $this->breadcrumbs->push('รายชื่อสถานประกอบการ', '/Officer/Company_assessment_result/index');
-            $this->breadcrumbs->push('แบบการประเมินผลการฝึกงานของนิสิตสหกิจ', '/Officer/Company_assessment_result/assessment_detail');
+            $this->breadcrumbs->push('ผลประเมินบริษัท', '/Officer/Company_assessment_result/assessment_detail');
 
             $this->template->view('Officer/Company_assessment_result_score_view', $data);
         } 
