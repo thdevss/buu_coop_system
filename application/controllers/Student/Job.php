@@ -57,7 +57,9 @@ class Job extends CI_Controller {
         $data['department'] = $this->Student->get_department($data['student']['department_id'])[0];
         $data['company'] = $this->Company->get_company($company_id)[0];
         $data['company_job_position'] = $this->Skilled_Job_Search->search_skill_by_job($company_job_position_id)[0];
+        $data['student_profile'] = $this->Student->get_student_data_from_profile($student_id);
         // print_r($data);
+        
 
         //add ->breadcrumbs
         $this->breadcrumbs->push('รายการสมัคร ตำแหน่งงาน และสถานประกอบการ', '/Student/Job/lists');
@@ -78,14 +80,24 @@ class Job extends CI_Controller {
         $student_id = $this->Login_session->check_login()->login_value;
         
         // input form view
-        // $student_telephone = $this->input->post('student_telephone');
-        // $student_phone = $this->input->post('student_phone');
-        // $student_email = $this->input->post('student_email');
-        // $Age = $this->input->post('age');
-        // $Sex = $this->input->post('sex');
-        // $height = $this->input->post('height');
-        // $weight = $this->input->post('weight');
-       
+        print_r($_POST);
+        $student_telephone = $this->input->post('telaphone');
+        $student_phone = $this->input->post('phone');
+        $student_email = $this->input->post('email');
+        $Student_Nickname = $this->input->post('student_nickname');
+        $Age = $this->input->post('age');
+        $height = $this->input->post('height');
+        $weight = $this->input->post('weight');
+        $Level = $this->input->post('level');
+        $Address_Number = $this->input->post('address');
+        $
+
+
+
+
+
+        // get form model
+        $data['student_profile'] = $this->Student->get_student_data_from_profile($student_id);
         $data['student'] = @$this->Student->get_student($student_id)[0];
         $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
         $data['company'] = @$this->Company->get_company($company_id)[0];
@@ -99,37 +111,37 @@ class Job extends CI_Controller {
         $data_array = [
                 "student_fullname" => $data['student']['fullname'],           
                 "student_id" => $student_id,
-                "student_telephone" => "024779640",
-                "student_phone" =>  "093 995 8573",
-                "student_email" => "santikon12@gmail.com",
+                "student_telephone" => $student_telephone,
+                "student_phone" =>  $student_phone,
+                "student_email" => $student_email,
                 "ch_cs" => "",
                 "ch_it" => "",
                 "ch_se" => "",
-                "time" => "9 ชั่วโมง",
-                "round" => "1",
+                // "time" => "9 ชั่วโมง",
+                // "round" => "1",
                 "company_name_th" => $data['company']['name_th'],
                 "company_job_position" => $data['job_position_name'],
-                
-                "Student_NameTH" => "ศานติกร",
-                "Student_LNameameTH" => "อภัย",
-                "Student_Nickname" => "POP",
-                "Student_NameEng" => "SANTIKON",
-                "Student_LNameENG" => "APAI",
-                "Student_IdNum" => "1279800040028",
-                "Notionnality" => "ไทย",
-                "Relidion" => "พุทธ",
-                "Province_Birth" => "สระแก้ว",
-                "Birthday" => "1996-04-06",
-                "Age" => "21",
-                "Sex" => "ชาย",
-                "height" => "171",
-                "weight" => "62",
-                "Course" => "2515013:เทคโนโลยีสารสนเทศ - 4 ปี (พิเศษ) (54)", 
-                "Student_ID" => $student_id,
-                "Level" => "4",
+                "Prefix" => $data['student_profile']['Prefix'], 
+                "Student_NameTH" => $data['student_profile']['Student_NameTH'],
+                "Student_LNameameTH" => $data['student_profile']['Student_LNameTH'],
+                "Student_Nickname" => $Student_Nickname,
+                "Student_NameEng" => $data['student_profile']['Student_NameEng'],
+                "Student_LNameENG" => $data['student_profile']['Student_LNameENG'],
+                "Student_IdNum" => $data['student_profile']['Student_IdNum'],
+                "Notionnality" => $data['student_profile']['Notionnality'],
+                "Relidion" => $data['student_profile']['Relidion'],
+                "Province_Birth" => $data['student_profile']['Province_Birth'],
+                "Birthday" => thaiDate($data['student_profile']['Birthday'], false, false),
+                "Age" => $Age,
+                "Sex" => $data['student_profile']['Prefix'],
+                "height" => $height,
+                "weight" => $weight,
+                "Course" => $data['department']['name'], 
+                "Student_ID" => $data['student_profile']['Student_ID'],
+                "Level" => $Level,
                 "GPA" => "128",
                 "GPAX" => "2.86",
-                "Address_Number" => "56",
+                "Address_Number" => $Address_Number,
                 "Address_Moo" => "16",
                 "Address_Soi" => "สำราญวิล",
                 "Address_Tumbon" => "แสนสุข",

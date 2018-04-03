@@ -16,7 +16,7 @@ function strToLevel($str)
     return 'Unknown';
 }
 
-function thaiDate($strDate = '2018-01-01 00:00:00', $full_date = false)
+function thaiDate($strDate = '2018-01-01 00:00:00', $full_date = false, $show_time = true)
 {
     $strYear = date("Y",strtotime($strDate))+543;
     $strMonth= date("n",strtotime($strDate));
@@ -28,8 +28,13 @@ function thaiDate($strDate = '2018-01-01 00:00:00', $full_date = false)
     if(!$full_date) {
         
         $strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ษ.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
-        $strMonthThai=$strMonthCut[$strMonth];
-        return "$strDay $strMonthThai $strYear $strHour:$strMinute น.";
+		$strMonthThai=$strMonthCut[$strMonth];
+		
+		if($show_time) {
+			return "$strDay $strMonthThai $strYear $strHour:$strMinute น.";
+		} else {
+			return "$strDay $strMonthThai $strYear ";
+		}
     } else {
         $strDayCut['Sun'] = 'อาทิตย์';
         $strDayCut['Mon'] = 'จันทร์';
@@ -42,8 +47,13 @@ function thaiDate($strDate = '2018-01-01 00:00:00', $full_date = false)
         $strMonthCut = array('', 'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฏาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤษจิกายน', 'ธันวาคม');
     
         $strMonthThai=$strMonthCut[$strMonth];
-        $strDayThai=$strDayCut[date("D",strtotime($strDate))];
-        return "วัน $strDayThai ที่ $strDay $strMonthThai พ.ศ. $strYear เวลา $strHour:$strMinute น.";
+		$strDayThai=$strDayCut[date("D",strtotime($strDate))];
+		
+		if($show_time) {
+			return "วัน $strDayThai ที่ $strDay $strMonthThai พ.ศ. $strYear เวลา $strHour:$strMinute น.";
+		} else {
+			return "วัน $strDayThai ที่ $strDay $strMonthThai พ.ศ. $strYear";			
+		}
         
     }
 }
