@@ -27,19 +27,39 @@ class Job extends CI_Controller {
         $data['company'] = $this->Company->gets_company();
         $data['job'] = $this->Job->gets_job_title();
         $student_id = $this->Login_session->check_login()->login_value;
-        $data['skill_by_student'] = $this->Skill_Search->search_skill_by_student($student_id)[0];
-        $data['skill'] = $this->Skill_Search->skill_by_id($data['skill_by_student']['skill_id'])[0];
-        $data['data'] = array();
+        
+        if(!$this->Skill_Search->search_skill_by_student($student_id)){
+            redirect('Student/Skill/index?status=select_before', 'refresh');
+        }else{
+            // $data['skill_by_student'] = $this->Skill_Search->search_skill_by_student($student_id)[0];
+            
+            // if($this->Skill_Search->skill_by_id($data['skill_by_student']['skill_id'])){
+            //     $data['skill'] = $this->Skill_Search->skill_by_id($data['skill_by_student']['skill_id'])[0];
+            // }
+        }
 
-        foreach($this->Skilled_Job_Search->search_job_by_skill($data['skill']['skill_id']) as $row) {
-        $temp = array();
-        $temp['company_job_position'] = $this->Skilled_Job_Search->search_skill_by_job($row['company_job_position_id'])[0];
-        $temp['company_name'] = $this->Company->get_company($row['company_job_position_company_id']);
-        $temp['address_company'] = $this->Address->get_address_by_company($row['company_job_position_company_id'])[0];
-        array_push($data['data'], $temp);
+        
+        $data['data'] = array();
+        // foreach($this->Skilled_Job_Search->search_job_by_skill($data['skill']['skill_id']) as $row) {
+        foreach($this->Job->gets_job() as $row) {
+            // print_r($row);
+            $temp = array();
+            // $temp['company_job_position'] = $this->Skilled_Job_Search->search_skill_by_job($row['company_job_position_id'])[0];
+            $temp['company_job_position'] = $row;
+            
+            $temp['company_name'] = @$this->Company->get_company($row['company_id']);
+            $temp['address_company'] = @$this->Address->get_address_by_company($row['company_id'])[0];
+
+            if(
+                $temp['address_company'] &&
+                $temp['company_name']
+            ) {
+                array_push($data['data'], $temp);
+            }
 
         }
-            //print_r($data);
+            // print_r($data);
+            // die();
             //add ->breadcrumbs
         $this->breadcrumbs->push('รายการสมัคร ตำแหน่งงาน และสถานประกอบการ', '/Student/Job/lists');
         $this->template->view('Student/Report_student_info_view',$data);
@@ -80,7 +100,6 @@ class Job extends CI_Controller {
         $student_id = $this->Login_session->check_login()->login_value;
         
         // input form view
-        print_r($_POST);
         $student_telephone = $this->input->post('telaphone');
         $student_phone = $this->input->post('phone');
         $student_email = $this->input->post('email');
@@ -90,11 +109,18 @@ class Job extends CI_Controller {
         $weight = $this->input->post('weight');
         $Level = $this->input->post('level');
         $Address_Number = $this->input->post('address');
-        $
-
-
-
-
+        $address_telephone = $this->input->post('address_telephone');
+        $address_phone = $this->input->post('address_phone');
+        $address_email = $this->input->post('address_email');
+        $Contact_Phone = $this->input->post('contact_telephone');
+        $Relation = $this->input->post('contact_status');
+        $Father_Career = $this->input->post('father_caree');
+        $Father_Phone = $this->input->post('father_telephone');
+        $Mother_Career = $this->input->post('mather_caree');
+        $Mother_Phone = $this->input->post('mather_telephone');
+        $job_student = $this->input->post('job_student');
+        $computer_student = $this->input->post('computer_student');
+        $detail_student = $this->input->post('detail_student');
 
         // get form model
         $data['student_profile'] = $this->Student->get_student_data_from_profile($student_id);
@@ -117,8 +143,8 @@ class Job extends CI_Controller {
                 "ch_cs" => "",
                 "ch_it" => "",
                 "ch_se" => "",
-                // "time" => "9 ชั่วโมง",
-                // "round" => "1",
+                "time" => "9 ชั่วโมง",
+                "round" => "1",
                 "company_name_th" => $data['company']['name_th'],
                 "company_job_position" => $data['job_position_name'],
                 "Prefix" => $data['student_profile']['Prefix'], 
@@ -133,7 +159,7 @@ class Job extends CI_Controller {
                 "Province_Birth" => $data['student_profile']['Province_Birth'],
                 "Birthday" => thaiDate($data['student_profile']['Birthday'], false, false),
                 "Age" => $Age,
-                "Sex" => $data['student_profile']['Prefix'],
+                "Sex" => "",
                 "height" => $height,
                 "weight" => $weight,
                 "Course" => $data['department']['name'], 
@@ -142,56 +168,50 @@ class Job extends CI_Controller {
                 "GPA" => "128",
                 "GPAX" => "2.86",
                 "Address_Number" => $Address_Number,
-                "Address_Moo" => "16",
-                "Address_Soi" => "สำราญวิล",
-                "Address_Tumbon" => "แสนสุข",
-                "Address_Aumper" => "เมืองชลบุรี",
-                "Address_Province" => "ชลบุรี",
-                "Address_Postcodes" => "20130",
-                "Homeaddress_Number" => "56",
-                "Homeaddress_Moo" => "16",
-                "Homeaddress_Soi" => "สำราญวิล",
-                "Homeaddress_Tumbon" => "แสนสุข",
-                "Homeaddress_Aumper" => "เมืองชลบุรี",
-                "Homeaddress_Province" => "ชลบุรี",
-                "Homeaddress_Postcodes" => "20130",
-                "student_telephone" => "029582351",
-                "Student_Phone" => "093 995 8573",
-                "Student_Email" => "santikon12@gmail.com",
+                "Homeaddress_Number" => $data['student_profile']['Homeaddress_Number'],
+                "Homeaddress_Moo" => $data['student_profile']['Homeaddress_Moo'],
+                "Homeaddress_Soi" => $data['student_profile']['Homeaddress_Soi'],
+                "Homeaddress_Tumbon" => $data['student_profile']['Homeaddress_Tumbon'],
+                "Homeaddress_Aumper" => $data['student_profile']['Homeaddress_Aumper'],
+                "Homeaddress_Province" => $data['student_profile']['Homeaddress_Province'],
+                "Homeaddress_Postcodes" => $data['student_profile']['Homeaddress_Postcode'],
+                "Student_Telephone" => $address_telephone,
+                "Student_Phone" => $address_phone,
+                "Student_Email" => $address_email,
                 
-                "Contact_Name" => "นางมณี  อภัย",
-                "Contact_Phone" => "089 542 3940",
-                "Relation" => "มารดา",
-                "Contactaddress_Number" => "56/16",
-                "Contactaddress_Tumbon" => "แสนสุข",
-                "Contactaddress_Aumper" => "เมืองชลบุรี",
-                "Contactaddress_Province" => "ชลบุรี",
-                "Contactaddress_Postcode" => "20130",
+                "Contact_Name" => $data['student_profile']['Contact_Name'],
+                "Contact_Phone" => $Contact_Phone,
+                "Relation" => $Relation,
+                "Contactaddress_Number" => $data['student_profile']['Contactaddress_Number'],
+                "Contactaddress_Tumbon" => $data['student_profile']['Contactaddress_Tumbon'],
+                "Contactaddress_Aumper" => $data['student_profile']['Contactaddress_Aumper'],
+                "Contactaddress_Province" => $data['student_profile']['Contactaddress_Province'],
+                "Contactaddress_Postcode" => $data['student_profile']['Contactaddress_Postcode'],
                 
-                "Father_Name" => "ด.ต.อัศวศักดิ์  อภัย",
-                "Father_Career" => "ตำรวจ",
-                "Father_Phone" => "099 567 7253",
+                "Father_Name" => $data['student_profile']['Contactaddress_Number'],
+                "Father_Career" => $Father_Career,
+                "Father_Phone" => $Father_Phone,
                 "Father_status_l" => "*",
                 "Father_Age" => "55",
-                "Fatheraddress_Number" => "56",
-                "Fatheraddress_Moo" => "16",
-                "Fatheraddress_Soi" => "สำราญวิล",
-                "Fatheraddress_Tumbon" => "แสนสุข",
-                "Fatheraddress_Aumper" => "เมืองชลบุรี",
-                "Fatheraddress_Province" => "ชลบุรี",
-                "Fatheraddress_Postcode" => "20130",
-                "Mother_Name" => "นางมณี  อภัย",
-                "Mother_Career" => "ธุรกิจส่วนตัว",
-                "Mother_Phone" => "089 542 3940",
+                "Fatheraddress_Number" => $data['student_profile']['Parentaddress_Number'],
+                "Fatheraddress_Moo" => $data['student_profile']['Parentaddress_Moo'],
+                "Fatheraddress_Soi" => $data['student_profile']['Parentaddress_Soi'],
+                "Fatheraddress_Tumbon" => $data['student_profile']['Parentaddress_Tumbon'],
+                "Fatheraddress_Aumper" => $data['student_profile']['Parentaddress_Aumper'],
+                "Fatheraddress_Province" => $data['student_profile']['Parentaddress_Province'],
+                "Fatheraddress_Postcode" => $data['student_profile']['Parentaddress_Postcode'],
+                "Mother_Name" => $data['student_profile']['Mother_Name'],
+                "Mother_Career" => $Mother_Career,
+                "Mother_Phone" => $Mother_Phone,
                 "Mother_status_l" => "*",
                 "Mother_Age" => "50",
-                "Motheraddress_Number" => "56",
-                "Motheraddress_Moo" => "16",
-                "Motheraddress_Soi" => "สำราญวิล",
-                "Motheraddress_Tumbon" => "แสนสุข",
-                "Motheraddress_Aumper" => "เมืองชลบุรี",
-                "Motheraddress_Province" => "ชลบุรี",
-                "Motheraddress_Postcode" => "20130",
+                "Motheraddress_Number" => $data['student_profile']['Parentaddress_Number'],
+                "Motheraddress_Moo" => $data['student_profile']['Parentaddress_Moo'],
+                "Motheraddress_Soi" => $data['student_profile']['Parentaddress_Soi'],
+                "Motheraddress_Tumbon" => $data['student_profile']['Parentaddress_Tumbon'],
+                "Motheraddress_Aumper" => $data['student_profile']['Parentaddress_Aumper'],
+                "Motheraddress_Province" => $data['student_profile']['Parentaddress_Province'],
+                "Motheraddress_Postcode" => $data['student_profile']['Parentaddress_Postcode'],
                 "Brethren" => "น้อง 1 คน",
 
         ];
@@ -202,6 +222,12 @@ class Job extends CI_Controller {
             $data_array ['ch_cs'] = "*";
         }else if($data['department']['id']== 3) {
             $data_array ['ch_se'] = "*";
+        }
+
+        if($data['student_profile']['Prefix']== "นาย") {
+            $data_array ['Sex'] = "ชาย";
+        }else if ($data['student_profile']['Prefix']== "นางสาว") {
+            $data_array ['Sex'] = "หญิง";
         }
 
         
