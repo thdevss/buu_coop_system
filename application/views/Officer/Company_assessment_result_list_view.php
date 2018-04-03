@@ -5,29 +5,36 @@
 <?php echo $this->breadcrumbs->show(); ?>
 
 
-<div class="container-fluid">
-  <div class="animated fadeIn">
+  <div class="container-fluid">
+    <div class="animated fadeIn">
       <div class="row" >
-      <!--table รายชื่อนิสิต-->
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify"></i>รายชื่อนิสิตสหกิจ</div>
-              <div class="card-body">
-              <table class="table table-bordered" id="student_table">
-                    <thead>
+            <div class="card-header"><i class="fa fa-align-justify"></i>  รายชื่อสถานประกอบการ</div>
+            <div class="card-body">
+              <!--table รายชื่อนิสิต-->
+              <table class="table table-bordered datatable" >
+                <thead>
+                  <tr>
+                    <th class="text-left"></th>
+                    <th class="text-left">ชื่อสถานประกอบการ</th>
+                    <th class="text-left">จำนวนนิสิตสหกิจ</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                  <tbody>
+                    <?php $i=1; foreach ($data as $row){?>
                       <tr>
-                        <th></th>
-                        <th class="text-left">รหัสนิสิต</th>
-                        <th class="text-left">ชื่อ-สกุล</th>
-                        <th class="text-left">ตำแหน่งงาน</th>
-                        <th class="text-left">บริษัท</th>
-                        <th class="text-left">พี่เลียง</th>
-                        <th class="text-left"> </th>
-                      </tr>
-                    </thead>
-                    <tbody></tbody>
-                  </table>
-                </div>
+                        <td class="text-center"><?php echo $i++; ?></td>
+                        <td class="text-left"><?php echo $row['name_th'];?> (<?php echo $row['name_en'];?>)</td>
+                        <td class="text-right"><?php echo $row['count']; ?></td>
+                        <td class="text-center">
+                          <?php echo anchor('Officer/Company_assessment_result/assessment_detail/'.$row['id'], '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn  btn-primary"');?>                            
+                        </td>
+                      </tr> 
+                      <?php } ?>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -37,69 +44,4 @@
   </div>
 </div>
 
-
-
 </main>
-
-
-<script>
-$(document).ready(function() {
-    var dataSrc = [];
-    var table = $('#student_table').DataTable( {
-        "columnDefs": [ {
-            "searchable": false,
-            "orderable": false,
-            "targets": 0
-        } ],
-        "order": [[ 1, 'asc' ]],
-        "ajax": {
-          "url": "<?php echo site_url('Officer/Company_assessment_result/ajax_list');?>",
-          "dataSrc": ""
-        },
-        "columns": [
-            { "data": "student.id" },            
-            { "data": "student.id" },
-            { "data": "student.fullname" },
-            { "data": "job_position.position_title" },
-            { "data": "company.name_th" },
-            { "data": "trainer.fullname" },
-            { "data": "button" }
-            
-        ],
-        'initComplete': function(){
-          var api = this.api();
-
-          // Populate a dataset for autocomplete functionality
-          // using data from first, second and third columns
-          api.cells('tr', [1, 2, 3, 4, 5]).every(function(){
-              // Get cell data as plain text
-              var data = $('<div>').html(this.data()).text();           
-              if(dataSrc.indexOf(data) === -1){ dataSrc.push(data); }
-          });
-                
-          // Sort dataset alphabetically
-          dataSrc.sort();
-                
-          // Initialize Typeahead plug-in
-          $('.dataTables_filter input[type="search"]', api.table().container())
-              .typeahead({
-                source: dataSrc,
-                afterSelect: function(value){
-                    api.search(value).draw();
-                }
-              }
-          );
-        }
-        
-        
-    } )
-    table.on( 'order.dt search.dt', function () {
-        table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-            cell.innerHTML = i+1;
-        } );
-    } ).draw();
-
-
-} );
-
-</script>
