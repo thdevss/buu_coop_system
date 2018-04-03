@@ -14,7 +14,9 @@
           <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i> รายชื่อนิสิตฝึกงานของนิสิตสหกิจ</div>
               <div class="card-body">
-
+              <div class="alert alert-info" role="alert">
+              ระดับคะแนน 5 = ดีมาก 4 = ดี 3 = ปานกลาง 2=พอใช้ 1 = ต้องปรับปรุง N/A  ไม่สามารถประเมินได้
+                </div>
               <table class="table table-striped datatable">
                     <thead>
                       <tr>

@@ -11,8 +11,15 @@
 
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify"></i> แบบประเมินสถานประกอบการ</div>
+            <div class="card-header"><i class="fa fa-align-justify"></i> แบบประเมินสถานประกอบการที่ให้ความอนุเคราะห์รับนักศึกษาฝึกงาน </div>
               <div class="card-body">
+              <div class="alert alert-info" role="alert">
+              ระดับคะแนน 5 = ดีมาก 4 = ดี 3 = ปานกลาง 2=พอใช้ 1 = ต้องปรับปรุง N/A  ไม่สามารถประเมินได้
+                </div>
+              <!-- <div align="right">
+              <lable><code>*ระดับคะแนน 5 = ดีมาก 4 = ดี 3 = ปานกลาง 2=พอใช้ 1 = ต้องปรับปรุง N/A  ไม่สามารถประเมินได้</code></lable>
+              </div> -->
+              <br>
               <?php
               if($status) {
                 echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
@@ -53,6 +60,37 @@
                       <?php } ?>
                     </tbody>
                   </table>
+                    <div class="col-md-9">
+                    <lable><b>4. ตามข้อ 1.2 สถานประกอบการได้สนับสนุนสิ่งอำนวยความสะดวกต่าง ๆ ได้แก่<b></lable>
+                    <textarea id="textarea-input" name="textarea-input" rows="6" class="form-control" placeholder="......"></textarea>
+                    </div>
+                    <br>
+                    <div class="col-md-9">
+                    <lable><b>5 .ตามข้อ 1.3 สถานประกอบการได้ให้การสนับสนุนด้านสวัสดิการ ได้แก่ <b></lable>
+                    <textarea id="textarea-input" name="textarea-input" rows="6" class="form-control" placeholder="......"></textarea>
+                    </div>
+                    <br>
+                    <div class="col-md-9">
+                    <lable><b>6. ในปีการศึกษาถัดไป ท่านคิดว่าสมควรส่งนักศึกษาไปปฏิบัติสหกิจศึกษา/ฝึกงาน ณ สถานประกอบการแห่งนี้หรือไม่ <b></lable>
+                    <div class="custom-controls-stacked">
+                          <label class="custom-control custom-radio">
+                            <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">เห็นสมควรส่งไป</span>
+                          </label>
+                          <label class="custom-control custom-radio">
+                            <input id="radioStacked2" name="radio-stacked" type="radio" class="custom-control-input">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">ไม่สมควรส่งไป</span>
+                          </label>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-9">
+                    <lable><b>7.ข้อคิดเห็นเพิ่มเติม <b></lable>
+                    <textarea id="textarea-input" name="textarea-input" rows="6" class="form-control" placeholder="......"></textarea>
+                    </div>
+                    <br><br>
                   <div class="text-center">
                     <button type="submit" class="btn btn-md btn-primary" value="1" name="print"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
                     <button type="submit" class="btn btn-md btn-success" value="0" name="print"><i class="fa fa-dot-circle-o"></i> บันทึก </button>                    
