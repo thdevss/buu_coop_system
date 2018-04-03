@@ -32,7 +32,7 @@ class Login_session_model extends CI_model
         $this->db->where('unique_id', $session_ID);
         $this->db->from('login_session');
         $query = $this->db->get();
-        return $query->result()[0];
+        return @$query->result()[0];
     }
 
     public function update($session_ID, $arr)
