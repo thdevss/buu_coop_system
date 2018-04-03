@@ -12,7 +12,6 @@ class Student_model extends CI_model {
         $this->db->from('student');
         $query = $this->db->get();
         return $query->result_array();
-
     }
 
     public function gets_student()
@@ -70,4 +69,35 @@ class Student_model extends CI_model {
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    public function get_student_data_from_profile($student_id)
+    {
+        // $file = file_get_contents('mockup-student.json');
+        $file = file_get_contentes('http://10.80.34.5:9991/public/api/v1/student/'.$student_id);
+        $api = json_decode($file, true);
+
+        if($api['status'] == "true") {
+            return $api['result'];
+        } else {
+            return false;
+        }
+    }
+
+    // public function get_student_lists_from_profile($year)
+    // {
+    //     $file = file_get_contents(base_url('mockup-student.json'));
+    //     $api = json_decode($file, true);
+        
+    //     $return = [];
+    //     if($api['status'] == "true") {
+    //         foreach($api['result'] as $row) {
+    //             if($row['year'] == $year) {
+    //                 $return[] = $row;
+    //             }
+    //         }
+    //         return $return;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 }
