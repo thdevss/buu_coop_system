@@ -99,7 +99,7 @@ class Student_model extends CI_model {
         $result = curl_exec($ch);
         curl_close($ch);
 
-        if( count( explode("null", $result) ) > 5 ) {
+        if( count( explode("null", $result) ) > 20 ) {
             return false;
         } 
         

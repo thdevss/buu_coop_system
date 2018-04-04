@@ -82,6 +82,8 @@ class Job extends CI_Controller {
         $data['company'] = $this->Company->get_company($company_id)[0];
         $data['company_job_position'] = $this->Skilled_Job_Search->search_skill_by_job($company_job_position_id)[0];
         $data['student_profile'] = $this->Student->get_student_data_from_profile($student_id);
+
+        $data['has_profile'] = $this->Student->has_student_data_from_profile($student_id);
         // print_r($data);
         
 
