@@ -141,7 +141,7 @@
 
                             <dl class="row">
                               <dt class="col-sm-4">ผลการประเมิน</dt>
-                              <dd><a href="<?php echo site_url('Officer/Company_assessment_result/assessment_detail/'.$student['id']); ?>">ดูผลการประเมิน</a></dd>
+                              <dd><a href="<?php echo site_url('Officer/Coop_student_assessment_result/assessment_detail/'.$student['id']); ?>">ดูผลการประเมิน</a></dd>
                             </dl>
 
                           </div>
