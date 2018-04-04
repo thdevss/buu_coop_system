@@ -139,3 +139,13 @@ function get_age_from_birthday($birthday)
 function get_student_level_from_entry_year($Entry_Years) {
 	return (date("Y")+543) - $Entry_Years;
 }
+
+
+function isEmptyText($str = null)
+{
+	if($str == '') {
+		return " - ";
+	}
+
+	return $str;
+}

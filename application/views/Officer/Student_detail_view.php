@@ -24,32 +24,32 @@
 
                               <dl class="row">
                               <dt class="col-sm-4">ชั้นปี</dt>
-                              <dd>รอกลุ่ม Profile</dd>
+                              <dd><?php echo get_student_level_from_entry_year($student_profile['Entry_Years']);?></dd>
                               </dl>
 
                               <dl class="row">
                               <dt class="col-sm-4">หลักสูตร</dt>
-                              <dd>รอกลุ่ม Profile</dd>
+                              <dd><?php echo $student_profile['Course'];?></dd>
                               </dl>
 
                               <dl class="row">
                               <dt class="col-sm-4">สาขา</dt>
-                              <dd><?php echo $department['name'];?></dd>
+                              <dd><?php echo isEmptyText();?></dd>
                               </dl>
 
                               <dl class="row">
                               <dt class="col-sm-4">ชื่อเล่น</dt>
-                              <dd>รอกลุ่ม Profile</dd>
+                              <dd><?php echo isEmptyText($student_profile['Student_Nickname']); ?></dd>
                               </dl>
 
                               <dl class="row">
                               <dt class="col-sm-4">จำนวนหน่วยกิจที่เรียนแล้ว</dt>
-                              <dd>รอกลุ่ม Profile</dd>
+                              <dd><?php echo isEmptyText();?></dd>
                               </dl>
 
                               <dl class="row">
                               <dt class="col-sm-4">GPAX</dt>
-                              <dd>รอกลุ่ม Profile</dd>
+                              <dd><?php echo $student_profile['GPAX']; ?></dd>
                               </dl>
 
                         </div>
@@ -85,7 +85,7 @@
 
                               <dl class="row">
                               <dt class="col-sm-4">วิชาแกน</dt>
-                              <dd>รอกลุ่ม Profile</dd>
+                              <dd><?php echo isEmptyText();?></dd>
                               </dl>
 
                               <dl class="row">
