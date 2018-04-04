@@ -48,7 +48,7 @@ class Company extends CI_Controller {
 
         $data['data'] = $this->Address->get_address_by_company($company_id)[0];  
         $data['tmp'] = $this->Company->get_company($company_id)[0];  
-        $data['contact'] = $this->Trainer->get_trainer($data['tmp']['contact_person_id'])[0];
+        $data['contact'] = @$this->Trainer->get_trainer($data['tmp']['contact_person_id'])[0];
 
         // add breadcrumbs
         $this->breadcrumbs->push('จัดการข้อมูลสถานประกอบการ', '/Officer/Company/index');
