@@ -84,9 +84,26 @@ class Student_model extends CI_model {
 
         if($api['status'] == "true") {
             return $api['result'];
-        } else {
+        } 
+        
+        return false;
+    }
+
+    public function has_student_data_from_profile($student_id) 
+    {
+        $ch = curl_init();
+        $timeout = 5;
+        curl_setopt($ch, CURLOPT_URL, 'http://10.80.34.5:9991/public/api/v1/student/'.$student_id);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        if( count( explode("null", $result) ) > 5 ) {
             return false;
-        }
+        } 
+        
+        return true;
     }
 
     // public function get_student_lists_from_profile($year)

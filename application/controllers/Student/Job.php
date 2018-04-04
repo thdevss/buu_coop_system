@@ -24,50 +24,54 @@ class Job extends CI_Controller {
 
     public function lists()
     {
+        $data = [];
+        
         $data['company'] = $this->Company->gets_company();
         $data['job'] = $this->Job->gets_job_title();
         $student_id = $this->Login_session->check_login()->login_value;
         
         if(!$this->Skill_Search->search_skill_by_student($student_id)){
             redirect('Student/Skill/index?status=select_before', 'refresh');
-        }else{
-            // $data['skill_by_student'] = $this->Skill_Search->search_skill_by_student($student_id)[0];
-            
-            // if($this->Skill_Search->skill_by_id($data['skill_by_student']['skill_id'])){
-            //     $data['skill'] = $this->Skill_Search->skill_by_id($data['skill_by_student']['skill_id'])[0];
-            // }
         }
-
         
         $data['data'] = array();
-        // foreach($this->Skilled_Job_Search->search_job_by_skill($data['skill']['skill_id']) as $row) {
-        foreach($this->Job->gets_job() as $row) {
-            // print_r($row);
+
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('company_id', 'บริษัท', 'required|numeric');
+        $this->form_validation->set_rules('job_title_id', 'ตำแหน่งงาน', 'required|numeric');
+
+        if($this->form_validation->run() == FALSE) {
+            $jobs = $this->Job->gets_job();
+        } else {
+            if($this->input->post('job_title_id') > 0) {
+                $job_title = @$this->Job->get_company_job_title_by_job_title_id($this->input->post('job_title_id'))[0]['job_title'];
+            } else {
+                $job_title = null;
+            }
+            $jobs = $this->Job->search_job_by_company_and_position($this->input->post('company_id'), $job_title);
+        }
+
+        foreach($jobs as $row) {
             $temp = array();
-            // $temp['company_job_position'] = $this->Skilled_Job_Search->search_skill_by_job($row['company_job_position_id'])[0];
             $temp['company_job_position'] = $row;
             
-            $temp['company_name'] = @$this->Company->get_company($row['company_id']);
+            $temp['company'] = @$this->Company->get_company($row['company_id'])[0];
             $temp['address_company'] = @$this->Address->get_address_by_company($row['company_id'])[0];
 
             if(
                 $temp['address_company'] &&
-                $temp['company_name']
+                $temp['company']
             ) {
                 array_push($data['data'], $temp);
             }
 
         }
-            // print_r($data);
-            // die();
-            //add ->breadcrumbs
+
+
+        
         $this->breadcrumbs->push('รายการสมัคร ตำแหน่งงาน และสถานประกอบการ', '/Student/Job/lists');
-        $this->template->view('Student/Report_student_info_view',$data);
-    }
-
-    public function search()
-    {
-
+        $this->template->view('Student/Job_lists_view',$data);
     }
 
     public function register_form_company($company_id, $company_job_position_id)

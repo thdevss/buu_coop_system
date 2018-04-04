@@ -13,8 +13,13 @@
           <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i> แบบประเมินสถานประกอบการ</div>
               <div class="card-body">
-              <form action="<?php echo site_url('Coop_student/Assessment_company/save/');?>" method="post">
-              <table class="table table-bordered">
+
+                <?php 
+                if( count($data) < 1 ) {
+                  echo '<div class="alert alert-warning">ไม่พบข้อมูล</div>';
+                } else {
+                ?>
+                  <table class="table table-bordered">
                     <thead>
                       <tr>
                         <th>หัวข้อประเมิน/Items</th>
@@ -43,8 +48,9 @@
                       <?php } ?>
                     </tbody>
                   </table>
+                  <?php } ?>
                   
-                  </form>
+
                 </div>
               </div>
             </div>

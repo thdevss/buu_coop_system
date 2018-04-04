@@ -17,6 +17,11 @@
             </div>
             <div class="card-body">
                 <?php if($status){ echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>'; } ?>
+                <?php
+                if( count($students) < 1 ) {
+                    echo '<div class="alert alert-warning">ไม่พบข้อมูล</div>';
+                } else { 
+                ?>
                 <table class="table table-bordered" id="student_table">
                     <thead>
                         <tr>
@@ -40,6 +45,7 @@
                     </tbody>
                    
                 </table>
+                <?php } ?>
 
             </div>
         </div>

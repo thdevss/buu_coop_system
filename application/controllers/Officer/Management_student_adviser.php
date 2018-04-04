@@ -58,6 +58,10 @@ class Management_student_adviser extends CI_controller{
         }
         foreach($rows as $row)
         {
+            if(empty($cache['student'][$row['student_id']])) {
+                continue;
+            }
+
             $tmp_array = array();
             // $tmp_array['student'] = $this->Student->get_student($row['student_id'])[0];
             
