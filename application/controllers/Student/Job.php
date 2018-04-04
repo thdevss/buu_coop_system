@@ -103,31 +103,19 @@ class Job extends CI_Controller {
         
         $student_id = $this->Login_session->check_login()->login_value;
         
+        // print_r($_POST);
+        // die();
+
         // input form view
-        $student_telephone = $this->input->post('telaphone');
-        $student_phone = $this->input->post('phone');
-        $student_email = $this->input->post('email');
-        $Student_Nickname = $this->input->post('student_nickname');
-        $Age = $this->input->post('age');
+        $telephone = $this->input->post('telephone');
+        
+        // input ข้อมูลส่วนตัวนิสิต
         $height = $this->input->post('height');
         $weight = $this->input->post('weight');
-        $Level = $this->input->post('level');
-        $Address_Number = $this->input->post('address');
-        $address_telephone = $this->input->post('address_telephone');
-        $address_phone = $this->input->post('address_phone');
-        $address_email = $this->input->post('address_email');
-        $Contact_Phone = $this->input->post('contact_telephone');
-        $Relation = $this->input->post('contact_status');
-        $Father_Career = $this->input->post('father_caree');
-        $Father_Phone = $this->input->post('father_telephone');
-        $Mother_Career = $this->input->post('mather_caree');
-        $Mother_Phone = $this->input->post('mather_telephone');
-        $job_student = $this->input->post('job_student');
-        $computer_student = $this->input->post('computer_student');
-        $detail_student = $this->input->post('detail_student');
+        
 
         // get form model
-        $data['student_profile'] = $this->Student->get_student_data_from_profile($student_id);
+        $data['student_profile'] = @$this->Student->get_student_data_from_profile($student_id);
         $data['student'] = @$this->Student->get_student($student_id)[0];
         $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
         $data['company'] = @$this->Company->get_company($company_id)[0];
@@ -139,84 +127,126 @@ class Job extends CI_Controller {
         
         $save_filename = "download/".$student_id."-IN-S002.docx";
         $data_array = [
-                "student_fullname" => $data['student']['fullname'],           
-                "student_id" => $student_id,
-                "student_telephone" => $student_telephone,
-                "student_phone" =>  $student_phone,
-                "student_email" => $student_email,
-                "ch_cs" => "",
-                "ch_it" => "",
-                "ch_se" => "",
-                "time" => "9 ชั่วโมง",
-                "round" => "1",
-                "company_name_th" => $data['company']['name_th'],
-                "company_job_position" => $data['job_position_name'],
-                "Prefix" => $data['student_profile']['Prefix'], 
-                "Student_NameTH" => $data['student_profile']['Student_NameTH'],
-                "Student_LNameameTH" => $data['student_profile']['Student_LNameTH'],
-                "Student_Nickname" => $Student_Nickname,
-                "Student_NameEng" => $data['student_profile']['Student_NameEng'],
-                "Student_LNameENG" => $data['student_profile']['Student_LNameENG'],
-                "Student_IdNum" => $data['student_profile']['Student_IdNum'],
-                "Notionnality" => $data['student_profile']['Notionnality'],
-                "Relidion" => $data['student_profile']['Relidion'],
-                "Province_Birth" => $data['student_profile']['Province_Birth'],
-                "Birthday" => thaiDate($data['student_profile']['Birthday'], false, false),
-                "Age" => $Age,
-                "Sex" => "",
-                "height" => $height,
-                "weight" => $weight,
-                "Course" => $data['department']['name'], 
-                "Student_ID" => $data['student_profile']['Student_ID'],
-                "Level" => $Level,
-                "GPA" => "128",
-                "GPAX" => "2.86",
-                "Address_Number" => $Address_Number,
-                "Homeaddress_Number" => $data['student_profile']['Homeaddress_Number'],
-                "Homeaddress_Moo" => $data['student_profile']['Homeaddress_Moo'],
-                "Homeaddress_Soi" => $data['student_profile']['Homeaddress_Soi'],
-                "Homeaddress_Tumbon" => $data['student_profile']['Homeaddress_Tumbon'],
-                "Homeaddress_Aumper" => $data['student_profile']['Homeaddress_Aumper'],
-                "Homeaddress_Province" => $data['student_profile']['Homeaddress_Province'],
-                "Homeaddress_Postcodes" => $data['student_profile']['Homeaddress_Postcode'],
-                "Student_Telephone" => $address_telephone,
-                "Student_Phone" => $address_phone,
-                "Student_Email" => $address_email,
+
+            // ข้อมูลนิสิต
+                "Student_Prefix_Th" => $data['student_profile']['Student_Prefix'], //คำนำหน้า
+                "Student_Name_Th" => $data['student_profile']['Student_Name_Th'], //ชื่อ(name)
+                "Student_Lname_Th" => $data['student_profile']['Student_Lname_Th'], //นามสกุล(Surname)         
+                "Student_ID" => $data['student_profile']['Student_ID'], //รหัสนิสิต
+
+            // input form
+                "student_telephone" => $telephone, //โทร
+                "Student_Phone" =>  $data['student_profile']['Student_Phone'], //มือถือ
+                "Student_Email" => $data['student_profile']['Student_Email'], //อีเมล์
+
+                "ch_cs" => "", //สาขา CS
+                "ch_it" => "", //สาขา IT
+                "ch_se" => "", //สาขา SE
+
+            // ชื่อสถานประกอบการที่ต้องการสมัคร
+                "round" => "1", //รอบ
+                "company_name_th" => $data['company']['name_th'], //ชื่อสถานประกอบการ
+                "company_job_position" => $data['job_position_name'], //สมัครตำแหน่งงาน
+
+            //ข้อมูลส่วนตัวนิสิต 
+                "Student_Prefix_Th" => detect_gender_th($data['student_profile']['Student_Prefix']), //คำนำหน้า 
+                "Student_Name_Th" => $data['student_profile']['Student_Name_Th'], //ชื่อ
+                "Student_Lname_Th" => $data['student_profile']['Student_Lname_Th'], //นามสกุล
+                "Student_Nickname" => $data['student_profile']['Student_Nickname'], //ชื่อเล่น
+
+                "Student_Prefix_Eng" => detect_prefix_en($data['student_profile']['Student_Prefix']), //คำนำหน้าอังกฤษ
+                "Student_Name_Eng" => $data['student_profile']['Student_Name_Eng'], //ชื่ออังกฤษ
+                "Student_Lname_Eng" => $data['student_profile']['Student_Lname_Eng'], //นามสกุลอังกฤษ
+                "Student_IdNum" => $data['student_profile']['Student_IdNum'], //รหัสบัตรประชาชน
+                "Notionnality" => $data['student_profile']['Notionnality'],  //สัญชาติ
+                "Relidion" => $data['student_profile']['Relidion'], //ศาสนา
+                "Province_Birth" => $data['student_profile']['Province_Birth'], //สถานที่เกิด
+                "Birthday" => thaiDate($data['student_profile']['Birthday'], false, false), //วัน เดือน ปี เกิด
                 
-                "Contact_Name" => $data['student_profile']['Contact_Name'],
-                "Contact_Phone" => $Contact_Phone,
-                "Relation" => $Relation,
-                "Contactaddress_Number" => $data['student_profile']['Contactaddress_Number'],
-                "Contactaddress_Tumbon" => $data['student_profile']['Contactaddress_Tumbon'],
-                "Contactaddress_Aumper" => $data['student_profile']['Contactaddress_Aumper'],
-                "Contactaddress_Province" => $data['student_profile']['Contactaddress_Province'],
-                "Contactaddress_Postcode" => $data['student_profile']['Contactaddress_Postcode'],
+                // input form
+                "Age" => get_age_from_birthday($data['student_profile']['Birthday']), //อายุ
+                "Sex" => detect_gender_th($data['student_profile']['Student_Prefix']), //เพศ
+                "height" => $height,  //ส่วนสูง
+                "weight" => $weight, //น้ำหนัก
+
+                "Course" => $data['department']['name'], //สาขา 
+                "Student_ID" => $data['student_profile']['Student_ID'], //รหัสนิสิต
+
+                // input form
+                "Level" => get_student_level_from_entry_year($data['student_profile']['Entry_Years']), //ชั้นปี
                 
-                "Father_Name" => $data['student_profile']['Contactaddress_Number'],
-                "Father_Career" => $Father_Career,
-                "Father_Phone" => $Father_Phone,
-                "Father_status_l" => "*",
-                "Father_Age" => "55",
-                "Fatheraddress_Number" => $data['student_profile']['Parentaddress_Number'],
-                "Fatheraddress_Moo" => $data['student_profile']['Parentaddress_Moo'],
-                "Fatheraddress_Soi" => $data['student_profile']['Parentaddress_Soi'],
-                "Fatheraddress_Tumbon" => $data['student_profile']['Parentaddress_Tumbon'],
-                "Fatheraddress_Aumper" => $data['student_profile']['Parentaddress_Aumper'],
-                "Fatheraddress_Province" => $data['student_profile']['Parentaddress_Province'],
-                "Fatheraddress_Postcode" => $data['student_profile']['Parentaddress_Postcode'],
-                "Mother_Name" => $data['student_profile']['Mother_Name'],
-                "Mother_Career" => $Mother_Career,
-                "Mother_Phone" => $Mother_Phone,
-                "Mother_status_l" => "*",
-                "Mother_Age" => "50",
-                "Motheraddress_Number" => $data['student_profile']['Parentaddress_Number'],
-                "Motheraddress_Moo" => $data['student_profile']['Parentaddress_Moo'],
-                "Motheraddress_Soi" => $data['student_profile']['Parentaddress_Soi'],
-                "Motheraddress_Tumbon" => $data['student_profile']['Parentaddress_Tumbon'],
-                "Motheraddress_Aumper" => $data['student_profile']['Parentaddress_Aumper'],
-                "Motheraddress_Province" => $data['student_profile']['Parentaddress_Province'],
-                "Motheraddress_Postcode" => $data['student_profile']['Parentaddress_Postcode'],
-                "Brethren" => "น้อง 1 คน",
+                "GPA" => "128", //เกรดเฉลี่ยภาคที่ผ่านมา
+                "GPAX" => $data['student_profile']['GPAX'], //เกรดเฉลี่ยรวม
+                "Address_Number" => $data['student_profile']['Address_Number'], //ที่อยู่ที่ติดต่อได้ เลขที่
+                "Address_Moo" => $data['student_profile']['Address_Moo'], //ที่อยู่ที่ติดต่อได้ หมู่
+                "Address_Soi" => $data['student_profile']['Address_Soi'], //ที่อยู่ที่ติดต่อได้ ซอย
+                "Address_Tumbon" => $data['student_profile']['Address_Tumbon'], //ที่อยู่ที่ติดต่อได้ ตำบล
+                "Address_Aumper" => $data['student_profile']['Address_Aumper'], //ที่อยู่ที่ติดต่อได้ อำเภอ
+                "Address_Province" => $data['student_profile']['Address_Province'], //ที่อยู่ที่ติดต่อได้ จังหวัด
+                "Address_Postcode" => $data['student_profile']['Address_Postcode'], //ที่อยู่ที่ติดต่อได้ รหัสไปรษณีย์
+                "Address_Phone" => $data['student_profile']['Address_Phone'], //ที่อยู่ที่ติดต่อได้ มือถือ
+                "Address_Email" => $data['student_profile']['Address_Email'], //ที่อยู่ที่ติดต่อได้ อีเมล์
+                "Home_Address_Number" => $data['student_profile']['Home_Address_Number'], //ที่ตามทะเบียนบ้าน เลขที่
+                "Home_Address_Moo" => $data['student_profile']['Home_Address_Moo'], //ที่ตามทะเบียนบ้าน หมู่
+                "Home_Address_Soi" => $data['student_profile']['Home_Address_Soi'], //ที่ตามทะเบียนบ้าน ซอย
+                "Home_Address_Tumbon" => $data['student_profile']['Home_Address_Tumbon'], //ที่ตามทะเบียนบ้าน ตำบล
+                "Home_Address_Aumper" => $data['student_profile']['Home_Address_Aumper'], //ที่ตามทะเบียนบ้าน อำเภอ
+                "Home_Address_Province" => $data['student_profile']['Home_Address_Province'], //ที่ตามทะเบียนบ้าน จังหวัด
+                "Home_Address_Postcode" => $data['student_profile']['Home_Address_Postcode'], //ที่ตามทะเบียนบ้าน รหัสไปรษณีย์
+                
+    
+                "Address_Phone" => $data['student_profile']['Address_Phone'], //โทร
+                "Student_Phone" => $data['student_profile']['Student_Phone'], //มือถือ
+                "Student_Email" => $data['student_profile']['Student_Email'], //E-mail Address
+                
+                "Contact_Name" => $data['student_profile']['Contact_Name'], //บุคคลที่ติดต่อฉุกเฉิน
+                "Contact_Phone" => $data['student_profile']['Contact_Phone'], //โทรศัพท์
+                "Contact_Status" => $data['student_profile']['Contact_Status'], //ความสัมพันธ์
+                "Contact_Address_Number" => $data['student_profile']['Contact_Address_Number'], //ที่อยู่กรณีติดต่อฉุกเฉิน เลขที่
+                "Contact_Address_Tumbon" => $data['student_profile']['Contact_Address_Tumbon'], //ที่อยู่กรณีติดต่อฉุกเฉิน ตำบล
+                "Contact_Address_Aumper" => $data['student_profile']['Contact_Address_Aumper'], //ที่อยู่กรณีติดต่อฉุกเฉิน อำเภอ
+                "Contact_Address_Province" => $data['student_profile']['Contact_Address_Province'], //ที่อยู่กรณีติดต่อฉุกเฉิน จังหวัด
+                "Contact_Address_Postcode" => $data['student_profile']['Contact_Address_Postcode'], //ที่อยู่กรณีติดต่อฉุกเฉิน รหัสไปรษณีย์
+                
+                "Father_Name" => $data['student_profile']['Father_Name'], //บิดา
+                "Father_Career" => $data['student_profile']['Father_Career'], //อาชีพ
+                "Father_Phone" => $data['student_profile']['Father_Phone'], //มือถือ
+                
+                "Father_Status_l" => "",// สถานะบิดา มีชีวิต
+                "Father_Status_d" => "", // สถานะบิดา ถึงแก่กรรม
+
+                // "Father_Age" => "55", กรอกเอง
+
+                "Father_Address_Number" => $data['student_profile']['Father_Address_Number'], //ที่อยู่บิดา เลขที่
+                "Father_Address_Moo" => $data['student_profile']['Father_Address_Moo'], //ที่อยู่บิดา หมู่
+                "Father_Address_Soi" => $data['student_profile']['Father_Address_Soi'], //ที่อยู่บิดา ซอย
+                "Father_Address_Tumbon" => $data['student_profile']['Father_Address_Tumbon'], //ที่อยู่บิดา ตำบล
+                "Father_Address_Aumper" => $data['student_profile']['Father_Address_Aumper'], //ที่อยู่บิดา อำเภอ
+                "Father_Address_Province" => $data['student_profile']['Father_Address_Province'], //ที่อยู่บิดา จังหวัด
+                "Father_Address_Postcode" => $data['student_profile']['Father_Address_Postcode'], //ที่อยู่บิดา รหัสไปรษณีย์
+
+
+
+                "Mother_Name" => $data['student_profile']['Mother_Name'], //มารดา
+                "Mother_Career" => $data['student_profile']['Mother_Career'], //อาชีพ
+                "Mother_Phone" => $data['student_profile']['Mother_Phone'], //มือถือ
+
+
+                "Mother_Status_l" => "",// สถานะบิดา มีชีวิต
+                "Mother_Status_d" => "", // สถานะบิดา ถึงแก่กรรม
+
+                // "Mother_Age" => "50", กรอกเอง
+
+
+                "Mother_Address_Number" => $data['student_profile']['Mother_Address_Number'],
+                "Mother_Address_Moo" => $data['student_profile']['Mother_Address_Moo'],
+                "Mother_Address_Soi" => $data['student_profile']['Mother_Address_Soi'],
+                "Mother_Address_Tumbon" => $data['student_profile']['Mother_Address_Tumbon'],
+                "Mother_Address_Aumper" => $data['student_profile']['Mother_Address_Aumper'],
+                "Mother_Address_Province" => $data['student_profile']['Mother_Address_Province'],
+                "Mother_Address_Postcode" => $data['student_profile']['Mother_Address_Postcode'],
+
+                // "Brethren" => "น้อง 1 คน", กรอกเอง
 
         ];
 
@@ -228,18 +258,25 @@ class Job extends CI_Controller {
             $data_array ['ch_se'] = "*";
         }
 
-        if($data['student_profile']['Prefix']== "นาย") {
-            $data_array ['Sex'] = "ชาย";
-        }else if ($data['student_profile']['Prefix']== "นางสาว") {
-            $data_array ['Sex'] = "หญิง";
+        if($data['student_profile']['Father_Status'] == "มีชีวิต" ){
+            $data_array ['Father_Status_l'] = "*" ;
+        }else if ($data['student_profile']['Father_Status'] == "ถึงแก่กรรม" ) {
+
         }
+
+        if($data['student_profile']['Mother_Status'] == "มีชีวิต" ){
+            $data_array ['Mother_Status_l'] = "*" ;
+        }else if ($data['student_profile']['Mother_Status'] == "ถึงแก่กรรม" ) {
+
+        }
+
 
         
 
  
        
-        // print_r($data_array);
-        // die();
+        print_r($data_array);
+        die();
 
         $result = $this->service_docx->print_data($data_array, $template_file, $save_filename);
         // print_r($result);

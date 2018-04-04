@@ -105,3 +105,37 @@ function tweak_array_rand($array){
 		return array_rand($array);
 	}
 }
+
+function detect_gender_th($gender)
+{
+	if($gender == "นาย"){
+		return "ชาย";
+	}
+	
+	return "หญิง";
+}
+
+function detect_prefix_en($gender)
+{
+	if($gender == "นาง"){
+		return "Mrs.";
+	}
+	if($gender == "นางสาว"){
+		return "Ms.";
+	}
+
+	return "Mr.";
+
+}
+
+function get_age_from_birthday($birthday)
+{
+	$data = new Datetime($birthday);
+	$now = new DateTime();
+	$interval = $now->diff($data);
+	return $interval->y;
+}
+
+function get_student_level_from_entry_year($Entry_Years) {
+	return (date("Y")+543) - $Entry_Years;
+}
