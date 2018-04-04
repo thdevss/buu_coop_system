@@ -13,6 +13,12 @@
           <div class="card-header"><i class="fa fa-align-justify"></i> แบบฟอร์มยื่นสมัครกับบริษัท
           </div>
             <div class="card-body">
+            <?php 
+            if(!$has_profile) {
+              echo '<div class="col-lg-12"><div class="alert alert-warning"><b>โปรดกรอกข้อมูลในระบบโปรไฟล์ให้เรียบร้อยก่อนเข้าใช้งานค่ะ</b></div></div>';
+            } 
+            ?>
+
             <div class="alert alert-dark text-center" role="alert">
                   <strong>ข้อมูลส่วนนิสิต (APPLICANT'S INFORMATION)</strong>
                 </div>

@@ -141,7 +141,7 @@ class Management_student_adviser extends CI_controller{
         $this->breadcrumbs->push('แผนที่', '/Officer/Management_student_adviser/map_view');
         $data = [];
 
-        foreach($this->Company->gets_company() as $company) {
+        foreach($this->Company->gets_company_has_coop_student() as $company) {
             $tmp['company_name_th'] = $company['name_th'];
             $tmp['map'] = @$this->Address->get_address_by_company($company['id'])[0];
 
