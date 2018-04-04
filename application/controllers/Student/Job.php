@@ -125,7 +125,7 @@ class Job extends CI_Controller {
         // print_r($student_id);
         // die();
         
-        $template_file = "template/IN-S002-2.docx";        
+        $template_file = "template/IN-S002.docx";        
         
         $save_filename = "download/".$student_id."-IN-S002.docx";
         $data_array = [
@@ -277,8 +277,8 @@ class Job extends CI_Controller {
 
  
        
-        print_r($data_array);
-        die();
+        // print_r($data_array);
+        // die();
 
         $result = $this->service_docx->print_data($data_array, $template_file, $save_filename);
         // print_r($result);
