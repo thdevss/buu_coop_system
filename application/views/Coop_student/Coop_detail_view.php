@@ -18,7 +18,7 @@
                         <img src="http://reg.buu.ac.th/registrar/getstudentimage.asp?id=<?php echo $student['id']; ?>" class="img-circle" style="width:280px;">
                         <br></br>
                         <h4><?php echo $student['id']; ?></h4>
-                        <h5><?php echo $student_profile['Prefix'].' '.$student_profile['Student_Name_TH'].' '.$student_profile['Student_Lname_TH'];?></h5>
+                        <h5><?php echo $student_profile['Student_Prefix'].' '.$student_profile['Student_Name_Th'].' '.$student_profile['Student_Lname_Th'];?></h5>
                         </center>
                         </div>
                     <div class="col-sm-8">
@@ -34,8 +34,8 @@
                               <td>
                                 <font color="#0000ff">
                                   <?php 
-                                  if(isset($student_profile['Teacher_NameTH']) && $student_profile['Teacher_LNameTH'] != "None") {
-                                    echo $student_profile['Teacher_NameTH'].' '.$student_profile['Teacher_LNameTH'];
+                                  if(isset($student_profile['Teacher_Name_Th']) && $student_profile['Teacher_Lname_Th'] != "None") {
+                                    echo $student_profile['Teacher_Prefix'].' '.$student_profile['Teacher_Name_Th'].' '.$student_profile['Teacher_Lname_Th'];
                                   } else {
                                     echo " - ";
                                   }

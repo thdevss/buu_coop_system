@@ -27,7 +27,7 @@
                     <tbody>
                       <?php foreach ($data as $row) { ?>
                         <tr>
-                          <td><b><?php echo $row['questionnaire_subject']['number']." ".$row['questionnaire_subject']['title'];?></b></td>
+                          <td colspan="6"><b><?php echo $row['questionnaire_subject']['number']." ".$row['questionnaire_subject']['title'];?></b></td>
                         </tr>
                     
                       <?php foreach($row['questionnaire_item'] as $item) {?>
@@ -38,7 +38,8 @@
                           </td>
                           <?php for($i=5;$i>=1;$i--) { ?>
                             <td>
-                              <input class="form-check-input" type="radio" value="<?php echo $i;?>" id="result_<?php echo $item['number'];?>" name="result_<?php echo $item['number'];?>" style="margin-left: unset !important; position: unset !important;" disabled <?php if(@$result[$item['id']] == $i) echo 'checked'; ?>>
+                              <?php if(@$result[$item['id']] == $i) echo '<b>*</b>'; ?>
+                              <!-- <input class="form-check-input" type="radio" value="<?php echo $i;?>" id="result_<?php echo $item['number'];?>" name="result_<?php echo $item['number'];?>" style="margin-left: unset !important; position: unset !important;" disabled <?php if(@$result[$item['id']] == $i) echo 'checked'; ?>> -->
                             </td>
                           <?php } ?>
                         </tr>

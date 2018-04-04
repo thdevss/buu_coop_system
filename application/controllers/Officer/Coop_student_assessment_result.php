@@ -52,9 +52,12 @@ class Coop_student_assessment_result extends CI_Controller {
             $return['data'] = array();
 
             foreach($this->Coop_Student->gets_coop_student() as $row) {
-                //get student
+                if(empty($cache['student'][$row['student_id']])) {
+                    continue;
+                }
+                // //get student
                 $tmp_array = array();
-                $tmp_array['student'] = $cache['student'][$row['student_id']];
+                $tmp_array['student'] = @$cache['student'][$row['student_id']];
                 $tmp_array['student']['id'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$tmp_array['student']['id']).'">'.$tmp_array['student']['id'].'</a>';
                 $tmp_array['job_position'] = $cache['job'][$row['company_job_position_id']];
                 $tmp_array['company'] = @$cache['company'][$row['company_id']];

@@ -260,6 +260,7 @@ class Training extends CI_Controller {
         }
 
         //to pdf
+        $data['students'] = [];
         foreach($this->Training->gets_student_register_train($training_id) as $key => $student) {
             $student_info = @$this->Student->get_student($student['student_id'])[0];
             $data['students'][] = array(

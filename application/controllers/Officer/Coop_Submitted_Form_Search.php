@@ -89,9 +89,12 @@ class Coop_Submitted_Form_Search extends CI_Controller {
             $document = $this->Form->get_form($form_code)[0];
             if($document) {
                 foreach($this->Coop_Student->gets_coop_student() as $r) {
-                    
+                    $student = $this->Student->get_student($r['student_id']);
+                    if(count($student) != 1) {
+                        continue;
+                    }
                     $row = array();
-                    $row['student'] = $this->Student->get_student($r['student_id'])[0];
+                    $row['student'] = @$this->Student->get_student($r['student_id'])[0];
                     $row['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$row['student']['id']).'">'.$row['student']['id'].'</a>';                
                     $row['form'] = @$this->Coop_Submitted_Form_Search->search_form_by_student_and_code($r['student_id'], $form_code)[0];
 
@@ -104,7 +107,12 @@ class Coop_Submitted_Form_Search extends CI_Controller {
                         $row['form']['status'] = 'ส่งแล้ว'.$late_status;
                     }
 
-                    array_push($array, $row);
+                    if(
+                        $row['student'] &&
+                        $row['form']
+                    ) {
+                        array_push($array, $row);                        
+                    }
                 }
             }
             
@@ -116,31 +124,6 @@ class Coop_Submitted_Form_Search extends CI_Controller {
         {
             // get form code
             $data['forms'] = $this->Form->gets_form();
-
-            // $rowsDocument = $this->validate_assessment_coop->gets_document();
-            // $checkDocument = array(
-            //     'IN-S003'
-            // );
-
-            // $data['data'] = array();
-            // foreach($this->validate_assessment_coop->list() as $row) {
-            //     $row->document = false;
-            //     $i=0;
-
-            //     foreach($rowsDocument as $rox) {
-            //         if(in_array($rox->name, $checkDocument)) {
-            //             if(@$this->validate_assessment_coop->get_by_student($row->student_id, $rox->id)[0]) {
-            //                 $i++;
-            //             }
-            //         }
-            //     }
-
-            //     if(count($checkDocument) == $i) {
-            //         $row->document = true; 
-            //     }
-
-            //     array_push($data['data'], $row);
-            // }
             // add breadcrumbs
             $this->breadcrumbs->push('ตรวจสอบเอกสารเเยกประเภท', '/Officer/Coop_Submitted_Form_Search/by_form');
 

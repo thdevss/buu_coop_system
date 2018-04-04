@@ -50,9 +50,10 @@ class Profile extends CI_Controller {
         $this->breadcrumbs->push('ข้อมูลนิสิต', '/Student/Profile/view');
 
         $data['student_profile'] = $this->Student->get_student_data_from_profile($student_id);
+        $data['has_profile'] = $this->Student->has_student_data_from_profile($student_id);
         $this->template->view('Student/Student_data_view',$data);
         
-        // ขอ Api
+
     }
   
 

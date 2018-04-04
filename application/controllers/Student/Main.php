@@ -23,8 +23,25 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
+        $student_id = $this->Login_session->check_login()->login_value;    
+
         $data['rowNews'] = $this->News->gets_news();
-		$this->template->view('template/news_view', $data);
+        $this->breadcrumbs->push('ประกาศข่าวสาร', '/Student/Job/lists');
+
+        //check ins001 register
+        $coop_document_id = $this->Form->get_form_by_name('IN-S001', $this->Login_session->check_login()->term_id)[0]['id'];        
+        $data['ins001'] = $this->Coop_Submitted_Form_Search->search_form_by_student_and_codes($student_id, [$coop_document_id]);
+
+        $status = $this->input->get('status');
+
+        if( $status == 'success_register'){
+            $data['status']['color'] = 'success';            
+            $data['status']['text'] = 'สมัครเข้าร่วมเป็นนิสิตสหกิจเรียบร้อยค่ะ';
+        } else {
+            $data['status'] = [];
+        }
+
+		$this->template->view('Student/main_view', $data);
 		
     }
     
@@ -39,7 +56,7 @@ class Main extends CI_Controller {
 
         //print
         $template_file = "template/IN-S001.docx";
-        $save_filename = "download/".$student_id."-IN-S001.docx";
+        $save_filename = "download/".$student_id."-IN-S001-O.docx";
         $data_array = [
             'student_id' => $student_id,
             'student_course' => $data['student']['student_course'],
@@ -60,14 +77,14 @@ class Main extends CI_Controller {
         $word_file = '/uploads/'.basename($save_filename);
         $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file);
 
-
+        $this->session->set_flashdata('ins001_status', '1');
         // redirect(base_url($result['full_url']), 'refresh');
         echo "
             <img src='".base_url('assets/img/loading.gif')."' />
             <script>
                 window.location = '".base_url($result['full_url'])."';
                 setTimeout(function(){
-                    window.location = '".site_url()."';
+                    window.location = '".site_url('student/main?status=success_register')."';
                 }, 1500);
             </script>
         ";
