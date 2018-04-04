@@ -141,6 +141,10 @@ class Student_list extends CI_Controller {
             array_push($data['train_type'], $tmp);
         }
 
+        $data['student_profile'] = $this->Student->get_student_data_from_profile($student_id);
+        // print_r($data);
+        // die();
+
         // add breadcrumbs
         $this->breadcrumbs->push('รายละเอียดนิสิต', '/Officer/Student_list/student_detail');
 
