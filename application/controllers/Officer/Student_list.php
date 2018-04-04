@@ -124,7 +124,7 @@ class Student_list extends CI_Controller {
             $data['coop_student'] = @$this->Coop_Student->get_coop_student($student_id)[0];
             
             $data['company'] = @$this->Company->get_company($data['coop_student']['company_id'])[0];
-            $data['trainer'] = @$this->Trainer->get_trainer($data['coop_student']['mentor_person_id'])[0];
+            $data['trainer'] = @$this->Trainer->get_trainer($data['coop_student']['trainer_id'])[0];
             $data['adviser'] = @$this->Adviser->get_adviser($data['coop_student']['adviser_id'])[0];
         }
         $data['train_type'] = array();
