@@ -30,7 +30,7 @@ class Assessmentstudent extends CI_Controller {
 		$company_id = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0]['company_id'];
 		$data['company'] = $this->Company->get_company($company_id)[0];
 		$data['data'] = array();
-		foreach($this->Coop_Student->gets_coop_student($data['company']['id']) as $row) {
+		foreach($this->Coop_Student->gets_coop_student_by_company($data['company']['id']) as $row) {
 			$tmp['assessment_student'] = $row;
 			$tmp['company_job_position'] = @$this->Job->get_job($tmp['assessment_student']['company_job_position_id'])[0];
 			$tmp['student'] = @$this->Student->get_student($tmp['assessment_student']['student_id'])[0];
