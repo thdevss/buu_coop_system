@@ -12,6 +12,11 @@
           <div class="card-header"><i class="fa fa-align-justify"></i>ข้อมูลนิสิต
           </div>
             <div class="card-body">
+              <?php 
+              if(!$has_profile) {
+                echo '<div class="col-lg-12"><div class="alert alert-warning"><b>โปรดกรอกข้อมูลในระบบโปรไฟล์ให้เรียบร้อยก่อนเข้าใช้งานค่ะ</b></div></div>';
+              } 
+              ?>
                 <div class="row">
                     <div class="col-sm-4">
                         <center>
