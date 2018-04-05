@@ -51,7 +51,9 @@
               <a class="nav-link" href="<?php echo site_url('student/Skill/');?>" target="_top"><i class="fa fa-check"></i> ทักษะที่ถนัด</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('student/upload_document/');?>" target="_top"><i class="fa fa-upload"></i> อัพโหลดเอกสาร</a>
+              <!-- <a class="nav-link" href="<?php echo site_url('student/upload_document/');?>" target="_top"><i class="fa fa-upload"></i> อัพโหลดเอกสาร</a> -->
+              <a class="nav-link" href="#" target="_top"><i class="fa fa-upload"></i> อัพโหลดเอกสาร</a>
+              
               </li>
             </ul>
           </li>

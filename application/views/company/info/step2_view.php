@@ -50,7 +50,7 @@
                                 <select id="contact_person_id" name="contact_person_id" class="form-control">
                                 <option >Please select</option>
                                     <?php foreach($company_employee as $row){ ?>
-                                <option value="<?php echo $row['id'];?> "><?php echo $row['fullname']."/".$row['position']."/".$row['department']."/".$row['telephone']."/".$row['fax_number']."/".$row['email'];?></option>
+                                        <option value="<?php echo $row['id'];?>" <?php if($row['id'] == $company['contact_person_id']) echo 'selected'; ?>><?php echo $row['fullname']."/".$row['position']."/".$row['department']."/".$row['telephone']."/".$row['fax_number']."/".$row['email'];?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -132,12 +132,20 @@
 
 <script>
 $(document).ready(function(){
-    $("#show").click(function(){
-        $("#show_select").show();
+
+    <?php if($contact_select_box == 1) : ?>
+        jQuery("#show").attr("checked", true);
+        jQuery("#show_select").show();
+    <?php ; else : ?>
+        jQuery("#hide").attr("checked", true);
+    <?php endif; ?>
+
+    jQuery("#show").click(function(){
+        jQuery("#show_select").show();
     });
 
-    $("#hide").click(function(){
-        $("#show_select").hide();
+    jQuery("#hide").click(function(){
+        jQuery("#show_select").hide();
     });
 });
 </script>
