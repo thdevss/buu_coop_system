@@ -39,9 +39,12 @@ class Trainer_model extends CI_model {
 
     public function get_trainer($trainer_id)
     {
-        $this->db->or_where('id', $trainer_id);
-        $this->db->or_where('person_username', $trainer_id);
-        
+        if(is_numeric($trainer_id)) {
+            $this->db->or_where('id', $trainer_id);
+        } else {
+            $this->db->or_where('person_username', $trainer_id);            
+        }   
+             
         $this->db->from('company_person');
         $query = $this->db->get();
         return $query->result_array();
