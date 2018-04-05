@@ -52,7 +52,7 @@
                             <tr><td>หน่วยกิตคำนวณ</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr>
 
                             <tr><td>หน่วยกิตที่ผ่าน </td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr>
-                            <tr><td>GPAX</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr>
+                            <tr><td>GPAX</td><td><font color="#0000ff"><?php echo $student_profile['GPAX'];?></font></td></tr>
                           </table>
                         <table class="table table-bordered ">
                             <tr><h3>ข้อมูลสหกิจ</h3></tr>

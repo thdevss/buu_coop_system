@@ -30,11 +30,11 @@ class Info extends CI_controller
             
             $data['form_url'] = site_url('company/info/post_step1');
             
-            		$user = $this->Login_session->check_login();
-        if($user->login_type != 'company') {
-            redirect($this->Login_session->check_login()->login_type);
-            die();
-        }
+            $user = $this->Login_session->check_login();
+            if($user->login_type != 'company') {
+                redirect($this->Login_session->check_login()->login_type);
+                die();
+            }
         //add breadcrumbs
             // $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
             $this->breadcrumbs->push('รายละเอียดเกี่ยวกับสถานประกอบการ / หน่วยงาน ', '/Company/info/step1');
@@ -65,8 +65,8 @@ class Info extends CI_controller
             else
             {
                 // update company
-                $tmp = $this->Company_person_login->get_by_username($this->Login_session->check_login()->login_value)[0];
-                $tmp = $this->Trainer->get_trainer($tmp['company_person_id'])[0];
+                $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
+
                 $data['company'] = $this->Company->get_company($tmp['company_id'])[0];
 
                 $company_id = $data['company']['id'];
@@ -98,11 +98,20 @@ class Info extends CI_controller
             $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
 
             $data['company'] = $this->Company->get_company($tmp['company_id'])[0];
+            $company_id = $tmp['company_id'];
 
             $data['company_person'] = $this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];
             $data['company_employee'] = $this->Trainer->gets_trainer_by_company($data['company']['id']);
+
+            $data['contact_select_box'] = 0;
+            if($data['company']['headoffice_person_id'] != $data['company']['contact_person_id']) {
+                $data['contact_select_box'] = 1;
+            }
+
             $data['form_url'] = site_url('company/info/post_step2');
             $data['back_url'] = site_url('company/info/step1');
+
+            $this->breadcrumbs->push('ชื่อผู้จัดการสถานประกอบการ/หัวหน้าหน่วยงาน', '/Officer/company_info/step2/'.$company_id);
 
             $this->template->view('Company/info/step2_view', $data);
         }
@@ -118,8 +127,7 @@ class Info extends CI_controller
             else
             {
 
-                $tmp = $this->Company_person_login->get_by_username($this->Login_session->check_login()->login_value)[0];
-                $tmp = $this->Trainer->get_trainer($tmp['company_person_id'])[0];
+                $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
                 $data['company'] = $this->Company->get_company($tmp['company_id'])[0];
                 // update company_contact_person_id 
                 $company_id = $data['company']['id'];
@@ -138,13 +146,15 @@ class Info extends CI_controller
             $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
 
             $data['company'] = $this->Company->get_company($tmp['company_id'])[0];
-
+            $company_id = $tmp['company_id'];
             $data['company_job'] = $this->Job->gets_job_by_company($tmp['company_id']);
             $data['job_title'] = $this->Job->gets_job_title();
             $data['form_url'] = site_url('company/info/post_step3');
-            $data['back_url'] = site_url('company/info/step1');
+            $data['back_url'] = site_url('company/info/step2');
 
             $data['work_form_url'] = site_url('company/info/');
+            $this->breadcrumbs->push('ตำแหน่งงาน', '/Officer/company_info/step2/'.$company_id);
+
             
             $this->template->view('Company/info/step3_view', $data);
         }
@@ -166,8 +176,7 @@ class Info extends CI_controller
                 $data['status'] = '';
             }
 
-            $tmp = $this->Company_person_login->get_by_username($this->Login_session->check_login()->login_value)[0];
-            $tmp = $this->Trainer->get_trainer($tmp['company_person_id'])[0];
+            $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
             $data['company'] = $this->Company->get_company($tmp['company_id'])[0];
             $data['company_address'] = $this->Address->get_address_by_company($data['company']['id'])[0];
             $data['company_person'] = $this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];

@@ -95,6 +95,11 @@ class Company_info extends CI_controller
             $data['form_url'] = site_url('officer/company_info/post_step2');
             $data['back_url'] = site_url('officer/company_info/step1/'.$company_id);
 
+            $data['contact_select_box'] = 0;
+            if($data['company']['headoffice_person_id'] != $data['company']['contact_person_id']) {
+                $data['contact_select_box'] = 1;
+            }
+            
             // add breadcrumbs
             $this->breadcrumbs->push('ชื่อผู้จัดการสถานประกอบการ/หัวหน้าหน่วยงาน', '/Officer/company_info/step2/'.$company_id);
 
@@ -140,7 +145,7 @@ class Company_info extends CI_controller
 
             $data['work_form_url'] = site_url('officer/company_info/');
 
-            $this->breadcrumbs->push('เพิ่มตำแหน่งงาน', '/Officer/company_info/step2/'.$company_id);
+            $this->breadcrumbs->push('ตำแหน่งงาน', '/Officer/company_info/step2/'.$company_id);
             
             $this->template->view('Company/info/step3_view', $data);
         }
