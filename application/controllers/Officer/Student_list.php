@@ -57,8 +57,12 @@ class Student_list extends CI_Controller {
             $tmp_array['student'] = $row;
             $tmp_array['student']['gpax'] = '2.99';
             $tmp_array['student']['company_status'] = @$cache['company_status_type'][$row['company_status']]['status_name'];
+            // $tmp_array['student']['company_status'] = $row['company_status'];
             
             
+            if(!$row['coop_status']) {
+                $row['coop_status'] = 1;
+            }
             $tmp_array['coop_student_type'] = $cache['coop_student_type'][$row['coop_status']];
             $coop_type_Render = '<select onchange="change_coop_type('.$row['id'].', this.value)">';
             foreach($cache['coop_student_type'] as $key => $coop_type) {
@@ -93,12 +97,33 @@ class Student_list extends CI_Controller {
         $this->form_validation->set_rules('status','status','required|numeric');
         if($this->form_validation->run() != false){
 
+            $term_id = $this->Term->get_current_term()[0]['term_id'];
 
-            $status_type = $this->input->post('status');
+            $status_type = (int) $this->input->post('status');
             foreach($this->input->post('students') as $student_id) {
                 if($this->Student->get_student($student_id)) {
                     //update status
                     $this->Student->update_student($student_id, array( 'coop_status' => $status_type ));
+
+                    if($status_type == 7) {
+                        //get company job position tbl
+                        $job = $this->Student->get_latest_register_job($student_id)[0];
+                        $student = $this->Student->get_student($student_id)[0];
+                        
+                        $array = [
+                            'student_id' => $student_id,
+                            'department_id' => $student['department_id'],
+                            'term_id' => $term_id,
+
+                            'company_id' => $job['company_job_position_company_id'],
+                            'company_job_position_id' => $job['company_job_position_id'],
+
+                            'trainer_id' => 0,
+                            'adviser_id' => '',
+                        ];
+                        $this->Coop_Student->insert_coop_student($array);
+                        // echo $this->db->last_query();
+                    }
                 }
             }
             $data['status'] = true;
@@ -119,13 +144,14 @@ class Student_list extends CI_Controller {
         $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
         $data['coop_status_type'] = @$this->Student->get_by_coop_status_type($data['student']['coop_status'])[0];
         $data['coop_test_status'] = @$this->Test->get_test_result_by_student($data['student']['id'])[0];
-        if($data['student']['company_status'] == 1)
+        if($data['student']['company_status'] == 5)
         {
             $data['coop_student'] = @$this->Coop_Student->get_coop_student($student_id)[0];
             
             $data['company'] = @$this->Company->get_company($data['coop_student']['company_id'])[0];
             $data['trainer'] = @$this->Trainer->get_trainer($data['coop_student']['trainer_id'])[0];
             $data['adviser'] = @$this->Adviser->get_adviser($data['coop_student']['adviser_id'])[0];
+            $data['job'] = $this->Job->get_job($data['coop_student']['company_job_position_id'])[0];
         }
         $data['train_type'] = array();
         $train_type = $this->Training->get_student_stat_of_training($student_id);

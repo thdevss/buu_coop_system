@@ -109,7 +109,7 @@ class Job_list_position extends CI_Controller {
                 if($this->Student->get_student($student_id)) {
                     //update status
                     $this->Job->update_student($student_id, array( 'status' => $status_type ));
-                    $this->Student->update_student($student_id, array( 'coop_status' => $status_type ));
+                    $this->Student->update_student($student_id, array( 'company_status' => $status_type ));
                 }
             }
             $data['status'] = true;

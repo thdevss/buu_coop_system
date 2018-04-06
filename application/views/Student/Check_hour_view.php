@@ -23,13 +23,32 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php $i=1; foreach($train_type as $row) { ?>
+                      <?php 
+                      $i=1; 
+                      foreach($train_type as $row) { 
+                        $remain_hour = $row['total_hour'] - $row['check_hour']; //คำนวณชั่วโมงคงเหลือ
+                        if($remain_hour < 1) {
+                          $remain_hour = "<span style='color: red;'> - </span>";
+                        }
+
+                        if($row['total_hour'] < 1) {
+                          $row['total_hour'] = "<span style='color: red;'> - </span>";
+                        }
+
+                        if($row['check_hour'] < 1) {
+                          $row['check_hour'] = "<span style='color: red;'> - </span>";
+                        }
+
+                        if($row['check_hour'] >= $row['total_hour']) {
+                          $row['check_hour'] = "<span style='color: green;'> ".$row['check_hour']." </span>";
+                        }
+                      ?>
                       <tr>
                         <td class="text-center"><?php echo $i++;?></td>
                         <td><?php echo $row['name'];?></td>
                         <td class="text-right"><?php echo $row['total_hour'];?></td>
                         <td class="text-right"><?php echo $row['check_hour'];?></td>
-                        <td class="text-right"><?php echo $row['total_hour'] - $row['check_hour'];?></td>
+                        <td class="text-right"><?php echo $remain_hour;?></td>
                         
                       </tr>
                       <?php } ?>
