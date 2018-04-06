@@ -64,16 +64,23 @@ class Job_model extends CI_model {
 
     public function student_register_job($student_id, $job_id)
     {
+        $db_debug = $this->db->db_debug; //save setting
+        $this->db->db_debug = FALSE; //disable debugging for queries
+
         $job = $this->get_job($job_id);
         $array['company_job_position_id'] = $job_id;
         $array['company_job_position_company_id'] = $job[0]['company_id'];
         $array['student_id'] = $student_id;
         $array['datetime'] = date('Y-m_d H:i:s');
-        $array['status'] = 1;
+        $array['company_status_id'] = 1;
         $term = $this->Term->get_current_term();
-        $array['term_id'] = $term[0]['id'];
-        $this->db->insert('company_job_position_has_student',$array);
+        $array['term_id'] = $term[0]['term_id'];
+        $return = $this->db->insert('company_job_position_has_student',$array);
+
+        $this->db->db_debug = $db_debug;
         
+
+        return $return;
     }
 
     public function gets_company_job_title()

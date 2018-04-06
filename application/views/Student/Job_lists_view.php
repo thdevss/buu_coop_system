@@ -11,6 +11,12 @@
     <div class="row" >
       <div class="col-sm-12">
 
+        <?php if($session_alert) : ?>
+          <div class="col-md-12">
+            <?php echo $session_alert;?>
+          </div>
+        <?php ; else : ?>
+
 
         <div class="card">
           <div class="card-header">
@@ -19,6 +25,8 @@
 
           <div class="card-body">
             <div class="row">
+              
+                
               <form action="<?php echo site_url('student/job/lists');?>" method="post" style="width: 100%;display: inline-flex;">
 
                 <div class="form-group col-sm-4">
@@ -79,6 +87,8 @@
               </div>
             </div>
           <?php } ?>  
+
+          <?php endif; ?>
 
       </div>
     </div>
