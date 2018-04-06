@@ -27,6 +27,15 @@
                 </div>
                 <?php endif; ?>
 
+                <?php if($session_alert) : ?>
+                <div class="col-md-12">
+                    <?php echo $session_alert;?>
+
+                </div>
+                <?php endif; ?>
+
+                
+
             <?php foreach($rowNews as $row) { ?>
                 <div class="col-md-12">
                     <div class="card">

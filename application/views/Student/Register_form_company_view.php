@@ -23,7 +23,9 @@
                   <strong>ข้อมูลส่วนนิสิต (APPLICANT'S INFORMATION)</strong>
                 </div>
                 <div class="card-body">
-                <form action="<?php echo site_url('Student/Job/print_data/'.$company['id'].'/'.$company_job_position['position_title']);?>" method="post">
+                <form action="<?php echo site_url('Student/Job/print_data/');?>" method="post">
+                  <input type="hidden" name="company_id" value="<?php echo $company['id'];?>">
+                  <input type="hidden" name="company_job_position_id" value="<?php echo $company_job_position['id'];?>">
 
                   <div class="row">
 

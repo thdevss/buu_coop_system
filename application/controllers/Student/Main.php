@@ -34,12 +34,11 @@ class Main extends CI_Controller {
 
         $status = $this->input->get('status');
 
-        if( $status == 'success_register'){
-            $data['status']['color'] = 'success';            
-            $data['status']['text'] = 'สมัครเข้าร่วมเป็นนิสิตสหกิจเรียบร้อยค่ะ';
-        } else {
-            $data['status'] = [];
-        }
+        $data['status'] = [];
+
+        $data['session_alert'] = $this->session->tempdata('session_alert');
+        $this->session->unset_tempdata('session_alert');
+
 
 		$this->template->view('Student/main_view', $data);
 		
@@ -77,7 +76,8 @@ class Main extends CI_Controller {
         $word_file = '/uploads/'.basename($save_filename);
         $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file);
 
-        $this->session->set_flashdata('ins001_status', '1');
+        $this->session->set_tempdata('session_alert', '<div class="alert alert-success">สมัครเข้าร่วมเป็นนิสิตสหกิจเรียบร้อยค่ะ</div>', 300);
+        
         // redirect(base_url($result['full_url']), 'refresh');
         echo "
             <img src='".base_url('assets/img/loading.gif')."' />
