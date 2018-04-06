@@ -86,4 +86,15 @@ class Form_model extends CI_model {
         $this->db->where('id', $document_id);
         return $this->db->update('coop_document', $array);
     }
+
+    public function search_form_by_code($arrCode, $term_id = 0)
+    {
+        $this->db->where_in('name', $arrCode);
+        $this->db->from('coop_document');
+        if($term_id != 0) {
+            $this->db->where('term_id', $term_id);
+        } 
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
