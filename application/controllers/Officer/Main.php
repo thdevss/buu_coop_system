@@ -12,16 +12,21 @@ class Main extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'officer') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'officer') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+        
     }
 
 	public function index()
 	{
+        $this->breadcrumbs->push('ประกาศข่าวสาร', '/Officer/');
+        
         $data['rowNews'] = $this->News->gets_news();
-		$this->template->view('template/news_view', $data);
+		$this->template->view('officer/main_view', $data);
     }
     
     public function change_to_adviser()

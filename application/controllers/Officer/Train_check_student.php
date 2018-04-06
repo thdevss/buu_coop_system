@@ -226,6 +226,8 @@ class Train_check_student extends CI_Controller {
         $this->breadcrumbs->push('เช็คชื่อเข้าอบรม', '/Officer/Train_check_student/index');
         $this->breadcrumbs->push('รายชื่อนิสิตเข้าร่วมอบรม', '/Officer/training/student_list/'.$training_id);
 
+        $data['status'] = [];
+        $data['is_uploadform'] = false;
         $this->template->view('Officer/Student_list_report', $data);
 
     }

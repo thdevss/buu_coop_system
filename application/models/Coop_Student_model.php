@@ -8,7 +8,7 @@ class Coop_Student_model extends CI_model {
     
     public function insert_coop_student($array)
     {
-
+        return $this->db->insert('coop_student', $array);
     }
 
     public function delete_coop_student($student_id)
@@ -165,8 +165,8 @@ class Coop_Student_model extends CI_model {
 
     public function save_general_petition($insertArr)
     {
-    $this->db->insert('coop_student_general_petition', $insertArr);
-    return $this->db->insert_id();
+        $this->db->insert('coop_student_general_petition', $insertArr);
+        return $this->db->insert_id();
     }
 
 }

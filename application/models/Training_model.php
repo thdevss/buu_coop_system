@@ -48,6 +48,9 @@ class Training_model extends CI_model
 
     public function add_student_to_training($training_id, $student_id) 
     {
+        $db_debug = $this->db->db_debug; //save setting
+        $this->db->db_debug = FALSE; //disable debugging for queries
+
         $array['student_id'] = $student_id;
         $term = $this->Term->get_current_term();
         $array['student_term_id'] = $term[0]['term_id'];
@@ -55,7 +58,10 @@ class Training_model extends CI_model
         $array['train_id'] = $training_id;
         $train = $this->get_training($training_id)[0];
         $array['train_train_type_id'] = $train['train_type_id'];
-        return $this->db->insert('student_train_register',$array); 
+        $status = $this->db->insert('student_train_register',$array); 
+        $this->db->db_debug = $db_debug;
+        
+        return $status;
     }
 
     public function get_training_by_student_and_type($student_id, $training_type)

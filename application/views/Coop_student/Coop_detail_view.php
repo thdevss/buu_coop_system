@@ -12,11 +12,7 @@
           <div class="card-header"><i class="fa fa-align-justify"></i>ข้อมูลนิสิต
           </div>
             <div class="card-body">
-              <?php 
-              if(!$has_profile) {
-                echo '<div class="col-lg-12"><div class="alert alert-warning"><b>โปรดกรอกข้อมูลในระบบโปรไฟล์ให้เรียบร้อยก่อนเข้าใช้งานค่ะ</b></div></div>';
-              } 
-              ?>
+              
                 <div class="row">
                     <div class="col-sm-4">
                         <center>
@@ -51,7 +47,7 @@
                             <tr><td>หน่วยกิตคำนวณ</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr>
 
                             <tr><td>หน่วยกิตที่ผ่าน </td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr>
-                            <tr><td>GPAX</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr>
+                            <tr><td>GPAX</td><td><font color="#0000ff"><?php echo $student_profile['GPAX'];?></font></td></tr>
                           </table>
                           
                         <table class="table table-bordered ">
@@ -64,7 +60,7 @@
                             <?php } ?>
                             </td></tr>
                             <tr><td >วิชาเเกน</td><td>รอดึงจากระบบโปรไฟล์</td></tr>
-                            <tr><td>เกรด</td><td><font color="#ff3300">รอดึงจากระบบโปรไฟล์</font></td></tr>
+                            <tr><td>เกรด</td><td><font color="#ff3300"><?php echo $student_profile['GPAX'];?></font></td></tr>
                             <tr><td>สถานะสถานประกอบการ</td><td>
                             <?php if($student['company_status'] == '1') { ?>
                               <font color="#006600">ผ่านการคัดเลือกจากสถานประกอบการ</font>
@@ -72,7 +68,7 @@
                               <font color="">รอการตอบกลับ</font>
                             <?php } ?>
                             </td></tr>
-                            <tr><td>สถานะการสอบวัดผลรอบ (1,2,3)</td><td><font color=""><?php echo $coop_status_type['status_name']; ?></font></td></tr>
+                            <tr><td>สถานะการสอบวัดผลรอบ</td><td><font color=""><?php echo $coop_status_type['status_name']; ?></font></td></tr>
                           </table>
                           <table class="table table-bordered ">
                             <tr><h3>ข้อมูลสถานประกอบการ</h3></tr>

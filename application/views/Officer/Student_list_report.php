@@ -12,7 +12,10 @@
         <div class="card">
             <div class="card-header">
                 <i class="fa fa-align-justify"></i> รายชื่อผู้เข้าร่วมอบรมเก็บชั่วโมง<?php echo $training['train_type']['name'];?> โครงการ <?php echo $training['title'];?> <?php echo $training['note'];?>
+
+                <?php if($is_uploadform) { ?>
                 <a class="btn btn-primary float-right" href="#" data-toggle="modal" data-target="#excel_form"><i class="fa fa-hand-pointer-o"></i> อัพโหลดรายชื่อจาก Google Form</a>
+                <?php } ?>
                 
             </div>
             <div class="card-body">

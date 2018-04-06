@@ -106,6 +106,15 @@ class Student_model extends CI_model {
         return true;
     }
 
+    public function get_latest_register_job($student_id)
+    {
+        $this->db->where('student_id', $student_id);
+        $this->db->order_by('id', 'DESC');
+        $this->db->from('company_job_position_has_student');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     // public function get_student_lists_from_profile($year)
     // {
     //     $file = file_get_contents(base_url('mockup-student.json'));
