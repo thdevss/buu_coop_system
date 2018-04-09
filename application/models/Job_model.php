@@ -30,7 +30,7 @@ class Job_model extends CI_model {
 
     public function gets_job()
     {
-        $this->db->where('job_active', 1);
+        $this->db->where('job_active', 1);  
         $this->db->from('company_job_position');
         $query = $this->db->get();
         return $query->result_array();

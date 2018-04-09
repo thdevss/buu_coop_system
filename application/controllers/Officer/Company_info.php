@@ -133,8 +133,10 @@ class Company_info extends CI_controller
 
         //==================================================================//
 
-        public function step3($company_id) 
+        public function step3($company_id)
         {
+            
+            
             $tmp['company_id'] = $company_id;
             $data['company'] = $this->Company->get_company($tmp['company_id'])[0];
 
@@ -183,6 +185,40 @@ class Company_info extends CI_controller
                 $this->session->set_flashdata('form-alert', 'ลบงานสำเร็จ');
                 redirect('/officer/', 'refresh');                
             }
+        }
+        public function job_form_edit($id)
+        {
+            
+            $data['company_job_title'] = $this->Job->gets_company_job_title();
+            $data['company_job_position_by_id'] = $this->Job->get_job($id)[0];
+            //print_r($data);
+            $this->template->view('company/info/job_form_view', $data);
+        }
+        public function edit($id)
+        {
+            // print_r($array);
+            $this->form_validation->set_rules('job_title_id', 'ตำแหน่ง', 'required');
+            $this->form_validation->set_rules('number_of_employee', 'จำนวน', 'required|numeric');
+            $this->form_validation->set_rules('job_description', 'ลักษณะงานที่นิสิตต้องปฏิบัติงาน', 'required');
+            
+            if ($this->form_validation->run() == FALSE)
+            {
+                $company_id = $this->input->post('company_id');
+                $this->session->set_flashdata('form-alert', '<div class="alert alert-warning">แก้ไขงานไม่สำเร็จ</div>');
+                redirect('Officer/Company_info/job_form_edit/'.$company_id, 'refresh');
+            }
+            else
+            {
+                $company_id = $this->input->post('company_id');
+                $array['position_title'] = $this->input->post('job_title_id');
+                $array['number_of_employee'] = $this->input->post('number_of_employee');
+                $array['job_description'] = $this->input->post('job_description');
+            
+                $this->Job->update_job($id, $array);
+                $this->session->set_flashdata('form-alert', '<div class="alert alert-success">แก้ไขงานสำเร็จ</div>');
+                redirect('Officer/Company_info/step3/'.$company_id, 'refresh');
+            }
+
         }
 
 
