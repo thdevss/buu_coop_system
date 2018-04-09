@@ -91,7 +91,7 @@ class Student_list extends CI_Controller {
         $data['status'] = false;
         $data['msg'] = 'ผิดพลาด';
         $data['msg_icon'] = 'warning';
-        
+        $status_true = false;
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('status','status','required|numeric');
@@ -103,11 +103,20 @@ class Student_list extends CI_Controller {
             foreach($this->input->post('students') as $student_id) {
                 if($this->Student->get_student($student_id)) {
                     //update status
-                    $this->Student->update_student($student_id, array( 'coop_status' => $status_type ));
+                    //check has coop student
+                    $coop_student = $this->Coop_Student->get_coop_student($student_id);
+                    if(count($coop_student) > 0) {
+                        $this->Coop_Student->delete_coop_student($student_id);
+                    }
 
                     if($status_type == 7) {
                         //get company job position tbl
-                        $job = $this->Student->get_latest_register_job($student_id)[0];
+                        $job = $this->Student->get_latest_register_job($student_id);
+                        if(count($job) < 1) {
+                            continue;
+                        }
+                        
+                        $job = $job[0];
                         $student = $this->Student->get_student($student_id)[0];
                         
                         $array = [
@@ -121,14 +130,20 @@ class Student_list extends CI_Controller {
                             'trainer_id' => 0,
                             'adviser_id' => '',
                         ];
-                        $this->Coop_Student->insert_coop_student($array);
+                        $status_true = $this->Coop_Student->insert_coop_student($array);
+                        $status_true = $this->Student->update_student($student_id, array( 'coop_status' => $status_type ));                        
                         // echo $this->db->last_query();
+                    } else {
+                        $status_true = $this->Student->update_student($student_id, array( 'coop_status' => $status_type ));                        
                     }
                 }
             }
-            $data['status'] = true;
-            $data['msg'] = 'เปลี่ยนสถานะสำเร็จ';
-            $data['msg_icon'] = 'success';
+            
+            if($status_true) {
+                $data['status'] = true;
+                $data['msg'] = 'เปลี่ยนสถานะสำเร็จ';
+                $data['msg_icon'] = 'success';
+            }
             
             
         }

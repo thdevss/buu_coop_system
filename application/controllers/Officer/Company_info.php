@@ -166,9 +166,23 @@ class Company_info extends CI_controller
             $data['term_id'] = $this->Term->get_current_term()[0]['term_id'];
 
             $this->Job->insert_job($data);
-            
+            $this->session->set_flashdata('form-alert', '<div class="alert alert-success">เพิ่มงานสำเร็จ</div>');
             redirect('/officer/company_info/step3/'.$data['company_id'], 'refresh');
             // return $this->step3($data['company_id']);
+        }
+
+        public function job_hide($job_id)
+        {
+            $job = $this->Job->get_job($job_id);
+            if($job) {
+                // hide job
+                $this->Job->delete_job($job_id);
+                $this->session->set_flashdata('form-alert', '<div class="alert alert-warning">ลบงานสำเร็จ</div>');
+                redirect('/officer/company_info/step3/'.$job[0]['company_id'], 'refresh');                
+            } else {
+                $this->session->set_flashdata('form-alert', 'ลบงานสำเร็จ');
+                redirect('/officer/', 'refresh');                
+            }
         }
 
 
