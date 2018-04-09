@@ -33,7 +33,7 @@
                   </form>
                 </div>
 
-                <table class="table table-bordered" id="form_search_result">
+                <table class="table table-bordered" id="form_search_result" style="display:none;">
                     <thead>
                       <tr>
                         <th></th>
@@ -57,6 +57,7 @@
 <script>
 var table;
 $('#form_id').on('change', function (e) {
+    jQuery("#form_search_result").show()
     var optionSelected = $("option:selected", this);
     var valueSelected = this.value;
 

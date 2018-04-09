@@ -55,7 +55,6 @@ class Job_list_position extends CI_Controller {
         // foreach($this->Student->gets_student() as $row)
         foreach($this->Job->get_student_by_company_id($data['trainer_id']) as $row)
         {
-
             $tmp_array = array();
             
             $tmp_array['student'] = $this->Student->get_student($row['student_id'])[0];
@@ -64,11 +63,11 @@ class Job_list_position extends CI_Controller {
             $tmp_array['job_position'] = array();
             $tmp_array['job_position']['position_title'] = @$cache['job_position'][$row['company_job_position_id']]['position_title'];
             
-            $tmp_array['company_status_type'] = $cache['company_status_type'][$row['status']];
+            $tmp_array['company_status_type'] = $cache['company_status_type'][$row['company_status_id']];
 
             $company_type_Render = '<select onchange="change_company_type('.$row['student_id'].', this.value)">';
             foreach($cache['company_status_type'] as $key => $coop_type) {
-                if($key == $row['status']) {
+                if($key == $row['company_status_id']) {
                     $company_type_Render .= '<option value="'.$key.'" selected>'.$coop_type['status_name'].'</option>';
                 } else {
                     $company_type_Render .= '<option value="'.$key.'">'.$coop_type['status_name'].'</option>';
@@ -108,7 +107,7 @@ class Job_list_position extends CI_Controller {
             foreach($this->input->post('students') as $student_id) {
                 if($this->Student->get_student($student_id)) {
                     //update status
-                    $this->Job->update_student($student_id, array( 'status' => $status_type ));
+                    $this->Job->update_student($student_id, array( 'company_status_id' => $status_type ));
                     $this->Student->update_student($student_id, array( 'company_status' => $status_type ));
                 }
             }

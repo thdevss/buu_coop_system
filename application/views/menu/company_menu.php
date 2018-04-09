@@ -14,7 +14,7 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-address-book-o"></i> ข้อมูลบริษัท</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <?php echo anchor('company/info/step1', '<i class="fa fa-edit "></i> จัดการข้อมูลบริษัท', 'class="nav-link"');?>                
+                <?php echo anchor('company/company_info/step1', '<i class="fa fa-edit "></i> จัดการข้อมูลบริษัท', 'class="nav-link"');?>                
               </li>
               <li class="nav-item">
               <?php echo anchor('company/company_map/', '<i class="fa fa-map-pin"></i> แผนที่ตั้งบริษัท', 'class="nav-link"');?>
