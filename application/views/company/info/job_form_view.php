@@ -14,7 +14,7 @@
             <div class="col-md-12">
                 <div class="card">
                  <div class="card-header"><i class="fa fa-align-justify"></i>เพิ่มข้อมูลโครงการอบรม</div>
-                  <form action="<?php echo site_url('Officer/Company_info/edit/'.$company_job_position_by_id['id']);?>" method="post">
+                  <form action="<?php echo $work_form_url;?>" method="post">
                     <div class="card-body "> 
                     <?php
                         if($this->session->flashdata('form-alert')) {
@@ -28,14 +28,22 @@
                                 <label for="job_title_id">ตำแหน่ง</label><code>*</code>
                                 <select class="form-control" id="job_title_id" name="job_title_id">
 
-                                    <option value="<?php echo $company_job_position_by_id['position_title'];?>"><?php echo $company_job_position_by_id['position_title'];?></option>
-                                    <?php foreach($company_job_title as $row) {?>
-                                        <option value="<?php echo $row['job_title'];?>"><?php echo $row['job_title'];?></option>
-                                    <?php } ?>
+                                    <option value="<?php echo $company_job_position_by_id['position_title'];?>"> ------ </option>
+                                    <?php 
+                                    foreach($company_job_title as $row) {
+                                        if($company_job_position_by_id['position_title'] == $row['job_title']) {
+                                            echo '<option value="'.$row['job_title_id'].'" selected>'.$row['job_title'].'</option>';
+                                        } else {
+                                            echo '<option value="'.$row['job_title_id'].'">'.$row['job_title'].'</option>';    
+                                        }
+                                        //รอเปลี่ยน DB, เปลี่ยนจาก insert คำ เป็น foreign key
+                                    }
+                                    ?>
                                 </select>
                             </div>
 
                             <div class="col-sm-4"></div>
+                            <input type="hidden" name="job_id" value="<?php echo $company_job_position_by_id['id'];?>">    
                             <input type="hidden" name="company_id" value="<?php echo $company_job_position_by_id['company_id'];?>">
 
                             <div class="col-sm-4"></div>

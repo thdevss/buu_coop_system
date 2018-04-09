@@ -8,7 +8,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard ระบบสหกิจ | มหาวิทยาลัยบูรพา</title>
+    <title><?php echo $row['title'];?> | ระบบสหกิจ | มหาวิทยาลัยบูรพา</title>
+    <meta property="og:url" content="<?php echo site_url('news/'.$row['id']);?>" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="<?php echo $row['title'];?>" />
+    <meta property="og:description" content="<?php echo substr(strip_tags($row['detail']), 0, 250);?>" />
+    <meta property="og:image" content="<?php echo $cover_image;?>" />
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo base_url('assets/vendor/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
@@ -39,9 +44,9 @@
 
     <header class="bg-primary text-white">
       <div id="about" class="container text-center">
-        <?php foreach($rowNews as $row){ ?>
+
         <h1><?php echo $row['title'];?></h1>
-        <p class="lead"><?php echo thaiDate($row['date']);?></p>
+        <p class="lead"><?php echo thaiDate($row['date'], true);?></p>
       </div>
     </header>
 
@@ -55,7 +60,7 @@
         </div>
       </div>
     </section>
-    <?php } ?>
+
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">

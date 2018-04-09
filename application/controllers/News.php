@@ -8,15 +8,17 @@ class News extends CI_Controller {
 
 
 		if($news_id == ''){
-
 			redirect('Member/login/');
-
 		}else{
+			$data['row'] = $this->News->get_news($news_id);
+			if(!$data['row']) {
+				redirect('Member/login/');				
+			}
+			$data['row'] = $data['row'][0];
+			preg_match_all('/(alt|title|src)=("[^"]*")/i', $data['row']['detail'], $result);
 
-			$data['rowNews'] = $this->News->get_news($news_id);
-			$this->load->view('template/news1_view', $data);
-			// print_r($data);
-
+			$data['cover_image'] = str_replace('"', '', $result[2][0]);
+			$this->load->view('template/news_index_view', $data);
 		}
 		
 	}

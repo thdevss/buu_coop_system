@@ -51,7 +51,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'member/login';
 
-
 $route['company'] = 'company/main/index';
 $route['student'] = 'student/main/index';
 $route['coop_student'] = 'coop_student/main/index';
