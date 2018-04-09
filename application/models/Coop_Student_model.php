@@ -168,5 +168,12 @@ class Coop_Student_model extends CI_model {
         $this->db->insert('coop_student_general_petition', $insertArr);
         return $this->db->insert_id();
     }
+    public function get_coop_student_by_department($department_id)
+    {
+        $this->db->where('department_id', $department_id);
+        $this->db->from('coop_student');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
 }
