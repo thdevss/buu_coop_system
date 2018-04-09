@@ -38,7 +38,7 @@ class Coop_Submitted_Form_Search extends CI_Controller {
             }
             // $document_active = implode(",", $document_active_arr);
 
-            foreach($this->Coop_Student->gets_coop_student() as $r) {
+            foreach($this->Coop_Submitted_Form_Search->gets_student_has_document() as $r) {
                 $row = array();
                 //check document in document active
                 $row['complete_form'] = false;
@@ -88,7 +88,7 @@ class Coop_Submitted_Form_Search extends CI_Controller {
             $array = array();
             $document = $this->Form->get_form($form_code)[0];
             if($document) {
-                foreach($this->Coop_Student->gets_coop_student() as $r) {
+                foreach($this->Coop_Submitted_Form_Search->gets_student_has_document() as $r) {
                     $student = $this->Student->get_student($r['student_id']);
                     if(count($student) != 1) {
                         continue;
@@ -98,13 +98,13 @@ class Coop_Submitted_Form_Search extends CI_Controller {
                     $row['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$row['student']['id']).'">'.$row['student']['id'].'</a>';                
                     $row['form'] = @$this->Coop_Submitted_Form_Search->search_form_by_student_and_code($r['student_id'], $form_code)[0];
 
-                    $row['form']['status'] = 'ยังไม่ส่ง';
+                    $row['form']['status'] = '<span style="color: red;">ยังไม่ส่ง</span>';
                     if(@$row['form']['pdf_file']) {
                         $late_status = '';
                         if($row['form']['document_sent_date'] >= $document['document_deadline']) {
                             $late_status = ' (<span style="color: red;">ส่งช้า</span>)';
                         }
-                        $row['form']['status'] = 'ส่งแล้ว'.$late_status;
+                        $row['form']['status'] = '<span style="color: green;">ส่งแล้ว</span>'.$late_status;
                     }
 
                     if(

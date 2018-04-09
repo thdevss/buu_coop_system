@@ -61,7 +61,12 @@ class Coop_student_assessment_result extends CI_Controller {
                 $tmp_array['student']['id'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$tmp_array['student']['id']).'">'.$tmp_array['student']['id'].'</a>';
                 $tmp_array['job_position'] = $cache['job'][$row['company_job_position_id']];
                 $tmp_array['company'] = @$cache['company'][$row['company_id']];
-                $tmp_array['trainer'] = @$cache['trainer'][$row['trainer_id']];
+                if($row['trainer_id'] > 0) {
+                    $tmp_array['trainer'] = @$cache['trainer'][$row['trainer_id']];
+                } else {
+                    $tmp_array['trainer']['fullname'] = ' - ';
+                }
+                
                 $tmp_array['button'] = '<a href="'.site_url('Officer/Coop_student_assessment_result/assessment_detail/'.$row['student_id']).'" class="btn btn-info"><i class="fa fa-list-alt"></i> ผลการประเมิน</a>';
                 // print_r($tmp_array);
                 array_push($return['data'], $tmp_array);
