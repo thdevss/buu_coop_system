@@ -30,6 +30,19 @@ class Company_Assessment_Form_model extends CI_model {
         return $query->result_array();
     }
 
+    public function get_company_questionnaire_item_by_subject_and_student($subject_id, $student_id)
+    {
+        $term_id = $this->Term->get_current_term()[0]['term_id'];
+
+        $sql = "SELECT company_questionnaire_item.title as title, company_questionnaire_item.number as number, company_has_company_questionnaire_item.score as score FROM `company_questionnaire_item` 
+        JOIN `company_has_company_questionnaire_item` 
+        ON (`company_has_company_questionnaire_item`.`item_id` = `company_questionnaire_item`.`id`) 
+        AND (`company_has_company_questionnaire_item`.`student_id` = '".$student_id."')
+        WHERE `company_has_company_questionnaire_item`.`term_id` = '".$term_id."' AND `subject_id` = '".$subject_id."' ORDER BY `number` ASC";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }    
+
     public function get_company_questionnaire_item_by_subject($subject_id)
     {
         $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);        

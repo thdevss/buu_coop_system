@@ -62,24 +62,24 @@
                   </table>
                     <div class="col-md-9">
                     <lable><b>4. ตามข้อ 1.2 สถานประกอบการได้สนับสนุนสิ่งอำนวยความสะดวกต่าง ๆ ได้แก่<b></lable>
-                    <textarea id="textarea-input" name="textarea-input" rows="6" class="form-control" placeholder="......"></textarea>
+                    <textarea id="textarea-input" name="no4" rows="6" class="form-control" placeholder="......"></textarea>
                     </div>
                     <br>
                     <div class="col-md-9">
                     <lable><b>5 .ตามข้อ 1.3 สถานประกอบการได้ให้การสนับสนุนด้านสวัสดิการ ได้แก่ <b></lable>
-                    <textarea id="textarea-input" name="textarea-input" rows="6" class="form-control" placeholder="......"></textarea>
+                    <textarea id="textarea-input" name="no5" rows="6" class="form-control" placeholder="......"></textarea>
                     </div>
                     <br>
                     <div class="col-md-9">
                     <lable><b>6. ในปีการศึกษาถัดไป ท่านคิดว่าสมควรส่งนักศึกษาไปปฏิบัติสหกิจศึกษา/ฝึกงาน ณ สถานประกอบการแห่งนี้หรือไม่ <b></lable>
                     <div class="custom-controls-stacked">
                           <label class="custom-control custom-radio">
-                            <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input">
+                            <input id="radioStacked1" name="no6" value="1" type="radio" class="custom-control-input">
                             <span class="custom-control-indicator"></span>
                             <span class="custom-control-description">เห็นสมควรส่งไป</span>
                           </label>
                           <label class="custom-control custom-radio">
-                            <input id="radioStacked2" name="radio-stacked" type="radio" class="custom-control-input">
+                            <input id="radioStacked2" name="no6" value="0" type="radio" class="custom-control-input">
                             <span class="custom-control-indicator"></span>
                             <span class="custom-control-description">ไม่สมควรส่งไป</span>
                           </label>
@@ -88,7 +88,7 @@
                     </div>
                     <div class="col-md-9">
                     <lable><b>7.ข้อคิดเห็นเพิ่มเติม <b></lable>
-                    <textarea id="textarea-input" name="textarea-input" rows="6" class="form-control" placeholder="......"></textarea>
+                    <textarea id="textarea-input" name="no7" rows="6" class="form-control" placeholder="......"></textarea>
                     </div>
                     <br><br>
                   <div class="text-center">

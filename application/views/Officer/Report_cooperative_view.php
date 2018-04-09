@@ -52,7 +52,7 @@
                         </form>
 
 
-                        <div style="width: 75%; margin: 0 auto;">
+                        <div style="width: 100%; margin: 0 auto;">
                             <canvas id="canvas"></canvas>
                         </div>
 
@@ -93,6 +93,7 @@
             
             
             datasets: [
+                
                 <?php foreach($reports as $key => $report) { ?>
                 {
                 label: '<?php echo $report['department_name'];?>',
@@ -112,6 +113,7 @@
                 ]
                 },
                 <?php } ?>
+
             ]
 
         };

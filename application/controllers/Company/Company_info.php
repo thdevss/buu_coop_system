@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Info extends CI_controller
+class Company_info extends CI_controller
 {
        public function __construct()
         {
@@ -28,7 +28,7 @@ class Info extends CI_controller
             $data['company'] = $this->Company->get_company($tmp['company_id'])[0];
             $data['company_address'] = $this->Address->get_address_by_company($data['company']['id'])[0];
             
-            $data['form_url'] = site_url('company/info/post_step1');
+            $data['form_url'] = site_url('company/company_info/post_step1');
             
             $user = $this->Login_session->check_login();
             if($user->login_type != 'company') {
@@ -37,7 +37,7 @@ class Info extends CI_controller
             }
         //add breadcrumbs
             // $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
-            $this->breadcrumbs->push('รายละเอียดเกี่ยวกับสถานประกอบการ / หน่วยงาน ', '/Company/info/step1');
+            $this->breadcrumbs->push('รายละเอียดเกี่ยวกับสถานประกอบการ / หน่วยงาน ', '/Company/company_info/step1');
             $this->template->view('Company/info/step1_view', $data);
         }
 
@@ -87,7 +87,7 @@ class Info extends CI_controller
                 $this->Company->update_company($company_id , $array_company);
                 $this->Address->update_address($company_id , $array_company_address);
                 
-                redirect('company/info/step2', 'refresh');
+                redirect('company/company_info/step2', 'refresh');
             }
         }
 
@@ -108,12 +108,12 @@ class Info extends CI_controller
                 $data['contact_select_box'] = 1;
             }
 
-            $data['form_url'] = site_url('company/info/post_step2');
-            $data['back_url'] = site_url('company/info/step1');
+            $data['form_url'] = site_url('company/company_info/post_step2');
+            $data['back_url'] = site_url('company/company_info/step1');
 
             $this->breadcrumbs->push('ชื่อผู้จัดการสถานประกอบการ/หัวหน้าหน่วยงาน', '/Officer/company_info/step2/'.$company_id);
 
-            $this->template->view('Company/info/step2_view', $data);
+            $this->template->view('Company/company_info/step2_view', $data);
         }
 
         public function post_step2()
@@ -135,7 +135,7 @@ class Info extends CI_controller
                 // update on table
                 $this->Company->update_company($company_id, $array_company);
 
-                redirect('company/info/step3', 'refresh');
+                redirect('company/company_info/step3', 'refresh');
             }
         }
 
@@ -149,10 +149,10 @@ class Info extends CI_controller
             $company_id = $tmp['company_id'];
             $data['company_job'] = $this->Job->gets_job_by_company($tmp['company_id']);
             $data['job_title'] = $this->Job->gets_job_title();
-            $data['form_url'] = site_url('company/info/post_step3');
-            $data['back_url'] = site_url('company/info/step2');
+            $data['form_url'] = site_url('company/company_info/post_step3');
+            $data['back_url'] = site_url('company/company_info/step2');
 
-            $data['work_form_url'] = site_url('company/info/');
+            $data['work_form_url'] = site_url('company/company_info/');
             $this->breadcrumbs->push('ตำแหน่งงาน', '/Officer/company_info/step2/'.$company_id);
 
             
@@ -162,27 +162,27 @@ class Info extends CI_controller
         public function post_step3()
         {
             echo "<script>alert('ok')</script>";
-            redirect('company/info/step1', 'refresh');
+            redirect('company/company_info/step1', 'refresh');
         }
 
 
 
-        public function index($status= '')
-        {
-            if($status == 'success' ){
-                $data['status']['color'] = 'success';
-                $data['status']['text'] = 'แก้ไขสำเร็จ';
-            }else{
-                $data['status'] = '';
-            }
+        // public function index($status= '')
+        // {
+        //     if($status == 'success' ){
+        //         $data['status']['color'] = 'success';
+        //         $data['status']['text'] = 'แก้ไขสำเร็จ';
+        //     }else{
+        //         $data['status'] = '';
+        //     }
 
-            $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
-            $data['company'] = $this->Company->get_company($tmp['company_id'])[0];
-            $data['company_address'] = $this->Address->get_address_by_company($data['company']['id'])[0];
-            $data['company_person'] = $this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];
-            $data['company_employee'] = $this->Trainer->gets_trainer_by_company($data['company']['id']);
-            $data['company_job'] = $this->Job->gets_job_by_company($tmp['company_id']);
-            $this->template->view('Company/Company_info_view', $data);
-        }
+        //     $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
+        //     $data['company'] = $this->Company->get_company($tmp['company_id'])[0];
+        //     $data['company_address'] = $this->Address->get_address_by_company($data['company']['id'])[0];
+        //     $data['company_person'] = $this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];
+        //     $data['company_employee'] = $this->Trainer->gets_trainer_by_company($data['company']['id']);
+        //     $data['company_job'] = $this->Job->gets_job_by_company($tmp['company_id']);
+        //     $this->template->view('Company/Company_info_view', $data);
+        // }
 
 }
