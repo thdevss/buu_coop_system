@@ -121,7 +121,7 @@ class Assessment_company extends CI_Controller {
 		$student_id = $this->Login_session->check_login()->login_value;
 		$coop_student = $this->Coop_Student->get_coop_student($student_id)[0];
 		$company = $this->Company->get_company($coop_student['company_id'])[0];
-		print_r($company);
+		// print_r($company);
 		$items = array();
 		foreach($this->Company_Assessment_Form->gets_form_for_company() as $row)
 		{
@@ -196,17 +196,17 @@ class Assessment_company extends CI_Controller {
         $word_file = '/uploads/'.basename($save_filename);
         $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file, 1);
 
-		echo '<a href="'.base_url($result['full_url']).'">Download</a>';
-        // redirect(base_url($result['full_url']), 'refresh');
-        // echo "
-        //     <img src='".base_url('assets/img/loading.gif')."' />
-        //     <script>
-        //         window.location = '".base_url($result['full_url'])."';
-        //         setTimeout(function(){
-        //             window.location = '".site_url()."';
-        //         }, 1500);
-        //     </script>
-        // ";
+		// echo '<a href="'.base_url($result['full_url']).'">Download</a>';
+        redirect(base_url($result['full_url']), 'refresh');
+        echo "
+            <img src='".base_url('assets/img/loading.gif')."' />
+            <script>
+                window.location = '".base_url($result['full_url'])."';
+                setTimeout(function(){
+                    window.location = '".site_url()."';
+                }, 1500);
+            </script>
+        ";
 
 
     }
