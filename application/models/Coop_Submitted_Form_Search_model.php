@@ -61,4 +61,12 @@ class Coop_Submitted_Form_Search_model extends CI_model {
         $query = $this->db->query($sql);
         return $query->result_array();
     }
+
+    public function gets_student_has_document()
+    {
+        $sql = "SELECT distinct(student_id) FROM `coop_student_has_coop_document`";
+
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
 }
