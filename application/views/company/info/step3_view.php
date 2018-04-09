@@ -53,8 +53,8 @@
                                                 <td><?php echo $row['job_description']; ?></td>
                                                 <td class="text-right"><?php echo $row['number_of_employee']; ?></td>
                                                 <td>
-                                                    <a href="<?php echo site_url('/officer/company_info/job_form_edit/'.$row['id']);?>" class="btn btn-info">แก้ไข</a>
-                                                    <a href="<?php echo site_url('/officer/company_info/job_hide/'.$row['id']);?>" class="btn btn-warning">ลบ</a>
+                                                    <a href="<?php echo $work_form_url.'/job_form_edit/'.$row['id'];?>" class="btn btn-info">แก้ไข</a>
+                                                    <a href="<?php echo $work_form_url.'/job_hide/'.$row['id'];?>" class="btn btn-warning">ลบ</a>
                                                     
                                                 </td>
                                             </tr>

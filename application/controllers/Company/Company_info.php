@@ -166,23 +166,84 @@ class Company_info extends CI_controller
         }
 
 
+        //job section
+        public function job_add()
+        {
+            $trainer = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
+            $data['company_id'] = $trainer['company_id'];
+            $data['position_title'] = $this->Job->get_company_job_title_by_job_title_id($this->input->post('job_title_id'))[0]['job_title'];
+            $data['number_of_employee'] = $this->input->post('number_of_employee');
+            $data['job_description'] = $this->input->post('job_description');
+            $data['term_id'] = $this->Term->get_current_term()[0]['term_id'];
 
-        // public function index($status= '')
-        // {
-        //     if($status == 'success' ){
-        //         $data['status']['color'] = 'success';
-        //         $data['status']['text'] = 'แก้ไขสำเร็จ';
-        //     }else{
-        //         $data['status'] = '';
-        //     }
+            $this->Job->insert_job($data);
+            $this->session->set_flashdata('form-alert', '<div class="alert alert-success">เพิ่มงานสำเร็จ</div>');
+            redirect('/Company/company_info/step3/'.$data['company_id'], 'refresh');
+            // return $this->step3($data['company_id']);
+        }
 
-        //     $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
-        //     $data['company'] = $this->Company->get_company($tmp['company_id'])[0];
-        //     $data['company_address'] = $this->Address->get_address_by_company($data['company']['id'])[0];
-        //     $data['company_person'] = $this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];
-        //     $data['company_employee'] = $this->Trainer->gets_trainer_by_company($data['company']['id']);
-        //     $data['company_job'] = $this->Job->gets_job_by_company($tmp['company_id']);
-        //     $this->template->view('Company/Company_info_view', $data);
-        // }
+        public function job_hide($job_id)
+        {
+            $job = $this->Job->get_job($job_id);
+            if($job) {
+                // hide job
+                $this->Job->delete_job($job_id);
+                $this->session->set_flashdata('form-alert', '<div class="alert alert-primary">ลบงานสำเร็จ</div>');
+                redirect('/Company/company_info/step3/'.$job[0]['company_id'], 'refresh');                
+            } else {
+                $this->session->set_flashdata('form-alert', '<div class="alert alert-warning">ผิดพลาด</div>');
+                redirect('/Company/', 'refresh');                
+            }
+        }
+        public function job_form_edit($job_id)
+        {
+            $trainer = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
+            $data['company_job_title'] = $this->Job->gets_company_job_title();
+            $data['company_job_position_by_id'] = $this->Job->get_job($job_id)[0];
+            if($trainer['company_id'] == $data['company_job_position_by_id']['company_id']) {
+                $data['work_form_url'] = site_url('Company/Company_info/job_update/'.$data['company_job_position_by_id']['id']);
+                $this->template->view('company/info/job_form_view', $data);
+            } else {
+                $this->session->set_flashdata('form-alert', '<div class="alert alert-warning">Error</div>');
+                redirect('Company/Company_info/step3/', 'refresh');   
+            }
+        }
+
+        public function job_update()
+        {
+            // print_r($array);
+            $this->form_validation->set_rules('job_id', 'Job ID', 'required');
+            $this->form_validation->set_rules('job_title_id', 'ตำแหน่ง', 'required');
+            $this->form_validation->set_rules('number_of_employee', 'จำนวน', 'required|numeric');
+            $this->form_validation->set_rules('job_description', 'ลักษณะงานที่นิสิตต้องปฏิบัติงาน', 'required');
+            
+            if ($this->form_validation->run() == FALSE)
+            {
+                $job_id = $this->input->post('job_id');
+                $this->session->set_flashdata('form-alert', '<div class="alert alert-warning">แก้ไขงานไม่สำเร็จ</div>');
+                redirect('Company/Company_info/job_form_edit/'.$job_id, 'refresh');
+            }
+            else
+            {
+                $job_id = $this->input->post('job_id');
+                $job = $this->Job->get_job($job_id);
+                
+                if($job) {
+                    $array['position_title'] = $this->Job->get_company_job_title_by_job_title_id($this->input->post('job_title_id'))[0]['job_title'];                    
+                    $array['number_of_employee'] = $this->input->post('number_of_employee');
+                    $array['job_description'] = $this->input->post('job_description');
+                
+                    $this->Job->update_job($job_id, $array);
+                    $this->session->set_flashdata('form-alert', '<div class="alert alert-success">แก้ไขงานสำเร็จ</div>');
+                    redirect('Company/Company_info/step3/', 'refresh');
+                } else {
+                    $job_id = $this->input->post('job_id');
+                    $this->session->set_flashdata('form-alert', '<div class="alert alert-warning">แก้ไขงานไม่สำเร็จ</div>');
+                    redirect('Company/Company_info/step3/', 'refresh');
+                }
+            }
+
+        }
+
 
 }

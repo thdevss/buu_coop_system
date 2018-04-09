@@ -147,9 +147,9 @@ $('.btn-share').on('click',function(e){
   e.preventDefault();
   var news_id = jQuery(this).data("newsid")
 
-  jQuery(".btn-facebook").attr('href', 'https://www.facebook.com/sharer/sharer.php?u='+SITE_URL+'/news/'+news_id)
-  jQuery(".btn-twitter").attr('href', 'https://twitter.com/home?status='+SITE_URL+'/news/'+news_id)
-  jQuery(".btn-line").attr('href', 'https://social-plugins.line.me/lineit/share?url='+SITE_URL+'/news/'+news_id)
+  jQuery(".btn-facebook").attr('href', 'https://www.facebook.com/sharer/sharer.php?u='+SITE_URL+'/news/view/'+news_id)
+  jQuery(".btn-twitter").attr('href', 'https://twitter.com/home?status='+SITE_URL+'/news/view/'+news_id)
+  jQuery(".btn-line").attr('href', 'https://social-plugins.line.me/lineit/share?url='+SITE_URL+'/news/view/'+news_id)
   
 
 
