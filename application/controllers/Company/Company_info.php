@@ -113,7 +113,7 @@ class Company_info extends CI_controller
 
             $this->breadcrumbs->push('ชื่อผู้จัดการสถานประกอบการ/หัวหน้าหน่วยงาน', '/Officer/company_info/step2/'.$company_id);
 
-            $this->template->view('Company/company_info/step2_view', $data);
+            $this->template->view('Company/info/step2_view', $data);
         }
 
         public function post_step2()
