@@ -19,6 +19,15 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
+                            <div class="col-sm-12">
+                                <?php
+                                if($this->session->flashdata('form-alert')) {
+                                    echo $this->session->flashdata('form-alert');
+                                }
+                                ?>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-sm-2">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-star"></i> เพิ่มตำแหน่งงาน</button>
                             </div>

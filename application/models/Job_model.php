@@ -16,8 +16,7 @@ class Job_model extends CI_model {
     public function delete_job($job_id) 
     {
         $this->db->where('id', $job_id);
-        return $this->db->delete('company_job_position');
-
+        return $this->db->update('company_job_position', array( 'job_active' => 0 ));
     }
 
     public function get_job($job_id)

@@ -13,7 +13,9 @@ class Coop_Student_model extends CI_model {
 
     public function delete_coop_student($student_id)
     {
-
+        $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);                
+        $this->db->where('student_id',$student_id);
+        return $this->db->delete('coop_student');
     }
 
     public function update_coop_student($student_id, $array)
