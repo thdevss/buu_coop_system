@@ -213,4 +213,16 @@ class Student_list extends CI_Controller {
         $this->template->view('Officer/Training_history_student_view', $data);
     }
 
+    public function update_pass_subject()
+    {
+        $return['status'] = false;
+        $student_id = $this->input->post('student_id');
+        $student_pass_subject = $this->input->post('student_pass_subject');
+        
+        if( $this->Student->update_student($student_id, [ 'student_pass_subject' => $student_pass_subject ]) ) {
+            $return['status'] = true;
+        }
+        echo json_encode($return);
+    }
+
   }
