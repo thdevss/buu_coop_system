@@ -25,7 +25,7 @@ class Coop_detail extends CI_Controller {
         $student_id = $this->Login_session->check_login()->login_value;
         $data['coop_student'] = $this->Coop_Student->get_coop_student($student_id)[0];
         $data['company_job_position'] = $this->Job->get_job($data['coop_student']['company_job_position_id'])[0];
-        $data['adviser'] = $this->Adviser->get_adviser($data['coop_student']['adviser_id'])[0];
+        $data['adviser'] = @$this->Adviser->get_adviser($data['coop_student']['adviser_id'])[0];
         $data['student'] = $this->Student->get_student($student_id)[0];
         $data['company'] = $this->Company->get_company($data['coop_student']['company_id'])[0];     
         $data['department'] = $this->Student->get_department( $data['student']['department_id'])[0];
