@@ -112,7 +112,14 @@
 
                                     <dl class="row">
                                     <dt class="col-sm-4">วิชาแกน</dt>
-                                    <dd><?php echo isEmptyText();?></dd>
+                                    <dd>
+                                      <label class="switch switch-text switch-pill switch-success-outline-alt">
+                                        <input type="checkbox" value="" name="current_term" class="switch-input" <?php if($student['student_pass_subject'] == 1) echo "checked"?>>
+                                        <span class="switch-label" data-on="On" data-off="Off"></span>
+                                        <span class="switch-handle"></span>
+                                      </label>
+                                    </dd>
+                                    &nbsp;&nbsp;<dd><a href="<?php echo site_url('');?>">ดึงสถานะ</a></dd>
                                     </dl>
 
                                     <dl class="row">
