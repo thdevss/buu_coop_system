@@ -36,7 +36,7 @@ class Setting extends CI_Controller {
                 'color' => 'warning'
             ];
         }
-
+        // print_r($data);
         // add breadcrumbs
         $this->breadcrumbs->push('จัดการปีการศึกษา', '/Officer/Setting/edit_term');
         $data['terms'] = $this->Term->gets_term();

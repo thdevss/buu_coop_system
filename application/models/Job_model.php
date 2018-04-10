@@ -141,5 +141,17 @@ class Job_model extends CI_model {
         $this->db->where('student_id', $student_id);
         return $this->db->update('company_job_position_has_student', $array);
     }
+    public function gets_job_register_by_student($student)
+    {
+        $this->db->select('*');
+        $this->db->where('student_id',$student);
+        $this->db->from('company_job_position_has_student');
+        $this->db->join('company_job_position', 'company_job_position_has_student.company_job_position_id = company_job_position.id');
+        $this->db->join('company', 'company_job_position.company_id = company.id');
+        $this->db->join('company_status_type', 'company_job_position_has_student.company_status_id = company_status_type.id');
+        $query = $this->db->get();
+        return $query->result_array();
+
+    }
 
 }

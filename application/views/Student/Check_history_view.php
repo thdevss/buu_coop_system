@@ -42,7 +42,7 @@
                             <td class="text-right"><?php echo $row['total_hour'];?></td>
                             <td><?php echo $row['train']['title'];?></td>
                             <td><?php echo $row['train']['lecturer'];?></td>
-                            <td class="text-right"><?php echo $row['check_hour'];?></td>
+                            <td class="text-right"><?php echo number_format($row['check_hour'], 2);?></td>
 
 
                           </tr>

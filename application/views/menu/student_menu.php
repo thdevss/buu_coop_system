@@ -23,7 +23,7 @@
               <?php echo anchor('Student/Training/check_history/', '<i class="fa fa-history"></i> ตรวจสอบประวัติอบรม', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
-                <?php echo anchor('Student/Training/register/', '<i class="fa fa-registered"></i> สมัครเข้าร่วมอบรม', 'class="nav-link"');?>
+                <!-- <?php echo anchor('Student/Training/register/', '<i class="fa fa-registered"></i> สมัครเข้าร่วมอบรม', 'class="nav-link"');?> -->
               </li>
             </ul>
           </li>
@@ -51,8 +51,8 @@
               <a class="nav-link" href="<?php echo site_url('student/Skill/');?>" target="_top"><i class="fa fa-check"></i> ทักษะที่ถนัด</a>
               </li>
               <li class="nav-item">
-              <!-- <a class="nav-link" href="<?php echo site_url('student/upload_document/');?>" target="_top"><i class="fa fa-upload"></i> อัพโหลดเอกสาร</a> -->
-              <a class="nav-link" href="#" target="_top"><i class="fa fa-upload"></i> อัพโหลดเอกสาร</a>
+              <a class="nav-link" href="<?php echo site_url('student/upload_document/');?>" target="_top"><i class="fa fa-upload"></i> อัพโหลดเอกสาร</a>
+              <!-- <a class="nav-link" href="#" target="_top"><i class="fa fa-upload"></i> อัพโหลดเอกสาร</a> -->
               
               </li>
             </ul>

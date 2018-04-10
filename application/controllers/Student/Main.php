@@ -29,7 +29,7 @@ class Main extends CI_Controller {
         $this->breadcrumbs->push('ประกาศข่าวสาร', '/Student/Job/lists');
 
         //check ins001 register
-        $coop_document_id = $this->Form->get_form_by_name('IN-S001', $this->Login_session->check_login()->term_id)[0]['id'];        
+        $coop_document_id = @$this->Form->get_form_by_name('IN-S001', $this->Login_session->check_login()->term_id)[0]['id'];        
         $data['ins001'] = $this->Coop_Submitted_Form_Search->search_form_by_student_and_codes($student_id, [$coop_document_id]);
 
         $status = $this->input->get('status');
