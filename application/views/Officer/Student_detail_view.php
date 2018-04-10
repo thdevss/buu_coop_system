@@ -114,12 +114,12 @@
                                     <dt class="col-sm-4">วิชาแกน</dt>
                                     <dd>
                                       <label class="switch switch-text switch-pill switch-success-outline-alt">
-                                        <input type="checkbox" value="" name="current_term" class="switch-input" <?php if($student['student_pass_subject'] == 1) echo "checked"?>>
+                                        <input type="checkbox" value="1" name="student_pass_subject" class="switch-input" <?php if($student['student_pass_subject'] == 1) echo "checked"; ?>>
                                         <span class="switch-label" data-on="On" data-off="Off"></span>
                                         <span class="switch-handle"></span>
                                       </label>
                                     </dd>
-                                    &nbsp;&nbsp;<dd><a href="<?php echo site_url('');?>">ดึงสถานะ</a></dd>
+                                    &nbsp;&nbsp;<dd><a href="<?php echo site_url('');?>">ตรวจสอบสถานะจากระบบโปรไฟล์</a></dd>
                                     </dl>
 
                                     <dl class="row">
@@ -203,3 +203,27 @@
                   </div>
                 </div>   
 </main>     
+
+
+
+<script>
+jQuery("input:checkbox").on('click', function() {
+    var status_val = 0
+    if(jQuery(this).prop("checked")) {
+      status_val = 1
+    }
+        var datastring = "student_id=<?php echo $student['id'];?>&student_pass_subject="+status_val
+        jQuery.post(SITE_URL+"/officer/Student_list/update_pass_subject", datastring, function(response) {
+            if(response.status) {
+                toastr["success"]("ok ja")
+            } else {
+                toastr["error"]("err ja")
+            }
+        }, 'json');
+
+});
+
+
+
+
+</script>
