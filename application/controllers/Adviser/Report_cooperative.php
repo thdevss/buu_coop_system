@@ -45,7 +45,7 @@ class Report_cooperative extends CI_Controller {
         $department_id = $this->input->post('department_id');
         $term_id = $this->input->post('term_id');
 
-        $data['term_report'] = $this->Term->get_term($term_id)[0];
+        $data['term_report'] = @$this->Term->get_term($term_id)[0];
 
         if($company_id == "0") {
             $data['reports'] = $this->get_stat_all($data['term_report']['term_id']);

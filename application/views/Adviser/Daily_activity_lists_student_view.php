@@ -25,6 +25,7 @@
             <table class="table table-bordered datatable">
                     <thead>
                       <tr>
+                        <th></th>
                         <th>รหัสนิสิต</th>
                         <th>ชื่อ-สกุล</th>
                         <th>สาขา</th>
@@ -36,6 +37,7 @@
                     <tbody>
                     <?php foreach ($data as $row) {?>
                       <tr>
+                        <td></td>
                         <td><?php echo $row['student']['id']; ?></td>
                         <td><?php echo $row['student']['fullname']; ?></td>
                         <td><?php echo $row['department']['name']; ?></td>
