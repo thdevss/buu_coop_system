@@ -82,7 +82,7 @@ class Student_model extends CI_model {
 
         $api = json_decode($result, true);
 
-        if($api['status'] == "true") {
+        if(@$api['status'] == "true") {
             return $api['result'];
         } 
         

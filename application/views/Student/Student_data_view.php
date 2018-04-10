@@ -49,29 +49,35 @@
                                 </font>
                               </td>
                             </tr>
-                            <tr><td>หน่วยกิตคำนวณ</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr>
-
-                            <tr><td>หน่วยกิตที่ผ่าน </td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr>
+                            <!-- <tr><td>หน่วยกิตคำนวณ</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr> -->
+                            <!-- <tr><td>หน่วยกิตที่ผ่าน </td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr> -->
                             <tr><td>GPAX</td><td><font color="#0000ff"><?php echo $student_profile['GPAX'];?></font></td></tr>
                           </table>
                         <table class="table table-bordered ">
                             <tr><h3>ข้อมูลสหกิจ</h3></tr>
+                            <tr><td>สถานะ</td><td><font color=""><?php echo $coop_status_type['status_name']; ?></font></td></tr>
                             <tr><td width="25%">ชั่วโมงอบรม</td><td>
                             <?php if($pass_training) { ?>
                               <font color="#006600">ผ่าน</font>
                             <?php } else { ?>
-                              <font color="">ไม่ผ่าน</font>
+                              <font color="red">ไม่ผ่าน</font>
                             <?php } ?>
                             </td></tr>
-                            <tr><td >วิชาเเกน</td><td>รอดึงจากระบบโปรไฟล์</td></tr>
+                            <tr><td >วิชาแกน</td><td>
+                            <?php if($student['student_pass_subject'] == '1') { ?>
+                              <font color="">ผ่านวิชาแกน</font>                            
+                            <?php } else { ?>
+                              <font color="">ยังไม่ผ่านวิชาแกน</font>
+                            <?php } ?>
+                            </td></tr>
                             <tr><td>สถานะสถานประกอบการ</td><td>
                             <?php if($student['company_status'] == '1') { ?>
                               <font color="#006600">ผ่านการคัดเลือกจากสถานประกอบการ</font>
                             <?php } else { ?>
-                              <font color="">รอการตอบกลับ</font>
+                                <font color="">รอการตอบกลับ</font>
                             <?php } ?>
                             </td></tr>
-                            <tr><td>สถานะการสอบวัดผลรอบ (1,2,3)</td><td><font color=""><?php echo $coop_status_type['status_name']; ?></font></td></tr>
+                            
                           </table>
                     </div>
                 </div>
