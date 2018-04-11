@@ -114,12 +114,12 @@
                                     <dt class="col-sm-4">วิชาแกน</dt>
                                     <dd>
                                       <label class="switch switch-text switch-pill switch-success-outline-alt">
-                                        <input type="checkbox" value="1" name="student_pass_subject" class="switch-input" <?php if($student['student_pass_subject'] == 1) echo "checked"; ?>>
+                                        <input type="checkbox" value="1" name="student_core_subject_status" class="switch-input" <?php if($student['student_core_subject_status'] == 1) echo "checked"; ?>>
                                         <span class="switch-label" data-on="On" data-off="Off"></span>
                                         <span class="switch-handle"></span>
                                       </label>
                                     </dd>
-                                    &nbsp;&nbsp;<dd><a href="<?php echo site_url('');?>">ตรวจสอบสถานะจากระบบโปรไฟล์</a></dd>
+                                    &nbsp;&nbsp;<dd><a href="#" class="check_core_subj">ตรวจสอบสถานะจากระบบโปรไฟล์</a></dd>
                                     </dl>
 
                                     <dl class="row">
@@ -212,8 +212,8 @@ jQuery("input:checkbox").on('click', function() {
     if(jQuery(this).prop("checked")) {
       status_val = 1
     }
-        var datastring = "student_id=<?php echo $student['id'];?>&student_pass_subject="+status_val
-        jQuery.post(SITE_URL+"/officer/Student_list/update_pass_subject", datastring, function(response) {
+        var datastring = "student_id=<?php echo $student['id'];?>&student_core_subject_status="+status_val
+        jQuery.post(SITE_URL+"/officer/Student_list/update_pass_core_subject", datastring, function(response) {
             if(response.status) {
                 toastr["success"]("ok ja")
             } else {
@@ -225,5 +225,20 @@ jQuery("input:checkbox").on('click', function() {
 
 
 
+jQuery(".check_core_subj").on('click', function() {
+
+        var datastring = "student_id=<?php echo $student['id'];?>"
+        jQuery.post(SITE_URL+"/officer/Student_list/check_core_subject_condition", datastring, function(response) {
+            if(response.status) {
+              jQuery("input:checkbox").prop('checked', true);
+              toastr["success"]("ok ja")
+            } else {
+              toastr["error"]("err ja")
+            }
+        }, 'json');
+
+});
+
 
 </script>
+

@@ -106,6 +106,29 @@ class Student_model extends CI_model {
         return true;
     }
 
+    public function get_student_register_subject_from_profile($student_id, $subject_arr) 
+    {
+        $ch = curl_init();
+        $timeout = 5;
+        $fields = [
+            'Subject_Code' => $subject_arr
+        ];
+        $fields_string = http_build_query($fields);
+        curl_setopt($ch, CURLOPT_URL, 'http://10.80.34.5:9991/public/api/v1/student/'.$student_id.'/subjects');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        curl_setopt($ch,CURLOPT_POST, 1);
+        curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        if(@$api['status'] == "true") {
+            return $api['result'];
+        } 
+        
+        return false;
+    }    
+
     public function get_latest_register_job($student_id)
     {
         $this->db->where('student_id', $student_id);
