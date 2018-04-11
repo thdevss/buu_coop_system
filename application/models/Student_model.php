@@ -110,20 +110,18 @@ class Student_model extends CI_model {
     {
         $ch = curl_init();
         $timeout = 5;
-        $fields = [
-            'Subject_Code' => $subject_arr
-        ];
-        $fields_string = http_build_query($fields);
-        curl_setopt($ch, CURLOPT_URL, 'http://10.80.34.5:9991/public/api/v1/student/'.$student_id.'/subjects');
+        $subject_codes = implode(",", $subject_arr);
+        // echo 'http://10.80.34.5:9991/public/api/v1/student/'.$student_id.'/subjects?Subject_Code='.$subject_codes;
+        curl_setopt($ch, CURLOPT_URL, 'http://10.80.34.5:9991/public/api/v1/student/'.$student_id.'/subjects?Subject_Code='.$subject_codes);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-        curl_setopt($ch,CURLOPT_POST, 1);
-        curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
         $result = curl_exec($ch);
         curl_close($ch);
+        $api = json_decode($result, true);
+
 
         if(@$api['status'] == "true") {
-            return $api['result'];
+            return $api;
         } 
         
         return false;

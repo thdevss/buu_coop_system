@@ -119,7 +119,7 @@
                                         <span class="switch-handle"></span>
                                       </label>
                                     </dd>
-                                    &nbsp;&nbsp;<dd><a href="#" class="check_core_subj">ตรวจสอบสถานะจากระบบโปรไฟล์</a></dd>
+                                    &nbsp;&nbsp;<dd><a href="#" class="check_core_subj">ตรวจสอบสถานะจากระบบโปรไฟล์</a> <span id="loading_status"></span></dd>
                                     </dl>
 
                                     <dl class="row">
@@ -208,6 +208,7 @@
 
 <script>
 jQuery("input:checkbox").on('click', function() {
+  jQuery("#loading_status").html('<i class="fa fa-spin fa-spinner"></i> ')
     var status_val = 0
     if(jQuery(this).prop("checked")) {
       status_val = 1
@@ -219,6 +220,7 @@ jQuery("input:checkbox").on('click', function() {
             } else {
                 toastr["error"]("err ja")
             }
+            jQuery("#loading_status").html('')
         }, 'json');
 
 });
@@ -226,15 +228,17 @@ jQuery("input:checkbox").on('click', function() {
 
 
 jQuery(".check_core_subj").on('click', function() {
-
+        jQuery("#loading_status").html('<i class="fa fa-spin fa-spinner"></i> ')
         var datastring = "student_id=<?php echo $student['id'];?>"
         jQuery.post(SITE_URL+"/officer/Student_list/check_core_subject_condition", datastring, function(response) {
             if(response.status) {
               jQuery("input:checkbox").prop('checked', true);
-              toastr["success"]("ok ja")
+              toastr["success"]("นิสิตคนนี้ผ่านวิชาแกนเรียบร้อยแล้ว")
             } else {
-              toastr["error"]("err ja")
+              jQuery("input:checkbox").prop('checked', false);
+              toastr["warning"]("นิสิตคนนี้ยังไม่ผ่านวิชาแกน")
             }
+            jQuery("#loading_status").html('')
         }, 'json');
 
 });

@@ -140,7 +140,7 @@
             <?php echo anchor('Officer/setting/adviser_setting', '<i class="fa fa-gear"></i> เปลี่ยนสิทธิ์อาจารย์', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/setting/core_subjects_list', '<i class="fa fa-gear"></i> เพิ่มวิชาแกน', 'class="nav-link"');?>
+            <?php echo anchor('Officer/setting/core_subjects_list', '<i class="fa fa-gear"></i> จัดการวิชาแกน', 'class="nav-link"');?>
             </li>
       </ul>
     </nav>
