@@ -238,11 +238,14 @@ class Student_list extends CI_Controller {
 
         // get data from api
         $data = $this->Student->get_student_register_subject_from_profile($student_id, $core_subject);
-
         // check condition
-        if( count($data) == count($core_subject) ) {
+        if( count($data['result']) == count($core_subject) ) {
             if( $this->update_student_core_subject($student_id, 1) ) {
                 $return['status'] = true;
+            }
+        } else {
+            if( $this->update_student_core_subject($student_id, 0) ) {
+                $return['status'] = false;
             }
         }
 
