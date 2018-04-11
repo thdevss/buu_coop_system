@@ -35,17 +35,16 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                               
+                                                 <?php  $i=1; foreach($student_core_subject as $row) {?>
                                                     <tr>
-                                                        <td class="text-center"></td>
-                                                        <td class="text-left"></td>
-                                                        <td>
-                                                            <?php echo anchor('Officer/Setting/', '<i class="fa fa-eraser"></i> แก้ไข', 'class="btn  btn-primary"');?>                                 
-                                                            <?php echo anchor('Officer/Setting/', '<i class="fa fa-trash-o"></i> ลบ', 'class="btn btn-danger" onclick="return confirmDelete(this)"');?>
+                                                        <td class="text-center"><?php echo $i++; ?></td>
+                                                        <td class="text-left"><?php echo $row['subject_id'];?></td>
+                                                        <td class="text-center">
+                                                            <?php echo anchor('Officer/Setting/delete_core_subjects/'.$row['subject_id'], '<i class="fa fa-trash-o"></i> ลบ', 'class="btn btn-danger" onclick="return confirmDelete(this)"');?>
 
                                                         </td>
                                                     </tr>
-                                               
+                                                 <?php } ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -56,18 +55,11 @@
                             <!-- เพิ่ม -->
                                 <div class="col-md-6">
                                     <div class="card">
-                                        <div class="card-body">
-                                            <?php if(@$form_type == 'insert') { ?>
-                                            <form action="<?php echo site_url('Officer/Setting/');?>" method="post">
-                                            <?php } else { ?>
-                                            <form action="<?php echo site_url('Officer/Setting/');?>" method="post">
-                                            <input type="hidden" name="job_title_id" value="">
-
-                                            <?php } ?>
-
+                                        <div class="card-body"> 
+                                            <form action="<?php echo site_url('Officer/Setting/add_core_subjects');?>" method="post">
                                                 <div class="form-group">
                                                     <label for="">บันทึกวิชาใหม่ หรือ แก้ไข</label><code>*</code>
-                                                    <input type="text" id="job_title" name="job_title" class="form-control" value="" placeholder="กรุณากรอก" required autofocus>
+                                                    <input type="text" id="" name="subject_id" class="form-control" placeholder="กรุณากรอก" required autofocus>
                                                 </div>
                                             
                                                 <div class="form-group">

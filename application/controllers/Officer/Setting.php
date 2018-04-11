@@ -384,6 +384,11 @@ class Setting extends CI_Controller {
             $data['status']['text'] = 'ไม่สามารถเพิ่มได้ข้อมูลซ้ำ';
 
         }
+        else if($status == 'error'){
+            $data['status']['color'] = 'warning';            
+            $data['status']['text'] = 'ไม่สามารถเพิ่มได้';
+
+        }
         else if($status == 'success_update'){
             $data['status']['color'] = 'success';            
             $data['status']['text'] = 'แก้ไขสำเร็จ';
@@ -398,15 +403,39 @@ class Setting extends CI_Controller {
             $data['status'] = '';
         }
 
+        $data['student_core_subject'] = $this->Student->gets_student_core_subject();
+        // print_r($data);
         $this->template->view('Officer/Core_subjects_setting_view', $data);
     }
     public function add_core_subjects()
     {
-
-    }
-    public function update_core_subjects()
-    {
+        $this->form_validation->set_rules('subject_id', 'บันทึกวิชาใหม่ หรือ แก้ไข', 'required|numeric|min_length[6]|max_length[6]');
+        if ($this->form_validation->run() == FALSE)
+        {
+            redirect('Officer/Setting/core_subjects_list?status=error','refresh');
+        }
+        else
+        {
+            $array['subject_id'] = $this->input->post('subject_id');
+            $array['term_id'] = $this->Term->get_current_term()[0]['term_id'];
         
+            if($this->Student->insert_student_core_subject($array)) {
+                
+                redirect('Officer/Setting/core_subjects_list?status=success','refresh');
+                
+            } else {
+
+                redirect('Officer/Setting/core_subjects_list?status=dup_data','refresh');
+            }
+
+        }
+    }
+    
+    public function delete_core_subjects($subject_id)
+    {
+        $this->Student->delete_student_core_subject($subject_id);
+        redirect('Officer/Setting/core_subjects_list?status=Success_delete','refresh');
+
     }
     
 }
