@@ -213,16 +213,46 @@ class Student_list extends CI_Controller {
         $this->template->view('Officer/Training_history_student_view', $data);
     }
 
-    public function update_pass_subject()
+    public function update_pass_core_subject()
     {
         $return['status'] = false;
         $student_id = $this->input->post('student_id');
-        $student_pass_subject = $this->input->post('student_pass_subject');
+        $student_core_subject_status = $this->input->post('student_core_subject_status');
         
-        if( $this->Student->update_student($student_id, [ 'student_pass_subject' => $student_pass_subject ]) ) {
+        if( $this->update_student_core_subject($student_id, $student_core_subject_status) ) {
             $return['status'] = true;
         }
         echo json_encode($return);
+    }
+
+    public function check_core_subject_condition()
+    {
+        $return['status'] = false;
+        $student_id = $this->input->post('student_id');
+        
+        // get core subject
+        // $core_subject = ['999041'];
+        foreach($this->Student->gets_student_core_subject() as $core_subj) {
+            $core_subject[] = $core_subj['subject_id'];
+        }
+
+        // get data from api
+        $data = $this->Student->get_student_register_subject_from_profile($student_id, $core_subject);
+
+        // check condition
+        if( count($data) == count($core_subject) ) {
+            if( $this->update_student_core_subject($student_id, 1) ) {
+                $return['status'] = true;
+            }
+        }
+
+        echo json_encode($return);            
+
+    }
+
+    private function update_student_core_subject($student_id, $student_core_subject_status) 
+    {
+        return $this->Student->update_student($student_id, [ 'student_core_subject_status' => $student_core_subject_status ]);
     }
 
   }

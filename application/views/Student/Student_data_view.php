@@ -64,7 +64,7 @@
                             <?php } ?>
                             </td></tr>
                             <tr><td >วิชาแกน</td><td>
-                            <?php if($student['student_pass_subject'] == '1') { ?>
+                            <?php if($student['student_core_subject_status'] == '1') { ?>
                               <font color="">ผ่านวิชาแกน</font>                            
                             <?php } else { ?>
                               <font color="">ยังไม่ผ่านวิชาแกน</font>
