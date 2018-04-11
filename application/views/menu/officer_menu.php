@@ -135,10 +135,13 @@
             </li>
             <li class="nav-item">
             <?php echo anchor('Officer/setting/edit_document', '<i class="fa fa-gear"></i> กำหนดเอกสาร', 'class="nav-link"');?>
-        </li>
-          <li class="nav-item">
+            </li>
+            <li class="nav-item">
             <?php echo anchor('Officer/setting/adviser_setting', '<i class="fa fa-gear"></i> เปลี่ยนสิทธิ์อาจารย์', 'class="nav-link"');?>
-          </li>
+            </li>
+            <li class="nav-item">
+            <?php echo anchor('Officer/setting/core_subjects_list', '<i class="fa fa-gear"></i> เพิ่มวิชาแกน', 'class="nav-link"');?>
+            </li>
       </ul>
     </nav>
     <button class="sidebar-minimizer brand-minimizer sidebar-minimized" type="button"></button>
