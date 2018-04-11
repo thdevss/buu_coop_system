@@ -132,4 +132,31 @@ class Student_model extends CI_model {
     //         return false;
     //     }
     // }
+    public function get_student_core_subject($subject_id)
+    {
+        $this->db->where('subject_id', $subject_id);
+        $this->db->from('student_core_subject');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function gets_student_core_subject()
+    {
+        $this->db->from('student_core_subject');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function insert_student_core_subject($array)
+    {
+        $db_debug = $this->db->db_debug; //save setting
+        $this->db->db_debug = FALSE; //disable debugging for queries
+
+        $return = $this->db->insert('student_core_subject', $array);
+        $this->db->db_debug = $db_debug;
+        return $return;        
+    }
+    public function delete_student_core_subject($subject_id)
+    {
+        $this->db->where('subject_id', $subject_id);
+        return $this->db->delete('student_core_subject');
+    }
 }
