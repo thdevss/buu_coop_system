@@ -368,6 +368,45 @@ class Setting extends CI_Controller {
 
         echo json_encode($return);
 
-	} 
+    }
+    public function core_subjects_list($status= '')
+    {
+        if($status == '') {
+            $status = $this->input->get('status');
+        }
+
+        if( $status == 'success'){
+            $data['status']['color'] = 'success';            
+            $data['status']['text'] = 'เพิ่มสำเร็จ';
+        }
+        else if($status == 'dup_data'){
+            $data['status']['color'] = 'warning';            
+            $data['status']['text'] = 'ไม่สามารถเพิ่มได้ข้อมูลซ้ำ';
+
+        }
+        else if($status == 'success_update'){
+            $data['status']['color'] = 'success';            
+            $data['status']['text'] = 'แก้ไขสำเร็จ';
+
+        }
+        else if($status == 'Success_delete'){
+            $data['status']['color'] = 'success';            
+            $data['status']['text'] = 'ลบสำเร็จ';
+
+        }
+        else {
+            $data['status'] = '';
+        }
+
+        $this->template->view('Officer/Core_subjects_setting_view', $data);
+    }
+    public function add_core_subjects()
+    {
+
+    }
+    public function update_core_subjects()
+    {
+        
+    }
     
 }
