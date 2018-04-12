@@ -144,7 +144,7 @@ class Job extends CI_Controller {
         
         $template_file = "template/IN-S002.docx";        
         
-        $save_filename = "download/".$student_id."-IN-S002.docx";
+        $save_filename = "download/".$student_id."-IN-S002-".time().".docx";
         $data_array = [
 
             // ข้อมูลนิสิต
@@ -288,6 +288,8 @@ class Job extends CI_Controller {
         }else if ($data['student_profile']['Mother_Status'] == "ถึงแก่กรรม" ) {
 
         }
+
+        $data_array['image'] = 'http://reg.buu.ac.th/registrar/getstudentimage.asp?id='.$student_id;
         // print_r($data_array);
         // die();
 
@@ -318,9 +320,9 @@ class Job extends CI_Controller {
             <img src='".base_url('assets/img/loading.gif')."' />
             <script>
                 window.location = '".base_url($result['full_url'])."';
-                setTimeout(function(){
-                    window.location = '".site_url()."';
-                }, 1500);
+                // setTimeout(function(){
+                //     window.location = '".site_url()."';
+                // }, 1500);
             </script>
         ";
 
