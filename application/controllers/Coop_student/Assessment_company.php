@@ -197,7 +197,7 @@ class Assessment_company extends CI_Controller {
         $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file, 1);
 
 		// echo '<a href="'.base_url($result['full_url']).'">Download</a>';
-        redirect(base_url($result['full_url']), 'refresh');
+        // redirect(base_url($result['full_url']), 'refresh');
         echo "
             <img src='".base_url('assets/img/loading.gif')."' />
             <script>
