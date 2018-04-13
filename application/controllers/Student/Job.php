@@ -177,8 +177,8 @@ class Job extends CI_Controller {
                 "Student_Name_Eng" => $data['student_profile']['Student_Name_Eng'], //ชื่ออังกฤษ
                 "Student_Lname_Eng" => $data['student_profile']['Student_Lname_Eng'], //นามสกุลอังกฤษ
                 "Student_IdNum" => $data['student_profile']['Student_IdNum'], //รหัสบัตรประชาชน
-                "Notionnality" => $data['student_profile']['Notionnality'],  //สัญชาติ
-                "Relidion" => $data['student_profile']['Relidion'], //ศาสนา
+                "Nationality" => $data['student_profile']['Nationality'],  //สัญชาติ
+                "Religion" => $data['student_profile']['Relidion'], //ศาสนา
                 "Province_Birth" => $data['student_profile']['Province_Birth'], //สถานที่เกิด
                 "Birthday" => thaiDate($data['student_profile']['Birthday'], false, false), //วัน เดือน ปี เกิด
                 
@@ -268,6 +268,80 @@ class Job extends CI_Controller {
                 // "Brethren" => "น้อง 1 คน", กรอกเอง
 
         ];
+
+        // EDUCATIONAL HISTORY
+        $education_history = [];
+        $education_place = $this->input->post('education_place');
+        $education_start_year = $this->input->post('education_start_year');
+        $education_end_year = $this->input->post('education_end_year');
+        $education_result = $this->input->post('education_result');
+        foreach($this->input->post('education_level') as $key => $education_level) {
+            $education_history[] = [
+                'level' => $education_level,
+                'place' => $education_place[$key],
+                'startY' => $education_start_year[$key],
+                'endY' => $education_end_year[$key],
+                'result' => $education_result[$key]
+            ];
+        }
+        $data_array['edu_history'] = $education_history;
+
+        // TRAINING HISTORY
+        $training_history = [];
+        $training_place = $this->input->post('training_place');
+        $training_start_period = $this->input->post('training_start_period');
+        $training_end_period = $this->input->post('training_end_period');
+        foreach($this->input->post('training_subject') as $key => $training_subject) {
+            $training_history[] = [
+                'subject' => $training_subject,
+                'place' => $training_place[$key],
+                'start' => $training_start_period[$key],
+                'end' => $training_end_period[$key]
+            ];
+        }
+        $data_array['training'] = $training_history;
+
+        // CAREER VISION
+        $data_array['job_student'] = $this->input->post('job_student');
+
+        // LANGUAGE PROFICIENCY
+        $lang_pro = [];
+        $language_listen = $this->input->post('language_listen');
+        $language_speak = $this->input->post('language_speak');
+        $language_read = $this->input->post('language_read');
+        $language_write = $this->input->post('language_write');
+        foreach($this->input->post('language_lang') as $key => $language_lang) {
+            $tmp_array = [
+                'lang' => $language_lang,
+                'l3' => '',
+                'l2' => '',
+                'l1' => '',
+                's3' => '',
+                's2' => '',
+                's1' => '',
+                'r3' => '',
+                'r2' => '',
+                'r1' => '',
+                'w3' => '',
+                'w2' => '',
+                'w1' => ''                
+            ];
+            $tmp_array['l'.$language_listen[$key]] = ' * ';
+            $tmp_array['s'.$language_speak[$key]] = ' * ';
+            $tmp_array['r'.$language_read[$key]] = ' * ';
+            $tmp_array['w'.$language_write[$key]] = ' * ';
+            
+
+            $lang_pro[] = $tmp_array;
+        }
+        $data_array['lang_pro'] = $lang_pro;
+
+
+        // ความสามารถพิเศษทางคอมพิวเตอร์, ทักษะ
+        
+
+
+
 
         if($data['department']['id']== 1) {
             $data_array ['ch_it'] = "*";

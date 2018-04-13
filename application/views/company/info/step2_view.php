@@ -45,14 +45,18 @@
 
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-12" id="show_select" style="display:none;">
-                                <select id="contact_person_id" name="contact_person_id" class="form-control">
+                        <div class="row" id="show_select" style="display:none;">
+                            <div class="col-md-10">
+                                <select id="trainer_lists" name="contact_person_id" class="form-control">
                                 <option >Please select</option>
                                     <?php foreach($company_employee as $row){ ?>
                                         <option value="<?php echo $row['id'];?>" <?php if($row['id'] == $company['contact_person_id']) echo 'selected'; ?>><?php echo $row['fullname']."/".$row['position']."/".$row['department']."/".$row['telephone']."/".$row['fax_number']."/".$row['email'];?></option>
                                     <?php } ?>
                                 </select>
+                            </div>
+
+                            <div class="col-md-2">
+                                <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#company_person_form"> + เพิ่มผู้นิเทศงาน</a>
                             </div>
                      
                         </div>
@@ -148,4 +152,108 @@ $(document).ready(function(){
         jQuery("#show_select").hide();
     });
 });
+</script>
+
+
+
+
+
+
+
+<style>
+.modal-dialog {
+    max-width: 800px;
+}
+</style>
+<!-- The Modal -->
+<div class="modal fade" id="company_person_form">
+    <div class="modal-dialog model-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">เพิ่มผู้นิเทศงาน</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <form id="save_trainer">
+            <input type="hidden" name="company_id" value="<?php echo $company['id'];?>">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="fullname">ชื่อ-นามสกุล</label><code>*</code>
+                        <input type="text" id="fullname" name="fullname" class="form-control" placeholder="ชื่อ-นามสกุล" value="" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for"email">E-mail</label><code>*</code>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="E-mail" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for"position">ตำเเหน่ง</label><code>*</code>
+                        <input type="text" id="position" name="position" class="form-control" placeholder="ตำเเหน่ง" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for"department">แผนกงาน</label><code>*</code>
+                        <input type="text" id="department" name="department" class="form-control" placeholder="เเผนกงาน" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for"telephone">เบอร์โทร</label>
+                        <input type="text" id="telephone" name="telephone" class="form-control" placeholder="เบอร์โทร" required>
+                    </div>  
+                    <div class="form-group col-md-12">
+                        <label for"fax_number">FAX</label>
+                        <input type="text" id="fax_number" name="fax_number" class="form-control" placeholder="FAX">
+                    </div>
+   
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Save</button>
+                
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+jQuery(document).ready(function(){
+    jQuery("#save_trainer").validate();
+});
+
+jQuery( "#save_trainer" ).submit(function( event ) {
+    event.preventDefault();
+
+    if(jQuery("#save_trainer").valid()) {
+        //post ajax
+        jQuery.post("<?php echo $save_trainer_url;?>", jQuery("#save_trainer").serialize(), function(result){
+            jQuery("#company_person_form").modal('hide');
+
+            if(result.status) {
+                jQuery('#trainer_lists').append($('<option>', {
+                    selected: true,
+                    value: result.last_id,
+                    text: jQuery("#save_trainer input[name=fullname]").val()+' (อีเมล: '+jQuery("#save_trainer input[name=email]").val()+') (เบอร์โทรศัพท์: '+jQuery("#save_trainer input[name=telephone]").val()+')'
+                }));
+                
+                swal("สำเร็จ", result.text, result.color);                
+            } else {
+                swal("ผิดพลาด", result.text, result.color);
+            }
+            jQuery("#save_trainer input[type=text]").val(null);
+            
+
+            
+        }, 'json');
+
+        
+    }
+});
+
+
 </script>

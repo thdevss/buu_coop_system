@@ -170,7 +170,7 @@
 
                       <div class="form-group col-sm-3">
                         <label for="name">สัญชาติ</label><code>*</code>
-                        <input type="text" class="form-control" id="" value="<?php echo $student_profile['Notionnality']; ?>" disabled>
+                        <input type="text" class="form-control" id="" value="<?php echo $student_profile['Nationality']; ?>" disabled>
                       </div>
 
 
@@ -383,16 +383,16 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="alert alert-dark text-center" role="alert"><strong>ประวัติการศึกษา (EDUCATIONAL HISTORY)</strong>
+                            <div class="alert alert-dark text-center" role="alert">
+                              <strong>ประวัติการศึกษา (EDUCATIONAL HISTORY)</strong>
+                            </div>
                         </div>
                     </div>
-                    </div>
                      <!--br-->
-                     <br>
                     <!--br-->
-                    <div class="row">
+                    <div class="form-group row">
                     <div class="col-sm-12">
-                    <table class="table table-bordered datatable">
+                    <table class="table table-bordered copy_row">
                     <thead>
                       <tr>
                         <th>ระดับ</th>
@@ -403,14 +403,21 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <tr class="first_row">
+                      <td><input type="text" class="form-control" name="education_level[]"></td>
+                      <td><input type="text" class="form-control" name="education_place[]"></td>
+                      <td><input type="text" class="form-control" name="education_start_year[]"></td>
+                      <td><input type="text" class="form-control" name="education_end_year[]"></td>
+                      <td><input type="text" class="form-control" name="education_result[]"></td>
                       </tr> 
                     </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colspan="5">
+                          <a class="btn btn-xs btn-primary btn-block add_row"> + เพิ่มข้อมูล </a>
+                        </td>
+                      </tr>
+                    </tfoot>
                   </table>
                  </div>
                  </div>
@@ -422,25 +429,34 @@
                     </div>
                     </div>
                      <!--br-->
-                     <br>
                     <!--br-->
-                    <div class="row">
+                    <div class="form-group row">
                     <div class="col-sm-12">
-                    <table class="table table-bordered datatable">
+                    <table class="table table-bordered copy_row">
                     <thead>
                       <tr>
                         <th>หัวข้อฝึกอบรม/ฝึกงาน</th>
                         <th>หน่วยงานที่ให้การฝึกอบรม/ฝึกงาน</th>
-                        <th>ระยะเวลา</th>
+                        <th>ระยะเวลา ตั้งแต่</th>
+                        <th>ระยะเวลา ถึง</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <tr class="first_row">
+                      <td><input type="text" class="form-control" name="training_subject[]"></td>
+                      <td><input type="text" class="form-control" name="training_place[]"></td>
+                      <td><input type="text" class="form-control" name="training_start_period[]"></td>
+                      <td><input type="text" class="form-control" name="training_end_period[]"></td>
+                      
                       </tr> 
                     </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colspan="4">
+                          <a class="btn btn-xs btn-primary btn-block add_row"> + เพิ่มข้อมูล </a>
+                        </td>
+                      </tr>
+                    </tfoot>
                   </table>
                   </div>
                   </div>
@@ -452,9 +468,8 @@
                     </div>
                     </div>
                      <!--br-->
-                     <br>
                     <!--br-->
-                    <div class="row">
+                    <div class="form-group row">
                     <div class="col-sm-12">
                     <p>ระบุสายงานและลักษณะงานอาชีพที่นิสิตสนใจ (List your career goals, fields of interest and job preferences.)<code>*</code></p>
                     <textarea id="" name="job_student" rows="9" class="form-control" placeholder="กรุณากรอก..."></textarea>
@@ -468,11 +483,10 @@
                     </div>
                     </div>
                      <!--br-->
-                     <br>
                     <!--br-->
-                    <div class="row">
+                    <div class="form-group row">
                     <div class="col-sm-12">
-                    <table class="table table-bordered datatable">
+                    <table class="table table-bordered copy_row">
                     <thead>
                       <tr>
                         <th>ภาษา</th>
@@ -483,32 +497,60 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <tr class="first_row">
+                      <td><input type="text" class="form-control" name="language_lang[]"></td>
+                      <td>
+                        <select class="form-control" name="language_listen[]">
+                          <option> -- เลือกระดับทักษะ -- </option>
+                          <option value="3">ดี</option>
+                          <option value="2">พอใช้</option>
+                          <option value="1">ต้องปรับปรุง</option>
+                        </select>
+                      </td>
+                      <td>
+                        <select class="form-control" name="language_speak[]">
+                          <option> -- เลือกระดับทักษะ -- </option>
+                          <option value="3">ดี</option>
+                          <option value="2">พอใช้</option>
+                          <option value="1">ต้องปรับปรุง</option>
+                        </select>
+                      </td>
+                      <td>
+                        <select class="form-control" name="language_read[]">
+                          <option> -- เลือกระดับทักษะ -- </option>
+                          <option value="3">ดี</option>
+                          <option value="2">พอใช้</option>
+                          <option value="1">ต้องปรับปรุง</option>
+                        </select>
+                      </td>
+                      <td>
+                        <select class="form-control" name="language_write[]">
+                          <option> -- เลือกระดับทักษะ -- </option>
+                          <option value="3">ดี</option>
+                          <option value="2">พอใช้</option>
+                          <option value="1">ต้องปรับปรุง</option>
+                        </select>
+                      </td>
+                      
                       </tr> 
                     </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colspan="5">
+                          <a class="btn btn-xs btn-primary btn-block add_row"> + เพิ่มข้อมูล </a>
+                        </td>
+                      </tr>
+                    </tfoot>
                   </table>
                 </div>
                 </div>
 
-                <div class="row">
-                        <div class="col-sm-12">
-                            <div class="alert alert-dark text-center" role="alert"><strong>ความสามารถทางคอมพิวเตอร์</strong>
-                        </div>
-                    </div>
-                    </div>
-                     <!--br-->
-                     <br>
-                    <!--br-->
+                
                     
                     <div class="row">
                         <div class="col-sm-5"></div>
                         <div class="col-sm-6">
-                        <button type="submit" class="btn btn-md btn-primary"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
+                        <button type="submit" class="btn btn-lg btn-success"><i class="fa fa-dot-circle-o"></i> พิมพ์เอกสาร</button>
                         </div>
                     </div>
                     </form>
@@ -526,3 +568,12 @@
 </div>
 
  
+
+
+<script>
+jQuery(".add_row").click(function() {
+  var table = jQuery(this).parents("table").find('tbody')
+  table.before(table.find("tr.first_row").clone());
+})
+
+</script>
