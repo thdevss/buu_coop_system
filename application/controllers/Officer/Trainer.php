@@ -225,6 +225,69 @@ class Trainer extends CI_Controller {
             redirect('Officer/Trainer/lists/'.$company_id.'/?status=success_update','refresh');
     }
 
+
+
+    public function ajax_save_trainer()
+    {
+        $data = array();
+        $data['status'] = false;
+        $data['text'] = 'ผิดพลาด';
+        $data['color'] = 'warning';
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('fullname','ชื่อ-นามสกุล','required');
+        $this->form_validation->set_rules('position','ตำเเหน่ง','required');
+        $this->form_validation->set_rules('department','เเผนกงาน','required');
+        $this->form_validation->set_rules('telephone','เบอร์โทร','required|numeric');
+        $this->form_validation->set_rules('company_id','IDสถานประกอบการ','required|numeric');
+        $this->form_validation->set_rules('fax_number','FAX');
+        $this->form_validation->set_rules('email','E-mail','required|valid_email|is_unique[company_person.email]');
+
+        if($this->form_validation->run() != false){
+
+            $company_person = @$this->Trainer->get_trainer_by_email($this->input->post('email'))[0];
+            if($company_person) {
+                $data['text'] = 'มีพนักงานนิเทศงานอยู่แล้ว โปรดเลือกจากรายชื่อ';
+            } else {
+
+                $password_gen = generateStrongPassword(8);
+                $password_gen_db = password_hash($password_gen, PASSWORD_DEFAULT);
+
+
+                $array['company_id'] = $this->input->post('company_id');
+
+                $array['fullname'] = $this->input->post('fullname');
+                $array['position'] = $this->input->post('position');
+                $array['department'] = $this->input->post('department');
+                $array['telephone'] = $this->input->post('telephone');
+                $array['fax_number'] = $this->input->post('fax_number');
+                $array['email'] = $this->input->post('email');
+                $array['person_username'] = $array['email'];
+
+                $array['person_password'] = $password_gen_db;
+                
+                $this->Trainer->insert_trainer($array);
+                $data['last_id'] = $this->db->insert_id();
+                
+                $to = $array['email'];
+                $subject = 'แจ้งข้อมูลเข้าใช้งานระบบสหกิจศึกษา มหาวิทยาลัยบูรพา';
+                $msg = 'Username: '.$array['person_username'].' | Password: '.$password_gen.' | '.site_url();
+                //sentmail here
+                $this->cache->file->save('userpass_'.$data['last_id'], $msg, 86400*365);
+
+                $data['status'] = true;
+                $data['text'] = 'เปลี่ยนสถานะสำเร็จ';
+                $data['color'] = 'success';
+            }
+            
+        } else {
+            $data['text'] = strip_tags(validation_errors());
+            
+        }
+
+        echo json_encode($data);
+    }
+
             
 
 }
