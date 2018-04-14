@@ -11,7 +11,7 @@
       <!--table รายชื่อนิสิต-->
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify"></i>ประเมินผลการฝึกงานของนิสิตสหกิจ ของ <?php echo $student['fullname']." ".$student['id'];?></div>
+            <div class="card-header"><i class="fa fa-align-justify"></i>ประเมินผลการฝึกงานของนิสิตสหกิจ ของ <?php echo $student['student_fullname']." ".$student['student_id'];?></div>
               <div class="card-body">
               <table class="table table-bordered">
                     <thead>
@@ -27,19 +27,18 @@
                     <tbody>
                       <?php foreach ($data as $row) { ?>
                         <tr>
-                          <td colspan="6"><b><?php echo $row['questionnaire_subject']['number']." ".$row['questionnaire_subject']['title'];?></b></td>
+                          <td colspan="6"><b><?php echo $row['questionnaire_subject']['coop_student_questionnaire_subject_number']." ".$row['questionnaire_subject']['coop_student_questionnaire_subject_title'];?></b></td>
                         </tr>
                     
                       <?php foreach($row['questionnaire_item'] as $item) {?>
                         <tr>
                           <td>
-                            <p><?php echo $item['number']." ".$item['title'];?></p>
-                            <p><?php echo $item['description'];?></p>
+                            <p><?php echo $item['coop_student_questionnaire_item_number']." ".$item['coop_student_questionnaire_item_title'];?></p>
+                            <p><?php echo $item['coop_student_questionnaire_item_description'];?></p>
                           </td>
                           <?php for($i=5;$i>=1;$i--) { ?>
                             <td>
                               <?php if(@$result[$item['id']] == $i) echo '<b>*</b>'; ?>
-                              <!-- <input class="form-check-input" type="radio" value="<?php echo $i;?>" id="result_<?php echo $item['number'];?>" name="result_<?php echo $item['number'];?>" style="margin-left: unset !important; position: unset !important;" disabled <?php if(@$result[$item['id']] == $i) echo 'checked'; ?>> -->
                             </td>
                           <?php } ?>
                         </tr>

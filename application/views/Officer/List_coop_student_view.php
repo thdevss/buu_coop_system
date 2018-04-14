@@ -56,12 +56,12 @@ $(document).ready(function() {
           "dataSrc": ""
         },
         "columns": [
-            { "data": "student.id" },            
-            { "data": "student.id" },
-            { "data": "student.fullname" },
-            { "data": "job_position.position_title" },
-            { "data": "company.name_th" },
-            { "data": "trainer.fullname" }
+            { "data": "student.student_id" },            
+            { "data": "student.id_link" },
+            { "data": "student.student_fullname" },
+            { "data": "job_position.job_title" },
+            { "data": "company.company_name_th" },
+            { "data": "trainer.person_fullname" }
         ],
         'initComplete': function(){
           var api = this.api();

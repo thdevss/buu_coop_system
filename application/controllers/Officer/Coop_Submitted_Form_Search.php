@@ -27,13 +27,13 @@ class Coop_Submitted_Form_Search extends CI_Controller {
             $data['data'] = array();
             $cache = array();
             foreach($this->Student->gets_department() as $tmp) {
-                $cache['department'][$tmp['id']] = $tmp;
+                $cache['department'][$tmp['department_id']] = $tmp;
             }
             
             $document_active_arr = [];
             foreach($this->Form->gets_form($term_id) as $doc) {
                 if($doc['document_active'] == 1) {
-                    $document_active_arr[] = $doc['id'];
+                    $document_active_arr[] = $doc['document_id'];
                 }
             }
             // $document_active = implode(",", $document_active_arr);
@@ -52,7 +52,7 @@ class Coop_Submitted_Form_Search extends CI_Controller {
 
 
                 $row['student'] = $this->Student->get_student($r['student_id'])[0];
-                $row['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$row['student']['id']).'">'.$row['student']['id'].'</a>';
+                $row['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$row['student']['student_id']).'">'.$row['student']['student_id'].'</a>';
                 $row['department'] = $cache['department'][$row['student']['department_id']];
 
                 array_push($data['data'], $row);
@@ -70,11 +70,11 @@ class Coop_Submitted_Form_Search extends CI_Controller {
             $array['data'] = array();
             $rowsDocument = $this->Form->gets_form();
             foreach($rowsDocument as $doc) {
-                $tmp['document_code'] = $doc['name'].' - '.$doc['document_name'];
+                $tmp['document_code'] = $doc['document_code'].' - '.$doc['document_name'];
                 $tmp['file'] = '';
-                $file = $this->Coop_Submitted_Form_Search->search_form_by_student_and_code($student_id, $doc['id']);
+                $file = $this->Coop_Submitted_Form_Search->search_form_by_student_and_code($student_id, $doc['document_id']);
                 if($file) {
-                    $tmp['file'] = $file[0]['pdf_file'];
+                    $tmp['file'] = $file[0]['document_pdf_file'];
                 }
 
                 array_push($array['data'], $tmp);
@@ -95,11 +95,11 @@ class Coop_Submitted_Form_Search extends CI_Controller {
                     }
                     $row = array();
                     $row['student'] = @$this->Student->get_student($r['student_id'])[0];
-                    $row['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$row['student']['id']).'">'.$row['student']['id'].'</a>';                
+                    $row['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$row['student']['student_id']).'">'.$row['student']['student_id'].'</a>';                
                     $row['form'] = @$this->Coop_Submitted_Form_Search->search_form_by_student_and_code($r['student_id'], $form_code)[0];
 
                     $row['form']['status'] = '<span style="color: red;">ยังไม่ส่ง</span>';
-                    if(@$row['form']['pdf_file']) {
+                    if(@$row['form']['document_pdf_file']) {
                         $late_status = '';
                         if($row['form']['document_sent_date'] >= $document['document_deadline']) {
                             $late_status = ' (<span style="color: red;">ส่งช้า</span>)';

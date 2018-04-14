@@ -30,9 +30,9 @@ class Assessmentstudent extends CI_Controller {
 		$company_id = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0]['company_id'];
 		$data['company'] = $this->Company->get_company($company_id)[0];
 		$data['data'] = array();
-		foreach($this->Coop_Student->gets_coop_student_by_company($data['company']['id']) as $row) {
+		foreach($this->Coop_Student->gets_coop_student_by_company($data['company']['company_id']) as $row) {
 			$tmp['assessment_student'] = $row;
-			$tmp['company_job_position'] = @$this->Job->get_job($tmp['assessment_student']['company_job_position_id'])[0];
+			$tmp['company_job_position'] = @$this->Job->get_job($tmp['assessment_student']['job_id'])[0];
 			$tmp['student'] = @$this->Student->get_student($tmp['assessment_student']['student_id'])[0];
 			$tmp['department'] = @$this->Student->get_department($tmp['student']['department_id'])[0];
 
@@ -51,7 +51,7 @@ class Assessmentstudent extends CI_Controller {
 		$this->breadcrumbs->push('รายชื่อนิสิตฝึกงานของนิสิตสหกิจ', '/Company/Assessmentstudent/index');
 
 
-		$this->template->view('company/Assessmentstudent_view', $data);
+		$this->template->view('Company/Coop_student_assessment_list_view', $data);
 		
 	}
 
@@ -76,13 +76,13 @@ class Assessmentstudent extends CI_Controller {
 		{
 			$tmp_array = array();
 			$tmp_array['questionnaire_subject'] = $row;
-			$tmp_array['questionnaire_item'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item_by_subject($row['id']);
+			$tmp_array['questionnaire_item'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item_by_subject($row['coop_student_questionnaire_subject_id']);
 			array_push($data['data'], $tmp_array);
 		}
 		
 		$data['result'] = [];
 		foreach($this->Coop_Student_Assessment_Form->get_coop_student_form_result($student_id) as $result) {
-			$data['result'][$result['item_id']] = $result['score'];
+			$data['result'][$result['item_id']] = $result['coop_student_has_coop_student_questionnaire_item_score'];
 		}
 		// print_r($data);
 
@@ -90,7 +90,7 @@ class Assessmentstudent extends CI_Controller {
 		$this->breadcrumbs->push('รายชื่อนิสิตฝึกงานของนิสิตสหกิจ', '/Company/Assessmentstudent/index');
 		$this->breadcrumbs->push('ประเมินผลการฝึกงานของนิสิตสหกิจ', '/Company/Assessmentstudent/form');
 
-		$this->template->view('company/Assessmentstudentform_view', $data);
+		$this->template->view('Company/Coop_student_assessment_form_view', $data);
 	}
 
 	public function save()
@@ -102,16 +102,16 @@ class Assessmentstudent extends CI_Controller {
 			$insert = [
 				'item_id' => $item_id,
 				'student_id' => $student_id,
-				'trainer_id' => $trainer['id'],
+				'trainer_id' => $trainer['person_id'],
 				'company_id' => $trainer['company_id'],
-				'datetime' => date('Y-m-d H:i:s'),
+				'coop_student_has_coop_student_questionnaire_item_datetime' => date('Y-m-d H:i:s'),
 				'term_id' => $term_id
 			];
 
 			if(is_numeric($result)) {
-				$insert['score'] = $result;
+				$insert['coop_student_has_coop_student_questionnaire_item_score'] = $result;
 			} else {
-				$insert['comment'] = $result;
+				$insert['coop_student_has_coop_student_questionnaire_item_comment'] = $result;
 			}
 			
 			$status = $this->Coop_Student_Assessment_Form->save_coop_student_form_result($insert);

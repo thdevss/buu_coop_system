@@ -46,7 +46,7 @@
                               <select id="select" name="select" class="form-control coop_status_type_val">
                                 <option value="">---กรุณาเลือก--</option>
                                 <?php foreach ($coop_status_type as $row){?>
-                                <option value="<?php echo $row['id'];?>"> <?php echo $row['status_name'];?></option>
+                                <option value="<?php echo $row['coop_status_id'];?>"> <?php echo $row['coop_status_name'];?></option>
                                 <?php } ?>
                               </select>
                             </div>
@@ -101,12 +101,12 @@ $(document).ready(function() {
           "dataSrc": ""
         },
         "columns": [
-            { "data": "student.id" },
-            { "data": "student.id" },            
-            { "data": "student.id" },            
-            { "data": "student.fullname" },
-            { "data": "student.gpax" },
-            { "data": "department.name" },
+            { "data": "student.student_id" },
+            { "data": "student.student_id" },            
+            { "data": "student.student_id" },            
+            { "data": "student.student_fullname" },
+            { "data": "student.student_gpax" },
+            { "data": "department.department_name" },
             { "data": "coop_student_type.select_box" },
             { "data": "student.company_status" },
             { "data": "action_box" },

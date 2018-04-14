@@ -25,9 +25,9 @@
                     <?php $i=1; foreach ($company_job_position_has_student as $row) { ?>
                      <tr>
                       <td class="text-center"><?php echo $i++; ?></td>
-                      <td><?php echo $row['position_title'];?></td>
-                      <td><?php echo $row['name_th']." (".$row['name_en'].")";?></td>
-                      <td><?php echo $row['status_name'];?></td>
+                      <td><?php echo $row['job_title'];?></td>
+                      <td><?php echo $row['company_name_th']." (".$row['company_name_en'].")";?></td>
+                      <td><?php echo $row['company_status_name'];?></td>
                      </tr>
                     <?php } ?>
                     </tbody>

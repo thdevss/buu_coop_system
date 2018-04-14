@@ -7,7 +7,7 @@
 <div class="container-fluid">
   <div class="animated fadeIn">
       <div class="row" >
-      <!--table รายชื่อนิสิต-->
+
         <div class="col-lg-12">
           <div class="card">
             <div class="card-header">
@@ -41,20 +41,20 @@
                     foreach ($data as $row){?>
                       <tr>
                         <td class="text-center"></td>
-                        <td class="text-left"><?php echo thaiDate($row['train']['date']); ?></td>
-                        <td class="text-left"><?php echo $row['train_type']['name'] ?></td>
-                        <td class="text-left"><?php echo $row['train']['title'] ?></td>
-                        <td class="text-left"><?php echo $row['train']['lecturer'] ?></td>
-                        <td class="text-left"><?php echo $row['train_location']['room'] ?></td>                        
-                        <td class="text-right"><?php echo $row['train']['number_of_hour'] ?></td>
-                        <td class="text-right"><?php echo $row['train']['number_of_seat'] ?></td>
+                        <td class="text-left"><?php echo thaiDate($row['train']['train_date']); ?></td>
+                        <td class="text-left"><?php echo $row['train_type']['train_type_name'] ?></td>
+                        <td class="text-left"><?php echo $row['train']['train_title'] ?></td>
+                        <td class="text-left"><?php echo $row['train']['train_lecturer'] ?></td>
+                        <td class="text-left"><?php echo $row['train_location']['location_room'] ?></td>                        
+                        <td class="text-right"><?php echo $row['train']['train_hour'] ?></td>
+                        <td class="text-right"><?php echo $row['train']['train_seat'] ?></td>
                         <td class="text-center">
                           <div class="btn-group-vertical">
-                              <form action="<?php echo site_url('Officer/Training /delete'); ?>" class="form-inline" method="post">
-                                <input type="hidden" name="id" value="<?php echo $row['train']['id'] ; ?>">
-                                <?php echo anchor('Officer/Training/student_list/'.$row['train']['id'], '<i class="fa fa-list"></i> รายชื่อนิสิต', 'class="btn  btn-primary"');?>
+                              <form action="<?php echo site_url('Officer/Training/delete'); ?>" class="form-inline" method="post">
+                                <input type="hidden" name="train_id" value="<?php echo $row['train']['train_id'] ; ?>">
+                                <?php echo anchor('Officer/Training/student_list/'.$row['train']['train_id'], '<i class="fa fa-list"></i> รายชื่อนิสิต', 'class="btn  btn-primary"');?>
                                 <p style="width:5px;"></p>
-                                <?php echo anchor('Officer/Training/edit/'.$row['train']['id'], '<i class="fa fa-eraser"></i> เเก้ไขข้อมูล', 'class="btn  btn-primary"');?>                              
+                                <?php echo anchor('Officer/Training/edit/'.$row['train']['train_id'], '<i class="fa fa-eraser"></i> เเก้ไขข้อมูล', 'class="btn  btn-primary"');?>                              
                                 <p style="width:5px;"></p>
                                 <button type="submit" class="btn btn-danger btn-submit"><i class="fa fa-trash-o"></i> ลบ</button>
                               </form>

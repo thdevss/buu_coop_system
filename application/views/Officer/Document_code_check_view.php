@@ -23,7 +23,7 @@
                           <option> ------ </option>
                           <?php
                           foreach($forms as $form) {
-                            echo '<option value="'.$form['id'].'">'.$form['name'].' - '.$form['document_name'].'</option>';
+                            echo '<option value="'.$form['document_id'].'">'.$form['document_code'].' - '.$form['document_name'].'</option>';
                           }
                           ?>
                         </select>
@@ -81,9 +81,9 @@ $('#form_id').on('change', function (e) {
           "dataSrc": ""
         },
         "columns": [
-            { "data": "student.id" },          
+            { "data": "student.student_id" },          
             { "data": "student.id_link" },
-            { "data": "student.fullname" },            
+            { "data": "student.student_fullname" },            
             { "data": "form.status" }
         ],
         'initComplete': function(){

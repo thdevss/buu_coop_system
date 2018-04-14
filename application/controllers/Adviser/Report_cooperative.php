@@ -76,13 +76,13 @@ class Report_cooperative extends CI_Controller {
 
         foreach($this->Student->gets_department() as $department) {
             $tmp = array();
-            $tmp['department_name'] = $department['name'];
+            $tmp['department_name'] = $department['department_name'];
             $tmp['company'] = array();
             //get company
             foreach($cache['company'] as $company) {
                 $tmpc = array();
-                $tmpc['company_name'] = $company['name_th'];
-                $tmpc['total_student'] = count($this->Coop_Student->gets_coop_student_by_department_company($department['id'], $company['id'], $term_id));
+                $tmpc['company_name'] = $company['company_name_th'];
+                $tmpc['total_student'] = count($this->Coop_Student->gets_coop_student_by_department_company($department['department_id'], $company['company_id'], $term_id));
                 array_push($tmp['company'], $tmpc);
             }
             array_push($data['department'], $tmp);
@@ -104,19 +104,19 @@ class Report_cooperative extends CI_Controller {
 
         foreach($this->Student->gets_department() as $department) {
             if($department_id) {
-                if(!in_array($department['id'], $department_id)) {
+                if(!in_array($department['department_id'], $department_id)) {
                     continue;
                 }  
             }
             
             $tmp = array();
-            $tmp['department_name'] = $department['name'];
+            $tmp['department_name'] = $department['department_name'];
             $tmp['company'] = array();
             //get company
             foreach($cache['company'] as $company) {
                 $tmpc = array();
-                $tmpc['company_name'] = $company['name_th'];
-                $tmpc['total_student'] = count($this->Coop_Student->gets_coop_student_by_department_company($department['id'], $company['id'], $term_id));
+                $tmpc['company_name'] = $company['company_name_th'];
+                $tmpc['total_student'] = count($this->Coop_Student->gets_coop_student_by_department_company($department['department_id'], $company['company_id'], $term_id));
                 array_push($tmp['company'], $tmpc);
             }
             array_push($data['department'], $tmp);

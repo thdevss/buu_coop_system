@@ -26,15 +26,16 @@ class Profile extends CI_Controller {
         $student_id = $this->Login_session->check_login()->login_value;
         $data['student'] = $this->Student->get_student($student_id)[0];     
         $data['department'] = $this->Student->get_department( $data['student']['department_id'])[0];
-        $data['coop_status_type'] = $this->Student->gets_coop_status_type( $data['student']['coop_status'])[0];
-        $data['term'] = $this->Term->get_current_term( $data['student']['id'])[0];
+        $data['coop_status_type'] = $this->Student->gets_coop_status_type( $data['student']['coop_status_id'])[0];
+        $data['term'] = $this->Term->get_current_term( $data['student']['term_id'])[0];
+        $data['company_status'] = $this->Student->get_company_status_type( $data['student']['company_status_id'])[0];
         
         $data['pass_training'] = false;
         $train_type = $this->Training->get_student_stat_of_training($student_id)['train_type'];
         $data['train_type'] = array();
         foreach($train_type as $type) {
-            $tmp['name'] = $type['name'];
-            $tmp['total_hour'] = $type['total_hour'];
+            $tmp['name'] = $type['train_type_name'];
+            $tmp['total_hour'] = $type['train_type_total_hour'];
             $tmp['check_hour'] = 0;
             //calc total hour
             foreach($type['history'] as $history) {

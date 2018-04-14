@@ -11,7 +11,7 @@
         <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <i class="fa fa-align-justify"></i> รายชื่อผู้เข้าร่วมอบรมเก็บชั่วโมง<?php echo $training['train_type']['name'];?> โครงการ <?php echo $training['title'];?> <?php echo $training['note'];?>
+                <i class="fa fa-align-justify"></i> รายชื่อผู้เข้าร่วมอบรมเก็บชั่วโมง<?php echo $training['train_type']['train_type_name'];?> โครงการ <?php echo $training['train_title'];?> <?php echo $training['note'];?>
 
                 <?php if($is_uploadform) { ?>
                 <a class="btn btn-primary float-right" href="#" data-toggle="modal" data-target="#excel_form"><i class="fa fa-hand-pointer-o"></i> อัพโหลดรายชื่อจาก Google Form</a>
@@ -163,7 +163,7 @@ $(document).ready(function() {
     <div class="modal-dialog">
         <!-- Modal content-->
         <form action="<?php echo site_url('Officer/Training/upload_student_list');?>" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="training_id" value="<?php echo $training['id'];?>">
+        <input type="hidden" name="training_id" value="<?php echo $training['train_id'];?>">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">แบบฟอร์มอัพโหลดไฟล์จาก Google Form</h4>

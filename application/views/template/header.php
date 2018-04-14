@@ -56,9 +56,9 @@
           <?php 
           foreach($terms as $term) {
             if($current_term['term_id'] == $term['term_id']) {
-              echo '<option value="'.$term['term_id'].'" selected>ปีการศึกษา '.$term['name'].'</option>';
+              echo '<option value="'.$term['term_id'].'" selected>ปีการศึกษา '.$term['term_name'].'</option>';
             } else {
-              echo '<option value="'.$term['term_id'].'">ปีการศึกษา '.$term['name'].'</option>';                  
+              echo '<option value="'.$term['term_id'].'">ปีการศึกษา '.$term['term_name'].'</option>';                  
             }
           }
           ?>
@@ -77,7 +77,7 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          <span class="d-md-down-none"><?php echo $user_info->fullname;?></span>
+          <span class="d-md-down-none"><?php echo $user_info['fullname'];?></span>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <div class="dropdown-header text-center">
@@ -85,7 +85,7 @@
           </div>
           <a class="dropdown-item" href="#"><img src="<?php echo $profile_image;?>" class="rounded-circle"></a>          
           <a class="dropdown-item" href="#"><i class="fa fa-users"></i> ประเภท: <?php echo strToLevel($user->login_type);?></a>
-          <a class="dropdown-item" href="#"><i class="fa fa-users"></i> <span class="d-md-down-none">ปีการศึกษา: <?php echo $current_term['name'];?></span></a>
+          <a class="dropdown-item" href="#"><i class="fa fa-users"></i> <span class="d-md-down-none">ปีการศึกษา: <?php echo $current_term['term_name'];?></span></a>
           <a class="dropdown-item" href="<?php echo site_url('member/logout');?>"><i class="fa fa-lock"></i> ออกจากระบบ</a>
         </div>
       </li>

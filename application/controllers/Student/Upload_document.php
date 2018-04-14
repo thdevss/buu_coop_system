@@ -37,7 +37,7 @@ class Upload_document extends CI_Controller {
         if($this->input->post('coop_document_id')) {
             $config['upload_path']          = './uploads/';
             $config['allowed_types']        = 'docx|pdf';
-            $config['max_size']             = 500;
+            $config['max_size']             = 2048;
             $config['encrypt_name'] = true;
             $this->load->library('upload', $config);
 
@@ -49,20 +49,20 @@ class Upload_document extends CI_Controller {
                 $document_form = $this->Form->get_form($this->input->post('coop_document_id'))[0];
 
                 //insert to db
-                $insert['pdf_file'] = '/uploads/'.$file['file_name'];
-                $insert['coop_document_id'] = $document_form['id'];
+                $insert['document_pdf_file'] = '/uploads/'.$file['file_name'];
+                $insert['coop_document_id'] = $document_form['document_id'];
                 $insert['student_id'] = $student_id;
                 $insert['document_subject'] = 1;
                 
-                @$this->Coop_Submitted_Form_Search->delete_form_by_student_and_code($student_id, $document_form['id']);                    
+                @$this->Coop_Submitted_Form_Search->delete_form_by_student_and_code($student_id, $document_form['document_id']);                    
                 $this->Coop_Submitted_Form_Search->insert_form_by_student_and_code($insert);
 
-                if($document_form['name'] == 'IN-S001') {
+                if($document_form['document_name'] == 'IN-S001') {
                     $this->Student->update_student($student_id, array(
-                        'ins001_file' => $insert['pdf_file']
+                        'ins001_file' => $insert['document_pdf_file']
                     ));
                 }
-                $data['session_alert'] = '<div class="alert alert-success">อัพโหลดเอกสาร <b>'.$document_form['name'].' '.$document_form['document_name'].'</b> เรียบร้อย ขอบคุณที่ให้ความร่วมมือค่ะ</div>';
+                $data['session_alert'] = '<div class="alert alert-success">อัพโหลดเอกสาร <b>'.$document_form['document_code'].' '.$document_form['document_name'].'</b> เรียบร้อย ขอบคุณที่ให้ความร่วมมือค่ะ</div>';
             }
         }
         

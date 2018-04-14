@@ -15,14 +15,14 @@
               <ul class="nav nav-tabs" role="tablist">
                 <?php foreach($train_type as $key => $type) { ?>
                 <li class="nav-item">
-                  <a class="nav-link <?php if($key == 0) echo 'active';?>" data-toggle="tab" href="#WW_<?php echo $type['id'];?>" role="tab" aria-controls="WW_<?php echo $type['id'];?>"><?php echo $type['name'];?></a>
+                  <a class="nav-link <?php if($key == 0) echo 'active';?>" data-toggle="tab" href="#WW_<?php echo $type['train_type_id'];?>" role="tab" aria-controls="WW_<?php echo $type['train_type_id'];?>"><?php echo $type['train_type_name'];?></a>
                 </li>
 
                 <?php } ?>
               </ul>
               <div class="tab-content">
                 <?php foreach($train_type as $key => $type) { ?>
-                  <div class="tab-pane <?php if($key == 0) echo 'active';?>" id="WW_<?php echo $type['id'];?>" role="tabpanel">
+                  <div class="tab-pane <?php if($key == 0) echo 'active';?>" id="WW_<?php echo $type['train_type_id'];?>" role="tabpanel">
                     <table class="table table-bordered datatable">
                       <thead>
                         <tr>

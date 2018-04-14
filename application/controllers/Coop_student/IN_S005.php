@@ -65,12 +65,14 @@ class IN_S005 extends CI_Controller {
 
         public function save()
         {
-            $student_id = $this->Login_session->check_login()->login_value;            
+            $student_id = $this->Login_session->check_login()->login_value;           
+            $term_id = $this->Login_session->check_login()->term_id; 
             $this->Coop_Student->delete_plan($student_id);
-            for($i=0;$i<count($this->input->post('work_subject'));$i++) {
-                if(@$this->input->post('date_period')[$i]) {
-                    $insert['work_subject'] = $this->input->post('work_subject')[$i];
-                    $insert['date_period'] = implode(",", $this->input->post('date_period')[$i]);
+            for($i=0;$i<count($this->input->post('plan_work_subject'));$i++) {
+                if(@$this->input->post('plan_time_period')[$i]) {
+                    $insert['term_id'] = $term_id;
+                    $insert['plan_work_subject'] = $this->input->post('plan_work_subject')[$i];
+                    $insert['plan_time_period'] = implode(",", $this->input->post('plan_time_period')[$i]);
                     $this->Coop_Student->insert_plan($student_id, $insert);
                 }
             }
@@ -94,28 +96,28 @@ class IN_S005 extends CI_Controller {
             $data['student'] = @$this->Student->get_student($student_id)[0];
             $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
             $data['company'] = @$this->Company->get_company($data['coop_student']['company_id'])[0];
-    
+            $term_id = $this->Login_session->check_login()->term_id;
             $template_file = "template/IN-S005.docx";
     
             $save_filename = "download/".$student_id."-IN-S005.docx";
             $data_array = [
-                "student_fullname" => $data['student']['fullname'],
+                "student_fullname" => $data['student']['student_fullname'],
                 "student_id" => $student_id,
-                "department_name" => $data['department']['name'],
-                "company_name" => $data['company']['name_th'],
+                "department_name" => $data['department']['department_name'],
+                "company_name" => $data['company']['company_name_th'],
             ];
 
             foreach($this->Coop_Student->get_coop_student_plan($student_id) as $i => $row) {
-                $data_array['work_'.++$i] = $row['work_subject'];
+                $data_array['work_'.++$i] = $row['plan_work_subject'];
             }
     
-            print_r($data_array);
+            // print_r($data_array);
             // die();
     
             $result = $this->service_docx->print_data($data_array, $template_file, $save_filename);
     
             //insert to db
-            $coop_document_id = $this->Form->get_form_by_name('IN-S005', $this->Login_session->check_login()->term_id)[0]['id'];
+            $coop_document_id = $this->Form->get_form_by_name('IN-S005', $this->Login_session->check_login()->term_id)[0]['document_id'];
             $word_file = '/uploads/'.basename($save_filename);
             $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file);
     

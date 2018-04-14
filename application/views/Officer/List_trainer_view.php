@@ -38,14 +38,14 @@
                         <td class="text-center">
                         <?php echo $i++; ?>
                         </td>
-                        <td class="text-left"><?php echo $row['company_person']['fullname'];?></td>
-                        <td class="text-left"><?php echo $row['company_person']['email']; ?></td>
-                        <td class="text-left"><?php echo $row['company_person']['position'];?></td> 
+                        <td class="text-left"><?php echo $row['company_person']['person_fullname'];?></td>
+                        <td class="text-left"><?php echo $row['company_person']['person_email']; ?></td>
+                        <td class="text-left"><?php echo $row['company_person']['person_position'];?></td> 
                         <td class="form-inline">
                         <form action="<?php echo site_url('Officer/Trainer/delete/'); ?>" method="post">
-                        <?php echo anchor('Officer/Trainer/edit_form/'.$row['company_person']['id'], '<i class="icon-pencil "></i> แก้ไข', 'class="btn btn-info"');?>
-                        <input type="hidden"   name="company_person_id" value="<?php echo $row['company_person']['id'] ; ?>">
-                        <input type="hidden"   name="company_id" value="<?php echo $company['id'] ; ?>">
+                        <?php echo anchor('Officer/Trainer/edit_form/'.$row['company_person']['person_id'], '<i class="icon-pencil "></i> แก้ไข', 'class="btn btn-info"');?>
+                        <input type="hidden"   name="company_person_id" value="<?php echo $row['company_person']['person_id'] ; ?>">
+                        <input type="hidden"   name="company_id" value="<?php echo $company['company_id'] ; ?>">
                         <button type="submit" class="btn btn-danger btn-submit"><i class="icon-trash"></i> ลบ</button>
                         </form>        
                         </td>
@@ -88,28 +88,28 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label for="fullname">ชื่อ-นามสกุล</label><code>*</code>
-                        <input type="text" id="fullname" name="fullname" class="form-control" placeholder="ชื่อ-นามสกุล" value="" required>
+                        <label for="person_fullname">ชื่อ-นามสกุล</label><code>*</code>
+                        <input type="text" id="person_fullname" name="person_fullname" class="form-control" placeholder="ชื่อ-นามสกุล" value="" required>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for"email">E-mail</label><code>*</code>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="E-mail" required>
+                        <label for="person_email">E-mail</label><code>*</code>
+                        <input type="email" id="person_email" name="person_email" class="form-control" placeholder="E-mail" required>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for"position">ตำเเหน่ง</label><code>*</code>
-                        <input type="text" id="position" name="position" class="form-control" placeholder="ตำเเหน่ง" required>
+                        <label for="person_position">ตำเเหน่ง</label><code>*</code>
+                        <input type="text" id="person_position" name="person_position" class="form-control" placeholder="ตำเเหน่ง" required>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for"department">แผนกงาน</label><code>*</code>
-                        <input type="text" id="department" name="department" class="form-control" placeholder="เเผนกงาน" required>
+                        <label for="person_department">แผนกงาน</label><code>*</code>
+                        <input type="text" id="person_department" name="person_department" class="form-control" placeholder="เเผนกงาน" required>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for"telephone">เบอร์โทร</label>
-                        <input type="text" id="telephone" name="telephone" class="form-control" placeholder="เบอร์โทร" required>
+                        <label for="person_telephone">เบอร์โทร</label>
+                        <input type="text" id="person_telephone" name="person_telephone" class="form-control" placeholder="เบอร์โทร" required>
                     </div>  
                     <div class="form-group col-md-12">
-                        <label for"fax_number">FAX</label>
-                        <input type="text" id="fax_number" name="fax_number" class="form-control" placeholder="FAX">
+                        <label for="person_fax_number">FAX</label>
+                        <input type="text" id="person_fax_number" name="person_fax_number" class="form-control" placeholder="FAX">
                     </div>
    
                 </div>
@@ -117,7 +117,7 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <input type="hidden" id="company_id" name="company_id" value="<?php echo $company['id'];?>">
+                <input type="hidden" id="company_id" name="company_id" value="<?php echo $company['company_id'];?>">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-success">Save</button>
                 

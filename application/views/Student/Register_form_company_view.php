@@ -24,8 +24,8 @@
                 </div>
                 <div class="card-body">
                 <form action="<?php echo site_url('Student/Job/print_data/');?>" method="post">
-                  <input type="hidden" name="company_id" value="<?php echo $company['id'];?>">
-                  <input type="hidden" name="company_job_position_id" value="<?php echo $company_job_position['id'];?>">
+                  <input type="hidden" name="company_id" value="<?php echo $company['company_id'];?>">
+                  <input type="hidden" name="company_job_position_id" value="<?php echo $company_job_position['job_id'];?>">
 
                   <div class="row">
 
@@ -51,7 +51,7 @@
                      <!--ส่วนของรหัสนิสิต-->
                       <div class="form-group col-sm-4">
                         <label for="ccnumber">รหัสนิสิต</label><code>*</code>
-                        <input type="text" class="form-control" id="" value="<?php echo $student['id']; ?>" disabled>
+                        <input type="text" class="form-control" id="" value="<?php echo $student['student_id']; ?>" disabled>
                       </div>
                      <!--ส่วนของรหัสนิสิต-->
                      <!--ส่วนของโทรศัพท์-->
@@ -86,17 +86,17 @@
                     </div>
 
                       <div class="form-check col-sm-2">
-                        <input class="form-check-input" type="radio" value="" id="radio1" <?php if($department['id']== 2) echo "checked" ?> disabled>
+                        <input class="form-check-input" type="radio" value="" id="radio1" <?php if($department['department_id']== 2) echo "checked" ?> disabled>
                           <label class="form-check-label" for="radio1">วิทยาการคอมพิวเตอร์</label>
                       </div>
 
                       <div class="form-check col-sm-2">
-                        <input class="form-check-input" type="radio" value="" id="radio2" <?php if($department['id']== 1) echo "checked" ?> disabled>
+                        <input class="form-check-input" type="radio" value="" id="radio2" <?php if($department['department_id']== 1) echo "checked" ?> disabled>
                             <label class="form-check-label" for="radio2">เทคโนโลยีสารสนเทศ</label>
                       </div>
                           
                       <div class="form-check col-sm-2">
-                        <input class="form-check-input" type="radio" value="" id="radio3" <?php if($department['id']== 3) echo "checked" ?> disabled>
+                        <input class="form-check-input" type="radio" value="" id="radio3" <?php if($department['department_id']== 3) echo "checked" ?> disabled>
                           <label class="form-check-label" for="radio3">วิศวกรรมซอฟต์แวร์</label>
                       </div>
 
@@ -118,14 +118,14 @@
                     <!--ส่วนของชื่อสถานประกอบการ-->
                     <div class="form-group col-sm-6">
                       <label for="name">ชื่อสถานประกอบการ</label><code>*</code>
-                      <input type="text" class="form-control" id="" value="<?php echo $company['name_th']; ?>" disabled>
+                      <input type="text" class="form-control" id="" value="<?php echo $company['company_name_th']; ?>" disabled>
                     </div>
                     <!--ส่วนของชื่อสถานประกอบการ-->
 
                     <!--ส่วนของตำแหน่งการสมัครงาน-->
                     <div class="form-group col-sm-6">
                       <label for="name">สมัครงานในตำแหน่ง</label><code>*</code>
-                      <input type="text" class="form-control" id="" value="<?php echo $company_job_position['position_title']; ?>" disabled>
+                      <input type="text" class="form-control" id="" value="<?php echo $company_job_position['job_title']; ?>" disabled>
                     </div>
                     <!--ส่วนของตำแหน่งการสมัครงาน-->
                   </div>
@@ -217,7 +217,7 @@
     
                       <div class="form-group col-sm-4">
                         <label for="name">สาขาวิชา</label><code>*</code>
-                        <input type="text" class="form-control" id="" value="<?php echo $department['name'];?>" disabled>
+                        <input type="text" class="form-control" id="" value="<?php echo $department['department_name'];?>" disabled>
                       </div>
 
                       <div class="form-group col-sm-2">

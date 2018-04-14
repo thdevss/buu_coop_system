@@ -59,9 +59,9 @@ class Main extends CI_Controller {
         $data_array = [
             'student_id' => $student_id,
             'student_course' => $data['student']['student_course'],
-            'department_name' => $data['department']['name'],
-            'term_semester' => $data['term']['semester'],
-            'term_year' => $data['term']['year']
+            'department_name' => $data['department']['department_name'],
+            'term_semester' => $data['term']['term_semester'],
+            'term_year' => $data['term']['term_year']
         ];
 
         $student_info = $this->Student->get_student_data_from_profile($student_id);
@@ -72,7 +72,7 @@ class Main extends CI_Controller {
         $result = $this->service_docx->print_data($data_array, $template_file, $save_filename);
 
         // insert to db
-        $coop_document_id = $this->Form->get_form_by_name('IN-S001', $this->Login_session->check_login()->term_id)[0]['id'];
+        $coop_document_id = $this->Form->get_form_by_name('IN-S001', $this->Login_session->check_login()->term_id)[0]['document_id'];
         $word_file = '/uploads/'.basename($save_filename);
         $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file);
 

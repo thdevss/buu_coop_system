@@ -11,7 +11,7 @@
       <!--table รายชื่อนิสิต-->
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify"></i> รายละเอียดแบบแจ้งแผนปฎิบัติการสหกิจ ของ <?php echo $student['fullname'].' '.$student['id']; ?></div>
+            <div class="card-header"><i class="fa fa-align-justify"></i> รายละเอียดแบบแจ้งแผนปฎิบัติการสหกิจ ของ <?php echo $student['student_fullname'].' '.$student['student_id']; ?></div>
               <div class="card-body">
               <form action="" method="post">
               <table class="table table-bordered">
@@ -40,12 +40,12 @@
                                       <?php echo ++$no; ?>
                                     </td>
                                     <td colspan="6">
-                                      <input type="text" class="form-control" name="work_subject[<?php echo $i;?>]" placeholder="ชื่องาน" value="<?php echo @$row['work_subject'];?>" disabled>
+                                      <input type="text" class="form-control" name="work_subject[<?php echo $i;?>]" placeholder="ชื่องาน" value="<?php echo @$row['plan_work_subject'];?>" disabled>
                                     </td>
                                   
                                         <?php 
-                                        if(@$row['date_period']) {
-                                          $choice = explode(",", $row['date_period']);
+                                        if(@$row['plan_time_period']) {
+                                          $choice = explode(",", $row['plan_time_period']);
                                         } else {
                                           $choice = [];
                                         }

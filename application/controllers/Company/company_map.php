@@ -41,8 +41,8 @@ class Company_map extends CI_controller
 
     public function ajax_post()
     {
-        $insert['latitude'] = $this->input->post('latitude');
-        $insert['longitude'] = $this->input->post('longitude');
+        $insert['company_address_latitude'] = $this->input->post('company_address_latitude');
+        $insert['company_address_longitude'] = $this->input->post('company_address_longitude');
 
         $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
         $company_id = $tmp['company_id'];
@@ -53,6 +53,7 @@ class Company_map extends CI_controller
         );
 
         if($this->Address->update_address($company_id, $insert)) {
+            // echo $this->db->last_query();
             $arr['status'] = true;
             $arr['txt'] = 'ok';            
         }

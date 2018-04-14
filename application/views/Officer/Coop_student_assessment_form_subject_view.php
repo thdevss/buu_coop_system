@@ -35,10 +35,10 @@
                             <tbody>
                             <?php foreach($coop_student_questionnaire_subject as $row){ ?>
                               <tr>
-                                <td><?php echo $row['number'];?></td>
-                                <td><?php echo $row['title'];?></td>
+                                <td><?php echo $row['coop_student_questionnaire_subject_number'];?></td>
+                                <td><?php echo $row['coop_student_questionnaire_subject_title'];?></td>
                                 <td class="text-center">
-                                    <?php echo anchor('Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item/'.$row['id'], 'จัดการหัวข้อย่อย', 'class="btn btn-primary"');?>                              
+                                    <?php echo anchor('Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item/'.$row['coop_student_questionnaire_subject_id'], 'จัดการหัวข้อย่อย', 'class="btn btn-primary"');?>                              
                                 </td>
                               </tr>
                                 <?php } ?>

@@ -29,12 +29,12 @@
                 <?php $i=1; foreach($coop_student_daily as $row) { ?>
                   <tr>
                     <td class="text-center"><?php echo $i++;?></td>
-                    <td class="text-left"><?php echo thaiDate($row['date']);?></td>
+                    <td class="text-left"><?php echo thaiDate($row['activity_date']);?></td>
                     <td class="text-left"><?php echo $row['activity_subject'];?></td>
                     <td>
-                      <?php echo anchor('Coop_student/Daily_activity/datail/'.$row['report_id'] , '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn btn-primary"');?>
-                      <?php echo anchor('Coop_student/Daily_activity/update/'.$row['report_id'] , '<i class="fa fa-eraser"></i> เเก้ไข','class="btn btn-primary"');?>
-                      <?php echo anchor('Coop_student/Daily_activity/delete/'.$row['report_id'] , '<i class="fa fa-trash-o"></i> ลบ', 'class="btn btn-danger" onclick="return confirmDelete(this)"');?>
+                      <?php echo anchor('Coop_student/Daily_activity/datail/'.$row['activity_id'] , '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn btn-primary"');?>
+                      <?php echo anchor('Coop_student/Daily_activity/update/'.$row['activity_id'] , '<i class="fa fa-eraser"></i> เเก้ไข','class="btn btn-primary"');?>
+                      <?php echo anchor('Coop_student/Daily_activity/delete/'.$row['activity_id'] , '<i class="fa fa-trash-o"></i> ลบ', 'class="btn btn-danger" onclick="return confirmDelete(this)"');?>
                     </td>
                   </tr> 
                 <?php } ?>   

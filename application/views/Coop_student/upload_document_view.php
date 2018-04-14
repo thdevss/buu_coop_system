@@ -9,7 +9,7 @@
     <div class="row" >
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header"><i class="fa fa-align-justify"></i>อัพโหลดเอกสาร<?php echo $document['document_name'];?></div>
+          <div class="card-header"><i class="fa fa-align-justify"></i>อัพโหลดเอกสาร <?php echo $document['document_code'];?>-<?php echo $document['document_name'];?></div>
                  <div class="card-body text-center  ">
                  <?php echo form_open_multipart('coop_student/upload_document');?>
                   <?php 
@@ -21,12 +21,12 @@
                     echo '<div class="alert alert-warning" role="alert"><strong>ผิดพลาด!</strong> '.@$status.'</div>';
                   }
                   
-                  if(@$old_document && $document['name'] != 'IN-S007') {
-                    echo '<div class="alert alert-warning" role="alert"><strong>โปรดระวัง!</strong> เอกสารชุดนี้เคยถูกอัพโหลดแล้ว, <a href="'.base_url($old_document['pdf_file']).'">คลิ้กเพื่อดูไฟล์</a></div>';
+                  if(@$old_document && $document['document_code'] != 'IN-S007') {
+                    echo '<div class="alert alert-warning" role="alert"><strong>โปรดระวัง!</strong> เอกสารชุดนี้เคยถูกอัพโหลดแล้ว, <a href="'.base_url($old_document['document_pdf_file']).'">คลิ้กเพื่อดูไฟล์</a></div>';
                   }
                   ?>
 
-                  <?php if($document['name'] == 'IN-S007') { ?>
+                  <?php if($document['document_code'] == 'IN-S007') { ?>
                   <div class="text-center">
                       <label class="form-control-label" for="">เลือกหัวข้อแบบคำร้องทั่วไป</label>
                       <select class="form-control" style="width:50%; margin: 0 auto;" name="document_subject" required>
@@ -45,7 +45,7 @@
                       <label class="form-control-label" for="file-input">เลือกไฟล์เอกสาร</label>
                       <input type="file" name="file-input">
                   </div>
-                  <input type="hidden" name="code" value="<?php echo $document['name'];?>">
+                  <input type="hidden" name="code" value="<?php echo $document['document_code'];?>">
                   
               <div class="text-center" style="margin-top:70px;">
                   <button type="submit" class="btn btn-md btn-primary"><i class="fa fa-dot-circle-o"></i>อัพโหลดเอกสาร</button>

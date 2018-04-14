@@ -73,14 +73,14 @@ class News extends CI_Controller {
     public function post_add()
     {
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('title', 'หัวข้อประกาศ', 'required|is_unique[news.title]');
-        $this->form_validation->set_rules('detail', 'เนื้อหา', 'required');
+        $this->form_validation->set_rules('news_title', 'หัวข้อประกาศ', 'required|is_unique[tb_news.news_title]');
+        $this->form_validation->set_rules('news_detail', 'เนื้อหา', 'required');
 
         if ($this->form_validation->run() != false) {
             //add news
-            $insert['title'] = $this->input->post('title');
-            $insert['detail'] = $this->input->post('detail');
-            $insert['date'] = date('Y-m-d H:i:s');
+            $insert['news_title'] = $this->input->post('news_title');
+            $insert['news_detail'] = $this->input->post('news_detail');
+            $insert['news_date'] = date('Y-m-d H:i:s');
             $insert['officer_id'] = $this->Login_session->check_login()->login_value;
             $news_id = $this->News->insert_news($insert);
 
@@ -151,17 +151,17 @@ class News extends CI_Controller {
     public function post_edit()
     {
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('title', 'หัวข้อประกาศ', 'required');
-        $this->form_validation->set_rules('detail', 'เนื้อหา', 'required');
-        $this->form_validation->set_rules('id', 'Primary Key', 'required|numeric');
+        $this->form_validation->set_rules('news_title', 'หัวข้อประกาศ', 'required');
+        $this->form_validation->set_rules('news_detail', 'เนื้อหา', 'required');
+        $this->form_validation->set_rules('news_id', 'Primary Key', 'required|numeric');
 
         if ($this->form_validation->run() != false) {
             //add news
-            $insert['title'] = $this->input->post('title');
-            $insert['detail'] = $this->input->post('detail');
-            $insert['date'] = date('Y-m-d H:i:s');
-            $news_id = $this->input->post('id');
-            $this->News->update_news($this->input->post('id'), $insert);
+            $insert['news_title'] = $this->input->post('news_title');
+            $insert['news_detail'] = $this->input->post('news_detail');
+            $insert['news_date'] = date('Y-m-d H:i:s');
+            $news_id = $this->input->post('news_id');
+            $this->News->update_news($this->input->post('news_id'), $insert);
 
             //upload file
             $count_upload = count($_FILES['news_file']);
@@ -201,9 +201,9 @@ class News extends CI_Controller {
     {
         $news_data = $this->News->get_news($news_id)[0];
         if(@$news_data) {
-            $insert['is_hide'] = '1';            
-            if($news_data['is_hide'] == '1') {
-                $insert['is_hide'] = '0';
+            $insert['news_hide'] = '1';            
+            if($news_data['news_hide'] == '1') {
+                $insert['news_hide'] = '0';
             }
             $this->News->update_news($news_id, $insert);
             return $this->index('success_hide_status');
@@ -219,10 +219,10 @@ class News extends CI_Controller {
     {
         //check if exist
         $this->load->library('form_validation');        
-        $this->form_validation->set_rules('id', 'id', 'trim|required|numeric');
+        $this->form_validation->set_rules('news_id', 'id', 'trim|required|numeric');
         
         if ($this->form_validation->run() != FALSE) {
-            $news_id = $this->input->post('id');            
+            $news_id = $this->input->post('news_id');            
 
             if(@$this->News->get_news($news_id)) {
                 //delete

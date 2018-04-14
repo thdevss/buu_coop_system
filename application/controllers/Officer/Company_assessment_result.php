@@ -27,11 +27,10 @@ class Company_assessment_result extends CI_Controller {
             $data['data'] = array();
 
             foreach($this->Company->gets_company()as $row) {
-            
-            $tmp_array = array();
-            $tmp_array = $row;
-            $tmp_array['count'] = count($this->Coop_Student->gets_coop_student_by_company($row['id']));
-            array_push($data['data'], $tmp_array);
+                $tmp_array = array();
+                $tmp_array = $row;
+                $tmp_array['count'] = count($this->Coop_Student->gets_coop_student_by_company($row['company_id']));
+                array_push($data['data'], $tmp_array);
             }
 
             // add breadcrumbs
@@ -49,7 +48,7 @@ class Company_assessment_result extends CI_Controller {
             {
                 $tmp_array = array();
                 $tmp_array['questionnaire_subject'] = $row;
-                $tmp_array['questionnaire_item'] = $this->Company_Assessment_Form->get_company_questionnaire_item_avg_result_by_subject_and_company($row['id'], $company_id);
+                $tmp_array['questionnaire_item'] = $this->Company_Assessment_Form->get_company_questionnaire_item_avg_result_by_subject_and_company($row['coop_company_questionnaire_subject_id'], $company_id);
                 if( count($tmp_array['questionnaire_item']) > 0 ) {
                     array_push($data['data'], $tmp_array);
                 }

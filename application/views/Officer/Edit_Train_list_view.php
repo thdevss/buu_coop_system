@@ -21,16 +21,16 @@
                         }
                         ?>             
                         <form action="<?php echo site_url('Officer/Training/post_edit');?>" method="post">
-                            <input type="hidden" name="id" value="<?php echo $data['id'];?>">
+                            <input type="hidden" name="train_id" value="<?php echo $data['train_id'];?>">
                             <div class="form-group col-md-6 offset-md-3">
                                 <label for="fullname">ประเภทโครงการ</label>          
                                 <select class="form-control" type="text" class="form-control" name="train_type" id="train_type">
                                 <?php 
                                 foreach($train_type as $t) {
-                                    if($t['id'] == @$data['train_type_id']) {
-                                        echo '<option value="'.$t['id'].'" selected>'.$t['name'].'</option>';
+                                    if($t['train_type_id'] == @$data['train_type_id']) {
+                                        echo '<option value="'.$t['train_type_id'].'" selected>'.$t['train_type_name'].'</option>';
                                     } else {
-                                        echo '<option value="'.$t['id'].'" >'.$t['name'].'</option>';                           
+                                        echo '<option value="'.$t['train_type_id'].'" >'.$t['train_type_name'].'</option>';                           
                                     }
                                 } 
                                 ?>               
@@ -39,45 +39,45 @@
                             <div class="col-md-6"></div>
 
                             <div class="form-group col-md-6 offset-md-3">
-                                <label for="student_code">ชื่อโครงการ</label>
-                                <input type="text" class="form-control" id="title" placeholder="" name="title" value="<?php echo $data['title']?>">
+                                <label for="train_title">ชื่อโครงการ</label>
+                                <input type="text" class="form-control" id="train_title" placeholder="" name="train_title" value="<?php echo $data['train_title']?>">
                             </div> 
                             <div class="col-md-6"></div>
                             
                             <div class="form-group col-md-6 offset-md-3">
-                                <label for="student_field">วิทยากร</label>
-                                <input type="text" class="form-control" id="lecturer" placeholder="" name="lecturer" value="<?php echo $data['lecturer'] ?>">
+                                <label for="train_lecturer">วิทยากร</label>
+                                <input type="text" class="form-control" id="train_lecturer" placeholder="" name="train_lecturer" value="<?php echo $data['train_lecturer'] ?>">
                             </div>
                             <div class="col-md-6"></div>
 
                             <div class="form-group col-md-6 offset-md-3">
-                                <label for="city">จำนวนที่นั่งเปิดรับ</label>
-                                <input type="text" class="form-control" id="number_of_seat" placeholder="" name="number_of_seat" value="<?php echo $data['number_of_seat'] ?>">
+                                <label for="train_seat">จำนวนที่นั่งเปิดรับ</label>
+                                <input type="number" class="form-control" id="train_seat" placeholder="" name="train_seat" value="<?php echo $data['train_seat'] ?>">
                             </div>
                             <div class="col-md-6"></div>
 
                             <div class="form-group col-md-6 offset-md-3">
-                                <label for="number_of_hour">จำนวนชั่วโมงที่ได้รับ</label>
-                                <input type="number" class="form-control" id="number_of_hour" placeholder="" name="number_of_hour" value="<?php echo $data['number_of_hour'];?>">
+                                <label for="train_hour">จำนวนชั่วโมงที่ได้รับ</label>
+                                <input type="number" class="form-control" id="train_hour" placeholder="" name="train_hour" value="<?php echo $data['train_hour'];?>">
                             </div>
                             <div class="col-md-6"></div>
 
                             <div class="form-group col-md-6 offset-md-3">
-                                <label for="city">วันที่อบรม</label>
+                                <label for="train_date">วันที่อบรม</label>
                                 <br>
-                                <input type="text" class="form-control datetimepicker" id="" placeholder="" name="date" value="<?php echo $data['date'] ?>">    
+                                <input type="text" class="form-control datetimepicker" id="" placeholder="" name="train_date" value="<?php echo $data['train_date'] ?>">    
                             </div>
                             <div class="col-md-6"></div>
                             
                             <div class="form-group col-md-6 offset-md-3">
-                                <label for="room">เลือกห้อง</label>  
-                                <select class="form-control" type="text" class="form-control" name="train_location" id="train_location">
+                                <label for="train_location_id">เลือกห้อง</label>  
+                                <select class="form-control" type="text" class="form-control" name="train_location_id" id="train_location_id">
                                 <?php 
                                 foreach($train_location as $r) {
-                                    if($r['id'] == $data['train_location_id']) {
-                                        echo '<option value="'.$r['id'].'" selected>'.$r['room'].'</option>';
+                                    if($r['location_id'] == $data['train_location_id']) {
+                                        echo '<option value="'.$r['location_id'].'" selected>'.$r['location_room'].'</option>';
                                     } else {
-                                        echo '<option value="'.$r['id'].'" >'.$r['room'].'</option>';       
+                                        echo '<option value="'.$r['location_id'].'" >'.$r['location_room'].'</option>';       
                                     }
                                 } 
                                 ?>
@@ -86,14 +86,14 @@
                             <div class="col-md-6"></div>
                             
                             <div class="form-group col-md-6 offset-md-3">
-                                <label for="city">ระยะเวลาเปิดรับสมัคร</label>      
+                                <label for="train_register_date">ระยะเวลาเปิดรับสมัคร</label>      
                                 <br>           
-                                <input type="text" class="form-control datetimepicker" id="" placeholder="" name="register_period" value="<?php echo $data['register_period'] ?>">
+                                <input type="text" class="form-control datetimepicker" id="" placeholder="" name="train_register_date" value="<?php echo $data['train_register_date'] ?>">
                             </div>
                             <div class="col-md-6"></div>   
 
                             <div class="text-center"> 
-                                <button type="button" class="btn btn-danger" >ยกเลิก</button>
+                                <button type="button" class="btn btn-secondary" >ยกเลิก</button>
                                 <button type="submit" class="btn btn-primary" >บันทึกเอกสาร</button>
                                 
                             </div>

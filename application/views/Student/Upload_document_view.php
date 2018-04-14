@@ -24,7 +24,7 @@
                       <select class="form-control" style="width:50%; margin: 0 auto;" name="coop_document_id" required>
                         <option> ---- </option>
                         <?php foreach($documents as $row) { ?>
-                          <option value="<?php echo $row['id'];?>"><?php echo $row['name'].' '.$row['document_name'];?></option>
+                          <option value="<?php echo $row['document_id'];?>"><?php echo $row['document_code'].' '.$row['document_name'];?></option>
                         <?php } ?>
                         
 

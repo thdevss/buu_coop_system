@@ -7,8 +7,8 @@ class Officer_model extends CI_model {
     
     public function get_officer($officer_id)
     {
-        $this->db->where('id',$officer_id);
-        $this->db->from('officer');
+        $this->db->where('officer_id',$officer_id);
+        $this->db->from('tb_officer');
         $query = $this->db->get();
         return $query->result_array();
     }

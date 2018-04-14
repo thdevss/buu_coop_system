@@ -29,10 +29,10 @@
                     <?php foreach($adviser as $row) {?>
                       <tr>
                         <td class="text-center"></td>
-                        <td class="text-left"><?php echo $row['fullname']; ?></td>
+                        <td class="text-left"><?php echo $row['adviser_fullname']; ?></td>
                         <td class="text-center">
                           <label class="switch switch-text switch-pill switch-success-outline-alt">
-                            <input type="checkbox" class="switch-input" <?php if($row['is_officer'] == 1) echo 'checked';?> data-adviser-id='<?php echo $row['id'];?>'>
+                            <input type="checkbox" class="switch-input" <?php if($row['adviser_is_officer'] == 1) echo 'checked';?> data-adviser-id='<?php echo $row['adviser_id'];?>'>
                             <span class="switch-label" data-on="On" data-off="Off"></span>
                             <span class="switch-handle"></span>
                           </label>

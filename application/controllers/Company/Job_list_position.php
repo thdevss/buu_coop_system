@@ -26,7 +26,7 @@ class Job_list_position extends CI_Controller {
 
         $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
         $company_id = $tmp['company_id'];
-        $data['trainer_id'] = $tmp['id'];
+        $data['trainer_id'] = $tmp['person_id'];
         $data['company_status_Type'] = $this->Company->gets_company_status_type();
         // print_r($this->Job->get_student_by_company_id($data['trainer_id']));
         $this->breadcrumbs->push('รายละเอียดเกี่ยวกับสถานประกอบการ ', '/Company/Job_list_position/index');
@@ -37,19 +37,19 @@ class Job_list_position extends CI_Controller {
     {
         $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
         $company_id = $tmp['company_id'];
-        $data['trainer_id'] = $tmp['id'];
+        $data['trainer_id'] = $tmp['person_id'];
 
         $return['data'] = array();
 
         //cache here
         foreach($this->Company->gets_company_status_type() as $rrr) {
-            $cache['company_status_type'][$rrr['id']] = $rrr;
+            $cache['company_status_type'][$rrr['company_status_id']] = $rrr;
         }
         foreach($this->Student->gets_department() as $rrr) {
-            $cache['department'][$rrr['id']] = $rrr;
+            $cache['department'][$rrr['department_id']] = $rrr;
         }
         foreach($this->Job->gets_job_by_company($tmp['company_id']) as $rrr) {
-            $cache['job_position'][$rrr['id']] = $rrr;
+            $cache['job_position'][$rrr['job_id']] = $rrr;
         }
 
         // foreach($this->Student->gets_student() as $row)
@@ -58,24 +58,24 @@ class Job_list_position extends CI_Controller {
             $tmp_array = array();
             
             $tmp_array['student'] = $this->Student->get_student($row['student_id'])[0];
-            $tmp_array['student']['gpax'] = '2.99';
+
 
             $tmp_array['job_position'] = array();
-            $tmp_array['job_position']['position_title'] = @$cache['job_position'][$row['company_job_position_id']]['position_title'];
+            $tmp_array['job_position'] = @$cache['job_position'][$row['job_id']];
             
             $tmp_array['company_status_type'] = $cache['company_status_type'][$row['company_status_id']];
 
             $company_type_Render = '<select onchange="change_company_type('.$row['student_id'].', this.value)">';
             foreach($cache['company_status_type'] as $key => $coop_type) {
                 if($key == $row['company_status_id']) {
-                    $company_type_Render .= '<option value="'.$key.'" selected>'.$coop_type['status_name'].'</option>';
+                    $company_type_Render .= '<option value="'.$key.'" selected>'.$coop_type['company_status_name'].'</option>';
                 } else {
-                    $company_type_Render .= '<option value="'.$key.'">'.$coop_type['status_name'].'</option>';
+                    $company_type_Render .= '<option value="'.$key.'">'.$coop_type['company_status_name'].'</option>';
                 }
             }
             $company_type_Render .= '</select>';
 
-            $tmp_array['company_status_type']['status_name'] = str_replace(" ", "", $tmp_array['company_status_type']['status_name']);
+            $tmp_array['company_status_type']['status_name'] = str_replace(" ", "", $tmp_array['company_status_type']['company_status_name']);
             $tmp_array['company_status_type']['select_box'] = $company_type_Render;
             
             $tmp_array['department'] = $cache['department'][$tmp_array['student']['department_id']];
@@ -108,7 +108,7 @@ class Job_list_position extends CI_Controller {
                 if($this->Student->get_student($student_id)) {
                     //update status
                     $this->Job->update_student($student_id, array( 'company_status_id' => $status_type ));
-                    $this->Student->update_student($student_id, array( 'company_status' => $status_type ));
+                    $this->Student->update_student($student_id, array( 'company_status_id' => $status_type ));
                 }
             }
             $data['status'] = true;

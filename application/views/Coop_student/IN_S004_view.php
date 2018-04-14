@@ -23,37 +23,37 @@
                         <div class="row">
                             <div class="form-group col-sm-6">           
                                 <label>ชื่อสถานประกอบการ (ภาษาไทย)</label><code>*</code>
-                                <input type="text" class="form-control" id="name_th" name="name_th" value="<?php echo $company['name_th']; ?>" required disabled >
+                                <input type="text" class="form-control" id="name_th" name="name_th" value="<?php echo $company['company_name_th']; ?>" required disabled >
                             </div>
                         </div>
                           <div class="row">
                               <div class="form-group col-sm-12">
                                   <label>ที่ตั้ง </label><code>*</code>
-                                  <input type="text" class="form-control" id="name_en" name="name_en" value="<?php echo $company_address['number']." ".$company_address['building']." ".$company_address['alley']." ".$company_address['road']." ".$company_address['district']." ".$company_address['area']." ".$company_address['province']." ".$company_address['postal_code']; ?>" required disabled >                     
+                                  <input type="text" class="form-control" id="name_en" name="name_en" value="<?php echo $company_address['company_address_number']." ".$company_address['company_address_building']." ".$company_address['company_address_alley']." ".$company_address['company_address_road']." ".$company_address['company_address_district']." ".$company_address['company_address_area']." ".$company_address['company_address_province']." ".$company_address['company_address_postal_code']; ?>" required disabled >                     
                               </div>
                           </div>
                           <div class="row">
                                 <div class="form-group col-sm-3">
                                     <label>โทรศัพท์</label><code>*</code>
-                                    <input type="text" class="form-control" id="number" name="number" value="<?php echo $company_person['telephone']; ?>" required disabled >                                                        
+                                    <input type="text" class="form-control" id="number" name="number" value="<?php echo $company_person['person_telephone']; ?>" required disabled >                                                        
                                 </div>
                                 <div class="form-group col-sm-5">
                                     <label>โทรสาร</label>
-                                    <input type="text" class="form-control" id="building" name="building" value="<?php echo $company_person['fax_number']; ?>" required disabled >                                       
+                                    <input type="text" class="form-control" id="building" name="building" value="<?php echo $company_person['person_fax_number']; ?>" required disabled >                                       
                                 </div>
                               <div class="form-group col-sm-4">
                                   <label>E-mail </label><code>*</code>
-                                  <input type="text" class="form-control" id="road" name="road" value="<?php echo $company_person['email']; ?>" required disabled >                                     
+                                  <input type="text" class="form-control" id="road" name="road" value="<?php echo $company_person['person_email']; ?>" required disabled >                                     
                               </div>
                           </div>
                         <div class="row">
                           <div class="form-group col-sm-6">
                                <label>	ชื่อผู้จัดการสถานประกอบการ </label><code>*</code>
-                               <input type="text" class="form-control" id="alley" name="alley" value="<?php echo $company_person['fullname']; ?>" required disabled >                                             
+                               <input type="text" class="form-control" id="alley" name="alley" value="<?php echo $company_person['person_fullname']; ?>" required disabled >                                             
                           </div>
                           <div class="form-group col-sm-4">
                                <label>ตำแหน่ง</label><code>*</code>
-                               <input type="text" class="form-control" id="alley" name="alley" value="<?php echo $company_person['position']; ?>" required disabled >                                              
+                               <input type="text" class="form-control" id="alley" name="alley" value="<?php echo $company_person['person_position']; ?>" required disabled >                                              
                           </div>
 
                             <div class="form-group col-sm-12">
@@ -92,32 +92,32 @@
                         <div class="row" >
                             <div class="form-group col-sm-6">
                                 <label>ชื่อ-นามสกุล</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['fullname']; ?>" required disabled >                          
+                                <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['person_fullname']; ?>" required disabled >                          
                             </div>
 
                             <div class="form-group col-sm-4">
                                 <label>ตำแหน่ง(เลือก)</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['position']; ?>" required disabled >                          
+                                <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['person_position']; ?>" required disabled >                          
                             </div>
 
                             <div class="form-group col-sm-4">
                                 <label>แผนก(เลือก)</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['department']; ?>" required disabled >                          
+                                <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['person_department']; ?>" required disabled >                          
                             </div>
 
                             <div class="form-group col-sm-4">
                                <label>โทรศัพท์ </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['telephone']; ?>" required disabled >                                                     
+                               <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['person_telephone']; ?>" required disabled >                                                     
                             </div>
 
                             <div class="form-group col-sm-4">
                                <label>โทรสาร</label>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['fax_number']; ?>" required disabled >                                   
+                               <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['person_fax_number']; ?>" required disabled >                                   
                             </div>
 
                             <div class="form-group col-sm-8">
                                <label>E-mail</label><code></code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['email']; ?>" required disabled >                                   
+                               <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['person_email']; ?>" required disabled >                                   
                             </div>
                         </div>
                     <?php } ?>
@@ -131,10 +131,10 @@
                                     <?php 
                                     foreach($company_persons as $person) { 
                                         $checked = '';
-                                        if($person['id'] == @$coop_student['trainer_id']) {
+                                        if($person['person_id'] == @$coop_student['trainer_id']) {
                                             $checked = 'selected';
                                         }
-                                        echo '<option value="'.$person['id'].'" '.$checked.'>'.$person['fullname'].' (อีเมล: '.$person['email'].') (เบอร์โทรศัพท์: '.$person['telephone'].') </option>';
+                                        echo '<option value="'.$person['person_id'].'" '.$checked.'>'.$person['person_fullname'].' (อีเมล: '.$person['person_email'].') (เบอร์โทรศัพท์: '.$person['person_telephone'].') </option>';
                                     } 
                                     ?>
                                 </select>
@@ -149,23 +149,23 @@
                         <div class="row">
                             <div class="form-group col-sm-6">
                                <label>ชื่อ – นามสกุล (นิสิต)</label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $student_name['fullname']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="" value="<?php echo $student_name['student_fullname']; ?>" required disabled >                          
                             </div>
                             <div class="form-group col-sm-6">
                                <label>รหัสประจำตัว  (นิสิต)</label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $student_name['id']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="" value="<?php echo $student_name['student_id']; ?>" required disabled >                          
                             </div>                         
                             <div class="form-group col-sm-5">
                                 <label>สาขาวิชา</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" value="<?php echo $student_department['name']; ?>" required disabled >                                                                
+                                <input type="text" class="form-control" id="" name="" value="<?php echo $student_department['department_name']; ?>" required disabled >                                                                
                             </div>
                             <div class="form-group col-sm-5">
                                 <label>คณะ</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" value="ลอ Profile" required disabled >                                                                    
+                                <input type="text" class="form-control" id="" name="" value="-" required disabled >                                                                    
                             </div>
                             <div class="form-group col-sm-8">
                                <label>ตำแหน่งงานที่นักศึกษาปฏิบัติ (Job Position) </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $company_job_position['position_title']; ?>" required disabled >                                                     
+                               <input type="text" class="form-control" id="" name="" value="<?php echo $company_job_position['job_title']; ?>" required disabled >                                                     
                             </div>
                             <div class="form-group col-sm-8">
                                <label>ลักษณะงานที่นักศึกษาปฏิบัติ (Job Description)</label><code></code>
@@ -186,39 +186,39 @@
                           </div>
                           <div class="form-group col-sm-2">
                                <label>เลขที่ </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['number']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_number']; ?>" required disabled >                          
                           </div>
                           <div class="form-group col-sm-3">
                                <label>ซอย </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['alley']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_alley']; ?>" required disabled >                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>ถนน </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['road']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_road']; ?>" required disabled >                          
                           </div>
                           <div class="form-group col-sm-3">
                                <label>แขวง/ตำบล </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['district']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_district']; ?>" required disabled >                          
                           </div>
                           <div class="form-group col-sm-3">
                                <label>เขต/อำเภอ </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['area']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_area']; ?>" required disabled >                          
                           </div>
                           <div class="form-group col-sm-3">
                                <label>จังหวัด </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['province']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_province']; ?>" required disabled >                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>รหัสไปรษณีย์</label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['postal_code']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_postal_code']; ?>" required disabled >                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>โทรศัพท์</label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['telephone']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_telephone']; ?>" required disabled >                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>โทรสาร</label>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['fax_number']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_fax_number']; ?>" required disabled >                          
                           </div>                
                         </div>
                       <!-- ปิดข้อ 4 -->
@@ -229,7 +229,7 @@
                 
                                     <div class="col-md-6 col-form-label">
                                         <div class="form-check checkbox">
-                                        &nbsp;&nbsp;&nbsp;<input class="form-check-input" type="radio" value="0" id="radio1" name="newsletter_receive" <?php if ($coop_student['newsletter_receive'] == 0) echo 'checked'; ?> >
+                                        &nbsp;&nbsp;&nbsp;<input class="form-check-input" type="radio" value="0" id="radio1" name="coop_student_newsletter_receive" <?php if ($coop_student['coop_student_newsletter_receive'] == 0) echo 'checked'; ?> >
                                             <label class="form-check-label" for="radio1">
                                             ไม่รับ โดยจะติดตามข่าวสารจาก <u>http://www.informatics.buu.ac.th/coop</u>
                                             </label>
@@ -240,7 +240,7 @@
 
                                     <div class="col-md-6 col-form-label">
                                         <div class="form-check checkbox">
-                                        &nbsp;&nbsp;&nbsp;<input class="form-check-input" type="radio" value="1" id="radio2"  name="newsletter_receive" <?php if ($coop_student['newsletter_receive'] == 1) echo 'checked'; ?> >
+                                        &nbsp;&nbsp;&nbsp;<input class="form-check-input" type="radio" value="1" id="radio2"  name="coop_student_newsletter_receive" <?php if ($coop_student['coop_student_newsletter_receive'] == 1) echo 'checked'; ?> >
                                             <label class="form-check-label" for="radio2">
                                             รับเอกสารจากมหาวิทยาลัย โดยขอให้ส่งไปที่ ที่พัก
                                             </label>
@@ -249,7 +249,7 @@
                            
                                     <div class="col-md-6 col-form-label">
                                         <div class="form-check checkbox">
-                                        &nbsp;&nbsp;&nbsp;<input class="form-check-input" type="radio" value="2" id="radio3"  name="newsletter_receive" <?php if ($coop_student['newsletter_receive'] == 2) echo 'checked'; ?> >
+                                        &nbsp;&nbsp;&nbsp;<input class="form-check-input" type="radio" value="2" id="radio3"  name="coop_student_newsletter_receive" <?php if ($coop_student['coop_student_newsletter_receive'] == 2) echo 'checked'; ?> >
                                             <label class="form-check-label" for="radio3">
                                             รับเอกสารจากมหาวิทยาลัย โดยขอให้ส่งไปที่ สถานประกอบการ                            
                                             </label>
@@ -264,43 +264,43 @@
                     <div class="row">
                           <div class="form-group col-sm-8">
                                <label>ชื่อ - สกุล  </label><code>*</code>
-                               <input type="text" class="form-control" id="fullname" name="fullname" value="<?php echo $coop_student_emergency_contact['fullname'] ;?>" required>                          
+                               <input type="text" class="form-control" id="contact_fullname" name="contact_fullname" value="<?php echo $coop_student_emergency_contact['contact_fullname'] ;?>" required>                          
                           </div>
                           <div class="form-group col-sm-2">
                                <label>เลขที่ </label><code>*</code>
-                               <input type="text" class="form-control" id="number" name="number" value="<?php echo $coop_student_emergency_contact['number'] ;?>" required>                          
+                               <input type="text" class="form-control" id="contact_address_number" name="contact_address_number" value="<?php echo $coop_student_emergency_contact['contact_address_number'] ;?>" required>                          
                           </div>
                           <div class="form-group col-sm-3">
                                <label>ซอย </label><code>*</code>
-                               <input type="text" class="form-control" id="alley" name="alley" value="<?php echo $coop_student_emergency_contact['alley'] ;?>" required>                          
+                               <input type="text" class="form-control" id="contact_address_alley" name="contact_address_alley" value="<?php echo $coop_student_emergency_contact['contact_address_alley'] ;?>" required>                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>ถนน </label><code>*</code>
-                               <input type="text" class="form-control" id="road" name="road" value="<?php echo $coop_student_emergency_contact['road'] ;?>" required>                          
+                               <input type="text" class="form-control" id="contact_address_road" name="contact_address_road" value="<?php echo $coop_student_emergency_contact['contact_address_road'] ;?>" required>                          
                           </div>
                           <div class="form-group col-sm-3">
                                <label>แขวง/ตำบล </label><code>*</code>
-                               <input type="text" class="form-control" id="district" name="district" value="<?php echo $coop_student_emergency_contact['district'] ;?>" required>                          
+                               <input type="text" class="form-control" id="contact_address_district" name="contact_address_district" value="<?php echo $coop_student_emergency_contact['contact_address_district'] ;?>" required>                          
                           </div>
                           <div class="form-group col-sm-3">
                                <label>เขต/อำเภอ </label><code>*</code>
-                               <input type="text" class="form-control" id="area" name="area" value="<?php echo $coop_student_emergency_contact['area'] ;?>" required>                          
+                               <input type="text" class="form-control" id="contact_address_area" name="contact_address_area" value="<?php echo $coop_student_emergency_contact['contact_address_area'] ;?>" required>                          
                           </div>
                           <div class="form-group col-sm-3">
                                <label>จังหวัด </label><code>*</code>
-                               <input type="text" class="form-control" id="province" name="province" value="<?php echo $coop_student_emergency_contact['province'] ;?>" required>                          
+                               <input type="text" class="form-control" id="contact_address_province" name="contact_address_province" value="<?php echo $coop_student_emergency_contact['contact_address_province'] ;?>" required>                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>รหัสไปรษณีย์</label><code>*</code>
-                               <input type="text" class="form-control" id="postal_code" name="postal_code" value="<?php echo $coop_student_emergency_contact['postal_code'] ;?>" required>                          
+                               <input type="text" class="form-control" id="contact_address_postal_code" name="contact_address_postal_code" value="<?php echo $coop_student_emergency_contact['contact_address_postal_code'] ;?>" required>                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>โทรศัพท์</label><code>*</code>
-                               <input type="text" class="form-control" id="telephone" name="telephone" value="<?php echo $coop_student_emergency_contact['telephone'] ;?>" required>                          
+                               <input type="text" class="form-control" id="contact_telephone" name="contact_telephone" value="<?php echo $coop_student_emergency_contact['contact_telephone'] ;?>" required>                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>โทรสาร </label>
-                               <input type="text" class="form-control" id="fax_number" name="fax_number" value="<?php echo $coop_student_emergency_contact['fax_number'] ;?>" >                          
+                               <input type="text" class="form-control" id="contact_fax_number" name="contact_fax_number" value="<?php echo $coop_student_emergency_contact['contact_fax_number'] ;?>" >                          
                           </div>                       
                         </div>
     

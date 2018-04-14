@@ -43,18 +43,20 @@ class Job extends CI_Controller {
 
         $data['student'] = $this->Student->get_student($student_id)[0];
         $data['session_alert'] = '';
-        if($data['student']['coop_status'] > 1) {
+        if($data['student']['coop_status_id'] > 1) {
             $data['session_alert'] = '<div class="alert alert-warning">คุณทำการสมัครงานสหกิจแล้ว โปรดรอการตอบกลับขั้นตอนต่อไปค่ะ</div>';
         } else {
             
             if($this->form_validation->run() == FALSE) {
                 $jobs = $this->Job->gets_job();
             } else {
-                if($this->input->post('job_title_id') > 0) {
-                    $job_title = @$this->Job->get_company_job_title_by_job_title_id($this->input->post('job_title_id'))[0]['job_title'];
-                } else {
-                    $job_title = null;
-                }
+                // if($this->input->post('job_title_id') > 0) {
+                //     // $job_title = @$this->Job->get_company_job_title_by_job_title_id($this->input->post('job_title_id'))[0]['job_title'];
+                // } else {
+                //     $job_title = null;
+                // }
+                $job_title = null;
+                $job_title = $this->input->post('job_title');
                 $jobs = $this->Job->search_job_by_company_and_position($this->input->post('company_id'), $job_title);
             }
     
@@ -105,8 +107,9 @@ class Job extends CI_Controller {
 
     public function register_status()
     {
-        $student = "57660135";
-        $data['company_job_position_has_student'] = $this->Job->gets_job_register_by_student($student);
+        $student_id = $this->Login_session->check_login()->login_value;
+
+        $data['company_job_position_has_student'] = $this->Job->gets_job_register_by_student($student_id);
         // print_r($data);
         $this->breadcrumbs->push('ประกาศผลการสมัครงาน', '/Student/Job/register_status');
         $this->template->view('Student/Register_result_view', $data);
@@ -138,7 +141,7 @@ class Job extends CI_Controller {
         $data['student'] = @$this->Student->get_student($student_id)[0];
         $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
         $data['company'] = @$this->Company->get_company($company_id)[0];
-        $data['job_position_name'] = $company_job_position_id; 
+        $data['job_position_name'] = @$this->Job->get_job($company_job_position_id)[0]['job_title'];
         // print_r($student_id);
         // die();
         
@@ -164,7 +167,7 @@ class Job extends CI_Controller {
 
             // ชื่อสถานประกอบการที่ต้องการสมัคร
                 "round" => "1", //รอบ
-                "company_name_th" => $data['company']['name_th'], //ชื่อสถานประกอบการ
+                "company_name_th" => $data['company']['company_name_th'], //ชื่อสถานประกอบการ
                 "company_job_position" => $data['job_position_name'], //สมัครตำแหน่งงาน
 
             //ข้อมูลส่วนตัวนิสิต 
@@ -188,7 +191,7 @@ class Job extends CI_Controller {
                 "height" => $height,  //ส่วนสูง
                 "weight" => $weight, //น้ำหนัก
 
-                "Course" => $data['department']['name'], //สาขา 
+                "Course" => $data['department']['department_name'], //สาขา 
                 "Student_ID" => $data['student_profile']['Student_ID'], //รหัสนิสิต
 
                 // input form
@@ -343,11 +346,11 @@ class Job extends CI_Controller {
 
 
 
-        if($data['department']['id']== 1) {
+        if($data['department']['department_id']== 1) {
             $data_array ['ch_it'] = "*";
-        }else if($data['department']['id']== 2){
+        }else if($data['department']['department_id']== 2){
             $data_array ['ch_cs'] = "*";
-        }else if($data['department']['id']== 3) {
+        }else if($data['department']['department_id']== 3) {
             $data_array ['ch_se'] = "*";
         }
 
@@ -373,14 +376,14 @@ class Job extends CI_Controller {
         
         //insert to form word
         $term_id = $this->Login_session->check_login()->term_id;
-        $coop_document_id = $this->Form->get_form_by_name('IN-S002', $term_id)[0]['id'];
+        $coop_document_id = $this->Form->get_form_by_name('IN-S002', $term_id)[0]['document_id'];
         $word_file = '/uploads/'.basename($save_filename);
         $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file);
 
         //insert to db
         if($this->Job->student_register_job($student_id, $company_job_position_id)) {
             $this->Student->update_student($student_id, array(
-                'coop_status' => 2
+                'coop_status_id' => 2
             ));
             $this->session->set_tempdata('session_alert', '<div class="alert alert-success">ทำการสมัครงานสหกิจเรียบร้อย โปรดรอขั้นตอนต่อไป</div>', 300);
         } else {

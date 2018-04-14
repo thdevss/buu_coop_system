@@ -27,11 +27,11 @@
                             </div>
                             <div class="form-group col-sm-8">           
                                 <label>ชื่อ - นามสกุล (ภาษาไทย)</label><code>*</code>
-                                <input type="text" class="form-control" value="<?php echo $student['fullname'];?>" disabled>
+                                <input type="text" class="form-control" value="<?php echo $student['student_fullname'];?>" disabled>
                             </div>
                             <div class="form-group col-sm-4">           
                                 <label>รหัสนิสิต </label><code>*</code>
-                                <input type="text" class="form-control" value="<?php echo $student['id'];?>" disabled>
+                                <input type="text" class="form-control" value="<?php echo $student['student_id'];?>" disabled>
                             </div>
                               <div class="form-group col-sm-4">
                                 <label>หลักสูตร(เลือก)</label><code>*</code>
@@ -39,11 +39,11 @@
                             </div>
                             <div class="form-group col-sm-4">
                                <label>สาขาวิชา(เลือก)</label><code>*</code>
-                               <input type="text" class="form-control" value="<?php echo $department['name'];?>" disabled>
+                               <input type="text" class="form-control" value="<?php echo $department['department_name'];?>" disabled>
                           </div>
                             <div class="form-group col-sm-6">           
                                 <label>ชื่ออาจารย์ที่ปรึกษาวิชาการ (ภาษาไทย)</label><code>*</code>
-                                <input type="text" class="form-control" value="<?php echo $adviser['fullname'];?>" disabled>
+                                <input type="text" class="form-control" value="<?php echo $adviser['adviser_fullname'];?>" disabled>
                             </div>
                             <div class="form-group col-sm-4">           
                                 <label>โทรศัพท์มือถือ </label><code>*</code>

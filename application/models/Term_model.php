@@ -3,13 +3,13 @@ class Term_model extends CI_model
 {
     public function add_term($insert)
     {
-        return $this->db->insert('term', $insert);
+        return $this->db->insert('tb_term', $insert);
     }
 
     public function gets_term()
     {
         $this->db->order_by('term_id', 'desc');
-        $this->db->from('term');
+        $this->db->from('tb_term');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -17,20 +17,20 @@ class Term_model extends CI_model
     public function get_term($term_id = 1)
     {
         $this->db->where('term_id', $term_id);
-        $this->db->from('term');
+        $this->db->from('tb_term');
         $query = $this->db->get();
         return $query->result_array();
     }
 
     public function set_current_term($term_id)
     {
-        $this->db->update('term', array(
-            'is_current' => 0
+        $this->db->update('tb_term', array(
+            'term_is_current' => 0
         ));
 
         $this->db->where('term_id', $term_id);
-        return $this->db->update('term', array(
-            'is_current' => 1
+        return $this->db->update('tb_term', array(
+            'term_is_current' => 1
         ));
     }
 
@@ -40,12 +40,12 @@ class Term_model extends CI_model
         if($userdata->login_type == 'officer') {
             //for officer
             $this->db->where('term_id', $userdata->term_id);
-            $this->db->from('term');
+            $this->db->from('tb_term');
             $query = $this->db->get();
         } else {
             //for other actor
-            $this->db->where('is_current', 1);
-            $this->db->from('term');
+            $this->db->where('term_is_current', 1);
+            $this->db->from('tb_term');
             $query = $this->db->get();
         }
 

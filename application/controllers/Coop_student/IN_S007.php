@@ -119,11 +119,11 @@ class IN_S007 extends CI_Controller {
             $template_file = "template/IN-S007.docx";
             $save_filename = "download/".$student_id."-IN-S007-id".$petition_data['petition_id'].".docx";
             $data_array = [
-                'student_fullname' => $data['student']['fullname'],
+                'student_fullname' => $data['student']['student_fullname'],
                 'student_id' => $student_id,
                 'student_course' => $data['student']['student_course'],
-                'department_name' => $data['department']['name'],
-                'adviser_fullname' => $data['adviser']['fullname'],
+                'department_name' => $data['department']['department_name'],
+                'adviser_fullname' => $data['adviser']['adviser_fullname'],
                 'date' => thaiDate(date('Y-m-d H:i:s')),
             ];
             $data_array = array_merge($data_array, $petition_data);
@@ -131,7 +131,7 @@ class IN_S007 extends CI_Controller {
             $result = $this->service_docx->print_data($data_array, $template_file, $save_filename);
 
             //insert to db
-            $coop_document_id = $this->Form->get_form_by_name('IN-S007', $this->Login_session->check_login()->term_id)[0]['id'];
+            $coop_document_id = $this->Form->get_form_by_name('IN-S007', $this->Login_session->check_login()->term_id)[0]['document_id'];
             $word_file = '/uploads/'.basename($save_filename);
             $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file, $petition_data['petition_subject']);
 

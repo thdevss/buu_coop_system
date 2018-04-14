@@ -16,7 +16,7 @@
                             if($status){
                             echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
                             }
-                            if(!$map['site_latitude'] && !$map['site_longitude']) {
+                            if(!$map['coop_student_latitude'] && !$map['coop_student_longitude']) {
                                 echo '<div class="alert alert-warning">โปรดระบุพิกัดที่ทำงาน</div>';
 
                             }
@@ -32,12 +32,12 @@
                                 <form action="<?php echo site_url('Coop_student/Workplace/update');?>" method="post">
                                     <div class="form-group">
                                       <label class="form-col-form-label" for="">ลาติจูด</label>
-                                      <input type="text" class="form-control map_val" id="site_latitude" name="site_latitude" value="<?php echo $map['site_latitude'];?>">
+                                      <input type="text" class="form-control map_val" id="coop_student_latitude" name="coop_student_latitude" value="<?php echo $map['coop_student_latitude'];?>">
                                     </div>
 
                                     <div class="form-group">
                                       <label class="form-col-form-label" for="">ลองติจูด</label>
-                                      <input type="text" class="form-control map_val" id="site_longitude" name="site_longitude" value="<?php echo $map['site_longitude'];?>">
+                                      <input type="text" class="form-control map_val" id="coop_student_longitude" name="coop_student_longitude" value="<?php echo $map['coop_student_longitude'];?>">
                                     </div>
 
                                     <div class="form-group">
@@ -76,8 +76,8 @@
     }
 
     function initMap() {
-        <?php if($map['site_latitude'] && $map['site_longitude']) { ?>
-            genMap({lat: <?php echo $map['site_latitude'];?>, lng: <?php echo $map['site_longitude'];?>})
+        <?php if($map['coop_student_latitude'] && $map['coop_student_longitude']) { ?>
+            genMap({lat: <?php echo $map['coop_student_latitude'];?>, lng: <?php echo $map['coop_student_longitude'];?>})
         <?php } ?>
     }
 
@@ -95,8 +95,8 @@
     function showPosition(position) {
         jQuery("#alert_bar").html('<div class="alert alert-warning">โปรดกดบันทึก เพื่อเปลี่ยนแปลงค่า</div>');
         
-        jQuery("#site_latitude").val(position.coords.latitude)
-        jQuery("#site_longitude").val(position.coords.longitude)
+        jQuery("#coop_student_latitude").val(position.coords.latitude)
+        jQuery("#coop_student_longitude").val(position.coords.longitude)
         genMap({ lat: position.coords.latitude, lng: position.coords.longitude })
     }
 
@@ -115,8 +115,8 @@
                 {
                     console.log(pos.lat())
                     console.log(pos.lng())
-                    jQuery("#site_latitude").val(pos.lat())
-                    jQuery("#site_longitude").val(pos.lng())                      
+                    jQuery("#coop_student_latitude").val(pos.lat())
+                    jQuery("#coop_student_longitude").val(pos.lng())                      
                 } 
                 else 
                 {
@@ -127,7 +127,7 @@
     }
 
     jQuery(".map_val").change(function(){
-        // genMap({ lat: jQuery("#site_latitude").val(), lng: jQuery("#site_longitude").val() })
+        // genMap({ lat: jQuery("#coop_student_latitude").val(), lng: jQuery("#coop_student_longitude").val() })
     })
 </script>
 

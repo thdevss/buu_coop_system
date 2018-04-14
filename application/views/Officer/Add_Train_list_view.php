@@ -27,7 +27,7 @@
                                     <option value="">--- please select ---</option>
                                     <?php 
                                     foreach($train_type as $t) {
-                                        echo '<option value="'.$t['id'].'" >'.$t['name'].'</option>';
+                                        echo '<option value="'.$t['train_type_id'].'" >'.$t['train_type_name'].'</option>';
                                     } 
                                     ?>               
                                 </select>
@@ -35,43 +35,43 @@
                             <div class="col-md-6"></div>
 
                             <div class="form-group col-md-6 offset-md-3">
-                                <label for="title">ชื่อโครงการ</label>
-                                <input type="text" class="form-control" id="title" placeholder="" name="title" value="">
+                                <label for="train_title">ชื่อโครงการ</label>
+                                <input type="text" class="form-control" id="train_title" placeholder="" name="train_title" value="">
                             </div> 
                             <div class="col-md-6"></div>
                             
                             <div class="form-group col-md-6 offset-md-3">
-                                <label for="lecturer">วิทยากร</label>
-                                <input type="text" class="form-control" id="lecturer" placeholder="" name="lecturer" value="">
+                                <label for="train_lecturer">วิทยากร</label>
+                                <input type="text" class="form-control" id="train_lecturer" placeholder="" name="train_lecturer" value="">
                             </div>
                             <div class="col-md-6"></div>
 
                             <div class="form-group col-md-6 offset-md-3">
-                                <label for="number_of_seat">จำนวนที่นั่งเปิดรับ</label>
-                                <input type="number" class="form-control" id="number_of_seat" placeholder="" name="number_of_seat" value="">
+                                <label for="train_seat">จำนวนที่นั่งเปิดรับ</label>
+                                <input type="number" class="form-control" id="train_seat" placeholder="" name="train_seat" value="">
                             </div>
                             <div class="col-md-6"></div>
 
                             <div class="form-group col-md-6 offset-md-3">
-                                <label for="number_of_hour">จำนวนชั่วโมงที่ได้รับ</label>
-                                <input type="number" class="form-control" id="number_of_hour" placeholder="" name="number_of_hour" value="">
+                                <label for="train_hour">จำนวนชั่วโมงที่ได้รับ</label>
+                                <input type="number" class="form-control" id="train_hour" placeholder="" name="train_hour" value="">
                             </div>
                             <div class="col-md-6"></div>
 
                             <div class="form-group col-md-6 offset-md-3">
-                                <label for="date">วันที่อบรม</label>
+                                <label for="train_date">วันที่อบรม</label>
                                 <br>
-                                <input type="text" class="form-control datetimepicker" id="date" placeholder="" name="date" value="">    
+                                <input type="text" class="form-control datetimepicker" id="train_date" placeholder="" name="train_date" value="">    
                             </div>
                             <div class="col-md-6"></div>
                             
                             <div class="form-group col-md-6 offset-md-3">
-                                <label for="train_location">ห้องอบรม</label>  
-                                <select class="form-control" type="text" class="form-control" name="train_location" id="train_location">
+                                <label for="train_location_id">ห้องอบรม</label>  
+                                <select class="form-control" type="text" class="form-control" name="train_location_id" id="train_location_id">
                                     <option value="">--- please select ---</option>                                
                                     <?php 
                                     foreach($train_location as $r) {
-                                        echo '<option value="'.$r['id'].'" >'.$r['room'].'</option>';       
+                                        echo '<option value="'.$r['location_id'].'" >'.$r['location_room'].'</option>';       
                                     } 
                                     ?>
                                 </select>
@@ -79,17 +79,17 @@
                             <div class="col-md-6"></div>
                             
                             <div class="form-group col-md-6 offset-md-3">
-                                <label for="register_period">วันเวลาเปิดรับสมัคร</label>   
+                                <label for="train_register_date">วันเวลาเปิดรับสมัคร</label>   
                                 <br>              
-                                <input type="text" class="form-control datetimepicker" id="register_period" placeholder="" name="register_period" value"">
+                                <input type="text" class="form-control datetimepicker" id="train_register_date" placeholder="" name="train_register_date" value"">
                             </div>
                             <div class="col-md-6"></div>   
 
                             
                             
                             <div class="col-md-12 text-center"> 
-                                <button type="submit" class="btn btn-secondary" name="print" value="1"><i></i>ยกเลิก</button>
-                                <button type="submit" class="btn btn-success" name="save" value="1"><i></i>บันทึก</button>                
+                                <button type="reset" class="btn btn-secondary"><i></i>ยกเลิก</button>
+                                <button type="submit" class="btn btn-success"><i></i>บันทึก</button>                
                             </div>
 
                         </div>

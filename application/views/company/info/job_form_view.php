@@ -28,29 +28,28 @@
                                 <label for="job_title_id">ตำแหน่ง</label><code>*</code>
                                 <select class="form-control" id="job_title_id" name="job_title_id">
 
-                                    <option value="<?php echo $company_job_position_by_id['position_title'];?>"> ------ </option>
+                                    <option> ------ </option>
                                     <?php 
                                     foreach($company_job_title as $row) {
-                                        if($company_job_position_by_id['position_title'] == $row['job_title']) {
+                                        if($company_job_position_by_id['job_title_id'] == $row['job_title_id']) {
                                             echo '<option value="'.$row['job_title_id'].'" selected>'.$row['job_title'].'</option>';
                                         } else {
                                             echo '<option value="'.$row['job_title_id'].'">'.$row['job_title'].'</option>';    
                                         }
-                                        //รอเปลี่ยน DB, เปลี่ยนจาก insert คำ เป็น foreign key
                                     }
                                     ?>
                                 </select>
                             </div>
 
                             <div class="col-sm-4"></div>
-                            <input type="hidden" name="job_id" value="<?php echo $company_job_position_by_id['id'];?>">    
+                            <input type="hidden" name="job_id" value="<?php echo $company_job_position_by_id['job_id'];?>">    
                             <input type="hidden" name="company_id" value="<?php echo $company_job_position_by_id['company_id'];?>">
 
                             <div class="col-sm-4"></div>
                             
                             <div class="form-group col-sm-4">
-                                <label for="number_of_employee">จำนวน</label><code>*</code>
-                                <input type="number" min="1" class="form-control" id="number_of_employee" name="number_of_employee" value="<?php echo $company_job_position_by_id['number_of_employee'];?>">
+                                <label for="job_number_employee">จำนวน</label><code>*</code>
+                                <input type="number" min="1" class="form-control" id="job_number_employee" name="job_number_employee" value="<?php echo $company_job_position_by_id['job_number_employee'];?>">
                             </div>
 
                             <div class="col-sm-4"></div>

@@ -34,17 +34,17 @@
                   <select class="form-control" id="company_id" name="company_id">
                     <option value="0">-- บริษัททั้งหมด --</option>
                     <?php foreach($company as $row) {?>
-                      <option value="<?php echo $row['id'];?>" <?php echo set_select('company_id', $row['id']); ?> ><?php echo $row['name_th']; ?></option>
+                      <option value="<?php echo $row['company_id'];?>" <?php echo set_select('company_id', $row['company_id']); ?> ><?php echo $row['name_th']; ?></option>
                     <?php } ?>
                   </select>
                 </div>
 
                 <div class="form-group col-sm-4">
                   <label for="job_title_id">ตำแหน่งงาน</label>
-                  <select class="form-control" id="job_title_id" name="job_title_id">
+                  <select class="form-control" id="job_title" name="job_title">
                     <option value="0">-- ตำแหน่งงานทั้งหมด --</option>
                     <?php foreach($job as $row) {?>
-                      <option value="<?php echo $row['job_title_id'];?>" <?php echo set_select('job_title_id', $row['job_title_id']); ?> ><?php echo $row['job_title']; ?></option>
+                      <option value="<?php echo $row['job_title'];?>" <?php echo set_select('job_title_id', $row['job_title_id']); ?> ><?php echo $row['job_title']; ?></option>
                     <?php } ?>
                   </select>
                 </div>
@@ -71,18 +71,18 @@
             <div class="col-lg-6">
               <div class="card">
                 <div class="card-header">
-                  <i class="fa fa-building"></i> ชื่อบริษัท: <?php echo $row['company']['name_th'];?>
-                  <span class="btn btn-danger float-right">ตำแหน่งงาน: <?php echo $row['company_job_position']['position_title'];?></span>
+                  <i class="fa fa-building"></i> ชื่อบริษัท: <?php echo $row['company']['company_name_th'];?>
+                  <span class="btn btn-danger float-right">ตำแหน่งงาน: <?php echo $row['company_job_position']['job_title'];?></span>
                 </div>
                 <div class="card-body">
                   <p>รายละเอียด: <?php echo $row['company_job_position']['job_description'];?></p>
                   <p>ลักษณะบริษัท: <?php echo $row['company']['company_type'];?></p>                            
-                  <p>เวลาทำงาน: <?php echo $row['company']['work_start_time'];?>-<?php echo $row['company']['work_end_time'];?></p>
-                  <p>พื้นที่: <?php echo $row['address_company']['province'];?></p>
-                  <?php if($row['company']['website_url']) : ?>
-                  <p>เว็ปไซต์: <a href="<?php echo $row['company']['website_url'];?>"><?php echo $row['company']['website_url'];?></a> </p>
+                  <p>เวลาทำงาน: <?php echo $row['company']['company_start_time'];?>-<?php echo $row['company']['company_end_time'];?></p>
+                  <p>พื้นที่: <?php echo $row['address_company']['company_address_province'];?></p>
+                  <?php if($row['company']['company_website']) : ?>
+                  <p>เว็ปไซต์: <a href="<?php echo $row['company']['company_website'];?>"><?php echo $row['company']['company_website'];?></a> </p>
                   <?php endif; ?>
-                  <?php echo anchor('Student/Job/register_form_company/'.$row['company']['id'].'/'.$row['company_job_position']['id'], '<i class="icon-pencil"></i> กรอกใบสมัคร', 'class="btn btn-success btn-lg"');?> 
+                  <?php echo anchor('Student/Job/register_form_company/'.$row['company']['company_id'].'/'.$row['company_job_position']['job_id'], '<i class="icon-pencil"></i> กรอกใบสมัคร', 'class="btn btn-success btn-lg"');?> 
                 </div>
               </div>
             </div>

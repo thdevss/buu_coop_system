@@ -8,11 +8,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?php echo $row['title'];?> | ระบบสหกิจ | มหาวิทยาลัยบูรพา</title>
-    <meta property="og:url" content="<?php echo site_url('news/'.$row['id']);?>" />
+    <title><?php echo $row['news_title'];?> | ระบบสหกิจ | มหาวิทยาลัยบูรพา</title>
+    <meta property="og:url" content="<?php echo site_url('news/'.$row['news_id']);?>" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="<?php echo $row['title'];?>" />
-    <meta property="og:description" content="<?php echo substr(strip_tags($row['detail']), 0, 250);?>" />
+    <meta property="og:title" content="<?php echo $row['news_title'];?>" />
+    <meta property="og:description" content="<?php echo substr(strip_tags($row['news_detail']), 0, 250);?>" />
     <meta property="og:image" content="<?php echo $cover_image;?>" />
 
     <!-- Bootstrap core CSS -->
@@ -45,8 +45,8 @@
     <header class="bg-primary text-white">
       <div id="about" class="container text-center">
 
-        <h1><?php echo $row['title'];?></h1>
-        <p class="lead"><?php echo thaiDate($row['date'], true);?></p>
+        <h1><?php echo $row['news_title'];?></h1>
+        <p class="lead"><?php echo thaiDate($row['news_date'], true);?></p>
       </div>
     </header>
 
@@ -54,7 +54,7 @@
       <div id="contact" class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-                <?php echo $row['detail']; ?>
+                <?php echo $row['news_detail']; ?>
             
           </div>
         </div>

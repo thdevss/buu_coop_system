@@ -24,7 +24,7 @@ class Company_info extends CI_controller
         public function step1($company_id) 
         {
             $data['company'] = $this->Company->get_company($company_id)[0];
-            $data['company_address'] = @$this->Address->get_address_by_company($data['company']['id'])[0];
+            $data['company_address'] = @$this->Address->get_address_by_company($data['company']['company_id'])[0];
             $data['form_url'] = site_url('officer/company_info/post_step1');
 
             // add breadcrumbs
@@ -37,18 +37,18 @@ class Company_info extends CI_controller
         {
             $this->load->library('form_validation');
             $this->form_validation->set_rules('company_id','Company ID','required');
-            $this->form_validation->set_rules('name_th','(ภาษาไทย)','required');//required ต้องการไทย
-            $this->form_validation->set_rules('name_en','(ภาษาอังกฤษ)','required|alpha');
-            $this->form_validation->set_rules('number','ที่อยู่เลขที่','required|alpha_dash');//required ต้องการตัวเลขและเคนื่องหมาย'/'
-            $this->form_validation->set_rules('building','อาคาร','required|alpha_numeric');//required ต้องการไทย
-            $this->form_validation->set_rules('road','ถนน','required');//required ต้องการไทย
-            $this->form_validation->set_rules('alley','ซอย','required|alpha_numeric');//required ต้องการไทย
-            $this->form_validation->set_rules('district','แขวง','required');//required ต้องการไทย
-            $this->form_validation->set_rules('area','เขต/อำเภอ','required');//required ต้องการไทย
-            $this->form_validation->set_rules('province','จังหวัด','required');//required ต้องการไทย
-            $this->form_validation->set_rules('postal_code','รหัสไปรษณีย์','required|min_length[5]|max_length[5]');
+            $this->form_validation->set_rules('company_name_th','(ภาษาไทย)','required');//required ต้องการไทย
+            $this->form_validation->set_rules('company_name_en','(ภาษาอังกฤษ)','required|alpha');
+            $this->form_validation->set_rules('company_address_number','ที่อยู่เลขที่','required|alpha_dash');//required ต้องการตัวเลขและเคนื่องหมาย'/'
+            $this->form_validation->set_rules('company_address_building','อาคาร','required|alpha_numeric');//required ต้องการไทย
+            $this->form_validation->set_rules('company_address_road','ถนน','required');//required ต้องการไทย
+            $this->form_validation->set_rules('company_address_alley','ซอย','required|alpha_numeric');//required ต้องการไทย
+            $this->form_validation->set_rules('company_address_district','แขวง','required');//required ต้องการไทย
+            $this->form_validation->set_rules('company_address_area','เขต/อำเภอ','required');//required ต้องการไทย
+            $this->form_validation->set_rules('company_address_province','จังหวัด','required');//required ต้องการไทย
+            $this->form_validation->set_rules('company_address_postal_code','รหัสไปรษณีย์','required|min_length[5]|max_length[5]');
             $this->form_validation->set_rules('company_type','ประเภทกิจการ/ธุรกิจ/ผลิตภัณฑ์/ลักษณะการดำเนินงาน','required');
-            $this->form_validation->set_rules('total_employee','จำนวนพนักงาน','required|is_natural_no_zero');
+            $this->form_validation->set_rules('company_total_employee','จำนวนพนักงาน','required|is_natural_no_zero');
             if($this->form_validation->run() == false)
             {
                 
@@ -61,20 +61,20 @@ class Company_info extends CI_controller
                 $tmp['company_id'] = $this->input->post('company_id');
                 $data['company'] = $this->Company->get_company($tmp['company_id'])[0];
 
-                $company_id = $data['company']['id'];
-                $array_company['name_th'] = $this->input->post('name_th');
-                $array_company['name_en'] = $this->input->post('name_en');
+                $company_id = $data['company']['company_id'];
+                $array_company['company_name_th'] = $this->input->post('company_name_th');
+                $array_company['company_name_en'] = $this->input->post('company_name_en');
                 $array_company['company_type'] = $this->input->post('company_type');
-                $array_company['total_employee'] = $this->input->post('total_employee');
+                $array_company['company_total_employee'] = $this->input->post('company_total_employee');
                 // update company address
-                $array_company_address['number'] = $this->input->post('number');
-                $array_company_address['building'] = $this->input->post('building');
-                $array_company_address['road'] = $this->input->post('road');
-                $array_company_address['alley'] = $this->input->post('alley');
-                $array_company_address['district'] = $this->input->post('district');
-                $array_company_address['area'] = $this->input->post('area');
-                $array_company_address['province'] = $this->input->post('province');
-                $array_company_address['postal_code'] = $this->input->post('postal_code');
+                $array_company_address['company_address_number'] = $this->input->post('company_address_number');
+                $array_company_address['company_address_building'] = $this->input->post('company_address_building');
+                $array_company_address['company_address_road'] = $this->input->post('company_address_road');
+                $array_company_address['company_address_alley'] = $this->input->post('company_address_alley');
+                $array_company_address['company_address_district'] = $this->input->post('company_address_district');
+                $array_company_address['company_address_area'] = $this->input->post('company_address_area');
+                $array_company_address['company_address_province'] = $this->input->post('company_address_province');
+                $array_company_address['company_address_postal_code'] = $this->input->post('company_address_postal_code');
                 // update on table
                 $this->Company->update_company($company_id , $array_company);
                 $this->Address->update_address($company_id , $array_company_address);
@@ -90,7 +90,7 @@ class Company_info extends CI_controller
             $data['company'] = $this->Company->get_company($company_id)[0];
 
             $data['company_person'] = @$this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];
-            $data['company_employee'] = @$this->Trainer->gets_trainer_by_company($data['company']['id']);
+            $data['company_employee'] = @$this->Trainer->gets_trainer_by_company($data['company']['company_id']);
 
             $data['form_url'] = site_url('officer/company_info/post_step2');
             $data['back_url'] = site_url('officer/company_info/step1/'.$company_id);
@@ -123,7 +123,7 @@ class Company_info extends CI_controller
                 $tmp['company_id'] = $this->input->post('company_id');
                 $data['company'] = $this->Company->get_company($tmp['company_id'])[0];
                 // update company_contact_person_id 
-                $company_id = $data['company']['id'];
+                $company_id = $data['company']['company_id'];
                 $array_company['contact_person_id'] = $this->input->post('contact_person_id');
                 // update on table
                 $this->Company->update_company($company_id, $array_company);
@@ -163,10 +163,12 @@ class Company_info extends CI_controller
         public function job_add()
         {
             $data['company_id'] = $this->input->post('company_id');
-            $data['position_title'] = $this->Job->get_company_job_title_by_job_title_id($this->input->post('job_title_id'))[0]['job_title'];
-            $data['number_of_employee'] = $this->input->post('number_of_employee');
+            $data['job_title_id'] = $this->input->post('job_title_id');
+            $data['job_title'] = $this->Job->get_company_job_title_by_job_title_id($this->input->post('job_title_id'))[0]['job_title'];
+            $data['job_number_employee'] = $this->input->post('number_of_employee');
             $data['job_description'] = $this->input->post('job_description');
             $data['term_id'] = $this->Term->get_current_term()[0]['term_id'];
+            $data['job_active'] = 1;
 
             $this->Job->insert_job($data);
             $this->session->set_flashdata('form-alert', '<div class="alert alert-success">เพิ่มงานสำเร็จ</div>');
@@ -193,7 +195,7 @@ class Company_info extends CI_controller
             $data['company_job_title'] = $this->Job->gets_company_job_title();
             $data['company_job_position_by_id'] = $this->Job->get_job($job_id)[0];
             
-            $data['work_form_url'] = site_url('Officer/Company_info/job_update/'.$data['company_job_position_by_id']['id']);
+            $data['work_form_url'] = site_url('Officer/Company_info/job_update/'.$data['company_job_position_by_id']['job_id']);
             //print_r($data);
             $this->template->view('company/info/job_form_view', $data);
         }
@@ -203,7 +205,7 @@ class Company_info extends CI_controller
             // print_r($array);
             $this->form_validation->set_rules('job_id', 'Job ID', 'required');
             $this->form_validation->set_rules('job_title_id', 'ตำแหน่ง', 'required');
-            $this->form_validation->set_rules('number_of_employee', 'จำนวน', 'required|numeric');
+            $this->form_validation->set_rules('job_number_employee', 'จำนวน', 'required|numeric');
             $this->form_validation->set_rules('job_description', 'ลักษณะงานที่นิสิตต้องปฏิบัติงาน', 'required');
             
             if ($this->form_validation->run() == FALSE)
@@ -219,8 +221,9 @@ class Company_info extends CI_controller
                 $job = $this->Job->get_job($job_id);
 
                 if($job) {
-                    $array['position_title'] = $this->Job->get_company_job_title_by_job_title_id($this->input->post('job_title_id'))[0]['job_title'];                    
-                    $array['number_of_employee'] = $this->input->post('number_of_employee');
+                    $array['job_title_id'] = $this->input->post('job_title_id');
+                    $array['job_title'] = $this->Job->get_company_job_title_by_job_title_id($this->input->post('job_title_id'))[0]['job_title'];
+                    $array['job_number_employee'] = $this->input->post('job_number_employee');
                     $array['job_description'] = $this->input->post('job_description');
                 
                     $this->Job->update_job($job_id, $array);

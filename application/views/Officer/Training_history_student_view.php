@@ -110,7 +110,7 @@
                                     </div>
 
 
-                                    <?php foreach($train_type as $key => $train) { ?>
+                                    <?php foreach($train_type as $key => $train) {  ?>
 
                                     <div class="tab-pane" id="TAB_<?php echo $key;?>" role="tabpanel">
 
@@ -162,10 +162,10 @@
                                                 <?php $i = 1; foreach($train['history'] as $row) { ?>
                                                 <tr>
                                                     <td class="text-center"><?php echo $i++;?></td>
-                                                    <td class="text-left"><?php echo thaiDate($row['train']['register_period']);?></td>
+                                                    <td class="text-left"><?php echo thaiDate($row['tb_train']['train_date']);?></td>
                                                     <td class="text-left"><?php echo $train['name'];?></td>
-                                                    <td class="text-left"><?php echo $row['train']['title'];?></td>
-                                                    <td class="text-right"><?php echo $row['train']['number_of_hour'];?></td>
+                                                    <td class="text-left"><?php echo $row['tb_train']['train_title'];?></td>
+                                                    <td class="text-right"><?php echo $row['tb_train']['train_hour'];?></td>
                                                     <td class="text-right"><?php echo $row['check_hour'];?></td>
                                                 </tr>
                                                 <?php } ?>

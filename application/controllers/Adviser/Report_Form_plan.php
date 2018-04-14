@@ -40,7 +40,7 @@ class Report_Form_plan extends CI_controller
         $this->template->view('Adviser/Report_Form_plan_list',$data);
     }
 
-    public function title_plan($student_id)
+    public function student_plan($student_id)
     {
         
 

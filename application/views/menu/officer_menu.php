@@ -8,10 +8,10 @@
           <a class="nav-link" href="<?php echo site_url('Officer/main');?>"><i class="icon-home"></i> ประกาศข่าวสาร</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" data-toggle="modal" data-target="#selectTermBox"><i class="icon-clock"></i> ปีการศึกษา: <b><?php echo $current_term['name'];?></b></a>
+          <a class="nav-link" href="#" data-toggle="modal" data-target="#selectTermBox"><i class="icon-clock"></i> ปีการศึกษา: <b><?php echo $current_term['term_name'];?></b></a>
         </li>
 
-        <?php if(@$user_info->is_adviser == 1) { ?>
+        <?php if(@$user_info['is_adviser'] == 1) { ?>
         <li class="nav-item">
           <a class="nav-link" href="<?php echo site_url('Officer/main/change_to_adviser');?>"><i class="fa fa-exchange"></i> กลับสู่เมนูอาจารย์</a>
         </li>
@@ -71,7 +71,8 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item nav-dropdown">
+        <!-- โค้ดไม่มีการอัพเดท, น่าจะไม่ได้ใช้ส่วนนี้ -->
+        <!--<li class="nav-item nav-dropdown">
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-check"></i> จัดการสอบ</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
@@ -84,7 +85,7 @@
             <?php echo anchor('Officer/Test_result/', '<i class="fa fa-check"></i> ผลการสอบ', 'class="nav-link"');?>
             </li>
           </ul>
-        </li>
+        </li>-->
         <li class="nav-item nav-dropdown">
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-graph"></i> รายงาน</a>
           <ul class="nav-dropdown-items">
@@ -166,9 +167,9 @@
               <?php 
               foreach($terms as $term) {
                 if($current_term['term_id'] == $term['term_id']) {
-                  echo '<option value="'.$term['term_id'].'" selected>'.$term['name'].'</option>';
+                  echo '<option value="'.$term['term_id'].'" selected>'.$term['term_name'].'</option>';
                 } else {
-                  echo '<option value="'.$term['term_id'].'">'.$term['name'].'</option>';                  
+                  echo '<option value="'.$term['term_id'].'">'.$term['term_name'].'</option>';                  
                 }
               }
               ?>

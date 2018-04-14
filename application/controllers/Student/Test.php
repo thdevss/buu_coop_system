@@ -26,7 +26,11 @@ class Test extends CI_Controller {
         $student_id = $this->Login_session->check_login()->login_value;
 
         //get current test id
-        $data['coop_test'] = $this->Test->gets_test();
+        $data['coop_test'] = @$this->Test->gets_test()[0];
+        if( count($data['coop_test']) < 1 ) {
+            $this->session->set_flashdata('session_alert', '<div class="alert alert-warning">ยังไม่เปิดการสอบ</div>');
+            redirect('student/main', 'refresh');
+        }
         //check already register?
         $data['already_register'] = false;
         if($status == 'error_unknown' ){
@@ -40,7 +44,7 @@ class Test extends CI_Controller {
             $data['status']['color'] = 'success';
             $data['status']['text'] = 'ลงสมัครสอบเรียบร้อย โปรดมาสอบตามวันเวลาที่นัดหมาย';
             $data['already_register'] = true;            
-        } else if(@$this->Test->check_student($student_id, $data['coop_test']->id)) {
+        } else if(@$this->Test->check_student($student_id, $data['coop_test']['coop_test_id'])) {
             $data['status']['color'] = 'warning';
             $data['status']['text'] = 'คุณเคยลงทะเบียนไปแล้ว โปรดมาสอบตามวันเวลาที่นัดหมาย';
             $data['already_register'] = true;
@@ -95,18 +99,6 @@ class Test extends CI_Controller {
     {
         $student_id = $this->Login_session->check_login()->login_value;
         
-        // $data = array();
-        // $data['rows'] = array();
-        // foreach($this->Test->get_test_result_by_student($student_id) as $row) {
-        //     //get testdate
-        //     $coop_test = $this->Test->get_test($row['coop_test_id']);
-
-        //     // $row['test_date'] = $coop_test['test_date'];
-        //     // $row['name'] = $coop_test['name'];
-        //     // $row[''] = 
-            
-        //     array_push($data['rows'], $row);
-        // }
         $data['data'] = array();
         foreach($this->Test->get_test_result_by_student($student_id) as $row) {
             $temp_array = array();

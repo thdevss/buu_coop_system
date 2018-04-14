@@ -20,7 +20,7 @@
             <div class="card-footer">
             <div class="pull-right">
             <div class="btn btn-dark">
-            <i class="fa fa-clock-o fa-spin"></i> กิจกรรมการฝึกงานในวันที่: <?php echo thaiDate($coop_student_daily_detail['date']);?>
+            <i class="fa fa-clock-o fa-spin"></i> กิจกรรมการฝึกงานในวันที่: <?php echo thaiDate($coop_student_daily_detail['activity_date']);?>
             </div>
             </div>
           </div>

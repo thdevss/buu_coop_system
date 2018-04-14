@@ -60,34 +60,34 @@ class permit_form  extends CI_Controller {
         $return['print'] = false;
                 
         $this->load->library('form_validation');        
-        $this->form_validation->set_rules('allower_fullname', 'ชื่อผู้ปกครอง', 'trim|required');
-        $this->form_validation->set_rules('allower_relative', 'ความสัมพันธ์กับนิสิต', 'trim|required');
-        $this->form_validation->set_rules('address_number', 'ที่อยู่: บ้านเลขที่', 'trim|required');
-        $this->form_validation->set_rules('address_road', 'ที่อยู่: ถนน', 'trim|required');
-        $this->form_validation->set_rules('address_district', 'ที่อยู่: ตำบล', 'trim|required');
-        $this->form_validation->set_rules('address_area', 'ที่อยู่: อำเภอ', 'trim|required');
-        $this->form_validation->set_rules('address_province', 'ที่อยู่: จังหวัด', 'trim|required');
-        $this->form_validation->set_rules('address_postal_code', 'ที่อยู่: รหัสไปรษณีย์', 'trim|required|numeric|max_length[5]');
-        $this->form_validation->set_rules('allower_telephone', 'หมายเลขโทรศัพท์', 'trim|required|numeric|max_length[10]');
-        $this->form_validation->set_rules('allower_fax_number', 'หมายเลขโทรสาร', 'trim|required|numeric|max_length[10]');
-        $this->form_validation->set_rules('allower_email', 'อีเมล', 'trim|required|valid_email');
-        $this->form_validation->set_rules('allow_choice', 'การตอบรับ', 'trim|required|in_list[0,1]');
+        $this->form_validation->set_rules('permit_fullname', 'ชื่อผู้ปกครอง', 'trim|required');
+        $this->form_validation->set_rules('permit_relative', 'ความสัมพันธ์กับนิสิต', 'trim|required');
+        $this->form_validation->set_rules('permit_address_number', 'ที่อยู่: บ้านเลขที่', 'trim|required');
+        $this->form_validation->set_rules('permit_address_road', 'ที่อยู่: ถนน', 'trim|required');
+        $this->form_validation->set_rules('permit_address_district', 'ที่อยู่: ตำบล', 'trim|required');
+        $this->form_validation->set_rules('permit_address_area', 'ที่อยู่: อำเภอ', 'trim|required');
+        $this->form_validation->set_rules('permit_address_province', 'ที่อยู่: จังหวัด', 'trim|required');
+        $this->form_validation->set_rules('permit_address_postal_code', 'ที่อยู่: รหัสไปรษณีย์', 'trim|required|numeric|max_length[5]');
+        $this->form_validation->set_rules('permit_telephone', 'หมายเลขโทรศัพท์', 'trim|required|numeric|max_length[10]');
+        $this->form_validation->set_rules('permit_fax_number', 'หมายเลขโทรสาร', 'trim|required|numeric|max_length[10]');
+        $this->form_validation->set_rules('permit_email', 'อีเมล', 'trim|required|valid_email');
+        $this->form_validation->set_rules('permit_choice', 'การตอบรับ', 'trim|required|in_list[0,1]');
 
         if ($this->form_validation->run() != FALSE) {
-            $data['allower_fullname'] =  $this->input->post('allower_fullname');
-            $data['allower_relative'] = $this->input->post('allower_relative');
-            $data['address_number'] = $this->input->post('address_number');
-            $data['address_road'] = $this->input->post('address_road');
-            $data['address_district'] = $this->input->post('address_district');
-            $data['address_area'] = $this->input->post('address_area');
-            $data['address_province'] = $this->input->post('address_province');
-            $data['address_postal_code'] = $this->input->post('address_postal_code');
-            $data['allower_email'] = $this->input->post('allower_email');
-            $data['allower_telephone'] = $this->input->post('allower_telephone');
-            $data['allower_fax_number'] = $this->input->post('allower_fax_number');
-            $data['allow_choice'] = $this->input->post('allow_choice');
-            if(!$data['allow_choice']) {
-                $data['allow_choice'] = 0;
+            $data['permit_fullname'] =  $this->input->post('permit_fullname');
+            $data['permit_relative'] = $this->input->post('permit_relative');
+            $data['permit_address_number'] = $this->input->post('permit_address_number');
+            $data['permit_address_road'] = $this->input->post('permit_address_road');
+            $data['permit_address_district'] = $this->input->post('permit_address_district');
+            $data['permit_address_area'] = $this->input->post('permit_address_area');
+            $data['permit_address_province'] = $this->input->post('permit_address_province');
+            $data['permit_address_postal_code'] = $this->input->post('permit_address_postal_code');
+            $data['permit_email'] = $this->input->post('permit_email');
+            $data['permit_telephone'] = $this->input->post('permit_telephone');
+            $data['permit_fax_number'] = $this->input->post('permit_fax_number');
+            $data['permit_choice'] = $this->input->post('permit_choice');
+            if(!$data['permit_choice']) {
+                $data['permit_choice'] = 0;
             }
             $data['student_id'] =  $student_id;
 
@@ -117,16 +117,16 @@ class permit_form  extends CI_Controller {
         $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
 
         $template_file = "template/IN-S003-N.docx";        
-        if($data['permit']['allow_choice'] == 1) {
+        if($data['permit']['permit_choice'] == 1) {
             $template_file = "template/IN-S003-Y.docx";
         } 
 
         $save_filename = "download/".$student_id."-IN-S003.docx";
         $data_array = [
-            "student_fullname_th" => $data['student']['fullname'],
+            "student_fullname_th" => $data['student']['student_fullname'],
             "student_id" => $student_id,
             "student_course" => $data['student']['student_course'],
-            "student_department" => $data['department']['name'],
+            "student_department" => $data['department']['department_name'],
         ];
 
         $data_array = array_merge($data_array, $data['permit']);
@@ -136,7 +136,7 @@ class permit_form  extends CI_Controller {
         $result = $this->service_docx->print_data($data_array, $template_file, $save_filename);
 
         //insert to db
-        $coop_document_id = $this->Form->get_form_by_name('IN-S003', $this->Login_session->check_login()->term_id)[0]['id'];
+        $coop_document_id = $this->Form->get_form_by_name('IN-S003', $this->Login_session->check_login()->term_id)[0]['document_id'];
         $word_file = '/uploads/'.basename($save_filename);
         $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file);
 

@@ -93,15 +93,15 @@ $(document).ready(function() {
           "dataSrc": ""
         },
         "columns": [
-            { "data": "student.id" },          
-            { "data": "student.id" },
+            { "data": "student.student_id" },          
+            { "data": "student.student_id" },
             { "data": "student.id_link" },            
-            { "data": "student.fullname" },
+            { "data": "student.student_fullname" },
             { "data": "adviser.select_box" },
-            { "data": "company.name_th" },
-            { "data": "company_address.area" },
-            { "data": "company_address.province" },
-            { "data": "adviser.fullname" },
+            { "data": "company.company_name_th" },
+            { "data": "company_address.company_address_area" },
+            { "data": "company_address.company_address_province" },
+            { "data": "adviser.adviser_fullname" },
         ],
 
         'initComplete': function(){

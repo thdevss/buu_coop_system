@@ -15,22 +15,22 @@
                             <div class="col-md-12">
                                 <p>รหัสนิสิต</p>
                                 <ul>
-                                    <li><?php echo $student['id']; ?></li>
+                                    <li><?php echo $student['student_id']; ?></li>
                                 </ul>
 
                               <p>ชื่อ</p>
                                 <ul>
-                                    <li><?php echo $student['fullname']; ?></li>
+                                    <li><?php echo $student['student_fullname']; ?></li>
                                 </ul>
 
                               <p>สาขา</p>
                                 <ul>
-                                    <li><?php echo $department['name']; ?></li>
+                                    <li><?php echo $department['department_name']; ?></li>
                                 </ul>
 
                               <p>บริษัท</p>
                                 <ul>
-                                    <li><?php echo $company['name_th']." (".$company['name_en'].")"; ?></li>
+                                    <li><?php echo $company['company_name_th']." (".$company['company_name_en'].")"; ?></li>
                                 </ul>
 
                             </div>
@@ -80,8 +80,8 @@
     }
 
     function initMap() {
-        <?php if($map['site_latitude'] != '' && $map['site_longitude'] != '') { ?>
-            genMap({lat: <?php echo $map['site_latitude'];?>, lng: <?php echo $map['site_longitude'];?>})
+        <?php if($map['coop_student_latitude'] != '' && $map['coop_student_longitude'] != '') { ?>
+            genMap({lat: <?php echo $map['coop_student_latitude'];?>, lng: <?php echo $map['coop_student_longitude'];?>})
         <?php } ?>
     }
 
