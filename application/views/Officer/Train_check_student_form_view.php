@@ -37,8 +37,8 @@
                     <div class="card-body"> 
                         <div class="row">
                             <div class="col-sm-8">
-                                <p><b>โครงการอบรม:</b> <?php echo $train['title'];?></p>
-                                <p><b>Note:</b> <?php echo $training_check_student['note'];?></p>                                
+                                <p><b>โครงการอบรม:</b> <?php echo $train['train_title'];?></p>
+                                <p><b>Note:</b> <?php echo $training_check_student['check_note'];?></p>                                
                             </div>
 
                             <div class="col-sm-4 text-center">
@@ -104,13 +104,13 @@ function addStudent(student_code)
         var datastring = "train_set_check_id="+$("#train_set_check_id").val()+"&student_code="+student_code;
         jQuery.post(SITE_URL+"/officer/Train_check_student/ajax_post", datastring, function(response) {
             if(response.status) {
-                toastr["success"]("เช็คชื่อเรียบร้อย ID: "+response.student.id)
+                toastr["success"]("เช็คชื่อเรียบร้อย ID: "+response.student.student_id)
 
                 jQuery("#student_info_frm").show();
 
 		        jQuery("#student_img").attr("src", "http://reg.buu.ac.th/registrar/getstudentimage.asp?id="+student_code);                
-                jQuery("#student_name").html(response.student.fullname)
-                jQuery("#student_code").html(response.student.id)
+                jQuery("#student_name").html(response.student.student_fullname)
+                jQuery("#student_code").html(response.student.student_id)
                 jQuery("#entry_time").html(response.entry_time)
                 
 
@@ -144,7 +144,7 @@ function updateStudentList()
             jQuery("#current_student").html(response.rows.length)
             var i = 1;
 			$(response.rows).each(function(index, row){ 
-				$('#student_table').append('<tr><td>'+ i++ +'</td><td>'+ row.train_check.date_check +'<td> '+row.train_check.student_id+' </td><td> '+row.student.fullname+' </td></tr>');       
+				$('#student_table').append('<tr><td>'+ i++ +'</td><td>'+ row.train_check.date_check +'<td> '+row.train_check.student_id+' </td><td> '+row.student.student_fullname+' </td></tr>');       
 			})
 
         } else {

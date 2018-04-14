@@ -13,7 +13,7 @@
                     <div class="card-body">             
                         <?php if($form_type == 'update') { ?>
                             <form action="<?php echo site_url('Coop_student/Daily_activity/post_update');?>" method="post">
-                            <input type="hidden" name="report_id" value="<?php echo $row['report_id'];?>">                        
+                            <input type="hidden" name="activity_id" value="<?php echo $row['activity_id'];?>">                        
                         <?php } else { ?>
                             <form action="<?php echo site_url('Coop_student/Daily_activity/post_add');?>" method="post">                        
                         <?php } ?>
@@ -21,14 +21,14 @@
                             <div class="row">
                                 <?php if($form_type == 'update') { ?>
                                     <div class="form-group col-md-6 offset-md-3">
-                                        <label for="date">ประจำวันที่</label>          
-                                        <input value="<?php echo @$row['date'];?>" class="form-control" type="text" name="date" id="date" disabled>
+                                        <label for="activity_date">ประจำวันที่</label>          
+                                        <input value="<?php echo @$row['activity_date'];?>" class="form-control" type="text" name="activity_date" id="activity_date" disabled>
                                     </div>
                                 <?php } else { ?>
                                     <div class="form-group col-md-6 offset-md-3">
                                         <label>เลือกวันที่</label>
                                         <br>
-                                        <input type="text" class="form-control datetimepicker" id="date" placeholder="" name="date" value="">    
+                                        <input type="text" class="form-control datetimepicker" id="activity_date" placeholder="" name="activity_date" value="">    
 
                                     </div> 
                                 <?php } ?>

@@ -37,12 +37,12 @@
                     ?>
                       <tr>
                         <td class="text-center"><?php echo $i++; ?></td>
-                        <td class="text-left"><?php echo $row['building']; ?></td>
-                        <td class="text-left"><?php echo $row['room']?></td>
+                        <td class="text-left"><?php echo $row['location_building']; ?></td>
+                        <td class="text-left"><?php echo $row['location_room']?></td>
                         <td class="text-center">
                             <form action="<?php echo site_url('Officer/train_location/delete'); ?>" class="form-inline" method="post">
-                                <input type="hidden" name="id" value="<?php echo $row['id'] ; ?>">
-                                <?php echo anchor('Officer/train_location/edit/'.$row['id'], '<i class="fa fa-eraser"></i> เเก้ไขข้อมูล', 'class="btn btn-primary"');?>                                
+                                <input type="hidden" name="location_id" value="<?php echo $row['location_id'] ; ?>">
+                                <?php echo anchor('Officer/train_location/edit/'.$row['location_id'], '<i class="fa fa-eraser"></i> เเก้ไขข้อมูล', 'class="btn btn-primary"');?>                                
                                 <p style="width:10px;"></p>
                                 <button type="submit" class="btn btn-danger btn-submit"><i class="fa fa-trash-o"></i> ลบ</button>
                             </form>

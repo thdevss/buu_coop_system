@@ -95,13 +95,13 @@ $(document).ready(function() {
           "dataSrc": ""
         },
         "columns": [
-            { "data": "student.id" },
-            { "data": "student.id" },            
-            { "data": "student.id" },            
-            { "data": "student.fullname" },
-            { "data": "student.gpax" },
-            { "data": "department.name" },
-            { "data": "job_position.position_title" },
+            { "data": "student.student_id" },
+            { "data": "student.student_id" },            
+            { "data": "student.student_id" },            
+            { "data": "student.student_fullname" },
+            { "data": "student.student_gpax" },
+            { "data": "department.department_name" },
+            { "data": "job_position.job_title" },
             { "data": "company_status_type.select_box" },
         ],
 

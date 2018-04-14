@@ -28,10 +28,10 @@ class Daily_activity extends CI_controller
         $this->template->view('Coop_student/Daily_activity_view',$data);
   
     }
-    public function update($report_id)
+    public function update($activity_id)
     {
         $data['form_type'] = 'update';
-        $data['row'] = $this->Daily_Report->get_report($report_id)[0];
+        $data['row'] = $this->Daily_Report->get_report($activity_id)[0];
         $this->breadcrumbs->push('กิจกรรมในการฝึกงานในแต่ละวัน', '/Coop_student/Daily_activity/lists');
         $this->breadcrumbs->push('แบบฟอร์มเเก้ไขกิจกรรมฝึกงานในแต่ละวัน', '/Coop_student/Daily_activity/lists/update');
         $this->template->view('Coop_student/Daily_activity_form_view', $data);
@@ -40,14 +40,14 @@ class Daily_activity extends CI_controller
     public function post_update()
     {
         $array = array();
-        $report_id = $this->input->post('report_id');
-        $data = $this->Daily_Report->get_report($report_id)[0];
+        $activity_id = $this->input->post('activity_id');
+        $data = $this->Daily_Report->get_report($activity_id)[0];
         if($data) {
             if($this->Login_session->check_login()->login_value == $data['student_id']) {
                 $array['activity_subject'] = $this->input->post('activity_subject');
                 $array['activity_content'] = $this->input->post('activity_content');
 
-                $this->Daily_Report->update_report($report_id, $array);
+                $this->Daily_Report->update_report($activity_id, $array);
             } else {
                 echo "<script>alert('not owner')</script>";
             }
@@ -71,9 +71,9 @@ class Daily_activity extends CI_controller
     public function post_add()
     {
         $array = array();
-        $array['date'] = $this->input->post('date');
-        if($array['date'] == '') {
-            $array['date'] = date('Y-m-d H:i:s');
+        $array['activity_date'] = $this->input->post('activity_date');
+        if($array['activity_date'] == '') {
+            $array['activity_date'] = date('Y-m-d H:i:s');
         }
         $array['activity_subject'] = $this->input->post('activity_subject');
         $array['activity_content'] = $this->input->post('activity_content');
@@ -84,24 +84,24 @@ class Daily_activity extends CI_controller
         redirect('Coop_student/Daily_activity/lists', 'refresh');        
     }
 
-    public function datail($report_id)
+    public function datail($activity_id)
     {
        
-        $data['coop_student_daily_detail'] = $this->Daily_Report->get_report($report_id)[0];
-        $this->breadcrumbs->push('กิจกรรมในการฝึกงานในแต่ละวัน', '/Coop_student/Daily_activity/lists/',$report_id);
+        $data['coop_student_daily_detail'] = $this->Daily_Report->get_report($activity_id)[0];
+        $this->breadcrumbs->push('กิจกรรมในการฝึกงานในแต่ละวัน', '/Coop_student/Daily_activity/lists/',$activity_id);
         $this->breadcrumbs->push('แบบฟอร์มเพิ่มกิจกรรมฝึกงานในแต่ละวัน', '/');
         $this->template->view('Coop_student/Daily_activity_detail_view', $data);
     }
 
-    public function delete($report_id)
+    public function delete($activity_id)
     {
-        $data = $this->Daily_Report->get_report($report_id)[0];
+        $data = $this->Daily_Report->get_report($activity_id)[0];
         if($data) {
             //has content
             //check student, owner
             if($this->Login_session->check_login()->login_value == $data['student_id']) {
                 //delete
-                $this->Daily_Report->delete_report($report_id);
+                $this->Daily_Report->delete_report($activity_id);
             }
         }
 

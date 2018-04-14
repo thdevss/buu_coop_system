@@ -29,15 +29,15 @@
                     <tbody>
                       <?php foreach ($data as $row) { ?>
                         <tr>
-                          <td><b><?php echo $row['questionnaire_subject']['number']." ".$row['questionnaire_subject']['title'];?></b></td>
+                          <td><b><?php echo $row['questionnaire_subject']['coop_company_questionnaire_subject_number']." ".$row['questionnaire_subject']['coop_company_questionnaire_subject_title'];?></b></td>
                           <td></td>
                         </tr>
                     
                       <?php foreach($row['questionnaire_item'] as $item) {?>
                         <tr>
                           <td>
-                            <p><?php echo $item['number']." ".$item['title'];?></p>
-                            <p><?php echo $item['description'];?></p>
+                            <p><?php echo $item['coop_company_questionnaire_item_number']." ".$item['coop_company_questionnaire_item_title'];?></p>
+                            <p><?php echo $item['coop_company_questionnaire_item_description'];?></p>
                           </td>
                           <td class="text-right">
                             <?php echo number_format($item['avg_score'], 2); ?>

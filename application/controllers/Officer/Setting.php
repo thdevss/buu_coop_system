@@ -58,10 +58,10 @@ class Setting extends CI_Controller {
     public function post_new_term()
     {
         //add term
-        $insert['name'] = $this->input->post('semester')."/".$this->input->post('year');
-        $insert['year'] = $this->input->post('year');
-        $insert['semester'] = $this->input->post('semester');
-        $insert['is_current'] = 0;
+        $insert['term_name'] = $this->input->post('semester')."/".$this->input->post('year');
+        $insert['term_year'] = $this->input->post('year');
+        $insert['term_semester'] = $this->input->post('semester');
+        $insert['term_is_current'] = 0;
         if($this->Term->add_term($insert)) {
             redirect('Officer/setting/edit_term?form_status=success');
         } else {
@@ -359,7 +359,7 @@ class Setting extends CI_Controller {
 
         if ($this->form_validation->run()) {
             //change in db
-            $array['is_officer'] = $this->input->post('status');
+            $array['adviser_is_officer'] = $this->input->post('status');
             $adviser_id = $this->input->post('adviser_id');            
             $this->Adviser->update_adviser($adviser_id, $array);
             

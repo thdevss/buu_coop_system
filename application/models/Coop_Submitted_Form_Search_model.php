@@ -3,7 +3,7 @@ class Coop_Submitted_Form_Search_model extends CI_model {
     public function search_form_by_student($student_id)
     {
         $this->db->where('student_id',$student_id);
-        $this->db->from('coop_student_has_coop_document');
+        $this->db->from('tb_coop_student_has_coop_document');
         $query = $this->db->get();
         return $query->result_array();
 
@@ -12,7 +12,7 @@ class Coop_Submitted_Form_Search_model extends CI_model {
     public function search_form_by_code($form_code)
     {
         $this->db->where('coop_document_id',$form_code);
-        $this->db->from('coop_student_has_coop_document');
+        $this->db->from('tb_coop_student_has_coop_document');
         $query = $this->db->get();
         return $query->result_array();
 
@@ -22,7 +22,7 @@ class Coop_Submitted_Form_Search_model extends CI_model {
     {
         $this->db->where('student_id',$student_id);
         $this->db->where('coop_document_id',$form_code);
-        $this->db->from('coop_student_has_coop_document');
+        $this->db->from('tb_coop_student_has_coop_document');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -34,12 +34,12 @@ class Coop_Submitted_Form_Search_model extends CI_model {
         }
         $this->db->where('student_id',$student_id);
         $this->db->where('coop_document_id',$form_code);
-        return $this->db->delete('coop_student_has_coop_document');
+        return $this->db->delete('tb_coop_student_has_coop_document');
     }
 
     public function insert_form_by_student_and_code($array) 
     {
-        return $this->db->insert('coop_student_has_coop_document', $array);
+        return $this->db->insert('tb_coop_student_has_coop_document', $array);
     }
 
     public function search_form_by_student_and_codes($student_id, $document_id_arr)
@@ -49,11 +49,11 @@ class Coop_Submitted_Form_Search_model extends CI_model {
         // }
 
         // $this->db->where('student_id',$student_id);        
-        // $this->db->from('coop_student_has_coop_document');
+        // $this->db->from('tb_coop_student_has_coop_document');
         // $query = $this->db->get();
 
         $sql = "select * 
-                from coop_student_has_coop_document
+                from tb_coop_student_has_coop_document
                 where ( `coop_document_id` in ('".implode("','", $document_id_arr)."') )
                     and `student_id` = '".$student_id."'
                 ";
@@ -64,7 +64,7 @@ class Coop_Submitted_Form_Search_model extends CI_model {
 
     public function gets_student_has_document()
     {
-        $sql = "SELECT distinct(student_id) FROM `coop_student_has_coop_document`";
+        $sql = "SELECT distinct(student_id) FROM `tb_coop_student_has_coop_document`";
 
         $query = $this->db->query($sql);
         return $query->result_array();

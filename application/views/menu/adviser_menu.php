@@ -7,7 +7,7 @@
             <a class="nav-link" href="<?php echo site_url('Adviser/main');?>"><i class="icon-home"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
           </li>
 
-          <?php if($user_info->is_officer == 1) { ?>
+          <?php if($user_info['adviser_is_officer'] == 1) { ?>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo site_url('Adviser/main/change_to_officer');?>"><i class="fa fa-exchange"></i> เข้าสู่เมนูเจ้าหน้าที่</a>
           </li>

@@ -64,8 +64,8 @@ class Train_check_student extends CI_Controller {
 
             //create train_set_check
             $train_set_check['train_id'] = $this->input->post('train_id');
-            $train_set_check['note'] = $this->input->post('note');
-            $train_set_check['datetime'] = date('Y-m-d H:i:s');
+            $train_set_check['check_note'] = $this->input->post('check_note');
+            $train_set_check['check_datetime'] = date('Y-m-d H:i:s');
             
             $train_set_check_id = $this->Training_Check_Student->insert_check($train_set_check);
             $train_set_check_id = $this->db->insert_id();
@@ -113,7 +113,7 @@ class Train_check_student extends CI_Controller {
                 foreach($this->Training_Check_Student->gets_student_by_check($train_set_check_id) as $row) {
                     $tmp = array();
                     $tmp['train_check'] = $row;
-                    $tmp['train_check']['date_check'] = thaiDate($tmp['train_check']['date_check']);
+                    $tmp['train_check']['date_check'] = thaiDate($tmp['train_check']['train_check_student_date']);
                     $tmp['student'] = $this->Student->get_student($row['student_id'])[0];
                     array_push($return['rows'], $tmp);
                 }
@@ -188,11 +188,11 @@ class Train_check_student extends CI_Controller {
         $return = array();
         foreach($this->Training_Check_Student->gets_check($training_id) as $key => $row) {
             $return[] = array(
-                'check_id' => (int) $row['id'],
+                'check_id' => (int) $row['check_id'],
                 'check_no' => ++$key,
-                'check_date' => thaiDate($row['datetime']),
-                'check_title' => $row['note'],
-                'check_button' => '<a href="'.site_url('/Officer/Train_check_student/student_list/'.$row['id']).'" class="btn btn-info"><i class="fa fa-list"></i> รายชื่อนิสิต</a>'
+                'check_date' => thaiDate($row['check_datetime']),
+                'check_title' => $row['check_note'],
+                'check_button' => '<a href="'.site_url('/Officer/Train_check_student/student_list/'.$row['check_id']).'" class="btn btn-info"><i class="fa fa-list"></i> รายชื่อนิสิต</a>'
             );
         }
 
@@ -207,7 +207,7 @@ class Train_check_student extends CI_Controller {
             $student_info = $this->Student->get_student($student['student_id'])[0];
             $data['students'][] = array(
                 'student_id' => $student['student_id'],
-                'student_fullname' => $student_info['fullname'],
+                'student_fullname' => $student_info['student_fullname'],
                 'student_barcode' => 'https://barcode.tec-it.com/barcode.ashx?data='.$student['student_id'].'&code=Code128&dpi=96&dataseparator=',
             );
         }
@@ -220,7 +220,7 @@ class Train_check_student extends CI_Controller {
         $data['training']['train_type'] = $this->Training->get_type($data['training']['train_type_id'])[0];
         $data['training']['train_location'] = $this->Training->get_location($data['training']['train_location_id'])[0];
 
-        $data['training']['note'] = $data['train_check_set']['note']." เช็คชื่อเมื่อ: ".thaiDate($data['train_check_set']['datetime'], true);
+        $data['training']['note'] = $data['train_check_set']['check_note']." เช็คชื่อเมื่อ: ".thaiDate($data['train_check_set']['check_datetime'], true);
         
         // add breadcrumbs
         $this->breadcrumbs->push('เช็คชื่อเข้าอบรม', '/Officer/Train_check_student/index');

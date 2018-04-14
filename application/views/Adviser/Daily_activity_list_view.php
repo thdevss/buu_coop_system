@@ -10,7 +10,7 @@
     <div class="row" >
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header"><i class="fa fa-align-justify"></i>กิจกรรมในการฝึกงานในแต่ละวัน ของ <?php echo $student['fullname'].' '.$student['id']; ?> 
+          <div class="card-header"><i class="fa fa-align-justify"></i>กิจกรรมในการฝึกงานในแต่ละวัน ของ <?php echo $student['student_fullname'].' '.$student['student_id']; ?> 
           <div class="text-right">
             </div>
           </div>
@@ -34,9 +34,9 @@
                       <tr>
                       <?php $i=1; foreach ($data as $row){ ?>
                         <td class="text-center"><?php echo $i++; ?></td>
-                        <td><?php echo thaiDate($row['date']); ?></td>
+                        <td><?php echo thaiDate($row['activity_date']); ?></td>
                         <td><?php echo $row['activity_subject']; ?></td>
-                        <td class="text-center"><?php echo anchor('Adviser/Daily_activity/detail/'.$row['report_id'], '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn btn-primary" target="_blank"');?></td>  
+                        <td class="text-center"><?php echo anchor('Adviser/Daily_activity/detail/'.$row['activity_id'], '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn btn-primary" target="_blank"');?></td>  
                       </tr>
                       <?php } ?>
                     </tbody>

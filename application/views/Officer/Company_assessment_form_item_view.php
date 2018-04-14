@@ -24,10 +24,10 @@
                               <option disabled>----</option>
                                 <?php
                                 foreach($form_subject as $form) {
-                                  if($subject['id'] == $form['id']) {
-                                    echo '<option value="'.$form['id'].'" selected>'.$form['number'].' - '.$form['title'].'</option>';
+                                  if($subject['coop_company_questionnaire_subject_id'] == $form['coop_company_questionnaire_subject_id']) {
+                                    echo '<option value="'.$form['coop_company_questionnaire_subject_id'].'" selected>'.$form['coop_company_questionnaire_subject_number'].' - '.$form['coop_company_questionnaire_subject_title'].'</option>';
                                   } else {
-                                    echo '<option value="'.$form['id'].'">'.$form['number'].' - '.$form['title'].'</option>';
+                                    echo '<option value="'.$form['coop_company_questionnaire_subject_id'].'">'.$form['coop_company_questionnaire_subject_number'].' - '.$form['coop_company_questionnaire_subject_title'].'</option>';
                                   }
                                 }
                                 ?>
@@ -55,14 +55,14 @@
                             <?php foreach($company_questionnaire_item as $row) { ?>
         
                               <tr>
-                                <td><?php echo $row['number'];?></td>
-                                <td><?php echo $row['type'];?></td>
-                                <td><?php echo $row['title'];?></td>
-                                <td><?php echo $row['description'];?></td>
+                                <td><?php echo $row['coop_company_questionnaire_item_number'];?></td>
+                                <td><?php echo $row['coop_company_questionnaire_item_type'];?></td>
+                                <td><?php echo $row['coop_company_questionnaire_item_title'];?></td>
+                                <td><?php echo $row['coop_company_questionnaire_item_description'];?></td>
                                 <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                <a href="#" data-itemid="<?php echo $row['id'];?>" class="btn btn-info editBtn"><i class="icon-pencil"></i> แก้ไข</a>
-                                <a href="<?php echo site_url('officer/Assessment_company_Form/delete_company_questionnaire_item/'.$row['id']);?>" class="btn btn-danger" onclick="return confirmDelete(this)"><i class="icon-trash"></i> ลบ</a>
+                                <a href="#" data-itemid="<?php echo $row['coop_company_questionnaire_item_id'];?>" class="btn btn-info editBtn"><i class="icon-pencil"></i> แก้ไข</a>
+                                <a href="<?php echo site_url('officer/Assessment_company_Form/delete_company_questionnaire_item/'.$row['coop_company_questionnaire_item_id']);?>" class="btn btn-danger" onclick="return confirmDelete(this)"><i class="icon-trash"></i> ลบ</a>
                                 </div>
                 
                                 </td>
@@ -99,7 +99,7 @@
             </div>
             <form action="<?php echo site_url('Officer/Assessment_company_Form/add_company_questionnaire_item');?>" method="post">
               <div class="modal-body">
-                <input type="hidden" name="subject_id" value="<?php echo $subject['id']; ?>">
+                <input type="hidden" name="subject_id" value="<?php echo $subject['coop_company_questionnaire_subject_id']; ?>">
                 <div class="col-md-12">
                   <div class="form-group">
                     <label>ลำดับหัวข้อย่อย</label>
@@ -174,6 +174,11 @@
                     <input type="text" id="item_title" name="title" class="form-control" placeholder="กรุณากรอก" required>
                   </div>
 
+                  <div class="form-group">
+                    <label>รายละเอียดหัวข้อ</label>
+                    <textarea class="form-control" name="description" id="item_description"></textarea>
+                  </div>
+
                   <div class="form-group row">
                     <label class="col-md-4 col-form-label">การให้คะแนน</label>
                     <div class="col-md-4 col-form-label">
@@ -211,14 +216,15 @@ jQuery(".editBtn").click(function(event) {
   //ajax get
   jQuery.get( SITE_URL+"/officer/Assessment_company_Form/get_ajax_item/"+item_id, function( result ) {
     var data = result.data
-    jQuery("#item_title").val(data.title)
-    jQuery("#item_number").val(data.number)
-    jQuery("#item_id").val(data.id)
+    jQuery("#item_title").val(data.coop_company_questionnaire_item_title)
+    jQuery("#item_number").val(data.coop_company_questionnaire_item_number)
+    jQuery("#item_id").val(data.coop_company_questionnaire_item_id)
+    jQuery("#item_description").val(data.coop_company_questionnaire_item_description)
 
-    if(data.type == 'score') {
+    if(data.coop_company_questionnaire_item_type == 'score') {
       jQuery("#type_score").prop('checked', true);
     }
-    if(data.type == 'comment') {
+    if(data.coop_company_questionnaire_item_type == 'comment') {
       jQuery("#type_comment").prop('checked', true);
     }
 

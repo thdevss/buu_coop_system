@@ -47,14 +47,14 @@
                                                     <td class="text-left">
                                                         <?php echo thaiDate(date('Y-m-d H:i', $timestr)); ?>
                                                     </td>
-                                                    <td class="text-left"><?php echo $row['name']."-".$row['document_name'];?>
-                                                      <a class="badge badge-pill badge-warning open_document_deadline_form" data-document-id="<?php echo $row['id'];?>" data-deadline-date="<?php echo date('Y-m-d', $timestr);?>" data-deadline-time="<?php echo date('H:i', $timestr);?>">
+                                                    <td class="text-left"><?php echo $row['document_code']."-".$row['document_name'];?>
+                                                      <a class="badge badge-pill badge-warning open_document_deadline_form" data-document-id="<?php echo $row['document_id'];?>" data-deadline-date="<?php echo date('Y-m-d', $timestr);?>" data-deadline-time="<?php echo date('H:i', $timestr);?>">
                                                       กำหนดส่ง...
                                                       </a>
                                                     </td>
                                                     <td class="text-center">
                                                       <label class="switch switch-text switch-pill switch-success-outline-alt">
-                                                        <input type="checkbox" class="switch-input" <?php if($row['document_active'] == 1) echo 'checked'; ?> data-document-id="<?php echo $row['id'];?>">
+                                                        <input type="checkbox" class="switch-input" <?php if($row['document_active'] == 1) echo 'checked'; ?> data-document-id="<?php echo $row['document_id'];?>">
                                                         <span class="switch-label" data-on="On" data-off="Off"></span>
                                                         <span class="switch-handle"></span>       
                                                       </label>                                         

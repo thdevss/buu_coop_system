@@ -3,11 +3,6 @@
 
       <!-- Breadcrumb -->
       <?php echo $this->breadcrumbs->show(); ?>
-      <!-- <ol class="breadcrumb">
-        <li class="breadcrumb-item">ระบบสหกิจ</li>
-        <li class="breadcrumb-item"><a href="#"><?php echo strToLevel($user->login_type);?></a></li>
-        <li class="breadcrumb-item active">สมัครสอบวัดผลสหกิจ</li>
-      </ol> -->
 
       <div class="container-fluid">
         <div class="animated fadeIn">
@@ -26,7 +21,7 @@
                             <div class="row">
                                 <div class="text-center col-sm-12">
                                     <label class="form-control-label" for="">รอบการสอบ</label>
-                                    <b>รอบที่ <?php echo $coop_test[0]['name'];?>: <?php echo $coop_test[0]['test_date'];?></b>
+                                    <b>รอบที่ <?php echo $coop_test['coop_test_name'];?>: <?php echo $coop_test['coop_test_date'];?></b>
                                 </div>
                             </div>
 

@@ -52,7 +52,7 @@ class Assessmentstudent extends CI_Controller {
     
                 $tmp_array = array();
                 $tmp_array['questionnaire_subject'] = $row;
-                $tmp_array['questionnaire_item'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item_by_subject($row['id']);
+                $tmp_array['questionnaire_item'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item_by_subject($row['coop_student_questionnaire_subject_id']);
                 array_push($data['data'], $tmp_array);
     
             }

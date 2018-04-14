@@ -22,10 +22,10 @@
                                     <select class="form-control" id="company_id" name="company_id">
                                         <option value="0">ทั้งหมด</option>
                                         <?php foreach($company_name as $row) { ?>
-                                            <?php if($row['id'] == @$current_company) { ?>
-                                                <option value="<?php echo $row['id'];?>" selected><?php echo $row['name_th']; ?></option>
+                                            <?php if($row['company_id'] == @$current_company) { ?>
+                                                <option value="<?php echo $row['company_id'];?>" selected><?php echo $row['company_name_th']; ?></option>
                                             <?php } else { ?>
-                                                <option value="<?php echo $row['id'];?>"><?php echo $row['name_th']; ?></option>
+                                                <option value="<?php echo $row['company_id'];?>"><?php echo $row['company_name_th']; ?></option>
                                             <?php } ?>
                                         <?php } ?>
                                     </select>
@@ -35,12 +35,12 @@
                                     <div class="form-group">
                                     <?php foreach($department_name as $row) { ?>
                                         <div class="form-check form-check-inline mr-5">
-                                            <?php if(@in_array($row['id'], $current_department)) { ?>
-                                                <input type="checkbox" id="department_<?php echo $row['id'];?>" value="<?php echo $row['id'];?>" name="department_id[]" checked>
+                                            <?php if(@in_array($row['department_id'], $current_department)) { ?>
+                                                <input type="checkbox" id="department_<?php echo $row['department_id'];?>" value="<?php echo $row['department_id'];?>" name="department_id[]" checked>
                                             <?php } else { ?>
-                                                <input type="checkbox" id="department_<?php echo $row['id'];?>" value="<?php echo $row['id'];?>" name="department_id[]">
+                                                <input type="checkbox" id="department_<?php echo $row['department_id'];?>" value="<?php echo $row['department_id'];?>" name="department_id[]">
                                             <?php } ?>
-                                            <label for="department_<?php echo $row['id'];?>"><?php echo $row['name']; ?></label>
+                                            <label for="department_<?php echo $row['department_id'];?>"><?php echo $row['department_name']; ?></label>
                                         </div>
                                     <?php } ?>    
                                     </div>  
@@ -130,7 +130,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'สรุปข้อมูลนิสิตฝึกสหกิจประจำปีการศึกษา <?php echo $this->Term->get_current_term()[0]['name'];?>'
+                        text: 'สรุปข้อมูลนิสิตฝึกสหกิจประจำปีการศึกษา <?php echo $this->Term->get_current_term()[0]['term_name'];?>'
                     },
                     scales: {
                         yAxes: [{

@@ -23,15 +23,15 @@
                         <form action=<?php echo site_url("Coop_student/IN_S006/post_report"); ?> method="post" class="form-horizontal">
                           <div class="form-group row">
                             <div class="col-md-6">
-                              <label class="col-md-5" for="text-input">หัวข้อภาษาไทย</label>
-                              <input type="text" id="text-input" name="subject_th" class="form-control" value="<?php echo $subject_report['subject_th']; ?>" required>
+                              <label class="col-md-5" for="report_subject_th">หัวข้อภาษาไทย</label>
+                              <input type="text" id="report_subject_th" name="report_subject_th" class="form-control" value="<?php echo $subject_report['report_subject_th']; ?>" required>
                             </div>
                           </div>
 
                           <div class="form-group row">
                             <div class="col-md-6"> 
-                              <label class="col-md-5" for="text-input">หัวข้อภาษาอังกฤษ</label>
-                              <input type="text" id="text-input" name="subject_en" class="form-control" value="<?php echo $subject_report['subject_en']; ?>" required>
+                              <label class="col-md-5" for="report_subject_en">หัวข้อภาษาอังกฤษ</label>
+                              <input type="text" id="report_subject_en" name="report_subject_en" class="form-control" value="<?php echo $subject_report['report_subject_en']; ?>" required>
                             </div>
                           </div>
 

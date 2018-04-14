@@ -33,42 +33,36 @@ class Management_student_adviser extends CI_controller{
     {
         $return = array();
         //cache
-        foreach(@$this->Adviser->gets_adviser() as $teacher) {
-            $cache['adviser'][$teacher['id']] = $teacher;
+        foreach(@$this->Adviser->gets_adviser() as $adviser) {
+            $cache['adviser'][$adviser['adviser_id']] = $adviser;
         }
         foreach(@$this->Address->gets_address() as $address) {
             $cache['address'][$address['company_id']] = $address;
         }
-        foreach(@$this->Student->gets_student() as $student) {
-            $cache['student'][$student['id']] = $student;
-        }
+        // foreach(@$this->Student->gets_student() as $student) {
+        //     $cache['student'][$student['student_id']] = $student;
+        // }
 
         $company_id = $this->input->get('company_id');
         if($company_id) {
-
             $rows = $this->Coop_Student->gets_coop_student_by_company($company_id);
-
             $company = $this->Company->get_company($company_id)[0];
-            $cache['company'][$company['id']] = $company;
+            $cache['company'][$company['company_id']] = $company;
         } else {
             $rows = $this->Coop_Student->gets_coop_student();
             foreach(@$this->Company->gets_company() as $company) {
-                $cache['company'][$company['id']] = $company;
+                $cache['company'][$company['company_id']] = $company;
             }
         }
         foreach($rows as $row)
         {
-            if(empty($cache['student'][$row['student_id']])) {
-                continue;
-            }
-
             $tmp_array = array();
-            // $tmp_array['student'] = $this->Student->get_student($row['student_id'])[0];
+            $tmp_array['student'] = $this->Student->get_student($row['student_id'])[0];
             
-            $tmp_array['student'] = $cache['student'][$row['student_id']];
-            $tmp_array['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$tmp_array['student']['id']).'">'.$tmp_array['student']['id'].'</a>';            
+            // $tmp_array['student'] = $cache['student'][$row['student_id']];
+            $tmp_array['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$tmp_array['student']['student_id']).'">'.$tmp_array['student']['student_id'].'</a>';            
             if(!$row['adviser_id']) {
-                $tmp_array['adviser']['fullname'] = '-';
+                $tmp_array['adviser']['adviser_fullname'] = '-';
             } else {
                 $tmp_array['adviser'] = @$cache['adviser'][$row['adviser_id']];                
             }
@@ -78,9 +72,9 @@ class Management_student_adviser extends CI_controller{
             
             foreach($cache['adviser'] as $key => $adviser) {
                 if($key == $row['adviser_id']) {
-                    $adviser_Render .= '<option value="'.$key.'" selected>'.$adviser['fullname'].'</option>';
+                    $adviser_Render .= '<option value="'.$key.'" selected>'.$adviser['adviser_fullname'].'</option>';
                 } else {
-                    $adviser_Render .= '<option value="'.$key.'">'.$adviser['fullname'].'</option>';
+                    $adviser_Render .= '<option value="'.$key.'">'.$adviser['adviser_fullname'].'</option>';
                 }
             }
             $adviser_Render .= '</select>';
@@ -88,9 +82,9 @@ class Management_student_adviser extends CI_controller{
             
             
             if(!$row['company_id']) {
-                $tmp_array['company']['name_th'] = '-';
-                $tmp_array['company_address']['province'] = '-';
-                $tmp_array['company_address']['area'] = '-';
+                $tmp_array['company']['company_name_th'] = '-';
+                $tmp_array['company_address']['company_address_province'] = '-';
+                $tmp_array['company_address']['company_address_area'] = '-';
             } else {
                 $tmp_array['company'] = @$cache['company'][$row['company_id']];
                 $tmp_array['company_address'] = @$cache['address'][$row['company_id']];                
@@ -140,19 +134,20 @@ class Management_student_adviser extends CI_controller{
     {
         $this->breadcrumbs->push('แผนที่', '/Officer/Management_student_adviser/map_view');
         $data = [];
+        $data['company'] = [];
 
         foreach($this->Company->gets_company_has_coop_student() as $company) {
-            $tmp['company_name_th'] = $company['name_th'];
-            $tmp['map'] = @$this->Address->get_address_by_company($company['id'])[0];
+            $tmp['company_name_th'] = $company['company_name_th'];
+            $tmp['map'] = @$this->Address->get_address_by_company($company['company_id'])[0];
 
             //check adviser in student
             $tmp['pin_color'] = 'FE7569';   
-            $check_student = $this->Coop_Student->gets_coop_student_no_adviser_by_company($company['id']);
+            $check_student = $this->Coop_Student->gets_coop_student_no_adviser_by_company($company['company_id']);
             if(count($check_student) < 1) {
                 $tmp['pin_color'] = '1aff1a';   
                 $tmp['message'] = 'นิสิตสหกิจมีอาจารย์ที่ปรึกษาครบทุกคน';
             } else {
-                $tmp['message'] = 'มีนิสิตจำนวน '.count($check_student).' คน ไม่มีอาจารย์ที่ปรึกษา<br><br><a href=\''.site_url('Officer/Management_student_adviser/?company_id='.$company['id']).'\' target=\'_blank\'>จัดอาจารย์ที่ปรึกษาให้นิสิต</a>';
+                $tmp['message'] = 'มีนิสิตจำนวน '.count($check_student).' คน ไม่มีอาจารย์ที่ปรึกษา<br><br><a href=\''.site_url('Officer/Management_student_adviser/?company_id='.$company['company_id']).'\' target=\'_blank\'>จัดอาจารย์ที่ปรึกษาให้นิสิต</a>';
             }
             
             if(@$tmp['map']) {

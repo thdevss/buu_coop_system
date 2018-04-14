@@ -17,7 +17,7 @@
                     echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
                   }
                   
-                  if(!$map['latitude'] && !$map['longitude']) {
+                  if(!$map['company_address_latitude'] && !$map['company_address_longitude']) {
                     echo '<div class="alert alert-warning">โปรดระบุพิกัดที่ทำงาน</div>';
                   }
                   ?>
@@ -50,8 +50,8 @@
     
 <script>
   function initMap() {
-    <?php if($map['latitude'] && $map['longitude']) { ?>
-    renderMap(<?php echo $map['latitude'];?>, <?php echo $map['longitude'];?>)
+    <?php if($map['company_address_latitude'] && $map['company_address_longitude']) { ?>
+    renderMap(<?php echo $map['company_address_latitude'];?>, <?php echo $map['company_address_longitude'];?>)
     <?php } ?>
   }
 
@@ -134,8 +134,8 @@
 
   $( ".saveMapBtn" ).click(function() {
     var data = {}
-    data['latitude'] = save_latitude
-    data['longitude'] = save_longitude
+    data['company_address_latitude'] = save_latitude
+    data['company_address_longitude'] = save_longitude
 
     jQuery.post(SITE_URL+"/company/company_map/ajax_post/", data, function(response) {
         //alert

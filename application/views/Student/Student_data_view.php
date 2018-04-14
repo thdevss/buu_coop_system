@@ -21,9 +21,9 @@
                     ?>
                     <div class="col-sm-4">
                         <center>
-                        <img src="http://reg.buu.ac.th/registrar/getstudentimage.asp?id=<?php echo $student['id']; ?>" class="img-circle" style="width:280px;">
+                        <img src="http://reg.buu.ac.th/registrar/getstudentimage.asp?id=<?php echo $student['student_id']; ?>" class="img-circle" style="width:280px;">
                         <br></br>
-                        <h4><?php echo $student['id']; ?></h4>
+                        <h4><?php echo $student['student_id']; ?></h4>
                         <h5><?php echo $student_profile['Student_Prefix'].' '.$student_profile['Student_Name_Th'].' '.$student_profile['Student_Lname_Th'];?></h5>
                         </center>
                         </div>
@@ -32,8 +32,8 @@
                             <tr><h3>ข้อมูลทั่วไป</h3></tr>
                             <tr><td width="25%">ชื่อภาษาอังกฤษ</td><td><font color="#0000ff"><?php echo $student_profile['Student_Name_Eng'].' '.$student_profile['Student_Lname_Eng'];?></font></td</tr>
                             <tr><td>คณะ</td><td><font color="#0000ff">วิทยาการสารสนเทศ</font></td></tr>
-                            <tr><td>สาขา</td><td><font color="#0000ff"><?php echo $department['name']; ?></font></td></tr>
-                            <tr><td>ปีการศึกษา </td><td><font color="#0000ff"><?php echo $term['year']; ?>&nbsp;<?php echo $term['name']; ?></font></td></tr>
+                            <tr><td>สาขา</td><td><font color="#0000ff"><?php echo $department['department_name']; ?></font></td></tr>
+                            <tr><td>ปีการศึกษา </td><td><font color="#0000ff"><?php echo $term['term_name']; ?></font></td></tr>
                             <tr><td>หลักสูตร</td><td><font color="#0000ff"><?php echo $student_profile['Course'];?></font></td></tr>
                             <tr>
                               <td>อาจารย์ที่ปรึกษา</td>
@@ -55,7 +55,7 @@
                           </table>
                         <table class="table table-bordered ">
                             <tr><h3>ข้อมูลสหกิจ</h3></tr>
-                            <tr><td>สถานะ</td><td><font color=""><?php echo $coop_status_type['status_name']; ?></font></td></tr>
+                            <tr><td>สถานะ</td><td><font color=""><?php echo $coop_status_type['coop_status_name']; ?></font></td></tr>
                             <tr><td width="25%">ชั่วโมงอบรม</td><td>
                             <?php if($pass_training) { ?>
                               <font color="#006600">ผ่าน</font>
@@ -71,11 +71,7 @@
                             <?php } ?>
                             </td></tr>
                             <tr><td>สถานะสถานประกอบการ</td><td>
-                            <?php if($student['company_status'] == '1') { ?>
-                              <font color="#006600">ผ่านการคัดเลือกจากสถานประกอบการ</font>
-                            <?php } else { ?>
-                                <font color="">รอการตอบกลับ</font>
-                            <?php } ?>
+                            <?php echo $company_status['company_status_name']; ?>
                             </td></tr>
                             
                           </table>

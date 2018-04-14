@@ -73,11 +73,11 @@ class Company extends CI_Controller {
     {
         //insert
         $this->load->library('form_validation');        
-        $this->form_validation->set_rules('company_name', 'ชื่อสถานประกอบการ', 'trim|required|is_unique[company.name_th]');
+        $this->form_validation->set_rules('company_name', 'ชื่อสถานประกอบการ', 'trim|required|is_unique[tb_company.company_name_th]');
 
         if ($this->form_validation->run() != FALSE) {
             
-            $insert['name_th'] = $this->input->post('company_name');
+            $insert['company_name_th'] = $this->input->post('company_name');
             
  
             if($this->Company->insert_company($insert)) {

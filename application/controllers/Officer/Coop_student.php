@@ -34,18 +34,18 @@ class Coop_student extends CI_Controller {
         public function ajax_list()
         {
             $cache = array();
-            foreach($this->Student->gets_student() as $tmp) {
-                $cache['student'][$tmp['id']]['fullname'] = $tmp['fullname'];
-                $cache['student'][$tmp['id']]['id'] = $tmp['id'];
-            }
+            // foreach($this->Student->gets_student() as $tmp) {
+            //     $cache['student'][$tmp['id']]['fullname'] = $tmp['fullname'];
+            //     $cache['student'][$tmp['id']]['id'] = $tmp['id'];
+            // }
             foreach($this->Job->gets_job() as $tmp) {
-                $cache['job'][$tmp['id']]['position_title'] = $tmp['position_title'];
+                $cache['job'][$tmp['job_id']]['job_title'] = $tmp['job_title'];
             }
             foreach($this->Company->gets_company() as $tmp) {
-                $cache['company'][$tmp['id']]['name_th'] = $tmp['name_th'];
+                $cache['company'][$tmp['company_id']]['company_name_th'] = $tmp['company_name_th'];
             }
             foreach($this->Trainer->gets_trainer() as $tmp) {
-                $cache['trainer'][$tmp['id']]['fullname'] = $tmp['fullname'];
+                $cache['trainer'][$tmp['person_id']]['person_fullname'] = $tmp['person_fullname'];
             }
 
             $return = array();
@@ -54,9 +54,9 @@ class Coop_student extends CI_Controller {
             foreach($this->Coop_Student->gets_coop_student() as $row) {
                 //get student
                 $tmp_array = array();
-                $tmp_array['student'] = $cache['student'][$row['student_id']];
-                $tmp_array['student']['id'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$tmp_array['student']['id']).'">'.$tmp_array['student']['id'].'</a>';
-                $tmp_array['job_position'] = $cache['job'][$row['company_job_position_id']];
+                $tmp_array['student'] = $this->Student->get_student($row['student_id'])[0];
+                $tmp_array['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$tmp_array['student']['student_id']).'">'.$tmp_array['student']['student_id'].'</a>';
+                $tmp_array['job_position'] = $cache['job'][$row['job_id']];
                 $tmp_array['company'] = @$cache['company'][$row['company_id']];
 
                 if($row['trainer_id'] < 1) {

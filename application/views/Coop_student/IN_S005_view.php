@@ -44,17 +44,17 @@
                                         <?php echo ++$no; ?>
                                       </td>
                                       <td colspan="6">
-                                        <input type="text" class="form-control" name="work_subject[<?php echo $i;?>]" placeholder="ชื่องาน" value="<?php echo @$rows[$i]['work_subject'];?>">
+                                        <input type="text" class="form-control" name="plan_work_subject[<?php echo $i;?>]" placeholder="ชื่องาน" value="<?php echo @$rows[$i]['plan_work_subject'];?>">
                                       </td>
                                           <?php 
-                                            if(@$rows[$i]['date_period']) {
-                                              $choice = explode(",", $rows[$i]['date_period']);
+                                            if(@$rows[$i]['plan_time_period']) {
+                                              $choice = explode(",", $rows[$i]['plan_time_period']);
                                             } else {
                                               $choice = [];
                                             }
                                             for($K=0;$K<16;$K++) { ?>
                                               <td>                       
-                                                <input <?php if(in_array($K, $choice)) echo 'checked'; ?> class="form-check-input" type="checkbox" value="<?php echo $K;?>" name="date_period[<?php echo $i;?>][]" style="margin-left: unset !important; position: unset !important;">
+                                                <input <?php if(in_array($K, $choice)) echo 'checked'; ?> class="form-check-input" type="checkbox" value="<?php echo $K;?>" name="plan_time_period[<?php echo $i;?>][]" style="margin-left: unset !important; position: unset !important;">
                                               </td>    
                                             <?php } ?>                                             
                                       </tr>                                                             

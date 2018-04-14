@@ -36,9 +36,11 @@
 function initMap() {
     var locations = [
         <?php 
-        foreach($company as $row) {
-            echo '["'.$row['company_name_th'].'", '.$row['map']['latitude'].', '.$row['map']['longitude'].', "'.$row['pin_color'].'", "'.$row['message'].'"],';
-        } 
+        if( count($company) > 0 ) {
+          foreach($company as $row) {
+            echo '["'.$row['company_name_th'].'", '.$row['map']['company_address_latitude'].', '.$row['map']['company_address_longitude'].', "'.$row['pin_color'].'", "'.$row['message'].'"],';
+          } 
+        }
         ?>
       
     ];

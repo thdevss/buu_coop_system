@@ -13,7 +13,7 @@
 
                 <div class="card">
                     <form action="<?php echo $form_url;?>" method="post">
-                    <input type="hidden" name="company_id" value="<?php echo $company['id'];?>">
+                    <input type="hidden" name="company_id" value="<?php echo $company['company_id'];?>">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> ชื่อผู้จัดการสถานประกอบการ/หัวหน้าหน่วยงาน
                     </div>
@@ -50,7 +50,7 @@
                                 <select id="trainer_lists" name="contact_person_id" class="form-control">
                                 <option >Please select</option>
                                     <?php foreach($company_employee as $row){ ?>
-                                        <option value="<?php echo $row['id'];?>" <?php if($row['id'] == $company['contact_person_id']) echo 'selected'; ?>><?php echo $row['fullname']."/".$row['position']."/".$row['department']."/".$row['telephone']."/".$row['fax_number']."/".$row['email'];?></option>
+                                        <option value="<?php echo $row['person_id'];?>" <?php if($row['person_id'] == $company['contact_person_id']) echo 'selected'; ?>><?php echo $row['person_fullname']."/".$row['person_position']."/".$row['person_department']."/".$row['person_telephone']."/".$row['person_fax_number']."/".$row['person_email'];?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -177,32 +177,32 @@ $(document).ready(function(){
 
             <!-- Modal body -->
             <form id="save_trainer">
-            <input type="hidden" name="company_id" value="<?php echo $company['id'];?>">
+            <input type="hidden" name="company_id" value="<?php echo $company['company_id'];?>">
             <div class="modal-body">
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label for="fullname">ชื่อ-นามสกุล</label><code>*</code>
-                        <input type="text" id="fullname" name="fullname" class="form-control" placeholder="ชื่อ-นามสกุล" value="" required>
+                        <input type="text" id="person_fullname" name="person_fullname" class="form-control" placeholder="ชื่อ-นามสกุล" value="" required>
                     </div>
                     <div class="form-group col-md-12">
                         <label for"email">E-mail</label><code>*</code>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="E-mail" required>
+                        <input type="email" id="person_email" name="person_email" class="form-control" placeholder="E-mail" required>
                     </div>
                     <div class="form-group col-md-12">
                         <label for"position">ตำเเหน่ง</label><code>*</code>
-                        <input type="text" id="position" name="position" class="form-control" placeholder="ตำเเหน่ง" required>
+                        <input type="text" id="person_position" name="person_position" class="form-control" placeholder="ตำเเหน่ง" required>
                     </div>
                     <div class="form-group col-md-12">
                         <label for"department">แผนกงาน</label><code>*</code>
-                        <input type="text" id="department" name="department" class="form-control" placeholder="เเผนกงาน" required>
+                        <input type="text" id="person_department" name="person_department" class="form-control" placeholder="เเผนกงาน" required>
                     </div>
                     <div class="form-group col-md-12">
                         <label for"telephone">เบอร์โทร</label>
-                        <input type="text" id="telephone" name="telephone" class="form-control" placeholder="เบอร์โทร" required>
+                        <input type="text" id="person_telephone" name="person_telephone" class="form-control" placeholder="เบอร์โทร" required>
                     </div>  
                     <div class="form-group col-md-12">
                         <label for"fax_number">FAX</label>
-                        <input type="text" id="fax_number" name="fax_number" class="form-control" placeholder="FAX">
+                        <input type="text" id="person_fax_number" name="person_fax_number" class="form-control" placeholder="FAX">
                     </div>
    
                 </div>
@@ -238,7 +238,7 @@ jQuery( "#save_trainer" ).submit(function( event ) {
                 jQuery('#trainer_lists').append($('<option>', {
                     selected: true,
                     value: result.last_id,
-                    text: jQuery("#save_trainer input[name=fullname]").val()+' (อีเมล: '+jQuery("#save_trainer input[name=email]").val()+') (เบอร์โทรศัพท์: '+jQuery("#save_trainer input[name=telephone]").val()+')'
+                    text: jQuery("#save_trainer input[name=person_fullname]").val()+' (อีเมล: '+jQuery("#save_trainer input[name=person_email]").val()+') (เบอร์โทรศัพท์: '+jQuery("#save_trainer input[name=person_telephone]").val()+')'
                 }));
                 
                 swal("สำเร็จ", result.text, result.color);                

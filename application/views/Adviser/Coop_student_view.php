@@ -28,12 +28,12 @@
                         <?php $i=1; foreach($data as $row) {?>
                         <tr>
                             <td class="text-center"><?php echo $i++; ?></td>
-                            <td><?php echo $row['student']['id']; ?></td>                      
-                            <td><?php echo $row['student']['fullname']; ?></td>
-                            <td><?php echo $row['department']['name']; ?></td>
-                            <td><?php echo $row['company']['name_th']; ?> (<?php echo $row['company']['name_en']; ?>)</td>
-                            <td><?php echo $row['company_address']['province']; ?></td>
-                            <td>X001</td>
+                            <td><?php echo $row['student']['student_id']; ?></td>                      
+                            <td><?php echo $row['student']['student_fullname']; ?></td>
+                            <td><?php echo $row['department']['department_name']; ?></td>
+                            <td><?php echo $row['company']['company_name_th']; ?> (<?php echo $row['company']['company_name_en']; ?>)</td>
+                            <td><?php echo $row['company_address']['company_address_province']; ?></td>
+                            <td>?</td>
                         </tr>
                         <?php } ?>
                     </tbody>

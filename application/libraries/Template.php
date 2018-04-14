@@ -10,6 +10,18 @@ class Template {
         $data['user'] = $login_data;
         $data['user_info'] = $CI->BUUMember->get($login_data->login_type, $login_data->login_value)[0];
 
+        if($login_data->login_type == 'student' ||
+            $login_data->login_type == 'coop_student') {
+            $data['user_info']['fullname'] = $data['user_info']['student_fullname'];
+        } else if($login_data->login_type == 'adviser') {
+            $data['user_info']['fullname'] = $data['user_info']['adviser_fullname'];
+        } else if($login_data->login_type == 'officer') {
+            $data['user_info']['fullname'] = $data['user_info']['officer_fullname'];
+        } else if($login_data->login_type == 'company') {
+            $data['user_info']['fullname'] = $data['user_info']['person_fullname'];
+        }
+
+
         
         if($login_data->login_type == 'officer') {
             $data['terms'] = $CI->Term->gets_term(); //get terms
@@ -24,7 +36,7 @@ class Template {
         ) {
             $data['profile_image'] = 'http://reg.buu.ac.th/registrar/getstudentimage.asp?id='.$data['user']->login_value;
         } else {
-            $data['profile_image'] = 'http://via.placeholder.com/150x150/000/fff?text='.$data['user_info']->fullname[0];
+            $data['profile_image'] = 'http://via.placeholder.com/150x150/000/fff?text='.$data['user_info']['fullname'][0];
         }
 
         $CI->load->view('template/header.php', $data);

@@ -29,13 +29,13 @@
                         <?php $i=1; foreach($data as $row) {?>
                         <tr>
                             <td class="text-center"><?php echo $i++; ?></td>
-                            <td class="text-left"><?php echo $row['student']['id']; ?></td>                      
-                            <td class="text-left"><?php echo $row['student']['fullname']; ?></td>
-                            <td class="text-left"><?php echo $row['department']['name']; ?></td>
-                            <td class="text-left"><?php echo $row['company']['name_th']; ?> (<?php echo $row['company']['name_en']; ?>)</td>
-                            <td class="text-left"><?php echo $row['company_address']['province']; ?></td>
+                            <td class="text-left"><?php echo $row['student']['student_id']; ?></td>                      
+                            <td class="text-left"><?php echo $row['student']['student_fullname']; ?></td>
+                            <td class="text-left"><?php echo $row['department']['department_name']; ?></td>
+                            <td class="text-left"><?php echo $row['company']['company_name_th']; ?> (<?php echo $row['company']['company_name_en']; ?>)</td>
+                            <td class="text-left"><?php echo $row['company_address']['company_address_province']; ?></td>
                             <td class="text-center">
-                                <?php echo anchor('Adviser/Report_Form_plan/title_plan/'.$row['student']['id']  , '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn btn-primary"');?>
+                                <?php echo anchor('Adviser/Report_Form_plan/student_plan/'.$row['student']['student_id']  , '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn btn-primary"');?>
                             </td>
                         </tr>
                         <?php } ?>

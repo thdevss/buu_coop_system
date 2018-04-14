@@ -35,11 +35,11 @@
                             <tbody>
                             <?php foreach($company_questionnaire_subject as $row){ ?>
                               <tr>
-                                <td><?php echo $row['number'];?></td>
-                                <td><?php echo $row['title'];?></td>
+                                <td><?php echo $row['coop_company_questionnaire_subject_number'];?></td>
+                                <td><?php echo $row['coop_company_questionnaire_subject_title'];?></td>
                                
                                 <td class="text-center">
-                                    <?php echo anchor('Officer/Assessment_company_Form/get_company_questionnaire_item/'.$row['id'], 'จัดการหัวข้อย่อย', 'class="btn btn-primary"');?>                              
+                                    <?php echo anchor('Officer/Assessment_company_Form/get_company_questionnaire_item/'.$row['coop_company_questionnaire_subject_id'], 'จัดการหัวข้อย่อย', 'class="btn btn-primary"');?>                              
                                 </td>
                               </tr>
                                 <?php } ?>

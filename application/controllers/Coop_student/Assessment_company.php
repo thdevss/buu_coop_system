@@ -52,13 +52,13 @@ class Assessment_company extends CI_Controller {
 		{
 			$tmp_array = array();
 			$tmp_array['questionnaire_subject'] = $row;
-			$tmp_array['questionnaire_item'] = $this->Company_Assessment_Form->get_company_questionnaire_item_by_subject($row['id']);
+			$tmp_array['questionnaire_item'] = $this->Company_Assessment_Form->get_company_questionnaire_item_by_subject($row['coop_company_questionnaire_subject_id']);
 			array_push($data['data'], $tmp_array);
 		}
 		
 		$data['result'] = [];
 		foreach($this->Company_Assessment_Form->get_company_form_item_result_by_company_and_student($coop_student['company_id'], $student_id) as $result) {
-			$data['result'][$result['item_id']] = $result['score'];
+			$data['result'][$result['item_id']] = $result['company_has_coop_company_questionnaire_item_score'];
 		}
 		// print_r($data);
 
@@ -80,20 +80,21 @@ class Assessment_company extends CI_Controller {
 				'student_id' => $student_id,
 				'trainer_id' => $coop_student['trainer_id'],
 				'company_id' => $coop_student['company_id'],
-				'datetime' => date('Y-m-d H:i:s'),
+				'company_has_coop_company_questionnaire_item_datetime' => date('Y-m-d H:i:s'),
 				'term_id' => $term_id
 			];
 
 			if(is_numeric($result)) {
-				$insert['score'] = $result;
+				$insert['company_has_coop_company_questionnaire_item_score'] = $result;
 			} else {
-				$insert['comment'] = $result;
+				$insert['company_has_coop_company_questionnaire_item_comment'] = $result;
             }
 			// print_r($insert);
 			$sql_status = false;
 			
 			$sql_status = $this->Company_Assessment_Form->save_company_form_result($insert);
 		}
+		
 
 		if($sql_status) {
 			//chek=c if print

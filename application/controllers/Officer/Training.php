@@ -60,14 +60,14 @@ class Training extends CI_Controller {
     {
         //check if exist
         $this->load->library('form_validation');        
-        $this->form_validation->set_rules('id', 'id', 'trim|required|numeric');
+        $this->form_validation->set_rules('train_id', 'id', 'trim|required|numeric');
         
         if ($this->form_validation->run() != FALSE) {
-            $id = $this->input->post('id');            
+            $id = $this->input->post('train_id');            
 
-            if(@$this->DB_train->get($id)) {
+            if(@$this->Training->get_training($id)) {
                 //delete
-                $this->DB_train->delete($id);
+                $this->Training->delete_training($id);
                 return $this->index('success_delete');
                 die();
             } else {
@@ -139,17 +139,17 @@ class Training extends CI_Controller {
         //insert
         $this->load->library('form_validation');        
         $this->form_validation->set_rules('train_type', 'ประเภทการอบรม', 'trim|required|numeric');
-        $this->form_validation->set_rules('title', 'ชื่อโครงการอบรม', 'trim|required');
-        $this->form_validation->set_rules('lecturer', 'วิทยากร', 'trim|required');
-        $this->form_validation->set_rules('number_of_seat', 'จำนวนที่นั่งเปิดรับ', 'trim|required|numeric');
-        $this->form_validation->set_rules('date', 'วันที่อบรม', 'trim|required');
-        $this->form_validation->set_rules('train_location', 'ห้องอบรม', 'trim|required|numeric');
-        $this->form_validation->set_rules('register_period', 'วันเวลาเปิดรับสมัคร', 'trim|required');
-        $this->form_validation->set_rules('number_of_hour', 'จำนวนชั่วโมงที่ได้รับ', 'trim|required|numeric');
+        $this->form_validation->set_rules('train_title', 'ชื่อโครงการอบรม', 'trim|required');
+        $this->form_validation->set_rules('train_lecturer', 'วิทยากร', 'trim|required');
+        $this->form_validation->set_rules('train_seat', 'จำนวนที่นั่งเปิดรับ', 'trim|required|numeric');
+        $this->form_validation->set_rules('train_date', 'วันที่อบรม', 'trim|required');
+        $this->form_validation->set_rules('train_location_id', 'ห้องอบรม', 'trim|required|numeric');
+        $this->form_validation->set_rules('train_register_date', 'วันเวลาเปิดรับสมัคร', 'trim|required');
+        $this->form_validation->set_rules('train_hour', 'จำนวนชั่วโมงที่ได้รับ', 'trim|required|numeric');
 
         if ($this->form_validation->run() != FALSE) {
             //check train_location
-            if(!$this->Training->get_location($this->input->post('train_location'))) {
+            if(!$this->Training->get_location($this->input->post('train_location_id'))) {
                 return $this->add('error_location');
                 die();
             }
@@ -161,13 +161,13 @@ class Training extends CI_Controller {
 
             //add
             $insert['train_type_id'] = $this->input->post('train_type');
-            $insert['title'] = $this->input->post('title');
-            $insert['lecturer'] = $this->input->post('lecturer');
-            $insert['number_of_seat'] = $this->input->post('number_of_seat');
-            $insert['date'] = $this->input->post('date');
-            $insert['train_location_id'] = $this->input->post('train_location');
-            $insert['register_period'] = $this->input->post('register_period');
-            $insert['number_of_hour'] = $this->input->post('number_of_hour');
+            $insert['train_title'] = $this->input->post('train_title');
+            $insert['train_lecturer'] = $this->input->post('train_lecturer');
+            $insert['train_seat'] = $this->input->post('train_seat');
+            $insert['train_date'] = $this->input->post('train_date');
+            $insert['train_location_id'] = $this->input->post('train_location_id');
+            $insert['train_register_date'] = $this->input->post('train_register_date');
+            $insert['train_hour'] = $this->input->post('train_hour');
             
  
             if($this->Training->insert_training($insert)) {
@@ -187,16 +187,16 @@ class Training extends CI_Controller {
     {
         //insert
         $this->load->library('form_validation');        
-        $this->form_validation->set_rules('id', 'primary_id', 'trim|required|numeric');
+        $this->form_validation->set_rules('train_id', 'primary_id', 'trim|required|numeric');
         $this->form_validation->set_rules('train_type', 'ประเภทการอบรม', 'trim|required|numeric');
-        $this->form_validation->set_rules('title', 'ชื่อโครงการอบรม', 'trim|required');
-        $this->form_validation->set_rules('lecturer', 'วิทยากร', 'trim|required');
-        $this->form_validation->set_rules('number_of_seat', 'จำนวนที่นั่งเปิดรับ', 'trim|required|numeric');
-        $this->form_validation->set_rules('date', 'วันที่อบรม', 'trim|required');
-        $this->form_validation->set_rules('train_location', 'ห้องอบรม', 'trim|required|numeric');
-        $this->form_validation->set_rules('register_period', 'วันเวลาเปิดรับสมัคร', 'trim|required');
-        $this->form_validation->set_rules('number_of_hour', 'จำนวนชั่วโมงที่ได้รับ', 'trim|required|numeric');
-        $id = $this->input->post('id');
+        $this->form_validation->set_rules('train_title', 'ชื่อโครงการอบรม', 'trim|required');
+        $this->form_validation->set_rules('train_lecturer', 'วิทยากร', 'trim|required');
+        $this->form_validation->set_rules('train_seat', 'จำนวนที่นั่งเปิดรับ', 'trim|required|numeric');
+        $this->form_validation->set_rules('train_date', 'วันที่อบรม', 'trim|required');
+        $this->form_validation->set_rules('train_location_id', 'ห้องอบรม', 'trim|required|numeric');
+        $this->form_validation->set_rules('train_register_date', 'วันเวลาเปิดรับสมัคร', 'trim|required');
+        $this->form_validation->set_rules('train_hour', 'จำนวนชั่วโมงที่ได้รับ', 'trim|required|numeric');
+        $id = $this->input->post('train_id');
 
         if ($this->form_validation->run() != FALSE) {
             //check primary key
@@ -205,7 +205,7 @@ class Training extends CI_Controller {
                 die();
             }
             //check train_location
-            if(!$this->Training->get_location($this->input->post('train_location'))) {
+            if(!$this->Training->get_location($this->input->post('train_location_id'))) {
                 return $this->edit($id, 'error_location');
                 die();
             }
@@ -217,13 +217,13 @@ class Training extends CI_Controller {
 
             //add
             $insert['train_type_id'] = $this->input->post('train_type');
-            $insert['title'] = $this->input->post('title');
-            $insert['lecturer'] = $this->input->post('lecturer');
-            $insert['number_of_seat'] = $this->input->post('number_of_seat');
-            $insert['date'] = $this->input->post('date');
-            $insert['train_location_id'] = $this->input->post('train_location');
-            $insert['register_period'] = $this->input->post('register_period');
-            $insert['number_of_hour'] = $this->input->post('number_of_hour');
+            $insert['train_title'] = $this->input->post('train_title');
+            $insert['train_lecturer'] = $this->input->post('train_lecturer');
+            $insert['train_seat'] = $this->input->post('train_seat');
+            $insert['train_date'] = $this->input->post('train_date');
+            $insert['train_location_id'] = $this->input->post('train_location_id');
+            $insert['train_register_date'] = $this->input->post('train_register_date');
+            $insert['train_hour'] = $this->input->post('train_hour');
             
  
             if($this->Training->update_training($id, $insert)) {
@@ -272,7 +272,7 @@ class Training extends CI_Controller {
             $student_info = @$this->Student->get_student($student['student_id'])[0];
             $data['students'][] = array(
                 'student_id' => $student['student_id'],
-                'student_fullname' => $student_info['fullname'],
+                'student_fullname' => $student_info['student_fullname'],
                 'student_barcode' => 'https://barcode.tec-it.com/barcode.ashx?data='.$student['student_id'].'&code=Code128&dpi=96&dataseparator=',
             );
         }
@@ -281,7 +281,7 @@ class Training extends CI_Controller {
         $data['training'] = $this->Training->get_training($training_id)[0];
         $data['training']['train_type'] = $this->Training->get_type($data['training']['train_type_id'])[0];
         $data['training']['train_location'] = $this->Training->get_location($data['training']['train_location_id'])[0];
-        $data['training']['note'] = thaiDate($data['training']['date'], true);
+        $data['training']['note'] = thaiDate($data['training']['train_date'], true);
         
         // add breadcrumbs
         $this->breadcrumbs->push('จัดการข้อมูลการอบรม', '/Officer/Training/index');
@@ -305,6 +305,7 @@ class Training extends CI_Controller {
                 rediretct('/Officer', 'refresh');
                 die();
             }
+            $training_data['train_seat'] = (int) $training_data['train_seat'];
 
             $config['upload_path']          = './uploads/';
             $config['allowed_types']        = 'xlsx';
@@ -330,13 +331,13 @@ class Training extends CI_Controller {
                     'success' => 0,
                     'error' => 0,
                 ];
-                
                 foreach($xlsx->getSheetData($sheet) as $key => $row) {
                     if($key == 0) {
                         continue;
                     }
+                    echo '.';
 
-                    if($key > $training_data['number_of_seat']) {
+                    if($key > $training_data['train_seat']) {
                         $count['error']++;
                         continue;
                     } else {
@@ -350,7 +351,6 @@ class Training extends CI_Controller {
                         }
                     }
                 }
-                
 
                 unlink($file['full_path']);
                 $this->session->set_flashdata('form-alert', 'เพิ่มนิสิตได้ทั้งหมด '.$count['success'].' คน, เพิ่มไม่สำเร็จ '.$count['error'].' คน');
@@ -363,66 +363,66 @@ class Training extends CI_Controller {
         }
     }
 
-    public function student_list_excel($training_id)
-    {
-        //to excel
-        require(FCPATH.'/application/libraries/XLSXWriter/xlsxwriter.class.php');
-        require(FCPATH.'/application/libraries/XLSXWriter/xlsxwriterplus.class.php');
+    // public function student_list_excel($training_id)
+    // {
+    //     //to excel
+    //     require(FCPATH.'/application/libraries/XLSXWriter/xlsxwriter.class.php');
+    //     require(FCPATH.'/application/libraries/XLSXWriter/xlsxwriterplus.class.php');
         
 
-        $filename = "example.xlsx";
-        header('Content-disposition: attachment; filename="'.XLSXWriter::sanitize_filename($filename).'"');
-        header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-        header('Content-Transfer-Encoding: binary');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
+    //     $filename = "example.xlsx";
+    //     header('Content-disposition: attachment; filename="'.XLSXWriter::sanitize_filename($filename).'"');
+    //     header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+    //     header('Content-Transfer-Encoding: binary');
+    //     header('Cache-Control: must-revalidate');
+    //     header('Pragma: public');
 
-        $writer = new XLSWriterPlus();
-        //get student
-        $header = array(
-            '' => 'string',
-            '' => 'string',
-            '' => 'string',
-            '' => 'string',
-            '' => 'string'
-        );
+    //     $writer = new XLSWriterPlus();
+    //     //get student
+    //     $header = array(
+    //         '' => 'string',
+    //         '' => 'string',
+    //         '' => 'string',
+    //         '' => 'string',
+    //         '' => 'string'
+    //     );
         
-        $rows[] = array(
-            'รายชื่อนิสิตเข้าร่วมอบรมโครงการ xxx yyyy วันที่ xx-xx-2018', '', '', '', ''
-        );
-        $rows[] = array(
-            'ลำดับ',
-            'บาร์โค้ด',
-            'รหัสนิสิต',
-            'ชื่อ - นามสกุล',
-            'ลายเซ็นต์',
-        );
+    //     $rows[] = array(
+    //         'รายชื่อนิสิตเข้าร่วมอบรมโครงการ xxx yyyy วันที่ xx-xx-2018', '', '', '', ''
+    //     );
+    //     $rows[] = array(
+    //         'ลำดับ',
+    //         'บาร์โค้ด',
+    //         'รหัสนิสิต',
+    //         'ชื่อ - นามสกุล',
+    //         'ลายเซ็นต์',
+    //     );
 
-        foreach($this->Training->gets_student_register_train($training_id) as $key => $student) {
-            $student_info = $this->Student->get_student($student['student_id'])[0];
-            $rows[] = array(
-                ++$key,
-                '',
-                $student['student_id'],
-                $student_info['fullname'],
-                ''
-            );
-        }
-        $format = array(
-            'font'=>'THSarabunPSK',
-            'font-size'=>16, 
-            'wrap_text'=>true
-        );
+    //     foreach($this->Training->gets_student_register_train($training_id) as $key => $student) {
+    //         $student_info = $this->Student->get_student($student['student_id'])[0];
+    //         $rows[] = array(
+    //             ++$key,
+    //             '',
+    //             $student['student_id'],
+    //             $student_info['fullname'],
+    //             ''
+    //         );
+    //     }
+    //     $format = array(
+    //         'font'=>'THSarabunPSK',
+    //         'font-size'=>16, 
+    //         'wrap_text'=>true
+    //     );
 
-        $writer = new XLSXWriter();
-        $writer->setAuthor('from Cooperative System, BUU');
-        foreach($rows as $row) {
-            $writer->writeSheetRow('Sheet1', $row, $format);            
-        }
-        $writer->markMergedCell('Sheet1', $start_row=0, $start_col=0, $end_row=0, $end_col=4);
+    //     $writer = new XLSXWriter();
+    //     $writer->setAuthor('from Cooperative System, BUU');
+    //     foreach($rows as $row) {
+    //         $writer->writeSheetRow('Sheet1', $row, $format);            
+    //     }
+    //     $writer->markMergedCell('Sheet1', $start_row=0, $start_col=0, $end_row=0, $end_col=4);
             
-        $writer->writeToStdOut();
-    }
+    //     $writer->writeToStdOut();
+    // }
 
 
 

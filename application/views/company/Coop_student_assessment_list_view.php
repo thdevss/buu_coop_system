@@ -35,11 +35,11 @@
                     foreach($data as $row) { ?>
                       <tr>
                         <td class="text-center"> <?php echo $i++; ?></td>
-                        <td><?php echo $row['student']['id'];?></td>
-                        <td><?php echo $row['student']['fullname'];?></td>
-                        <td class=" text-right">3.52</td>
-                        <td><?php echo $row['department']['name'];?></td>
-                        <td><?php echo $row['company_job_position']['position_title']?></td>
+                        <td><?php echo $row['student']['student_id'];?></td>
+                        <td><?php echo $row['student']['student_fullname'];?></td>
+                        <td class="text-right"><?php echo $row['student']['student_gpax'];?></td>
+                        <td><?php echo $row['department']['department_name'];?></td>
+                        <td><?php echo $row['company_job_position']['job_title']?></td>
                         <td class="text-center"><?php echo anchor('company/assessmentstudent/form/'.$row['assessment_student']['student_id'], 'ประเมินผล', 'class="btn btn-primary"');?></td>
                       </tr>
                     <?php } ?>

@@ -39,16 +39,16 @@
                                 <td class="text-center">
                                 <?php echo $i++; ?>
                                 </td>
-                                <td class="text-left"><?php echo $row['name_th'];?> (<?php echo $row['name_en'];?>)</td>
-                                <td class="text-right"><?php echo $row['total_employee']; ?></td>
+                                <td class="text-left"><?php echo $row['company_name_th'];?> (<?php echo $row['company_name_en'];?>)</td>
+                                <td class="text-right"><?php echo $row['company_total_employee']; ?></td>
                                 <td class="form-inline">
-                                      <?php echo anchor('Officer/Trainer/lists/'.$row['id'], '<i class="fa fa-user-circle-o"></i> เจ้าหน้าที่', 'class="btn  btn-primary"');?>                              
+                                      <?php echo anchor('Officer/Trainer/lists/'.$row['company_id'], '<i class="fa fa-user-circle-o"></i> เจ้าหน้าที่', 'class="btn  btn-primary"');?>                              
                                       <div style="width:2%"></div>
-                                      <?php echo anchor('Officer/Company_info/step1/'.$row['id'], '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn  btn-primary"');?>   
+                                      <?php echo anchor('Officer/Company_info/step1/'.$row['company_id'], '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn  btn-primary"');?>   
                                       <div style="width:2%"></div>                           
-                                      <?php echo anchor('Officer/Company/address/'.$row['id'], '<i class="fa fa-address-card-o"></i> ที่อยู่', 'class="btn  btn-primary"');?>             
+                                      <?php echo anchor('Officer/Company/address/'.$row['company_id'], '<i class="fa fa-address-card-o"></i> ที่อยู่', 'class="btn  btn-primary"');?>             
                                       <div style="width:2%"></div>
-                                      <?php echo anchor('Officer/Company/delete/'.$row['id'], '<i class="fa fa-trash-o"></i> ลบ', 'class="btn btn-danger" onclick="return confirmDelete(this)"');?>
+                                      <?php echo anchor('Officer/Company/delete/'.$row['company_id'], '<i class="fa fa-trash-o"></i> ลบ', 'class="btn btn-danger" onclick="return confirmDelete(this)"');?>
                                 </td>
                               </tr>
                             <?php 

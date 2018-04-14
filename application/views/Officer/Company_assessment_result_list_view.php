@@ -26,10 +26,10 @@
                     <?php $i=1; foreach ($data as $row){?>
                       <tr>
                         <td class="text-center"><?php echo $i++; ?></td>
-                        <td class="text-left"><?php echo $row['name_th'];?> (<?php echo $row['name_en'];?>)</td>
+                        <td class="text-left"><?php echo $row['company_name_th'];?> (<?php echo $row['company_name_en'];?>)</td>
                         <td class="text-right"><?php echo $row['count']; ?></td>
                         <td class="text-center">
-                          <?php echo anchor('Officer/Company_assessment_result/assessment_detail/'.$row['id'], '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn  btn-primary"');?>                            
+                          <?php echo anchor('Officer/Company_assessment_result/assessment_detail/'.$row['company_id'], '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn  btn-primary"');?>                            
                         </td>
                       </tr> 
                       <?php } ?>

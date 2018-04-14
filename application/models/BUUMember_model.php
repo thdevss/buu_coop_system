@@ -12,10 +12,10 @@ class BUUMember_model extends CI_Model
             $data['fullname'] = 'Kamonwan';
             $data['login_type'] = 'officer';
             $data['login_value'] = 'kamonwans';
-        } else if($username == '57660136') {
-            $data['fullname'] = '57660136';
+        } else if($username == '57660135') {
+            $data['fullname'] = '57660135';
             $data['login_type'] = 'student';
-            $data['login_value'] = '57660136';
+            $data['login_value'] = '57660135';
         }
 
         return $data;
@@ -69,29 +69,29 @@ class BUUMember_model extends CI_Model
     public function get($login_type, $login_value)
     {
         if($login_type == 'student') {
-            $this->db->where('id', $login_value);
-            $this->db->from('student');
+            $this->db->where('student_id', $login_value);
+            $this->db->from('tb_student');
             $query = $this->db->get();
-            return $query->result();
+            return $query->result_array();
         } else if($login_type == 'coop_student') {
-            $this->db->join('coop_student', 'coop_student.student_id = student.id');
-            $this->db->where('id', $login_value);
-            $this->db->from('student');
+            $this->db->join('tb_coop_student', 'tb_coop_student.student_id = tb_student.student_id');
+            $this->db->where('tb_student.student_id', $login_value);
+            $this->db->from('tb_student');
             $query = $this->db->get();
-            return $query->result();
+            return $query->result_array();
         } else if($login_type == 'adviser') {
-            $this->db->where('id', $login_value);
-            $this->db->from('adviser');
+            $this->db->where('adviser_id', $login_value);
+            $this->db->from('tb_adviser');
             $query = $this->db->get();
-            return $query->result();
+            return $query->result_array();
         } else if($login_type == 'officer') {
             //check teacher first
-            $this->db->where('id', $login_value);
-            $this->db->from('adviser');
+            $this->db->where('adviser_id', $login_value);
+            $this->db->from('tb_adviser');
             $query = $this->db->get();
-            if($query->result()) {
+            if($query->result_array()) {
                 $arr = [];
-                foreach($query->result() as $row) {
+                foreach($query->result_array() as $row) {
                     $row->is_adviser = 1;
                     $arr[] = $row;
                 }
@@ -99,17 +99,17 @@ class BUUMember_model extends CI_Model
             }
             //after, check officer lists
 
-            $this->db->where('id', $login_value);
-            $this->db->from('officer');
+            $this->db->where('officer_id', $login_value);
+            $this->db->from('tb_officer');
             $query = $this->db->get();
-            return $query->result();
+            return $query->result_array();
         } else if($login_type == 'company') {
             // $this->db->join('company_person', 'company_person.id = company_person_id');            
             $this->db->where('person_username', $login_value);
-            $this->db->from('company_person');
+            $this->db->from('tb_company_person');
             $query = $this->db->get();
             // echo $this->db->last_query();
-            return $query->result();
+            return $query->result_array();
         }
     }
 

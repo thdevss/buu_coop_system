@@ -13,7 +13,7 @@
 
                 <div class="card">
                     <form action="<?php echo $form_url;?>" method="post">
-                    <input type="hidden" name="company_id" value="<?php echo $company['id'];?>">
+                    <input type="hidden" name="company_id" value="<?php echo $company['company_id'];?>">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> เพิ่มตำแหน่งงาน 
                     </div>
@@ -49,12 +49,12 @@
                                         <?php foreach($company_job as $row) {?>
                                             <tr>
                                                 <td></td>
-                                                <td><?php echo $row['position_title']; ?></td>
+                                                <td><?php echo $row['job_title']; ?></td>
                                                 <td><?php echo $row['job_description']; ?></td>
-                                                <td class="text-right"><?php echo $row['number_of_employee']; ?></td>
+                                                <td class="text-right"><?php echo $row['job_number_employee']; ?></td>
                                                 <td>
-                                                    <a href="<?php echo $work_form_url.'/job_form_edit/'.$row['id'];?>" class="btn btn-info">แก้ไข</a>
-                                                    <a href="<?php echo $work_form_url.'/job_hide/'.$row['id'];?>" class="btn btn-warning">ลบ</a>
+                                                    <a href="<?php echo $work_form_url.'/job_form_edit/'.$row['job_id'];?>" class="btn btn-info">แก้ไข</a>
+                                                    <a href="<?php echo $work_form_url.'/job_hide/'.$row['job_id'];?>" class="btn btn-warning">ลบ</a>
                                                     
                                                 </td>
                                             </tr>
@@ -163,7 +163,7 @@ $(document).ready(function(){
             
             <form action="<?php echo $work_form_url;?>/job_add" method="post">
             <div class="modal-body">   
-                <input type="hidden" name="company_id" value="<?php echo $company['id'];?>">
+                <input type="hidden" name="company_id" value="<?php echo $company['company_id'];?>">
             
                 <div class="row">
                     <div class="form-group col-sm-4">

@@ -40,8 +40,8 @@ class Training extends CI_Controller {
         $train_type = $this->Training->get_student_stat_of_training($student_id)['train_type'];
         $data['train_type'] = array();
         foreach($train_type as $type) {
-            $tmp['name'] = $type['name'];
-            $tmp['total_hour'] = $type['total_hour'];
+            $tmp['name'] = $type['train_type_name'];
+            $tmp['total_hour'] = $type['train_type_total_hour'];
             $tmp['check_hour'] = 0;
             //calc total hour
             foreach($type['history'] as $history) {

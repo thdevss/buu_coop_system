@@ -21,7 +21,7 @@
             <div class="card-footer">
             <div class="pull-right">
             <div class="btn btn-dark">
-            <i class="fa fa-clock-o fa-spin"></i> กิจกรรมการฝึกงานในวันที่: <?php echo thaiDate($data['date']); ?>
+            <i class="fa fa-clock-o fa-spin"></i> กิจกรรมการฝึกงานในวันที่: <?php echo thaiDate($data['activity_date']); ?>
             </div> 
             </div>
           </div>

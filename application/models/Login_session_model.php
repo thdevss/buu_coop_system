@@ -42,9 +42,15 @@ class Login_session_model extends CI_model
         // return @$query->result()[0];
     }
 
-    // public function update($session_ID, $arr)
-    // {
-    //     $this->db->where('unique_id', $session_ID);
-    //     return $this->db->update('login_session', $arr);
-    // }
+    public function update($session_ID, $arr)
+    {
+        $arrX = (array) $this->get();
+        $arr = array_merge($arrX, $arr);
+
+        // print_r($arr);
+        return $this->session->set_userdata('user_Array', (object) $arr);
+        
+        // $this->db->where('unique_id', $session_ID);
+        // return $this->db->update('login_session', $arr);
+    }
 }

@@ -67,14 +67,14 @@ class Train_location extends CI_Controller {
         $return['print'] = false;
                 
         $this->load->library('form_validation');        
-        $this->form_validation->set_rules('building', 'ตึก', 'trim|required');
-        $this->form_validation->set_rules('room', 'ห้อง', 'trim|required');
-        $this->form_validation->set_rules('id', 'id', 'trim|numeric');
+        $this->form_validation->set_rules('location_building', 'ตึก', 'trim|required');
+        $this->form_validation->set_rules('location_room', 'ห้อง', 'trim|required');
+        $this->form_validation->set_rules('location_id', 'id', 'trim|numeric');
         
         if ($this->form_validation->run() != FALSE) {
-            $data['building'] =  $this->input->post('building');
-            $data['room'] = $this->input->post('room');
-            $room_id = $this->input->post('id');
+            $data['location_building'] =  $this->input->post('location_building');
+            $data['location_room'] = $this->input->post('location_room');
+            $room_id = $this->input->post('location_id');
             
             //save
             if(@$this->Training->get_location($room_id)) {
@@ -99,12 +99,12 @@ class Train_location extends CI_Controller {
     {
         //check if exist
         $this->load->library('form_validation');        
-        $this->form_validation->set_rules('id', 'id', 'trim|required|numeric');
+        $this->form_validation->set_rules('location_id', 'id', 'trim|required|numeric');
         if ($this->form_validation->run() != FALSE) {
-            $room_id = $this->input->post('id');            
-            if($this->Training->get_location($room_id)) {
+            $location_id = $this->input->post('location_id');            
+            if($this->Training->get_location($location_id)) {
                 //delete
-                $this->Training->delete_location($room_id);
+                $this->Training->delete_location($location_id);
                 return $this->index('success_delete');
                 die();
             } else {

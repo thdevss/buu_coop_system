@@ -14,16 +14,16 @@
                     <div class="card-header"><i class="fa fa-align-justify"></i> แบบฟอร์มข้อมูลสถานที่อบรม</div>
                     <div class="card-body">             
                         <form id="train_location_form">
-                            <input type="hidden" name="id" id="id" value="<?php echo @$row['id'];?>">
+                            <input type="hidden" name="location_id" id="location_id" value="<?php echo @$row['location_id'];?>">
                             <div class="row">
                                 <div class="form-group col-md-6 offset-md-3">
-                                    <label for="building">ชื่อตึก</label>          
-                                    <input value="<?php echo @$row['building'];?>" class="form-control" type="text" name="building" id="building">
+                                    <label for="location_building">ชื่อตึก</label>          
+                                    <input value="<?php echo @$row['location_building'];?>" class="form-control" type="text" name="location_building" id="location_building">
                                 </div>
 
                                 <div class="form-group col-md-6 offset-md-3">
-                                    <label for="room">ชื่อห้อง</label>          
-                                    <input value="<?php echo @$row['room'];?>" class="form-control" type="text" name="room" id="room">
+                                    <label for="location_room">ชื่อห้อง</label>          
+                                    <input value="<?php echo @$row['location_room'];?>" class="form-control" type="text" name="location_room" id="location_room">
                                 </div>
 
                                 <div class="col-sm-12 text-center">

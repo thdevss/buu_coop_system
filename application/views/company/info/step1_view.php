@@ -13,7 +13,7 @@
 
                 <div class="card">
                     <form action="<?php echo $form_url;?>" method="post">
-                    <input type="hidden" name="company_id" value="<?php echo $company['id'];?>">
+                    <input type="hidden" name="company_id" value="<?php echo $company['company_id'];?>">
                     
                     
                     <div class="card-header">
@@ -30,8 +30,8 @@
                             <div class="form-group col-sm-6">
                                 
                                 <label>(ภาษาไทย)</label><code>*</code>
-                                <input type="text" class="form-control" id="name_th" name="name_th" value="<?php echo set_value('name_th', $company['name_th']); ?>" required>
-                                <?php echo form_error('name_th', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>
+                                <input type="text" class="form-control" id="company_name_th" name="company_name_th" value="<?php echo set_value('company_name_th', $company['company_name_th']); ?>" required>
+                                <?php echo form_error('company_name_th', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>
 
                             </div>
                         </div>
@@ -39,8 +39,8 @@
                         <div class="row">
                             <div class="form-group col-sm-6">
                                 <label>(ภาษาอังกฤษ)</label><code>*</code>
-                                <input type="text" class="form-control" id="name_en" name="name_en" value="<?php echo set_value('name_en', $company['name_en']); ?>" required>
-                                <?php echo form_error('name_en', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>
+                                <input type="text" class="form-control" id="company_name_en" name="company_name_en" value="<?php echo set_value('company_name_en', $company['company_name_en']); ?>" required>
+                                <?php echo form_error('company_name_en', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>
                                 
                             </div>
                         </div>
@@ -48,20 +48,20 @@
                         <div class="row">
                             <div class="form-group col-sm-3">
                                 <label>ที่อยู่เลขที่</label><code>*</code>
-                                <input type="text" class="form-control" id="number" name="number" value="<?php echo set_value('number', $company_address['number']);?>" required>
-                                <?php echo form_error('number', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                                
+                                <input type="text" class="form-control" id="company_address_number" name="company_address_number" value="<?php echo set_value('company_address_number', $company_address['company_address_number']);?>" required>
+                                <?php echo form_error('company_address_number', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                                
                             </div>
 
                             <div class="form-group col-sm-5">
                                 <label>อาคาร</label><code>*</code>
-                                <input type="text" class="form-control" id="building" name="building" value="<?php echo set_value('building', $company_address['building']);?>" required>
-                                <?php echo form_error('building', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                            
+                                <input type="text" class="form-control" id="company_address_building" name="company_address_building" value="<?php echo set_value('company_address_building', $company_address['company_address_building']);?>" required>
+                                <?php echo form_error('company_address_building', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                            
                             </div>
 
                           <div class="form-group col-sm-4">
                                <label>ถนน</label>
-                               <input type="text" class="form-control" id="road" name="road" value="<?php echo set_value('road', $company_address['road']);?>" required>
-                               <?php echo form_error('road', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                          
+                               <input type="text" class="form-control" id="company_address_road" name="company_address_road" value="<?php echo set_value('company_address_road', $company_address['company_address_road']);?>" required>
+                               <?php echo form_error('company_address_road', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                          
                           </div>
 
                         </div>
@@ -70,26 +70,26 @@
 
                           <div class="form-group col-sm-3">
                                <label>ซอย</label>
-                               <input type="text" class="form-control" id="alley" name="alley" value="<?php echo set_value('alley', $company_address['alley']);?>" required>
-                               <?php echo form_error('alley', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                         
+                               <input type="text" class="form-control" id="company_address_alley" name="company_address_alley" value="<?php echo set_value('company_address_alley', $company_address['company_address_alley']);?>" required>
+                               <?php echo form_error('company_address_alley', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                         
                           </div>
 
                           <div class="form-group col-sm-3">
                                <label>แขวง</label><code>*</code>
-                               <input type="text" class="form-control" id="district" name="district" value="<?php echo set_value('district', $company_address['district']);?>" required>
-                               <?php echo form_error('district', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                          
+                               <input type="text" class="form-control" id="company_address_district" name="company_address_district" value="<?php echo set_value('company_address_district', $company_address['company_address_district']);?>" required>
+                               <?php echo form_error('company_address_district', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                          
                           </div>
 
                           <div class="form-group col-sm-3">
                                <label>เขต/อำเภอ</label><code>*</code>
-                               <input type="text" class="form-control" id="area" name="area" value="<?php echo set_value('area', $company_address['area']);?>" required>
-                               <?php echo form_error('area', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                          
+                               <input type="text" class="form-control" id="company_address_area" name="company_address_area" value="<?php echo set_value('company_address_area', $company_address['company_address_area']);?>" required>
+                               <?php echo form_error('company_address_area', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                          
                           </div>
 
                           <div class="form-group col-sm-3">
                                <label>จังหวัด</label><code>*</code>
-                               <input type="text" class="form-control" id="province" name="province" value="<?php echo set_value('province', $company_address['province']);?>" required>
-                               <?php echo form_error('province', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                            
+                               <input type="text" class="form-control" id="company_address_province" name="company_address_province" value="<?php echo set_value('company_address_province', $company_address['company_address_province']);?>" required>
+                               <?php echo form_error('company_address_province', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                            
                             </div>
                         </div>
 
@@ -97,8 +97,8 @@
 
                           <div class="form-group col-sm-3">
                                <label>รหัสไปรษณีย์</label><code>*</code>
-                               <input type="text" class="form-control" id="postal_code" name="postal_code" value="<?php echo set_value('postal_code', $company_address['postal_code']);?>" required>
-                               <?php echo form_error('postal_code', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                          
+                               <input type="text" class="form-control" id="company_address_postal_code" name="company_address_postal_code" value="<?php echo set_value('company_address_postal_code', $company_address['company_address_postal_code']);?>" required>
+                               <?php echo form_error('company_address_postal_code', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                          
                           </div>
 
                           <div class="form-group col-sm-4">
@@ -109,8 +109,8 @@
 
                           <div class="form-group col-sm-3">
                                <label>จำนวนพนักงาน</label><code>*</code>
-                               <input type="text" class="form-control" id="total_employee" name="total_employee" value="<?php echo set_value('total_employee', $company['total_employee']);?>" required>
-                               <?php echo form_error('total_employee', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                          
+                               <input type="text" class="form-control" id="company_total_employee" name="company_total_employee" value="<?php echo set_value('company_total_employee', $company['company_total_employee']);?>" required>
+                               <?php echo form_error('company_total_employee', '<div class="invalid-feedback" style="display:block;">', '</div>'); ?>                          
                           </div>
 
                         </div>

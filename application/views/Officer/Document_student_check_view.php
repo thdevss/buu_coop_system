@@ -33,9 +33,9 @@
                       <tr>
                         <td><?php echo $i++;?></td>
                         <td class="text-left"><?php echo $row['student']['id_link']; ?></td>
-                        <td class="text-left"><?php echo $row['student']['fullname']; ?></td>
-                        <td class="text-right">3.50</td>
-                        <td class="text-left"><?php echo $row['department']['name']; ?></td>
+                        <td class="text-left"><?php echo $row['student']['student_fullname']; ?></td>
+                        <td class="text-right"><?php echo $row['student']['student_gpax']; ?></td>
+                        <td class="text-left"><?php echo $row['department']['department_name']; ?></td>
                         <td class="text-left">
                         <?php
                         if($row['complete_form']) {
@@ -46,7 +46,7 @@
                         ?>
                         </td>
                         <td class="text-center">
-                          <a class="btn btn-primary document_check_btn " data-studentid="<?php echo $row['student']['id'];?>"><i class="fa fa-list-alt"></i> รายละเอียด</a>
+                          <a class="btn btn-primary document_check_btn " data-studentid="<?php echo $row['student']['student_id'];?>"><i class="fa fa-list-alt"></i> รายละเอียด</a>
                         </td>
                       </tr>
                     <?php 

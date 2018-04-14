@@ -34,10 +34,10 @@
                                                 <?php foreach($terms as $term) { ?>                                      
                                                 <tr>
                                                     <td class="text-center"></td>
-                                                    <td class="text-left"><?php echo $term['name'];?></td>
+                                                    <td class="text-left"><?php echo $term['term_name'];?></td>
                                                     <td class="text-center">
                                                         <label class="switch switch-text switch-pill switch-success-outline-alt">
-                                                            <input type="checkbox" value="<?php echo $term['term_id'];?>" name="current_term" class="switch-input" <?php if($term['is_current'] == '1') echo 'checked';?>>
+                                                            <input type="checkbox" value="<?php echo $term['term_id'];?>" name="current_term" class="switch-input" <?php if($term['term_is_current'] == '1') echo 'checked';?>>
                                                             <span class="switch-label" data-on="On" data-off="Off"></span>
                                                             <span class="switch-handle"></span>
                                                         </label>

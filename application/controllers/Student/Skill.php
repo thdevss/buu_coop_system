@@ -43,7 +43,7 @@ class Skill extends CI_Controller {
         }
         else {
             $data['status'] = '';
-        }
+        } 
         $student_id = $this->Login_session->check_login()->login_value;
 
         $data['has_skill'] = array();

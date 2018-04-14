@@ -46,8 +46,8 @@ class Workplace extends CI_Controller {
         $student_id = $this->Login_session->check_login()->login_value;
         $data['map'] = $this->Coop_Student->get_coop_student($student_id)[0];
         // update
-        $array['site_latitude'] = $this->input->post('site_latitude');
-        $array['site_longitude'] = $this->input->post('site_longitude');
+        $array['coop_student_latitude'] = $this->input->post('coop_student_latitude');
+        $array['coop_student_longitude'] = $this->input->post('coop_student_longitude');
         $this->Coop_Student->update_coop_student($student_id,$array);
         
         redirect('Coop_student/Workplace/index/?status=success','refresh');

@@ -17,12 +17,12 @@
                                 <div class="card-body">
                                     <dl class="row">
                                     <dt class="col-sm-4">ชื่อ-นามสกุล</dt>
-                                    <dd><?php echo $student['fullname'];?></dd>
+                                    <dd><?php echo $student['student_fullname'];?></dd>
                                     </dl>
 
                                     <dl class="row">
                                     <dt class="col-sm-4">รหัสนิสิต</dt>
-                                    <dd><?php echo $student['id'];?></dd>
+                                    <dd><?php echo $student['student_id'];?></dd>
                                     </dl>
 
                                     <dl class="row">
@@ -37,7 +37,7 @@
 
                                     <dl class="row">
                                     <dt class="col-sm-4">สาขา</dt>
-                                    <dd><?php echo $department['name'];?></dd>
+                                    <dd><?php echo $department['department_name'];?></dd>
                                     </dl>
 
                                     <dl class="row">
@@ -52,7 +52,7 @@
 
                                     <dl class="row">
                                     <dt class="col-sm-4">GPAX</dt>
-                                    <dd><?php echo $student_profile['GPAX']; ?></dd>
+                                    <dd><?php echo $student['student_gpax']; ?></dd>
                                     </dl>
 
                                 </div>
@@ -107,7 +107,7 @@
 
                                     <dl class="row">
                                     <dt class="col-sm-4">สถานะ</dt>
-                                    <dd><?php echo $coop_status_type['status_name']; ?></dd>
+                                    <dd><?php echo $coop_status_type['coop_status_name']; ?></dd>
                                     </dl>
 
                                     <dl class="row">
@@ -124,7 +124,7 @@
 
                                     <dl class="row">
                                       <dt class="col-sm-4">จำนวนชั่วโมงอบรม</dt>
-                                      <dd><a href="<?php echo site_url('Officer/Student_list/training_history_student/'.$student['id']);?>">ประวัติการอบรมของนิสิตคนนี้</a></dd>
+                                      <dd><a href="<?php echo site_url('Officer/Student_list/training_history_student/'.$student['student_id']);?>">ประวัติการอบรมของนิสิตคนนี้</a></dd>
                                     </dl>
 
                                     <dl class="row">
@@ -213,7 +213,7 @@ jQuery("input:checkbox").on('click', function() {
     if(jQuery(this).prop("checked")) {
       status_val = 1
     }
-        var datastring = "student_id=<?php echo $student['id'];?>&student_core_subject_status="+status_val
+        var datastring = "student_id=<?php echo $student['student_id'];?>&student_core_subject_status="+status_val
         jQuery.post(SITE_URL+"/officer/Student_list/update_pass_core_subject", datastring, function(response) {
             if(response.status) {
                 toastr["success"]("ok ja")
@@ -229,7 +229,7 @@ jQuery("input:checkbox").on('click', function() {
 
 jQuery(".check_core_subj").on('click', function() {
         jQuery("#loading_status").html('<i class="fa fa-spin fa-spinner"></i> ')
-        var datastring = "student_id=<?php echo $student['id'];?>"
+        var datastring = "student_id=<?php echo $student['student_id'];?>"
         jQuery.post(SITE_URL+"/officer/Student_list/check_core_subject_condition", datastring, function(response) {
             if(response.status) {
               jQuery("input:checkbox").prop('checked', true);

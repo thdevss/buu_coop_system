@@ -104,12 +104,12 @@ class Trainer extends CI_Controller {
     public function add_employee()
     {
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('fullname','ชื่อ-นามสกุล','required');
-        $this->form_validation->set_rules('position','ตำเเหน่ง','required');
-        $this->form_validation->set_rules('department','เเผนกงาน','required');
-        $this->form_validation->set_rules('telephone','เบอร์โทร','required|numeric');
-        $this->form_validation->set_rules('fax_number','FAX');
-        $this->form_validation->set_rules('email','E-mail','required|valid_email|is_unique[company_person.email]');
+        $this->form_validation->set_rules('person_fullname','ชื่อ-นามสกุล','required');
+        $this->form_validation->set_rules('person_position','ตำเเหน่ง','required');
+        $this->form_validation->set_rules('person_department','เเผนกงาน','required');
+        $this->form_validation->set_rules('person_telephone','เบอร์โทร','required|numeric');
+        $this->form_validation->set_rules('person_fax_number','FAX');
+        $this->form_validation->set_rules('person_email','E-mail','required|valid_email|is_unique[tb_company_person.person_email]');
         $this->form_validation->set_rules('company_id','company_id','required');
         $array['company_id'] = $this->input->post('company_id');
 
@@ -118,21 +118,21 @@ class Trainer extends CI_Controller {
 
         if($this->form_validation->run() == false){
             //get employee by email
-            $company_person = $this->Trainer->get_trainer_by_email($this->input->post('email'))[0];
+            $company_person = $this->Trainer->get_trainer_by_email($this->input->post('person_email'))[0];
             if($company_person) {
                 //update status active and gen new password
-                $array['fullname'] = $this->input->post('fullname');
-                $array['position'] = $this->input->post('position');
-                $array['department'] = $this->input->post('department');
-                $array['telephone'] = $this->input->post('telephone');
-                $array['fax_number'] = $this->input->post('fax_number');
+                $array['person_fullname'] = $this->input->post('person_fullname');
+                $array['person_position'] = $this->input->post('person_position');
+                $array['person_department'] = $this->input->post('person_department');
+                $array['person_telephone'] = $this->input->post('person_telephone');
+                $array['person_fax_number'] = $this->input->post('person_fax_number');
                 $array['person_active'] = 1;
                 $array['person_password'] = $password_gen_db;
 
-                $this->Trainer->update_trainer($company_person['id'], $array);
+                $this->Trainer->update_trainer($company_person['person_id'], $array);
 
                 //sent email to person
-                $to = $company_person['email'];
+                $to = $company_person['person_email'];
                 $subject = 'แจ้งข้อมูลเข้าใช้งานระบบสหกิจศึกษา มหาวิทยาลัยบูรพา';
                 $msg = 'Username: '.$company_person['person_username'].' | Password: '.$password_gen.' | '.site_url();
                 $this->cache->file->save('userpass_'.$company_person['id'], $msg, 86400*365);    
@@ -149,21 +149,21 @@ class Trainer extends CI_Controller {
 
         } else {
             //success
-            $array['fullname'] = $this->input->post('fullname');
-            $array['position'] = $this->input->post('position');
-            $array['department'] = $this->input->post('department');
-            $array['telephone'] = $this->input->post('telephone');
-            $array['fax_number'] = $this->input->post('fax_number');
-            $array['email'] = $this->input->post('email');
+            $array['person_fullname'] = $this->input->post('person_fullname');
+            $array['person_position'] = $this->input->post('person_position');
+            $array['person_department'] = $this->input->post('person_department');
+            $array['person_telephone'] = $this->input->post('person_telephone');
+            $array['person_fax_number'] = $this->input->post('person_fax_number');
+            $array['person_email'] = $this->input->post('person_email');
             $array['company_id'] = $this->input->post('company_id');
-            $array['person_username'] = $this->input->post('email');
+            $array['person_username'] = $this->input->post('person_email');
 
             $array['person_password'] = $password_gen_db;
             
             $this->Trainer->insert_trainer($array);
 
             //sent email to person
-            $to = $array['email'];
+            $to = $array['person_email'];
             $subject = 'แจ้งข้อมูลเข้าใช้งานระบบสหกิจศึกษา มหาวิทยาลัยบูรพา';
             $msg = 'Username: '.$array['person_username'].' | Password: '.$password_gen.' | http://localhost:8080/';
             $this->cache->file->save('userpass_'.$this->db->insert_id(), $msg, 86400*365);
@@ -206,18 +206,18 @@ class Trainer extends CI_Controller {
         $company_id = $this->input->post('company_id');
         // print_r($company_id);
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('fullname','ชื่อ-นามสกุล','required');
-        $this->form_validation->set_rules('position','ตำเเหน่ง','required');
-        $this->form_validation->set_rules('email','E-mail','required|valid_email');
+        $this->form_validation->set_rules('person_fullname','ชื่อ-นามสกุล','required');
+        $this->form_validation->set_rules('person_position','ตำเเหน่ง','required');
+        $this->form_validation->set_rules('person_email','E-mail','required|valid_email');
         if($this->form_validation->run() == false){
 
             redirect('Officer/Trainer/edit_form/'.$trainer_id.'/?status=error_update','refresh');
         } else {
             //success
 
-            $array['fullname'] = $this->input->post('fullname');
-            $array['email'] = $this->input->post('email');
-            $array['position'] = $this->input->post('position');
+            $array['person_fullname'] = $this->input->post('person_fullname');
+            $array['person_email'] = $this->input->post('person_email');
+            $array['person_position'] = $this->input->post('person_position');
 
             $this->Trainer->update_trainer($trainer_id,$array);
         }
@@ -235,17 +235,17 @@ class Trainer extends CI_Controller {
         $data['color'] = 'warning';
         
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('fullname','ชื่อ-นามสกุล','required');
-        $this->form_validation->set_rules('position','ตำเเหน่ง','required');
-        $this->form_validation->set_rules('department','เเผนกงาน','required');
-        $this->form_validation->set_rules('telephone','เบอร์โทร','required|numeric');
+        $this->form_validation->set_rules('person_fullname','ชื่อ-นามสกุล','required');
+        $this->form_validation->set_rules('person_position','ตำเเหน่ง','required');
+        $this->form_validation->set_rules('person_department','เเผนกงาน','required');
+        $this->form_validation->set_rules('person_telephone','เบอร์โทร','required|numeric');
         $this->form_validation->set_rules('company_id','IDสถานประกอบการ','required|numeric');
-        $this->form_validation->set_rules('fax_number','FAX');
-        $this->form_validation->set_rules('email','E-mail','required|valid_email|is_unique[company_person.email]');
+        $this->form_validation->set_rules('person_fax_number','FAX');
+        $this->form_validation->set_rules('person_email','E-mail','required|valid_email|is_unique[tb_company_person.person_email]');
 
         if($this->form_validation->run() != false){
 
-            $company_person = @$this->Trainer->get_trainer_by_email($this->input->post('email'))[0];
+            $company_person = @$this->Trainer->get_trainer_by_email($this->input->post('person_email'))[0];
             if($company_person) {
                 $data['text'] = 'มีพนักงานนิเทศงานอยู่แล้ว โปรดเลือกจากรายชื่อ';
             } else {
@@ -256,20 +256,21 @@ class Trainer extends CI_Controller {
 
                 $array['company_id'] = $this->input->post('company_id');
 
-                $array['fullname'] = $this->input->post('fullname');
-                $array['position'] = $this->input->post('position');
-                $array['department'] = $this->input->post('department');
-                $array['telephone'] = $this->input->post('telephone');
-                $array['fax_number'] = $this->input->post('fax_number');
-                $array['email'] = $this->input->post('email');
-                $array['person_username'] = $array['email'];
+                $array['person_fullname'] = $this->input->post('person_fullname');
+                $array['person_position'] = $this->input->post('person_position');
+                $array['person_department'] = $this->input->post('person_department');
+                $array['person_telephone'] = $this->input->post('person_telephone');
+                $array['person_fax_number'] = $this->input->post('person_fax_number');
+                $array['person_email'] = $this->input->post('person_email');
+                $array['person_username'] = $array['person_email'];
+                $array['person_active'] = 1;
 
                 $array['person_password'] = $password_gen_db;
                 
                 $this->Trainer->insert_trainer($array);
                 $data['last_id'] = $this->db->insert_id();
                 
-                $to = $array['email'];
+                $to = $array['person_email'];
                 $subject = 'แจ้งข้อมูลเข้าใช้งานระบบสหกิจศึกษา มหาวิทยาลัยบูรพา';
                 $msg = 'Username: '.$array['person_username'].' | Password: '.$password_gen.' | '.site_url();
                 //sentmail here

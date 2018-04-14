@@ -7,27 +7,27 @@ class Adviser_model extends CI_model {
     
     public function insert_adviser($array)
     {
-        return $this->db->insert('adviser',$array);
+        return $this->db->insert('tb_adviser',$array);
 
     }
 
     public function update_adviser($adviser_id, $array) 
     {
-        $this->db->where('id',$adviser_id);
-        return $this->db->update('adviser',$array);
+        $this->db->where('adviser_id',$adviser_id);
+        return $this->db->update('tb_adviser',$array);
 
     }
 
     public function delete_adviser($adviser_id)
     {
         $this->db->where('adviser_id',$adviser_id);
-        return $this->delete('adviser');
+        return $this->delete('tb_adviser');
 
     }
 
     public function gets_adviser()
     {
-        $this->db->from('adviser');
+        $this->db->from('tb_adviser');
         $query = $this->db->get();
         return $query->result_array();
 
@@ -35,8 +35,8 @@ class Adviser_model extends CI_model {
 
     public function get_adviser($adviser_id)
     {
-        $this->db->where('id',$adviser_id);
-        $this->db->from('adviser');
+        $this->db->where('adviser_id',$adviser_id);
+        $this->db->from('tb_adviser');
         $query = $this->db->get();
         return $query->result_array();
 
@@ -46,7 +46,7 @@ class Adviser_model extends CI_model {
     {
         $array['adviser_id'] = $adviser_id;
         $this->db->where('student_id',$student_id);
-        return $this->db->update('coop_student',$array);
+        return $this->db->update('tb_coop_student',$array);
 
     }
 }

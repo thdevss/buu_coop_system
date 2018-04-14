@@ -40,18 +40,18 @@
                     <tbody>
                       <?php foreach ($data as $row) { ?>
                         <tr>
-                          <td><b><?php echo $row['questionnaire_subject']['number']." ".$row['questionnaire_subject']['title'];?></b></td>
+                          <td><b><?php echo $row['questionnaire_subject']['coop_company_questionnaire_subject_number']." ".$row['questionnaire_subject']['coop_company_questionnaire_subject_title'];?></b></td>
                         </tr>
                     
                       <?php foreach($row['questionnaire_item'] as $item) {?>
                         <tr>
                           <td>
-                            <p><?php echo $item['number']." ".$item['title'];?></p>
-                            <p><?php echo $item['description'];?></p>
+                            <p><?php echo $item['coop_company_questionnaire_item_number']." ".$item['coop_company_questionnaire_item_title'];?></p>
+                            <p><?php echo $item['coop_company_questionnaire_item_description'];?></p>
                           </td>
                           <?php for($i=5;$i>=1;$i--) { ?>
                             <td>
-                              <input class="form-check-input" type="radio" value="<?php echo $i;?>" name="item[<?php echo $item['id'];?>]" style="margin-left: unset !important; position: unset !important;" required <?php if(@$result[$item['id']] == $i) echo 'checked'; ?>>
+                              <input class="form-check-input" type="radio" value="<?php echo $i;?>" name="item[<?php echo $item['coop_company_questionnaire_item_id'];?>]" style="margin-left: unset !important; position: unset !important;" required <?php if(@$result[$item['coop_company_questionnaire_item_id']] == $i) echo 'checked'; ?>>
                             </td>
                           <?php } ?>
                         </tr>

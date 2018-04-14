@@ -8,24 +8,26 @@ class Student_model extends CI_model {
     
     public function get_student($student_id)
     {
-        $this->db->where('id',$student_id);
-        $this->db->from('student');
+        $this->db->where('student_id',$student_id);
+        $this->db->from('tb_student');
         $query = $this->db->get();
         return $query->result_array();
     }
 
     public function gets_student()
     {
-        $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);
-        $this->db->from('student');
+        $term_id = $this->Term->get_current_term()[0]['term_id'];
+
+        $this->db->where('term_id', $term_id);
+        $this->db->from('tb_student');
         $query = $this->db->get();
         return $query->result_array();
     }
 
     public function gets_student_by_department($department_id)
     {
-        $this->db->where('department_id',$deparment_id);
-        $this->db->from('student');
+        $this->db->where('department_id', $deparment_id);
+        $this->db->from('tb_student');
         $query = $this->db->get();
         return $query->result_array();
 
@@ -34,14 +36,14 @@ class Student_model extends CI_model {
 
     public function update_student($student_id, $array)
     {
-        $this->db->where('id',$student_id);
-        return $this->db->update('student',$array);
+        $this->db->where('student_id', $student_id);
+        return $this->db->update('tb_student',$array);
 
     }
     
     public function gets_department()
     {
-        $this->db->from('department');
+        $this->db->from('tb_department');
         $query = $this->db->get();
         return $query->result_array();
 
@@ -49,23 +51,23 @@ class Student_model extends CI_model {
 
     public function get_department($department_id)
     {
-        $this->db->where('id',$department_id);        
-        $this->db->from('department');
+        $this->db->where('department_id', $department_id);        
+        $this->db->from('tb_department');
         $query = $this->db->get();
         return $query->result_array();
     }
 
     public function gets_coop_status_type()
     {
-        $this->db->from('coop_status_type');
+        $this->db->from('tb_coop_status');
         $query = $this->db->get();
         return $query->result_array();
     }
 
     public function get_by_coop_status_type($status_type_id)
     {
-        $this->db->where('id',$status_type_id);
-        $this->db->from('coop_status_type');
+        $this->db->where('coop_status_id', $status_type_id);
+        $this->db->from('tb_coop_status');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -130,39 +132,21 @@ class Student_model extends CI_model {
     public function get_latest_register_job($student_id)
     {
         $this->db->where('student_id', $student_id);
-        $this->db->order_by('id', 'DESC');
-        $this->db->from('company_job_position_has_student');
+        $this->db->order_by('job_register_created', 'DESC');
+        $this->db->from('tb_student_register_company_job_position');
         $query = $this->db->get();
         return $query->result_array();
     }
-
-    // public function get_student_lists_from_profile($year)
-    // {
-    //     $file = file_get_contents(base_url('mockup-student.json'));
-    //     $api = json_decode($file, true);
-        
-    //     $return = [];
-    //     if($api['status'] == "true") {
-    //         foreach($api['result'] as $row) {
-    //             if($row['year'] == $year) {
-    //                 $return[] = $row;
-    //             }
-    //         }
-    //         return $return;
-    //     } else {
-    //         return false;
-    //     }
-    // }
     public function get_student_core_subject($subject_id)
     {
         $this->db->where('subject_id', $subject_id);
-        $this->db->from('student_core_subject');
+        $this->db->from('tb_student_core_subject');
         $query = $this->db->get();
         return $query->result_array();
     }
     public function gets_student_core_subject()
     {
-        $this->db->from('student_core_subject');
+        $this->db->from('tb_student_core_subject');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -171,13 +155,21 @@ class Student_model extends CI_model {
         $db_debug = $this->db->db_debug; //save setting
         $this->db->db_debug = FALSE; //disable debugging for queries
 
-        $return = $this->db->insert('student_core_subject', $array);
+        $return = $this->db->insert('tb_student_core_subject', $array);
         $this->db->db_debug = $db_debug;
         return $return;        
     }
     public function delete_student_core_subject($subject_id)
     {
         $this->db->where('subject_id', $subject_id);
-        return $this->db->delete('student_core_subject');
+        return $this->db->delete('tb_student_core_subject');
+    }
+
+    public function get_company_status_type($company_status_id)
+    {
+        $this->db->where('company_status_id', $company_status_id);
+        $this->db->from('tb_company_status');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 }

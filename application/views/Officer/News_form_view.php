@@ -20,16 +20,16 @@
                         }
                         ?>      
                         <form action="<?php echo $post_url;?>" method="post" enctype="multipart/form-data">
-                            <input type="hidden" name="id" id="id" value="<?php echo @$row['id'];?>">
+                            <input type="hidden" name="news_id" id="news_id" value="<?php echo @$row['news_id'];?>">
                             <div class="row">
                                 <div class="form-group col-md-6 offset-md-3">
-                                    <label for="title">หัวข้อ</label>          
-                                    <input class="form-control" type="text" name="title" id="title" required value="<?php echo @$row['title'];?>">
+                                    <label for="news_title">หัวข้อ</label>          
+                                    <input class="form-control" type="text" name="news_title" id="news_title" required value="<?php echo @$row['news_title'];?>">
                                 </div>
 
                                 <div class="form-group col-md-6 offset-md-3">
-                                    <label for="detail">รายละเอียด</label>          
-                                    <textarea id="summernote" name="detail" required><?php echo @$row['detail'];?></textarea>
+                                    <label for="news_detail">รายละเอียด</label>          
+                                    <textarea id="summernote" name="news_detail" required><?php echo @$row['news_detail'];?></textarea>
                                 </div>
 
                                 <div class="form-group col-md-6 offset-md-3">
@@ -41,10 +41,10 @@
                                 <div class="form-group col-md-6 offset-md-3">                                
                                     <ul class="list-group">
                                         <?php foreach($files as $file) { ?>
-                                        <li class="list-group-item fileList" data-fileid="<?php echo $file['id'];?>">
+                                        <li class="list-group-item fileList" data-fileid="<?php echo $file['file_id'];?>">
                                             <?php echo $file['filename'];?>
                                             <span class="float-right">
-                                                <a class="btn btn-xs btn-danger" onclick="deleteNewsFile('<?php echo $file['id'];?>')">x</a>
+                                                <a class="btn btn-xs btn-danger" onclick="deleteNewsFile('<?php echo $file['file_id'];?>')">x</a>
                                             </span>
                                         </li>
                                         <?php } ?>

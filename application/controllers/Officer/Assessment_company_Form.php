@@ -41,7 +41,7 @@
             }
 
             $data['company_questionnaire_subject'] = $this->Company_Assessment_Form->gets_form_for_company();
-            $data['next_number'] = end($data['company_questionnaire_subject'])['number'];
+            $data['next_number'] = end($data['company_questionnaire_subject'])['coop_company_questionnaire_subject_number'];
             $data['next_number'] = (int) $data['next_number']+1;
 
             // add breadcrumbs
@@ -55,18 +55,18 @@
 
         public function add_company_questionnaire_subject() //insert coop student questionaire subject
         {
-            $array['number'] = $this->input->post('number');
-            $array['title'] = $this->input->post('title');
+            $array['coop_company_questionnaire_subject_number'] = $this->input->post('number');
+            $array['coop_company_questionnaire_subject_title'] = $this->input->post('title');
             $term_id = $this->Term->get_current_term()[0]['term_id'];
             $array['term_id'] = $term_id; 
          
-            if($this->Company_Assessment_Form->check_subject_dup($array['number'])) {
+            if($this->Company_Assessment_Form->check_subject_dup($array['coop_company_questionnaire_subject_number'])) {
                 //is dup, cant insert
                 redirect('Officer/Assessment_company_Form/index/?status=error', 'refresh');                
                 
             } else {
                 //can insert
-                $this->Company_Assessment_Form->save_company_form_result($array);
+                $this->Company_Assessment_Form->save_company_forms_subject($array);
                 redirect('Officer/Assessment_company_Form/index/?status=success', 'refresh');                
             }
 
@@ -87,9 +87,9 @@
             $data['subject'] = $this->Company_Assessment_Form->get_company_questionnaire_subject($id)[0];  
 
             $data['company_questionnaire_item'] = $this->Company_Assessment_Form->get_company_questionnaire_item_by_subject($id);
-            $data['next_number'] = end($data['company_questionnaire_item'])['number'];
+            $data['next_number'] = end($data['company_questionnaire_item'])['coop_company_questionnaire_item_number'];
             if($data['next_number'] < 1) {
-                $data['next_number'] = $data['subject']['number'];
+                $data['next_number'] = $data['subject']['coop_company_questionnaire_subject_number'];
             }
             $data['next_number'] = (float) $data['next_number']+0.1;
            
@@ -107,14 +107,14 @@
             // name dup
             $array['subject_id'] =$this->input->post('subject_id');
             $array['term_id'] = $this->Term->get_current_term()[0]['term_id'];
-            $array['number'] = $this->input->post('number');
-            $array['title'] = $this->input->post('title');
-            $array['type'] = $this->input->post('type');
-            $array['description'] = $this->input->post('description');
+            $array['coop_company_questionnaire_item_number'] = $this->input->post('number');
+            $array['coop_company_questionnaire_item_title'] = $this->input->post('title');
+            $array['coop_company_questionnaire_item_type'] = $this->input->post('type');
+            $array['coop_company_questionnaire_item_description'] = $this->input->post('description');
 
             
 
-            if($this->Company_Assessment_Form->check_item_dup($array['number'], $array['subject_id'])) {
+            if($this->Company_Assessment_Form->check_item_dup($array['coop_company_questionnaire_item_number'], $array['subject_id'])) {
                 //is dup, cant insert
                 echo "<script>alert('xxxxx')</script>";
             } else {
@@ -152,9 +152,9 @@
         {
             //update
             $item_id = $this->input->post('item_id');
-            $array['title'] = $this->input->post('title');
-            $array['type'] = $this->input->post('type');
-            $array['descriptions'] = $this->input->post('descriptions');
+            $array['coop_company_questionnaire_item_title'] = $this->input->post('title');
+            $array['coop_company_questionnaire_item_type'] = $this->input->post('type');
+            $array['coop_company_questionnaire_item_description'] = $this->input->post('description');
 
             $data = @$this->Company_Assessment_Form->get_company_questionnaire_item($item_id)[0];
             if(!$data) {
