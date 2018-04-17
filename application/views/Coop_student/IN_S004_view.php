@@ -178,47 +178,47 @@
                     <div class="row">
                           <div class="form-group col-sm-8">
                                <label>ชื่อหอพัก/อพาร์ทเมนท์ </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_name']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="dorm_name" value="<?php echo $coop_student_dorm['dorm_name']; ?>" required  >                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>ห้อง</label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_room']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="dorm_room" value="<?php echo $coop_student_dorm['dorm_room']; ?>" required  >                          
                           </div>
                           <div class="form-group col-sm-2">
                                <label>เลขที่ </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_number']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="dorm_number" value="<?php echo $coop_student_dorm['dorm_address_number']; ?>" required  >                          
                           </div>
                           <div class="form-group col-sm-3">
                                <label>ซอย </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_alley']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="dorm_alley" value="<?php echo $coop_student_dorm['dorm_address_alley']; ?>" required  >                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>ถนน </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_road']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="dorm_road" value="<?php echo $coop_student_dorm['dorm_address_road']; ?>" required  >                          
                           </div>
                           <div class="form-group col-sm-3">
                                <label>แขวง/ตำบล </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_district']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="dorm_district" value="<?php echo $coop_student_dorm['dorm_address_district']; ?>" required  >                          
                           </div>
                           <div class="form-group col-sm-3">
                                <label>เขต/อำเภอ </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_area']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="dorm_area" value="<?php echo $coop_student_dorm['dorm_address_area']; ?>" required  >                          
                           </div>
                           <div class="form-group col-sm-3">
                                <label>จังหวัด </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_province']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="dorm_province" value="<?php echo $coop_student_dorm['dorm_address_province']; ?>" required  >                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>รหัสไปรษณีย์</label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_postal_code']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="dorm_postal_code" value="<?php echo $coop_student_dorm['dorm_address_postal_code']; ?>" required  >                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>โทรศัพท์</label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_telephone']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="dorm_telephone" value="<?php echo $coop_student_dorm['dorm_telephone']; ?>" required  >                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>โทรสาร</label>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $coop_student_dorm['dorm_fax_number']; ?>" required disabled >                          
+                               <input type="text" class="form-control" id="" name="dorm_fax_number" value="<?php echo $coop_student_dorm['dorm_fax_number']; ?>"   >                          
                           </div>                
                         </div>
                       <!-- ปิดข้อ 4 -->

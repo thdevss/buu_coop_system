@@ -129,18 +129,18 @@ class Assessment_company extends CI_Controller {
 			$tmp_array = array();
 			// $items[] = $row;
 			$items = array_merge($items, [[
-				'number' => $row['number'],
-				'title' => $row['title'],
+				'number' => $row['coop_company_questionnaire_subject_number'],
+				'title' => $row['coop_company_questionnaire_subject_title'],
 				'sc5' => '',
 				'sc4' => '',
 				'sc3' => '',
 				'sc2' => '',
 				'sc1' => '',
 			]]);
-			foreach($this->Company_Assessment_Form->get_company_questionnaire_item_by_subject_and_student($row['id'], $student_id) as $result_item) {
+			foreach($this->Company_Assessment_Form->get_company_questionnaire_item_by_subject_and_student($row['coop_company_questionnaire_subject_id'], $student_id) as $result_item) {
 				$item = [
-					'number' => $result_item['number'],
-					'title' => $result_item['title'],
+					'number' => $result_item['number'], // as ชื่อตัวแปรย่อมาแล้วจาก model
+					'title' => $result_item['title'], // as ชื่อตัวแปรย่อมาแล้วจาก model
 					'sc5' => '',
 					'sc4' => '',
 					'sc3' => '',
@@ -168,7 +168,7 @@ class Assessment_company extends CI_Controller {
         $template_file = "template/IN-S008.docx";        
         $save_filename = "download/".$student_id."-IN-S008.docx";
         $data_array = [
-			"company_name_th" => $company['name_th'],
+			"company_name_th" => $company['company_name_th'],
 			"term" => "2",
 			"year" => "2560",
 			"items" => $items,
@@ -193,7 +193,7 @@ class Assessment_company extends CI_Controller {
         // redirect(base_url($result['full_url']), 'refresh');
 
         //insert to db
-        $coop_document_id = $this->Form->get_form_by_name('IN-S008', $this->Login_session->check_login()->term_id)[0]['id'];
+        $coop_document_id = $this->Form->get_form_by_name('IN-S008', $this->Login_session->check_login()->term_id)[0]['document_id'];
         $word_file = '/uploads/'.basename($save_filename);
         $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file, 1);
 

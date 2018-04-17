@@ -107,10 +107,45 @@ class IN_S005 extends CI_Controller {
                 "company_name" => $data['company']['company_name_th'],
             ];
 
+
             foreach($this->Coop_Student->get_coop_student_plan($student_id) as $i => $row) {
-                $data_array['work_'.++$i] = $row['plan_work_subject'];
+                $tmp_array = [
+                    'n' => ++$i,
+                    'plan_work_subject' => $row['plan_work_subject'],
+                    'w1' => '',
+                    'w2' => '',
+                    'w3' => '',
+                    'w4' => '',
+                    'w5' => '',
+                    'w6' => '',
+                    'w7' => '',
+                    'w8' => '',
+                    'w9' => '',
+                    'w10' => '',
+                    'w11' => '',
+                    'w12' => '',
+                    'w13' => '',          
+                    'w14' => '',          
+                    'w15' => '',          
+                    'w16' => ''      
+                ];
+
+
+                if(@$row['plan_time_period']) {
+                    $choice = explode(",", $row['plan_time_period']);
+                } else {
+                    $choice = [];
+                }
+                for($K=0;$K<16;$K++) {
+                    if(in_array($K, $choice)) {
+                        $tmp_array['w'.$K] = '*';
+                    }
+                }
+
+
+                $data_array['wl'][] = $tmp_array;
             }
-    
+                
             // print_r($data_array);
             // die();
     

@@ -66,6 +66,8 @@ class IN_S004 extends CI_Controller {
             // print_r($_POST);
             $this->load->library('form_validation');
             $this->form_validation->set_rules('coop_student_newsletter_receive', 'ตั้งค่ารับข่าวสาร');
+
+            //emergency contact
             $this->form_validation->set_rules('contact_fullname', 'ชื่อ - สกุล', 'required');
             $this->form_validation->set_rules('contact_address_number', 'เลขที่', 'required');
             $this->form_validation->set_rules('contact_address_alley', 'ซอย', 'required');
@@ -75,7 +77,23 @@ class IN_S004 extends CI_Controller {
             $this->form_validation->set_rules('contact_address_province', 'จังหวัดซอย', 'required');
             $this->form_validation->set_rules('contact_address_postal_code', 'รหัสไปรษณีย์', 'required');
             $this->form_validation->set_rules('contact_telephone', 'โทรศัพท์', 'required');
-            $this->form_validation->set_rules('contact_fax_number', 'โทรสาร');
+            // $this->form_validation->set_rules('contact_fax_number', 'โทรสาร');
+
+            //coop student dorm
+            $this->form_validation->set_rules('dorm_name', 'ชื่อหอพัก/อพาร์ทเมนท์', 'required');
+            $this->form_validation->set_rules('dorm_room', 'ห้อง', 'required');
+            $this->form_validation->set_rules('dorm_number', 'เลขที่', 'required');
+            $this->form_validation->set_rules('dorm_alley', 'ซอย', 'required');
+            $this->form_validation->set_rules('dorm_road', 'ถนน', 'required');
+            $this->form_validation->set_rules('dorm_district', 'แขวง/ตำบล', 'required');
+            $this->form_validation->set_rules('dorm_area', 'เขต/อำเภอ', 'required');
+            $this->form_validation->set_rules('dorm_province', 'จังหวัด', 'required');
+            $this->form_validation->set_rules('dorm_postal_code', 'รหัสไปรษณีย์', 'required');
+            $this->form_validation->set_rules('dorm_telephone', 'เบอร์โทรศัพท์', 'required');
+            
+            
+            
+
 
             $this->form_validation->set_rules('trainer_id', 'ผู้นิเทศงาน', 'required|numeric');
             
@@ -84,7 +102,8 @@ class IN_S004 extends CI_Controller {
             if ($this->form_validation->run() == FALSE) {
                     $this->index();
             } else {
-                    $array_emergency_contact['student_id'] = $student_id ;
+                    $array_emergency_contact = [];
+                    $array_emergency_contact['student_id'] = $student_id;
                     $array_emergency_contact['contact_fullname'] = $this->input->post('contact_fullname');
                     $array_emergency_contact['contact_address_number'] = $this->input->post('contact_address_number');
                     $array_emergency_contact['contact_address_alley'] = $this->input->post('contact_address_alley');
@@ -98,9 +117,26 @@ class IN_S004 extends CI_Controller {
                     $array['coop_student_newsletter_receive'] = $this->input->post('coop_student_newsletter_receive');
                     $array['trainer_id'] = $this->input->post('trainer_id');
 
+                    $array_coop_student_dorm = [];
+                    $array_coop_student_dorm['student_id'] = $student_id;
+                    $array_coop_student_dorm['dorm_name'] = $this->input->post('dorm_name');
+                    $array_coop_student_dorm['dorm_room'] = $this->input->post('dorm_room');
+                    $array_coop_student_dorm['dorm_address_number'] = $this->input->post('dorm_number');
+                    $array_coop_student_dorm['dorm_address_alley'] = $this->input->post('dorm_alley');
+                    $array_coop_student_dorm['dorm_address_road'] = $this->input->post('dorm_road');
+                    $array_coop_student_dorm['dorm_address_district'] = $this->input->post('dorm_district');
+                    $array_coop_student_dorm['dorm_address_area'] = $this->input->post('dorm_area');
+                    $array_coop_student_dorm['dorm_address_province'] = $this->input->post('dorm_province');
+                    $array_coop_student_dorm['dorm_address_postal_code'] = $this->input->post('dorm_postal_code');
+                    $array_coop_student_dorm['dorm_telephone'] = $this->input->post('dorm_telephone');
+                    $array_coop_student_dorm['dorm_fax_number'] = $this->input->post('dorm_fax_number');
+                    
+                    
+
                     $sql_status = false;
                     $sql_status = $this->Coop_Student->save_emergency_contact($array_emergency_contact);
                     $sql_status = $this->Coop_Student->update_coop_student($student_id,$array);
+                    $sql_status = $this->Coop_Student->save_coop_student_dorm($array_coop_student_dorm);
                     if($sql_status) {
                         //chek=c if print
                         if($this->input->post('print') == 1){
@@ -151,13 +187,13 @@ class IN_S004 extends CI_Controller {
             $template_file = "template/IN-S004-2.docx";
         }
 
-        $save_filename = "download/".$student_id."-IN-S004.docx";
+        $save_filename = "download/".$student_id."-IN-S004-".time().".docx";
         $data_array = [
             "company_name_th" => $data['company']['company_name_th'],
             "company_address" => $company_address,
-            "company_telephone" => $data['company_person']['telephone'],
-            "company_fax_number" => $data['company_person']['fax_number'],
-            "company_email" => $data['company_person']['email'],
+            "company_telephone" => $data['company_person']['person_telephone'],
+            "company_fax_number" => $data['company_person']['person_fax_number'],
+            "company_email" => $data['company_person']['person_email'],
             "company_person_fullname" => $data['company_person']['person_fullname'],
             "company_person_position" => $data['company_person']['person_position'],
             "contact_person_fullname" => $data['contact_person']['person_fullname'],
@@ -176,7 +212,7 @@ class IN_S004 extends CI_Controller {
             "trainer_telephone" => $data['trainer']['person_telephone'],
             "trainer_fax_number" => $data['trainer']['person_fax_number'],
             "trainer_email" => $data['trainer']['person_email'],
-            "student_name_fullnam" => $data['student_name']['student_fullname'],
+            "student_name_fullname" => $data['student_name']['student_fullname'],
             "student_name_id" => $data['student_name']['student_id'],
             "student_department_name" => $data['student_department']['department_name'],
             "student_faculty" => 'คณะวิทยาการสารสนเทศ',
@@ -184,13 +220,13 @@ class IN_S004 extends CI_Controller {
             "company_job_job_description" => $data['company_job_position']['job_description'],
             "coop_student_dorm_name" => $data['coop_student_dorm']['dorm_name'],
             "copp_student_dorm_room" => $data['coop_student_dorm']['dorm_room'],
-            "coop_student_dorm_number" => $data['coop_student_dorm']['dorm_number'],
-            "coop_student_dorm_alley" => $data['coop_student_dorm']['dorm_alley'],
-            "coop_student_road" => $data['coop_student_dorm']['dorm_road'],
-            "coop_student_dorm_district" => $data['coop_student_dorm']['dorm_district'],
-            "coop_student_dorm_area" => $data['coop_student_dorm']['dorm_area'],
-            "coop_student_dorm_province" => $data['coop_student_dorm']['dorm_province'],
-            "coop_student_dorm_postal_code" => $data['coop_student_dorm']['dorm_postal_code'],
+            "coop_student_dorm_number" => $data['coop_student_dorm']['dorm_address_number'],
+            "coop_student_dorm_alley" => $data['coop_student_dorm']['dorm_address_alley'],
+            "coop_student_road" => $data['coop_student_dorm']['dorm_address_road'],
+            "coop_student_dorm_district" => $data['coop_student_dorm']['dorm_address_district'],
+            "coop_student_dorm_area" => $data['coop_student_dorm']['dorm_address_area'],
+            "coop_student_dorm_province" => $data['coop_student_dorm']['dorm_address_province'],
+            "coop_student_dorm_postal_code" => $data['coop_student_dorm']['dorm_address_postal_code'],
             "coop_student_dorm_telephone" => $data['coop_student_dorm']['dorm_telephone'],
             "coop_student_dorm_fax_number" => $data['coop_student_dorm']['dorm_fax_number'],
             "emergency_contact_fullname" => $data['coop_student_emergency_contact']['contact_fullname'],
@@ -205,6 +241,8 @@ class IN_S004 extends CI_Controller {
             "emergency_contact_fax_number" => $data['coop_student_emergency_contact']['contact_fax_number'],
 
         ];
+
+        $data_array['map_image'] = 'http://maps.googleapis.com/maps/api/staticmap?zoom=13&size=600x450&maptype=roadmap&markers=color:blue%7Clabel:*%7C'.$data['company_address']['company_address_latitude'].','.$data['company_address']['company_address_longitude'].'';
 
 
         if($data['company']['headoffice_person_id'] == $data['company']['contact_person_id']) {
