@@ -122,6 +122,11 @@ class Coop_Student_model extends CI_model {
         return $query->result_array();
     }
 
+    public function save_coop_student_dorm($array)
+    {
+        return $this->db->replace('tb_coop_student_dorm', $array);
+    }
+
     public function get_coop_student_emergency_contact_by_student($student_id)
     {
         $this->db->where('student_id', $student_id);
