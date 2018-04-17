@@ -12,10 +12,10 @@ class BUUMember_model extends CI_Model
             $data['fullname'] = 'Kamonwan';
             $data['login_type'] = 'officer';
             $data['login_value'] = 'kamonwans';
-        } else if($username == '57660135') {
-            $data['fullname'] = '57660135';
+        } else if($username == '57660137') {
+            $data['fullname'] = '57660137';
             $data['login_type'] = 'student';
-            $data['login_value'] = '57660135';
+            $data['login_value'] = '57660137';
         }
 
         return $data;
@@ -24,7 +24,7 @@ class BUUMember_model extends CI_Model
     public function login($username, $password)
     {
         return $this->xlogin($username, $password);
-        
+
         $this->ldap->connect();
         if($this->ldap->authenticate('' , $username, $password)) {
             $userdata = $this->ldap->get_data($username,$password);

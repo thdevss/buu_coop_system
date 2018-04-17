@@ -8,7 +8,11 @@ class Template {
         
         $login_data = $CI->Login_session->check_login();        
         $data['user'] = $login_data;
-        $data['user_info'] = $CI->BUUMember->get($login_data->login_type, $login_data->login_value)[0];
+        $data['user_info'] = $CI->BUUMember->get($login_data->login_type, $login_data->login_value);
+        if( count($data['user_info']) < 1 ) {
+            redirect('Member/logout', 'refresh');
+        }
+        $data['user_info'] = $data['user_info'][0];
 
         if($login_data->login_type == 'student' ||
             $login_data->login_type == 'coop_student') {
