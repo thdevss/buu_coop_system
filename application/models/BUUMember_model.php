@@ -23,6 +23,8 @@ class BUUMember_model extends CI_Model
 
     public function login($username, $password)
     {
+        return $this->xlogin($username, $password);
+        
         $this->ldap->connect();
         if($this->ldap->authenticate('' , $username, $password)) {
             $userdata = $this->ldap->get_data($username,$password);

@@ -159,27 +159,27 @@
                               <div class="card-body">
                                 <dl class="row">
                                   <dt class="col-sm-4">ชื่อสถานประกอบการ</dt>
-                                  <dd><?php echo $company['name_th'] ?></dd>
+                                  <dd><?php echo $company['company_name_th'] ?></dd>
                                 </dl>
 
                                 <dl class="row">
                                   <dt class="col-sm-4">ตำแหน่งงานที่สมัคร</dt>
-                                  <dd><?php echo $job['position_title'] ?></dd>
+                                  <dd><?php echo $job['job_title'] ?></dd>
                                 </dl>
 
                                 <dl class="row">
                                   <dt class="col-sm-4">อาจารย์ที่ปรึกษา</dt>
-                                  <dd><?php echo $adviser['fullname'] ?></dd>
+                                  <dd><?php echo $adviser['adviser_fullname'] ?></dd>
                                 </dl>
 
                                 <dl class="row">
                                   <dt class="col-sm-4">พี่เสี่ยง</dt>
-                                  <dd><?php echo $trainer['fullname'] ?></dd>
+                                  <dd><?php echo $trainer['person_fullname'] ?></dd>
                                 </dl>
 
                                 <dl class="row">
                                   <dt class="col-sm-4">ผลการประเมิน</dt>
-                                  <dd><a href="<?php echo site_url('Officer/Coop_student_assessment_result/assessment_detail/'.$student['id']); ?>">ดูผลการประเมิน</a></dd>
+                                  <dd><a href="<?php echo site_url('Officer/Coop_student_assessment_result/assessment_detail/'.$student['student_id']); ?>">ดูผลการประเมิน</a></dd>
                                 </dl>
 
                               </div>
