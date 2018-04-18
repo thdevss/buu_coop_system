@@ -60,7 +60,7 @@ class Coop_student extends CI_Controller {
                 $tmp_array['company'] = @$cache['company'][$row['company_id']];
 
                 if($row['trainer_id'] < 1) {
-                    $tmp_array['trainer']['fullname'] = ' - ';
+                    $tmp_array['trainer']['person_fullname'] = ' - ';
                 } else {
                     $tmp_array['trainer'] = @$cache['trainer'][$row['trainer_id']];
                 }
