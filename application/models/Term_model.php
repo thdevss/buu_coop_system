@@ -37,7 +37,7 @@ class Term_model extends CI_model
     public function get_current_term()
     {
         $userdata = $this->Login_session->check_login();
-        if($userdata->login_type == 'officer') {
+        if(@$userdata->login_type == 'officer') {
             //for officer
             $this->db->where('term_id', $userdata->term_id);
             $this->db->from('tb_term');

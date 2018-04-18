@@ -26,7 +26,9 @@ class Coop_Student_model extends CI_model {
 
     public function gets_coop_student()
     {
-        $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);        
+        $term_id = $this->Term->get_current_term()[0]['term_id'];
+
+        $this->db->where('term_id', $term_id);
         $this->db->from('tb_coop_student');
         $query = $this->db->get();
         return $query->result_array();
@@ -34,6 +36,9 @@ class Coop_Student_model extends CI_model {
     
     public function get_coop_student($student_id)
     {
+        $term_id = $this->Term->get_current_term()[0]['term_id'];
+
+        $this->db->where('term_id', $term_id);
         $this->db->where('student_id', $student_id);
         $this->db->from('tb_coop_student');
         $query = $this->db->get();
@@ -54,7 +59,11 @@ class Coop_Student_model extends CI_model {
 
     public function gets_coop_student_by_trainer($trainer_id)
     {
-
+        $this->db->where('term_id', $this->Term->get_current_term()[0]['term_id']);                
+        $this->db->where('trainer_id', $trainer_id);
+        $this->db->from('tb_coop_student');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function gets_coop_student_by_adviser($adviser_id)
@@ -83,6 +92,9 @@ class Coop_Student_model extends CI_model {
 
     public function get_coop_student_plan($student_id)
     {
+        $term_id = $this->Term->get_current_term()[0]['term_id'];
+
+        $this->db->where('term_id', $term_id);
         $this->db->where('student_id',$student_id);
         $this->db->from('tb_coop_student_plan');
         $query = $this->db->get();
@@ -97,12 +109,18 @@ class Coop_Student_model extends CI_model {
 
     public function delete_plan($student_id)
     {
+        $term_id = $this->Term->get_current_term()[0]['term_id'];
+
+        $this->db->where('term_id', $term_id);
         $this->db->where('student_id',$student_id);        
         return $this->db->delete('tb_coop_student_plan');
     }
 
     public function get_permit_form_by_student($student_id)
     {
+        $term_id = $this->Term->get_current_term()[0]['term_id'];
+
+        $this->db->where('term_id', $term_id);
         $this->db->where('student_id', $student_id);
         $this->db->from('tb_coop_student_permit');
         $query = $this->db->get();
@@ -154,6 +172,9 @@ class Coop_Student_model extends CI_model {
 
     public function gets_general_petition_by_student($student_id)
     {
+        $term_id = $this->Term->get_current_term()[0]['term_id'];
+
+        $this->db->where('term_id', $term_id);
         $this->db->where('student_id', $student_id);
         $this->db->from('tb_coop_student_general_petition');
         $query = $this->db->get();
@@ -175,8 +196,12 @@ class Coop_Student_model extends CI_model {
         $this->db->insert('tb_coop_student_general_petition', $insertArr);
         return $this->db->insert_id();
     }
+    
     public function get_coop_student_by_department($department_id)
     {
+        $term_id = $this->Term->get_current_term()[0]['term_id'];
+
+        $this->db->where('term_id', $term_id);
         $this->db->where('department_id', $department_id);
         $this->db->from('tb_coop_student');
         $query = $this->db->get();
