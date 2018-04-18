@@ -8,11 +8,27 @@ class Student_model extends CI_model {
     
     public function get_student($student_id)
     {
+        $term_id = $this->Term->get_current_term()[0]['term_id'];
+
+        $this->db->where('term_id', $term_id);
         $this->db->where('student_id',$student_id);
         $this->db->from('tb_student');
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    public function search_department_by_course($course)
+    {
+        $this->db->from('tb_department');
+        $query = $this->db->get();
+        foreach($query->result_array() as $department) {
+            if(strpos($course, $department['department_name'])) {
+                return $department['department_id'];
+            }
+        }
+
+        return 1;
+    }    
 
     public function gets_student()
     {
@@ -30,8 +46,11 @@ class Student_model extends CI_model {
         $this->db->from('tb_student');
         $query = $this->db->get();
         return $query->result_array();
+    }
 
-
+    public function insert_student($array) 
+    {
+        return $this->db->insert('tb_student',$array);
     }
 
     public function update_student($student_id, $array)
