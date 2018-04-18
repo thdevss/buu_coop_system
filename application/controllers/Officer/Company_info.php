@@ -40,9 +40,9 @@ class Company_info extends CI_controller
             $this->form_validation->set_rules('company_name_th','(ภาษาไทย)','required');//required ต้องการไทย
             $this->form_validation->set_rules('company_name_en','(ภาษาอังกฤษ)','required|alpha');
             $this->form_validation->set_rules('company_address_number','ที่อยู่เลขที่','required|alpha_dash');//required ต้องการตัวเลขและเคนื่องหมาย'/'
-            $this->form_validation->set_rules('company_address_building','อาคาร','required|alpha_numeric');//required ต้องการไทย
+            $this->form_validation->set_rules('company_address_building','อาคาร','required');//required ต้องการไทย
             $this->form_validation->set_rules('company_address_road','ถนน','required');//required ต้องการไทย
-            $this->form_validation->set_rules('company_address_alley','ซอย','required|alpha_numeric');//required ต้องการไทย
+            $this->form_validation->set_rules('company_address_alley','ซอย','required');//required ต้องการไทย
             $this->form_validation->set_rules('company_address_district','แขวง','required');//required ต้องการไทย
             $this->form_validation->set_rules('company_address_area','เขต/อำเภอ','required');//required ต้องการไทย
             $this->form_validation->set_rules('company_address_province','จังหวัด','required');//required ต้องการไทย

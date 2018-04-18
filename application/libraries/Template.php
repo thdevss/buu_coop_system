@@ -4,6 +4,7 @@ class Template {
 
     function view($file, $data = array())
     {
+        error_reporting(E_ALL ^ E_NOTICE); //close error hahaha
         $CI =& get_instance();
         
         $login_data = $CI->Login_session->check_login();        

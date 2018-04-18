@@ -64,7 +64,7 @@ class Coop_student_assessment_result extends CI_Controller {
                 if($row['trainer_id'] > 0) {
                     $tmp_array['trainer'] = @$cache['trainer'][$row['trainer_id']];
                 } else {
-                    $tmp_array['trainer']['fullname'] = ' - ';
+                    $tmp_array['trainer']['person_fullname'] = ' - ';
                 }
                 
                 $tmp_array['button'] = '<a href="'.site_url('Officer/Coop_student_assessment_result/assessment_detail/'.$row['student_id']).'" class="btn btn-info"><i class="fa fa-list-alt"></i> ผลการประเมิน</a>';
