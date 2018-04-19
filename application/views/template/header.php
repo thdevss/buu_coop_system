@@ -33,6 +33,9 @@
   .sidebar {
     background: #01579b;
   }
+  .card-body img {
+    width:100% !important;
+  }
   </style>
 </head>
 
