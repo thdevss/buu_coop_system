@@ -72,9 +72,11 @@ class Coop_Submitted_Form_Search extends CI_Controller {
             foreach($rowsDocument as $doc) {
                 $tmp['document_code'] = $doc['document_code'].' - '.$doc['document_name'];
                 $tmp['file'] = '';
-                $file = $this->Coop_Submitted_Form_Search->search_form_by_student_and_code($student_id, $doc['document_id']);
-                if($file) {
-                    $tmp['file'] = $file[0]['document_pdf_file'];
+                $files = $this->Coop_Submitted_Form_Search->search_form_by_student_and_code($student_id, $doc['document_id']);
+                foreach($files as $file) {
+                    if($file['document_pdf_file'] != '') {
+                        $tmp['file'] .= '[<a href="'.base_url($file['document_pdf_file']).'">ดาวน์โหลด</a>] ';
+                    }
                 }
 
                 array_push($array['data'], $tmp);
