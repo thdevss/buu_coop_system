@@ -12,11 +12,11 @@
         <div class="animated fadeIn">
           <div class="row">
             <?php foreach($rowNews as $row) { ?>
-                <div class="col-md-12">
+                <div class="col-md-6 offset-md-3">
                     <div class="card">
                         <div class="card-header">
                             <?php echo $row->title;?>
-                            <span class="badge badge-success float-right"><?php echo date('Y-m-d H:i', strtotime($row->date));?></span>
+                            <span class="btn btn-danger float-right"><?php echo thaiDate(date('Y-m-d H:i', strtotime($row['news_date'])), false, false);?></span>                            
                         </div>
                         <div class="card-body">
                             <?php echo $row->detail;?>

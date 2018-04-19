@@ -82,6 +82,8 @@ class IN_S007 extends CI_Controller {
             $insertArr['petition_subject'] = $this->input->post('petition_subject');
             $insertArr['petition_purpose'] = $this->input->post('petition_purpose');
             $insertArr['petition_reason'] = $this->input->post('petition_reason');
+            $insertArr['term_id'] = $this->Login_session->check_login()->term_id;
+            
             if($last_id = $this->Coop_Student->save_general_petition($insertArr)) {
                 if($this->input->post('print') == 1){
                     $this->print_data($last_id);
