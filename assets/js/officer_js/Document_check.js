@@ -9,13 +9,13 @@ jQuery( ".document_check_btn" ).click(function() {
                 $('#document_check_table tbody').append(
                     '<tr>'+
                     '<th >'+val.document_code+'</td>'+
-                    '<td><u><a href="'+BASE_URL+'/'+val.file+'" target="_blank">ดาวน์โหลด</a></u></td>'+              
+                    '<td>'+val.file+'</td>'+         
                     '</tr>');
             } else {
                 $('#document_check_table tbody').append(
                     '<tr>'+
                     '<td>'+val.document_code+'</td>'+
-                    '<td>'+val.file+'</td>'+         
+                    '<td> - </td>'+         
                     '</tr>');
             }
             
