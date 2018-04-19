@@ -27,7 +27,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item nav-dropdown">
+          <!-- <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-note"></i> การสอบสหกิจ</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
@@ -37,7 +37,7 @@
                 <a class="nav-link" href="<?php echo site_url('student/test/result');?>" target="_top"><i class="fa fa-file-pdf-o"></i> ประกาศผลสอบ</a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-graduation"></i> สหกิจศึกษา</a>
             <ul class="nav-dropdown-items">
