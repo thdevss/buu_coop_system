@@ -48,8 +48,8 @@ class Training_model extends CI_model
 
     public function add_student_to_training($training_id, $student_id) 
     {
-        // $db_debug = $this->db->db_debug; //save setting
-        // $this->db->db_debug = FALSE; //disable debugging for queries
+        $db_debug = $this->db->db_debug; //save setting
+        $this->db->db_debug = FALSE; //disable debugging for queries
 
         $array['student_id'] = $student_id;
         $term = $this->Term->get_current_term();
@@ -58,7 +58,7 @@ class Training_model extends CI_model
         $train = $this->get_training($training_id)[0];
         $array['train_type_id'] = $train['train_type_id'];
         $status = $this->db->insert('tb_student_train_register',$array); 
-        // $this->db->db_debug = $db_debug;
+        $this->db->db_debug = $db_debug;
         
         return $status;
     }
@@ -179,7 +179,8 @@ class Training_model extends CI_model
                 else
                     $check_count = 0;
                 
-                if($student_count == $check_count) {
+                $row['check_hour'] = 0;
+                if( ($student_count == $check_count) && ($check_count > 0) ) {
                     $row['is_complete_train'] = true;
                     $row['check_hour'] = $row['total_hour'];
                 } else {
