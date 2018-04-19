@@ -69,7 +69,7 @@ class permit_form  extends CI_Controller {
         $this->form_validation->set_rules('permit_address_province', 'ที่อยู่: จังหวัด', 'trim|required');
         $this->form_validation->set_rules('permit_address_postal_code', 'ที่อยู่: รหัสไปรษณีย์', 'trim|required|numeric|max_length[5]');
         $this->form_validation->set_rules('permit_telephone', 'หมายเลขโทรศัพท์', 'trim|required|numeric|max_length[10]');
-        $this->form_validation->set_rules('permit_fax_number', 'หมายเลขโทรสาร', 'trim|required|numeric|max_length[10]');
+        $this->form_validation->set_rules('permit_fax_number', 'หมายเลขโทรสาร', 'trim|numeric|max_length[10]');
         $this->form_validation->set_rules('permit_email', 'อีเมล', 'trim|required|valid_email');
         $this->form_validation->set_rules('permit_choice', 'การตอบรับ', 'trim|required|in_list[0,1]');
 
@@ -90,6 +90,7 @@ class permit_form  extends CI_Controller {
                 $data['permit_choice'] = 0;
             }
             $data['student_id'] =  $student_id;
+            $data['term_id'] = $this->Login_session->check_login()->term_id;
 
             //save
             if($this->Coop_Student->save_permit_form_by_student($data)) {

@@ -53,7 +53,7 @@ class Job_list_position extends CI_Controller {
         }
 
         // foreach($this->Student->gets_student() as $row)
-        foreach($this->Job->get_student_by_company_id($data['trainer_id']) as $row)
+        foreach($this->Job->get_student_by_company_id($company_id) as $row)
         {
             $tmp_array = array();
             
