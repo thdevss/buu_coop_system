@@ -61,12 +61,11 @@
 
             <div class="row">
             <?php foreach($rowNews as $key => $row) { if($key > 0) continue; ?>
-                <div class="col-md-12">
+                <div class="col-md-6 offset-md-3">
                     <div class="card">
                         <div class="card-header">
                             <?php echo $row['news_title'];?>
-                            <span class="btn btn-dark float-right">ผู้ลงประกาศ: <?php echo $row['author']['officer_fullname'];?></span>
-                            <span class="btn btn-dark float-right" style="margin-right:10px;"><?php echo thaiDate(date('Y-m-d H:i', strtotime($row['news_date'])), true);?></span>
+                            <span class="btn btn-danger float-right"><?php echo thaiDate(date('Y-m-d H:i', strtotime($row['news_date'])), false, false);?></span>                            
                         </div>
                         <div class="card-body">
                             <?php echo $row['news_detail'];?>
