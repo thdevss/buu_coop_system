@@ -35,7 +35,7 @@
 
                                 <div class="form-group col-md-6 offset-md-3">
                                     <label for="activity_subject">หัวข้อ</label>          
-                                    <input value="<?php echo @$row['activity_subject'];?>" class="form-control" type="text" name="activity_subject" id="activity_subject">
+                                    <input value="<?php echo @$row['activity_subject'];?>" class="form-control" type="text" name="activity_subject" id="activity_subject" required>
                                 </div>
 
                                 <div class="form-group col-md-6 offset-md-3">
