@@ -32,12 +32,12 @@
                                 <form action="<?php echo site_url('Coop_student/Workplace/update');?>" method="post">
                                     <div class="form-group">
                                       <label class="form-col-form-label" for="">ลาติจูด</label>
-                                      <input type="text" class="form-control map_val" id="coop_student_latitude" name="coop_student_latitude" value="<?php echo $map['coop_student_latitude'];?>">
+                                      <input type="text" class="form-control map_val" id="coop_student_latitude" name="coop_student_latitude" value="<?php echo $map['coop_student_latitude'];?>" required>
                                     </div>
 
                                     <div class="form-group">
                                       <label class="form-col-form-label" for="">ลองติจูด</label>
-                                      <input type="text" class="form-control map_val" id="coop_student_longitude" name="coop_student_longitude" value="<?php echo $map['coop_student_longitude'];?>">
+                                      <input type="text" class="form-control map_val" id="coop_student_longitude" name="coop_student_longitude" value="<?php echo $map['coop_student_longitude'];?>" required>
                                     </div>
 
                                     <div class="form-group">
