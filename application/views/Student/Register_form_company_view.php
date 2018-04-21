@@ -142,7 +142,7 @@
 
                     <div class="form-group row">
                       <div class="col-sm-12">
-                        <img src="http://reg.buu.ac.th/registrar/getstudentimage.asp?id=<?php echo $user->login_value;?>" class="rounded-circle">
+                        <img src="http://reg.buu.ac.th/registrar/getstudentimage.asp?id=<?php echo $user->login_value;?>" class="rounded-circle" style="width:248px !important;">
                       </div>
 
                       <div class="form-group col-sm-6">
