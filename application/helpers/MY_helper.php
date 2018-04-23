@@ -149,3 +149,8 @@ function isEmptyText($str = null)
 
 	return $str;
 }
+
+function form_value_db($field_name, $data)
+{
+	return set_value($field_name) == false ? $data : set_value($field_name);
+}

@@ -59,18 +59,17 @@ class permit_form  extends CI_Controller {
         $return['status'] = false;
         $return['print'] = false;
                 
-        $this->load->library('form_validation');        
         $this->form_validation->set_rules('permit_fullname', 'ชื่อผู้ปกครอง', 'trim|required');
         $this->form_validation->set_rules('permit_relative', 'ความสัมพันธ์กับนิสิต', 'trim|required');
-        $this->form_validation->set_rules('permit_address_number', 'ที่อยู่: บ้านเลขที่', 'trim|required');
-        $this->form_validation->set_rules('permit_address_road', 'ที่อยู่: ถนน', 'trim|required');
-        $this->form_validation->set_rules('permit_address_district', 'ที่อยู่: ตำบล', 'trim|required');
-        $this->form_validation->set_rules('permit_address_area', 'ที่อยู่: อำเภอ', 'trim|required');
-        $this->form_validation->set_rules('permit_address_province', 'ที่อยู่: จังหวัด', 'trim|required');
-        $this->form_validation->set_rules('permit_address_postal_code', 'ที่อยู่: รหัสไปรษณีย์', 'trim|required|numeric|max_length[5]');
-        $this->form_validation->set_rules('permit_telephone', 'หมายเลขโทรศัพท์', 'trim|required|numeric|max_length[10]');
-        $this->form_validation->set_rules('permit_fax_number', 'หมายเลขโทรสาร', 'trim|numeric|max_length[10]');
-        $this->form_validation->set_rules('permit_email', 'อีเมล', 'trim|required|valid_email');
+        $this->form_validation->set_rules('permit_address_number', 'บ้านเลขที่', 'trim|required');
+        $this->form_validation->set_rules('permit_address_road', 'ถนน', 'trim|required');
+        $this->form_validation->set_rules('permit_address_district', 'ตำบล', 'trim|required');
+        $this->form_validation->set_rules('permit_address_area', 'อำเภอ', 'trim|required');
+        $this->form_validation->set_rules('permit_address_province', 'จังหวัด', 'trim|required');
+        $this->form_validation->set_rules('permit_address_postal_code', 'รหัสไปรษณีย์', 'trim|required|numeric|max_length[5]');
+        $this->form_validation->set_rules('permit_telephone', 'โทรศัพท์', 'trim|required|numeric|max_length[10]');
+        $this->form_validation->set_rules('permit_fax_number', 'โทรสาร', 'trim|numeric|max_length[10]');
+        $this->form_validation->set_rules('permit_email', 'E-mail', 'trim|required|valid_email');
         $this->form_validation->set_rules('permit_choice', 'การตอบรับ', 'trim|required|in_list[0,1]');
 
         if ($this->form_validation->run() != FALSE) {
