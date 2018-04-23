@@ -47,11 +47,11 @@
                             </div>
                             <div class="form-group col-sm-4">           
                                 <label>โทรศัพท์มือถือ </label><code>*</code>
-                                <input type="text" class="form-control" value="" disabled>
+                                <input type="text" class="form-control" value="<?php echo @$profile_student['Student_Phone']; ?>" disabled>
                             </div>
                             <div class="form-group col-sm-8">           
                                 <label>อีเมล์  </label><code>*</code>
-                                <input type="text" class="form-control" value="" disabled>
+                                <input type="text" class="form-control" value="<?php echo @$profile_student['Student_Email']; ?>" disabled>
                             </div>
                             <div class="form-group col-sm-8">           
                                 <label>มีความประสงค์  </label><code>*</code>
