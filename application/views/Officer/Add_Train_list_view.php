@@ -11,18 +11,14 @@
 <div class="container-fluid">
     <div class="animated fadeIn">
         <div class="row" >
-            <div class="col-md-12">
+            <div class="col-lg-6 offset-lg-3">
                 <div class="card">
                     <div class="card-header"><i class="fa fa-align-justify"></i>เพิ่มข้อมูลโครงการอบรม</div>
                     <div class="card-body "> 
-                        <?php 
-                        if($status){
-                            echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
-                        }
-                        ?>            
+                                
                         <form action="<?php echo site_url('Officer/Training/post_add');?>" method="post">
-                            <div class="form-group col-md-6 offset-md-3">
-                                <label for="train_type">ประเภทโครงการ</label>          
+                            <div class="form-group col-md-12 offset-md-12">
+                                <label for="train_type">ประเภทโครงการ</label> <?php echo form_error('train_type'); ?>         
                                 <select class="form-control" type="text" class="form-control" name="train_type" id="train_type">
                                     <option value="">--- please select ---</option>
                                     <?php 
@@ -32,41 +28,41 @@
                                     ?>               
                                 </select>
                             </div> 
-                            <div class="col-md-6"></div>
+                            <div class="col-md-12"></div>
 
-                            <div class="form-group col-md-6 offset-md-3">
-                                <label for="train_title">ชื่อโครงการ</label>
+                            <div class="form-group col-md-12 offset-md-12">
+                                <label for="train_title">ชื่อโครงการ</label> <?php echo form_error('train_title'); ?>
                                 <input type="text" class="form-control" id="train_title" placeholder="" name="train_title" value="">
                             </div> 
-                            <div class="col-md-6"></div>
+                            <div class="col-md-12"></div>
                             
-                            <div class="form-group col-md-6 offset-md-3">
-                                <label for="train_lecturer">วิทยากร</label>
+                            <div class="form-group col-md-12 offset-md-12">
+                                <label for="train_lecturer">วิทยากร</label> <?php echo form_error('train_lecturer'); ?>
                                 <input type="text" class="form-control" id="train_lecturer" placeholder="" name="train_lecturer" value="">
                             </div>
-                            <div class="col-md-6"></div>
+                            <div class="col-md-12"></div>
 
-                            <div class="form-group col-md-6 offset-md-3">
-                                <label for="train_seat">จำนวนที่นั่งเปิดรับ</label>
+                            <div class="form-group col-md-12 offset-md-12">
+                                <label for="train_seat">จำนวนที่นั่งเปิดรับ</label> <?php echo form_error('train_seat'); ?>
                                 <input type="number" class="form-control" id="train_seat" placeholder="" name="train_seat" value="">
                             </div>
-                            <div class="col-md-6"></div>
+                            <div class="col-md-12"></div>
 
-                            <div class="form-group col-md-6 offset-md-3">
-                                <label for="train_hour">จำนวนชั่วโมงที่ได้รับ</label>
+                            <div class="form-group col-md-12 offset-md-12">
+                                <label for="train_hour">จำนวนชั่วโมงที่ได้รับ</label> <?php echo form_error('train_hour'); ?>
                                 <input type="number" class="form-control" id="train_hour" placeholder="" name="train_hour" value="">
                             </div>
-                            <div class="col-md-6"></div>
+                            <div class="col-md-12"></div>
 
-                            <div class="form-group col-md-6 offset-md-3">
-                                <label for="train_date">วันที่อบรม</label>
+                            <div class="form-group col-md-12 offset-md-12">
+                                <label for="train_date">วันที่อบรม</label> <?php echo form_error('train_date'); ?>
                                 <br>
                                 <input type="text" class="form-control datetimepicker" id="train_date" placeholder="" name="train_date" value="">    
                             </div>
-                            <div class="col-md-6"></div>
+                            <div class="col-md-12"></div>
                             
-                            <div class="form-group col-md-6 offset-md-3">
-                                <label for="train_location_id">ห้องอบรม</label>  
+                            <div class="form-group col-md-12 offset-md-12">
+                                <label for="train_location_id">ห้องอบรม</label> <?php echo form_error('train_location_id'); ?>  
                                 <select class="form-control" type="text" class="form-control" name="train_location_id" id="train_location_id">
                                     <option value="">--- please select ---</option>                                
                                     <?php 
@@ -76,10 +72,10 @@
                                     ?>
                                 </select>
                             </div>
-                            <div class="col-md-6"></div>
+                            <div class="col-md-12"></div>
                             
-                            <div class="form-group col-md-6 offset-md-3">
-                                <label for="train_register_date">วันเวลาเปิดรับสมัคร</label>   
+                            <div class="form-group col-md-12 offset-md-12">
+                                <label for="train_register_date">วันเวลาเปิดรับสมัคร</label> <?php echo form_error('train_register_date'); ?>  
                                 <br>              
                                 <input type="text" class="form-control datetimepicker" id="train_register_date" placeholder="" name="train_register_date" value"">
                             </div>
@@ -88,7 +84,7 @@
                             
                             
                             <div class="col-md-12 text-center"> 
-                                <button type="reset" class="btn btn-secondary"><i></i>ยกเลิก</button>
+                                <button type="reset" class="btn btn-danger"><i></i>ยกเลิก</button>
                                 <button type="submit" class="btn btn-success"><i></i>บันทึก</button>                
                             </div>
 
