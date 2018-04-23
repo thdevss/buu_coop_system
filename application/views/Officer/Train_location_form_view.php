@@ -9,7 +9,7 @@
 <div class="container-fluid">
     <div class="animated fadeIn">
         <div class="row" >
-            <div class="col-sm-12">
+            <div class="col-lg-6 offset-lg-3">
                 <div class="card">
                     <div class="card-header"><i class="fa fa-align-justify"></i> แบบฟอร์มข้อมูลสถานที่อบรม</div>
                     <div class="card-body">             
