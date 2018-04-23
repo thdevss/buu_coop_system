@@ -54,13 +54,12 @@ class IN_S006 extends CI_Controller {
         // print_r($_POST);
         $student_id = $this->Login_session->check_login()->login_value;
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('report_subject_th', 'หัวข้อภาษาไทย', 'required');
-        $this->form_validation->set_rules('report_subject_en', 'หัวข้อภาษาอังกฤษ', 'required|alpha');
+        $this->form_validation->set_rules('report_subject_th', 'หัวข้อภาษาไทย', 'required|thai_character');
+        $this->form_validation->set_rules('report_subject_en', 'หัวข้อภาษาอังกฤษ', 'required|alpha_numeric_spaces');
         $this->form_validation->set_rules('report_detail', 'รายละเอียดเนื้อหาของรายงาน', 'required');
 
-        if ($this->form_validation->run() == FALSE)
-                {
-                    redirect('Coop_student/IN_S006/form/?status=error_input','refresh');
+        if ($this->form_validation->run() == FALSE) {
+                    $this->form();
 
                 }else{
                     $array['student_id'] = $student_id;

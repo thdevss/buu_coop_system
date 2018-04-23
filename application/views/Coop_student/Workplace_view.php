@@ -31,13 +31,13 @@
                             <div class="col-md-6">
                                 <form action="<?php echo site_url('Coop_student/Workplace/update');?>" method="post">
                                     <div class="form-group">
-                                      <label class="form-col-form-label" for="">ลาติจูด</label>
-                                      <input type="text" class="form-control map_val" id="coop_student_latitude" name="coop_student_latitude" value="<?php echo $map['coop_student_latitude'];?>" required>
+                                      <label class="form-col-form-label" for="">ละติจูด <?php echo form_error('coop_student_latitude');?></label>
+                                      <input type="text" class="form-control map_val" id="coop_student_latitude" name="coop_student_latitude" value="<?php echo form_value_db('coop_student_latitude', $map['coop_student_latitude']);?>">
                                     </div>
 
                                     <div class="form-group">
-                                      <label class="form-col-form-label" for="">ลองติจูด</label>
-                                      <input type="text" class="form-control map_val" id="coop_student_longitude" name="coop_student_longitude" value="<?php echo $map['coop_student_longitude'];?>" required>
+                                      <label class="form-col-form-label" for="">ลองติจูด <?php echo form_error('coop_student_longitude');?></label>
+                                      <input type="text" class="form-control map_val" id="coop_student_longitude" name="coop_student_longitude" value="<?php echo form_value_db('coop_student_longitude', $map['coop_student_longitude']);?>">
                                     </div>
 
                                     <div class="form-group">
