@@ -23,8 +23,9 @@
 
         //subject
 
-        public function index($status = '') //get coop student questionaire subject
+        public function index($status = '', $open_modal = false) //get coop student questionaire subject
         {   
+            $data['open_modal'] = $open_modal;
             if($status == '') {
                 $status = $this->input->get('status');
             }
@@ -55,23 +56,30 @@
 
         public function add_coop_student_questionnaire_subject() //insert coop student questionaire subject
         {
-            $array['coop_student_questionnaire_subject_number'] = $this->input->post('number');
-            $array['coop_student_questionnaire_subject_title'] = $this->input->post('title');
-            $term_id = $this->Term->get_current_term()[0]['term_id'];
-            $array['term_id'] = $term_id; 
-         
-            if($this->Coop_Student_Assessment_Form->check_subject_dup($array['coop_student_questionnaire_subject_number'])) {
-                //is dup, cant insert
-                redirect('Officer/Assessment_coop_student_Form/index/?status=error', 'refresh');                
-                
-            } else {
-                //can insert
-                $this->Coop_Student_Assessment_Form->save_coop_student_form_subject($array);
-                redirect('Officer/Assessment_coop_student_Form/index/?status=success', 'refresh');                
-            }
-
-            // return $this->index('success');
+            $this->form_validation->set_rules('number', 'ลำดับหัวข้อ', 'trim|required|numeric|max_length[2]');
+            $this->form_validation->set_rules('title', 'ชื่อหัวข้อการประเมิน', 'trim|required');
             
+            if ($this->form_validation->run() == FALSE) {
+                $this->index('', true);
+            } else {
+
+                $array['coop_student_questionnaire_subject_number'] = $this->input->post('number');
+                $array['coop_student_questionnaire_subject_title'] = $this->input->post('title');
+                $term_id = $this->Term->get_current_term()[0]['term_id'];
+                $array['term_id'] = $term_id; 
+            
+                if($this->Coop_Student_Assessment_Form->check_subject_dup($array['coop_student_questionnaire_subject_number'])) {
+                    //is dup, cant insert
+                    redirect('Officer/Assessment_coop_student_Form/index/?status=error', 'refresh');                
+                    
+                } else {
+                    //can insert
+                    $this->Coop_Student_Assessment_Form->save_coop_student_form_subject($array);
+                    redirect('Officer/Assessment_coop_student_Form/index/?status=success', 'refresh');                
+                }
+
+                // return $this->index('success');
+            }
 
         }
 
@@ -82,10 +90,13 @@
 
         //item
 
-        public function get_coop_student_questionnaire_item($id) //get coop student questionaire item ออกมาตาม id
+        public function get_coop_student_questionnaire_item($subject_id, $open_modal = false, $last_item_id = false) //get coop student questionaire item ออกมาตาม subject_id
         { 
-            $data['subject'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_subject($id)[0];  
-            $data['coop_student_questionnaire_item'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item_by_subject($id);
+            $data['open_modal'] = $open_modal;
+            $data['last_item_id'] = $last_item_id;
+
+            $data['subject'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_subject($subject_id)[0];  
+            $data['coop_student_questionnaire_item'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item_by_subject($subject_id);
             $data['next_number'] = end($data['coop_student_questionnaire_item'])['coop_student_questionnaire_item_number'];
             if($data['next_number'] < 1) {
                 $data['next_number'] = $data['subject']['coop_student_questionnaire_subject_number'];
@@ -96,31 +107,43 @@
 
             // add breadcrumbs
             $this->breadcrumbs->push('จัดการแบบฟอร์มประเมินผลการฝึกงานของนิสิต', '/Officer/Assessment_coop_student_Form/index');
-            $this->breadcrumbs->push('จัดการหัวข้อย่อยแบบประเมินผลการฝึกงานของนิสิตสหกิจ', '/Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item'.$id);
+            $this->breadcrumbs->push('จัดการหัวข้อย่อยแบบประเมินผลการฝึกงานของนิสิตสหกิจ', '/Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item'.$subject_id);
         
             $this->template->view('Officer/Coop_student_assessment_form_item_view',$data);
         }
 
-        public function add_coop_student_questionnaire_item() //insert coop student questionaire item
+        public function add_coop_student_questionnaire_item($subject_id) //insert coop student questionaire item
         {
             // name dup
-            $array['subject_id'] =$this->input->post('subject_id');
-            $array['term_id'] = $this->Term->get_current_term()[0]['term_id'];
-            $array['coop_student_questionnaire_item_number'] = $this->input->post('number');
-            $array['coop_student_questionnaire_item_title'] = $this->input->post('title');
-            $array['coop_student_questionnaire_item_type'] = $this->input->post('type');
-            $array['coop_student_questionnaire_item_description'] = $this->input->post('description');
+
+            $this->form_validation->set_rules('number', 'ลำดับหัวข้อ', 'trim|required|max_length[4]');
+            $this->form_validation->set_rules('title', 'ชื่อหัวข้อการประเมิน', 'trim|required');
+            $this->form_validation->set_rules('type', 'การให้คะแนน', 'trim|required|in_list[score,comment]');
+            $this->form_validation->set_rules('description', 'รายละเอียดหัวข้อ', 'trim|required');
             
+            if ($this->form_validation->run() == FALSE) {
+                $this->get_coop_student_questionnaire_item($subject_id, true);
 
-            if($this->Coop_Student_Assessment_Form->check_item_dup($array['coop_student_questionnaire_item_number'], $array['subject_id'])) {
-                //is dup, cant insert
-                echo "<script>alert('xxxxx')</script>";
             } else {
-                //can insert
-                $this->Coop_Student_Assessment_Form->insert_coop_student_questionnaire_item($array);
-            }
 
-            redirect('Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item/'.$array['subject_id'], 'refresh');
+                $array['subject_id'] =$this->input->post('subject_id');
+                $array['term_id'] = $this->Term->get_current_term()[0]['term_id'];
+                $array['coop_student_questionnaire_item_number'] = $this->input->post('number');
+                $array['coop_student_questionnaire_item_title'] = $this->input->post('title');
+                $array['coop_student_questionnaire_item_type'] = $this->input->post('type');
+                $array['coop_student_questionnaire_item_description'] = $this->input->post('description');
+                
+
+                if($this->Coop_Student_Assessment_Form->check_item_dup($array['coop_student_questionnaire_item_number'], $array['subject_id'])) {
+                    //is dup, cant insert
+                    echo "<script>alert('xxxxx')</script>";
+                } else {
+                    //can insert
+                    $this->Coop_Student_Assessment_Form->insert_coop_student_questionnaire_item($array);
+                }
+
+                redirect('Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item/'.$array['subject_id'], 'refresh');
+            }
         }
 
         public function delete_coop_student_questionnaire_item($id) //delete coop student questionaire item
@@ -146,26 +169,36 @@
             
         }
 
-        public function update_coop_student_questionnaire_item()
+        public function update_coop_student_questionnaire_item($subject_id)
         {
-            //update
+            $this->form_validation->set_rules('number', 'ลำดับหัวข้อ', 'trim|required|max_length[4]');
+            $this->form_validation->set_rules('title', 'ชื่อหัวข้อการประเมิน', 'trim|required');
+            $this->form_validation->set_rules('type', 'การให้คะแนน', 'trim|required|in_list[score,comment]');
+            $this->form_validation->set_rules('description', 'รายละเอียดหัวข้อ', 'trim|required');
             $item_id = $this->input->post('item_id');
-            $array['coop_student_questionnaire_item_title'] = $this->input->post('title');
-            $array['coop_student_questionnaire_item_type'] = $this->input->post('type');
-            $array['coop_student_questionnaire_item_description'] = $this->input->post('description');
-        
+            
+            if ($this->form_validation->run() == FALSE) {
+                $this->get_coop_student_questionnaire_item($subject_id, true, $item_id);
 
-            $data = @$this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item($item_id)[0];
-            if(!$data) {
-                //is dup, cant edit
-                echo "<script>alert('xxxxx');window.history.back();</script>";
-                die();
             } else {
-                //can edit
-                $this->Coop_Student_Assessment_Form->update_item($item_id, $array);
+
+                $array['coop_student_questionnaire_item_title'] = $this->input->post('title');
+                $array['coop_student_questionnaire_item_type'] = $this->input->post('type');
+                $array['coop_student_questionnaire_item_description'] = $this->input->post('description');
+            
+
+                $data = @$this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item($item_id)[0];
+                if(!$data) {
+                    //is dup, cant edit
+                    echo "<script>alert('xxxxx');window.history.back();</script>";
+                    die();
+                } else {
+                    //can edit
+                    $this->Coop_Student_Assessment_Form->update_item($item_id, $array);
+                }
+    
+                redirect('Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item/'.$data['subject_id'], 'refresh');
             }
- 
-            redirect('Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item/'.$data['subject_id'], 'refresh');
         }
 
         public function get_ajax_item($id)

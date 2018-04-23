@@ -58,17 +58,28 @@ class Setting extends CI_Controller {
     public function post_new_term()
     {
         //add term
-        $insert['term_name'] = $this->input->post('semester')."/".$this->input->post('year');
-        $insert['term_year'] = $this->input->post('year');
-        $insert['term_semester'] = $this->input->post('semester');
-        $insert['term_is_current'] = 0;
-        if($this->Term->add_term($insert)) {
-            redirect('Officer/setting/edit_term?form_status=success');
+        $this->form_validation->set_rules('semester', 'ภาคเรียน', 'trim|required|in_list[1,2,3]');
+        $this->form_validation->set_rules('year', 'ปีการศึกษา', 'trim|required|min_length[4]|max_length[4]');
+        
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->edit_term();
         } else {
-            redirect('Officer/setting/edit_term?form_status=error');
+            // check dup
+            if(!$this->Term->search_term($this->input->post('semester'), $this->input->post('year'))) {
+                $insert['term_name'] = $this->input->post('semester')."/".$this->input->post('year');
+                $insert['term_year'] = $this->input->post('year');
+                $insert['term_semester'] = $this->input->post('semester');
+                $insert['term_is_current'] = 0;
+                if($this->Term->add_term($insert)) {
+                    redirect('Officer/setting/edit_term?form_status=success');
+                } else {
+                    redirect('Officer/setting/edit_term?form_status=error');
+                }
+            } else {
+                redirect('Officer/setting/edit_term?form_status=error');
+            }
         }
-        //add student....
-        //wait API
     }
 
 
@@ -165,7 +176,7 @@ class Setting extends CI_Controller {
             $data['status']['text'] = 'แก้ไขสำเร็จ';
 
         }
-        else if($status == 'Success_delete'){
+        else if($status == 'success_delete'){
             $data['status']['color'] = 'success';            
             $data['status']['text'] = 'ลบสำเร็จ';
 
@@ -187,14 +198,14 @@ class Setting extends CI_Controller {
 
     public function add_job_title()
     {
-        
-        if($this->Job->check_dup_job_title($this->input->post('job_title'))){
-            redirect('Officer/Setting/lists_job_title/?status=dup_data', 'refresh');
-        }
-        else {
+        $this->form_validation->set_rules('job_title', 'ตำแหน่งงาน', 'trim|required|thai_eng_character|is_unique[tb_company_job_title.job_title]');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->lists_job_title();
+        } else {
             $array['job_title'] = $this->input->post('job_title');
             $this->Job->insert_job_title($array);
-            return $this->lists_job_title('success');
+
             redirect('Officer/Setting/lists_job_title/?status=success', 'refresh');
         }
 
@@ -202,13 +213,13 @@ class Setting extends CI_Controller {
 
     public function update_job_title($job_title_id = 0)
     {
-        if($this->input->post('job_title_id')) {
-            //update
-            $job_title_id = $this->input->post('job_title_id');
-            $array['job_title'] = $this->input->post('job_title');
-            $this->Job->update_job_title($job_title_id, $array);
-            redirect('Officer/Setting/lists_job_title/?status=success_update', 'refresh');
-        } else {
+        $this->form_validation->set_rules('job_title', 'ตำแหน่งงาน', 'trim|required|thai_eng_character');
+        
+        if ($this->form_validation->run() == FALSE) {
+            if($job_title_id < 1) {
+                $job_title_id = $this->input->post('job_title_id');                
+            }
+
             $data['form_type'] = 'update';
             $data['status'] = null;
             $data['job_title_by_id'] = $this->Job->get_company_job_title_by_job_title_id($job_title_id)[0];
@@ -219,14 +230,26 @@ class Setting extends CI_Controller {
             $this->breadcrumbs->push('แก้ไขตำแหน่งงาน', '/Officer/Setting/update_job_title'.$job_title_id);
 
             $this->template->view('officer/Job_position_setting_view',$data);
+
+        } else {
+            //update
+            $job_title_id = $this->input->post('job_title_id');
+            $array['job_title'] = $this->input->post('job_title');
+            
+            if($this->Job->get_job_title($job_title_id)) {
+                $this->Job->update_job_title($job_title_id, $array);
+                redirect('Officer/Setting/lists_job_title/?status=success_update', 'refresh');
+            }
         }
 
     }
 
     public function delete_job_title($job_title_id)
     {
-        $this->Job->delete_job_title($job_title_id);
-        redirect('Officer/Setting/lists_job_title/?status=Success_delete', 'refresh');
+        if($this->Job->get_job_title($job_title_id)) {
+            $this->Job->delete_job_title($job_title_id);
+            redirect('Officer/Setting/lists_job_title/?status=success_delete', 'refresh');                
+        }
     }
 
     public function lists_skill_name($status = '')
@@ -283,27 +306,25 @@ class Setting extends CI_Controller {
 
     public function add_skill_name()
     {
-        if($this->Skill->check_dup_skill_name($this->input->post('skill_name'))){
-            redirect('Officer/setting/lists_skill_name/?status=dup_data', 'refresh');
-        }
-        else{
-        $array['skill_category_id'] = $this->input->post('skill_category_id');
-        $array['skill_name'] = $this->input->post('skill_name');
-        $this->Skill->insert_skill($array);
-        redirect('Officer/setting/lists_skill_name/?status=success', 'refresh');
+        $this->form_validation->set_rules('skill_name', 'ชื่อทักษะงาน', 'trim|required|thai_eng_character|is_unique[tb_skill.skill_name]');
+        $this->form_validation->set_rules('skill_category_id', 'ประเภททักษะ', 'trim|required|integer');
+        
+        if ($this->form_validation->run() == FALSE) {
+            $this->lists_skill_name();
+        } else {
+            $array['skill_category_id'] = $this->input->post('skill_category_id');
+            $array['skill_name'] = $this->input->post('skill_name');
+            $this->Skill->insert_skill($array);
+            redirect('Officer/setting/lists_skill_name/?status=success', 'refresh');
         }
 
     }
 
     public function update_skill_name($skill_id = 0)
     {
-        if($this->input->post('skill_id')) {
-            $skill_id = $this->input->post('skill_id');
-            $array['skill_name'] = $this->input->post('skill_name');
-            $this->Skill->update_skill($skill_id , $array);
-            redirect('Officer/setting/lists_skill_name/?status=success_update', 'refersh');
-        }
-        else{
+        $this->form_validation->set_rules('skill_name', 'ชื่อทักษะงาน', 'trim|required|thai_eng_character|is_unique[tb_skill.skill_name]');
+
+        if ($this->form_validation->run() == FALSE) {
             $data['form_type'] = 'update';
             $data['status'] = null;
             // $data['skill'] = $this->Skill->gets_skill();
@@ -323,11 +344,17 @@ class Setting extends CI_Controller {
             
             // add breadcrumbs
             $this->breadcrumbs->push('จัดการประเภททักษะ', '/Officer/Setting/lists_skill_name');
-            $this->breadcrumbs->push('แก้ไขประเภททักษะ', '/Officer/Setting/update_skill_name'.$skill_id);
+            $this->breadcrumbs->push('แก้ไขประเภททักษะ', '/Officer/Setting/update_skill_name/'.$skill_id);
 
             $this->template->view('Officer/Skill_position_setting_view',$data);
 
+        } else {
+            $skill_id = $this->input->post('skill_id');
+            $array['skill_name'] = $this->input->post('skill_name');
+            $this->Skill->update_skill($skill_id , $array);
+            redirect('Officer/setting/lists_skill_name/?status=success_update', 'refersh');
         }
+
 
     }
 
@@ -409,10 +436,11 @@ class Setting extends CI_Controller {
     }
     public function add_core_subjects()
     {
-        $this->form_validation->set_rules('subject_id', 'บันทึกวิชาใหม่ หรือ แก้ไข', 'required|numeric|min_length[6]|max_length[6]');
+        $this->form_validation->set_rules('subject_id', 'รหัสวิชาแกน', 'required|numeric|min_length[6]|max_length[6]');
         if ($this->form_validation->run() == FALSE)
         {
-            redirect('Officer/Setting/core_subjects_list?status=error','refresh');
+            // redirect('Officer/Setting/core_subjects_list?status=error','refresh');
+            $this->core_subjects_list();
         }
         else
         {
