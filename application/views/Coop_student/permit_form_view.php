@@ -13,7 +13,7 @@
 
               <div class="card-body">
                 <?php 
-                echo validation_errors('<div class="alert alert-warning">', '</div>');
+                // echo validation_errors('<div class="alert alert-warning">', '</div>');
                 if(@$status) {
                   echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
                 }
@@ -46,57 +46,57 @@
               </div>
               <div class="row">
               <div class="form-group col-sm-8">
-                   <label for="permit_fullname">ชื่อผู้ปกครอง นาย/นาง/นางสาว</label><code>*</code>
-                   <input type="text" class="form-control" id="permit_fullname" name="permit_fullname" value="<?php echo @$permit['permit_fullname'];?>">
+                   <label for="permit_fullname">ชื่อผู้ปกครอง <?php echo form_error('permit_fullname'); ?></label><code>*</code>
+                   <input type="text" class="form-control" id="permit_fullname" name="permit_fullname" value="<?php echo form_value_db('permit_fullname', @$permit['permit_fullname']);?>">
                   </div>
               </div>
               <div class="row">
               <div class="form-group col-sm-8">
-                   <label for="permit_relative">ความสัมพันธ์กับนิสิต</label><code>*</code>
-                   <input type="text" class="form-control" id="permit_relative" name="permit_relative" value="<?php echo @$permit['permit_relative'];?>">
+                   <label for="permit_relative">ความสัมพันธ์กับนิสิต <?php echo form_error('permit_relative'); ?></label><code>*</code>
+                   <input type="text" class="form-control" id="permit_relative" name="permit_relative" value="<?php echo form_value_db('permit_relative', @$permit['permit_relative']);?>">
                   </div>
               </div>
               <div><label for="city">สถานที่ติดต่อสะดวก</label></div>
               <div class="row">
                   <div class="form-group col-sm-4">
-                   <label for="permit_address_number">บ้านเลขที่</label><code>*</code>
-                   <input type="text" class="form-control" id="permit_address_number" name="permit_address_number" value="<?php echo @$permit['permit_address_number'];?>">
+                   <label for="permit_address_number">บ้านเลขที่ <?php echo form_error('permit_address_number'); ?></label><code>*</code>
+                   <input type="text" class="form-control" id="permit_address_number" name="permit_address_number" value="<?php echo form_value_db('permit_address_number', @$permit['permit_address_number']);?>">
                   </div>
                   <div class="form-group col-sm-4">
-                   <label for="permit_address_road">ถนน</label><code>*</code>
-                   <input type="text" class="form-control" id="permit_address_road" name="permit_address_road" value="<?php echo @$permit['permit_address_road'];?>">
+                   <label for="permit_address_road">ถนน <?php echo form_error('permit_address_road'); ?></label><code>*</code>
+                   <input type="text" class="form-control" id="permit_address_road" name="permit_address_road" value="<?php echo form_value_db('permit_address_road', @$permit['permit_address_road']);?>">
                 </div>
                 <div class="form-group col-sm-4">
-                   <label for="permit_address_district">ตำบล</label><code>*</code>
-                   <input type="text" class="form-control" id="permit_address_district" name="permit_address_district" value="<?php echo @$permit['permit_address_district'];?>">
+                   <label for="permit_address_district">ตำบล <?php echo form_error('permit_address_district'); ?></label><code>*</code>
+                   <input type="text" class="form-control" id="permit_address_district" name="permit_address_district" value="<?php echo form_value_db('permit_address_district', @$permit['permit_address_district']);?>">
                   </div>
               </div>
               <div class="row">
                   <div class="form-group col-sm-4">
-                   <label for="permit_address_area">อำเภอ</label><code>*</code>
-                   <input type="text" class="form-control" id="permit_address_area" name="permit_address_area" value="<?php echo @$permit['permit_address_area'];?>">
+                   <label for="permit_address_area">อำเภอ <?php echo form_error('permit_address_area'); ?></label><code>*</code>
+                   <input type="text" class="form-control" id="permit_address_area" name="permit_address_area" value="<?php echo form_value_db('permit_address_area', @$permit['permit_address_area']);?>">
                   </div>
                   <div class="form-group col-sm-4">
-                   <label for="permit_address_province">จังหวัด</label><code>*</code>
-                   <input type="text" class="form-control" id="permit_address_province" name="permit_address_province" value="<?php echo @$permit['permit_address_province'];?>">
+                   <label for="permit_address_province">จังหวัด <?php echo form_error('permit_address_province'); ?></label><code>*</code>
+                   <input type="text" class="form-control" id="permit_address_province" name="permit_address_province" value="<?php echo form_value_db('permit_address_province', @$permit['permit_address_province']);?>">
                 </div>
                 <div class="form-group col-sm-4">
-                   <label for="permit_address_postal_code">รหัสไปรษณีย์</label><code>*</code>
-                   <input type="text" class="form-control" id="permit_address_postal_code" name="permit_address_postal_code" value="<?php echo @$permit['permit_address_postal_code'];?>">
+                   <label for="permit_address_postal_code">รหัสไปรษณีย์ <?php echo form_error('permit_address_postal_code'); ?></label><code>*</code>
+                   <input type="text" class="form-control" id="permit_address_postal_code" name="permit_address_postal_code" value="<?php echo form_value_db('permit_address_postal_code', @$permit['permit_address_postal_code']);?>">
                   </div>
               </div>
               <div class="row">
                   <div class="form-group col-sm-4">
-                   <label for="permit_telephone">โทรศัพท์</label><code>*</code>
-                   <input type="text" class="form-control" id="permit_telephone" name="permit_telephone" value="<?php echo @$permit['permit_telephone'];?>">
+                   <label for="permit_telephone">โทรศัพท์ <?php echo form_error('permit_telephone'); ?></label><code>*</code>
+                   <input type="text" class="form-control" id="permit_telephone" name="permit_telephone" value="<?php echo form_value_db('permit_telephone', @$permit['permit_telephone']);?>">
                   </div>
                   <div class="form-group col-sm-4">
-                   <label for="permit_fax_number">โทรสาร</label><code>*</code>
-                   <input type="text" class="form-control" id="permit_fax_number" name="permit_fax_number" value="<?php echo @$permit['permit_fax_number'];?>">
+                   <label for="permit_fax_number">โทรสาร <?php echo form_error('permit_fax_number'); ?></label><code>*</code>
+                   <input type="text" class="form-control" id="permit_fax_number" name="permit_fax_number" value="<?php echo form_value_db('permit_fax_number', @$permit['permit_fax_number']);?>">
                 </div>
                 <div class="form-group col-sm-4">
-                   <label for="permit_email">E-mail</label><code>*</code>
-                   <input type="text" class="form-control" id="permit_email" name="permit_email" value="<?php echo @$permit['permit_email'];?>">
+                   <label for="permit_email">E-mail <?php echo form_error('permit_email'); ?></label><code>*</code>
+                   <input type="text" class="form-control" id="permit_email" name="permit_email" value="<?php echo form_value_db('permit_email', @$permit['permit_email']);?>">
                   </div>
               </div>
 
