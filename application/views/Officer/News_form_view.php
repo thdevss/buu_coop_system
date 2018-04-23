@@ -10,26 +10,22 @@
 <div class="container-fluid">
     <div class="animated fadeIn">
         <div class="row" >
-            <div class="col-sm-12">
+            <div class="col-lg-12 offset-lg-12">
                 <div class="card">
                     <div class="card-header"><i class="fa fa-align-justify"></i> แบบฟอร์มประกาศข่าวสารหน้าเว็บ</div>
                     <div class="card-body">          
-                        <?php 
-                        if(@$status){
-                            echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
-                        }
-                        ?>      
+                          
                         <form action="<?php echo $post_url;?>" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="news_id" id="news_id" value="<?php echo @$row['news_id'];?>">
                             <div class="row">
                                 <div class="form-group col-md-6 offset-md-3">
-                                    <label for="news_title">หัวข้อ</label>          
-                                    <input class="form-control" type="text" name="news_title" id="news_title" required value="<?php echo @$row['news_title'];?>">
+                                    <label for="news_title">หัวข้อ</label> <?php echo form_error('news_title'); ?>         
+                                    <input class="form-control" type="text" name="news_title" id="news_title" value="<?php echo form_value_db('news_title', @$row['news_title']);?>">
                                 </div>
 
                                 <div class="form-group col-md-6 offset-md-3">
-                                    <label for="news_detail">รายละเอียด</label>          
-                                    <textarea id="summernote" name="news_detail" required><?php echo @$row['news_detail'];?></textarea>
+                                    <label for="news_detail">รายละเอียด</label> <?php echo form_error('news_detail'); ?>         
+                                    <textarea id="summernote" name="news_detail"><?php echo form_value_db('news_detail', @$row['news_detail']);?></textarea>
                                 </div>
 
                                 <div class="form-group col-md-6 offset-md-3">
