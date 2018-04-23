@@ -39,25 +39,34 @@ class Daily_activity extends CI_controller
 
     public function post_update()
     {
-        $array = array();
+        $this->form_validation->set_rules('activity_id', 'ID', 'trim|required');
+        $this->form_validation->set_rules('activity_subject', 'หัวข้อ', 'trim|required');
+        $this->form_validation->set_rules('activity_content', 'รายละเอียด', 'trim|required'); 
         $activity_id = $this->input->post('activity_id');
-        $data = $this->Daily_Report->get_report($activity_id)[0];
-        if($data) {
-            if($this->Login_session->check_login()->login_value == $data['student_id']) {
-                $array['activity_subject'] = $this->input->post('activity_subject');
-                $array['activity_content'] = $this->input->post('activity_content');
 
-                $this->Daily_Report->update_report($activity_id, $array);
+        if ($this->form_validation->run() != FALSE) {
+            $array = array();
+            $data = $this->Daily_Report->get_report($activity_id)[0];
+            if($data) {
+                if($this->Login_session->check_login()->login_value == $data['student_id']) {
+                    $array['activity_subject'] = $this->input->post('activity_subject');
+                    $array['activity_content'] = $this->input->post('activity_content');
+
+                    $this->Daily_Report->update_report($activity_id, $array);
+                } else {
+                    echo "<script>alert('not owner')</script>";
+                }
             } else {
-                echo "<script>alert('not owner')</script>";
+                //error
+                echo "<script>alert('not found data')</script>";
             }
+            redirect('Coop_student/Daily_activity/lists', 'refresh');                                  
         } else {
-            //error
-            echo "<script>alert('not found data')</script>";
+            $this->update($activity_id);
         }
+
         
         
-        redirect('Coop_student/Daily_activity/lists', 'refresh');  
     }
 
     public function add() 
@@ -71,17 +80,27 @@ class Daily_activity extends CI_controller
     public function post_add()
     {
         $array = array();
-        $array['activity_date'] = $this->input->post('activity_date');
-        if($array['activity_date'] == '') {
-            $array['activity_date'] = date('Y-m-d H:i:s');
-        }
-        $array['activity_subject'] = $this->input->post('activity_subject');
-        $array['activity_content'] = $this->input->post('activity_content');
-        $array['student_id'] = $this->Login_session->check_login()->login_value;
-        $array['term_id'] = $this->Term->get_current_term()[0]['term_id'];
 
-        $this->Daily_Report->insert_report($array);
-        redirect('Coop_student/Daily_activity/lists', 'refresh');        
+        $this->form_validation->set_rules('activity_subject', 'หัวข้อ', 'trim|required');
+        $this->form_validation->set_rules('activity_content', 'รายละเอียด', 'trim|required');
+        $this->form_validation->set_rules('activity_date', 'วันที่', 'trim|required');        
+
+        if ($this->form_validation->run() != FALSE) {
+            // insert
+            $array['activity_date'] = $this->input->post('activity_date');
+            $array['activity_subject'] = $this->input->post('activity_subject');
+            $array['activity_content'] = $this->input->post('activity_content');
+            $array['student_id'] = $this->Login_session->check_login()->login_value;
+            $array['term_id'] = $this->Term->get_current_term()[0]['term_id'];
+
+            $this->Daily_Report->insert_report($array);
+            redirect('Coop_student/Daily_activity/lists', 'refresh');  
+        } else {
+            $this->add();
+        }
+        
+
+              
     }
 
     public function datail($activity_id)

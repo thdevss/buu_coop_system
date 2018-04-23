@@ -36,7 +36,7 @@ class Workplace extends CI_Controller {
 
         $student_id = $this->Login_session->check_login()->login_value;
         $data['map'] = $this->Coop_Student->get_coop_student($student_id)[0];
-        $this->breadcrumbs->push(' แจ้งพิกัดงาน', '/Coop_student/Daily_activity/index');
+        $this->breadcrumbs->push('แจ้งพิกัดงาน', '/Coop_student/Daily_activity/index');
         $this->template->view('Coop_student/Workplace_view',$data);
     }
 
@@ -44,12 +44,19 @@ class Workplace extends CI_Controller {
     {
         // get
         $student_id = $this->Login_session->check_login()->login_value;
-        $data['map'] = $this->Coop_Student->get_coop_student($student_id)[0];
-        // update
-        $array['coop_student_latitude'] = $this->input->post('coop_student_latitude');
-        $array['coop_student_longitude'] = $this->input->post('coop_student_longitude');
-        $this->Coop_Student->update_coop_student($student_id,$array);
+
+        $this->form_validation->set_rules('coop_student_latitude', 'ละติจูด', 'required|decimal');
+        $this->form_validation->set_rules('coop_student_longitude', 'ลองติจูด', 'required|decimal');
+
+        if ($this->form_validation->run() != FALSE) {
+            // update
+            $array['coop_student_latitude'] = $this->input->post('coop_student_latitude');
+            $array['coop_student_longitude'] = $this->input->post('coop_student_longitude');
+            $this->Coop_Student->update_coop_student($student_id, $array);
+            redirect('Coop_student/Workplace/index/?status=success','refresh');
+        } else {
+            $this->index();
+        }
         
-        redirect('Coop_student/Workplace/index/?status=success','refresh');
     }
 }

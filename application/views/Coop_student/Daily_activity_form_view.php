@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <div class="animated fadeIn">
         <div class="row" >
-            <div class="col-sm-12">
+            <div class="col-md-6 offset-md-3">
                 <div class="card">
                     <div class="card-header"><i class="fa fa-align-justify"></i> แบบฟอร์มกิจกรรมฝึกงานในแต่ละวัน</div>
                     <div class="card-body">             
@@ -20,27 +20,27 @@
 
                             <div class="row">
                                 <?php if($form_type == 'update') { ?>
-                                    <div class="form-group col-md-6 offset-md-3">
+                                    <div class="form-group col-md-12">
                                         <label for="activity_date">ประจำวันที่</label>          
                                         <input value="<?php echo @$row['activity_date'];?>" class="form-control" type="text" name="activity_date" id="activity_date" disabled>
                                     </div>
                                 <?php } else { ?>
-                                    <div class="form-group col-md-6 offset-md-3">
-                                        <label>เลือกวันที่</label>
+                                    <div class="form-group col-md-12">
+                                        <label>เลือกวันที่ <?php echo form_error('activity_date'); ?></label>
                                         <br>
                                         <input type="text" class="form-control datetimepicker" id="activity_date" placeholder="" name="activity_date" value="">    
 
                                     </div> 
                                 <?php } ?>
 
-                                <div class="form-group col-md-6 offset-md-3">
-                                    <label for="activity_subject">หัวข้อ</label>          
-                                    <input value="<?php echo @$row['activity_subject'];?>" class="form-control" type="text" name="activity_subject" id="activity_subject" required>
+                                <div class="form-group col-md-12">
+                                    <label for="activity_subject">หัวข้อ <?php echo form_error('activity_subject'); ?></label>          
+                                    <input value="<?php echo form_value_db('activity_subject', @$row['activity_subject']);?>" class="form-control" type="text" name="activity_subject" id="activity_subject" >
                                 </div>
 
-                                <div class="form-group col-md-6 offset-md-3">
-                                    <label for="activity_content">รายละเอียด</label>          
-                                    <textarea id="summernote" name="activity_content" required><?php echo @$row['activity_content'];?></textarea>
+                                <div class="form-group col-md-12">
+                                    <label for="activity_content">รายละเอียด <?php echo form_error('activity_content'); ?></label>          
+                                    <textarea id="summernote" name="activity_content" ><?php echo form_value_db('activity_content', @$row['activity_content']);?></textarea>
                                 </div>
                                 <div class="col-sm-12 text-center">
                                     <button type="reset" class="btn btn-warning" name="" value="1"><i class="fa fa-dot-circle-o"></i> ยกเลิก</button>                                
