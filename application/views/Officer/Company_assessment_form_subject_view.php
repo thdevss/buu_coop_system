@@ -13,7 +13,7 @@
                   <div class="card">
                     <div class="card-header">
                       <i class="fa fa-align-justify"></i> จัดการแบบฟอร์มประเมินผลสถานประกอบการ
-                        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">
+                        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#formModal">
                         เพิ่มหัวข้อการประเมิน
                         </button>
                     </div>
@@ -58,7 +58,7 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -71,18 +71,18 @@
               <div class="modal-body">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>ลำดับหัวข้อ</label>
-                    <input type="text" id="number" name="number" class="form-control" placeholder="กรุณากรอก" value="<?php echo $next_number;?>" required>
+                    <label>ลำดับหัวข้อ <?php echo form_error('number');?></label>
+                    <input type="text" id="number" name="number" class="form-control" placeholder="กรุณากรอก" value="<?php echo $next_number;?>" value="<?php echo set_value('number');?>">
                   </div>
 
                   <div class="form-group">
-                    <label>ชื่อหัวข้อการประเมิน</label>
-                    <input type="text" id="title" name="title" class="form-control" placeholder="กรุณากรอก" required>
+                    <label>ชื่อหัวข้อการประเมิน <?php echo form_error('title');?></label>
+                    <input type="text" id="title" name="title" class="form-control" placeholder="กรุณากรอก" value="<?php echo set_value('title');?>">
                   </div>
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+                <button type="reset" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
                 <button type="submit" class="btn btn-success">บันทึก</button>
               </div>
             </form>
@@ -94,3 +94,11 @@
         
       <!-- /.modal-dialog -->
 </div>
+
+<?php if($open_modal) { ?>
+<script>
+jQuery( document ).ready(function() {
+  jQuery("#formModal").modal('show')
+})
+</script>
+<?php } ?>

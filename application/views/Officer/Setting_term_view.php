@@ -20,8 +20,12 @@
                         <div class="row">
                             <!-- แสดงรายการที่เพิ่ม -->
                             <div class="col-md-8">
-                                    <div class="card">
-                                        <div class="card-body">
+                            <?php
+                                                if(@$status) {
+                                                    echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
+                                                }
+                                                ?>
+                                                
                                         <table class="table table-bordered datatable">
                                             <thead>
                                             <tr>
@@ -46,51 +50,57 @@
                                                 <?php } ?>                                  
                                             </tbody>
                                         </table>
-                                        </div>                                   
-                                    </div>
+
                                 </div>      
                                 <div class="col-md-4">
                                     <div class="card">
-                                        <div class="card-body">                        
-                                            <h4 class="modal-title icon-magnifier-add " > เพิ่มปีการศึกษาใหม่..</h4>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            </button>
-                                        </div>
-                                        <form action="<?php echo site_url('Officer/setting/post_new_term');?>" method="post">
-                                        <div class="modal-body">
-                                                <?php
-                                                if(@$status) {
-                                                    echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
-                                                }
-                                                ?>
+                                        <div class="card-body">     
+                                            <h2 class=""> เพิ่มปีการศึกษาใหม่</h2>
+
+                                            <form action="<?php echo site_url('Officer/setting/post_new_term');?>" method="post">
+
                                                 
                                                 <div class="form-group">
-                                                    <label class="form-control-label" for="text-input">ภาคเรียน</label>
-                                                    <select id="semester" name="semester" class="form-control" required>
+                                                    <label class="form-control-label" for="text-input">ภาคเรียน <?php echo form_error('semester');?></label>
+                                                    <select id="semester" name="semester" class="form-control">
                                                         <option value="">Please select</option>
-                                                        <option value="1">ที่ 1</option>
-                                                        <option value="2">ที่ 2</option>
+                                                        <option value="1" <?php echo set_select('semester', '1'); ?>>ที่ 1</option>
+                                                        <option value="2" <?php echo set_select('semester', '2'); ?>>ที่ 2</option>
                                                        
                                                     </select>
                                                 </div>
-                                                    <div class="form-group">
-                                                        <label class="form-control-label" for="text-input">ปีการศึกษา</label>
-                                                        <select id="year" name="year" class="form-control" required>
+                                                <div class="form-group">
+                                                        <label class="form-control-label" for="text-input">ปีการศึกษา <?php echo form_error('year');?></label>
+                                                        <select id="year" name="year" class="form-control">
                                                             <option value="">Please select</option>
                                                             <?php
                                                             $year = date('Y')+543;
                                                             for($i=$year-2; $i<$year+10; $i++) { ?>
-                                                                <option value="<?php echo $i;?>"><?php echo $i;?></option>
+                                                                <option value="<?php echo $i;?>" <?php echo set_select('year', $i); ?>><?php echo $i;?></option>
                                                             <?php } ?>
                                                         </select>
-                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <button type="reset" class="btn btn-md btn-danger"> ยกเลิก</button>                                                
+                                                    <button type="submit" class="btn btn-md btn-success"> บันทึก</button>
+                                                </div>
+                                            </form>
+
+
+
+
+
+
+
+                                        
+
+                                                
                                                 
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="close" class="btn btn-danger" data-dismiss="modal"> ปิด</button>
-                                                <button type="submit" class="btn btn-success"> บันทึก</button>
-                                            </div>
-                                            </form>
+
+
+
                                         </div>
                                     </div>
                                 </div>                       

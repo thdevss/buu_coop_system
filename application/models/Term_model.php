@@ -22,6 +22,16 @@ class Term_model extends CI_model
         return $query->result_array();
     }
 
+    public function search_term($term_semester, $term_year)
+    {
+        $this->db->where('term_semester', $term_semester);
+        $this->db->where('term_year', $term_year);
+        
+        $this->db->from('tb_term');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function set_current_term($term_id)
     {
         $this->db->update('tb_term', array(

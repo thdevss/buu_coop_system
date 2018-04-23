@@ -17,26 +17,26 @@
                  <?php if($form_type == 'insert') { ?>
                  <form action="<?php echo site_url('Officer/Setting/add_skill_name');?>" method="post">
                  <?php } else { ?>
-                 <form action="<?php echo site_url('Officer/Setting/update_skill_name');?>" method="post">
+                 <form action="<?php echo site_url('Officer/Setting/update_skill_name/'.$skill_by_skill_id['skill_id']);?>" method="post">
                  <input type="hidden" name="skill_id" value="<?php echo $skill_by_skill_id['skill_id'];?>">
 
                  <?php } ?>
 
                     <div class="form-group">
-                      <label for="">ชื่อทักษะงาน</label><code>*</code>
-                      <input type="text" id="skill_name" name="skill_name" class="form-control" value="<?php echo @$skill_by_skill_id['skill_name'];?>" placeholder="กรุณากรอก" required autofocus>
+                      <label for="">ชื่อทักษะงาน <?php echo form_error('skill_name');?></label><code>*</code>
+                      <input type="text" id="skill_name" name="skill_name" class="form-control" value="<?php echo form_value_db('skill_name', @$skill_by_skill_id['skill_name']);?>" placeholder="กรุณากรอก" autofocus>
                     </div>
 
                     <div class="form-group">
                      <label for="ccmonth">ประเภททักษะ</label>
                      <?php if($form_type == 'insert') { ?>
-                        <select class="form-control" id="ccmonth" name="skill_category_id"> 
+                        <select class="form-control" id="skill_category_id" name="skill_category_id"> 
                         <?php foreach ($data as $skill_category) { ?>
                             <option value="<?php echo $skill_category['skill_category']['skill_category_id'];?>" <?php if(@$skill_category_by_id['skill_category_id'] == $skill_category['skill_category']['skill_category_id']) echo 'selected'; ?>><?php echo $skill_category['skill_category']['skill_category_name'];?></option>
                         <?php } ?>
                         </select>
                         <?php }else {?>
-                        <select class="form-control" id="ccmonth" name="skill_category_id"> 
+                        <select class="form-control" id="skill_category_id" name="skill_category_id"> 
                         <?php foreach ($data as $skill_category) { ?>
                             <option value="<?php echo $skill_category['skill_category']['skill_category_id'];?>" <?php if(@$skill_category_by_id['skill_category_id'] == $skill_category['skill_category']['skill_category_id']) echo 'selected'; ?> disabled><?php echo $skill_category['skill_category']['skill_category_name'];?></option>
                         <?php } ?>

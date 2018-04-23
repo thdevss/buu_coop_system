@@ -88,11 +88,19 @@ class Job_model extends CI_model {
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    public function get_job_title($job_title_id)
+    {
+        $this->db->where('job_title_id', $job_title_id);        
+        $this->db->from('tb_company_job_title');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     
 
     public function get_company_job_title_by_job_title_id($job_title_id)
     {
-        $this->db->where('job_title_id',$job_title_id);
+        $this->db->where('job_title_id', $job_title_id);
         $this->db->from('tb_company_job_title');
         $query = $this->db->get();
         return $query->result_array();
@@ -100,7 +108,7 @@ class Job_model extends CI_model {
 
     public function insert_job_title($array)
     {
-        return $this->db->insert('tb_company_job_title',$array);
+        return $this->db->insert('tb_company_job_title', $array);
     }
 
     public function update_job_title($job_title_id,$array)

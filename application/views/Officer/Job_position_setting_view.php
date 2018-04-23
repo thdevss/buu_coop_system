@@ -24,8 +24,7 @@
                         <div class="row">
                             <!-- แสดงรายการที่เพิ่ม -->
                             <div class="col-md-6">
-                                    <div class="card">
-                                        <div class="card-body">
+
                                             <table class="table table-bordered datatable" >
                                                 <thead>
                                                     <tr>
@@ -35,22 +34,20 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                <?php  $i=1; foreach($company_job_title as $row) {?>
+                                                <?php foreach($company_job_title as $i => $row) {?>
                                                     <tr>
-                                                        <td class="text-center"><?php echo $i++ ;?></td>
+                                                        <td class="text-center"><?php echo ++$i ;?></td>
                                                         <td class="text-left"><?php echo $row['job_title'];?></td>
                                                         <td>
-                                                            <?php echo anchor('Officer/Setting/update_job_title/'.$row['job_title_id'], '<i class="fa fa-eraser"></i> แก้ไข', 'class="btn  btn-primary"');?>                                 
-                                                            <?php echo anchor('Officer/Setting/delete_job_title/'.$row['job_title_id'], '<i class="fa fa-trash-o"></i> ลบ', 'class="btn btn-danger" onclick="return confirmDelete(this)"');?>
+                                                            <?php echo anchor('Officer/Setting/update_job_title/'.$row['job_title_id'], '<i class="fa fa-eraser"></i>', 'class="btn btn-xs btn-primary"');?>                                 
+                                                            <?php echo anchor('Officer/Setting/delete_job_title/'.$row['job_title_id'], '<i class="fa fa-trash-o"></i>', 'class="btn btn-xs btn-danger" onclick="return confirmDelete(this)"');?>
 
                                                         </td>
                                                     </tr>
                                                 <?php } ?>
                                                 </tbody>
                                             </table>
-                                        </div>
-                                    
-                                    </div>
+
                                 </div>
                                 
                             <!-- เพิ่ม -->
@@ -60,14 +57,15 @@
                                             <?php if($form_type == 'insert') { ?>
                                             <form action="<?php echo site_url('Officer/Setting/add_job_title');?>" method="post">
                                             <?php } else { ?>
-                                            <form action="<?php echo site_url('Officer/Setting/update_job_title');?>" method="post">
+                                            <form action="<?php echo site_url('Officer/Setting/update_job_title/'.$job_title_by_id['job_title_id']);?>" method="post">
                                             <input type="hidden" name="job_title_id" value="<?php echo $job_title_by_id['job_title_id'];?>">
 
-                                            <?php } ?>
+                                            <?php } ?> 
+                                                <h2>แบบฟอร์มตำแหน่งงาน</h2>
 
                                                 <div class="form-group">
-                                                    <label for="">บันทึกตำแหน่งงานใหม่ หรือ แก้ไข</label><code>*</code>
-                                                    <input type="text" id="job_title" name="job_title" class="form-control" value="<?php echo @$job_title_by_id['job_title'];?>" placeholder="กรุณากรอก" required autofocus>
+                                                    <label for="">ตำแหน่งงาน <?php echo form_error('job_title');?></label><code>*</code>
+                                                    <input type="text" id="job_title" name="job_title" class="form-control" value="<?php echo form_value_db('job_title', @$job_title_by_id['job_title']);?>" placeholder="กรุณากรอก" autofocus>
                                                 </div>
                                             
                                                 <div class="form-group">

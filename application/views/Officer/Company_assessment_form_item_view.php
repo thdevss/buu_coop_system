@@ -60,10 +60,8 @@
                                 <td><?php echo $row['coop_company_questionnaire_item_title'];?></td>
                                 <td><?php echo $row['coop_company_questionnaire_item_description'];?></td>
                                 <td>
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                <a href="#" data-itemid="<?php echo $row['coop_company_questionnaire_item_id'];?>" class="btn btn-info editBtn"><i class="icon-pencil"></i> แก้ไข</a>
-                                <a href="<?php echo site_url('officer/Assessment_company_Form/delete_company_questionnaire_item/'.$row['coop_company_questionnaire_item_id']);?>" class="btn btn-danger" onclick="return confirmDelete(this)"><i class="icon-trash"></i> ลบ</a>
-                                </div>
+                                  <a href="#" data-itemid="<?php echo $row['coop_company_questionnaire_item_id'];?>" class="btn btn-info editBtn"><i class="icon-pencil"></i> แก้ไข</a>
+                                  <a href="<?php echo site_url('officer/Assessment_company_Form/delete_company_questionnaire_item/'.$row['coop_company_questionnaire_item_id']);?>" class="btn btn-danger" onclick="return confirmDelete(this)"><i class="icon-trash"></i> ลบ</a>
                 
                                 </td>
                               </tr>
@@ -97,37 +95,37 @@
             <span aria-hidden="true">×</span>
           </button>
             </div>
-            <form action="<?php echo site_url('Officer/Assessment_company_Form/add_company_questionnaire_item');?>" method="post">
+            <form action="<?php echo site_url('Officer/Assessment_company_Form/add_company_questionnaire_item/'.$subject['coop_company_questionnaire_subject_id']);?>" method="post">
               <div class="modal-body">
                 <input type="hidden" name="subject_id" value="<?php echo $subject['coop_company_questionnaire_subject_id']; ?>">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>ลำดับหัวข้อย่อย</label>
-                    <input type="text" id="number" name="number" class="form-control" placeholder="กรุณากรอก" value="<?php echo $next_number;?>" required>
+                    <label>ลำดับหัวข้อย่อย <?php echo form_error('number');?></label>
+                    <input type="text" id="number" name="number" class="form-control" placeholder="กรุณากรอก" value="<?php echo $next_number;?>" >
                   </div>
                   
                   <div class="form-group">
-                    <label>ชื่อหัวข้อย่อยการประเมิน</label>
-                    <input type="text" id="title" name="title" class="form-control" placeholder="กรุณากรอก" required>
+                    <label>ชื่อหัวข้อย่อยการประเมิน <?php echo form_error('title');?></label>
+                    <input type="text" id="title" name="title" class="form-control" placeholder="กรุณากรอก" value="<?php echo set_value('title');?>">
                   </div>
 
                   <div class="form-group">
-                    <label>รายละเอียดหัวข้อ</label>
-                    <textarea class="form-control" name="description"></textarea>
+                    <label>รายละเอียดหัวข้อ <?php echo form_error('description');?></label>
+                    <textarea class="form-control" name="description" value="<?php echo set_value('description');?>"></textarea>
                   </div>
                 
 
                   <div class="form-group row">
-                    <label class="col-md-4 col-form-label">การให้คะแนน</label>
+                    <label class="col-md-4 col-form-label">การให้คะแนน <?php echo form_error('type');?></label>
                     <div class="col-md-4 col-form-label">
                       <div class="form-check form-check-inline mr-1">
-                      <input class="form-check-input" type="radio" id="inline-radio1" value="score" name="type" required checked>
+                      <input class="form-check-input" type="radio" id="inline-radio1" value="score" name="type" <?php echo set_checkbox('type', 'score');?>>
                       <label class="form-check-label" for="inline-radio1">คะแนน 1 - 5</label>
                       </div>
                     </div>
                     <div class="col-md-4 col-form-label">
                       <div class="form-check form-check-inline mr-2">
-                      <input class="form-check-input" type="radio" id="inline-radio2" value="comment" name="type" required>
+                      <input class="form-check-input" type="radio" id="inline-radio2" value="comment" name="type" <?php echo set_checkbox('type', 'comment');?>>
                       <label class="form-check-label" for="inline-radio2">ความคิดเห็น</label>
                       </div>
                     </div>
@@ -160,36 +158,36 @@
             <span aria-hidden="true">×</span>
           </button>
             </div>
-            <form action="<?php echo site_url('Officer/Assessment_company_Form/update_company_questionnaire_item');?>" method="post">
+            <form action="<?php echo site_url('Officer/Assessment_company_Form/update_company_questionnaire_item/'.$subject['coop_company_questionnaire_subject_id']);?>" method="post">
               <div class="modal-body">
                 <input type="hidden" name="item_id" id="item_id">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>ลำดับหัวข้อย่อย</label>
-                    <input type="text" id="item_number" name="number" class="form-control" placeholder="กรุณากรอก" disabled>
+                    <label>ลำดับหัวข้อย่อย <span id="edit_form_number"></span></label>
+                    <input type="text" id="item_number" name="number" class="form-control" placeholder="กรุณากรอก">
                   </div>
                   
                   <div class="form-group">
-                    <label>ชื่อหัวข้อย่อยการประเมิน</label>
-                    <input type="text" id="item_title" name="title" class="form-control" placeholder="กรุณากรอก" required>
+                    <label>ชื่อหัวข้อย่อยการประเมิน <span id="edit_form_title"></span></label>
+                    <input type="text" id="item_title" name="title" class="form-control" placeholder="กรุณากรอก">
                   </div>
 
                   <div class="form-group">
-                    <label>รายละเอียดหัวข้อ</label>
+                    <label>รายละเอียดหัวข้อ <span id="edit_form_description"></span></label>
                     <textarea class="form-control" name="description" id="item_description"></textarea>
                   </div>
 
                   <div class="form-group row">
-                    <label class="col-md-4 col-form-label">การให้คะแนน</label>
+                    <label class="col-md-4 col-form-label">การให้คะแนน <span id="edit_form_type"></span></label>
                     <div class="col-md-4 col-form-label">
                       <div class="form-check form-check-inline mr-1">
-                      <input class="form-check-input" type="radio" id="type_score" value="score" name="type" required>
+                      <input class="form-check-input" type="radio" id="type_score" value="score" name="type">
                       <label class="form-check-label" for="type_score">คะแนน 1 - 5</label>
                       </div>
                     </div>
                     <div class="col-md-4 col-form-label">
                       <div class="form-check form-check-inline mr-2">
-                      <input class="form-check-input" type="radio" id="type_comment" value="comment" name="type" required>
+                      <input class="form-check-input" type="radio" id="type_comment" value="comment" name="type">
                       <label class="form-check-label" for="type_comment">ความคิดเห็น</label>
                       </div>
                     </div>
@@ -213,6 +211,15 @@ jQuery(".dataTables_length").hide(); jQuery(".dataTables_filter").hide();
 <script>
 jQuery(".editBtn").click(function(event) {
   var item_id = jQuery(this).data('itemid')
+  call_assessment_item(item_id)
+})
+
+jQuery("#form_subject").change(function(event) {
+  window.location.assign(SITE_URL+"/officer/Assessment_company_Form/get_company_questionnaire_item/"+jQuery(this).val())
+})
+
+
+function call_assessment_item(item_id) {
   //ajax get
   jQuery.get( SITE_URL+"/officer/Assessment_company_Form/get_ajax_item/"+item_id, function( result ) {
     var data = result.data
@@ -232,9 +239,27 @@ jQuery(".editBtn").click(function(event) {
     
     
   }, "json" );
-})
+}
+</script>
 
-jQuery("#form_subject").change(function(event) {
-  window.location.assign(SITE_URL+"/officer/Assessment_company_Form/get_company_questionnaire_item/"+jQuery(this).val())
+<?php if($open_modal && $last_item_id) { ?>
+<script>
+jQuery( document ).ready(function() {
+  jQuery("#edit_form_number").html('<?php echo form_error('number');?>')
+  jQuery("#edit_form_title").html('<?php echo form_error('title');?>')
+  jQuery("#edit_form_description").html('<?php echo form_error('description');?>')
+  jQuery("#edit_form_type").html('<?php echo form_error('type');?>')
+  
+  
+  call_assessment_item(<?php echo @$last_item_id;?>)
+  
 })
 </script>
+<?php } else if($open_modal) { ?>
+<script>
+jQuery( document ).ready(function() {
+  jQuery("#add_item_form").modal('show')
+  
+})
+</script>
+<?php } ?>
