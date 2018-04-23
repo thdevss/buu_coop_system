@@ -64,7 +64,8 @@ class IN_S007 extends CI_Controller {
         $data['adviser'] = @$this->Adviser->get_adviser($data['coop_student']['adviser_id'])[0];
         $data['student'] = @$this->Student->get_student($student_id)[0];
         $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
-
+        $data['profile_student'] = @$this->Student->get_student_data_from_profile($student_id);
+        // print_r($data);
         $this->template->view('Coop_Student/IN_S007_view', $data);
     }
     
@@ -73,9 +74,9 @@ class IN_S007 extends CI_Controller {
         $student_id = $this->Login_session->check_login()->login_value;            
         // print_r($_POST);
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('petition_subject', 'หัวข้อเรื่องแบบคำร้องทั่วไป', 'required');
-        $this->form_validation->set_rules('petition_purpose', 'วัตถุประสงค์', 'required');
-        $this->form_validation->set_rules('petition_reason', 'เนื่องจาก', 'required');
+        $this->form_validation->set_rules('petition_subject', 'หัวข้อเรื่องแบบคำร้องทั่วไป', 'trim|required');
+        $this->form_validation->set_rules('petition_purpose', 'วัตถุประสงค์', 'trim|required');
+        $this->form_validation->set_rules('petition_reason', 'เนื่องจาก', 'trim|required');
         if ($this->form_validation->run()) {
             //save
             $insertArr['student_id'] = $student_id;
