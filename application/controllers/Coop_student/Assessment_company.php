@@ -122,6 +122,12 @@ class Assessment_company extends CI_Controller {
 		$student_id = $this->Login_session->check_login()->login_value;
 		$coop_student = $this->Coop_Student->get_coop_student($student_id)[0];
 		$company = $this->Company->get_company($coop_student['company_id'])[0];
+
+        // $this->form_validation->set_rules('no4', '4. ตามข้อ 1.2 สถานประกอบการได้สนับสนุนสิ่งอำนวยความสะดวกต่าง ๆ ได้แก่', 'trim|required');
+        // $this->form_validation->set_rules('no5', '5.ตามข้อ 1.3 สถานประกอบการได้ให้การสนับสนุนด้านสวัสดิการ ได้แก่', 'trim|required');
+		// $this->form_validation->set_rules('no6', '6. ในปีการศึกษาถัดไป ท่านคิดว่าสมควรส่งนักศึกษาไปปฏิบัติสหกิจศึกษา/ฝึกงาน ณ สถานประกอบการแห่งนี้หรือไม่', 'trim|required');
+		// $this->form_validation->set_rules('no7', '7.ข้อคิดเห็นเพิ่มเติม', 'trim|required');
+
 		// print_r($company);
 		$items = array();
 		foreach($this->Company_Assessment_Form->gets_form_for_company() as $row)
@@ -187,7 +193,6 @@ class Assessment_company extends CI_Controller {
        
         // print_r($data_array);
         // die();
-
         $result = $this->service_docx->print_data($data_array, $template_file, $save_filename);
         // print_r($result);
         // redirect(base_url($result['full_url']), 'refresh');
