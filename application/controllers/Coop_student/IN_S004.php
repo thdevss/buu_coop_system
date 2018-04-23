@@ -68,33 +68,29 @@ class IN_S004 extends CI_Controller {
             $this->form_validation->set_rules('coop_student_newsletter_receive', 'ตั้งค่ารับข่าวสาร');
 
             //emergency contact
-            $this->form_validation->set_rules('contact_fullname', 'ชื่อ - สกุล', 'required');
-            $this->form_validation->set_rules('contact_address_number', 'เลขที่', 'required');
-            $this->form_validation->set_rules('contact_address_alley', 'ซอย', 'required');
-            $this->form_validation->set_rules('contact_address_road', 'ถนน', 'required');
-            $this->form_validation->set_rules('contact_address_district', 'แขวง/ตำบล', 'required');
-            $this->form_validation->set_rules('contact_address_area', 'เขต/อำเภอ', 'required');
-            $this->form_validation->set_rules('contact_address_province', 'จังหวัดซอย', 'required');
-            $this->form_validation->set_rules('contact_address_postal_code', 'รหัสไปรษณีย์', 'required');
-            $this->form_validation->set_rules('contact_telephone', 'โทรศัพท์', 'required');
-            // $this->form_validation->set_rules('contact_fax_number', 'โทรสาร');
+            $this->form_validation->set_rules('contact_fullname', 'ชื่อ - สกุล', 'trim|required');
+            $this->form_validation->set_rules('contact_address_number', 'เลขที่', 'trim|required|numeric');
+            $this->form_validation->set_rules('contact_address_alley', 'ซอย', 'trim|required');
+            $this->form_validation->set_rules('contact_address_road', 'ถนน', 'trim|required');
+            $this->form_validation->set_rules('contact_address_district', 'แขวง/ตำบล', 'trim|required');
+            $this->form_validation->set_rules('contact_address_area', 'เขต/อำเภอ', 'trim|required');
+            $this->form_validation->set_rules('contact_address_province', 'จังหวัด', 'trim|required');
+            $this->form_validation->set_rules('contact_address_postal_code', 'รหัสไปรษณีย์', 'trim|required|numeric|max_length[5]');
+            $this->form_validation->set_rules('contact_telephone', 'เบอร์โทรศัพท์', 'trim|required|numeric|max_length[10]');
+            $this->form_validation->set_rules('contact_fax_number', 'เบอร์โทรสาร', 'trim|max_length[11]|alpha_dash');
 
             //coop student dorm
-            $this->form_validation->set_rules('dorm_name', 'ชื่อหอพัก/อพาร์ทเมนท์', 'required');
-            $this->form_validation->set_rules('dorm_room', 'ห้อง', 'required');
-            $this->form_validation->set_rules('dorm_number', 'เลขที่', 'required');
-            $this->form_validation->set_rules('dorm_alley', 'ซอย', 'required');
-            $this->form_validation->set_rules('dorm_road', 'ถนน', 'required');
-            $this->form_validation->set_rules('dorm_district', 'แขวง/ตำบล', 'required');
-            $this->form_validation->set_rules('dorm_area', 'เขต/อำเภอ', 'required');
-            $this->form_validation->set_rules('dorm_province', 'จังหวัด', 'required');
-            $this->form_validation->set_rules('dorm_postal_code', 'รหัสไปรษณีย์', 'required');
-            $this->form_validation->set_rules('dorm_telephone', 'เบอร์โทรศัพท์', 'required');
-            
-            
-            
-
-
+            $this->form_validation->set_rules('dorm_name', 'ชื่อหอพัก/อพาร์ทเมนท์', 'trim|required');
+            $this->form_validation->set_rules('dorm_room', 'ห้อง', 'trim|required');
+            $this->form_validation->set_rules('dorm_number', 'เลขที่', 'trim|required|numeric');
+            $this->form_validation->set_rules('dorm_alley', 'ซอย', 'trim|required');
+            $this->form_validation->set_rules('dorm_road', 'ถนน', 'trim|required');
+            $this->form_validation->set_rules('dorm_district', 'แขวง/ตำบล', 'trim|required');
+            $this->form_validation->set_rules('dorm_area', 'เขต/อำเภอ', 'trim|required');
+            $this->form_validation->set_rules('dorm_province', 'จังหวัด', 'trim|required');
+            $this->form_validation->set_rules('dorm_postal_code', 'รหัสไปรษณีย์', 'trim|required|numeric|max_length[5]');
+            $this->form_validation->set_rules('dorm_telephone', 'เบอร์โทรศัพท์', 'trim|required|numeric|max_length[10]');
+            $this->form_validation->set_rules('dorm_fax_number', 'เบอร์โทรสาร', 'trim|max_length[11]|alpha_dash');
             $this->form_validation->set_rules('trainer_id', 'ผู้นิเทศงาน', 'required|numeric');
             
 
