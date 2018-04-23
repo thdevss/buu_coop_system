@@ -59,8 +59,8 @@ class permit_form  extends CI_Controller {
         $return['status'] = false;
         $return['print'] = false;
                 
-        $this->form_validation->set_rules('permit_fullname', 'ชื่อผู้ปกครอง', 'trim|required');
-        $this->form_validation->set_rules('permit_relative', 'ความสัมพันธ์กับนิสิต', 'trim|required');
+        $this->form_validation->set_rules('permit_fullname', 'ชื่อผู้ปกครอง', 'trim|required|thai_eng_character');
+        $this->form_validation->set_rules('permit_relative', 'ความสัมพันธ์กับนิสิต', 'trim|required|thai_character');
         $this->form_validation->set_rules('permit_address_number', 'บ้านเลขที่', 'trim|required');
         $this->form_validation->set_rules('permit_address_road', 'ถนน', 'trim|required');
         $this->form_validation->set_rules('permit_address_district', 'ตำบล', 'trim|required');

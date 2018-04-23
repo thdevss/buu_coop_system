@@ -44,7 +44,7 @@
                                         <?php echo ++$no; ?>
                                       </td>
                                       <td colspan="6">
-                                        <input type="text" class="form-control" name="plan_work_subject[<?php echo $i;?>]" placeholder="ชื่องาน" value="<?php echo @$rows[$i]['plan_work_subject'];?>">
+                                        <input type="text" class="form-control" name="plan_work_subject[<?php echo $i;?>]" placeholder="ชื่องาน" value="<?php echo form_value_db('plan_work_subject['.$i.']', @$rows[$i]['plan_work_subject']);?>">
                                       </td>
                                           <?php 
                                             if(@$rows[$i]['plan_time_period']) {
