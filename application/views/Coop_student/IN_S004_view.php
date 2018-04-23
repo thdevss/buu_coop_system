@@ -13,7 +13,6 @@
                     if($status){
                         echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
                     }
-                        echo validation_errors('<div class="alert alert-warning">','</div>');
                     ?>
                     <form action="<?php echo site_url('Coop_student/IN_S004/save');?>" method="post">
 
@@ -123,7 +122,7 @@
                     <?php } ?>
 
                     <!-- ข้อ 2 -->
-                    <label for="name"><b>๒.	ผู้นิเทศงาน </b></label>
+                    <label for="name"><b>๒.	ผู้นิเทศงาน </b></label><code>*</code>
                         <div class="row">
                             <div class="form-group col-sm-10">
                                 <select class="form-control" name="trainer_id" id="trainer_lists">
@@ -177,48 +176,48 @@
                     <label for="name"><b>๔.	ที่อยู่ที่นิสิตพักระหว่างการทำสหกิจศึกษา</b></label>
                     <div class="row">
                           <div class="form-group col-sm-8">
-                               <label>ชื่อหอพัก/อพาร์ทเมนท์ </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_name" value="<?php echo $coop_student_dorm['dorm_name']; ?>" required  >                          
+                               <label>ชื่อหอพัก/อพาร์ทเมนท์ </label> <?php echo form_error('dorm_name'); ?><code>*</code>
+                               <input type="text" class="form-control" id="" name="dorm_name" value="<?php echo form_value_db('dorm_name', @$coop_student_dorm['dorm_name']); ?>">                          
                           </div>
                           <div class="form-group col-sm-4">
-                               <label>ห้อง</label><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_room" value="<?php echo $coop_student_dorm['dorm_room']; ?>" required  >                          
-                          </div>
-                          <div class="form-group col-sm-2">
-                               <label>เลขที่ </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_number" value="<?php echo $coop_student_dorm['dorm_address_number']; ?>" required  >                          
-                          </div>
-                          <div class="form-group col-sm-3">
-                               <label>ซอย </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_alley" value="<?php echo $coop_student_dorm['dorm_address_alley']; ?>" required  >                          
+                               <label>ห้อง</label> <?php echo form_error('dorm_room'); ?><code>*</code>
+                               <input type="text" class="form-control" id="" name="dorm_room" value="<?php echo form_value_db('dorm_room', @$coop_student_dorm['dorm_room']); ?>">                          
                           </div>
                           <div class="form-group col-sm-4">
-                               <label>ถนน </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_road" value="<?php echo $coop_student_dorm['dorm_address_road']; ?>" required  >                          
-                          </div>
-                          <div class="form-group col-sm-3">
-                               <label>แขวง/ตำบล </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_district" value="<?php echo $coop_student_dorm['dorm_address_district']; ?>" required  >                          
-                          </div>
-                          <div class="form-group col-sm-3">
-                               <label>เขต/อำเภอ </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_area" value="<?php echo $coop_student_dorm['dorm_address_area']; ?>" required  >                          
-                          </div>
-                          <div class="form-group col-sm-3">
-                               <label>จังหวัด </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_province" value="<?php echo $coop_student_dorm['dorm_address_province']; ?>" required  >                          
+                               <label>เลขที่ </label> <?php echo form_error('dorm_number'); ?><code>*</code>
+                               <input type="text" class="form-control" id="" name="dorm_number" value="<?php echo form_value_db('dorm_number', @$coop_student_dorm['dorm_address_number']); ?>">                          
                           </div>
                           <div class="form-group col-sm-4">
-                               <label>รหัสไปรษณีย์</label><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_postal_code" value="<?php echo $coop_student_dorm['dorm_address_postal_code']; ?>" required  >                          
+                               <label>ซอย </label> <?php echo form_error('dorm_alley'); ?><code>*</code>
+                               <input type="text" class="form-control" id="" name="dorm_alley" value="<?php echo form_value_db('dorm_alley', @$coop_student_dorm['dorm_address_alley']) ; ?>">                          
                           </div>
                           <div class="form-group col-sm-4">
-                               <label>โทรศัพท์</label><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_telephone" value="<?php echo $coop_student_dorm['dorm_telephone']; ?>" required  >                          
+                               <label>ถนน </label> <?php echo form_error('dorm_road'); ?><code>*</code>
+                               <input type="text" class="form-control" id="" name="dorm_road" value="<?php echo form_value_db('dorm_road', @$coop_student_dorm['dorm_address_road']); ?>">                          
                           </div>
                           <div class="form-group col-sm-4">
-                               <label>โทรสาร</label>
-                               <input type="text" class="form-control" id="" name="dorm_fax_number" value="<?php echo $coop_student_dorm['dorm_fax_number']; ?>"   >                          
+                               <label>แขวง/ตำบล </label> <?php echo form_error('dorm_district'); ?><code>*</code>
+                               <input type="text" class="form-control" id="" name="dorm_district" value="<?php echo form_value_db('dorm_district', @$coop_student_dorm['dorm_address_district']); ?>">                          
+                          </div>
+                          <div class="form-group col-sm-4">
+                               <label>เขต/อำเภอ </label> <?php echo form_error('dorm_area'); ?><code>*</code>
+                               <input type="text" class="form-control" id="" name="dorm_area" value="<?php echo form_value_db('dorm_area', @$coop_student_dorm['dorm_address_area']); ?>">                          
+                          </div>
+                          <div class="form-group col-sm-4">
+                               <label>จังหวัด </label> <?php echo form_error('dorm_province'); ?><code>*</code>
+                               <input type="text" class="form-control" id="" name="dorm_province" value="<?php echo form_value_db('dorm_province', @$coop_student_dorm['dorm_address_province']); ?>">                          
+                          </div>
+                          <div class="form-group col-sm-4">
+                               <label>รหัสไปรษณีย์</label> <?php echo form_error('dorm_postal_code'); ?><code>*</code>
+                               <input type="text" class="form-control" id="" name="dorm_postal_code" value="<?php echo form_value_db('dorm_postal_code', @$coop_student_dorm['dorm_address_postal_code']); ?>">                          
+                          </div>
+                          <div class="form-group col-sm-4">
+                               <label>โทรศัพท์</label> <?php echo form_error('dorm_telephone'); ?><code>*</code>
+                               <input type="text" class="form-control" id="" name="dorm_telephone" value="<?php echo form_value_db('dorm_telephone', @$coop_student_dorm['dorm_telephone']); ?>">                          
+                          </div>
+                          <div class="form-group col-sm-4">
+                               <label>โทรสาร</label> <?php echo form_error('dorm_fax_number'); ?>
+                               <input type="text" class="form-control" id="" name="dorm_fax_number" value="<?php echo form_value_db('dorm_fax_number', @$coop_student_dorm['dorm_fax_number']); ?>">                          
                           </div>                
                         </div>
                       <!-- ปิดข้อ 4 -->
@@ -263,44 +262,44 @@
                     <label for="name"><b>๖.	ชื่อที่อยู่ ผู้ที่สามารถติดต่อได้กรณีฉุกเฉิน</b></label>
                     <div class="row">
                           <div class="form-group col-sm-8">
-                               <label>ชื่อ - สกุล  </label><code>*</code>
-                               <input type="text" class="form-control" id="contact_fullname" name="contact_fullname" value="<?php echo $coop_student_emergency_contact['contact_fullname'] ;?>" required>                          
-                          </div>
-                          <div class="form-group col-sm-2">
-                               <label>เลขที่ </label><code>*</code>
-                               <input type="text" class="form-control" id="contact_address_number" name="contact_address_number" value="<?php echo $coop_student_emergency_contact['contact_address_number'] ;?>" required>                          
-                          </div>
-                          <div class="form-group col-sm-3">
-                               <label>ซอย </label><code>*</code>
-                               <input type="text" class="form-control" id="contact_address_alley" name="contact_address_alley" value="<?php echo $coop_student_emergency_contact['contact_address_alley'] ;?>" required>                          
+                               <label>ชื่อ - สกุล  </label> <?php echo form_error('contact_fullname'); ?><code>*</code>
+                               <input type="text" class="form-control" id="contact_fullname" name="contact_fullname" value="<?php echo form_value_db('contact_fullname', @$coop_student_emergency_contact['contact_fullname']) ;?>">                          
                           </div>
                           <div class="form-group col-sm-4">
-                               <label>ถนน </label><code>*</code>
-                               <input type="text" class="form-control" id="contact_address_road" name="contact_address_road" value="<?php echo $coop_student_emergency_contact['contact_address_road'] ;?>" required>                          
-                          </div>
-                          <div class="form-group col-sm-3">
-                               <label>แขวง/ตำบล </label><code>*</code>
-                               <input type="text" class="form-control" id="contact_address_district" name="contact_address_district" value="<?php echo $coop_student_emergency_contact['contact_address_district'] ;?>" required>                          
-                          </div>
-                          <div class="form-group col-sm-3">
-                               <label>เขต/อำเภอ </label><code>*</code>
-                               <input type="text" class="form-control" id="contact_address_area" name="contact_address_area" value="<?php echo $coop_student_emergency_contact['contact_address_area'] ;?>" required>                          
-                          </div>
-                          <div class="form-group col-sm-3">
-                               <label>จังหวัด </label><code>*</code>
-                               <input type="text" class="form-control" id="contact_address_province" name="contact_address_province" value="<?php echo $coop_student_emergency_contact['contact_address_province'] ;?>" required>                          
+                               <label>เลขที่ </label> <?php echo form_error('contact_address_number'); ?><code>*</code>
+                               <input type="text" class="form-control" id="contact_address_number" name="contact_address_number" value="<?php echo form_value_db('contact_address_number', @$coop_student_emergency_contact['contact_address_number']);?>">                          
                           </div>
                           <div class="form-group col-sm-4">
-                               <label>รหัสไปรษณีย์</label><code>*</code>
-                               <input type="text" class="form-control" id="contact_address_postal_code" name="contact_address_postal_code" value="<?php echo $coop_student_emergency_contact['contact_address_postal_code'] ;?>" required>                          
+                               <label>ซอย </label> <?php echo form_error('contact_address_alley'); ?><code>*</code>
+                               <input type="text" class="form-control" id="contact_address_alley" name="contact_address_alley" value="<?php echo form_value_db('contact_address_alley', @$coop_student_emergency_contact['contact_address_alley']);?>">                          
                           </div>
                           <div class="form-group col-sm-4">
-                               <label>โทรศัพท์</label><code>*</code>
-                               <input type="text" class="form-control" id="contact_telephone" name="contact_telephone" value="<?php echo $coop_student_emergency_contact['contact_telephone'] ;?>" required>                          
+                               <label>ถนน </label> <?php echo form_error('contact_address_road'); ?><code>*</code>
+                               <input type="text" class="form-control" id="contact_address_road" name="contact_address_road" value="<?php echo form_value_db('contact_address_road', @$coop_student_emergency_contact['contact_address_road']);?>">                          
                           </div>
                           <div class="form-group col-sm-4">
-                               <label>โทรสาร </label>
-                               <input type="text" class="form-control" id="contact_fax_number" name="contact_fax_number" value="<?php echo $coop_student_emergency_contact['contact_fax_number'] ;?>" >                          
+                               <label>แขวง/ตำบล </label> <?php echo form_error('contact_address_district'); ?><code>*</code>
+                               <input type="text" class="form-control" id="contact_address_district" name="contact_address_district" value="<?php echo form_value_db('contact_address_district', @$coop_student_emergency_contact['contact_address_district']);?>">                          
+                          </div>
+                          <div class="form-group col-sm-4">
+                               <label>เขต/อำเภอ </label> <?php echo form_error('contact_address_area'); ?><code>*</code>
+                               <input type="text" class="form-control" id="contact_address_area" name="contact_address_area" value="<?php echo form_value_db('contact_address_area', @$coop_student_emergency_contact['contact_address_area']);?>">                          
+                          </div>
+                          <div class="form-group col-sm-4">
+                               <label>จังหวัด </label> <?php echo form_error('contact_address_province'); ?><code>*</code>
+                               <input type="text" class="form-control" id="contact_address_province" name="contact_address_province" value="<?php echo form_value_db('contact_address_province', @$coop_student_emergency_contact['contact_address_province']);?>">                          
+                          </div>
+                          <div class="form-group col-sm-4">
+                               <label>รหัสไปรษณีย์</label> <?php echo form_error('contact_address_postal_code'); ?><code>*</code>
+                               <input type="text" class="form-control" id="contact_address_postal_code" name="contact_address_postal_code" value="<?php echo form_value_db('contact_address_postal_code', @$coop_student_emergency_contact['contact_address_postal_code']);?>">                          
+                          </div>
+                          <div class="form-group col-sm-4">
+                               <label>โทรศัพท์</label> <?php echo form_error('contact_telephone'); ?><code>*</code>
+                               <input type="text" class="form-control" id="contact_telephone" name="contact_telephone" value="<?php echo form_value_db('contact_telephone', @$coop_student_emergency_contact['contact_telephone']);?>">                          
+                          </div>
+                          <div class="form-group col-sm-4">
+                               <label>โทรสาร </label> <?php echo form_error('contact_fax_number'); ?>
+                               <input type="text" class="form-control" id="contact_fax_number" name="contact_fax_number" value="<?php echo form_value_db('contact_fax_number', @$coop_student_emergency_contact['contact_fax_number']);?>" >                          
                           </div>                       
                         </div>
     
