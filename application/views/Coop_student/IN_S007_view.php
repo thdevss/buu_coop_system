@@ -18,12 +18,11 @@
                     if($status){
                         echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
                     }
-                        echo validation_errors('<div class="alert alert-warning">','</div>');
                     ?>
                     <div class="row">
                             <div class="form-group col-sm-10">           
-                                <label>เรื่อง (ภาษาไทย)</label><code>*</code>
-                                <input type="text" class="form-control" id="petition_subject" name="petition_subject" value="" required>
+                                <label>เรื่อง (ภาษาไทย)</label> <?php echo form_error('petition_subject'); ?><code>*</code>
+                                <input type="text" class="form-control" id="petition_subject" name="petition_subject" value="">
                             </div>
                             <div class="form-group col-sm-8">           
                                 <label>ชื่อ - นามสกุล (ภาษาไทย)</label><code>*</code>
@@ -54,11 +53,11 @@
                                 <input type="text" class="form-control" value="<?php echo @$profile_student['Student_Email']; ?>" disabled>
                             </div>
                             <div class="form-group col-sm-8">           
-                                <label>มีความประสงค์  </label><code>*</code>
+                                <label>มีความประสงค์  </label> <?php echo form_error('petition_purpose'); ?><code>*</code>
                                 <textarea id="petition_purpose" name="petition_purpose" rows="4" class="form-control" placeholder="Content.."></textarea>
                             </div>
                             <div class="form-group col-sm-8">           
-                                <label>เนื่องจาก   </label><code>*</code>
+                                <label>เนื่องจาก   </label> <?php echo form_error('petition_reason'); ?><code>*</code>
                                 <textarea id="petition_reason" name="petition_reason" rows="4" class="form-control" placeholder="Content.."></textarea>
                             </div>
                         </div>

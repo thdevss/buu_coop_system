@@ -61,17 +61,17 @@
                     </tbody>
                   </table>
                     <div class="col-md-9">
-                    <lable><b>4. ตามข้อ 1.2 สถานประกอบการได้สนับสนุนสิ่งอำนวยความสะดวกต่าง ๆ ได้แก่<b></lable>
+                    <lable><b>4. ตามข้อ 1.2 สถานประกอบการได้สนับสนุนสิ่งอำนวยความสะดวกต่าง ๆ ได้แก่<b></lable> <?php form_error('no4'); ?><code>*</code>
                     <textarea id="textarea-input" name="no4" rows="6" class="form-control" placeholder="......"></textarea>
                     </div>
                     <br>
                     <div class="col-md-9">
-                    <lable><b>5 .ตามข้อ 1.3 สถานประกอบการได้ให้การสนับสนุนด้านสวัสดิการ ได้แก่ <b></lable>
+                    <lable><b>5 .ตามข้อ 1.3 สถานประกอบการได้ให้การสนับสนุนด้านสวัสดิการ ได้แก่<b></lable> <?php form_error('no5'); ?><code>*</code>
                     <textarea id="textarea-input" name="no5" rows="6" class="form-control" placeholder="......"></textarea>
                     </div>
                     <br>
                     <div class="col-md-9">
-                    <lable><b>6. ในปีการศึกษาถัดไป ท่านคิดว่าสมควรส่งนักศึกษาไปปฏิบัติสหกิจศึกษา/ฝึกงาน ณ สถานประกอบการแห่งนี้หรือไม่ <b></lable>
+                    <lable><b>6. ในปีการศึกษาถัดไป ท่านคิดว่าสมควรส่งนักศึกษาไปปฏิบัติสหกิจศึกษา/ฝึกงาน ณ สถานประกอบการแห่งนี้หรือไม่<b></lable> <?php form_error('no6'); ?><code>*</code>
                     <div class="custom-controls-stacked">
                           <label class="custom-control custom-radio">
                             <input id="radioStacked1" name="no6" value="1" type="radio" class="custom-control-input">
@@ -87,7 +87,7 @@
                         <br>
                     </div>
                     <div class="col-md-9">
-                    <lable><b>7.ข้อคิดเห็นเพิ่มเติม <b></lable>
+                    <lable><b>7.ข้อคิดเห็นเพิ่มเติม<b></lable> <?php form_error('no7'); ?><code>*</code>
                     <textarea id="textarea-input" name="no7" rows="6" class="form-control" placeholder="......"></textarea>
                     </div>
                     <br><br>
