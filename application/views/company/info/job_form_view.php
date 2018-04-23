@@ -11,24 +11,24 @@
 <div class="container-fluid">
     <div class="animated fadeIn">
         <div class="row" >
-            <div class="col-md-12">
+            <div class="col-lg-6 offset-lg-3">
                 <div class="card">
                  <div class="card-header"><i class="fa fa-align-justify"></i>เพิ่มข้อมูลโครงการอบรม</div>
                   <form action="<?php echo $work_form_url;?>" method="post">
                     <div class="card-body "> 
-                    <?php
-                        if($this->session->flashdata('form-alert')) {
-                            echo $this->session->flashdata('form-alert');
-                        }
-                    ?>
+                        <?php
+                            if($this->session->flashdata('form-alert')) {
+                                 echo $this->session->flashdata('form-alert');
+                            }
+                        ?>
                         <div class="row">
-                            <div class="col-sm-4"></div>
+                            <div class="col-sm-12"></div>
 
-                            <div class="form-group col-sm-4">
-                                <label for="job_title_id">ตำแหน่ง</label><code>*</code>
+                            <div class="form-group col-sm-12">
+                                <label for="job_title_id">ตำแหน่ง</label> <?php echo form_error('job_title_id'); ?><code>*</code>
                                 <select class="form-control" id="job_title_id" name="job_title_id">
 
-                                    <option> ------ </option>
+                                    <option disable> ------ </option>
                                     <?php 
                                     foreach($company_job_title as $row) {
                                         if($company_job_position_by_id['job_title_id'] == $row['job_title_id']) {
@@ -41,26 +41,26 @@
                                 </select>
                             </div>
 
-                            <div class="col-sm-4"></div>
+                            <div class="col-sm-12"></div>
                             <input type="hidden" name="job_id" value="<?php echo $company_job_position_by_id['job_id'];?>">    
                             <input type="hidden" name="company_id" value="<?php echo $company_job_position_by_id['company_id'];?>">
 
-                            <div class="col-sm-4"></div>
+                            <div class="col-sm-12"></div>
                             
-                            <div class="form-group col-sm-4">
-                                <label for="job_number_employee">จำนวน</label><code>*</code>
+                            <div class="form-group col-sm-12">
+                                <label for="job_number_employee">จำนวน</label> <?php echo form_error('job_number_employee'); ?><code>*</code>
                                 <input type="number" min="1" class="form-control" id="job_number_employee" name="job_number_employee" value="<?php echo $company_job_position_by_id['job_number_employee'];?>">
                             </div>
 
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4"></div>
+                            <div class="col-sm-12"></div>
+                            <div class="col-sm-12"></div>
 
-                            <div class="form-group col-sm-4">
-                                <label class="col-md-8 form-control-label" for="textarea-input">ลักษณะงานที่นิสิตต้องปฏิบัติงาน<code>*</code></label>
+                            <div class="form-group col-sm-12">
+                                <label class="col-md-12 form-control-label" for="textarea-input">ลักษณะงานที่นิสิตต้องปฏิบัติงาน</label><?php echo form_error('job_description'); ?><code>*</code>
                                 <textarea id="textarea-input" name="job_description" rows="9" class="form-control"><?php echo $company_job_position_by_id['job_description'];?></textarea>
                             </div>
 
-                            <div class="col-sm-4"></div>
+                            <div class="col-sm-12"></div>
                         </div>     
                         <div class="col-md-12 text-center"> 
                             <button type="reset" class="btn btn-danger"><i></i>ยกเลิก</button>

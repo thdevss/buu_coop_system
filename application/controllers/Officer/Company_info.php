@@ -36,17 +36,17 @@ class Company_info extends CI_controller
         public function post_step1()
         {
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('company_id','Company ID','required');
-            $this->form_validation->set_rules('company_name_th','(ภาษาไทย)','required');//required ต้องการไทย
-            $this->form_validation->set_rules('company_name_en','(ภาษาอังกฤษ)','required|alpha');
-            $this->form_validation->set_rules('company_address_number','ที่อยู่เลขที่','required|alpha_dash');//required ต้องการตัวเลขและเคนื่องหมาย'/'
-            $this->form_validation->set_rules('company_address_building','อาคาร','required');//required ต้องการไทย
-            $this->form_validation->set_rules('company_address_road','ถนน','required');//required ต้องการไทย
-            $this->form_validation->set_rules('company_address_alley','ซอย','required');//required ต้องการไทย
-            $this->form_validation->set_rules('company_address_district','แขวง','required');//required ต้องการไทย
-            $this->form_validation->set_rules('company_address_area','เขต/อำเภอ','required');//required ต้องการไทย
-            $this->form_validation->set_rules('company_address_province','จังหวัด','required');//required ต้องการไทย
-            $this->form_validation->set_rules('company_address_postal_code','รหัสไปรษณีย์','required|min_length[5]|max_length[5]');
+            $this->form_validation->set_rules('company_id','Company ID','trim|required');
+            $this->form_validation->set_rules('company_name_th','(ภาษาไทย)','trim|required');//required ต้องการไทย
+            $this->form_validation->set_rules('company_name_en','(ภาษาอังกฤษ)','trim|required|alpha');
+            $this->form_validation->set_rules('company_address_number','ที่อยู่เลขที่','trim|required|alpha_dash');//required ต้องการตัวเลขและเคนื่องหมาย'/'
+            $this->form_validation->set_rules('company_address_building','อาคาร','trim|required');//required ต้องการไทย
+            $this->form_validation->set_rules('company_address_road','ถนน','trim|required');//required ต้องการไทย
+            $this->form_validation->set_rules('company_address_alley','ซอย','trim|required');//required ต้องการไทย
+            $this->form_validation->set_rules('company_address_district','แขวง','trim|required');//required ต้องการไทย
+            $this->form_validation->set_rules('company_address_area','เขต/อำเภอ','trim|required');//required ต้องการไทย
+            $this->form_validation->set_rules('company_address_province','จังหวัด','trim|required');//required ต้องการไทย
+            $this->form_validation->set_rules('company_address_postal_code','รหัสไปรษณีย์','trim|required|min_length[5]|max_length[5]');
             $this->form_validation->set_rules('company_type','ประเภทกิจการ/ธุรกิจ/ผลิตภัณฑ์/ลักษณะการดำเนินงาน','required');
             $this->form_validation->set_rules('company_total_employee','จำนวนพนักงาน','required|is_natural_no_zero');
             if($this->form_validation->run() == false)
@@ -110,8 +110,8 @@ class Company_info extends CI_controller
         public function post_step2()
         {
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('radios','radios','numeric');
-            $this->form_validation->set_rules('company_id','Company ID','required');
+            $this->form_validation->set_rules('radios','radios','trim|numeric');
+            $this->form_validation->set_rules('company_id','Company ID','trim|required');
             
             if($this->form_validation->run() == false) 
             {
@@ -162,17 +162,31 @@ class Company_info extends CI_controller
         //job section
         public function job_add()
         {
-            $data['company_id'] = $this->input->post('company_id');
-            $data['job_title_id'] = $this->input->post('job_title_id');
-            $data['job_title'] = $this->Job->get_company_job_title_by_job_title_id($this->input->post('job_title_id'))[0]['job_title'];
-            $data['job_number_employee'] = $this->input->post('number_of_employee');
-            $data['job_description'] = $this->input->post('job_description');
-            $data['term_id'] = $this->Term->get_current_term()[0]['term_id'];
-            $data['job_active'] = 1;
+            $this->form_validation->set_rules('job_title_id', 'ตำแหน่ง', 'required');
+            $this->form_validation->set_rules('job_number_employee', 'จำนวน', 'require');
+            $this->form_validation->set_rules('job_description', 'ลักษณะงานที่นิสิตต้องปฏิบัติงาน', 'trim|required');
 
-            $this->Job->insert_job($data);
-            $this->session->set_flashdata('form-alert', '<div class="alert alert-success">เพิ่มงานสำเร็จ</div>');
-            redirect('/officer/company_info/step3/'.$data['company_id'], 'refresh');
+            if ($this->form_validation->run() == FALSE){
+
+                $company = $this->input->post('company_id');
+                $this->session->set_flashdata('form-alert', '<div class="alert alert-danger"> เพิ่มไม่สำเร็จ </div>');
+                redirect('/officer/company_info/step3/'.$company, 'refresh');
+
+            }
+            else{
+
+                $data['company_id'] = $this->input->post('company_id');
+                $data['job_title_id'] = $this->input->post('job_title_id');
+                $data['job_title'] = $this->Job->get_company_job_title_by_job_title_id($this->input->post('job_title_id'))[0]['job_title'];
+                $data['job_number_employee'] = $this->input->post('number_of_employee');
+                $data['job_description'] = $this->input->post('job_description');
+                $data['term_id'] = $this->Term->get_current_term()[0]['term_id'];
+                $data['job_active'] = 1;
+
+                $this->Job->insert_job($data);
+                $this->session->set_flashdata('form-alert', '<div class="alert alert-success">เพิ่มงานสำเร็จ</div>');
+                redirect('/officer/company_info/step3/'.$data['company_id'], 'refresh');
+            }
             // return $this->step3($data['company_id']);
         }
 
@@ -205,14 +219,15 @@ class Company_info extends CI_controller
             // print_r($array);
             $this->form_validation->set_rules('job_id', 'Job ID', 'required');
             $this->form_validation->set_rules('job_title_id', 'ตำแหน่ง', 'required');
-            $this->form_validation->set_rules('job_number_employee', 'จำนวน', 'required|numeric');
+            $this->form_validation->set_rules('job_number_employee', 'จำนวน', 'required');
             $this->form_validation->set_rules('job_description', 'ลักษณะงานที่นิสิตต้องปฏิบัติงาน', 'required');
             
             if ($this->form_validation->run() == FALSE)
             {
                 $job_id = $this->input->post('job_id');
-                $this->session->set_flashdata('form-alert', '<div class="alert alert-warning">แก้ไขงานไม่สำเร็จ</div>');
-                redirect('Officer/Company_info/job_form_edit/'.$job_id, 'refresh');
+                // $this->session->set_flashdata('form-alert', '<div class="alert alert-warning">แก้ไขงานไม่สำเร็จ</div>');
+                // redirect('Officer/Company_info/job_form_edit/'.$job_id, 'refresh');
+                $this->job_form_edit($job_id);
             }
             else
             {
