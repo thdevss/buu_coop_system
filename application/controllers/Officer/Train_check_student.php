@@ -53,8 +53,8 @@ class Train_check_student extends CI_Controller {
     {
         //insert
         $this->load->library('form_validation');        
-        $this->form_validation->set_rules('train_id', 'train_id', 'trim|required|numeric');
-        $this->form_validation->set_rules('note', 'Note', 'trim|required');
+        $this->form_validation->set_rules('train_id', 'โครงการ', 'trim|required|numeric');
+        $this->form_validation->set_rules('note', 'บันทึกช่วยจำ', 'trim|required');
 
         if ($this->form_validation->run() != FALSE) {
             if(!$this->Training->get_training($this->input->post('train_id'))) {
