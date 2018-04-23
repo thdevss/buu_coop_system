@@ -70,8 +70,8 @@ class IN_S004 extends CI_Controller {
             //emergency contact
             $this->form_validation->set_rules('contact_fullname', 'ชื่อ - สกุล', 'trim|required');
             $this->form_validation->set_rules('contact_address_number', 'เลขที่', 'trim|required|numeric');
-            $this->form_validation->set_rules('contact_address_alley', 'ซอย', 'trim|required');
-            $this->form_validation->set_rules('contact_address_road', 'ถนน', 'trim|required');
+            $this->form_validation->set_rules('contact_address_alley', 'ซอย', 'trim');
+            $this->form_validation->set_rules('contact_address_road', 'ถนน', 'trim');
             $this->form_validation->set_rules('contact_address_district', 'แขวง/ตำบล', 'trim|required');
             $this->form_validation->set_rules('contact_address_area', 'เขต/อำเภอ', 'trim|required');
             $this->form_validation->set_rules('contact_address_province', 'จังหวัด', 'trim|required');
@@ -83,8 +83,8 @@ class IN_S004 extends CI_Controller {
             $this->form_validation->set_rules('dorm_name', 'ชื่อหอพัก/อพาร์ทเมนท์', 'trim|required');
             $this->form_validation->set_rules('dorm_room', 'ห้อง', 'trim|required');
             $this->form_validation->set_rules('dorm_number', 'เลขที่', 'trim|required|numeric');
-            $this->form_validation->set_rules('dorm_alley', 'ซอย', 'trim|required');
-            $this->form_validation->set_rules('dorm_road', 'ถนน', 'trim|required');
+            $this->form_validation->set_rules('dorm_alley', 'ซอย', 'trim');
+            $this->form_validation->set_rules('dorm_road', 'ถนน', 'trim');
             $this->form_validation->set_rules('dorm_district', 'แขวง/ตำบล', 'trim|required');
             $this->form_validation->set_rules('dorm_area', 'เขต/อำเภอ', 'trim|required');
             $this->form_validation->set_rules('dorm_province', 'จังหวัด', 'trim|required');
