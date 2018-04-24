@@ -45,7 +45,7 @@
                               <select id="select" name="select" class="form-control company_status_type_val">
                                 <option value="">---กรุณาเลือก--</option>
                                 <?php foreach ($company_status_Type as $row){ ?>
-                                <option value="<?php echo $row['id'];?>"> <?php echo $row['status_name'];?></option>
+                                <option value="<?php echo $row['company_status_id'];?>"> <?php echo $row['company_status_name'];?></option>
                                 <?php } ?>
                               </select>
                             </div>
