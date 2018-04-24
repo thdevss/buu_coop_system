@@ -122,33 +122,44 @@ class Job extends CI_Controller {
         
         // print_r($_POST);
         // die();
-
+        $this->form_validation->set_rules('job_student', 'ระบุสายงานและลักษณะงานอาชีพที่นิสิตสนใจ', 'trim|required');
+        $this->form_validation->set_rules('telephone', 'โทร', 'trim|required');
+        $this->form_validation->set_rules('height', 'ส่วนสูง cm', 'trim|required');
+        $this->form_validation->set_rules('weight', 'น้ำหนัก kg', 'trim|required');
         // input form view
-        $telephone = $this->input->post('telephone');
+        if ($this->form_validation->run() == FALSE)
+        {
+            $company_id = $this->input->post('company_id');
+            $company_job_position_id = $this->input->post('company_job_position_id');
+            $this->register_form_company($company_id, $company_job_position_id);
+        }
+        else{
+
+            $telephone = $this->input->post('telephone');
         
-        // input ข้อมูลส่วนตัวนิสิต
-        $height = $this->input->post('height');
-        $weight = $this->input->post('weight');
+            // input ข้อมูลส่วนตัวนิสิต
+            $height = $this->input->post('height');
+            $weight = $this->input->post('weight');
         
 
-        // get form model
+            // get form model
 
-        $company_id = $this->input->post('company_id');
-        $company_job_position_id = $this->input->post('company_job_position_id');
-
-
-        $data['student_profile'] = @$this->Student->get_student_data_from_profile($student_id);
-        $data['student'] = @$this->Student->get_student($student_id)[0];
-        $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
-        $data['company'] = @$this->Company->get_company($company_id)[0];
-        $data['job_position_name'] = @$this->Job->get_job($company_job_position_id)[0]['job_title'];
-        // print_r($student_id);
-        // die();
+            $company_id = $this->input->post('company_id');
+            $company_job_position_id = $this->input->post('company_job_position_id');
         
-        $template_file = "template/IN-S002.docx";        
+
+            $data['student_profile'] = @$this->Student->get_student_data_from_profile($student_id);
+            $data['student'] = @$this->Student->get_student($student_id)[0];
+            $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
+            $data['company'] = @$this->Company->get_company($company_id)[0];
+            $data['job_position_name'] = @$this->Job->get_job($company_job_position_id)[0]['job_title'];
+            // print_r($student_id);
+            // die();
         
-        $save_filename = "download/".$student_id."-IN-S002-".time().".docx";
-        $data_array = [
+            $template_file = "template/IN-S002.docx";        
+        
+            $save_filename = "download/".$student_id."-IN-S002-".time().".docx";
+            $data_array = [
 
             // ข้อมูลนิสิต
                 "Student_Prefix_Th" => $data['student_profile']['Student_Prefix'], //คำนำหน้า
@@ -270,22 +281,22 @@ class Job extends CI_Controller {
 
                 // "Brethren" => "น้อง 1 คน", กรอกเอง
 
-        ];
+            ];
 
-        // EDUCATIONAL HISTORY
-        $education_history = [];
-        $education_place = $this->input->post('education_place');
-        $education_start_year = $this->input->post('education_start_year');
-        $education_end_year = $this->input->post('education_end_year');
-        $education_result = $this->input->post('education_result');
-        foreach($this->input->post('education_level') as $key => $education_level) {
-            $education_history[] = [
+                // EDUCATIONAL HISTORY
+                $education_history = [];
+                $education_place = $this->input->post('education_place');
+                $education_start_year = $this->input->post('education_start_year');
+                $education_end_year = $this->input->post('education_end_year');
+                $education_result = $this->input->post('education_result');
+                foreach($this->input->post('education_level') as $key => $education_level) {
+                $education_history[] = [
                 'level' => $education_level,
                 'place' => $education_place[$key],
                 'startY' => $education_start_year[$key],
                 'endY' => $education_end_year[$key],
                 'result' => $education_result[$key]
-            ];
+                ];
         }
         $data_array['edu_history'] = $education_history;
 
@@ -302,110 +313,110 @@ class Job extends CI_Controller {
                 'end' => $training_end_period[$key]
             ];
         }
-        $data_array['training'] = $training_history;
+            $data_array['training'] = $training_history;
 
-        // CAREER VISION
-        $data_array['job_student'] = $this->input->post('job_student');
+            // CAREER VISION
+            $data_array['job_student'] = $this->input->post('job_student');
 
-        // LANGUAGE PROFICIENCY
-        $lang_pro = [];
-        $language_listen = $this->input->post('language_listen');
-        $language_speak = $this->input->post('language_speak');
-        $language_read = $this->input->post('language_read');
-        $language_write = $this->input->post('language_write');
-        foreach($this->input->post('language_lang') as $key => $language_lang) {
-            $tmp_array = [
-                'lang' => $language_lang,
-                'l3' => '',
-                'l2' => '',
-                'l1' => '',
-                's3' => '',
-                's2' => '',
-                's1' => '',
-                'r3' => '',
-                'r2' => '',
-                'r1' => '',
-                'w3' => '',
-                'w2' => '',
-                'w1' => ''                
-            ];
-            $tmp_array['l'.$language_listen[$key]] = ' * ';
-            $tmp_array['s'.$language_speak[$key]] = ' * ';
-            $tmp_array['r'.$language_read[$key]] = ' * ';
-            $tmp_array['w'.$language_write[$key]] = ' * ';
+            // LANGUAGE PROFICIENCY
+            $lang_pro = [];
+            $language_listen = $this->input->post('language_listen');
+            $language_speak = $this->input->post('language_speak');
+            $language_read = $this->input->post('language_read');
+            $language_write = $this->input->post('language_write');
+            foreach($this->input->post('language_lang') as $key => $language_lang) {
+                $tmp_array = [
+                    'lang' => $language_lang,
+                    'l3' => '',
+                    'l2' => '',
+                    'l1' => '',
+                    's3' => '',
+                    's2' => '',
+                    's1' => '',
+                    'r3' => '',
+                    'r1' => '',
+                    'w3' => '',
+                    'w2' => '',
+                    'w1' => '',               
+                    'r2' => '',
+                ];
+                $tmp_array['s'.$language_speak[$key]] = ' * ';
+                $tmp_array['l'.$language_listen[$key]] = ' * ';
+                $tmp_array['w'.$language_write[$key]] = ' * ';
+                $tmp_array['r'.$language_read[$key]] = ' * ';
             
 
-            $lang_pro[] = $tmp_array;
-        }
-        $data_array['lang_pro'] = $lang_pro;
+                $lang_pro[] = $tmp_array;
+            }
+                $data_array['lang_pro'] = $lang_pro;
 
 
-        // ความสามารถพิเศษทางคอมพิวเตอร์, ทักษะ
+                // ความสามารถพิเศษทางคอมพิวเตอร์, ทักษะ
         
 
 
 
 
-        if($data['department']['department_id']== 1) {
-            $data_array ['ch_it'] = "*";
-        }else if($data['department']['department_id']== 2){
-            $data_array ['ch_cs'] = "*";
-        }else if($data['department']['department_id']== 3) {
-            $data_array ['ch_se'] = "*";
+            if($data['department']['department_id']== 1) {
+                $data_array ['ch_it'] = "*";
+            }else if($data['department']['department_id']== 2){
+                $data_array ['ch_cs'] = "*";
+            }else if($data['department']['department_id']== 3) {
+                $data_array ['ch_se'] = "*";
+            }
+
+            if($data['student_profile']['Father_Status'] == "มีชีวิต" ){
+                $data_array ['Father_Status_l'] = "*" ;
+            }else if ($data['student_profile']['Father_Status'] == "ถึงแก่กรรม" ) {
+
+            }
+
+            if($data['student_profile']['Mother_Status'] == "มีชีวิต" ){
+                $data_array ['Mother_Status_l'] = "*" ;
+            }else if ($data['student_profile']['Mother_Status'] == "ถึงแก่กรรม" ) {
+
+            }
+
+            $data_array['image'] = 'http://reg.buu.ac.th/registrar/getstudentimage.asp?id='.$student_id;
+            // print_r($data_array);
+            // die();
+
+            $result = $this->service_docx->print_data($data_array, $template_file, $save_filename);
+            // print_r($result);
+            //redirect(base_url($result['full_url']), 'refresh');
+            
+            //insert to form word
+            $term_id = $this->Login_session->check_login()->term_id;
+            $coop_document_id = $this->Form->get_form_by_name('IN-S002', $term_id)[0]['document_id'];
+            $word_file = '/uploads/'.basename($save_filename);
+            $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file);
+
+            //insert to db
+            if($this->Job->student_register_job($student_id, $company_job_position_id)) {
+                $this->Student->update_student($student_id, array(
+                    'coop_status_id' => 2
+                ));
+                $this->session->set_tempdata('session_alert', '<div class="alert alert-success">ทำการสมัครงานสหกิจเรียบร้อย โปรดรอขั้นตอนต่อไป</div>', 300);
+            } else {
+                $this->session->set_tempdata('session_alert', '<div class="alert alert-warning">มีปัญหาระหว่างทาง โปรดตรวจสอบกับเจ้าหน้าที่</div>', 300);
+            }
+
+
+
+            // redirect(base_url($result['full_url']), 'refresh');
+            echo "
+                <img src='".base_url('assets/img/loading.gif')."' />
+                <script>
+                    window.location = '".base_url($result['full_url'])."';
+                    // setTimeout(function(){
+                    //     window.location = '".site_url()."';
+                    // }, 1500);
+                </script>
+            ";
+
+
         }
-
-        if($data['student_profile']['Father_Status'] == "มีชีวิต" ){
-            $data_array ['Father_Status_l'] = "*" ;
-        }else if ($data['student_profile']['Father_Status'] == "ถึงแก่กรรม" ) {
-
-        }
-
-        if($data['student_profile']['Mother_Status'] == "มีชีวิต" ){
-            $data_array ['Mother_Status_l'] = "*" ;
-        }else if ($data['student_profile']['Mother_Status'] == "ถึงแก่กรรม" ) {
-
-        }
-
-        $data_array['image'] = 'http://reg.buu.ac.th/registrar/getstudentimage.asp?id='.$student_id;
-        // print_r($data_array);
-        // die();
-
-        $result = $this->service_docx->print_data($data_array, $template_file, $save_filename);
-        // print_r($result);
-        //redirect(base_url($result['full_url']), 'refresh');
-        
-        //insert to form word
-        $term_id = $this->Login_session->check_login()->term_id;
-        $coop_document_id = $this->Form->get_form_by_name('IN-S002', $term_id)[0]['document_id'];
-        $word_file = '/uploads/'.basename($save_filename);
-        $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file);
-
-        //insert to db
-        if($this->Job->student_register_job($student_id, $company_job_position_id)) {
-            $this->Student->update_student($student_id, array(
-                'coop_status_id' => 2
-            ));
-            $this->session->set_tempdata('session_alert', '<div class="alert alert-success">ทำการสมัครงานสหกิจเรียบร้อย โปรดรอขั้นตอนต่อไป</div>', 300);
-        } else {
-            $this->session->set_tempdata('session_alert', '<div class="alert alert-warning">มีปัญหาระหว่างทาง โปรดตรวจสอบกับเจ้าหน้าที่</div>', 300);
-        }
-
-
-
-        // redirect(base_url($result['full_url']), 'refresh');
-        echo "
-            <img src='".base_url('assets/img/loading.gif')."' />
-            <script>
-                window.location = '".base_url($result['full_url'])."';
-                // setTimeout(function(){
-                //     window.location = '".site_url()."';
-                // }, 1500);
-            </script>
-        ";
-
-
-    }
-
+    }    
    
 
 
