@@ -44,7 +44,7 @@ class Job extends CI_Controller {
         $data['student'] = $this->Student->get_student($student_id)[0];
         $data['session_alert'] = '';
         if($data['student']['coop_status_id'] > 1) {
-            $data['session_alert'] = '<div class="alert alert-warning">คุณทำการสมัครงานสหกิจแล้ว โปรดรอการตอบกลับขั้นตอนต่อไปค่ะ</div>';
+            // $data['session_alert'] = '<div class="alert alert-warning">คุณทำการสมัครงานสหกิจแล้ว โปรดรอการตอบกลับขั้นตอนต่อไปค่ะ</div>';
         } else {
             
             if($this->form_validation->run() == FALSE) {
@@ -116,7 +116,7 @@ class Job extends CI_Controller {
     }
 
     public function print_data()
-    {
+    { //in-s002
         
         $student_id = $this->Login_session->check_login()->login_value;
         
@@ -142,8 +142,6 @@ class Job extends CI_Controller {
         $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
         $data['company'] = @$this->Company->get_company($company_id)[0];
         $data['job_position_name'] = @$this->Job->get_job($company_job_position_id)[0]['job_title'];
-        // print_r($student_id);
-        // die();
         
         $template_file = "template/IN-S002.docx";        
         
@@ -161,22 +159,19 @@ class Job extends CI_Controller {
                 "Student_Phone" =>  $data['student_profile']['Student_Phone'], //มือถือ
                 "Student_Email" => $data['student_profile']['Student_Email'], //อีเมล์
 
-                "ch_cs" => "", //สาขา CS
-                "ch_it" => "", //สาขา IT
-                "ch_se" => "", //สาขา SE
-
+               
             // ชื่อสถานประกอบการที่ต้องการสมัคร
                 "round" => "1", //รอบ
                 "company_name_th" => $data['company']['company_name_th'], //ชื่อสถานประกอบการ
                 "company_job_position" => $data['job_position_name'], //สมัครตำแหน่งงาน
 
             //ข้อมูลส่วนตัวนิสิต 
-                "Student_Prefix_Th" => detect_gender_th($data['student_profile']['Student_Prefix']), //คำนำหน้า 
+                "Student_Prefix_Th" => $data['student_profile']['Student_Prefix'], //คำนำหน้า 
                 "Student_Name_Th" => $data['student_profile']['Student_Name_Th'], //ชื่อ
                 "Student_Lname_Th" => $data['student_profile']['Student_Lname_Th'], //นามสกุล
                 "Student_Nickname" => $data['student_profile']['Student_Nickname'], //ชื่อเล่น
 
-                "Student_Prefix_Eng" => detect_prefix_en($data['student_profile']['Student_Prefix']), //คำนำหน้าอังกฤษ
+                "Student_Prefix_Eng" => $data['student_profile']['Student_Prefix'], //คำนำหน้าอังกฤษ
                 "Student_Name_Eng" => $data['student_profile']['Student_Name_Eng'], //ชื่ออังกฤษ
                 "Student_Lname_Eng" => $data['student_profile']['Student_Lname_Eng'], //นามสกุลอังกฤษ
                 "Student_IdNum" => $data['student_profile']['Student_IdNum'], //รหัสบัตรประชาชน
@@ -234,8 +229,8 @@ class Job extends CI_Controller {
                 "Father_Career" => $data['student_profile']['Father_Career'], //อาชีพ
                 "Father_Phone" => $data['student_profile']['Father_Phone'], //มือถือ
                 
-                "Father_Status_l" => "",// สถานะบิดา มีชีวิต
-                "Father_Status_d" => "", // สถานะบิดา ถึงแก่กรรม
+                "Father_Status_l" => "\u{2610}\u{0020}",// สถานะบิดา มีชีวิต
+                "Father_Status_d" => "\u{2610}\u{0020}", // สถานะบิดา ถึงแก่กรรม
 
                 // "Father_Age" => "55", กรอกเอง
 
@@ -254,8 +249,8 @@ class Job extends CI_Controller {
                 "Mother_Phone" => $data['student_profile']['Mother_Phone'], //มือถือ
 
 
-                "Mother_Status_l" => "",// สถานะบิดา มีชีวิต
-                "Mother_Status_d" => "", // สถานะบิดา ถึงแก่กรรม
+                "Mother_Status_l" => "\u{2610}\u{0020}",// สถานะบิดา มีชีวิต
+                "Mother_Status_d" => "\u{2610}\u{0020}", // สถานะบิดา ถึงแก่กรรม
 
                 // "Mother_Age" => "50", กรอกเอง
 
@@ -270,6 +265,10 @@ class Job extends CI_Controller {
 
                 // "Brethren" => "น้อง 1 คน", กรอกเอง
 
+                "S_IT" => "\u{2610}\u{0020} ",
+                "S_CS" => "\u{2610}\u{0020} ",
+                "S_SE" => "\u{2610}\u{0020} ",
+
         ];
 
         // EDUCATIONAL HISTORY
@@ -278,7 +277,7 @@ class Job extends CI_Controller {
         $education_start_year = $this->input->post('education_start_year');
         $education_end_year = $this->input->post('education_end_year');
         $education_result = $this->input->post('education_result');
-        foreach($this->input->post('education_level') as $key => $education_level) {
+        foreach(@$this->input->post('education_level') as $key => $education_level) {
             $education_history[] = [
                 'level' => $education_level,
                 'place' => $education_place[$key],
@@ -294,7 +293,7 @@ class Job extends CI_Controller {
         $training_place = $this->input->post('training_place');
         $training_start_period = $this->input->post('training_start_period');
         $training_end_period = $this->input->post('training_end_period');
-        foreach($this->input->post('training_subject') as $key => $training_subject) {
+        foreach(@$this->input->post('training_subject') as $key => $training_subject) {
             $training_history[] = [
                 'subject' => $training_subject,
                 'place' => $training_place[$key],
@@ -313,26 +312,26 @@ class Job extends CI_Controller {
         $language_speak = $this->input->post('language_speak');
         $language_read = $this->input->post('language_read');
         $language_write = $this->input->post('language_write');
-        foreach($this->input->post('language_lang') as $key => $language_lang) {
+        foreach(@$this->input->post('language_lang') as $key => $language_lang) {
             $tmp_array = [
                 'lang' => $language_lang,
-                'l3' => '',
-                'l2' => '',
-                'l1' => '',
-                's3' => '',
-                's2' => '',
-                's1' => '',
-                'r3' => '',
-                'r2' => '',
-                'r1' => '',
-                'w3' => '',
-                'w2' => '',
-                'w1' => ''                
+                'l3' => "\u{2610}\u{0020}",
+                'l2' => "\u{2610}\u{0020}",
+                'l1' => "\u{2610}\u{0020}",
+                's3' => "\u{2610}\u{0020}",
+                's2' => "\u{2610}\u{0020}",
+                's1' => "\u{2610}\u{0020}",
+                'r3' => "\u{2610}\u{0020}",
+                'r2' => "\u{2610}\u{0020}",
+                'r1' => "\u{2610}\u{0020}",
+                'w3' => "\u{2610}\u{0020}",
+                'w2' => "\u{2610}\u{0020}",
+                'w1' => "\u{2610}\u{0020}"                
             ];
-            $tmp_array['l'.$language_listen[$key]] = ' * ';
-            $tmp_array['s'.$language_speak[$key]] = ' * ';
-            $tmp_array['r'.$language_read[$key]] = ' * ';
-            $tmp_array['w'.$language_write[$key]] = ' * ';
+            $tmp_array['l'.$language_listen[$key]] = "\u{2714}";
+            $tmp_array['s'.$language_speak[$key]] = "\u{2714}";
+            $tmp_array['r'.$language_read[$key]] = "\u{2714}";
+            $tmp_array['w'.$language_write[$key]] = "\u{2714}";
             
 
             $lang_pro[] = $tmp_array;
@@ -341,28 +340,64 @@ class Job extends CI_Controller {
 
 
         // ความสามารถพิเศษทางคอมพิวเตอร์, ทักษะ
+        // get head table
+        $tmp_array_item = [];
+
+        //get student selected skill
+        $student_has_skill = array();
+        foreach($this->Skill_Search->search_skill_by_student($student_id) as $has_skill) {
+            $student_has_skill[] = $has_skill['skill_id'];
+        }
+        
+        foreach($this->Skill->gets_skill_category() as $i => $skill_category) {
+            $data_array['HS_'.++$i] = $skill_category['skill_category_name'];
+
+            foreach($this->Skill->gets_skill_by_category_id($skill_category['skill_category_id']) as $key => $skill) { 
+                $tmp_array_item[$key]['i_'.$i] = '';
+                if(in_array($skill['skill_id'], @$student_has_skill)) {
+                    $tmp_array_item[$key]['i_'.$i] .= "\u{2611}\u{0020} ";
+                } else {
+                    $tmp_array_item[$key]['i_'.$i] .= "\u{2610}\u{0020} ";
+                }
+                $tmp_array_item[$key]['i_'.$i] .= trim($skill['skill_name']);
+
+                //delete undefined
+                for($x=1;$x<=count($this->Skill->gets_skill_category());$x++) {
+                    if(!@$tmp_array_item[$key]['i_'.$x]) {
+                        $tmp_array_item[$key]['i_'.$x] = ' ';
+                    }
+                }
+            }
+        }
         
 
+        $data_array['skill_item'] = $tmp_array_item;
 
 
 
-        if($data['department']['department_id']== 1) {
-            $data_array ['ch_it'] = "*";
-        }else if($data['department']['department_id']== 2){
-            $data_array ['ch_cs'] = "*";
-        }else if($data['department']['department_id']== 3) {
-            $data_array ['ch_se'] = "*";
+      
+
+        if($data['department']['department_id'] == 1) {
+            $data_array['S_IT'] = "\u{2611}\u{0020} ";
+
+        }else if($data['department']['department_id'] == 2){
+            $data_array['S_CS'] = "\u{2611}\u{0020} ";
+        }else if($data['department']['department_id'] == 3) {
+            $data_array['S_SE'] = "\u{2611}\u{0020} ";
         }
 
+        // print_r($data_array);
+
+
         if($data['student_profile']['Father_Status'] == "มีชีวิต" ){
-            $data_array ['Father_Status_l'] = "*" ;
+            $data_array ['Father_Status_l'] = "\u{2611}\u{0020} ";
         }else if ($data['student_profile']['Father_Status'] == "ถึงแก่กรรม" ) {
 
         }
 
         if($data['student_profile']['Mother_Status'] == "มีชีวิต" ){
-            $data_array ['Mother_Status_l'] = "*" ;
-        }else if ($data['student_profile']['Mother_Status'] == "ถึงแก่กรรม" ) {
+            $data_array ['Mother_Status_l'] = "\u{2611}\u{0020} ";
+        } else if ($data['student_profile']['Mother_Status'] == "ถึงแก่กรรม" ) {
 
         }
 
@@ -381,15 +416,19 @@ class Job extends CI_Controller {
         $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file);
 
         //insert to db
-        if($this->Job->student_register_job($student_id, $company_job_position_id)) {
-            $this->Student->update_student($student_id, array(
-                'coop_status_id' => 2
-            ));
-            $this->session->set_tempdata('session_alert', '<div class="alert alert-success">ทำการสมัครงานสหกิจเรียบร้อย โปรดรอขั้นตอนต่อไป</div>', 300);
-        } else {
-            $this->session->set_tempdata('session_alert', '<div class="alert alert-warning">มีปัญหาระหว่างทาง โปรดตรวจสอบกับเจ้าหน้าที่</div>', 300);
-        }
+        // $company_job_position_id = 1; //for test
 
+        // if($this->Job->student_register_job($student_id, $company_job_position_id)) {
+        //     $this->Student->update_student($student_id, array(
+        //         'coop_status_id' => 2
+        //     ));
+        //     $this->session->set_tempdata('session_alert', '<div class="alert alert-success">ทำการสมัครงานสหกิจเรียบร้อย โปรดรอขั้นตอนต่อไป</div>', 300);
+        // } else {
+        //     $this->session->set_tempdata('session_alert', '<div class="alert alert-warning">มีปัญหาระหว่างทาง โปรดตรวจสอบกับเจ้าหน้าที่</div>', 300);
+        // }
+        // print_r($result);
+
+        // die();
 
 
         // redirect(base_url($result['full_url']), 'refresh');
