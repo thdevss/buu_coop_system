@@ -56,8 +56,8 @@
                      <!--ส่วนของรหัสนิสิต-->
                      <!--ส่วนของโทรศัพท์-->
                       <div class="form-group col-sm-4">
-                        <label for="ccnumber">โทร</label><code>*</code>
-                        <input type="text" class="form-control" id="" name="telephone" placeholder="กรุณากรอก" required>
+                        <label for="ccnumber">โทร</label> <?php echo form_error('telephone'); ?><code>*</code>
+                        <input type="text" class="form-control" id="" name="telephone" placeholder="กรุณากรอก">
                       </div>
                       <!--ส่วนของโทรศัพท์-->
                       <!--ส่วนของมือถือ-->
@@ -204,14 +204,14 @@
                       </div>
 
 
-                      <div class="form-group col-sm-3">
-                        <label for="name">ส่วนสูง cm</label><code>*</code>
-                        <input type="text" class="form-control" id="" name="height" placeholder="กรุณากรอก" required>
+                      <div class="form-group col-sm-4">
+                        <label for="name">ส่วนสูง cm</label> <?php echo form_error('height'); ?><code>*</code>
+                        <input type="number" min="0" class="form-control" id="" name="height" placeholder="กรุณากรอก">
                       </div>
 
-                      <div class="form-group col-sm-3">
-                        <label for="name">น้ำหนัก kg</label><code>*</code>
-                        <input type="text" class="form-control" id="" name="weight" placeholder="กรุณากรอก" required>
+                      <div class="form-group col-sm-4">
+                        <label for="name">น้ำหนัก kg</label> <?php echo form_error('weight'); ?><code>*</code>
+                        <input type="number" min="0" class="form-control" id="" name="weight" placeholder="กรุณากรอก">
                       </div>
 
     
@@ -471,7 +471,7 @@
                     <!--br-->
                     <div class="form-group row">
                     <div class="col-sm-12">
-                    <p>ระบุสายงานและลักษณะงานอาชีพที่นิสิตสนใจ (List your career goals, fields of interest and job preferences.)<code>*</code></p>
+                    <p>ระบุสายงานและลักษณะงานอาชีพที่นิสิตสนใจ (List your career goals, fields of interest and job preferences.) <?php echo form_error('job_student');?><code>*</code></p>
                     <textarea id="" name="job_student" rows="9" class="form-control" placeholder="กรุณากรอก..."></textarea>
                     </div>
                     </div>
