@@ -23,7 +23,7 @@
                   <strong>ข้อมูลส่วนนิสิต (APPLICANT'S INFORMATION)</strong>
                 </div>
                 <div class="card-body">
-                <form action="<?php echo site_url('Student/Job/print_data/');?>" method="post">
+                <form action="<?php echo site_url('Student/Job/print_data/');?>" method="post" id="form_checker">
                   <input type="hidden" name="company_id" value="<?php echo $company['company_id'];?>">
                   <input type="hidden" name="company_job_position_id" value="<?php echo $company_job_position['job_id'];?>">
 
@@ -206,12 +206,12 @@
 
                       <div class="form-group col-sm-4">
                         <label for="name">ส่วนสูง cm</label> <?php echo form_error('height'); ?><code>*</code>
-                        <input type="number" min="0" class="form-control" id="" name="height" placeholder="กรุณากรอก">
+                        <input type="number" min="0" class="form-control" id="" name="height" value="<?php echo set_value('height');?>" placeholder="กรุณากรอก">
                       </div>
 
                       <div class="form-group col-sm-4">
                         <label for="name">น้ำหนัก kg</label> <?php echo form_error('weight'); ?><code>*</code>
-                        <input type="number" min="0" class="form-control" id="" name="weight" placeholder="กรุณากรอก">
+                        <input type="number" min="0" class="form-control" id="" name="weight" value="<?php echo set_value('weight');?>" placeholder="กรุณากรอก">
                       </div>
 
     
@@ -231,8 +231,8 @@
                       </div>
 
                       <div class="form-group col-sm-3">
-                        <label for="name">เกรดเฉลี่ยภาคการศึกษาที่ผ่านมา</label><code>*</code>
-                        <input type="text" class="form-control" id="">
+                        <label for="name">เกรดเฉลี่ยภาคการศึกษาที่ผ่านมา</label> <?php echo form_error('GPA'); ?><code>*</code>
+                        <input type="text" class="form-control" id="" value="<?php echo set_value('GPA');?>">
                       </div>
 
                       <div class="form-group col-sm-3">
@@ -471,8 +471,8 @@
                     <!--br-->
                     <div class="form-group row">
                     <div class="col-sm-12">
-                    <p>ระบุสายงานและลักษณะงานอาชีพที่นิสิตสนใจ (List your career goals, fields of interest and job preferences.) <?php echo form_error('job_student');?><code>*</code></p>
-                    <textarea id="" name="job_student" rows="9" class="form-control" placeholder="กรุณากรอก..."></textarea>
+                      <p>ระบุสายงานและลักษณะงานอาชีพที่นิสิตสนใจ (List your career goals, fields of interest and job preferences.) <?php echo form_error('job_student');?><code>*</code></p>
+                      <textarea id="" name="job_student" rows="9" class="form-control" placeholder="กรุณากรอก..."><?php echo set_value('job_student');?></textarea>
                     </div>
                     </div>
 
@@ -498,7 +498,9 @@
                     </thead>
                     <tbody>
                       <tr class="first_row">
-                      <td><input type="text" class="form-control" name="language_lang[]"></td>
+                      <td class="form_group">
+                        <input type="text" class="form-control" name="language_lang[]">
+                      </td>
                       <td>
                         <select class="form-control" name="language_listen[]">
                           <option> -- เลือกระดับทักษะ -- </option>
@@ -550,7 +552,7 @@
                     <div class="row">
                         <div class="col-sm-5"></div>
                         <div class="col-sm-6">
-                        <button type="submit" class="btn btn-lg btn-success"><i class="fa fa-dot-circle-o"></i> พิมพ์เอกสาร</button>
+                          <button type="submit" class="btn btn-lg btn-success"><i class="fa fa-dot-circle-o"></i> พิมพ์เอกสาร</button>
                         </div>
                     </div>
                     </form>
@@ -576,4 +578,98 @@ jQuery(".add_row").click(function() {
   table.before(table.find("tr.first_row").clone());
 })
 
+
+
+$(document).ready(function() {
+    $('#form_checker').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            'language_lang[]': {
+              validators: {
+                  notEmpty: {
+                      message: 'Please specify at least one browser you use daily for development'
+                  }
+              }
+            },
+            'training_subject[]' : {
+              validators: {
+                    notEmpty: {
+                        message: 'Please specify at least one browser you use daily for development'
+                    }
+                }
+            },
+            'training_place[]' : {
+              validators: {
+                    notEmpty: {
+                        message: 'Please specify at least one browser you use daily for development'
+                    }
+                }
+            },
+            'training_start_period[]' : {
+              validators: {
+                    notEmpty: {
+                        message: 'Please specify at least one browser you use daily for development'
+                    }
+                }
+            },
+            'training_end_period[]' : {
+              validators: {
+                    notEmpty: {
+                        message: 'Please specify at least one browser you use daily for development'
+                    }
+                }
+            },
+            'education_level[]' : {
+              validators: {
+                    notEmpty: {
+                        message: 'Please specify at least one browser you use daily for development'
+                    }
+                }
+            },
+            'education_place[]' : {
+              validators: {
+                    notEmpty: {
+                        message: 'Please specify at least one browser you use daily for development'
+                    }
+                }
+            },
+            'education_start_year[]' : {
+              validators: {
+                    notEmpty: {
+                        message: 'Please specify at least one browser you use daily for development'
+                    }
+                }
+            },
+            'education_end_year[]' : {
+              validators: {
+                    notEmpty: {
+                        message: 'Please specify at least one browser you use daily for development'
+                    }
+                }
+            },
+            'education_result[]' : {
+              validators: {
+                    notEmpty: {
+                        message: 'Please specify at least one browser you use daily for development'
+                    }
+                }
+            },
+        }
+    });
+});
+
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/formvalidation@0.6.2-dev/dist/js/formValidation.min.js"></script>
+<script src="http://formvalidation.io/vendor/formvalidation/js/framework/bootstrap.min.js"></script>
+
+<style>
+.help-block {
+  color: red;
+}
+</style>

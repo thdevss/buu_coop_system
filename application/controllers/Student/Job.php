@@ -126,14 +126,16 @@ class Job extends CI_Controller {
         $this->form_validation->set_rules('telephone', 'โทร', 'trim|required');
         $this->form_validation->set_rules('height', 'ส่วนสูง cm', 'trim|required');
         $this->form_validation->set_rules('weight', 'น้ำหนัก kg', 'trim|required');
+
+        $this->form_validation->set_rules('language_lang[]', 'ภาษา', 'trim|required');
+        
         // input form view
         if ($this->form_validation->run() == FALSE)
         {
             $company_id = $this->input->post('company_id');
             $company_job_position_id = $this->input->post('company_job_position_id');
             $this->register_form_company($company_id, $company_job_position_id);
-        }
-        else{
+        }else{
 
             $telephone = $this->input->post('telephone');
         
@@ -154,6 +156,8 @@ class Job extends CI_Controller {
             $data['company'] = @$this->Company->get_company($company_id)[0];
             $data['job_position_name'] = @$this->Job->get_job($company_job_position_id)[0]['job_title'];
             // print_r($student_id);
+
+            $data['student_profile'] = array_walk($data['student_profile'], 'replace_null_val');
 
         
             $template_file = "template/IN-S002.docx";        
@@ -332,18 +336,18 @@ class Job extends CI_Controller {
         foreach(@$this->input->post('language_lang') as $key => $language_lang) {
             $tmp_array = [
                 'lang' => $language_lang,
-                'l3' => "\u{2610}\u{0020}",
-                'l2' => "\u{2610}\u{0020}",
-                'l1' => "\u{2610}\u{0020}",
-                's3' => "\u{2610}\u{0020}",
-                's2' => "\u{2610}\u{0020}",
-                's1' => "\u{2610}\u{0020}",
-                'r3' => "\u{2610}\u{0020}",
-                'r2' => "\u{2610}\u{0020}",
-                'r1' => "\u{2610}\u{0020}",
-                'w3' => "\u{2610}\u{0020}",
-                'w2' => "\u{2610}\u{0020}",
-                'w1' => "\u{2610}\u{0020}"                
+                'l3' => "",
+                'l2' => "",
+                'l1' => "",
+                's3' => "",
+                's2' => "",
+                's1' => "",
+                'r3' => "",
+                'r2' => "",
+                'r1' => "",
+                'w3' => "",
+                'w2' => "",
+                'w1' => ""                
             ];
             $tmp_array['l'.$language_listen[$key]] = "\u{2714}";
             $tmp_array['s'.$language_speak[$key]] = "\u{2714}";

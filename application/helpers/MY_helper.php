@@ -154,3 +154,13 @@ function form_value_db($field_name, $data)
 {
 	return set_value($field_name) == false ? $data : set_value($field_name);
 }
+
+function replace_null_val($val)
+{
+    return str_replace("", " ", $val);
+}
+
+function form_array_value($input_name)
+{
+	return $_POST[$input];
+}
