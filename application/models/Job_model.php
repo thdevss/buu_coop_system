@@ -138,6 +138,9 @@ class Job_model extends CI_model {
 
     public function get_student_by_company_id($company_id)
     {
+        $term = $this->Term->get_current_term();
+        $this->db->where('term_id', $term[0]['term_id']);
+        $this->db->where('company_status_id !=', 5);
         $this->db->where('company_id',$company_id);
         $this->db->from('tb_student_register_company_job_position');
         $qurey = $this->db->get();
