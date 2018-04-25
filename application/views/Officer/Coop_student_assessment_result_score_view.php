@@ -38,7 +38,7 @@
                           </td>
                           <?php for($i=5;$i>=1;$i--) { ?>
                             <td>
-                              <?php if(@$result[$item['coop_student_questionnaire_item_id']] == $i) echo '<b>*</b>'; ?>
+                              <?php if(@$result[$item['coop_student_questionnaire_item_id']] == $i) echo "\u{2714}"; ?>
                               
                             </td>
                           <?php } ?>

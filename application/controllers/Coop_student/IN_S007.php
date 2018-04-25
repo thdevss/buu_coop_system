@@ -145,7 +145,7 @@ class IN_S007 extends CI_Controller {
                 <script>
                     window.location = '".base_url($result['full_url'])."';
                     setTimeout(function(){
-                        window.location = '".site_url()."';
+                        window.location = '".site_url('Coop_student/upload_document/?code=IN-S007')."';
                     }, 1500);
                 </script>
             ";

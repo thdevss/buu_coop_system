@@ -30,7 +30,7 @@
                           <td colspan="6"><b><?php echo $row['questionnaire_subject']['coop_student_questionnaire_subject_number']." ".$row['questionnaire_subject']['coop_student_questionnaire_subject_title'];?></b></td>
                         </tr>
                     
-                      <?php foreach($row['questionnaire_item'] as $item) {?>
+                      <?php foreach($row['questionnaire_item'] as $item) { ?>
                         <tr>
                           <td>
                             <p><?php echo $item['coop_student_questionnaire_item_number']." ".$item['coop_student_questionnaire_item_title'];?></p>
@@ -38,7 +38,7 @@
                           </td>
                           <?php for($i=5;$i>=1;$i--) { ?>
                             <td>
-                              <?php if(@$result[$item['id']] == $i) echo '<b>*</b>'; ?>
+                              <?php if(@$result[$item['coop_student_questionnaire_item_id']] == $i) echo "\u{2714}"; ?>
                             </td>
                           <?php } ?>
                         </tr>

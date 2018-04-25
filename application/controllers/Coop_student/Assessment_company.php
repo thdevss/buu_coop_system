@@ -155,15 +155,15 @@ class Assessment_company extends CI_Controller {
 				];
 
 				if($result_item['score'] == '1') {
-					$item['sc1'] = ' * ';
+					$item['sc1'] = "\u{2713}";
 				} else if($result_item['score'] == '2') {
-					$item['sc2'] = ' * ';
+					$item['sc2'] = "\u{2713}";
 				} else if($result_item['score'] == '3') {
-					$item['sc3'] = ' * ';
+					$item['sc3'] = "\u{2713}";
 				} else if($result_item['score'] == '4') {
-					$item['sc4'] = ' * ';
+					$item['sc4'] = "\u{2713}";
 				} else if($result_item['score'] == '5') {
-					$item['sc5'] = ' * ';
+					$item['sc5'] = "\u{2713}";
 				}
 				$items = array_merge($items, [$item]);
 			}
@@ -180,15 +180,15 @@ class Assessment_company extends CI_Controller {
 			"items" => $items,
 			"no4" => $this->input->post('no4'),
 			"no5" => $this->input->post('no5'),
-			"no6_y" => '',
-			"no6_n" => '',
+			"no6_y" => "\u{2610}",
+			"no6_n" => "\u{2610}",
 			"no7" => $this->input->post('no7'),
 		];
 
 		if($this->input->post('no6') == "1") {
-			$data_array['no6_y'] = ' * ';
+			$data_array['no6_y'] = "\u{2611}";
 		} else {
-			$data_array['no6_n'] = ' * ';
+			$data_array['no6_n'] = "\u{2611}";
 		}
        
         // print_r($data_array);
@@ -209,7 +209,7 @@ class Assessment_company extends CI_Controller {
             <script>
                 window.location = '".base_url($result['full_url'])."';
                 setTimeout(function(){
-                    window.location = '".site_url()."';
+                    window.location = '".site_url('Coop_student/upload_document/?code=IN-S008')."';
                 }, 1500);
             </script>
         ";

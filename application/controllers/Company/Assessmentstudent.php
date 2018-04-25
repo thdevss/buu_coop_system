@@ -105,7 +105,7 @@ class Assessmentstudent extends CI_Controller {
 				'trainer_id' => $trainer['person_id'],
 				'company_id' => $trainer['company_id'],
 				'coop_student_has_coop_student_questionnaire_item_datetime' => date('Y-m-d H:i:s'),
-				'term_id' => $term_id
+				'term_id' => $term_id,
 			];
 
 			if(is_numeric($result)) {

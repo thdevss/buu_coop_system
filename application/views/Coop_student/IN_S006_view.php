@@ -20,22 +20,22 @@
                         <form action=<?php echo site_url("Coop_student/IN_S006/post_report"); ?> method="post" class="form-horizontal">
                           <div class="form-group row">
                             <div class="col-md-12">
-                              <label class="form-control-label" for="report_subject_th">หัวข้อภาษาไทย <?php echo form_error('report_subject_th'); ?></label>
+                              <label class="form-control-label" for="report_subject_th">หัวข้อภาษาไทย <?php echo form_error('report_subject_th'); ?></label> <code>*</code>
                               <input type="text" id="report_subject_th" name="report_subject_th" class="form-control" value="<?php echo form_value_db('report_subject_th', $subject_report['report_subject_th']); ?>">
                             </div>
                           </div>
 
                           <div class="form-group row">
                             <div class="col-md-12"> 
-                              <label class="form-control-label" for="report_subject_en">หัวข้อภาษาอังกฤษ <?php echo form_error('report_subject_en'); ?></label>
+                              <label class="form-control-label" for="report_subject_en">หัวข้อภาษาอังกฤษ <?php echo form_error('report_subject_en'); ?></label> <code>*</code>
                               <input type="text" id="report_subject_en" name="report_subject_en" class="form-control" value="<?php echo form_value_db('report_subject_en', $subject_report['report_subject_en']); ?>">
                             </div>
                           </div>
 
                           <div class="form-group row">
                             <div class="col-md-12">
-                              <label class="form-control-label" for="textarea-input">รายละเอียดเนื้อหาของรายงาน <?php echo form_error('report_detail'); ?></label>
-                              <textarea id="textarea-input" name="report_detail" rows="9" class="form-control" required><?php echo form_value_db('report_detail', $subject_report['report_detail']); ?></textarea>
+                              <label class="form-control-label" for="textarea-input">รายละเอียดเนื้อหาของรายงาน <?php echo form_error('report_detail'); ?></label> <code>*</code>
+                              <textarea id="textarea-input" name="report_detail" rows="9" class="form-control"><?php echo form_value_db('report_detail', $subject_report['report_detail']); ?></textarea>
                             </div>
                           </div>
                         
