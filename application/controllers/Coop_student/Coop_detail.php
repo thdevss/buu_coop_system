@@ -29,8 +29,11 @@ class Coop_detail extends CI_Controller {
         $data['student'] = $this->Student->get_student($student_id)[0];
         $data['company'] = $this->Company->get_company($data['coop_student']['company_id'])[0];     
         $data['department'] = $this->Student->get_department( $data['student']['department_id'])[0];
-        $data['coop_status_type'] = $this->Student->gets_coop_status_type( $data['student']['coop_status_id'])[0];
+        $data['coop_status'] = $this->Student->get_by_coop_status_type( $data['student']['coop_status_id'])[0];
         $data['term'] = $this->Term->get_current_term($data['student']['term_id'])[0];
+
+        $data['company_status'] = $this->Student->get_company_status_type($data['student']['company_status_id'])[0];
+        
 
         $data['pass_training'] = false;
         $train_type = $this->Training->get_student_stat_of_training($student_id)['train_type'];
@@ -53,6 +56,7 @@ class Coop_detail extends CI_Controller {
         $data['student_profile'] = $this->Student->get_student_data_from_profile($student_id);
         $data['has_profile'] = $this->Student->has_student_data_from_profile($student_id);
         // print_r($data);
+
         
         $this->breadcrumbs->push('ข้อมูลนิสิต', '/Student/Coop_detail/index');
         $this->template->view('Coop_student/Coop_detail_view',$data);
