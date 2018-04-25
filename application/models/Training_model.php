@@ -12,6 +12,7 @@ class Training_model extends CI_model
     public function gets_training()
     {
         $this->db->from('tb_train');
+        $this->db->order_by("train_id", "desc");
         $query = $this->db->get();
         return $query->result_array();
        
