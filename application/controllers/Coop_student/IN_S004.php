@@ -51,6 +51,19 @@ class IN_S004 extends CI_Controller {
             $data['company_job_position'] = @$this->Job->get_job($data['coop_student']['job_id'])[0];
             $data['coop_student_dorm'] = @$this->Coop_Student->get_coop_student_dorm_by_student($data['coop_student']['student_id'])[0];
             $data['coop_student_emergency_contact'] = @$this->Coop_Student->get_coop_student_emergency_contact_by_student($student_id)[0];
+            $data['profile'] = @$this->Student->get_student_data_from_profile($student_id);
+                if(!@$data['coop_student_emergency_contact']){
+                    $data['coop_student_emergency_contact']['contact_fullname'] = $data['profile']['Contact_Name'];
+                    $data['coop_student_emergency_contact']['contact_address_number'] = $data['profile']['Contact_Address_Number']; 
+                
+                    $data['coop_student_emergency_contact']['contact_address_district'] = $data['profile']['Contact_Address_Tumbon']; 
+                    $data['coop_student_emergency_contact']['contact_address_area'] = $data['profile']['Contact_Address_Aumper']; 
+                    $data['coop_student_emergency_contact']['contact_address_province'] = $data['profile']['Contact_Address_Province']; 
+                    $data['coop_student_emergency_contact']['contact_address_postal_code'] = $data['profile']['Contact_Address_Postcode']; 
+                    $data['coop_student_emergency_contact']['contact_telephone'] = $data['profile']['Contact_Phone']; 
+                    $data['coop_student_emergency_contact']['contact_fax_number'] = $data['profile']['Contact_Email']; 
+
+                }
             // print_r($data);
                 
             // add breadcrumbs
@@ -69,7 +82,7 @@ class IN_S004 extends CI_Controller {
 
             //emergency contact
             $this->form_validation->set_rules('contact_fullname', 'ชื่อ - สกุล', 'trim|required');
-            $this->form_validation->set_rules('contact_address_number', 'เลขที่', 'trim|required|numeric');
+            $this->form_validation->set_rules('contact_address_number', 'เลขที่', 'trim|required');
             $this->form_validation->set_rules('contact_address_alley', 'ซอย', 'trim');
             $this->form_validation->set_rules('contact_address_road', 'ถนน', 'trim');
             $this->form_validation->set_rules('contact_address_district', 'แขวง/ตำบล', 'trim|required');
