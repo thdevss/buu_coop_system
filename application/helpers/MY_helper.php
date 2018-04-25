@@ -157,7 +157,7 @@ function form_value_db($field_name, $data)
 
 function replace_null_val($val)
 {
-    return str_replace("", " ", $val);
+    return str_replace("", " - ", $val);
 }
 
 function form_array_value($input_name)

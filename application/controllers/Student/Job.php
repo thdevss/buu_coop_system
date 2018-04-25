@@ -157,7 +157,9 @@ class Job extends CI_Controller {
             $data['job_position_name'] = @$this->Job->get_job($company_job_position_id)[0]['job_title'];
             // print_r($student_id);
 
-            $data['student_profile'] = array_walk($data['student_profile'], 'replace_null_val');
+            // $data['student_profile'] = array_walk($data['student_profile'], 'replace_null_val');
+            // $data['student_profile'] = array_walk($data['student_profile'], 'replace_null_val');
+            $data['student_profile'] = array_map('replace_null_val', $data['student_profile']);
 
         
             $template_file = "template/IN-S002.docx";        
