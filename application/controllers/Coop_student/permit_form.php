@@ -43,7 +43,20 @@ class permit_form  extends CI_Controller {
         $data['permit'] = @$this->Coop_Student->get_permit_form_by_student($student_id)[0];
         $data['student'] = @$this->Student->get_student($student_id)[0];
         $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
+        $data['profile'] = @$this->Student->get_student_data_from_profile($student_id);
+            if(!$data['permit']){
+                $data['permit']['permit_fullname'] = $data['profile']['Parent_Name'];
+                $data['permit']['permit_relative'] = $data['profile']['Parent_Status'];
+                $data['permit']['permit_address_number'] = $data['profile']['Address_Number'];
+                $data['permit']['permit_address_district'] = $data['profile']['Address_Tumbon'];
+                $data['permit']['permit_address_area'] = $data['profile']['Address_Aumper'];
+                $data['permit']['permit_address_province'] = $data['profile']['Address_Province'];
+                $data['permit']['permit_address_postal_code'] = $data['profile']['Address_Postcode'];
+                $data['permit']['permit_telephone'] = $data['profile']['Address_Phone'];
+                $data['permit']['permit_email'] = $data['profile']['Address_Email'];
+            }
 
+        // print_r($data);
         $this->breadcrumbs->push('ดาวน์โหลดเอกสารแบบอนุญาติให้นิสิตไปปฏิบัติงานสหกิจ (IN-S003)', '/Coop_student/Permit_form');
         
         $this->template->view('Coop_student/permit_form_view',$data);

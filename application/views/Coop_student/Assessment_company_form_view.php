@@ -40,7 +40,7 @@
                     <tbody>
                       <?php foreach ($data as $row) { ?>
                         <tr>
-                          <td><b><?php echo $row['questionnaire_subject']['coop_company_questionnaire_subject_number']." ".$row['questionnaire_subject']['coop_company_questionnaire_subject_title'];?></b></td>
+                          <td colspan="6"><b><?php echo $row['questionnaire_subject']['coop_company_questionnaire_subject_number']." ".$row['questionnaire_subject']['coop_company_questionnaire_subject_title'];?></b></td>
                         </tr>
                     
                       <?php foreach($row['questionnaire_item'] as $item) {?>
@@ -93,7 +93,7 @@
                     <br><br>
                   <div class="text-center">
                     <button type="submit" class="btn btn-md btn-primary" value="1" name="print"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
-                    <button type="submit" class="btn btn-md btn-success" value="0" name="print"><i class="fa fa-dot-circle-o"></i> บันทึก </button>                    
+                    <!-- <button type="submit" class="btn btn-md btn-success" value="0" name="print"><i class="fa fa-dot-circle-o"></i> บันทึก </button>                     -->
                   </div>
                   </form>
                 </div>
