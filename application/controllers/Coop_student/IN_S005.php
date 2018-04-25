@@ -69,7 +69,7 @@ class IN_S005 extends CI_Controller {
             $term_id = $this->Login_session->check_login()->term_id; 
             $this->Coop_Student->delete_plan($student_id);
             for($i=0;$i<count($this->input->post('plan_work_subject'));$i++) {
-                if(@$this->input->post('plan_time_period')[$i]) {
+                if(@$this->input->post('plan_time_period')[$i] && $this->input->post('plan_work_subject')[$i] != '') {
                     $insert['term_id'] = $term_id;
                     $insert['plan_work_subject'] = $this->input->post('plan_work_subject')[$i];
                     $insert['plan_time_period'] = implode(",", $this->input->post('plan_time_period')[$i]);
@@ -107,11 +107,16 @@ class IN_S005 extends CI_Controller {
                 "company_name" => $data['company']['company_name_th'],
             ];
 
-
-            foreach($this->Coop_Student->get_coop_student_plan($student_id) as $i => $row) {
+            $cache_plans = $this->Coop_Student->get_coop_student_plan($student_id);
+            for($i=1;$i<13;$i++) {
+            // foreach($this->Coop_Student->get_coop_student_plan($student_id) as $i => $row) {
+                if(!@$cache_plans[$i]['plan_work_subject']) {
+                    $cache_plans[$i]['plan_work_subject'] = ' ';
+                }
+                
                 $tmp_array = [
-                    'n' => ++$i,
-                    'plan_work_subject' => $row['plan_work_subject'],
+                    'n' => $i,
+                    'plan_work_subject' => $cache_plans[$i]['plan_work_subject'],
                     'w1' => '',
                     'w2' => '',
                     'w3' => '',
@@ -131,14 +136,14 @@ class IN_S005 extends CI_Controller {
                 ];
 
 
-                if(@$row['plan_time_period']) {
-                    $choice = explode(",", $row['plan_time_period']);
+                if(@$cache_plans[$i]['plan_time_period']) {
+                    $choice = explode(",", $cache_plans[$i]['plan_time_period']);
                 } else {
                     $choice = [];
                 }
                 for($K=0;$K<16;$K++) {
                     if(in_array($K, $choice)) {
-                        $tmp_array['w'.$K] = '*';
+                        $tmp_array['w'.$K] = "\u{2713}";
                     }
                 }
 
@@ -163,7 +168,7 @@ class IN_S005 extends CI_Controller {
                 <script>
                     window.location = '".base_url($result['full_url'])."';
                     setTimeout(function(){
-                        window.location = '".site_url()."';
+                        window.location = '".site_url('Coop_student/upload_document/?code=IN-S005')."';
                     }, 1500);
                 </script>
             ";

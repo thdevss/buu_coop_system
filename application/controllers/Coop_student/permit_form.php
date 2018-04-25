@@ -116,10 +116,7 @@ class permit_form  extends CI_Controller {
         $data['student'] = @$this->Student->get_student($student_id)[0];
         $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
 
-        $template_file = "template/IN-S003-N.docx";        
-        if($data['permit']['permit_choice'] == 1) {
-            $template_file = "template/IN-S003-Y.docx";
-        } 
+        $template_file = 'template/IN-S003.docx';
 
         $save_filename = "download/".$student_id."-IN-S003.docx";
         $data_array = [
@@ -127,7 +124,17 @@ class permit_form  extends CI_Controller {
             "student_id" => $student_id,
             "student_course" => $data['student']['student_course'],
             "student_department" => $data['department']['department_name'],
+            "yes" => "\u{2610}",
+            "no" => "\u{2610}",
         ];
+
+        if($data['permit']['permit_choice'] == 1) {
+            $data_array['yes'] = "\u{2611}";
+        }
+
+        if($data['permit']['permit_choice'] == 0) {
+            $data_array['no'] = "\u{2611}";
+        }
 
         $data_array = array_merge($data_array, $data['permit']);
         // print_r($data_array);
@@ -147,7 +154,7 @@ class permit_form  extends CI_Controller {
             <script>
                 window.location = '".base_url($result['full_url'])."';
                 setTimeout(function(){
-                    window.location = '".site_url()."';
+                    window.location = '".site_url('Coop_student/upload_document/?code=IN-S003')."';
                 }, 1500);
             </script>
         ";

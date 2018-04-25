@@ -56,13 +56,13 @@ class Assessmentstudent extends CI_Controller {
                 array_push($data['data'], $tmp_array);
     
             }
-            
-            $data['result'] = [];
 
+            $data['result'] = [];
             foreach($this->Coop_Student_Assessment_Form->get_coop_student_form_result($student_id) as $result) {
                 $data['result'][$result['item_id']] = $result['coop_student_has_coop_student_questionnaire_item_score'];
-
             }
+
+
                 
                 // add breadcrumbs
                 $this->breadcrumbs->push('การประเมินผลการฝึกงานของนักศึกษา', '/Adviser/Assessmentstudent/index');
