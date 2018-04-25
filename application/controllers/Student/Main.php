@@ -55,22 +55,26 @@ class Main extends CI_Controller {
         $data['student'] = @$this->Student->get_student($student_id)[0];
         $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
         $data['term'] = @$this->Term->get_term($data['student']['term_id'])[0];
-
+        $student_info = $this->Student->get_student_data_from_profile($student_id);
+        // array_walk($student_info, 'replace_null_val');
+        $student_info = array_map('replace_null_val', $student_info);
+        
+        
         //print
         $template_file = "template/IN-S001.docx";
         $save_filename = "download/".$student_id."-IN-S001-O.docx";
         $data_array = [
             'student_id' => $student_id,
-            'student_course' => $data['student']['student_course'],
             'department_name' => $data['department']['department_name'],
             'term_semester' => $data['term']['term_semester'],
-            'term_year' => $data['term']['term_year']
+            'term_year' => $data['term']['term_year'],
+            'Student_Level' => get_student_level_from_entry_year($student_info['Entry_Years']),
+            'Student_Credit' => 0, // wait api
+            'date' => thaiDate(date('Y-m-d H:i:s'), true, false),
         ];
 
-        $student_info = $this->Student->get_student_data_from_profile($student_id);
         $data_array = array_merge($data_array, $student_info);
-        // print_r($data_array);
-        
+        // var_dump($data_array);
 
         $result = $this->service_docx->print_data($data_array, $template_file, $save_filename);
 
