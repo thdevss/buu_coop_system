@@ -7,7 +7,7 @@
 <div class="container-fluid">
   <div class="animated fadeIn">
     <div class="row" >
-      <div class="col-sm-12">
+      <div class="col-sm-8 offset-sm-2">
         <div class="card">
           <div class="card-header"><i class="fa fa-align-justify"></i>ข้อมูลนิสิต
           </div>
@@ -59,16 +59,17 @@
                               <font color="">ไม่ผ่าน</font>
                             <?php } ?>
                             </td></tr>
-                            <tr><td >วิชาเเกน</td><td>รอดึงจากระบบโปรไฟล์</td></tr>
-                            <tr><td>เกรด</td><td><font color="#ff3300"><?php echo $student_profile['GPAX'];?></font></td></tr>
-                            <tr><td>สถานะสถานประกอบการ</td><td>
-                            <?php if($student['company_status_id'] == '1') { ?>
-                              <font color="#006600">ผ่านการคัดเลือกจากสถานประกอบการ</font>
+                            <tr><td >วิชาแกน</td><td>
+                            <?php if($student['student_core_subject_status'] == '1') { ?>
+                              <font color="">ผ่านวิชาแกน</font>                            
                             <?php } else { ?>
-                              <font color="">รอการตอบกลับ</font>
+                              <font color="">ยังไม่ผ่านวิชาแกน</font>
                             <?php } ?>
                             </td></tr>
-                            <tr><td>สถานะการสอบวัดผลรอบ</td><td><font color=""><?php echo $coop_status_type['coop_status_name']; ?></font></td></tr>
+                            <tr><td>เกรด</td><td><font color="#ff3300"><?php echo $student_profile['GPAX'];?></font></td></tr>
+                            <tr><td>สถานะสถานประกอบการ</td><td><?php echo $company_status['company_status_name']; ?></td></tr>
+                            
+                            <tr><td>สถานะการสอบวัดผลรอบ</td><td><font color=""><?php echo $coop_status['coop_status_name']; ?></font></td></tr>
                           </table>
                           <table class="table table-bordered ">
                             <tr><h3>ข้อมูลสถานประกอบการ</h3></tr>

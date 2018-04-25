@@ -68,8 +68,8 @@ class permit_form  extends CI_Controller {
         $this->form_validation->set_rules('permit_address_province', 'จังหวัด', 'trim|required');
         $this->form_validation->set_rules('permit_address_postal_code', 'รหัสไปรษณีย์', 'trim|required|numeric|max_length[5]');
         $this->form_validation->set_rules('permit_telephone', 'โทรศัพท์', 'trim|required|numeric|max_length[10]');
-        $this->form_validation->set_rules('permit_fax_number', 'โทรสาร', 'trim|numeric|max_length[10]');
-        $this->form_validation->set_rules('permit_email', 'E-mail', 'trim|required|valid_email');
+        $this->form_validation->set_rules('permit_fax_number', 'โทรสาร', 'trim|numeric|max_length[15]');
+        $this->form_validation->set_rules('permit_email', 'E-mail', 'trim|valid_email');
         $this->form_validation->set_rules('permit_choice', 'การตอบรับ', 'trim|required|in_list[0,1]');
 
         if ($this->form_validation->run() != FALSE) {

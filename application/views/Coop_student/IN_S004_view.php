@@ -61,7 +61,7 @@
                                 <?php if($company['headoffice_person_id'] == $company['contact_person_id']) { ?>
 
                                     <div class="form-check form-check-inline mr-2">
-                                      <input class="form-check-input" type="radio" id="" value="option1" name="inline-radios" checked>
+                                      <input class="form-check-input" type="radio" id="" value="option1" name="inline-radios" checked disabled>
                                       <label class="form-check-label" for="inline-radio1">ติดต่อกับผู้จัดการโดยตรง</label>
                                     </div>
                                     <br>
@@ -78,7 +78,7 @@
                                     </div>
                                     <br>
                                     <div class="form-check form-check-inline mr-1">
-                                    &nbsp;&nbsp;&nbsp;<input class="form-check-input" type="radio" id="" value="option2" name="inline-radios" checked>
+                                    &nbsp;&nbsp;&nbsp;<input class="form-check-input" type="radio" id="" value="option2" name="inline-radios" checked disabled>
                                     <label class="form-check-label" for="inline-radio2">มอบหมายให้บุคคลต่อไปนี้ประสานงานแทน</label>
                                     </div>
 
@@ -131,6 +131,9 @@
                                     foreach($company_persons as $person) { 
                                         $checked = '';
                                         if($person['person_id'] == @$coop_student['trainer_id']) {
+                                            $checked = 'selected';
+                                        }
+                                        if(form_value_db('trainer_id') == $person['person_id']) {
                                             $checked = 'selected';
                                         }
                                         echo '<option value="'.$person['person_id'].'" '.$checked.'>'.$person['person_fullname'].' (อีเมล: '.$person['person_email'].') (เบอร์โทรศัพท์: '.$person['person_telephone'].') </option>';

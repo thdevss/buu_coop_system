@@ -91,16 +91,16 @@
                    <input type="text" class="form-control" id="permit_telephone" name="permit_telephone" value="<?php echo form_value_db('permit_telephone', @$permit['permit_telephone']);?>">
                   </div>
                   <div class="form-group col-sm-4">
-                   <label for="permit_fax_number">โทรสาร <?php echo form_error('permit_fax_number'); ?></label><code>*</code>
+                   <label for="permit_fax_number">โทรสาร <?php echo form_error('permit_fax_number'); ?></label>
                    <input type="text" class="form-control" id="permit_fax_number" name="permit_fax_number" value="<?php echo form_value_db('permit_fax_number', @$permit['permit_fax_number']);?>">
                 </div>
                 <div class="form-group col-sm-4">
-                   <label for="permit_email">E-mail <?php echo form_error('permit_email'); ?></label><code>*</code>
+                   <label for="permit_email">E-mail <?php echo form_error('permit_email'); ?></label>
                    <input type="text" class="form-control" id="permit_email" name="permit_email" value="<?php echo form_value_db('permit_email', @$permit['permit_email']);?>">
                   </div>
               </div>
 
-               <div class="card-header"><strong> 2.การตอบรับอนุญาติให้นิสิตไปปฏิบัติงานสหกิจศึกษา</strong></div><br>
+               <div class="card-header"><strong> 2.การตอบรับอนุญาติให้นิสิตไปปฏิบัติงานสหกิจศึกษา</strong> <code>*</code></div><br>
 
               <div class="row">
               <div class="radio col-sm-12">
