@@ -49,7 +49,7 @@ class Training extends CI_Controller {
             
             array_push($data['data'], $tmp_array);
         }
-
+        // print_r($data);
         // add breadcrumbs
         $this->breadcrumbs->push('จัดการข้อมูลการอบรม', '/');
 
