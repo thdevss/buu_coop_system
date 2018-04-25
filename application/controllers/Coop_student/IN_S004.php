@@ -63,7 +63,7 @@ class IN_S004 extends CI_Controller {
         public function save()
         {
             $student_id = $this->Login_session->check_login()->login_value;            
-            print_r($_POST);
+            // print_r($_POST);
 
             $this->form_validation->set_rules('coop_student_newsletter_receive', 'ตั้งค่ารับข่าวสาร');
 
