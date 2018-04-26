@@ -83,11 +83,15 @@ class Daily_activity extends CI_controller
 
         $this->form_validation->set_rules('activity_subject', 'หัวข้อ', 'trim|required');
         $this->form_validation->set_rules('activity_content', 'รายละเอียด', 'trim|required');
-        $this->form_validation->set_rules('activity_date', 'วันที่', 'trim|required');        
+        $this->form_validation->set_rules('activity_date', 'วันที่', 'trim');        
 
         if ($this->form_validation->run() != FALSE) {
             // insert
-            $array['activity_date'] = $this->input->post('activity_date');
+            if($this->input->post('activity_date')) {
+                $array['activity_date'] = $this->input->post('activity_date');
+            } else {
+                $array['activity_date'] = date('Y-m-d H:i:s');
+            }
             $array['activity_subject'] = $this->input->post('activity_subject');
             $array['activity_content'] = $this->input->post('activity_content');
             $array['student_id'] = $this->Login_session->check_login()->login_value;

@@ -43,7 +43,7 @@
                                     <textarea id="summernote" name="activity_content" ><?php echo form_value_db('activity_content', @$row['activity_content']);?></textarea>
                                 </div>
                                 <div class="col-sm-12 text-center">
-                                    <button type="reset" class="btn btn-warning" name="" value="1"><i class="fa fa-dot-circle-o"></i> ยกเลิก</button>                                
+                                    <button type="reset" class="btn btn-warning"><i class="fa fa-dot-circle-o"></i> ยกเลิก</button>                                
                                     <button type="submit" class="btn btn-primary" name="save" value="1"><i class="fa fa-dot-circle-o"></i> บันทึกข้อมูล</button>                
                                 </div>
                             </div>
