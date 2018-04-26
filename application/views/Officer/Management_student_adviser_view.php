@@ -40,7 +40,7 @@
                                 <select id="select" name="select" class="form-control adviser_val">
                                     <option value="">---กรุณาเลือก--</option>
                                     <?php foreach ($adviser as $row){?>
-                                    <option value="<?php echo $row['id'];?>"> <?php echo $row['fullname'];?></option>
+                                    <option value="<?php echo $row['adviser_id'];?>"> <?php echo $row['adviser_fullname'];?></option>
                                     <?php } ?>
                                 </select>
                                 </div>

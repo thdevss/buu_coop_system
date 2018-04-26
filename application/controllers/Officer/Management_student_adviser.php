@@ -61,9 +61,9 @@ class Management_student_adviser extends CI_controller{
             
             // $tmp_array['student'] = $cache['student'][$row['student_id']];
             $tmp_array['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$tmp_array['student']['student_id']).'">'.$tmp_array['student']['student_id'].'</a>';            
-            if(!$row['adviser_id']) {
-                $tmp_array['adviser']['adviser_fullname'] = '-';
-            } else {
+            
+            $tmp_array['adviser']['adviser_fullname'] = '-';
+            if(@$cache['adviser'][$row['adviser_id']]) {
                 $tmp_array['adviser'] = @$cache['adviser'][$row['adviser_id']];                
             }
 
