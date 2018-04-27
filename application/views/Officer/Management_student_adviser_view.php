@@ -37,7 +37,7 @@
                           </div>
                           <div class="col-sm-4">
                                 <div class="form-group">
-                                <select id="select" name="select" class="form-control adviser_val">
+                                <select id="update_student_into_adviser_all" name="update_student_into_adviser_all" class="form-control adviser_val">
                                     <option value="">---กรุณาเลือก--</option>
                                     <?php foreach ($adviser as $row){?>
                                     <option value="<?php echo $row['adviser_id'];?>"> <?php echo $row['adviser_fullname'];?></option>

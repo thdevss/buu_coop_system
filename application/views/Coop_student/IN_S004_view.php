@@ -393,14 +393,27 @@ $.Thailand({
     </div>
 </div>
 <script>
+var validForm = false
 jQuery(document).ready(function(){
-    jQuery("#save_trainer").validate();
+    jQuery('#save_trainer').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        
+    }).on('success.form.fv', function(e) {
+        validForm = true;
+    });
 });
+
+
 
 jQuery( "#save_trainer" ).submit(function( event ) {
     event.preventDefault();
 
-    if(jQuery("#save_trainer").valid()) {
+    if(validForm) {
         //post ajax
         jQuery.post("<?php echo site_url('Coop_Student/IN_S004/ajax_save_trainer');?>", jQuery("#save_trainer").serialize(), function(result){
             jQuery("#company_person_form").modal('hide');

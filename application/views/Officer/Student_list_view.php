@@ -43,7 +43,7 @@
                           </div>
                           <div class="col-sm-4">
                             <div class="form-group">
-                              <select id="select" name="select" class="form-control coop_status_type_val">
+                              <select id="change_coop_type_all" name="change_coop_type_all" class="form-control coop_status_type_val">
                                 <option value="">---กรุณาเลือก--</option>
                                 <?php foreach ($coop_status_type as $row){?>
                                 <option value="<?php echo $row['coop_status_id'];?>"> <?php echo $row['coop_status_name'];?></option>
