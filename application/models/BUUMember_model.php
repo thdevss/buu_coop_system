@@ -17,7 +17,37 @@ class BUUMember_model extends CI_Model
             $data['login_type'] = 'coop_student';
             $data['login_value'] = '57660074';
             
-        }
+        } else if($username == '57660131') {
+            $data['fullname'] = '57660131';
+            $data['login_type'] = 'student';
+            $data['login_value'] = '57660131';
+            $this->insert_new_student($data['login_value']);
+            
+        } else if($username == '57660078') {
+            $data['fullname'] = '57660078';
+            $data['login_type'] = 'student';
+            $data['login_value'] = '57660078';
+            $this->insert_new_student($data['login_value']);
+
+        } else if($username == '57160419') {
+            $data['fullname'] = '57160419';
+            $data['login_type'] = 'student';
+            $data['login_value'] = '57160419';
+            $this->insert_new_student($data['login_value']);
+            
+        } else if($username == '57160418') {
+            $data['fullname'] = '57160418';
+            $data['login_type'] = 'student';
+            $data['login_value'] = '57160418';
+            $this->insert_new_student($data['login_value']);
+            
+        } else if($username == '57160419') {
+            $data['fullname'] = '57160419';
+            $data['login_type'] = 'student';
+            $data['login_value'] = '57160419';
+            $this->insert_new_student($data['login_value']);
+            
+        }  
 
         return $data;
     }
@@ -38,32 +68,7 @@ class BUUMember_model extends CI_Model
                     $data['login_type'] = 'coop_student';
                 } else {
                     //student
-                    if(!$this->Student->get_student($userdata['code'])) {
-                        // get current term
-                        $term_id = $this->Term->get_current_term()[0]['term_id'];                        
-
-                        // get data from api
-                        $api_profile = $this->Student->get_student_data_from_profile($userdata['code']);
-
-                        // insert a new student
-                        $department_id = $this->Student->search_department_by_course($api_profile['Course']);
-
-                        $insert_student = [
-                            'student_id' => $userdata['code'],
-                            'student_prefix' => $api_profile['Student_Prefix'],
-                            'student_fullname' => $api_profile['Student_Name_Th'].' '.$api_profile['Student_Lname_Th'],
-                            'term_id' => $term_id,
-                            'department_id' => $department_id,
-                            'student_gpax' => $api_profile['GPAX'],
-                            'coop_status_id' => 1,
-                            'company_status_id' => 1,
-                            'student_course' => $api_profile['Course'],
-                            'student_core_subject_status' => 0,
-                            'student_created' => date('Y-m-d H:i:s'),
-                            'student_core_subject_status' => 'system'
-                        ];
-                        $this->Student->insert_student($insert_student);
-                    }
+                    $this->insert_new_student($userdata['code']);
                     $data['login_type'] = 'student';                    
                 }
                 $data['login_value'] = $userdata['code'];
@@ -135,6 +140,36 @@ class BUUMember_model extends CI_Model
             $query = $this->db->get();
             // echo $this->db->last_query();
             return $query->result_array();
+        }
+    }
+
+    public function insert_new_student($student_code)
+    {
+        if(!$this->Student->get_student($student_code)) {
+            // get current term
+            $term_id = $this->Term->get_current_term()[0]['term_id'];                        
+
+            // get data from api
+            $api_profile = $this->Student->get_student_data_from_profile($student_code);
+
+            // insert a new student
+            $department_id = $this->Student->search_department_by_course($api_profile['Course']);
+
+            $insert_student = [
+                'student_id' => $student_code,
+                'student_prefix' => $api_profile['Student_Prefix'],
+                'student_fullname' => $api_profile['Student_Name_Th'].' '.$api_profile['Student_Lname_Th'],
+                'term_id' => $term_id,
+                'department_id' => $department_id,
+                'student_gpax' => $api_profile['GPAX'],
+                'coop_status_id' => 1,
+                'company_status_id' => 1,
+                'student_course' => $api_profile['Course'],
+                'student_core_subject_status' => 0,
+                'student_created' => date('Y-m-d H:i:s'),
+                'student_core_subject_status' => 'system'
+            ];
+            $this->Student->insert_student($insert_student);
         }
     }
 

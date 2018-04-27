@@ -664,12 +664,3 @@ $(document).ready(function() {
 });
 
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/formvalidation@0.6.2-dev/dist/js/formValidation.min.js"></script>
-<script src="http://formvalidation.io/vendor/formvalidation/js/framework/bootstrap.min.js"></script>
-
-<style>
-.help-block {
-  color: red;
-}
-</style>

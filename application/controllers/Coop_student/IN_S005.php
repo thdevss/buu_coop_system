@@ -35,7 +35,7 @@ class IN_S005 extends CI_Controller {
             //     array_push($data['data'], $tmp_array);
     
             // }
-            $status = $this->input->get('status');
+            $status = $this->session->flashdata('status');
             if( $status == 'success'){
                 $data['status']['color'] = 'success';            
                 $data['status']['text'] = 'บันทึกสำเร็จ';
@@ -54,37 +54,52 @@ class IN_S005 extends CI_Controller {
                 
             // add breadcrumbs
             $this->breadcrumbs->push('แบบแจ้งแผนปฏิบัติงานสหกิจศึกษา', 'Coop_student/IN_S005_view');
-            $this->template->view('Coop_student/IN_S005_view', @$data);
-
-
-
-
-                // add breadcrumbs
+            $this->template->view('Coop_student/IN_S005_view', $data);
         }
 
 
         public function save()
         {
+            $validForm = false;
             $student_id = $this->Login_session->check_login()->login_value;           
             $term_id = $this->Login_session->check_login()->term_id; 
             $this->Coop_Student->delete_plan($student_id);
-            for($i=0;$i<count($this->input->post('plan_work_subject'));$i++) {
-                if(@$this->input->post('plan_time_period')[$i] && $this->input->post('plan_work_subject')[$i] != '') {
+            $array_work = array_filter($this->input->post('plan_work_subject'));
+            $array_period = array_filter($this->input->post('plan_time_period'));
+            
+            if( count($array_period) > count($array_work) ) {
+                $array_loop = count($array_period);
+            } else {
+                $array_loop = count($array_work);
+            }
+
+            for($i=0;$i<$array_loop;$i++) {
+                if(@$array_period[$i] && $array_work[$i] != '') {
                     $insert['term_id'] = $term_id;
                     $insert['plan_work_subject'] = $this->input->post('plan_work_subject')[$i];
                     $insert['plan_time_period'] = implode(",", $this->input->post('plan_time_period')[$i]);
-                    $this->Coop_Student->insert_plan($student_id, $insert);
+                    if($this->Coop_Student->insert_plan($student_id, $insert)) {
+                        $validForm = true;
+                    } else {
+                        $validForm = false;
+                    }
+                } else {
+                    $validForm = false;
                 }
             }
 
             //save
+            if($this->input->post('print') == "1") {
+                //print page
+                $this->print_data();
+            } else {
+                $this->session->set_flashdata('status', 'error');
+                if($validForm) {
+                    $this->session->set_flashdata('status', 'success');
+                }
 
-                if($this->input->post('print') == "1") {
-                    //print page
-                    $this->print_data();
-                } else {
-                    redirect('coop_student/IN_S005?status=success');
-                }     
+                redirect('coop_student/IN_S005');
+            }     
            
         }
 

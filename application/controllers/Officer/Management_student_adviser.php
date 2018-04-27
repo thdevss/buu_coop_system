@@ -67,7 +67,7 @@ class Management_student_adviser extends CI_controller{
                 $tmp_array['adviser'] = @$cache['adviser'][$row['adviser_id']];                
             }
 
-            $adviser_Render = '<select onchange="update_student_into_adviser('.$row['student_id'].', this.value)">';
+            $adviser_Render = '<select name="update_student_into_adviser" onchange="update_student_into_adviser('.$row['student_id'].', this.value)">';
             $adviser_Render .= '<option> ---- </option>';
             
             foreach($cache['adviser'] as $key => $adviser) {

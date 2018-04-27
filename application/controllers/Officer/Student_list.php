@@ -63,7 +63,7 @@ class Student_list extends CI_Controller {
                 $row['coop_status_id'] = 1;
             }
             $tmp_array['coop_student_type'] = $cache['coop_student_type'][$row['coop_status_id']];
-            $coop_type_Render = '<select onchange="change_coop_type('.$row['student_id'].', this.value)">';
+            $coop_type_Render = '<select name="change_coop_type" onchange="change_coop_type('.$row['student_id'].', this.value)">';
             foreach($cache['coop_student_type'] as $key => $coop_type) {
                 if($key == $row['coop_status_id']) {
                     $coop_type_Render .= '<option value="'.$key.'" selected>'.$coop_type['coop_status_name'].'</option>';
