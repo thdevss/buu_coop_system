@@ -2,8 +2,34 @@
 
 class Template {
 
-    function view($file, $data = array())
+    function view($file, $data = array(), $src_js = array(), $src_css = array())
     {
+
+        $default_src_js = [
+            base_url('assets/theme/popper.js/dist/umd/popper.min.js'),
+            base_url('assets/theme/bootstrap/dist/js/bootstrap.min.js'),
+            base_url('assets/theme/pace-progress/pace.min.js'),
+            base_url('assets/js/app.js'),
+            "https://unpkg.com/sweetalert/dist/sweetalert.min.js",
+            "https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js",
+            "https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js",
+            "https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.9/js/dataTables.checkboxes.min.js",
+            "https://cdn.jsdelivr.net/npm/formvalidation@0.6.2-dev/dist/js/formValidation.min.js",
+            "http://formvalidation.io/vendor/formvalidation/js/framework/bootstrap.min.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js",
+            "https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js",
+            "https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js",
+            "https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js",
+        ];
+
+        $default_src_css = [
+            ''
+        ];
+        
+
         error_reporting(E_ALL ^ E_NOTICE); //close error hahaha
         $CI =& get_instance();
         
@@ -59,6 +85,10 @@ class Template {
         }
 
         $CI->load->view($file, $data);
+
+        $data['src_scripts'] = array_merge($default_src_js, $src_js);
+        $data['src_css'] = array_merge($default_src_css, $src_css);
+        
         $CI->load->view('template/footer.php', $data);
     }
 

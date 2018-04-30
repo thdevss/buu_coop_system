@@ -592,70 +592,70 @@ $(document).ready(function() {
             'language_lang[]': {
               validators: {
                   notEmpty: {
-                      message: 'Please specify at least one browser you use daily for development'
+                      message: 'โปรดกรอกข้อมูล'
                   }
               }
             },
             'training_subject[]' : {
               validators: {
                     notEmpty: {
-                        message: 'Please specify at least one browser you use daily for development'
+                        message: 'โปรดกรอกข้อมูล'
                     }
                 }
             },
             'training_place[]' : {
               validators: {
                     notEmpty: {
-                        message: 'Please specify at least one browser you use daily for development'
+                        message: 'โปรดกรอกข้อมูล'
                     }
                 }
             },
             'training_start_period[]' : {
               validators: {
                     notEmpty: {
-                        message: 'Please specify at least one browser you use daily for development'
+                        message: 'โปรดกรอกข้อมูล'
                     }
                 }
             },
             'training_end_period[]' : {
               validators: {
                     notEmpty: {
-                        message: 'Please specify at least one browser you use daily for development'
+                        message: 'โปรดกรอกข้อมูล'
                     }
                 }
             },
             'education_level[]' : {
               validators: {
                     notEmpty: {
-                        message: 'Please specify at least one browser you use daily for development'
+                        message: 'โปรดกรอกข้อมูล'
                     }
                 }
             },
             'education_place[]' : {
               validators: {
                     notEmpty: {
-                        message: 'Please specify at least one browser you use daily for development'
+                        message: 'โปรดกรอกข้อมูล'
                     }
                 }
             },
             'education_start_year[]' : {
               validators: {
                     notEmpty: {
-                        message: 'Please specify at least one browser you use daily for development'
+                        message: 'โปรดกรอกข้อมูล'
                     }
                 }
             },
             'education_end_year[]' : {
               validators: {
                     notEmpty: {
-                        message: 'Please specify at least one browser you use daily for development'
+                        message: 'โปรดกรอกข้อมูล'
                     }
                 }
             },
             'education_result[]' : {
               validators: {
                     notEmpty: {
-                        message: 'Please specify at least one browser you use daily for development'
+                        message: 'โปรดกรอกข้อมูล'
                     }
                 }
             },

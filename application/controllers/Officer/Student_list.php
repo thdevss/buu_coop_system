@@ -99,6 +99,8 @@ class Student_list extends CI_Controller {
             $term_id = $this->Term->get_current_term()[0]['term_id'];
 
             $status_type = (int) $this->input->post('status');
+            $coop_status_type = $this->Student->get_by_coop_status_type($status_type)[0];
+
             foreach($this->input->post('students') as $student_id) {
                 if($this->Student->get_student($student_id)) {
                     //update status
@@ -108,7 +110,7 @@ class Student_list extends CI_Controller {
                         $this->Coop_Student->delete_coop_student($student_id);
                     }
 
-                    if($status_type == 7) {
+                    if($coop_status_type['coop_status_change_coop_student'] == 1) {
                         //get company job position tbl
                         $job = $this->Student->get_latest_register_job($student_id);
                         // print_r($job);
