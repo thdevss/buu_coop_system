@@ -28,7 +28,7 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-people"></i> นิสิต</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <?php echo anchor('Company/Job_list_position/', '<i class="icon-list"></i> รายชื่อที่สมัครในตำแหน่งงาน', 'class="nav-link"');?>
+                <?php echo anchor('Company/Job_list_position/', '<i class="icon-list"></i> รายชื่อที่สมัคร', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
                 <?php echo anchor('Company/Coop_Student/coop_student_list', '<i class="icon-list"></i> รายชื่อนิสิตสหกิจ', 'class="nav-link"');?>
