@@ -60,8 +60,17 @@
 
                             <div class="form-group col-md-12 offset-md-12">
                                 <label for="train_date">วันที่อบรม</label> <?php echo form_error('train_date'); ?>
-                                <br>
-                                <input type="text" class="form-control datetimepicker" id="" placeholder="" name="train_date" value="<?php echo $data['train_date'] ?>">    
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="date_timepicker_start" id="date_timepicker_start">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="date_timepicker_end" id="date_timepicker_end">
+                                    </div>
+                                </div>
+                                
+                                <!-- <input type="text" class="form-control datetimepicker" id="" placeholder="" name="train_date" value="<?php echo $data['train_date'] ?>">     -->
                             </div>
                             <div class="col-md-12"></div>
                             
@@ -81,12 +90,7 @@
                             </div>
                             <div class="col-md-12"></div>
                             
-                            <div class="form-group col-md-12 offset-md-12">
-                                <label for="train_register_date">ระยะเวลาเปิดรับสมัคร</label> <?php echo form_error('train_register_date'); ?>       
-                                <br>           
-                                <input type="text" class="form-control datetimepicker" id="" placeholder="" name="train_register_date" value="<?php echo $data['train_register_date'] ?>">
-                            </div>
-                            <div class="col-md-6"></div>   
+                           
 
                             <div class="text-center"> 
                                 <button type="button" class="btn btn-danger" >ยกเลิก</button>
@@ -119,4 +123,25 @@ jQuery(function() {
   });
 
 })
+
+
+
+jQuery(function(){
+    jQuery('#date_timepicker_start').datetimepicker({
+        format:'Y-m-d H:i:00',
+        onShow:function( ct ){
+            this.setOptions({
+                maxDate:jQuery('#date_timepicker_end').val()?jQuery('#date_timepicker_end').val():false
+            })
+        },
+    });
+    jQuery('#date_timepicker_end').datetimepicker({
+        format:'Y-m-d H:i:00',
+        onShow:function( ct ){
+            this.setOptions({
+                minDate:jQuery('#date_timepicker_start').val()?jQuery('#date_timepicker_start').val():false
+            })
+        },
+    });
+});
 </script>
