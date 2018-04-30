@@ -208,4 +208,6 @@ class Coop_Student_model extends CI_model {
         return $query->result_array();
     }
 
+    
+
 }

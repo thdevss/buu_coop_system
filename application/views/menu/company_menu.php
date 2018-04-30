@@ -31,6 +31,9 @@
                 <?php echo anchor('Company/Job_list_position/', '<i class="icon-list"></i> รายชื่อที่สมัครในตำแหน่งงาน', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
+                <?php echo anchor('Company/Coop_Student/coop_student_list', '<i class="icon-list"></i> รายชื่อนิสิตสหกิจ', 'class="nav-link"');?>
+              </li>
+              <li class="nav-item">
               <?php echo anchor('Company/Assessmentstudent/', '<i class="icon-doc"></i> ประเมินผลการฝึกงานของนิสิต', 'class="nav-link"');?>
               </li>
             </ul>

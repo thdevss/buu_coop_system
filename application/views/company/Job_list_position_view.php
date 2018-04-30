@@ -97,7 +97,7 @@ $(document).ready(function() {
         "columns": [
             { "data": "student.student_id" },
             { "data": "student.student_id" },            
-            { "data": "student.student_id" },            
+            { "data": "student.id_link" },            
             { "data": "student.student_fullname" },
             { "data": "student.student_gpax" },
             { "data": "department.department_name" },
