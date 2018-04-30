@@ -41,7 +41,7 @@
                     foreach ($data as $row){?>
                       <tr>
                         <td class="text-center"></td>
-                        <td class="text-left"><?php echo thaiDate($row['train']['train_date']); ?></td>
+                        <td class="text-left"><?php echo thaiDate($row['train']['train_start_date']); ?></td>
                         <td class="text-left"><?php echo $row['train_type']['train_type_name'] ?></td>
                         <td class="text-left"><?php echo $row['train']['train_title'] ?></td>
                         <td class="text-left"><?php echo $row['train']['train_lecturer'] ?></td>
@@ -50,13 +50,13 @@
                         <td class="text-right"><?php echo $row['train']['train_seat'] ?></td>
                         <td class="text-center">
                           <div class="btn-group-vertical">
-                              <form action="<?php echo site_url('Officer/Training/delete'); ?>" class="form-inline" method="post">
+                              <?php echo anchor('Officer/Training/student_list/'.$row['train']['train_id'], '<i class="fa fa-list"></i> รายชื่อนิสิต', 'class="btn btn-block btn-primary"');?>
+                              <p style="width:5px;"></p>
+                              <?php echo anchor('Officer/Training/edit/'.$row['train']['train_id'], '<i class="fa fa-eraser"></i> แก้ไขข้อมูล', 'class="btn btn-block btn-primary"');?>                              
+                              <p style="width:5px;"></p>
+                              <form action="<?php echo site_url('Officer/Training/delete'); ?>" method="post">
                                 <input type="hidden" name="train_id" value="<?php echo $row['train']['train_id'] ; ?>">
-                                <?php echo anchor('Officer/Training/student_list/'.$row['train']['train_id'], '<i class="fa fa-list"></i> รายชื่อนิสิต', 'class="btn  btn-primary"');?>
-                                <p style="width:5px;"></p>
-                                <?php echo anchor('Officer/Training/edit/'.$row['train']['train_id'], '<i class="fa fa-eraser"></i> เเก้ไขข้อมูล', 'class="btn  btn-primary"');?>                              
-                                <p style="width:5px;"></p>
-                                <button type="submit" class="btn btn-danger btn-submit"><i class="fa fa-trash-o"></i> ลบ</button>
+                                <button type="submit" class="btn btn-danger btn-submit btn-block"><i class="fa fa-trash-o"></i> ลบ</button>
                               </form>
                             </div> 
                         </td>
