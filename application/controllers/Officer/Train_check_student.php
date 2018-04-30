@@ -54,7 +54,7 @@ class Train_check_student extends CI_Controller {
         //insert
         $this->load->library('form_validation');        
         $this->form_validation->set_rules('train_id', 'โครงการ', 'trim|required|numeric');
-        $this->form_validation->set_rules('note', 'บันทึกช่วยจำ', 'trim|required');
+        $this->form_validation->set_rules('check_note', 'บันทึกช่วยจำ', 'trim|required');
 
         if ($this->form_validation->run() != FALSE) {
             if(!$this->Training->get_training($this->input->post('train_id'))) {
@@ -166,7 +166,7 @@ class Train_check_student extends CI_Controller {
                 $return['student'] = $data['student'];                            
                 //insert
                 // $array['train_id'] = $data['train_set_check']->train_id;
-                $array['train_set_check_id'] = $this->input->post('train_set_check_id');
+                $array['train_set_check_id'] = $this->input->post('train_set_check_id');                
                 $array['student_id'] = $this->input->post('student_code');
                 $array['date_check'] = date('Y-m-d H:i:s');
                 // $array['term_id'] = $this->Login_session->check_login()->term_id;
@@ -192,7 +192,7 @@ class Train_check_student extends CI_Controller {
                 'check_no' => ++$key,
                 'check_date' => thaiDate($row['check_datetime']),
                 'check_title' => $row['check_note'],
-                'check_button' => '<a href="'.site_url('/Officer/Train_check_student/student_list/'.$row['check_id']).'" class="btn btn-info"><i class="fa fa-list"></i> รายชื่อนิสิต</a>'
+                'check_button' => '<a href="'.site_url('/Officer/Train_check_student/student_list/'.$row['check_id']).'" class="btn btn-info"><i class="fa fa-list"></i> รายชื่อนิสิต</a> <a href="'.site_url('/Officer/Train_check_student/check_student/'.$row['check_id']).'" class="btn btn-warning"><i class="fa fa-list"></i> เช็คชื่อนิสิต</a>'
             );
         }
 

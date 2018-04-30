@@ -47,8 +47,8 @@
                                 </div>
 
                                 <div class="form-group col-md-12">
-                                    <label for="note">บันทึกช่วยจำ</label> <?php echo form_error('note'); ?>         
-                                    <input class="form-control" type="text" name="note" id="note">
+                                    <label for="check_note">บันทึกช่วยจำ</label> <?php echo form_error('check_note'); ?>         
+                                    <input class="form-control" type="text" name="check_note" id="check_note">
                                 </div>
 
                                 <div class="col-sm-12 text-center">
