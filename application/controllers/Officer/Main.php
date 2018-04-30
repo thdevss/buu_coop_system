@@ -33,7 +33,7 @@ class Main extends CI_Controller {
     {
         $login_data = $this->Login_session->check_login();        
         $data['user_info'] = $this->BUUMember->get($login_data->login_type, $login_data->login_value)[0];
-        if(@$data['user_info']->is_officer == 1) {
+        if(@$data['user_info']['adviser_is_officer'] == 1) {
             $session_ID = $this->Login_session->set($login_data->login_value, 'adviser');
             if($session_ID) {
                 $this->session->set_userdata('session_ID', $session_ID);

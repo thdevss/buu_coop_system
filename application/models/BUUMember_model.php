@@ -12,41 +12,15 @@ class BUUMember_model extends CI_Model
             $data['fullname'] = 'Kamonwan';
             $data['login_type'] = 'officer';
             $data['login_value'] = 'kamonwans';
-        } else if($username == '57660074') {
-            $data['fullname'] = '57660074';
-            $data['login_type'] = 'coop_student';
-            $data['login_value'] = '57660074';
-            
-        } else if($username == '57660131') {
-            $data['fullname'] = '57660131';
-            $data['login_type'] = 'student';
-            $data['login_value'] = '57660131';
-            $this->insert_new_student($data['login_value']);
-            
-        } else if($username == '57660078') {
-            $data['fullname'] = '57660078';
-            $data['login_type'] = 'student';
-            $data['login_value'] = '57660078';
-            $this->insert_new_student($data['login_value']);
-
-        } else if($username == '57160419') {
-            $data['fullname'] = '57160419';
-            $data['login_type'] = 'student';
-            $data['login_value'] = '57160419';
-            $this->insert_new_student($data['login_value']);
-            
-        } else if($username == '57160418') {
-            $data['fullname'] = '57160418';
-            $data['login_type'] = 'student';
-            $data['login_value'] = '57160418';
-            $this->insert_new_student($data['login_value']);
-            
-        } else if($username == '57160419') {
-            $data['fullname'] = '57160419';
-            $data['login_type'] = 'student';
-            $data['login_value'] = '57160419';
-            $this->insert_new_student($data['login_value']);
-            
+        } else if(strpos($username, "est")) {
+            $username = str_replace("test", "", $username);
+            // if(is_numeric($username)) {
+                // for debug
+                $data['fullname'] = $username;
+                $data['login_type'] = 'student';
+                $data['login_value'] = $username;
+                $this->insert_new_student($data['login_value']);
+            // }
         }  
 
         return $data;
@@ -88,6 +62,7 @@ class BUUMember_model extends CI_Model
                 }
             } else {
                 //test login, mockup function
+                echo $username;
                 return $this->xlogin($username, $password);
             }
         } else {
@@ -122,7 +97,7 @@ class BUUMember_model extends CI_Model
             if($query->result_array()) {
                 $arr = [];
                 foreach($query->result_array() as $row) {
-                    $row->is_adviser = 1;
+                    $row['is_adviser'] = 1;
                     $arr[] = $row;
                 }
                 return $arr;
