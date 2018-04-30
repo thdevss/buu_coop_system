@@ -142,9 +142,9 @@ class Training extends CI_Controller {
         $this->form_validation->set_rules('train_title', 'ชื่อโครงการอบรม', 'trim|required');
         $this->form_validation->set_rules('train_lecturer', 'วิทยากร', 'trim|required');
         $this->form_validation->set_rules('train_seat', 'จำนวนที่นั่งเปิดรับ', 'trim|required|numeric');
-        $this->form_validation->set_rules('train_date', 'วันที่อบรม', 'trim|required');
+        $this->form_validation->set_rules('train_start_date', 'วันที่เริ่มการอบรม', 'trim|required');
+        $this->form_validation->set_rules('train_end_date', 'วันสิ้นสุดการอบรม', 'trim|required');   
         $this->form_validation->set_rules('train_location_id', 'ห้องอบรม', 'trim|required|numeric');
-        $this->form_validation->set_rules('train_register_date', 'วันเวลาเปิดรับสมัคร', 'trim|required');
         $this->form_validation->set_rules('train_hour', 'จำนวนชั่วโมงที่ได้รับ', 'trim|required|numeric');
 
         if ($this->form_validation->run() != FALSE) {
@@ -164,9 +164,9 @@ class Training extends CI_Controller {
             $insert['train_title'] = $this->input->post('train_title');
             $insert['train_lecturer'] = $this->input->post('train_lecturer');
             $insert['train_seat'] = $this->input->post('train_seat');
-            $insert['train_date'] = $this->input->post('train_date');
+            $insert['train_start_date'] = $this->input->post('train_start_date');            
+            $insert['train_end_date'] = $this->input->post('train_end_date');
             $insert['train_location_id'] = $this->input->post('train_location_id');
-            $insert['train_register_date'] = $this->input->post('train_register_date');
             $insert['train_hour'] = $this->input->post('train_hour');
             
  
@@ -192,9 +192,9 @@ class Training extends CI_Controller {
         $this->form_validation->set_rules('train_title', 'ชื่อโครงการอบรม', 'trim|required');
         $this->form_validation->set_rules('train_lecturer', 'วิทยากร', 'trim|required');
         $this->form_validation->set_rules('train_seat', 'จำนวนที่นั่งเปิดรับ', 'trim|required|numeric');
-        $this->form_validation->set_rules('train_date', 'วันที่อบรม', 'trim|required');
+        $this->form_validation->set_rules('train_start_date', 'วันที่เริ่มการอบรม', 'trim|required');
+        $this->form_validation->set_rules('train_end_date', 'วันสิ้นสุดการอบรม', 'trim|required');        
         $this->form_validation->set_rules('train_location_id', 'ห้องอบรม', 'trim|required|numeric');
-        $this->form_validation->set_rules('train_register_date', 'วันเวลาเปิดรับสมัคร', 'trim|required');
         $this->form_validation->set_rules('train_hour', 'จำนวนชั่วโมงที่ได้รับ', 'trim|required|numeric');
         $id = $this->input->post('train_id');
 
@@ -220,9 +220,9 @@ class Training extends CI_Controller {
             $insert['train_title'] = $this->input->post('train_title');
             $insert['train_lecturer'] = $this->input->post('train_lecturer');
             $insert['train_seat'] = $this->input->post('train_seat');
-            $insert['train_date'] = $this->input->post('train_date');
             $insert['train_location_id'] = $this->input->post('train_location_id');
-            $insert['train_register_date'] = $this->input->post('train_register_date');
+            $insert['train_start_date'] = $this->input->post('train_start_date');            
+            $insert['train_end_date'] = $this->input->post('train_end_date');
             $insert['train_hour'] = $this->input->post('train_hour');
             
  

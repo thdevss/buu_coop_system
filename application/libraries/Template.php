@@ -23,10 +23,11 @@ class Template {
             "https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js",
             "https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js",
             "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.16/jquery.datetimepicker.full.js",
         ];
 
         $default_src_css = [
-            ''
+            'https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.16/jquery.datetimepicker.css'
         ];
         
 
