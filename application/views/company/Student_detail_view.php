@@ -135,7 +135,7 @@
                                       </dt>
                                       <dd>
                                         <ul class="list-unstyled">
-                                          <li><?php echo $train_type[0]['check_hour'];?> / <?php echo $train_type[0]['total_hour'];?> ชั่วโมง</li>
+                                          <li><?php echo number_format($train_type[0]['check_hour'], 2);?> / <?php echo $train_type[0]['total_hour'];?> ชั่วโมง</li>
                                           <li><?php echo $train_type[1]['check_hour'];?> / <?php echo $train_type[1]['total_hour'];?> ชั่วโมง</li>
                                         </ul>
                                       </dd>
