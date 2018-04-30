@@ -108,6 +108,9 @@
             <li class="nav-item">
               <?php echo anchor('Officer/Report_cooperative/', '<i class="fa fa-tasks"></i> สรุปภาพรวม', 'class="nav-link"');?>
             </li>
+            <li class="nav-item">
+              <?php echo anchor('Officer/Report_cooperative/to_excel', '<i class="fa fa-file-excel-o"></i> ส่งออกเป็น Excel', 'class="nav-link"');?>
+            </li>
                         
           </ul>
         </li>

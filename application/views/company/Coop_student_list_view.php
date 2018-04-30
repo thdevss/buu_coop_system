@@ -13,7 +13,7 @@
           <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i>รายชื่อนิสิตสหกิจ</div>
               <div class="card-body">
-              <table class="table table-bordered" id="student_table">
+              <table class="table table-bordered datatable" id="">
                     <thead>
                       <tr>
                         <th></th>
