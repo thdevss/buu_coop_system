@@ -69,8 +69,6 @@ class Report_cooperative extends CI_Controller {
             }
             array_push($data['department'], $tmp);
         }
-
-
         return $data['department'];
     }
 
@@ -106,6 +104,85 @@ class Report_cooperative extends CI_Controller {
 
 
         return $data['department'];
+    }
+
+    public function to_excel()
+    {
+        //cache
+        $cache = array();
+        $cache['company'] = $this->Company->gets_company();
+        $cache['department'] = $this->Student->gets_department();
+
+        $term = $this->Term->get_current_term()[0];
+
+        // to excel
+        require(FCPATH.'/application/libraries/XLSXWriter/xlsxwriter.class.php');
+        require(FCPATH.'/application/libraries/XLSXWriter/xlsxwriterplus.class.php');
+        
+
+        $filename = "report-cooperative-".time().".xlsx";
+        header('Content-disposition: attachment; filename="'.XLSXWriter::sanitize_filename($filename).'"');
+        header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        header('Content-Transfer-Encoding: binary');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+
+        $writer = new XLSWriterPlus();
+        //get student
+        $header = array(
+            '' => 'string',
+            '' => 'string',
+            '' => 'string',
+            '' => 'string',
+        );
+        
+        $rows[] = array(
+            'รายงานการไปสหกิจศึกษาในภาคเรียนที่ '.$term['term_name'], '', '', ''
+        );
+
+        $header_row = array();
+
+        $header_row[] = 'รายชื่อบริษัท';
+        foreach($cache['department'] as $department) {
+            $header_row[] = $department['department_name'];
+        }
+
+        $rows[] = $header_row;
+
+        //cache
+        $data = array();
+
+        foreach($this->Company->gets_company() as $company) {
+            $tmp = array();
+            $tmp[] = $company['company_name_th'];
+            // $tmp['department'] = array();
+            //get company
+            foreach($cache['department'] as $department) {
+                // $tmpc['department_name'] = $department['department_name'];
+                $tmp[] = count($this->Coop_Student->gets_coop_student_by_department_company($department['department_id'], $company['company_id']));
+            }
+
+            $rows[] = $tmp;
+
+        }
+
+
+        
+        $format = array(
+            'font'=>'THSarabunPSK',
+            'font-size'=>16, 
+            'wrap_text'=>true
+        );
+
+        $writer = new XLSXWriter();
+        $writer->setAuthor('from Cooperative System, BUU');
+        foreach($rows as $row) {
+            $writer->writeSheetRow('Sheet1', $row, $format);            
+        }
+        $writer->markMergedCell('Sheet1', $start_row=0, $start_col=0, $end_row=0, $end_col=(count($header_row)-1));
+            
+        $writer->writeToStdOut();
+
     }
 
    

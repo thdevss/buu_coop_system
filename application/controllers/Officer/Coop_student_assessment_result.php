@@ -91,15 +91,21 @@ class Coop_student_assessment_result extends CI_Controller {
             }
             
             $data['result'] = [];
+            $data['sum_score'] = 0;
+            $data['total_score'] = 0;
+            
             foreach($this->Coop_Student_Assessment_Form->get_coop_student_form_result($student_id) as $result) {
                 $data['result'][$result['item_id']] = $result['coop_student_has_coop_student_questionnaire_item_score'];
+                $data['sum_score'] += (int) $result['coop_student_has_coop_student_questionnaire_item_score'];
+                $data['total_score']++;
             }
+            $data['total_score'] = $data['total_score']*5;
                 
-                // add breadcrumbs
-                $this->breadcrumbs->push('รายชื่อนิสิตสหกิจ', '/Officer/Coop_student_assessment_result/index');
-                $this->breadcrumbs->push('ผลประเมินนิสิต', '/Officer/Coop_student_assessment_result/assessment_detail');
+            // add breadcrumbs
+            $this->breadcrumbs->push('รายชื่อนิสิตสหกิจ', '/Officer/Coop_student_assessment_result/index');
+            $this->breadcrumbs->push('ผลประเมินนิสิต', '/Officer/Coop_student_assessment_result/assessment_detail');
 
-                $this->template->view('Officer/Coop_student_assessment_result_score_view', $data);
+            $this->template->view('Officer/Coop_student_assessment_result_score_view', $data);
         } 
     
     
