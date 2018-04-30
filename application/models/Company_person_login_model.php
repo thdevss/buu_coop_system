@@ -21,5 +21,14 @@ class Company_person_login_model extends CI_model
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    public function get_by_person_username($person_username)
+    {
+        $this->db->select('person_username, company_id');
+        $this->db->where('person_username', $person_username);
+        $this->db->from('tb_company_person');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     
 }
