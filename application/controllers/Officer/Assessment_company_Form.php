@@ -116,7 +116,7 @@
             $this->form_validation->set_rules('number', 'ลำดับหัวข้อ', 'trim|required|max_length[4]');
             $this->form_validation->set_rules('title', 'ชื่อหัวข้อการประเมิน', 'trim|required');
             $this->form_validation->set_rules('type', 'การให้คะแนน', 'trim|required|in_list[score,comment]');
-            $this->form_validation->set_rules('description', 'รายละเอียดหัวข้อ', 'trim|required');
+            $this->form_validation->set_rules('description', 'รายละเอียดหัวข้อ', 'trim');
             
             if ($this->form_validation->run() == FALSE) {
                 $this->get_company_questionnaire_item($subject_id, true);
