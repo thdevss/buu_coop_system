@@ -118,7 +118,7 @@
             <?php echo anchor('Officer/Assessment_company_Form/', '<i class="fa fa-tasks"></i> แบบประเมินบริษัท', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/Assessment_coop_student_Form/', '<i class="fa fa-mortar-board"></i> แบบประเมินนิสิต', 'class="nav-link"');?>
+            <?php echo anchor('Officer/Assessment_coop_student_Form/', '<i class="fa fa-mortar-board"></i> แบบประเมินบริษัทประเมินนิสิต', 'class="nav-link"');?>
             </li>
           </ul>
         </li>
