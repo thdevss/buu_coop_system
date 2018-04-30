@@ -63,12 +63,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <?php echo form_error('train_start_date'); ?>
-                                        <input type="text" class="form-control" name="train_start_date" id="train_start_date" value="<?php echo set_value("train_start_date");?>">
+                                        <input type="text" class="form-control" name="train_start_date" placeholder="วันเริ่มต้นการอบรม" id="train_start_date" value="<?php echo set_value("train_start_date");?>">
                                     </div>
 
                                     <div class="col-md-6">
                                         <?php echo form_error('train_end_date'); ?>
-                                        <input type="text" class="form-control" name="train_end_date" id="train_end_date" value="<?php echo set_value("train_end_date");?>">
+                                        <input type="text" class="form-control" name="train_end_date" placeholder="วันสิ้นสุดการอบรม" id="train_end_date" value="<?php echo set_value("train_end_date");?>">
                                     </div>
                                 </div>
                             </div>

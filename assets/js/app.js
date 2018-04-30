@@ -145,3 +145,10 @@ function init(url) {
   $('[rel="popover"],[data-rel="popover"],[data-toggle="popover"]').popover();
 
 }
+
+
+
+
+$("button[type='reset']").on("click", function(event){
+  window.history.back()
+})
