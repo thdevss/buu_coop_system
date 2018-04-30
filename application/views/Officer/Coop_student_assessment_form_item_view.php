@@ -24,7 +24,7 @@
                               <option disabled>----</option>
                                 <?php
                                 foreach($form_subject as $form) {
-                                  if($subject['coop_student_questionnaire_subject_id'] == $form['id']) {
+                                  if($subject['coop_student_questionnaire_subject_id'] == $form['coop_student_questionnaire_subject_id']) {
                                     echo '<option value="'.$form['coop_student_questionnaire_subject_id'].'" selected>'.$form['coop_student_questionnaire_subject_number'].' - '.$form['coop_student_questionnaire_subject_title'].'</option>';
                                   } else {
                                     echo '<option value="'.$form['coop_student_questionnaire_subject_id'].'">'.$form['coop_student_questionnaire_subject_number'].' - '.$form['coop_student_questionnaire_subject_title'].'</option>';

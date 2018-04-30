@@ -59,10 +59,9 @@
                         <div style="height:50px;"></div>
                         <div class="col-md-9">
                            <div class="input-group">
-                  <button type="submit"  class="btn btn-lg btn-success btn-block"><i class="fa fa-dot-circle-o"></i>บันทึก</button>
-
+                                <button type="submit"  class="btn btn-lg btn-success btn-block"><i class="fa fa-dot-circle-o"></i>บันทึก</button>
+                            </div>
                         </div>
-                     </div>
                  </div>
             </form> 
         </div>
