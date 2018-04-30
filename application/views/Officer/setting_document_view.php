@@ -48,7 +48,7 @@
                                                         <?php echo thaiDate(date('Y-m-d H:i', $timestr)); ?>
                                                     </td>
                                                     <td class="text-left"><?php echo $row['document_code']."-".$row['document_name'];?>
-                                                      <a class="badge badge-pill badge-warning open_document_deadline_form" data-document-id="<?php echo $row['document_id'];?>" data-deadline-date="<?php echo date('Y-m-d', $timestr);?>" data-deadline-time="<?php echo date('H:i', $timestr);?>">
+                                                      <a class="badge badge-pill badge-warning open_document_deadline_form clickable" data-document-id="<?php echo $row['document_id'];?>" data-deadline-date="<?php echo date('Y-m-d', $timestr);?>" data-deadline-time="<?php echo date('H:i', $timestr);?>">
                                                       กำหนดส่ง...
                                                       </a>
                                                     </td>

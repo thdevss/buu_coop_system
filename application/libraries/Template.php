@@ -27,7 +27,14 @@ class Template {
         ];
 
         $default_src_css = [
-            'https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.16/jquery.datetimepicker.css'
+            "https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.16/jquery.datetimepicker.css",
+            "https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css",
+            "https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.9/css/dataTables.checkboxes.css",
+            "https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css",
+            "https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css",
+            "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css",
+            base_url('assets/css/custom.css'),
+
         ];
         
 

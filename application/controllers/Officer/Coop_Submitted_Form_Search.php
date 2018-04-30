@@ -107,6 +107,9 @@ class Coop_Submitted_Form_Search extends CI_Controller {
                             $late_status = ' (<span style="color: red;">ส่งช้า</span>)';
                         }
                         $row['form']['status'] = '<span style="color: green;">ส่งแล้ว</span>'.$late_status;
+                        $row['form']['document_pdf_file'] = '<a href="'.base_url($row['form']['document_pdf_file']).'" target="_blank">ดาวน์โหลด</a>';
+                    } else {
+                        $row['form']['document_pdf_file'] = '-';
                     }
 
                     if(

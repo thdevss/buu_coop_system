@@ -40,6 +40,8 @@
                         <th class="text-left">รหัสนิสิต</th>
                         <th class="text-left">ชื่อ-นามสกุล</th>
                         <th class="text-left">สถานะการส่งเอกสาร</th>
+                        <th class="text-left">เอกสาร</th>
+                        
                       </tr>
                     </thead>
                     <tbody></tbody>
@@ -84,7 +86,9 @@ $('#form_id').on('change', function (e) {
             { "data": "student.student_id" },          
             { "data": "student.id_link" },
             { "data": "student.student_fullname" },            
-            { "data": "form.status" }
+            { "data": "form.status" },
+            { "data": "form.document_pdf_file" }
+            
         ],
         'initComplete': function(){
           var api = this.api();
