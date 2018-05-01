@@ -95,8 +95,8 @@
     function showPosition(position) {
         jQuery("#alert_bar").html('<div class="alert alert-warning">โปรดกดบันทึก เพื่อเปลี่ยนแปลงค่า</div>');
         
-        jQuery("#coop_student_latitude").val(position.coords.latitude)
-        jQuery("#coop_student_longitude").val(position.coords.longitude)
+        jQuery("#company_address_latitude").val(position.coords.latitude)
+        jQuery("#company_address_longitude").val(position.coords.longitude)
         genMap({ lat: position.coords.latitude, lng: position.coords.longitude })
     }
 
@@ -115,8 +115,8 @@
                 {
                     console.log(pos.lat())
                     console.log(pos.lng())
-                    jQuery("#coop_student_latitude").val(pos.lat())
-                    jQuery("#coop_student_longitude").val(pos.lng())                      
+                    jQuery("#company_address_latitude").val(pos.lat())
+                    jQuery("#company_address_longitude").val(pos.lng())                      
                 } 
                 else 
                 {
