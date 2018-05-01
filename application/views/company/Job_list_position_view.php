@@ -42,7 +42,7 @@
                           </div>
                           <div class="col-sm-4">
                             <div class="form-group">
-                              <select id="select" name="select" class="form-control company_status_type_val">
+                              <select id="company_status_type_all" name="company_status_type_all" class="form-control company_status_type_val">
                                 <option value="">---กรุณาเลือก--</option>
                                 <?php foreach ($company_status_Type as $row){ ?>
                                 <option value="<?php echo $row['company_status_id'];?>"> <?php echo $row['company_status_name'];?></option>
