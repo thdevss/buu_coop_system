@@ -34,7 +34,7 @@
                   <select class="form-control" id="company_id" name="company_id">
                     <option value="0">-- บริษัททั้งหมด --</option>
                     <?php foreach($company as $row) {?>
-                      <option value="<?php echo $row['company_id'];?>" <?php echo set_select('company_id', $row['company_id']); ?> ><?php echo $row['name_th']; ?></option>
+                      <option value="<?php echo $row['company_id'];?>" <?php echo set_select('company_id', $row['company_id']); ?> ><?php echo $row['company_name_th']; ?></option>
                     <?php } ?>
                   </select>
                 </div>
