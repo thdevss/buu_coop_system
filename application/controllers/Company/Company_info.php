@@ -177,7 +177,7 @@ class Company_info extends CI_controller
 
             if ($this->form_validation->run() == FALSE)
             {
-                $this->session->set_flashdata('form-alert', '<div class="alert alert-danger">เพิ่่มไม่สำเร็จ</div>');
+                $this->session->set_flashdata('form-alert', '<div class="alert alert-danger">เพิ่มไม่สำเร็จ</div>');
                 redirect('Company/Company_info/step3/', 'refresh');
             }
             else

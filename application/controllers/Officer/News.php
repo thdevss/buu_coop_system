@@ -24,7 +24,7 @@ class News extends CI_Controller {
     {
         if($status == 'success_add' ){
             $data['status']['color'] = 'success';
-            $data['status']['text'] = 'เพิ่มประกาศข่าวสารเรียบร้อย';
+            $data['status']['text'] = 'เพิ่มบระกาศข่าวสารเรียบร้อย';
         } else if($status == 'success_delete' ){
             $data['status']['color'] = 'success';
             $data['status']['text'] = 'ลบสำเร็จ';
@@ -33,7 +33,7 @@ class News extends CI_Controller {
             $data['status']['text'] = 'ผิดพลาด ลบไม่ได้';
         } else if($status == 'success_hide_status' ){
             $data['status']['color'] = 'primary';
-            $data['status']['text'] = 'เปลี่ยนสถานะการโชว์ข่าวสำเร็จ';
+            $data['status']['text'] = 'เบลี่ยนสถานะการโชว์ข่าวสำเร็จ';
         } else if($status != '' ){
             $data['status']['color'] = 'danger';
             $data['status']['text'] = $status;
@@ -44,7 +44,7 @@ class News extends CI_Controller {
         $data['data'] = $this->News->gets_news(null, 1);
 
         // add breadcrumbs
-        $this->breadcrumbs->push('รายการประกาศข่าวสารหน้าเว็ป', '/Officer/News/index');
+        $this->breadcrumbs->push('รายการบระกาศข่าวสารหน้าเว็บ', '/Officer/News/index');
 
         $this->template->view('Officer/News_list_view', $data);
     } 
@@ -53,7 +53,7 @@ class News extends CI_Controller {
     {
         if($status == 'error_add' ){
             $data['status']['color'] = 'danger';
-            $data['status']['text'] = 'ผิดพลาด โปรดตรวจสอบ';
+            $data['status']['text'] = 'ผิดพลาด โบรดตรวจสอบ';
         } else if($status != '' ){
             $data['status']['color'] = 'danger';
             $data['status']['text'] = $status;
@@ -64,8 +64,8 @@ class News extends CI_Controller {
         $data['post_url'] = site_url('Officer/News/post_add');
 
         // add breadcrumbs
-        $this->breadcrumbs->push('รายการประกาศข่าวสารหน้าเว็ป', '/Officer/News/index');
-        $this->breadcrumbs->push('แบบฟอร์มเพิ่มประกาศข่าวสาร', '/Officer/News/add/');
+        $this->breadcrumbs->push('รายการบระกาศข่าวสารหน้าเว็บ', '/Officer/News/index');
+        $this->breadcrumbs->push('แบบฟอร์มเพิ่มบระกาศข่าวสาร', '/Officer/News/add/');
 
         $this->template->view('Officer/News_form_view', $data);
     }
@@ -73,7 +73,7 @@ class News extends CI_Controller {
     public function post_add()
     {
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('news_title', 'หัวข้อประกาศ', 'required|is_unique[tb_news.news_title]');
+        $this->form_validation->set_rules('news_title', 'หัวข้อบระกาศ', 'required|is_unique[tb_news.news_title]');
         $this->form_validation->set_rules('news_detail', 'เนื้อหา', 'required');
 
         if ($this->form_validation->run() != false) {
@@ -122,7 +122,7 @@ class News extends CI_Controller {
     {
         if($status == 'error_add' ){
             $data['status']['color'] = 'danger';
-            $data['status']['text'] = 'ผิดพลาด โปรดตรวจสอบ';
+            $data['status']['text'] = 'ผิดพลาด โบรดตรวจสอบ';
         } else if($status != '' ){
             $data['status']['color'] = 'danger';
             $data['status']['text'] = $status;
@@ -142,8 +142,8 @@ class News extends CI_Controller {
         $data['post_url'] = site_url('Officer/News/post_edit');
 
         // add breadcrumbs
-        $this->breadcrumbs->push('รายการประกาศข่าวสารหน้าเว็ป', '/Officer/News/index');
-        $this->breadcrumbs->push('แบบฟอร์มแก้ไขประกาศข่าวสาร', '/Officer/News/edit/'.$id);
+        $this->breadcrumbs->push('รายการบระกาศข่าวสารหน้าเว็บ', '/Officer/News/index');
+        $this->breadcrumbs->push('แบบฟอร์มแก้ไขบระกาศข่าวสาร', '/Officer/News/edit/'.$id);
 
         $this->template->view('Officer/News_form_view', $data);
     }
@@ -151,7 +151,7 @@ class News extends CI_Controller {
     public function post_edit()
     {
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('news_title', 'หัวข้อประกาศ', 'required');
+        $this->form_validation->set_rules('news_title', 'หัวข้อบระกาศ', 'required');
         $this->form_validation->set_rules('news_detail', 'เนื้อหา', 'required');
         $this->form_validation->set_rules('news_id', 'Primary Key', 'required|numeric');
 

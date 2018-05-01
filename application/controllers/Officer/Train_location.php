@@ -22,10 +22,19 @@ class Train_location extends CI_Controller {
 
     public function index($status = '')
     {
+        if($status == '') {
+            $status = $this->session->flashdata('form-alert');
+        }
         if($status == 'success_delete' ){
             $data['status']['color'] = 'success';
             $data['status']['text'] = 'ทำการลบเรียบร้อย';
-        } else if($status == 'error_delete' ){
+        } else if($status == 'success_add' ){
+            $data['status']['color'] = 'success';
+            $data['status']['text'] = 'เพิ่มเรียบร้อย';
+        } else if($status == 'success_edit' ){
+            $data['status']['color'] = 'success';
+            $data['status']['text'] = 'แก้ไขเรียบร้อย';
+        }  else if($status == 'error_delete' ){
             $data['status']['color'] = 'danger';
             $data['status']['text'] = 'ผิดพลาด โปรดตรวจสอบ';
         } 
@@ -47,7 +56,9 @@ class Train_location extends CI_Controller {
         $this->breadcrumbs->push('จัดการสถานที่อบรม', '/Officer/Train_location/index');
         $this->breadcrumbs->push('จัดการสถานที่อบรม', '/Officer/Train_location/add');
 
-        $this->template->view('Officer/Train_location_form_view');
+        $data['form_url'] = site_url('Officer/Train_location/post_add');
+
+        $this->template->view('Officer/Train_location_form_view', $data);
     }
 
     public function edit($room_id)
@@ -58,40 +69,60 @@ class Train_location extends CI_Controller {
         $this->breadcrumbs->push('จัดการสถานที่อบรม', '/Officer/Train_location/index');
         $this->breadcrumbs->push('จัดการสถานที่อบรม', '/Officer/Train_location/edit'.$room_id);
 
+        $data['form_url'] = site_url('Officer/Train_location/post_edit');
+        
+
         $this->template->view('Officer/Train_location_form_view',$data);
     }    
 
-    public function ajax_post()
+    public function post_add()
+    {
+        $return['status'] = false;
+        $this->load->library('form_validation');        
+        $this->form_validation->set_rules('location_building', 'ชื่อตึก', 'trim|required');
+        $this->form_validation->set_rules('location_room', 'ชื่อห้อง', 'trim|required');
+        
+        if ($this->form_validation->run() != FALSE) {
+            $data['location_building'] =  $this->input->post('location_building');
+            $data['location_room'] = $this->input->post('location_room');
+
+            $this->Training->insert_location($data);                
+            $this->session->set_flashdata('form-alert', 'success_add');
+            redirect('Officer/Train_location/', 'refresh');
+        } else {
+            $this->add();
+        }
+
+
+    }
+
+
+    public function post_edit()
     {
         $return['status'] = false;
         $return['print'] = false;
                 
         $this->load->library('form_validation');        
-        $this->form_validation->set_rules('location_building', 'ตึก', 'trim|required');
-        $this->form_validation->set_rules('location_room', 'ห้อง', 'trim|required');
-        $this->form_validation->set_rules('location_id', 'id', 'trim|numeric');
+        $this->form_validation->set_rules('location_building', 'ชื่อตึก', 'trim|required');
+        $this->form_validation->set_rules('location_room', 'ชื่อห้อง', 'trim|required');
+        $this->form_validation->set_rules('location_id', 'id', 'trim|required|numeric');
+        $room_id = $this->input->post('location_id');
         
         if ($this->form_validation->run() != FALSE) {
             $data['location_building'] =  $this->input->post('location_building');
             $data['location_room'] = $this->input->post('location_room');
-            $room_id = $this->input->post('location_id');
             
             //save
             if(@$this->Training->get_location($room_id)) {
                 //update                
                 $this->Training->update_location($room_id, $data);
-            } else {
-                //insert
-                $this->Training->insert_location($data);                
             }
-
-            $return['status'] = true;
+            $this->session->set_flashdata('form-alert', 'success_edit');
+            redirect('Officer/Train_location/', 'refresh');
         } else {
-           $return['status'] = false;
-           $return['message'] = strip_tags(validation_errors());
+            $this->edit($room_id);
         }
 
-        echo json_encode($return);
 
     }
 
