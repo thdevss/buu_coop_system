@@ -23,16 +23,16 @@ class Training extends CI_Controller {
     {
         if($status == 'success_delete' ){
             $data['status']['color'] = 'success';
-            $data['status']['text'] = 'ทำการลบเรียบร้อย';
+            $data['status']['text'] = 'ทำการลบสำเร็จ';
         } else if($status == 'error_delete' ){
             $data['status']['color'] = 'danger';
             $data['status']['text'] = 'ผิดพลาด โปรดตรวจสอบ';
         } else if($status == 'success_insert' ){
             $data['status']['color'] = 'success';
-            $data['status']['text'] = 'เพิ่มข้อมูลโครงการการอบรมเรียบร้อย';
+            $data['status']['text'] = 'เพิ่มข้อมูลโครงการการอบรมสำเร็จ';
         } else if($status == 'success_update' ){
             $data['status']['color'] = 'success';
-            $data['status']['text'] = 'แก้ไขข้อมูลแก้อบรมเรียบร้อย';
+            $data['status']['text'] = 'แก้ไขข้อมูลแก้อบรมสำเร็จ';
         }  
         else {
             $data['status'] = '';
@@ -171,7 +171,7 @@ class Training extends CI_Controller {
             
  
             if($this->Training->insert_training($insert)) {
-                return $this->index('success_inert');
+                return $this->index('success_insert');
                 die();
             } else {
                 return $this->add('error_add');
