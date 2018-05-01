@@ -41,8 +41,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                      <button type="submit" class="btn btn-md btn-success"> บันทึก</button>
                                       <a onclick="get_live_map()" class="btn btn-md btn-warning"> ดึงพิกัดปัจจุบัน</a>     
+                                      <button type="submit" class="btn btn-md btn-success"> บันทึก</button>                                      
                                     </div>
                                 </form>
                             </div>

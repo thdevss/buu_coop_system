@@ -171,7 +171,7 @@ class Company_info extends CI_controller
         //job section
         public function job_add()
         {
-            $this->form_validation->set_rules('job_title_id', 'ตำแหน่ง', 'trim|required');
+            $this->form_validation->set_rules('job_title_id', 'ตำแหน่ง', 'trim|required|numeric');
             $this->form_validation->set_rules('number_of_employee', 'จำนวน', 'trim|required|numeric');
             $this->form_validation->set_rules('job_description', 'ลักษณะงานที่นิสิตต้องปฏิบัติงาน', 'trim|required');
 
@@ -231,8 +231,8 @@ class Company_info extends CI_controller
         public function job_update()
         {
             // print_r($array);
-            $this->form_validation->set_rules('job_id', 'Job ID', 'required');
-            $this->form_validation->set_rules('job_title_id', 'ตำแหน่ง', 'trim|required');
+            $this->form_validation->set_rules('job_id', 'Job ID', 'trim|required|numeric');
+            $this->form_validation->set_rules('job_title_id', 'ตำแหน่ง', 'trim|required|numeric');
             $this->form_validation->set_rules('job_number_employee', 'จำนวน', 'trim|required|numeric');
             $this->form_validation->set_rules('job_description', 'ลักษณะงานที่นิสิตต้องปฏิบัติงาน', 'trim|required');
             
