@@ -371,7 +371,7 @@ $.Thailand({
                         <input type="text" id="department" name="department" class="form-control" placeholder="เเผนกงาน" required>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for"telephone">เบอร์โทร</label>
+                        <label for"telephone">เบอร์โทร</label><code>*</code>
                         <input type="text" id="telephone" name="telephone" class="form-control" placeholder="เบอร์โทร" required>
                     </div>  
                     <div class="form-group col-md-12">

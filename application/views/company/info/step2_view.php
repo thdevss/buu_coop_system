@@ -199,7 +199,7 @@ $(document).ready(function(){
                         <input type="text" id="person_department" name="person_department" class="form-control" placeholder="เเผนกงาน" required>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for"telephone">เบอร์โทร</label>
+                        <label for"telephone">เบอร์โทร</label><code>*</code>
                         <input type="text" id="person_telephone" name="person_telephone" class="form-control" placeholder="เบอร์โทร" required>
                     </div>  
                     <div class="form-group col-md-12">
@@ -224,14 +224,26 @@ $(document).ready(function(){
 
 
 <script>
+var validForm = false
 jQuery(document).ready(function(){
-    jQuery("#save_trainer").validate();
+    jQuery('#save_trainer').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        
+    }).on('success.form.fv', function(e) {
+        validForm = true;
+    });
 });
+
 
 jQuery( "#save_trainer" ).submit(function( event ) {
     event.preventDefault();
 
-    if(jQuery("#save_trainer").valid()) {
+    if(validForm) {
         //post ajax
         jQuery.post("<?php echo $save_trainer_url;?>", jQuery("#save_trainer").serialize(), function(result){
             jQuery("#company_person_form").modal('hide');
