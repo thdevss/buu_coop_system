@@ -44,7 +44,7 @@ class Job extends CI_Controller {
         $data['student'] = $this->Student->get_student($student_id)[0];
         $data['session_alert'] = '';
         if($data['student']['coop_status_id'] > 1) {
-            // $data['session_alert'] = '<div class="alert alert-warning">คุณทำการสมัครงานสหกิจแล้ว โปรดรอการตอบกลับขั้นตอนต่อไปค่ะ</div>';
+            $data['session_alert'] = '<div class="alert alert-warning">คุณทำการสมัครงานสหกิจแล้ว โปรดรอการตอบกลับขั้นตอนต่อไปค่ะ</div>';
         } else {
             
             if($this->form_validation->run() == FALSE) {
@@ -59,6 +59,7 @@ class Job extends CI_Controller {
                 $job_title = $this->input->post('job_title');
                 $jobs = $this->Job->search_job_by_company_and_position($this->input->post('company_id'), $job_title);
             }
+
     
             foreach($jobs as $row) {
                 $temp = array();
@@ -66,7 +67,7 @@ class Job extends CI_Controller {
                 
                 $temp['company'] = @$this->Company->get_company($row['company_id'])[0];
                 $temp['address_company'] = @$this->Address->get_address_by_company($row['company_id'])[0];
-    
+
                 if(
                     $temp['address_company'] &&
                     $temp['company']
