@@ -281,7 +281,7 @@ class Training extends CI_Controller {
         $data['training'] = $this->Training->get_training($training_id)[0];
         $data['training']['train_type'] = $this->Training->get_type($data['training']['train_type_id'])[0];
         $data['training']['train_location'] = $this->Training->get_location($data['training']['train_location_id'])[0];
-        $data['training']['note'] = thaiDate($data['training']['train_date'], true);
+        $data['training']['note'] = thaiDate($data['training']['train_start_date'], true);
         
         // add breadcrumbs
         $this->breadcrumbs->push('จัดการข้อมูลการอบรม', '/Officer/Training/index');

@@ -80,7 +80,7 @@
                   <p>เวลาทำงาน: <?php echo $row['company']['company_start_time'];?>-<?php echo $row['company']['company_end_time'];?></p>
                   <p>พื้นที่: <?php echo $row['address_company']['company_address_province'];?></p>
                   <?php if($row['company']['company_website']) : ?>
-                  <p>เว็ปไซต์: <a href="<?php echo $row['company']['company_website'];?>"><?php echo $row['company']['company_website'];?></a> </p>
+                  <p>เว็บไซต์: <a href="<?php echo $row['company']['company_website'];?>"><?php echo $row['company']['company_website'];?></a> </p>
                   <?php endif; ?>
                   <?php echo anchor('Student/Job/register_form_company/'.$row['company']['company_id'].'/'.$row['company_job_position']['job_id'], '<i class="icon-pencil"></i> กรอกใบสมัคร', 'class="btn btn-success btn-lg"');?> 
                 </div>
