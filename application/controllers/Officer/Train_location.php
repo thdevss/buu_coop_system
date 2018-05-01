@@ -27,13 +27,13 @@ class Train_location extends CI_Controller {
         }
         if($status == 'success_delete' ){
             $data['status']['color'] = 'success';
-            $data['status']['text'] = 'ทำการลบเรียบร้อย';
+            $data['status']['text'] = 'ทำการลบสำเร็จ';
         } else if($status == 'success_add' ){
             $data['status']['color'] = 'success';
-            $data['status']['text'] = 'เพิ่มเรียบร้อย';
+            $data['status']['text'] = 'เพิ่มสำเร็จ';
         } else if($status == 'success_edit' ){
             $data['status']['color'] = 'success';
-            $data['status']['text'] = 'แก้ไขเรียบร้อย';
+            $data['status']['text'] = 'แก้ไขสำเร็จ';
         }  else if($status == 'error_delete' ){
             $data['status']['color'] = 'danger';
             $data['status']['text'] = 'ผิดพลาด โปรดตรวจสอบ';
