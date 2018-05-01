@@ -169,7 +169,7 @@ $(document).ready(function(){
                     <div class="form-group col-sm-4">
                         <label for="job_title_id">ตำแหน่ง</label><code>*</code>
                         <select class="form-control" id="job_title_id" name="job_title_id">
-                            <option>--กรุณาเลือก--</option>
+                            <option value="">--กรุณาเลือก--</option>
                             <?php foreach($job_title as $row) {?>
                                 <option value="<?php echo $row['job_title_id'];?>"><?php echo $row['job_title'];?></option>
                             <?php } ?>
