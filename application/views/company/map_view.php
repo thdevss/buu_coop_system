@@ -76,8 +76,8 @@
     }
 
     function initMap() {
-        <?php if($map['coop_student_latitude'] && $map['coop_student_longitude']) { ?>
-            genMap({lat: <?php echo $map['coop_student_latitude'];?>, lng: <?php echo $map['coop_student_longitude'];?>})
+        <?php if($map['company_address_latitude'] && $map['company_address_longitude']) { ?>
+            genMap({lat: <?php echo $map['company_address_latitude'];?>, lng: <?php echo $map['company_address_longitude'];?>})
         <?php } ?>
     }
 
