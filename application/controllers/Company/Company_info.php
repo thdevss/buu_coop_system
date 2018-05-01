@@ -121,6 +121,7 @@ class Company_info extends CI_controller
         {
             $this->load->library('form_validation');
             $this->form_validation->set_rules('radios','radios','numeric');
+            $this->form_validation->set_rules('contact_person_id','พนักงาน','trim|numeric');
             if($this->form_validation->run() == false) 
             {
                 $this->step2();
