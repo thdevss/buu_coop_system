@@ -68,7 +68,7 @@ class Job_list_position extends CI_Controller {
             
             $tmp_array['company_status_type'] = $cache['company_status_type'][$row['company_status_id']];
 
-            $company_type_Render = '<select onchange="change_company_type('.$row['student_id'].', this.value)">';
+            $company_type_Render = '<select name="company_status_type" onchange="change_company_type('.$row['student_id'].', this.value)">';
             foreach($cache['company_status_type'] as $key => $coop_type) {
                 if($key == $row['company_status_id']) {
                     $company_type_Render .= '<option value="'.$key.'" selected>'.$coop_type['company_status_name'].'</option>';
