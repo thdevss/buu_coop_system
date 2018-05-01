@@ -20,6 +20,8 @@
                     <div class="card-body">
 
                         <label for="name">หากมหาวิทยาลัย ฯ ประสงค์จะติดต่อประสานงานในรายละเอียดกับสถานประกอบการ / หน่วยงาน ขอให้</label>
+                        <?php echo form_error('contact_person_id', '<div class="invalid-feedback" style="display:block;">', '</div><br><br>'); ?>
+
 
                         <div class="row">
                             <div class="radio col-sm-6 ">
