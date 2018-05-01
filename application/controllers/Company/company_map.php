@@ -61,5 +61,27 @@ class Company_map extends CI_controller
         echo json_encode($arr);
     }
 
+    public function update()
+    {
+        // get
+        $student_id = $this->Login_session->check_login()->login_value;
+
+        $this->form_validation->set_rules('company_address_latitude', 'ละติจูด', 'required|decimal');
+        $this->form_validation->set_rules('company_address_longitude', 'ลองติจูด', 'required|decimal');
+
+        if ($this->form_validation->run() != FALSE) {
+            $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
+            $company_id = $tmp['company_id'];
+            // update
+            $array['company_address_latitude'] = $this->input->post('company_address_latitude');
+            $array['company_address_longitude'] = $this->input->post('company_address_longitude');
+            $this->Address->update_address($company_id, $array);
+            redirect('Company/company_map/index/?status=success','refresh');
+        } else {
+            $this->index();
+        }
+        
+    }
+
 
 }
