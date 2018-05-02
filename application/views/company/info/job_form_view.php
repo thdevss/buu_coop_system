@@ -28,10 +28,10 @@
                                 <label for="job_title_id">ตำแหน่ง</label> <?php echo form_error('job_title_id'); ?><code>*</code>
                                 <select class="form-control" id="job_title_id" name="job_title_id">
 
-                                    <option disable> ------ </option>
+                                    <option>--กรุณาเลือก--</option>
                                     <?php 
                                     foreach($company_job_title as $row) {
-                                        if($company_job_position_by_id['job_title_id'] == $row['job_title_id']) {
+                                        if(form_value_db('job_title_id', $company_job_position_by_id['job_title_id']) == $row['job_title_id']) {
                                             echo '<option value="'.$row['job_title_id'].'" selected>'.$row['job_title'].'</option>';
                                         } else {
                                             echo '<option value="'.$row['job_title_id'].'">'.$row['job_title'].'</option>';    
@@ -49,7 +49,7 @@
                             
                             <div class="form-group col-sm-12">
                                 <label for="job_number_employee">จำนวน</label> <?php echo form_error('job_number_employee'); ?><code>*</code>
-                                <input type="number" min="1" class="form-control" id="job_number_employee" name="job_number_employee" value="<?php echo $company_job_position_by_id['job_number_employee'];?>">
+                                <input type="number" min="1" class="form-control" id="job_number_employee" name="job_number_employee" value="<?php echo form_value_db('job_number_employee', $company_job_position_by_id['job_number_employee']);?>">
                             </div>
 
                             <div class="col-sm-12"></div>
@@ -57,7 +57,7 @@
 
                             <div class="form-group col-sm-12">
                                 <label class="col-md-12 form-control-label" for="textarea-input">ลักษณะงานที่นิสิตต้องปฏิบัติงาน</label><?php echo form_error('job_description'); ?><code>*</code>
-                                <textarea id="textarea-input" name="job_description" rows="9" class="form-control"><?php echo $company_job_position_by_id['job_description'];?></textarea>
+                                <textarea id="textarea-input" name="job_description" rows="9" class="form-control"><?php echo form_value_db('job_description', $company_job_position_by_id['job_description']);?></textarea>
                             </div>
 
                             <div class="col-sm-12"></div>

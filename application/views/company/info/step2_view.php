@@ -19,37 +19,62 @@
                     </div>
                     <div class="card-body">
 
+                        <div class="row" id="headoffice_person_frm">
+                            <div class="col-md-12">
+                                <label for="name">หากมหาวิทยาลัย ฯ ประสงค์จะติดต่อประสานงานในรายละเอียดกับสถานประกอบการ / หน่วยงาน ขอให้</label>                            
+                            </div>
+                            <div class="col-md-10">
+                                <select name="headoffice_person_id" class="form-control trainer_lists">
+                                <option >Please select</option>
+                                    <?php foreach($company_employee as $row){ ?>
+                                        <option value="<?php echo $row['person_id'];?>" <?php if($row['person_id'] == $company['headoffice_person_id']) echo 'selected'; ?>><?php echo $row['person_fullname']."/".$row['person_position']."/".$row['person_department']."/".$row['person_telephone']."/".$row['person_fax_number']."/".$row['person_email'];?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+
+                            <div class="col-md-2">
+                                <a class="btn btn-primary btn-block" data-toggle="modal" data-target="#company_person_form"> + เพิ่มผู้จัดการ</a>
+                            </div>
+                     
+                        </div>
+
+                        <div style="height:20px;"></div>
+                        <hr>
+                        <div style="height:20px;"></div>
+                        
+
                         <label for="name">หากมหาวิทยาลัย ฯ ประสงค์จะติดต่อประสานงานในรายละเอียดกับสถานประกอบการ / หน่วยงาน ขอให้</label>
-                        <?php echo form_error('contact_person_id', '<div class="invalid-feedback" style="display:block;">', '</div><br><br>'); ?>
+
+                        
+                        
 
 
                         <div class="row">
-                            <div class="radio col-sm-6 ">
+                            <div class="radio col-sm-12 ">
                                 <label>
                                 <input type="radio" id="hide" name="radios" value="0">
                                 </label>
                                 <label for="hide">
-                                    ติดต่อโดยตรงกับผู้จัดการ / หัวหน้าหน่วยงาน<code>*</code>
+                                    ติดต่อโดยตรงกับผู้จัดการ / หัวหน้าหน่วยงาน <?php echo form_error('headoffice_person_id'); ?><code>*</code>
                                 </label>
                             </div>
-
                         </div>
 
                         <div class="row">
-                            <div class="radio col-sm-6 ">
+                            <div class="radio col-sm-12 ">
                                 <label>
                                 <input type="radio" id="show" name="radios" value="1">
                                 </label>
                                 <label for="show">
-                                ติดต่อกับบุคคลที่ สถานประกอบการ / หน่วยงาน มอบหมายต่อไปนี้<code>*</code>
+                                ติดต่อกับบุคคลที่ สถานประกอบการ / หน่วยงาน มอบหมายต่อไปนี้ <?php echo form_error('contact_person_id'); ?><code>*</code>
                                 </label>
                             </div>
 
                         </div>
 
-                        <div class="row" id="show_select" style="display:none;">
+                        <div class="row" id="contact_person_frm" style="display:none;">
                             <div class="col-md-10">
-                                <select id="trainer_lists" name="contact_person_id" class="form-control">
+                                <select name="contact_person_id" class="form-control trainer_lists">
                                 <option >Please select</option>
                                     <?php foreach($company_employee as $row){ ?>
                                         <option value="<?php echo $row['person_id'];?>" <?php if($row['person_id'] == $company['contact_person_id']) echo 'selected'; ?>><?php echo $row['person_fullname']."/".$row['person_position']."/".$row['person_department']."/".$row['person_telephone']."/".$row['person_fax_number']."/".$row['person_email'];?></option>
@@ -141,17 +166,18 @@ $(document).ready(function(){
 
     <?php if($contact_select_box == 1) : ?>
         jQuery("#show").attr("checked", true);
-        jQuery("#show_select").show();
+        jQuery("#contact_person_frm").show();
     <?php ; else : ?>
         jQuery("#hide").attr("checked", true);
     <?php endif; ?>
 
     jQuery("#show").click(function(){
-        jQuery("#show_select").show();
+        jQuery("#contact_person_frm").show();
+        
     });
 
     jQuery("#hide").click(function(){
-        jQuery("#show_select").hide();
+        jQuery("#contact_person_frm").hide();
     });
 });
 </script>
@@ -249,7 +275,7 @@ jQuery( "#save_trainer" ).submit(function( event ) {
             jQuery("#company_person_form").modal('hide');
 
             if(result.status) {
-                jQuery('#trainer_lists').append($('<option>', {
+                jQuery('.trainer_lists').append($('<option>', {
                     selected: true,
                     value: result.last_id,
                     text: jQuery("#save_trainer input[name=person_fullname]").val()+' (อีเมล: '+jQuery("#save_trainer input[name=person_email]").val()+') (เบอร์โทรศัพท์: '+jQuery("#save_trainer input[name=person_telephone]").val()+')'
