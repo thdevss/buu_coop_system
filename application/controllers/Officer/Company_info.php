@@ -113,6 +113,7 @@ class Company_info extends CI_controller
             $this->form_validation->set_rules('radios','radios','trim|numeric');
             $this->form_validation->set_rules('company_id','Company ID','trim|required');
             $this->form_validation->set_rules('contact_person_id','พนักงาน','trim|numeric');
+            $this->form_validation->set_rules('headoffice_person_id','ผู้จัดการ','trim|numeric');
             
             if($this->form_validation->run() == false) 
             {
@@ -120,12 +121,22 @@ class Company_info extends CI_controller
             }
             else
             {
+                if($this->input->post('radios') == "0") {
+                    // headoffice == contact
+                    $array_company['contact_person_id'] = $this->input->post('headoffice_person_id');
+                    $array_company['headoffice_person_id'] = $this->input->post('headoffice_person_id');
+                } else {
+                    // headoffice != contact
+                    $array_company['contact_person_id'] = $this->input->post('contact_person_id');
+                    $array_company['headoffice_person_id'] = $this->input->post('headoffice_person_id');
 
+                }
                 $tmp['company_id'] = $this->input->post('company_id');
                 $data['company'] = $this->Company->get_company($tmp['company_id'])[0];
                 // update company_contact_person_id 
                 $company_id = $data['company']['company_id'];
-                $array_company['contact_person_id'] = $this->input->post('contact_person_id');
+                
+                
                 // update on table
                 $this->Company->update_company($company_id, $array_company);
 

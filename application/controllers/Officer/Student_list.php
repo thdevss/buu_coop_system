@@ -110,13 +110,16 @@ class Student_list extends CI_Controller {
                         $this->Coop_Student->delete_coop_student($student_id);
                     }
 
-                    if($coop_status_type['coop_status_change_coop_student'] == 1) {
+                    if($coop_status_type['coop_status_change_coop_student'] == "1") {
                         //get company job position tbl
                         $job = $this->Student->get_latest_register_job($student_id);
                         // print_r($job);
                         if(count($job) < 1) {
                             continue;
                         }
+
+                        //update job register
+                        $this->Job->update_student($student_id, array( 'company_status_id' => 5 ));
                         
                         $job = $job[0];
                         $student = $this->Student->get_student($student_id)[0];
