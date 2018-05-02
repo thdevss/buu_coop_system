@@ -103,11 +103,12 @@
                 data: [
                     <?php 
                     foreach($report['company'] as $row) {
-                        if($row['total_student'] > 0) {
-                            echo $row['total_student'].",";                            
-                        } else {
-                            echo rand(1,5).",";
-                        }
+                        echo $row['total_student'].",";                            
+                        // if($row['total_student'] > 0) {
+                        //     echo $row['total_student'].",";                            
+                        // } else {
+                        //     // echo rand(1,5).",";
+                        // }
                     }
                     ?>
                 ]
