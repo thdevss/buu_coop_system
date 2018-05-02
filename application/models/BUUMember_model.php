@@ -14,12 +14,18 @@ class BUUMember_model extends CI_Model
             $data['login_value'] = 'kamonwans';
         } else if(strpos($username, "est")) {
             $username = str_replace("test", "", $username);
+            $data['fullname'] = $username;
+        
+            $data['login_value'] = $username;
+            if($this->Coop_Student->get_coop_student($username)) {
+                $data['login_type'] = 'coop_student';
+            } else {
+                $data['login_type'] = 'student';
+                $this->insert_new_student($data['login_value']);
+            }
             // if(is_numeric($username)) {
                 // for debug
-                $data['fullname'] = $username;
-                $data['login_type'] = 'student';
-                $data['login_value'] = $username;
-                $this->insert_new_student($data['login_value']);
+                
             // }
         }  
 

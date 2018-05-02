@@ -196,7 +196,7 @@ class Trainer extends CI_Controller {
          // add breadcrumbs
          $this->breadcrumbs->push('จัดการข้อมูลสถานประกอบการ', '/Officer/Company/index');
          $this->breadcrumbs->push('เจ้าหน้าที่ในบริษัท', '/Officer/Trainer/lists/'.$trainer_id);
-         $this->breadcrumbs->push('เเก้ไขข้อมูลเจ้าหน้าที่', '/');
+         $this->breadcrumbs->push('แก้ไขข้อมูลเจ้าหน้าที่', '/');
 
          $this->template->view('Officer/Edit_person_trainer_view',$data);
     }

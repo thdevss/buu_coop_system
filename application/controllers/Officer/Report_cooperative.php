@@ -49,6 +49,7 @@ class Report_cooperative extends CI_Controller {
 
     private function get_stat_all()
     {
+        
         //cache
         $cache = array();
         $cache['company'] = $this->Company->gets_company();
@@ -65,10 +66,14 @@ class Report_cooperative extends CI_Controller {
                 $tmpc = array();
                 $tmpc['company_name'] = $company['company_name_th'];
                 $tmpc['total_student'] = count($this->Coop_Student->gets_coop_student_by_department_company($department['department_id'], $company['company_id']));
+                // for($i=0;$i<15;$i++) {
                 array_push($tmp['company'], $tmpc);
+                // }
             }
             array_push($data['department'], $tmp);
         }
+
+        
         return $data['department'];
     }
 
