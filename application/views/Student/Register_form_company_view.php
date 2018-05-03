@@ -232,7 +232,7 @@
 
                       <div class="form-group col-sm-3">
                         <label for="name">เกรดเฉลี่ยภาคการศึกษาที่ผ่านมา</label> <?php echo form_error('GPA'); ?><code>*</code>
-                        <input type="text" class="form-control" id="" value="<?php echo set_value('GPA');?>">
+                        <input type="text" class="form-control" id="" name="GPA" value="<?php echo set_value('GPA');?>">
                       </div>
 
                       <div class="form-group col-sm-3">

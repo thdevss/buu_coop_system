@@ -127,6 +127,7 @@ class Job extends CI_Controller {
         $this->form_validation->set_rules('telephone', 'โทร', 'trim|required');
         $this->form_validation->set_rules('height', 'ส่วนสูง cm', 'trim|required');
         $this->form_validation->set_rules('weight', 'น้ำหนัก kg', 'trim|required');
+        $this->form_validation->set_rules('GPA', 'GPA', 'trim|required');
 
         $this->form_validation->set_rules('language_lang[]', 'ภาษา', 'trim|required');
         
@@ -143,7 +144,7 @@ class Job extends CI_Controller {
             // input ข้อมูลส่วนตัวนิสิต
             $height = $this->input->post('height');
             $weight = $this->input->post('weight');
-        
+            $gpa = $this->input->post('GPA');
 
             // get form model
 
@@ -212,7 +213,7 @@ class Job extends CI_Controller {
                 // input form
                 "Level" => get_student_level_from_entry_year($data['student_profile']['Entry_Years']), //ชั้นปี
                 
-                "GPA" => "128", //เกรดเฉลี่ยภาคที่ผ่านมา
+                "GPA" => $gpa, //เกรดเฉลี่ยภาคที่ผ่านมา
                 "GPAX" => $data['student_profile']['GPAX'], //เกรดเฉลี่ยรวม
                 "Address_Number" => $data['student_profile']['Address_Number'], //ที่อยู่ที่ติดต่อได้ เลขที่
                 "Address_Moo" => $data['student_profile']['Address_Moo'], //ที่อยู่ที่ติดต่อได้ หมู่
