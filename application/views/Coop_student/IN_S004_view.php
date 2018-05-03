@@ -61,7 +61,7 @@
                                 <?php if($company['headoffice_person_id'] == $company['contact_person_id']) { ?>
 
                                     <div class="form-check form-check-inline mr-2">
-                                      <input class="form-check-input" type="radio" id="" value="option1" name="inline-radios" checked disabled>
+                                      <input class="form-check-input" type="radio" value="option1" name="inline-radios" checked disabled>
                                       <label class="form-check-label" for="inline-radio1">ติดต่อกับผู้จัดการโดยตรง</label>
                                     </div>
                                     <br>
@@ -73,12 +73,12 @@
                                <?php } else { ?>
 
                                     <div class="form-check form-check-inline mr-1">
-                                    &nbsp;&nbsp;&nbsp;<input class="form-check-input" type="radio" id="" value="option1" name="inline-radios" disabled>
+                                    &nbsp;&nbsp;&nbsp;<input class="form-check-input" type="radio" value="option1" name="inline-radios" disabled>
                                       <label class="form-check-label" for="inline-radio1">ติดต่อกับผู้จัดการโดยตรง</label>
                                     </div>
                                     <br>
                                     <div class="form-check form-check-inline mr-1">
-                                    &nbsp;&nbsp;&nbsp;<input class="form-check-input" type="radio" id="" value="option2" name="inline-radios" checked disabled>
+                                    &nbsp;&nbsp;&nbsp;<input class="form-check-input" type="radio" value="option2" name="inline-radios" checked disabled>
                                     <label class="form-check-label" for="inline-radio2">มอบหมายให้บุคคลต่อไปนี้ประสานงานแทน</label>
                                     </div>
 
@@ -91,38 +91,38 @@
                         <div class="row" >
                             <div class="form-group col-sm-6">
                                 <label>ชื่อ-นามสกุล</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['person_fullname']; ?>" required disabled >                          
+                                <input type="text" class="form-control" name="" value="<?php echo $contact_person['person_fullname']; ?>" required disabled >                          
                             </div>
 
                             <div class="form-group col-sm-4">
                                 <label>ตำแหน่ง(เลือก)</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['person_position']; ?>" required disabled >                          
+                                <input type="text" class="form-control" name="" value="<?php echo $contact_person['person_position']; ?>" required disabled >                          
                             </div>
 
                             <div class="form-group col-sm-4">
                                 <label>แผนก(เลือก)</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['person_department']; ?>" required disabled >                          
+                                <input type="text" class="form-control" name="" value="<?php echo $contact_person['person_department']; ?>" required disabled >                          
                             </div>
 
                             <div class="form-group col-sm-4">
                                <label>โทรศัพท์ </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['person_telephone']; ?>" required disabled >                                                     
+                               <input type="text" class="form-control" name="" value="<?php echo $contact_person['person_telephone']; ?>" required disabled >                                                     
                             </div>
 
                             <div class="form-group col-sm-4">
                                <label>โทรสาร</label>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['person_fax_number']; ?>" required disabled >                                   
+                               <input type="text" class="form-control" name="" value="<?php echo $contact_person['person_fax_number']; ?>" required disabled >                                   
                             </div>
 
                             <div class="form-group col-sm-8">
                                <label>E-mail</label><code></code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $contact_person['person_email']; ?>" required disabled >                                   
+                               <input type="text" class="form-control" name="" value="<?php echo $contact_person['person_email']; ?>" required disabled >                                   
                             </div>
                         </div>
                     <?php } ?>
 
                     <!-- ข้อ 2 -->
-                    <label for="name"><b>๒.	ผู้นิเทศงาน </b></label><code>*</code>
+                    <label for="name"><b>๒.	ผู้นิเทศงาน </b></label> <?php echo form_error('trainer_id'); ?><code>*</code>
                         <div class="row">
                             <div class="form-group col-sm-10">
                                 <select class="form-control" name="trainer_id" id="trainer_lists">
@@ -151,27 +151,27 @@
                         <div class="row">
                             <div class="form-group col-sm-6">
                                <label>ชื่อ – นามสกุล (นิสิต)</label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $student_name['student_fullname']; ?>" required disabled >                          
+                               <input type="text" class="form-control" name="" value="<?php echo $student_name['student_fullname']; ?>" required disabled >                          
                             </div>
                             <div class="form-group col-sm-6">
                                <label>รหัสประจำตัว  (นิสิต)</label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $student_name['student_id']; ?>" required disabled >                          
+                               <input type="text" class="form-control" name="" value="<?php echo $student_name['student_id']; ?>" required disabled >                          
                             </div>                         
                             <div class="form-group col-sm-5">
                                 <label>สาขาวิชา</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" value="<?php echo $student_department['department_name']; ?>" required disabled >                                                                
+                                <input type="text" class="form-control" name="" value="<?php echo $student_department['department_name']; ?>" required disabled >                                                                
                             </div>
                             <div class="form-group col-sm-5">
                                 <label>คณะ</label><code>*</code>
-                                <input type="text" class="form-control" id="" name="" value="-" required disabled >                                                                    
+                                <input type="text" class="form-control" name="" value="-" required disabled >                                                                    
                             </div>
                             <div class="form-group col-sm-8">
                                <label>ตำแหน่งงานที่นักศึกษาปฏิบัติ (Job Position) </label><code>*</code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $company_job_position['job_title']; ?>" required disabled >                                                     
+                               <input type="text" class="form-control" name="" value="<?php echo $company_job_position['job_title']; ?>" required disabled >                                                     
                             </div>
                             <div class="form-group col-sm-8">
                                <label>ลักษณะงานที่นักศึกษาปฏิบัติ (Job Description)</label><code></code>
-                               <input type="text" class="form-control" id="" name="" value="<?php echo $company_job_position['job_description']; ?>" required disabled >                                   
+                               <input type="text" class="form-control" name="" value="<?php echo $company_job_position['job_description']; ?>" required disabled >                                   
                             </div>
                         </div>
                     <!-- ปิดข้อ 3 -->
@@ -180,47 +180,47 @@
                     <div class="row">
                           <div class="form-group col-sm-8">
                                <label>ชื่อหอพัก/อพาร์ทเมนท์ </label> <?php echo form_error('dorm_name'); ?><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_name" value="<?php echo form_value_db('dorm_name', @$coop_student_dorm['dorm_name']); ?>">                          
+                               <input type="text" class="form-control" name="dorm_name" value="<?php echo form_value_db('dorm_name', @$coop_student_dorm['dorm_name']); ?>">                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>ห้อง</label> <?php echo form_error('dorm_room'); ?><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_room" value="<?php echo form_value_db('dorm_room', @$coop_student_dorm['dorm_room']); ?>">                          
+                               <input type="text" class="form-control" name="dorm_room" value="<?php echo form_value_db('dorm_room', @$coop_student_dorm['dorm_room']); ?>">                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>เลขที่ </label> <?php echo form_error('dorm_number'); ?><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_number" value="<?php echo form_value_db('dorm_number', @$coop_student_dorm['dorm_address_number']); ?>">                          
+                               <input type="text" class="form-control" name="dorm_number" value="<?php echo form_value_db('dorm_number', @$coop_student_dorm['dorm_address_number']); ?>">                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>ซอย </label> <?php echo form_error('dorm_alley'); ?><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_alley" value="<?php echo form_value_db('dorm_alley', @$coop_student_dorm['dorm_address_alley']) ; ?>">                          
+                               <input type="text" class="form-control" name="dorm_alley" value="<?php echo form_value_db('dorm_alley', @$coop_student_dorm['dorm_address_alley']) ; ?>">                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>ถนน </label> <?php echo form_error('dorm_road'); ?><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_road" value="<?php echo form_value_db('dorm_road', @$coop_student_dorm['dorm_address_road']); ?>">                          
+                               <input type="text" class="form-control" name="dorm_road" value="<?php echo form_value_db('dorm_road', @$coop_student_dorm['dorm_address_road']); ?>">                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>แขวง/ตำบล </label> <?php echo form_error('dorm_district'); ?><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_district" value="<?php echo form_value_db('dorm_district', @$coop_student_dorm['dorm_address_district']); ?>">                          
+                               <input type="text" class="form-control" name="dorm_district" value="<?php echo form_value_db('dorm_district', @$coop_student_dorm['dorm_address_district']); ?>">                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>เขต/อำเภอ </label> <?php echo form_error('dorm_area'); ?><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_area" value="<?php echo form_value_db('dorm_area', @$coop_student_dorm['dorm_address_area']); ?>">                          
+                               <input type="text" class="form-control" name="dorm_area" value="<?php echo form_value_db('dorm_area', @$coop_student_dorm['dorm_address_area']); ?>">                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>จังหวัด </label> <?php echo form_error('dorm_province'); ?><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_province" value="<?php echo form_value_db('dorm_province', @$coop_student_dorm['dorm_address_province']); ?>">                          
+                               <input type="text" class="form-control" name="dorm_province" value="<?php echo form_value_db('dorm_province', @$coop_student_dorm['dorm_address_province']); ?>">                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>รหัสไปรษณีย์</label> <?php echo form_error('dorm_postal_code'); ?><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_postal_code" value="<?php echo form_value_db('dorm_postal_code', @$coop_student_dorm['dorm_address_postal_code']); ?>">                          
+                               <input type="text" class="form-control" name="dorm_postal_code" value="<?php echo form_value_db('dorm_postal_code', @$coop_student_dorm['dorm_address_postal_code']); ?>">                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>โทรศัพท์</label> <?php echo form_error('dorm_telephone'); ?><code>*</code>
-                               <input type="text" class="form-control" id="" name="dorm_telephone" value="<?php echo form_value_db('dorm_telephone', @$coop_student_dorm['dorm_telephone']); ?>">                          
+                               <input type="text" class="form-control" name="dorm_telephone" value="<?php echo form_value_db('dorm_telephone', @$coop_student_dorm['dorm_telephone']); ?>">                          
                           </div>
                           <div class="form-group col-sm-4">
                                <label>โทรสาร</label> <?php echo form_error('dorm_fax_number'); ?>
-                               <input type="text" class="form-control" id="" name="dorm_fax_number" value="<?php echo form_value_db('dorm_fax_number', @$coop_student_dorm['dorm_fax_number']); ?>">                          
+                               <input type="text" class="form-control" name="dorm_fax_number" value="<?php echo form_value_db('dorm_fax_number', @$coop_student_dorm['dorm_fax_number']); ?>">                          
                           </div>                
                         </div>
                       <!-- ปิดข้อ 4 -->
