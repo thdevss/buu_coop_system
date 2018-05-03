@@ -151,21 +151,51 @@ class Company_info extends CI_controller
             
             
             $tmp['company_id'] = $company_id;
-            $data['company'] = $this->Company->get_company($tmp['company_id'])[0];
+            // $data['company'] = $this->Company->get_company($tmp['company_id'])[0];
 
-            $data['company_job'] = $this->Job->gets_job_by_company($tmp['company_id']);
-            $data['job_title'] = $this->Job->gets_job_title();
+            // $data['company_job'] = $this->Job->gets_job_by_company($tmp['company_id']);
+            // $data['job_title'] = $this->Job->gets_job_title();
+
             $data['form_url'] = site_url('officer/company_info/post_step3');
             $data['back_url'] = site_url('officer/company_info/step2/'.$company_id);
 
             $data['work_form_url'] = site_url('officer/company_info/');
 
-            $this->breadcrumbs->push('ตำแหน่งงาน', '/Officer/company_info/step2/'.$company_id);
+            $data['departments'] = $this->Student->gets_department();
+
+            $this->breadcrumbs->push('ข้อตกลง, สวัสดิการที่เสนอให้นิสิตในระหว่างปฏิบัติงาน', '/Officer/company_info/step2/'.$company_id);
             
             $this->template->view('Company/info/step3_view', $data);
         }
 
         public function post_step3()
+        {
+            echo "<script>alert('ok')</script>";
+            redirect('officer/company/', 'refresh');
+        }
+
+        //==================================================================//
+
+        public function step4($company_id)
+        {
+            
+            
+            $tmp['company_id'] = $company_id;
+            $data['company'] = $this->Company->get_company($tmp['company_id'])[0];
+
+            $data['company_job'] = $this->Job->gets_job_by_company($tmp['company_id']);
+            $data['job_title'] = $this->Job->gets_job_title();
+            $data['form_url'] = site_url('officer/company_info/post_step4');
+            $data['back_url'] = site_url('officer/company_info/step3/'.$company_id);
+
+            $data['work_form_url'] = site_url('officer/company_info/');
+
+            $this->breadcrumbs->push('ตำแหน่งงาน', '/Officer/company_info/step2/'.$company_id);
+            
+            $this->template->view('Company/info/step4_view', $data);
+        }
+
+        public function post_step4()
         {
             echo "<script>alert('ok')</script>";
             redirect('officer/company/', 'refresh');
