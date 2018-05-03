@@ -17,7 +17,6 @@ class Company_model extends CI_model {
     {
         $this->db->where('company_id',$company_id);
         return $this->db->update('tb_company',$array);
-
     }
 
     public function gets_company()
@@ -47,6 +46,40 @@ class Company_model extends CI_model {
     {
         $this->db->where('company_status_id !=', 5);        
         $this->db->from('tb_company_status');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function update_benefit($company_id, $array)
+    {
+        $array['company_id'] = $company_id;
+        return $this->db->replace('tb_company_benefit',$array);
+    }
+
+    public function get_benefit($company_id)
+    {
+        $this->db->where('company_id', $company_id);
+        $this->db->from('tb_company_benefit');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function update_company_has_department($company_id, $department_id) 
+    {
+        $term_id = $this->Term->get_current_term()[0]['term_id'];
+        return $this->db->replace('tb_company_has_department', [
+            'company_id' => $company_id,
+            'department_id' => $department_id,
+            'term_id' => $term_id
+        ]);
+    }
+
+    public function get_company_has_department($company_id)
+    {
+        $term_id = $this->Term->get_current_term()[0]['term_id'];
+        $this->db->where('term_id', $term_id);
+        $this->db->where('company_id', $company_id);
+        $this->db->from('tb_company_has_department');
         $query = $this->db->get();
         return $query->result_array();
     }

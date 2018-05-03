@@ -38,7 +38,11 @@ class Company_info extends CI_controller
         //add breadcrumbs
             // $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
             $this->breadcrumbs->push('รายละเอียดเกี่ยวกับสถานประกอบการ / หน่วยงาน ', '/Company/company_info/step1');
-            $this->template->view('Company/info/step1_view', $data);
+
+            $arr_css = [
+                base_url('assets/css/company_info_step.css')
+            ];
+            $this->template->view('Company/info/step1_view', $data, [] ,$arr_css);
         }
 
         public function post_step1()
@@ -114,7 +118,10 @@ class Company_info extends CI_controller
 
             $this->breadcrumbs->push('ชื่อผู้จัดการสถานประกอบการ/หัวหน้าหน่วยงาน', '/Officer/company_info/step2/'.$company_id);
 
-            $this->template->view('Company/info/step2_view', $data);
+            $arr_css = [
+                base_url('assets/css/company_info_step.css')
+            ];
+            $this->template->view('Company/info/step2_view', $data, [], $arr_css);
         }
 
         public function post_step2()
@@ -143,7 +150,115 @@ class Company_info extends CI_controller
 
         //==================================================================//
 
-        public function step3() 
+        public function step3()
+        {
+            
+            $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
+            $company_id = $tmp['company_id'];
+            $data['company'] = $this->Company->get_company($company_id)[0];
+
+            $data['form_url'] = site_url('company/company_info/post_step3');
+            $data['back_url'] = site_url('company/company_info/step2/');
+
+            $data['work_form_url'] = site_url('company/company_info/');
+            $data['company_has_department'] = [];
+            foreach($this->Company->get_company_has_department($company_id) as $department) {
+                $data['company_has_department'][] = $department['department_id'];
+            }
+            $data['company']['company_start_month_work'] = explode(",", $data['company']['company_start_month_work']);
+            $data['company']['company_end_month_work'] = explode(",", $data['company']['company_end_month_work']);
+            
+            $data['company_work_month'] = [];
+            foreach($data['company']['company_start_month_work'] as $i => $start_month_work) {
+                $data['company_work_month'][] = $start_month_work."|".$data['company']['company_end_month_work'][$i];
+            }
+
+            $data['company_benefit'] = @$this->Company->get_benefit($company_id)[0];
+
+            $data['departments'] = $this->Student->gets_department();
+
+            $this->breadcrumbs->push('ข้อตกลง, สวัสดิการที่เสนอให้นิสิตในระหว่างปฏิบัติงาน', '/company/company_info/step2/'.$company_id);
+            
+            $arr_css = [
+                base_url('assets/css/company_info_step.css')
+            ];
+
+            $this->template->view('Company/info/step3_view', $data, [], $arr_css);
+        }
+
+        public function post_step3()
+        {
+            $this->form_validation->set_rules('company_has_department[]', 'สาขาวิชา', 'trim|required|numeric');
+            $this->form_validation->set_rules('company_work_month[]', 'ระยะเวลา', 'trim|required');
+
+            
+            $this->form_validation->set_rules('company_id', 'IDสถานประกอบการ', 'trim|required|numeric');
+            $this->form_validation->set_rules('company_start_time', 'เวลาเริ่มงาน', 'trim|required');
+            $this->form_validation->set_rules('company_end_time', 'เวลาเลิกงาน', 'trim|required');
+            $this->form_validation->set_rules('company_work_day', 'จำนวนวันทำงาน', 'trim|required|numeric');
+            $this->form_validation->set_rules('company_agreement', 'ข้อกำหนดอื่น ๆ', 'trim');
+
+            $this->form_validation->set_rules('benefit_wage', 'ค่าตอบแทน', 'trim|required|in_list[0,1]');
+            $this->form_validation->set_rules('benefit_dorm', 'ที่พัก', 'trim|required|in_list[0,1]');
+            $this->form_validation->set_rules('benefit_shuttlebus', 'รถรับส่ง', 'trim|required|in_list[0,1]');
+            $this->form_validation->set_rules('benefit_wage_period', 'จำนวนค่าตอบแทน', 'trim');
+            $this->form_validation->set_rules('benefit_dorm_period', 'ค่าใช้จ่ายที่พัก', 'trim');
+            $this->form_validation->set_rules('benefit_shuttlebus_period', 'ค่าใช้จ่ายรถรับส่ง', 'trim');
+            $this->form_validation->set_rules('benefit_other', 'สวัสดิการอื่น ๆ ', 'trim');
+            
+            $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
+            $company_id = $tmp['company_id'];
+            if ($this->form_validation->run() == FALSE){
+                $this->step3();
+            } else {
+                foreach($this->input->post('company_has_department[]') as $department) {
+                    $this->Company->update_company_has_department($company_id, $department);
+                }
+                
+                $company_start_month_work = [];
+                $company_end_month_work = [];
+                
+                foreach($this->input->post('company_work_month[]') as $work_month) {
+                    $work_month = explode("|", $work_month);
+                    $company_start_month_work[] = $work_month[0];
+                    $company_end_month_work[] = $work_month[1];
+                    
+                }
+
+
+                $update_company = [
+                    'company_start_time' => $this->input->post('company_start_time'),
+                    'company_end_time' => $this->input->post('company_end_time'),
+                    'company_work_day' => $this->input->post('company_work_day'),
+                    'company_agreement' => $this->input->post('company_agreement'),
+                    'company_start_month_work' => implode(",", $company_start_month_work),
+                    'company_end_month_work' => implode(",", $company_end_month_work),
+                ];
+                $this->Company->update_company($company_id, $update_company);
+
+
+                $update_benefit = [
+                    'benefit_wage' => $this->input->post('benefit_wage'),
+                    'benefit_dorm' => $this->input->post('benefit_dorm'),
+                    'benefit_shuttlebus' => $this->input->post('benefit_shuttlebus'),
+                    'benefit_wage_period' => $this->input->post('benefit_wage_period'),
+                    'benefit_dorm_period' => $this->input->post('benefit_dorm_period'),
+                    'benefit_shuttlebus_period' => $this->input->post('benefit_shuttlebus_period'),
+                    'benefit_other' => $this->input->post('benefit_other'),
+                ];
+                $this->Company->update_benefit($company_id, $update_benefit);
+
+                redirect('company/company_info/step4/', 'refresh');                
+                
+            }
+            // echo "<script>alert('ok')</script>";
+            // redirect('officer/company/', 'refresh');
+            
+        }        
+
+        //==================================================================//
+
+        public function step4() 
         {
             $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
 
@@ -151,17 +266,19 @@ class Company_info extends CI_controller
             $company_id = $tmp['company_id'];
             $data['company_job'] = $this->Job->gets_job_by_company($tmp['company_id']);
             $data['job_title'] = $this->Job->gets_job_title();
-            $data['form_url'] = site_url('company/company_info/post_step3');
-            $data['back_url'] = site_url('company/company_info/step2');
+            $data['form_url'] = site_url('company/company_info/post_step4');
+            $data['back_url'] = site_url('company/company_info/step3');
 
             $data['work_form_url'] = site_url('company/company_info/');
-            $this->breadcrumbs->push('ตำแหน่งงาน', '/Officer/company_info/step2/'.$company_id);
+            $this->breadcrumbs->push('ตำแหน่งงาน', '/Officer/company_info/step3/'.$company_id);
 
-            
-            $this->template->view('Company/info/step3_view', $data);
+            $arr_css = [
+                base_url('assets/css/company_info_step.css')
+            ];
+            $this->template->view('Company/info/step4_view', $data, [], $arr_css);
         }
 
-        public function post_step3()
+        public function post_step4()
         {
             echo "<script>alert('ok')</script>";
             redirect('company/company_info/step1', 'refresh');
