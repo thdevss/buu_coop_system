@@ -16,7 +16,7 @@
                             if($status){
                             echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
                             }
-                            if(!$map['coop_student_latitude'] && !$map['coop_student_longitude']) {
+                            if(!$map['company_address_latitude'] && !$map['company_address_longitude']) {
                                 echo '<div class="alert alert-warning">โปรดระบุพิกัดที่ทำงาน</div>';
 
                             }

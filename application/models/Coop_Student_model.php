@@ -5,6 +5,8 @@ class Coop_Student_model extends CI_model {
     var $job_id;
     var $term_id;
     var $coop_status;
+
+
     
     public function insert_coop_student($array)
     {
@@ -26,11 +28,12 @@ class Coop_Student_model extends CI_model {
 
     public function gets_coop_student()
     {
+        
         $term_id = $this->Term->get_current_term()[0]['term_id'];
 
         $this->db->where('term_id', $term_id);
         $this->db->from('tb_coop_student');
-        $query = $this->db->get();
+        $query = $this->db->get();        
         return $query->result_array();
     }
     

@@ -1,12 +1,25 @@
 <?php
 class Login_session_model extends CI_model 
 {
-    public function set($login_value, $login_type) 
+    public function __construct()
+    {
+        parent::__construct();
+        if($this->check_login()) {
+            $this->db->query("SET @USERNAME = '".$this->check_login()->user_fullname."'");
+        }
+    }
+    
+    public function set($login_value, $login_type, $fullname) 
     {
         $insert['login_value'] = $login_value;
         $insert['login_type'] = $login_type;
         $insert['datetime'] = date('Y-m-d H:i:s');
         $insert['unique_id'] = substr(uniqid(), 0, 20);
+
+        $insert['user_fullname'] = $fullname;
+        if(!$insert['user_fullname']) {
+            $insert['user_fullname'] = $login_value;
+        }
         
         $term = @$this->Term->get_current_term()[0];
         $insert['term_id'] = $term['term_id'];

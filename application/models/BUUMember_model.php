@@ -8,10 +8,12 @@ class BUUMember_model extends CI_Model
             $data['fullname'] = 'Nutthanon';
             $data['login_type'] = 'adviser';
             $data['login_value'] = 'nutthanon';
+
         } else if($username == 'pnut') {
             $data['fullname'] = 'Kamonwan';
             $data['login_type'] = 'officer';
             $data['login_value'] = 'kamonwans';
+            $data['user_fullname'] = 'Kamonwan Sangrawee';
         } else if(strpos($username, "est")) {
             $username = str_replace("test", "", $username);
             $data['fullname'] = $username;
@@ -39,7 +41,6 @@ class BUUMember_model extends CI_Model
         $this->ldap->connect();
         if($this->ldap->authenticate('' , $username, $password)) {
             $userdata = $this->ldap->get_data($username,$password);
-            // print_r($userdata);
             if($userdata['ou'] == 'students') {
                 //coop student and student
                 $data['fullname'] = $userdata['fname'].' '.$userdata['lname'];                
@@ -52,23 +53,29 @@ class BUUMember_model extends CI_Model
                     $data['login_type'] = 'student';                    
                 }
                 $data['login_value'] = $userdata['code'];
+
+                // get thai name
+                $student = $this->Student->get_student($userdata['code']);
+                $data['user_fullname'] = $student['student_prefix'].$student['student_fullname'];
+                
             } else if($userdata['ou'] == 'staff') {
                 //teacher and officer
                 //check in teacher
-                $teacher = $this->Adviser->get_adviser($userdata['code']);                
-                if($teacher) {
+                $adviser = $this->Adviser->get_adviser($userdata['code']);                
+                if($adviser) {
                     $data['login_type'] = 'adviser';
-                    $data['login_value'] = $userdata['code'];                         
+                    $data['login_value'] = $userdata['code'];       
+                    $data['user_fullname'] = $adviser['adviser_fullname'];
                 } else {
                     $officer = $this->Officer->get_officer($userdata['code']);
                     if($officer) {
                         $data['login_type'] = 'officer';
-                        $data['login_value'] = $userdata['code'];                        
+                        $data['login_value'] = $userdata['code'];     
+                        $data['user_fullname'] = $officer['officer_fullname'];                   
                     }
                 }
             } else {
                 //test login, mockup function
-                echo $username;
                 return $this->xlogin($username, $password);
             }
         } else {
@@ -128,6 +135,7 @@ class BUUMember_model extends CI_Model
     {
         if(!$this->Student->get_student($student_code)) {
             // get current term
+            $this->db->query("SET @USERNAME = 'LDAP Login'");
             $term_id = $this->Term->get_current_term()[0]['term_id'];                        
 
             // get data from api

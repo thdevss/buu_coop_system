@@ -40,8 +40,9 @@ class Template {
 
         error_reporting(E_ALL ^ E_NOTICE); //close error hahaha
         $CI =& get_instance();
+
         
-        $login_data = $CI->Login_session->check_login();        
+        $login_data = $CI->Login_session->check_login();          
         $data['user'] = $login_data;
         $data['user_info'] = $CI->BUUMember->get($login_data->login_type, $login_data->login_value);
         if( count($data['user_info']) < 1 ) {
@@ -75,7 +76,7 @@ class Template {
         ) {
             $data['profile_image'] = 'http://reg.buu.ac.th/registrar/getstudentimage.asp?id='.$data['user']->login_value;
         } else {
-            $data['profile_image'] = 'http://via.placeholder.com/150x150/000/fff?text='.$data['user_info']['fullname'][0];
+            $data['profile_image'] = 'http://via.placeholder.com/150x150/000/fff?text='.strtoupper($data['user']->login_value[0]);
         }
 
         $CI->load->view('template/header.php', $data);

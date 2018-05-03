@@ -47,7 +47,6 @@
                                 <th>ลำดับ</th>
                                 <th>ประเภท</th>
                                 <th>หัวข้อย่อยการประเมิน</th>
-                                <th>รายละเอียด</th>
                                 <th></th>
                               </tr>
                             </thead>
@@ -58,7 +57,6 @@
                                 <td><?php echo $row['coop_company_questionnaire_item_number'];?></td>
                                 <td><?php echo $row['coop_company_questionnaire_item_type'];?></td>
                                 <td><?php echo $row['coop_company_questionnaire_item_title'];?></td>
-                                <td><?php echo $row['coop_company_questionnaire_item_description'];?></td>
                                 <td>
                                   <a href="#" data-itemid="<?php echo $row['coop_company_questionnaire_item_id'];?>" class="btn btn-info editBtn"><i class="icon-pencil"></i> แก้ไข</a>
                                   <a href="<?php echo site_url('officer/Assessment_company_Form/delete_company_questionnaire_item/'.$row['coop_company_questionnaire_item_id']);?>" class="btn btn-danger" onclick="return confirmDelete(this)"><i class="icon-trash"></i> ลบ</a>

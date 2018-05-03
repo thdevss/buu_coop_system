@@ -62,12 +62,12 @@ class Trainer_model extends CI_model {
 
     public function login($username, $password)
     {
-        $this->db->select('person_password');
+        $this->db->select('person_password, person_fullname');
         $this->db->where('person_username', $username);
         $this->db->from('tb_company_person');
         $query = $this->db->get();
-        $row = $query->result()[0];
-        if(password_verify($password, $row->person_password))
+        $row = $query->result_array()[0];
+        if(password_verify($password, $row['person_password']))
             return $row;
 
         return false;
