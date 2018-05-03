@@ -30,10 +30,8 @@ class Member extends CI_Controller {
         if(filter_var($username, FILTER_VALIDATE_EMAIL)) {
             //company login
             $member = $this->Trainer->login($username, $password);
-            // print_r($member);
-            // die();
             if($member) {
-                $session_ID = $this->Login_session->set($username, 'company');
+                $session_ID = $this->Login_session->set($username, 'company', $member['person_fullname']);
                 if($session_ID) {
                     redirect('company');                    
                 }
@@ -42,7 +40,7 @@ class Member extends CI_Controller {
             //ldap login
             $check_ldap = $this->BUUMember->login($username, $password);
             if($check_ldap) {
-                $session_ID = $this->Login_session->set($check_ldap['login_value'], $check_ldap['login_type']);
+                $session_ID = $this->Login_session->set($check_ldap['login_value'], $check_ldap['login_type'], $check_ldap['user_fullname']);
                 if($session_ID) {
                     $this->session->set_userdata('session_ID', $session_ID);
                     redirect($check_ldap['login_type']);                    

@@ -57,18 +57,28 @@ class Assessmentstudent extends CI_Controller {
     
             }
 
+            // $data['result'] = [];
+            // foreach($this->Coop_Student_Assessment_Form->get_coop_student_form_result($student_id) as $result) {
+            //     $data['result'][$result['item_id']] = $result['coop_student_has_coop_student_questionnaire_item_score'];
+            // }
+
             $data['result'] = [];
+            $data['sum_score'] = 0;
+            $data['total_score'] = 0;
+            
             foreach($this->Coop_Student_Assessment_Form->get_coop_student_form_result($student_id) as $result) {
                 $data['result'][$result['item_id']] = $result['coop_student_has_coop_student_questionnaire_item_score'];
+                $data['sum_score'] += (int) $result['coop_student_has_coop_student_questionnaire_item_score'];
+                $data['total_score']++;
             }
-
+            $data['total_score'] = $data['total_score']*5;
 
                 
-                // add breadcrumbs
-                $this->breadcrumbs->push('การประเมินผลการฝึกงานของนักศึกษา', '/Adviser/Assessmentstudent/index');
-                $this->breadcrumbs->push('แบบการประเมินผลการฝึกงานของนิสิตสหกิจ', '/Adviser/Assessmentstudent/form');
+            // add breadcrumbs
+            $this->breadcrumbs->push('การประเมินผลการฝึกงานของนักศึกษา', '/Adviser/Assessmentstudent/index');
+            $this->breadcrumbs->push('แบบการประเมินผลการฝึกงานของนิสิตสหกิจ', '/Adviser/Assessmentstudent/form');
 
-                $this->template->view('Adviser/Assessmentstudent_form_view', $data);
+            $this->template->view('Adviser/Assessmentstudent_form_view', $data);
         }
 
 }

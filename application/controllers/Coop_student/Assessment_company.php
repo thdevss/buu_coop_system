@@ -71,7 +71,13 @@ class Assessment_company extends CI_Controller {
 	public function save()
 	{
         $student_id = $this->Login_session->check_login()->login_value;            
-        $coop_student = $this->Coop_Student->get_coop_student($student_id)[0];
+		$coop_student = $this->Coop_Student->get_coop_student($student_id)[0];
+		
+		// check trainer id
+		if($coop_student['trainer_id'] < 1) {
+			redirect('/Coop_student/Assessment_company/form?status=error', 'refresh');;
+			die();			
+		}
 
 		$term_id = $this->Login_session->check_login()->term_id;
 		foreach($this->input->post('item') as $item_id => $result) {

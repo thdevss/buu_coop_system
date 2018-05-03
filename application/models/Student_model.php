@@ -42,6 +42,9 @@ class Student_model extends CI_model {
 
     public function gets_student_by_department($department_id)
     {
+        $term_id = $this->Term->get_current_term()[0]['term_id'];
+
+        $this->db->where('term_id', $term_id);
         $this->db->where('department_id', $deparment_id);
         $this->db->from('tb_student');
         $query = $this->db->get();
@@ -55,6 +58,8 @@ class Student_model extends CI_model {
 
     public function update_student($student_id, $array)
     {
+        $term_id = $this->Term->get_current_term()[0]['term_id'];
+        $this->db->where('term_id', $term_id);
         $this->db->where('student_id', $student_id);
         return $this->db->update('tb_student',$array);
 

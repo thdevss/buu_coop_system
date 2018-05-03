@@ -21,15 +21,16 @@
                             <div class="form-group col-md-12 offset-md-12">
                                 <label for="fullname">ประเภทโครงการ</label> <?php echo form_error('train_type'); ?>          
                                 <select class="form-control" type="text" class="form-control" name="train_type" id="train_type">
-                                <?php 
-                                foreach($train_type as $t) {
-                                    if(form_value_db('train_type', @$data['train_type_id']) == $t['train_type_id']) {
-                                        echo '<option value="'.$t['train_type_id'].'" selected>'.$t['train_type_name'].'</option>';
-                                    } else {
-                                        echo '<option value="'.$t['train_type_id'].'" >'.$t['train_type_name'].'</option>';                           
-                                    }
-                                } 
-                                ?>               
+                                    <option value="">--- please select ---</option>
+                                    <?php 
+                                    foreach($train_type as $t) {
+                                        if(form_value_db('train_type', @$data['train_type_id']) == $t['train_type_id']) {
+                                            echo '<option value="'.$t['train_type_id'].'" selected>'.$t['train_type_name'].'</option>';
+                                        } else {
+                                            echo '<option value="'.$t['train_type_id'].'" >'.$t['train_type_name'].'</option>';                           
+                                        }
+                                    } 
+                                    ?>               
                                 </select>
                             </div> 
                             <div class="col-md-12"></div>

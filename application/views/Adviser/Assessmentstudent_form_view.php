@@ -47,6 +47,29 @@
                       <?php } ?>
                     </tbody>
                   </table>
+
+
+                  <div class="row">
+                    <div class="col-lg-6 offset-lg-3">
+                      <table class="table table-bordered" style="font-size: 18px;">
+                        <thead>
+                          <tr>
+                            <th>คะแนนเต็ม</th>
+                            <th>คะแนนที่ได้</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td style="font-size: 32px;text-align:right;"><?php echo $total_score;?></td>
+                            <td style="font-size: 32px;text-align:right;color:<?php if($sum_score>49) echo 'green'; else echo 'red';?>;"><?php echo $sum_score;?></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+
+                  
                 </div>
               </div>
             </div>
