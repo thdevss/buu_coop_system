@@ -130,10 +130,10 @@
                                     <?php 
                                     foreach($company_persons as $person) { 
                                         $checked = '';
-                                        if($person['person_id'] == @$coop_student['trainer_id']) {
-                                            $checked = 'selected';
-                                        }
-                                        if(form_value_db('trainer_id') == $person['person_id']) {
+                                        // if($person['person_id'] == @$coop_student['trainer_id']) {
+                                        //     $checked = 'selected';
+                                        // }
+                                        if(form_value_db('trainer_id', @$coop_student['trainer_id']) == $person['person_id']) {
                                             $checked = 'selected';
                                         }
                                         echo '<option value="'.$person['person_id'].'" '.$checked.'>'.$person['person_fullname'].' (อีเมล: '.$person['person_email'].') (เบอร์โทรศัพท์: '.$person['person_telephone'].') </option>';
