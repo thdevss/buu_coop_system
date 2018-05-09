@@ -313,7 +313,7 @@ class Company_info extends CI_controller
 
                 $this->Job->insert_job($data);
                 $this->session->set_flashdata('form-alert', '<div class="alert alert-success">เพิ่มงานสำเร็จ</div>');
-                redirect('/officer/company_info/step3/'.$data['company_id'], 'refresh');
+                redirect('/officer/company_info/step4/'.$data['company_id'], 'refresh');
             }
             // return $this->step3($data['company_id']);
         }

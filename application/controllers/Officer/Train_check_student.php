@@ -132,7 +132,7 @@ class Train_check_student extends CI_Controller {
         //post student
         //insert
         $this->load->library('form_validation');        
-        $this->form_validation->set_rules('student_code', 'รหัสนิสิต', 'trim|required|numeric|min_length=8|max_length=14');
+        $this->form_validation->set_rules('student_code', 'รหัสนิสิต', 'trim|required|numeric');
         $this->form_validation->set_rules('train_set_check_id', 'train_set_check_id', 'trim|required');
 
         if ($this->form_validation->run() != FALSE) {
@@ -141,8 +141,9 @@ class Train_check_student extends CI_Controller {
 
             //check barcode
             if(strlen($student_code) > 8) {
-                $student_code = substr( substr($str, 5), 0, 8 );
+                $student_code = substr( substr($student_code, 5), 0, 8 );
             }
+            // echo $student_code;
 
             //check student
             $data['student'] = @$this->Student->get_student($student_code)[0];
@@ -157,12 +158,12 @@ class Train_check_student extends CI_Controller {
             }
 
             //check student_train_register
-            if(!@$this->Training->check_student_in_training($data['train_set_check']['train_id'], $this->input->post('student_code'))) {
+            if(!@$this->Training->check_student_in_training($data['train_set_check']['train_id'], $student_code)) {
                 $return['status'] = false;
             }
 
             //check train_check_student
-            if(@$this->Training_Check_Student->get_student_by_check($this->input->post('student_code'), $this->input->post('train_set_check_id'))) {
+            if(@$this->Training_Check_Student->get_student_by_check($student_code, $this->input->post('train_set_check_id'))) {
                 $return['status'] = false;
             }
 
@@ -173,7 +174,7 @@ class Train_check_student extends CI_Controller {
                 //insert
                 // $array['train_id'] = $data['train_set_check']->train_id;
                 $array['train_set_check_id'] = $this->input->post('train_set_check_id');                
-                $array['student_id'] = $this->input->post('student_code');
+                $array['student_id'] = $student_code;
                 $array['date_check'] = date('Y-m-d H:i:s');
                 // $array['term_id'] = $this->Login_session->check_login()->term_id;
                 
