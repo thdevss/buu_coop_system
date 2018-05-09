@@ -23,7 +23,14 @@ class Login_session_model extends CI_model
         
         $term = @$this->Term->get_current_term()[0];
         $insert['term_id'] = $term['term_id'];
-        $insert['term_name'] = $term['name'];
+        $insert['term_name'] = $term['term_name'];
+
+        if(is_numeric($login_value)) {
+            //get department
+            $data['student'] = $this->Student->get_student($login_value)[0];
+            $insert['department'] = $this->Student->get_department($data['student']['department_id'])[0];
+        }
+        
 
         // $this->db->insert('login_session', $insert);
         

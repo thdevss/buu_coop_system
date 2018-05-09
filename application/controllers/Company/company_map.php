@@ -22,10 +22,13 @@ class Company_map extends CI_controller
 
     public function index()
     {
-        $status = $this->input->get('status');
+        $status = $this->session->flashdata('status');
         if( $status == 'success'){
             $data['status']['color'] = 'success';            
             $data['status']['text'] = 'UPDATE สถานที่สำเร็จ';
+        } else if( $status == 'error'){
+            $data['status']['color'] = 'danger';            
+            $data['status']['text'] = 'UPDATE ผิดพลาด';
         }else {
             $data['status'] = '';
         }
@@ -41,21 +44,26 @@ class Company_map extends CI_controller
 
     public function ajax_post()
     {
-        $insert['company_address_latitude'] = $this->input->post('company_address_latitude');
-        $insert['company_address_longitude'] = $this->input->post('company_address_longitude');
-
-        $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
-        $company_id = $tmp['company_id'];
+        $this->form_validation->set_rules('company_address_latitude', 'ละติจูด', 'required|decimal');
+        $this->form_validation->set_rules('company_address_longitude', 'ลองติจูด', 'required|decimal');
 
         $arr = array(
             'status' => false,
             'txt' => 'err',            
         );
 
-        if($this->Address->update_address($company_id, $insert)) {
-            // echo $this->db->last_query();
-            $arr['status'] = true;
-            $arr['txt'] = 'ok';            
+        if ($this->form_validation->run() != FALSE) {
+            $insert['company_address_latitude'] = $this->input->post('company_address_latitude');
+            $insert['company_address_longitude'] = $this->input->post('company_address_longitude');
+
+            $tmp = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
+            $company_id = $tmp['company_id'];
+
+            if($this->Address->update_address($company_id, $insert)) {
+                // echo $this->db->last_query();
+                $arr['status'] = true;
+                $arr['txt'] = 'ok';            
+            }
         }
         
         echo json_encode($arr);
@@ -76,9 +84,11 @@ class Company_map extends CI_controller
             $array['company_address_latitude'] = $this->input->post('company_address_latitude');
             $array['company_address_longitude'] = $this->input->post('company_address_longitude');
             $this->Address->update_address($company_id, $array);
-            redirect('Company/company_map/index/?status=success','refresh');
+            $this->session->set_flashdata('status', 'success');
+            redirect('Company/company_map/index/','refresh');
         } else {
-            $this->index();
+            $this->session->set_flashdata('status', 'error');            
+            redirect('Company/company_map/index/','refresh');
         }
         
     }

@@ -23,12 +23,10 @@
 
         //subject
 
-        public function index($status = '', $open_modal = false) //get coop student questionaire subject
+        public function index($open_modal = false) //get coop student questionaire subject
         {   
             $data['open_modal'] = $open_modal;
-            if($status == '') {
-                $status = $this->input->get('status');
-            }
+            $status = $this->session->flashdata('status');
 
             if( $status == 'success'){
                 $data['status']['color'] = 'success';            
@@ -60,7 +58,7 @@
             $this->form_validation->set_rules('title', 'ชื่อหัวข้อการประเมิน', 'trim|required');
             
             if ($this->form_validation->run() == FALSE) {
-                $this->index('', true);
+                $this->index(true);
             } else {
 
                 $array['coop_student_questionnaire_subject_number'] = $this->input->post('number');
@@ -70,12 +68,14 @@
             
                 if($this->Coop_Student_Assessment_Form->check_subject_dup($array['coop_student_questionnaire_subject_number'])) {
                     //is dup, cant insert
-                    redirect('Officer/Assessment_coop_student_Form/index/?status=error', 'refresh');                
+                    $this->session->set_flashdata('status', 'error');
+                    redirect('Officer/Assessment_coop_student_Form/index/', 'refresh');                
                     
                 } else {
                     //can insert
                     $this->Coop_Student_Assessment_Form->save_coop_student_form_subject($array);
-                    redirect('Officer/Assessment_coop_student_Form/index/?status=success', 'refresh');                
+                    $this->session->set_flashdata('status', 'success');
+                    redirect('Officer/Assessment_coop_student_Form/index/', 'refresh');                
                 }
 
                 // return $this->index('success');

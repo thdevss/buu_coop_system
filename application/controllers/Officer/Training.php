@@ -242,17 +242,18 @@ class Training extends CI_Controller {
     public function student_list($training_id)
     {
         $data['status'] = [];
-        if($this->input->get('status') == 'success_upload') {
+        $status = $this->session->flashdata('status');
+        if($status == 'success_upload') {
             $data['status'] = [
                 'text' => 'สำเร็จ',
                 'color' => 'success'
             ];
-        } else if($this->input->get('status') == 'error_upload') {
+        } else if($status == 'error_upload') {
             $data['status'] = [
                 'text' => 'ผิดพลาด',
                 'color' => 'warning'
             ];
-        } else if($this->input->get('status') == 'error_training_id') {
+        } else if($status == 'error_training_id') {
             $data['status'] = [
                 'text' => 'ไม่พบรายการการอบรม',
                 'color' => 'danger'
@@ -315,8 +316,8 @@ class Training extends CI_Controller {
 
             if ( ! $this->upload->do_upload('userfile')) {
                 $data['status'] = $this->upload->display_errors();
-                print_r($data);
-                redirect('Officer/Training/student_list/'.$training_id.'?status=error_upload', 'refresh');
+                $this->session->set_flashdata('status', 'error_upload');
+                redirect('Officer/Training/student_list/'.$training_id, 'refresh');
                 die();
             } else {
                 
@@ -358,7 +359,8 @@ class Training extends CI_Controller {
                 die();
             }
         } else {
-            redirect('Officer/Training/student_list/'.$training_id.'?status=error_training_id', 'refresh');
+            $this->session->set_flashdata('status', 'error_training_id');
+            redirect('Officer/Training/student_list/'.$training_id, 'refresh');
             die();  
         }
     }

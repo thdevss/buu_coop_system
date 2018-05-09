@@ -29,12 +29,13 @@ class Assessment_company extends CI_Controller {
 	public function form()
 	{	
 		$data['status'] = [];
-        if($this->input->get('status') == 'success') {
+		$status = $this->session->flashdata('status');
+        if($status == 'success') {
             $data['status'] = [
                 'text' => 'สำเร็จ',
                 'color' => 'success'
             ];
-        } else if($this->input->get('status') == 'error') {
+        } else if($status == 'error') {
             $data['status'] = [
                 'text' => 'ผิดพลาด',
                 'color' => 'warning'
@@ -75,7 +76,8 @@ class Assessment_company extends CI_Controller {
 		
 		// check trainer id
 		if($coop_student['trainer_id'] < 1) {
-			redirect('/Coop_student/Assessment_company/form?status=error', 'refresh');;
+			$this->session->set_flashdata('status', 'error');
+			redirect('/Coop_student/Assessment_company/form', 'refresh');;
 			die();			
 		}
 
@@ -108,18 +110,15 @@ class Assessment_company extends CI_Controller {
 				$this->print_data();
 
 			}else {
-				redirect('/Coop_student/Assessment_company/form?status=success', 'refresh');
+				$this->session->set_flashdata('status', 'success');				
+				redirect('/Coop_student/Assessment_company/form?', 'refresh');
 			}
 			
 		} else {
-			redirect('/Coop_student/Assessment_company/form?status=error', 'refresh');;
+			$this->session->set_flashdata('status', 'error');			
+			redirect('/Coop_student/Assessment_company/form?', 'refresh');;
 		}
-		
-		// if($status) {
-		// 	redirect('/Coop_student/Assessment_company/form?status=success', 'refresh');
-		// } else {
-		// 	redirect('/Coop_student/Assessment_company/form?status=error', 'refresh');
-		// }
+
 
 	}
 
@@ -178,7 +177,7 @@ class Assessment_company extends CI_Controller {
 		// die();
     
         $template_file = "template/IN-S008.docx";        
-        $save_filename = "download/".$student_id."-IN-S008.docx";
+        $save_filename = "download/".$student_id."-IN-S008-".time().".docx";
         $data_array = [
 			"company_name_th" => $company['company_name_th'],
 			"term" => "2",

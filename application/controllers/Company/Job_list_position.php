@@ -6,15 +6,16 @@ class Job_list_position extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-        if(!$this->Login_session->check_login()) {
+        $user = $this->Login_session->check_login();
+        
+        if(!$user) {
             $this->session->sess_destroy();
             redirect('member/login');
 		}
 		
 		//check priv
-        $user = $this->Login_session->check_login();
         if($user->login_type != 'company') {
-            redirect($this->Login_session->check_login()->login_type);
+            redirect($user->login_type);
             die();
         }
         //add breadcrumbs
@@ -30,7 +31,7 @@ class Job_list_position extends CI_Controller {
         $data['company_status_Type'] = $this->Company->gets_company_status_type();
         // print_r($this->Job->get_student_by_company_id($data['trainer_id']));
         $this->breadcrumbs->push('รายละเอียดเกี่ยวกับสถานประกอบการ ', '/Company/Job_list_position/index');
-		    $this->template->view('Company/Job_list_position_view', $data);
+		$this->template->view('Company/Job_list_position_view', $data);
     }
     
     public function ajax_list()
@@ -45,28 +46,32 @@ class Job_list_position extends CI_Controller {
         foreach($this->Company->gets_company_status_type() as $rrr) {
             $cache['company_status_type'][$rrr['company_status_id']] = $rrr;
         }
-        foreach($this->Student->gets_department() as $rrr) {
-            $cache['department'][$rrr['department_id']] = $rrr;
-        }
-        foreach($this->Job->gets_job_by_company($tmp['company_id']) as $rrr) {
-            $cache['job_position'][$rrr['job_id']] = $rrr;
-        }
+        // foreach($this->Student->gets_department() as $rrr) {
+        //     $cache['department'][$rrr['department_id']] = $rrr;
+        // }
+        // foreach($this->Job->gets_job_by_company($tmp['company_id']) as $rrr) {
+        //     $cache['job_position'][$rrr['job_id']] = $rrr;
+        // }
 
         // foreach($this->Student->gets_student() as $row)
         foreach($this->Job->get_student_by_company_id($company_id) as $row)
         {
             $tmp_array = array();
             
-            $tmp_array['student'] = $this->Student->get_student($row['student_id'])[0];
+            // $tmp_array['student'] = $this->Student->get_student($row['student_id'])[0];
+            $tmp_array['student']['student_fullname'] = $row['student_fullname'];
+            $tmp_array['student']['student_gpax'] = $row['student_gpax'];
+            $tmp_array['student']['student_id'] = $row['student_id'];
+            
 
             // $tmp_array['student'] = $cache['student'][$row['student_id']];
-            $tmp_array['student']['id_link'] = '<a href="'.site_url('Company/Job_list_position/student_detail/'.$tmp_array['student']['student_id']).'">'.$tmp_array['student']['student_id'].'</a>';            
+            $tmp_array['student']['id_link'] = '<a href="'.site_url('Company/Job_list_position/student_detail/'.$row['student_id']).'">'.$row['student_id'].'</a>';            
 
 
             $tmp_array['job_position'] = array();
-            $tmp_array['job_position'] = @$cache['job_position'][$row['job_id']];
+            $tmp_array['job_position']['job_title'] = $row['job_title'];
             
-            $tmp_array['company_status_type'] = $cache['company_status_type'][$row['company_status_id']];
+            $tmp_array['company_status_type']['company_status_name'] = $row['company_status_name'];
 
             $company_type_Render = '<select name="company_status_type" onchange="change_company_type('.$row['student_id'].', this.value)">';
             foreach($cache['company_status_type'] as $key => $coop_type) {
@@ -81,7 +86,7 @@ class Job_list_position extends CI_Controller {
             $tmp_array['company_status_type']['status_name'] = str_replace(" ", "", $tmp_array['company_status_type']['company_status_name']);
             $tmp_array['company_status_type']['select_box'] = $company_type_Render;
             
-            $tmp_array['department'] = $cache['department'][$tmp_array['student']['department_id']];
+            $tmp_array['department']['department_name'] = $row['department_name'];
             // $tmp_array['coop_student_type'] = $this->Student->get_by_coop_status_type($row['coop_status'])[0];
             // $tmp_array['department'] = $this->Student->get_department($row['department_id'])[0];
 
@@ -127,9 +132,13 @@ class Job_list_position extends CI_Controller {
     public function student_detail($student_id)
     {
         $data['student'] = @$this->Student->get_student($student_id)[0];
-        $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
-        $data['coop_status_type'] = @$this->Student->get_by_coop_status_type($data['student']['coop_status_id'])[0];
-        $data['coop_test_status'] = @$this->Test->get_test_result_by_student($data['student']['student_id'])[0];
+        // $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
+        // $data['coop_status_type'] = @$this->Student->get_by_coop_status_type($data['student']['coop_status_id'])[0];
+        // $data['coop_test_status'] = @$this->Test->get_test_result_by_student($data['student']['student_id'])[0];
+        $data['department']['department_name'] = $data['student']['department_name'];
+        $data['coop_status_type']['coop_status_name'] = $data['student']['coop_status_name'];
+        $data['company_status']['company_status_name'] = $data['student']['company_status_name'];
+
         if($data['student']['company_status_id'] == 5)
         {
             $data['coop_student'] = @$this->Coop_Student->get_coop_student($student_id)[0];

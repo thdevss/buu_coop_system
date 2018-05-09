@@ -6,15 +6,16 @@ class Job extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        if(!$this->Login_session->check_login()) {
+        $user = $this->Login_session->check_login();
+        
+        if(!$user) {
             $this->session->sess_destroy();
             redirect('member/login');
 		}
 		
 		//check priv
-        $user = $this->Login_session->check_login();
         if($user->login_type != 'student') {
-            redirect($this->Login_session->check_login()->login_type);
+            redirect($user->login_type);
             die();
         }
           //add ->breadcrumbs
@@ -27,15 +28,14 @@ class Job extends CI_Controller {
     {
         $data = [];
         
-        $data['company'] = $this->Company->gets_company();
-        $data['job'] = $this->Job->gets_job_title();
+        
         $student_id = $this->Login_session->check_login()->login_value;
         
         if(!$this->Skill_Search->search_skill_by_student($student_id)){
             redirect('Student/Skill/index?status=select_before', 'refresh');
         }
+
         
-        $data['data'] = array();
 
         $this->load->library('form_validation');
 
@@ -47,6 +47,10 @@ class Job extends CI_Controller {
         if($data['student']['coop_status_id'] > 1) {
             $data['session_alert'] = '<div class="alert alert-warning">คุณทำการสมัครงานสหกิจแล้ว โปรดรอการตอบกลับขั้นตอนต่อไปค่ะ</div>';
         } else {
+            $data['company'] = $this->Company->gets_company();
+            $data['job'] = $this->Job->gets_job_title();
+        
+            $data['data'] = array();
             
             if($this->form_validation->run() == FALSE) {
                 $jobs = $this->Job->gets_job();

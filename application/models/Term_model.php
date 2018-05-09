@@ -56,6 +56,7 @@ class Term_model extends CI_model
             //for other actor
             $this->db->where('term_is_current', 1);
             $this->db->from('tb_term');
+            $this->db->select('term_id, term_name');
             $query = $this->db->get();
         }
 

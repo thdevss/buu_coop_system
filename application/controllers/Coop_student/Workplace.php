@@ -21,15 +21,16 @@ class Workplace extends CI_Controller {
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
-    public function index($status = '')
+    public function index()
     {
-        if($status == '') {
-            $status = $this->input->get('status');
-        }
+        $status = $this->session->flashdata('status');
 
         if( $status == 'success'){
             $data['status']['color'] = 'success';            
             $data['status']['text'] = 'UPDATE สถานที่สำเร็จ';
+        } else if( $status == 'error'){
+            $data['status']['color'] = 'danger';            
+            $data['status']['text'] = 'UPDATE ผิดพลาด';
         }else {
             $data['status'] = '';
         }
@@ -53,7 +54,8 @@ class Workplace extends CI_Controller {
             $array['coop_student_latitude'] = $this->input->post('coop_student_latitude');
             $array['coop_student_longitude'] = $this->input->post('coop_student_longitude');
             $this->Coop_Student->update_coop_student($student_id, $array);
-            redirect('Coop_student/Workplace/index/?status=success','refresh');
+            $this->session->set_flashdata('status', 'success');
+            redirect('Coop_student/Workplace/index/','refresh');
         } else {
             $this->index();
         }

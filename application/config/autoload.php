@@ -143,7 +143,6 @@ $autoload['model'] = array(
     'Adviser_model' => 'Adviser',
     'Company_Assessment_Form_model' => 'Company_Assessment_Form',
     'Company_model' => 'Company',
-    'Company_person_login_model' => 'Company_person_login',
     'Coop_Student_Assessment_Form_model' => 'Coop_Student_Assessment_Form',
     'Coop_Student_model' => 'Coop_Student',
     'Coop_Submitted_Form_Search_model' => 'Coop_Submitted_Form_Search',

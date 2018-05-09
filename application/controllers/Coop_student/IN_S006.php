@@ -20,10 +20,10 @@ class IN_S006 extends CI_Controller {
       
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
-    public function form($status = ''){
-        if($status == '') {
-            $status = $this->input->get('status');
-        }
+    public function form()
+    {
+
+        $status = $this->session->flashdata('status');
 
         if( $status == 'success'){
             $data['status']['color'] = 'success';            
@@ -75,10 +75,11 @@ class IN_S006 extends CI_Controller {
                             $this->print_data();
 
                         }else {
-                            redirect('Coop_student/IN_S006/form/?status=success','refresh');
+                            $this->session->set_flashdata('status', 'success');
+                            redirect('Coop_student/IN_S006/form/','refresh');
                         }
-                        
                     } else {
+                        $this->session->set_flashdata('status', 'error_input');
                         redirect('Coop_student/IN_S006/form/?status=error_input','refresh');
                     }
                 

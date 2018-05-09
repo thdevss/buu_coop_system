@@ -6,15 +6,16 @@ class Setting extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        if(!$this->Login_session->check_login()) {
+        $user = $this->Login_session->check_login();
+        
+        if(!$user) {
             $this->session->sess_destroy();
             redirect('member/login');
 		}
 		
 		//check priv
-        $user = $this->Login_session->check_login();
         if($user->login_type != 'officer') {
-            redirect($this->Login_session->check_login()->login_type);
+            redirect($user->login_type);
             die();
         }
 
@@ -25,12 +26,13 @@ class Setting extends CI_Controller {
     public function edit_term()
     {
         $data['status'] = [];
-        if($this->input->get('form_status') == 'success') {
+        $status = $this->session->flashdata('status');
+        if($status == 'success') {
             $data['status'] = [
                 'text' => 'สำเร็จ',
                 'color' => 'success'
             ];
-        } else if($this->input->get('form_status') == 'error') {
+        } else if($status == 'error') {
             $data['status'] = [
                 'text' => 'ผิดพลาด',
                 'color' => 'warning'
@@ -72,11 +74,14 @@ class Setting extends CI_Controller {
                 $insert['term_semester'] = $this->input->post('semester');
                 $insert['term_is_current'] = 0;
                 if($this->Term->add_term($insert)) {
+                    $this->session->set_flashdata('status', 'success');
                     redirect('Officer/setting/edit_term?form_status=success');
                 } else {
+                    $this->session->set_flashdata('status', 'error');
                     redirect('Officer/setting/edit_term?form_status=error');
                 }
             } else {
+                $this->session->set_flashdata('status', 'error');
                 redirect('Officer/setting/edit_term?form_status=error');
             }
         }
@@ -86,7 +91,7 @@ class Setting extends CI_Controller {
 
     public function edit_document()
     {
-        $status = $this->input->get('status');
+        $status = $this->session->flashdata('status');
         if( $status == 'success'){
             $data['status']['color'] = 'success';            
             $data['status']['text'] = 'ตั้งค่าสำเร็จ';
@@ -121,13 +126,15 @@ class Setting extends CI_Controller {
                     'document_deadline' => $this->input->post('document_deadline_datetime')
                 ];
                 $this->Form->update_form($document_id, $updateArr);
-                redirect('Officer/setting/edit_document?status=success', 'refresh');
+                $this->session->set_flashdata('status', 'success');
+                redirect('Officer/setting/edit_document?', 'refresh');
             } else {
-                redirect('Officer/setting/edit_document?status=error', 'refresh');                
+                $this->session->set_flashdata('status', 'error');
+                redirect('Officer/setting/edit_document?', 'refresh');                
             }
-
         } else {
-            redirect('Officer/setting/edit_document?status=error', 'refresh');
+            $this->session->set_flashdata('status', 'error');
+            redirect('Officer/setting/edit_document?', 'refresh');
         }
     }
 
@@ -157,10 +164,9 @@ class Setting extends CI_Controller {
         echo json_encode($return);
     }
 
-    public function lists_job_title($status = ''){
-        if($status == '') {
-            $status = $this->input->get('status');
-        }
+    public function lists_job_title(){
+        
+        $status = $this->session->flashdata('status');
 
         if( $status == 'success'){
             $data['status']['color'] = 'success';            
@@ -206,7 +212,8 @@ class Setting extends CI_Controller {
             $array['job_title'] = $this->input->post('job_title');
             $this->Job->insert_job_title($array);
 
-            redirect('Officer/Setting/lists_job_title/?status=success', 'refresh');
+            $this->session->set_flashdata('status', 'success');
+            redirect('Officer/Setting/lists_job_title/?', 'refresh');
         }
 
     }
@@ -238,7 +245,8 @@ class Setting extends CI_Controller {
             
             if($this->Job->get_job_title($job_title_id)) {
                 $this->Job->update_job_title($job_title_id, $array);
-                redirect('Officer/Setting/lists_job_title/?status=success_update', 'refresh');
+                $this->session->set_flashdata('status', 'success_update');
+                redirect('Officer/Setting/lists_job_title/?', 'refresh');
             }
         }
 
@@ -248,15 +256,14 @@ class Setting extends CI_Controller {
     {
         if($this->Job->get_job_title($job_title_id)) {
             $this->Job->delete_job_title($job_title_id);
-            redirect('Officer/Setting/lists_job_title/?status=success_delete', 'refresh');                
+            $this->session->set_flashdata('status', 'success_delete');
+            redirect('Officer/Setting/lists_job_title/', 'refresh');
         }
     }
 
-    public function lists_skill_name($status = '')
+    public function lists_skill_name()
     {
-        if($status == '') {
-            $status = $this->input->get('status');
-        }
+        $status = $this->session->flashdata('status');
         
         if( $status == 'success'){
             $data['status']['color'] = 'success';            
@@ -272,7 +279,7 @@ class Setting extends CI_Controller {
             $data['status']['text'] = 'แก้ไขสำเร็จ';
 
         }
-        else if($status == 'Success_delete'){
+        else if($status == 'success_delete'){
             $data['status']['color'] = 'success';            
             $data['status']['text'] = 'ลบสำเร็จ';
 
@@ -315,7 +322,8 @@ class Setting extends CI_Controller {
             $array['skill_category_id'] = $this->input->post('skill_category_id');
             $array['skill_name'] = $this->input->post('skill_name');
             $this->Skill->insert_skill($array);
-            redirect('Officer/setting/lists_skill_name/?status=success', 'refresh');
+            $this->session->set_flashdata('status', 'success');
+            redirect('Officer/setting/lists_skill_name/?', 'refresh');
         }
 
     }
@@ -352,7 +360,8 @@ class Setting extends CI_Controller {
             $skill_id = $this->input->post('skill_id');
             $array['skill_name'] = $this->input->post('skill_name');
             $this->Skill->update_skill($skill_id , $array);
-            redirect('Officer/setting/lists_skill_name/?status=success_update', 'refersh');
+            $this->session->set_flashdata('status', 'success_update');
+            redirect('Officer/setting/lists_skill_name/?', 'refersh');
         }
 
 
@@ -361,7 +370,8 @@ class Setting extends CI_Controller {
     public function delete_skill_name($skill_id)
     {
         $this->Skill->delete_skill($skill_id);
-        redirect('Officer/setting/lists_skill_name/?status=Success_delete', 'refersh');
+        $this->session->set_flashdata('status', 'success_delete');
+        redirect('Officer/setting/lists_skill_name/?', 'refersh');
 
     }
 
@@ -396,11 +406,9 @@ class Setting extends CI_Controller {
         echo json_encode($return);
 
     }
-    public function core_subjects_list($status= '')
+    public function core_subjects_list()
     {
-        if($status == '') {
-            $status = $this->input->get('status');
-        }
+        $status = $this->session->flashdata('status');
 
         if( $status == 'success'){
             $data['status']['color'] = 'success';            
@@ -421,7 +429,7 @@ class Setting extends CI_Controller {
             $data['status']['text'] = 'แก้ไขสำเร็จ';
 
         }
-        else if($status == 'Success_delete'){
+        else if($status == 'success_delete'){
             $data['status']['color'] = 'success';            
             $data['status']['text'] = 'ลบสำเร็จ';
 
@@ -448,12 +456,12 @@ class Setting extends CI_Controller {
             $array['term_id'] = $this->Term->get_current_term()[0]['term_id'];
         
             if($this->Student->insert_student_core_subject($array)) {
-                
-                redirect('Officer/Setting/core_subjects_list?status=success','refresh');
+                $this->session->set_flashdata('status', 'success');
+                redirect('Officer/Setting/core_subjects_list?','refresh');
                 
             } else {
-
-                redirect('Officer/Setting/core_subjects_list?status=dup_data','refresh');
+                $this->session->set_flashdata('status', 'dup_data');
+                redirect('Officer/Setting/core_subjects_list','refresh');
             }
 
         }
@@ -461,8 +469,12 @@ class Setting extends CI_Controller {
     
     public function delete_core_subjects($subject_id)
     {
-        $this->Student->delete_student_core_subject($subject_id);
-        redirect('Officer/Setting/core_subjects_list?status=Success_delete','refresh');
+        if($this->Student->delete_student_core_subject($subject_id)) {
+            $this->session->set_flashdata('status', 'success_delete');
+        } else {
+            $this->session->set_flashdata('status', 'error');
+        }
+        redirect('Officer/Setting/core_subjects_list?','refresh');
 
     }
     

@@ -13,25 +13,13 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <p>รหัสนิสิต</p>
-                                <ul>
-                                    <li><?php echo $student['student_id']; ?></li>
-                                </ul>
+                                <p>รหัสนิสิต: <?php echo $student['student_id']; ?></p>
 
-                              <p>ชื่อ</p>
-                                <ul>
-                                    <li><?php echo $student['student_fullname']; ?></li>
-                                </ul>
+                                <p>ชื่อ - นามสกุล: <?php echo $student['student_fullname']; ?></p>
 
-                              <p>สาขา</p>
-                                <ul>
-                                    <li><?php echo $department['department_name']; ?></li>
-                                </ul>
+                                <p>สาขา: <?php echo $department['department_name']; ?></p>
 
-                              <p>บริษัท</p>
-                                <ul>
-                                    <li><?php echo $company['company_name_th']." (".$company['company_name_en'].")"; ?></li>
-                                </ul>
+                                <p>บริษัท: <?php echo $company['company_name_th']." (".$company['company_name_en'].")"; ?></p>
 
                             </div>
                         </div>

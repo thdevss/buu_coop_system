@@ -26,7 +26,7 @@ class permit_form  extends CI_Controller {
     {
         $student_id = $this->Login_session->check_login()->login_value;
 
-        $status = $this->input->get('status');
+        $status = $this->session->flashdata('status');
         if( $status == 'success'){
             $data['status']['color'] = 'success';            
             $data['status']['text'] = 'บันทึกสำเร็จ';
@@ -110,10 +110,12 @@ class permit_form  extends CI_Controller {
                     //print page
                     $this->print_data();
                 } else {
-                    redirect('coop_student/permit_form?status=success');
+                    $this->session->set_flashdata('status', 'success');
+                    redirect('coop_student/permit_form?');
                 }     
             } else {
-                redirect('coop_student/permit_form?status=error');
+                $this->session->set_flashdata('status', 'error');
+                redirect('coop_student/permit_form?');
             }
         } else {
            
@@ -131,7 +133,7 @@ class permit_form  extends CI_Controller {
 
         $template_file = 'template/IN-S003.docx';
 
-        $save_filename = "download/".$student_id."-IN-S003.docx";
+        $save_filename = "download/".$student_id."-IN-S003-".time().".docx";
         $data_array = [
             "student_fullname_th" => $data['student']['student_prefix']." ".$data['student']['student_fullname'],
             "student_id" => $student_id,

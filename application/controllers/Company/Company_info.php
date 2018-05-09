@@ -429,7 +429,12 @@ class Company_info extends CI_controller
                 $subject = 'แจ้งข้อมูลเข้าใช้งานระบบสหกิจศึกษา มหาวิทยาลัยบูรพา';
                 $msg = 'Username: '.$array['person_username'].' | Password: '.$password_gen.' | '.site_url();
                 //sentmail here
-                $this->cache->file->save('userpass_'.$data['last_id'], $msg, 86400*365);
+                $this->load->library('email');
+                $this->email->from('buu.coopsystem@gmail.com', 'Cooperative Student');
+                $this->email->to($array['person_email']);
+                $this->email->subject('แจ้งรายละเอียดข้อมูลเข้าระบบสหกิจ');
+                $this->email->message($msg);
+                $this->email->send();
 
                 $data['status'] = true;
                 $data['text'] = 'เปลี่ยนสถานะสำเร็จ';

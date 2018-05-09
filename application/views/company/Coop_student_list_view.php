@@ -28,13 +28,13 @@
                     <?php $i=1; foreach($data as $row){?>
                         <tr>
                           <td><?php echo $i++; ?></tb>
-                          <td><?php echo $row['coop_student_name']['student_id']; ?></tb>
-                          <td><?php echo $row['coop_student_name']['student_prefix']."".$row['coop_student_name']['student_fullname']; ?></tb>
-                          <td><?php echo $row['coop_student_job']['job_title']; ?></tb>
-                          <td><?php echo $row['coop_student_company']['company_name_th']; ?></tb>
+                          <td><?php echo $row['student_id']; ?></tb>
+                          <td><?php echo $row['student_prefix']." ".$row['student_fullname']; ?></tb>
+                          <td><?php echo $row['job_title']; ?></tb>
+                          <td><?php echo $row['company_name_th']; ?></tb>
                           <td>
-                          <?php if($row['trainer']){?>
-                          <?php echo $row['trainer']['person_fullname']; ?>
+                          <?php if($row['person_fullname']){?>
+                          <?php echo $row['person_fullname']; ?>
                           <?php } ?>
                           </td>
                         </tr>
@@ -46,12 +46,10 @@
             </div>
           </div>
         </div>
+
+
       </div>
-    </div>
-  </div>
-</div>
-
-
+ 
 
 </main>
 
