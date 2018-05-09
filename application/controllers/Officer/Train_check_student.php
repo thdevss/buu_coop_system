@@ -113,8 +113,10 @@ class Train_check_student extends CI_Controller {
                 foreach($this->Training_Check_Student->gets_student_by_check($train_set_check_id) as $row) {
                     $tmp = array();
                     $tmp['train_check'] = $row;
-                    $tmp['train_check']['date_check'] = thaiDate($tmp['train_check']['train_check_student_date']);
-                    $tmp['student'] = $this->Student->get_student($row['student_id'])[0];
+                    $tmp['train_check']['date_check'] = thaiDate($row['train_check_student_date']);
+                    $tmp['student']['student_id'] = $row['student_id'];
+                    $tmp['student']['student_fullname'] = $row['student_fullname'];
+                    
                     array_push($return['rows'], $tmp);
                 }
             }
@@ -136,7 +138,7 @@ class Train_check_student extends CI_Controller {
         $this->form_validation->set_rules('train_set_check_id', 'train_set_check_id', 'trim|required');
 
         if ($this->form_validation->run() != FALSE) {
-            $return['status'] = true;
+            // $return['status'] = true;
             $student_code = $this->input->post('student_code');
 
             //check barcode
@@ -146,16 +148,16 @@ class Train_check_student extends CI_Controller {
             // echo $student_code;
 
             //check student
-            $data['student'] = @$this->Student->get_student($student_code)[0];
-            if(!@$data['student']) {
-                $return['status'] = false;                
-            }
+            // $data['student'] = @$this->Student->get_student($student_code)[0];
+            // if(!@$data['student']) {
+            //     $return['status'] = false;                
+            // }
 
             //check train set
             $data['train_set_check'] = @$this->Training_Check_Student->get_check($this->input->post('train_set_check_id'))[0];
-            if(!@$data['train_set_check']) {
-                $return['status'] = false;
-            }
+            // if(!@$data['train_set_check']) {
+            //     $return['status'] = false;
+            // }
 
             //check student_train_register
             if(!@$this->Training->check_student_in_training($data['train_set_check']['train_id'], $student_code)) {
@@ -180,6 +182,7 @@ class Train_check_student extends CI_Controller {
                 
                 $this->Training_Check_Student->add_student($array['student_id'], $array['train_set_check_id']);
                 $return['entry_time'] = $array['date_check'];
+                $return['status'] = true;            
             }
         } else {
             $return['status'] = false;            

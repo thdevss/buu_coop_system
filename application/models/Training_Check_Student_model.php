@@ -55,9 +55,16 @@ class Training_Check_Student_model extends CI_model {
 
     public function gets_student_by_check($check_id)
     {
-        $this->db->where('train_set_check_id',$check_id);
-        $this->db->from('tb_train_check_student');
-        $query = $this->db->get();
+        // $this->db->where('train_set_check_id',$check_id);
+        // $this->db->from('tb_train_check_student');
+        // $query = $this->db->get();
+        $sql = "SELECT `tb_student`.`student_id`, `tb_student`.`student_fullname`, `tb_train_check_student`.`train_check_student_date`
+        FROM `tb_train_check_student` 
+        INNER JOIN `tb_student` ON `tb_student`.`student_id` = `tb_train_check_student`.`student_id`
+        WHERE `train_set_check_id` = ".$check_id;
+
+        $query = $this->db->query($sql);
+        
         return $query->result_array();
     }
 

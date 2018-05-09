@@ -10,30 +10,36 @@ class Template {
             base_url('assets/theme/bootstrap/dist/js/bootstrap.min.js'),
             base_url('assets/theme/pace-progress/pace.min.js'),
             base_url('assets/js/app.js'),
-            "https://unpkg.com/sweetalert/dist/sweetalert.min.js",
-            "https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js",
-            "https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js",
-            "https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.9/js/dataTables.checkboxes.min.js",
-            "https://cdn.jsdelivr.net/npm/formvalidation@0.6.2-dev/dist/js/formValidation.min.js",
-            "http://formvalidation.io/vendor/formvalidation/js/framework/bootstrap.min.js",
-            "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js",
-            "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js",
-            "https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js",
-            "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js",
-            "https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js",
-            "https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js",
-            "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js",
-            "https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.16/jquery.datetimepicker.full.js",
+            base_url('assets/plugins/sweetalert/sweetalert.min.js'),
+            base_url('assets/plugins/toastr.js/toastr.min.js'),
+            base_url('assets/plugins/jquery.datetimepicker/jquery.datetimepicker.full.js'),
+            base_url('assets/plugins/formValidation.js/formValidation.min.js'),
+            base_url('assets/plugins/formValidation.js/bootstrap.min.js'),
+            base_url('assets/plugins/bootstrap3-typeahead.js'),
+
+            
+            
+            base_url('assets/plugins/datatables/jquery.dataTables.min.js'),
+            base_url('assets/plugins/datatables/dataTables.bootstrap4.min.js'),
+            base_url('assets/plugins/datatables/dataTables.checkboxes.min.js'),
+            base_url('assets/plugins/datatables/dataTables.buttons.min.js'),
+            base_url('assets/plugins/datatables/jszip.min.js'),
+            base_url('assets/plugins/datatables/buttons.html5.min.js'),
+            base_url('assets/plugins/datatables/buttons.print.min.js'),
+            base_url('assets/plugins/datatables/pdfmake.min.js'),
+
         ];
 
         $default_src_css = [
-            "https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.16/jquery.datetimepicker.css",
-            "https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css",
-            "https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.9/css/dataTables.checkboxes.css",
-            "https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css",
-            "https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css",
-            "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css",
+            base_url('assets/plugins/datatables/dataTables.bootstrap4.min.css'),
+            base_url('assets/plugins/datatables/dataTables.checkboxes.css'),
+            base_url('assets/plugins/datatables/buttons.dataTables.min.css'),
+            base_url('assets/plugins/datatables/select.dataTables.min.css'),
+
             base_url('assets/css/custom.css'),
+            base_url('assets/plugins/toastr.js/toastr.min.css'),
+            base_url('assets/plugins/jquery.datetimepicker/jquery.datetimepicker.css'),
+            
 
         ];
         
