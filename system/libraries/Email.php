@@ -2097,11 +2097,14 @@ class CI_Email {
 
 						if ($this->_smtp_auth OR $this->_get_encoding() === '8bit')
 						{
-							$this->_send_data('EHLO '.$this->_get_hostname());
+							// $this->_send_data('EHLO '.$this->_get_hostname());
+							$this->_send_data('EHLO BUU');							
 						}
 						else
 						{
-							$this->_send_data('HELO '.$this->_get_hostname());
+							// $this->_send_data('HELO '.$this->_get_hostname());
+							$this->_send_data('HELO BUU');
+							
 						}
 
 						$resp = 250;

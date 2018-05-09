@@ -68,6 +68,7 @@
 
 
 
+
 <style>
 .modal-dialog {
     max-width: 800px;
@@ -84,31 +85,32 @@
             </div>
 
             <!-- Modal body -->
-            <form action="<?php echo site_url('Officer/Trainer/add_employee');?>" method="post" id="save_trainer">
+            <form id="save_trainer">
+            <input type="hidden" name="company_id" value="<?php echo $company['company_id'];?>">
             <div class="modal-body">
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label for="person_fullname">ชื่อ-นามสกุล</label><code>*</code>
+                        <label for="fullname">ชื่อ-นามสกุล</label><code>*</code>
                         <input type="text" id="person_fullname" name="person_fullname" class="form-control" placeholder="ชื่อ-นามสกุล" value="" required>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="person_email">E-mail</label><code>*</code>
+                        <label for"email">E-mail</label><code>*</code>
                         <input type="email" id="person_email" name="person_email" class="form-control" placeholder="E-mail" required>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="person_position">ตำเเหน่ง</label><code>*</code>
+                        <label for"position">ตำเเหน่ง</label><code>*</code>
                         <input type="text" id="person_position" name="person_position" class="form-control" placeholder="ตำเเหน่ง" required>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="person_department">แผนกงาน</label><code>*</code>
+                        <label for"department">แผนกงาน</label><code>*</code>
                         <input type="text" id="person_department" name="person_department" class="form-control" placeholder="เเผนกงาน" required>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="person_telephone">เบอร์โทร</label>
+                        <label for"telephone">เบอร์โทร</label><code>*</code>
                         <input type="text" id="person_telephone" name="person_telephone" class="form-control" placeholder="เบอร์โทร" required>
                     </div>  
                     <div class="form-group col-md-12">
-                        <label for="person_fax_number">FAX</label>
+                        <label for"fax_number">FAX</label>
                         <input type="text" id="person_fax_number" name="person_fax_number" class="form-control" placeholder="FAX">
                     </div>
    
@@ -117,7 +119,6 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <input type="hidden" id="company_id" name="company_id" value="<?php echo $company['company_id'];?>">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-success">Save</button>
                 
@@ -126,42 +127,51 @@
         </div>
     </div>
 </div>
+
+
+
 <script>
+var validForm = false
 jQuery(document).ready(function(){
-    jQuery("#save_trainer").validate();
+    jQuery('#save_trainer').formValidation({
+        framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        
+    }).on('success.form.fv', function(e) {
+        validForm = true;
+    });
 });
 
 
 jQuery( "#save_trainer" ).submit(function( event ) {
     event.preventDefault();
 
-    if(jQuery("#save_trainer").valid()) {
-      jQuery( "#save_trainer" )[0].submit();
+    if(validForm) {
+        //post ajax
+        jQuery.post("<?php echo site_url('officer/trainer/ajax_save_trainer');?>", jQuery("#save_trainer").serialize(), function(result){
+            jQuery("#company_person_form").modal('hide');
+
+            if(result.status) {               
+                swal("สำเร็จ", result.text, result.color).then((value) => {
+                    if(value) {
+                        location.reload();
+                    }
+                });
+            } else {
+                swal("ผิดพลาด", result.text, result.color);
+            }
+            jQuery("#save_trainer input[type=text]").val(null);
+            
+
+            
+        }, 'json');
+
+        
     }
-});
-
-</script>
-
-
-<script>
-$('.btn-submit').on('click',function(e){
-    e.preventDefault();
-    var form = $(this).parents('form');
-    swal({
-        title: "คุณแน่ใจใช่ไหม",
-        text: "ลบคำนิสิตที่เลือก",
-        icon: "warning",
-        buttons: true,
-        dabgerMode: true
-    })
-    .then((isConfirm) => {
-      if (isConfirm) {
-        form.submit();
-      } else {
-
-      }
-    })
-
 });
 
 
