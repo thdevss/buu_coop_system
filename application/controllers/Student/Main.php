@@ -6,19 +6,22 @@ class Main extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-        if(!$this->Login_session->check_login()) {
+        $user = $this->Login_session->check_login();
+        
+        if(!$user) {
             $this->session->sess_destroy();
             redirect('member/login');
 		}
 		
 		//check priv
-        $user = $this->Login_session->check_login();
         if($user->login_type != 'student') {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
       
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+        // $this->output->enable_profiler(TRUE);
+
     }
 
 	public function index()

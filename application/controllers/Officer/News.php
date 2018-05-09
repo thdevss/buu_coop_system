@@ -24,7 +24,10 @@ class News extends CI_Controller {
     {
         if($status == 'success_add' ){
             $data['status']['color'] = 'success';
-            $data['status']['text'] = 'เพิ่มบระกาศข่าวสารเรียบร้อย';
+            $data['status']['text'] = 'เพิ่มประกาศข่าวสารสำเร็จ';
+        } else if($status == 'success_edit') {
+            $data['status']['color'] = 'success';
+            $data['status']['text'] = 'แก้ไขประกาศข่าวสารสำเร็จ';
         } else if($status == 'success_delete' ){
             $data['status']['color'] = 'success';
             $data['status']['text'] = 'ลบสำเร็จ';
@@ -122,7 +125,7 @@ class News extends CI_Controller {
     {
         if($status == 'error_add' ){
             $data['status']['color'] = 'danger';
-            $data['status']['text'] = 'ผิดพลาด โบรดตรวจสอบ';
+            $data['status']['text'] = 'ผิดพลาด โปรดตรวจสอบ';
         } else if($status != '' ){
             $data['status']['color'] = 'danger';
             $data['status']['text'] = $status;
@@ -190,9 +193,9 @@ class News extends CI_Controller {
                     }
                 }
             } else {                            
-                return $this->index('success_add');
+                return $this->index('success_edit');
             }
-            return $this->index('success_add');
+            return $this->index('success_edit');
         }
         return $this->add(validation_errors());
     }    

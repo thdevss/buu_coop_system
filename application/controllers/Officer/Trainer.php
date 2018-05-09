@@ -280,7 +280,7 @@ class Trainer extends CI_Controller {
                 $this->email->subject('แจ้งรายละเอียดข้อมูลเข้าระบบสหกิจ');
                 $this->email->message($msg);
                 $this->email->send();
-                echo $this->email->print_debugger();
+                // echo $this->email->print_debugger();
 
 
                 // $this->cache->file->save('userpass_'.$data['last_id'], $msg, 86400*365);

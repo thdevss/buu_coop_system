@@ -12,3 +12,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |	https://codeigniter.com/user_guide/general/profiling.html
 |
 */
+
+$sections = array(
+    'config'  => TRUE,
+    'queries' => TRUE,
+    'controller_info' => TRUE,
+    'benchmarks' => TRUE
+);
+
+$this->output->set_profiler_sections($sections);
