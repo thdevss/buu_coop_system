@@ -132,14 +132,20 @@ class Train_check_student extends CI_Controller {
         //post student
         //insert
         $this->load->library('form_validation');        
-        $this->form_validation->set_rules('student_code', 'รหัสนิสิต', 'trim|required|numeric');
+        $this->form_validation->set_rules('student_code', 'รหัสนิสิต', 'trim|required|numeric|min_length=8|max_length=14');
         $this->form_validation->set_rules('train_set_check_id', 'train_set_check_id', 'trim|required');
 
         if ($this->form_validation->run() != FALSE) {
             $return['status'] = true;
+            $student_code = $this->input->post('student_code');
+
+            //check barcode
+            if(strlen($student_code) > 8) {
+                $student_code = substr( substr($str, 5), 0, 8 );
+            }
 
             //check student
-            $data['student'] = @$this->Student->get_student($this->input->post('student_code'))[0];
+            $data['student'] = @$this->Student->get_student($student_code)[0];
             if(!@$data['student']) {
                 $return['status'] = false;                
             }

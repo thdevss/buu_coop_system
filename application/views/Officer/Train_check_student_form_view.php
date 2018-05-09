@@ -15,7 +15,7 @@
                 <div class="card">
                     <div class="card-header"><i class="fa fa-align-justify"></i> ใส่รหัสนิสิต, ยิงบาร์โค้ด</div>
                     <div class="card-body"> 
-                        <input type="text" name="" class="form-control" id="enter_student_code">
+                        <input type="text" name="" class="form-control" id="enter_student_code" autofocus>
                         <input type="hidden" id="train_set_check_id" value="<?php echo $check_id;?>">
                         <br><hr><br>
                         <div class="row" id="student_info_frm" style="display:none;">
