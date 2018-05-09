@@ -295,7 +295,7 @@ class Company_info extends CI_controller
             if ($this->form_validation->run() == FALSE)
             {
                 $this->session->set_flashdata('form-alert', '<div class="alert alert-danger">เพิ่มไม่สำเร็จ</div>');
-                redirect('Company/Company_info/step3/', 'refresh');
+                redirect('Company/Company_info/step4/', 'refresh');
             }
             else
             {
@@ -310,7 +310,7 @@ class Company_info extends CI_controller
 
                 $this->Job->insert_job($data);
                 $this->session->set_flashdata('form-alert', '<div class="alert alert-success">เพิ่มงานสำเร็จ</div>');
-                redirect('/Company/company_info/step3/', 'refresh');
+                redirect('/Company/company_info/step4/', 'refresh');
                 // return $this->step3($data['company_id']);
             }
         }

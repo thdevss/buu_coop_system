@@ -108,7 +108,7 @@ function addStudent(student_code)
 
                 jQuery("#student_info_frm").show();
 
-		        jQuery("#student_img").attr("src", "http://reg.buu.ac.th/registrar/getstudentimage.asp?id="+student_code);                
+		        jQuery("#student_img").attr("src", "http://reg.buu.ac.th/registrar/getstudentimage.asp?id="+response.student.student_id);                
                 jQuery("#student_name").html(response.student.student_fullname)
                 jQuery("#student_code").html(response.student.student_id)
                 jQuery("#entry_time").html(response.entry_time)
