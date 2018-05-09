@@ -27,7 +27,7 @@ class IN_S007 extends CI_Controller {
         $this->breadcrumbs->push('แบบคำร้องทั่วไป', 'Coop_student/IN_S007');
         $data['rows'] = $this->Coop_Student->gets_general_petition_by_student($student_id);
 
-        $status = $this->input->get('status');
+        $status = $this->session->flashdata('status');
         if( $status == 'success'){
             $data['status']['color'] = 'success';            
             $data['status']['text'] = 'บันทึกสำเร็จ';
@@ -43,7 +43,7 @@ class IN_S007 extends CI_Controller {
 
     public function form() 
     {
-        $status = $this->input->get('status');
+        $status = $this->session->flashdata('status');
     
         if( $status == 'success'){
             $data['status']['color'] = 'success';            
@@ -89,11 +89,14 @@ class IN_S007 extends CI_Controller {
                 if($this->input->post('print') == 1){
                     $this->print_data($last_id);
                 }else {
-                    redirect('Coop_student/IN_S007/?status=success','refresh');
+                    $this->session->set_flashdata('status', 'success');                                    
+                    redirect('Coop_student/IN_S007/','refresh');
                 }
 
             } else {
-                redirect('Coop_student/IN_S007/form/?status=error_input','refresh');                
+                $this->session->set_flashdata('status', 'error_input');                
+                redirect('Coop_student/IN_S007/form/?','refresh');   
+                             
             }
             
 
@@ -119,7 +122,8 @@ class IN_S007 extends CI_Controller {
 
         if($petition_data['student_id'] != $student_id) {
             //redirect
-            redirect('Coop_student/IN_S007/?status=error_document','refresh');                
+            $this->session->set_flashdata('status', 'error_document');
+            redirect('Coop_student/IN_S007/','refresh');                
         } else {
             //print
             $template_file = "template/IN-S007.docx";

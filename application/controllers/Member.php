@@ -18,7 +18,7 @@ class Member extends CI_Controller {
             die();
         }
         
-        $data['status'] = $this->input->get('status');
+        $data['status'] = $this->session->flashdata('status');
         $this->load->view('login/login_view.php', $data);
     }
 
@@ -48,7 +48,8 @@ class Member extends CI_Controller {
             }
         }
 
-        redirect('member/login?status=error');
+        $this->session->set_flashdata('status', 'error');
+        redirect('member/login');
     }
 
     public function logout()

@@ -21,11 +21,9 @@ class Skill extends CI_Controller {
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
     }
 
-    public function index($status= '')
+    public function index()
     {
-        if($status == '') {
-            $status = $this->input->get('status');
-        }
+        $status = $this->session->flashdata('status');
 
         if( $status == 'success'){
             $data['status']['color'] = 'success';            
@@ -66,7 +64,8 @@ class Skill extends CI_Controller {
     public function save()
     {
         if(count($this->input->post('skill')) < '1') {
-            redirect('Student/Skill/index/?status=error','refresh');
+            $this->session->set_flashdata('status', 'error');
+            redirect('Student/Skill/index/?','refresh');
         }
         else
         {
@@ -80,6 +79,7 @@ class Skill extends CI_Controller {
                 $this->Skill_Search->insert_student_has_skill($insert);
             }
            
+            $this->session->set_flashdata('status', 'success');
             redirect('Student/Skill/index/?status=success','refresh');
         }
     

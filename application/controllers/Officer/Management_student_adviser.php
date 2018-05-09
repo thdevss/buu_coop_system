@@ -36,9 +36,9 @@ class Management_student_adviser extends CI_controller{
         foreach(@$this->Adviser->gets_adviser() as $adviser) {
             $cache['adviser'][$adviser['adviser_id']] = $adviser;
         }
-        foreach(@$this->Address->gets_address() as $address) {
-            $cache['address'][$address['company_id']] = $address;
-        }
+        // foreach(@$this->Address->gets_address() as $address) {
+        //     $cache['address'][$address['company_id']] = $address;
+        // }
         // foreach(@$this->Student->gets_student() as $student) {
         //     $cache['student'][$student['student_id']] = $student;
         // }
@@ -46,18 +46,20 @@ class Management_student_adviser extends CI_controller{
         $company_id = $this->input->get('company_id');
         if($company_id) {
             $rows = $this->Coop_Student->gets_coop_student_by_company($company_id);
-            $company = $this->Company->get_company($company_id)[0];
-            $cache['company'][$company['company_id']] = $company;
+            // $company = $this->Company->get_company($company_id)[0];
+            // $cache['company'][$company['company_id']] = $company;
         } else {
             $rows = $this->Coop_Student->gets_coop_student();
-            foreach(@$this->Company->gets_company() as $company) {
-                $cache['company'][$company['company_id']] = $company;
-            }
+            // foreach(@$this->Company->gets_company() as $company) {
+            //     $cache['company'][$company['company_id']] = $company;
+            // }
         }
         foreach($rows as $row)
         {
             $tmp_array = array();
-            $tmp_array['student'] = $this->Student->get_student($row['student_id'])[0];
+            $tmp_array['student']['student_id'] = $row['student_id'];
+            $tmp_array['student']['student_fullname'] = $row['student_fullname'];
+            
             
             // $tmp_array['student'] = $cache['student'][$row['student_id']];
             $tmp_array['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$tmp_array['student']['student_id']).'">'.$tmp_array['student']['student_id'].'</a>';            
@@ -83,11 +85,12 @@ class Management_student_adviser extends CI_controller{
             
             if(!$row['company_id']) {
                 $tmp_array['company']['company_name_th'] = '-';
-                $tmp_array['company_address']['company_address_province'] = '-';
                 $tmp_array['company_address']['company_address_area'] = '-';
+                $tmp_array['company_address']['company_address_province'] = '-';
             } else {
-                $tmp_array['company'] = @$cache['company'][$row['company_id']];
-                $tmp_array['company_address'] = @$cache['address'][$row['company_id']];                
+                $tmp_array['company']['company_name_th'] = $row['company_name_th'];
+                $tmp_array['company_address']['company_address_area'] = $row['company_address_area'];
+                $tmp_array['company_address']['company_address_province'] = $row['company_address_province'];
             }
 
             array_push($return, $tmp_array);

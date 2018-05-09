@@ -22,9 +22,7 @@ class IN_S004 extends CI_Controller {
 
         public function index($status = '')
         {
-            if($status == '') {
-                $status = $this->input->get('status');
-            }
+            $status = $this->session->flashdata('status');
     
             if( $status == 'success'){
                 $data['status']['color'] = 'success';            
@@ -38,13 +36,14 @@ class IN_S004 extends CI_Controller {
             else {
                 $data['status'] = '';
             }
+
             $student_id = $this->Login_session->check_login()->login_value;            
             $data['coop_student'] = @$this->Coop_Student->get_coop_student($student_id)[0];
             $data['company'] = @$this->Company->get_company($data['coop_student']['company_id'])[0];
             $data['company_address'] = @$this->Address->get_address_by_company($data['coop_student']['company_id'])[0];
             $data['company_persons'] = @$this->Trainer->gets_trainer_by_company($data['company']['company_id']);
             $data['company_person'] = @$this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];
-            $data['contact_person'] = @$this->Trainer->get_trainer($data['company']['contact_person_id'])[0];
+            // $data['contact_person'] = @$this->Trainer->get_trainer($data['company']['contact_person_id'])[0];
             $data['trainer'] = @$this->Trainer->get_trainer($data['coop_student']['trainer_id'])[0];
             $data['student_name'] = @$this->Student->get_student($data['coop_student']['student_id'])[0];
             $data['student_department'] = @$this->Student->get_department($data['student_name']['department_id'])[0];
@@ -52,18 +51,18 @@ class IN_S004 extends CI_Controller {
             $data['coop_student_dorm'] = @$this->Coop_Student->get_coop_student_dorm_by_student($data['coop_student']['student_id'])[0];
             $data['coop_student_emergency_contact'] = @$this->Coop_Student->get_coop_student_emergency_contact_by_student($student_id)[0];
             $data['profile'] = @$this->Student->get_student_data_from_profile($student_id);
-                if(!@$data['coop_student_emergency_contact']){
-                    $data['coop_student_emergency_contact']['contact_fullname'] = $data['profile']['Contact_Name'];
-                    $data['coop_student_emergency_contact']['contact_address_number'] = $data['profile']['Contact_Address_Number']; 
+            if(!@$data['coop_student_emergency_contact']){
+                $data['coop_student_emergency_contact']['contact_fullname'] = $data['profile']['Contact_Name'];
+                $data['coop_student_emergency_contact']['contact_address_number'] = $data['profile']['Contact_Address_Number']; 
                 
-                    $data['coop_student_emergency_contact']['contact_address_district'] = $data['profile']['Contact_Address_Tumbon']; 
-                    $data['coop_student_emergency_contact']['contact_address_area'] = $data['profile']['Contact_Address_Aumper']; 
-                    $data['coop_student_emergency_contact']['contact_address_province'] = $data['profile']['Contact_Address_Province']; 
-                    $data['coop_student_emergency_contact']['contact_address_postal_code'] = $data['profile']['Contact_Address_Postcode']; 
-                    $data['coop_student_emergency_contact']['contact_telephone'] = $data['profile']['Contact_Phone']; 
-                    $data['coop_student_emergency_contact']['contact_fax_number'] = $data['profile']['Contact_Email']; 
+                $data['coop_student_emergency_contact']['contact_address_district'] = $data['profile']['Contact_Address_Tumbon']; 
+                $data['coop_student_emergency_contact']['contact_address_area'] = $data['profile']['Contact_Address_Aumper']; 
+                $data['coop_student_emergency_contact']['contact_address_province'] = $data['profile']['Contact_Address_Province']; 
+                $data['coop_student_emergency_contact']['contact_address_postal_code'] = $data['profile']['Contact_Address_Postcode']; 
+                $data['coop_student_emergency_contact']['contact_telephone'] = $data['profile']['Contact_Phone']; 
+                $data['coop_student_emergency_contact']['contact_fax_number'] = $data['profile']['Contact_Email']; 
 
-                }
+            }
             // print_r($data);
                 
             // add breadcrumbs
@@ -90,7 +89,7 @@ class IN_S004 extends CI_Controller {
             $this->form_validation->set_rules('contact_address_province', 'จังหวัด', 'trim|required');
             $this->form_validation->set_rules('contact_address_postal_code', 'รหัสไปรษณีย์', 'trim|required|numeric|max_length[5]');
             $this->form_validation->set_rules('contact_telephone', 'เบอร์โทรศัพท์', 'trim|required|numeric|max_length[10]');
-            $this->form_validation->set_rules('contact_fax_number', 'เบอร์โทรสาร', 'trim|max_length[11]|alpha_dash');
+            $this->form_validation->set_rules('contact_fax_number', 'เบอร์โทรสาร', 'trim');
 
             //coop student dorm
             $this->form_validation->set_rules('dorm_name', 'ชื่อหอพัก/อพาร์ทเมนท์', 'trim|required');
@@ -103,13 +102,13 @@ class IN_S004 extends CI_Controller {
             $this->form_validation->set_rules('dorm_province', 'จังหวัด', 'trim|required');
             $this->form_validation->set_rules('dorm_postal_code', 'รหัสไปรษณีย์', 'trim|required|numeric|max_length[5]');
             $this->form_validation->set_rules('dorm_telephone', 'เบอร์โทรศัพท์', 'trim|required|numeric|max_length[10]');
-            $this->form_validation->set_rules('dorm_fax_number', 'เบอร์โทรสาร', 'trim|max_length[11]|alpha_dash');
+            $this->form_validation->set_rules('dorm_fax_number', 'เบอร์โทรสาร', 'trim');
             $this->form_validation->set_rules('trainer_id', 'ผู้นิเทศงาน', 'required|numeric');
             
 
 
             if ($this->form_validation->run() == FALSE) {
-                    $this->index();
+                $this->index();
             } else {
                     $array_emergency_contact = [];
                     $array_emergency_contact['student_id'] = $student_id;
@@ -152,11 +151,13 @@ class IN_S004 extends CI_Controller {
                             $this->print_data();
 
                         }else {
-                            redirect('Coop_student/IN_S004/index/?status=success','refresh');
+                            $this->session->set_flashdata('status', 'success');
+                            redirect('Coop_student/IN_S004/index/','refresh');
                         }
                         
                     } else {
-                        redirect('Coop_student/IN_S004/index/?status=error_input','refresh');
+                        $this->session->set_flashdata('status', 'error_input');
+                        redirect('Coop_student/IN_S004/index/','refresh');
                     }
                     
                 
@@ -171,7 +172,7 @@ class IN_S004 extends CI_Controller {
         $data['company'] = @$this->Company->get_company($data['coop_student']['company_id'])[0];
         $data['company_address'] = @$this->Address->get_address_by_company($data['coop_student']['company_id'])[0];
         $data['company_person'] = @$this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];
-        $data['contact_person'] = @$this->Trainer->get_trainer($data['company']['contact_person_id'])[0];
+        // $data['contact_person'] = @$this->Trainer->get_trainer($data['company']['contact_person_id'])[0];
         $data['trainer'] = @$this->Trainer->get_trainer($data['coop_student']['trainer_id'])[0];
         $data['student_name'] = @$this->Student->get_student($data['coop_student']['student_id'])[0];
         $data['student_department'] = @$this->Student->get_department($data['student_name']['department_id'])[0];
@@ -207,7 +208,7 @@ class IN_S004 extends CI_Controller {
             "contact_person_fax_number" => $data['contact_person']['person_fax_number'],
             "contact_person_email" => $data['contact_person']['person_email'],
 
-            "cn_a" => "\u{2611}",
+            "cn_a" => "\u{2610}",
             "cn_b" => "\u{2610}",
 
             "trainer_fullname" => $data['trainer']['person_fullname'],
@@ -287,7 +288,7 @@ class IN_S004 extends CI_Controller {
             <script>
                 window.location = '".base_url($result['full_url'])."';
                 setTimeout(function(){
-                   // window.location = '".site_url('Coop_student/upload_document/?code=IN-S004')."';
+                    window.location = '".site_url('Coop_student/upload_document/?code=IN-S004')."';
                 }, 1500);
             </script>
         ";

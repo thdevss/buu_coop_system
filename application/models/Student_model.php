@@ -10,10 +10,18 @@ class Student_model extends CI_model {
     {
         $term_id = $this->Term->get_current_term()[0]['term_id'];
 
-        $this->db->where('term_id', $term_id);
-        $this->db->where('student_id',$student_id);
-        $this->db->from('tb_student');
-        $query = $this->db->get();
+        // $this->db->where('term_id', $term_id);
+        // $this->db->where('student_id',$student_id);
+        // $this->db->from('tb_student');
+        // $query = $this->db->get();
+        // return $query->result_array();
+
+        $sql = "SELECT * FROM `tb_student` 
+        INNER JOIN `tb_department` ON `tb_department`.`department_id` = `tb_student`.`department_id`
+        INNER JOIN `tb_company_status` ON `tb_company_status`.`company_status_id` = `tb_student`.`company_status_id`
+        INNER JOIN `tb_coop_status` ON `tb_coop_status`.`coop_status_id` = `tb_student`.`coop_status_id`
+        WHERE `student_id` = '".$student_id."' AND `term_id` = '".$term_id."'";
+        $query = $this->db->query($sql);
         return $query->result_array();
     }
 
@@ -34,9 +42,16 @@ class Student_model extends CI_model {
     {
         $term_id = $this->Term->get_current_term()[0]['term_id'];
 
-        $this->db->where('term_id', $term_id);
-        $this->db->from('tb_student');
-        $query = $this->db->get();
+        // $this->db->where('term_id', $term_id);
+        // $this->db->from('tb_student');
+        // $query = $this->db->get();
+        $sql = "SELECT `tb_student`.`student_gpax`, `tb_student`.`student_fullname`, `tb_student`.`student_id`, `tb_department`.`department_name`, `tb_company_status`.`company_status_name`, `tb_coop_status`.`coop_status_id`, `tb_coop_status`.`coop_status_name`
+        FROM `tb_student` 
+        INNER JOIN `tb_department` ON `tb_department`.`department_id` = `tb_student`.`department_id`
+        INNER JOIN `tb_company_status` ON `tb_company_status`.`company_status_id` = `tb_student`.`company_status_id`
+        INNER JOIN `tb_coop_status` ON `tb_coop_status`.`coop_status_id` = `tb_student`.`coop_status_id`
+        WHERE `tb_student`.`term_id` = ".$term_id;
+        $query = $this->db->query($sql);
         return $query->result_array();
     }
 
@@ -75,6 +90,7 @@ class Student_model extends CI_model {
 
     public function get_department($department_id)
     {
+        $this->db->select('department_name, department_id');
         $this->db->where('department_id', $department_id);        
         $this->db->from('tb_department');
         $query = $this->db->get();

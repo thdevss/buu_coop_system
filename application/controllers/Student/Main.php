@@ -38,12 +38,11 @@ class Main extends CI_Controller {
         $coop_document_id = @$this->Form->get_form_by_name('IN-S001', $term_id)[0]['document_id'];        
         $data['ins001'] = $this->Coop_Submitted_Form_Search->search_form_by_student_and_codes($student_id, [$coop_document_id]);
 
-        $status = $this->input->get('status');
+        $status = $this->session->flashdata('status');
 
         $data['status'] = [];
 
-        $data['session_alert'] = $this->session->tempdata('session_alert');
-        $this->session->unset_tempdata('session_alert');
+        $data['session_alert'] = $this->session->flashdata('status');
 
 
 		$this->template->view('Student/main_view', $data);
@@ -86,7 +85,7 @@ class Main extends CI_Controller {
         $word_file = '/uploads/'.basename($save_filename);
         $this->Form->submit_document($student_id, $coop_document_id, NULL, $word_file);
 
-        $this->session->set_tempdata('session_alert', '<div class="alert alert-success">สมัครเข้าร่วมเป็นนิสิตสหกิจเรียบร้อยค่ะ</div>', 300);
+        $this->session->set_flashdata('status', '<div class="alert alert-success">สมัครเข้าร่วมเป็นนิสิตสหกิจเรียบร้อยค่ะ</div>', 300);
         
         // redirect(base_url($result['full_url']), 'refresh');
         echo "
@@ -94,7 +93,7 @@ class Main extends CI_Controller {
             <script>
                 window.location = '".base_url($result['full_url'])."';
                 setTimeout(function(){
-                    window.location = '".site_url('student/main?status=success_register')."';
+                    window.location = '".site_url('student/main')."';
                 }, 1500);
             </script>
         ";

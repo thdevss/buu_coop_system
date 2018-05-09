@@ -41,12 +41,12 @@ class Student_list extends CI_Controller {
         foreach($this->Student->gets_coop_status_type() as $rrr) {
             $cache['coop_student_type'][$rrr['coop_status_id']] = $rrr;
         }
-        foreach($this->Student->gets_department() as $rrr) {
-            $cache['department'][$rrr['department_id']] = $rrr;
-        }
-        foreach($this->Company->gets_company_status_type() as $rrr) {
-            $cache['company_status_type'][$rrr['company_status_id']] = $rrr;
-        }
+        // foreach($this->Student->gets_department() as $rrr) {
+        //     $cache['department'][$rrr['department_id']] = $rrr;
+        // }
+        // foreach($this->Company->gets_company_status_type() as $rrr) {
+        //     $cache['company_status_type'][$rrr['company_status_id']] = $rrr;
+        // }
 
         foreach($this->Student->gets_student() as $row)
         {
@@ -55,14 +55,14 @@ class Student_list extends CI_Controller {
             $tmp_array['checkbox'] = '';
             
             $tmp_array['student'] = $row;
-            $tmp_array['student']['company_status'] = @$cache['company_status_type'][$row['company_status_id']]['company_status_name'];
-            // $tmp_array['student']['company_status'] = $row['company_status'];
+            // $tmp_array['student']['company_status'] = @$cache['company_status_type'][$row['company_status_id']]['company_status_name'];
+            $tmp_array['student']['company_status'] = $row['company_status_name'];
             
             
             if(!$row['coop_status_id']) {
                 $row['coop_status_id'] = 1;
             }
-            $tmp_array['coop_student_type'] = $cache['coop_student_type'][$row['coop_status_id']];
+            $tmp_array['coop_student_type']['coop_status_name'] = $row['coop_status_name'];
             $coop_type_Render = '<select name="change_coop_type" onchange="change_coop_type('.$row['student_id'].', this.value)">';
             foreach($cache['coop_student_type'] as $key => $coop_type) {
                 if($key == $row['coop_status_id']) {
@@ -75,7 +75,7 @@ class Student_list extends CI_Controller {
             $tmp_array['coop_student_type']['status_name'] = str_replace(" ", "", $tmp_array['coop_student_type']['coop_status_name']);
             $tmp_array['coop_student_type']['select_box'] = $coop_type_Render;
             
-            $tmp_array['department'] = $cache['department'][$row['department_id']];
+            $tmp_array['department']['department_name'] = $row['department_name'];
             // $tmp_array['coop_student_type'] = $this->Student->get_by_coop_status_type($row['coop_status'])[0];
             // $tmp_array['department'] = $this->Student->get_department($row['department_id'])[0];
             array_push($return['data'], $tmp_array);
@@ -162,9 +162,11 @@ class Student_list extends CI_Controller {
     public function student_detail($student_id)
     {
         $data['student'] = @$this->Student->get_student($student_id)[0];
-        $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
-        $data['coop_status_type'] = @$this->Student->get_by_coop_status_type($data['student']['coop_status_id'])[0];
-        $data['coop_test_status'] = @$this->Test->get_test_result_by_student($data['student']['student_id'])[0];
+        // $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
+        // $data['coop_status_type'] = @$this->Student->get_by_coop_status_type($data['student']['coop_status_id'])[0];
+        $data['coop_status_type']['coop_status_name'] = $data['student']['coop_status_name'];
+        $data['department']['department_name'] = $data['student']['department_name'];
+        // $data['coop_test_status'] = @$this->Test->get_test_result_by_student($data['student']['student_id'])[0];
         if($data['student']['company_status_id'] == 5)
         {
             $data['coop_student'] = @$this->Coop_Student->get_coop_student($student_id)[0];

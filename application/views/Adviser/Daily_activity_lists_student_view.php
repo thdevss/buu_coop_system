@@ -38,12 +38,12 @@
                     <?php foreach ($data as $row) {?>
                       <tr>
                         <td></td>
-                        <td><?php echo $row['student']['student_id']; ?></td>
-                        <td><?php echo $row['student']['student_fullname']; ?></td>
-                        <td><?php echo $row['department']['department_name']; ?></td>
-                        <td><?php echo $row['company']['company_name_th']; ?></td>
-                        <td><?php echo $row['company_address']['company_address_province']; ?></td>  
-                        <td><?php echo anchor('Adviser/Daily_activity/lists/'.$row['student']['student_id']  , '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn btn-primary"');?></td>
+                        <td><?php echo $row['student_id']; ?></td>
+                        <td><?php echo $row['student_fullname']; ?></td>
+                        <td><?php echo $row['department_name']; ?></td>
+                        <td><?php echo $row['company_name_th']; ?></td>
+                        <td><?php echo $row['company_address_province']; ?></td>  
+                        <td><?php echo anchor('Adviser/Daily_activity/lists/'.$row['student_id']  , '<i class="fa fa-list-alt"></i> รายละเอียด', 'class="btn btn-primary"');?></td>
                       </tr>
                       <?php } ?>
                     </tbody>

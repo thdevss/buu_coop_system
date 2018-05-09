@@ -138,13 +138,26 @@ class Job_model extends CI_model {
 
     public function get_student_by_company_id($company_id)
     {
-        $term = $this->Term->get_current_term();
-        $this->db->where('term_id', $term[0]['term_id']);
-        $this->db->where('company_status_id !=', 5);
-        $this->db->where('company_id',$company_id);
-        $this->db->from('tb_student_register_company_job_position');
-        $qurey = $this->db->get();
-        return $qurey->result_array();
+        $term_id = $this->Term->get_current_term()[0]['term_id'];
+
+        // $this->db->where('term_id', $term);
+        // $this->db->where('company_status_id !=', 5);
+        // $this->db->where('company_id',$company_id);
+        // $this->db->from('tb_student_register_company_job_position');
+        // $qurey = $this->db->get();
+        $sql = "SELECT `tb_student_register_company_job_position`.`student_id`, `tb_student_register_company_job_position`.`company_status_id`, `tb_student`.`student_id`, `tb_student`.`student_fullname`, `tb_student`.`student_gpax`, `tb_department`.`department_name`, `tb_company_job_position`.`job_title`, `tb_company_status`.`company_status_name`
+        FROM `tb_student_register_company_job_position`
+        INNER JOIN `tb_student` ON `tb_student`.`student_id` = `tb_student_register_company_job_position`.`student_id`
+        INNER JOIN `tb_company_job_position` ON `tb_company_job_position`.`job_id` = `tb_student_register_company_job_position`.`job_id`
+        INNER JOIN `tb_department` ON `tb_department`.`department_id` = `tb_student`.`department_id`
+        INNER JOIN `tb_company` ON `tb_company`.`company_id` = `tb_student_register_company_job_position`.`company_id`
+        INNER JOIN `tb_company_status` ON `tb_company_status`.`company_status_id` = `tb_student_register_company_job_position`.`company_status_id`
+        WHERE `tb_student_register_company_job_position`.`term_id` = '".$term_id."'
+        AND `tb_student_register_company_job_position`.`company_status_id` != 5
+        AND `tb_student_register_company_job_position`.`company_id` = '".$company_id."'";
+
+        $query = $this->db->query($sql);
+        return $query->result_array();
     }
 
     public function update_student($student_id, $array)

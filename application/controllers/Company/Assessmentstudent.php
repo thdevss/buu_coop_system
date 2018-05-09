@@ -29,22 +29,8 @@ class Assessmentstudent extends CI_Controller {
 	{
 		$company_id = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0]['company_id'];
 		$data['company'] = $this->Company->get_company($company_id)[0];
-		$data['data'] = array();
-		foreach($this->Coop_Student->gets_coop_student_by_company($data['company']['company_id']) as $row) {
-			$tmp['assessment_student'] = $row;
-			$tmp['company_job_position'] = @$this->Job->get_job($tmp['assessment_student']['job_id'])[0];
-			$tmp['student'] = @$this->Student->get_student($tmp['assessment_student']['student_id'])[0];
-			$tmp['department'] = @$this->Student->get_department($tmp['student']['department_id'])[0];
+		$data['data'] = $this->Coop_Student->gets_coop_student_by_company($data['company']['company_id']);
 
-			if(
-				$tmp['department'] &&
-				$tmp['student'] &&
-				$tmp['company_job_position'] &&
-				$tmp['assessment_student']
-			) {
-				array_push($data['data'], $tmp);
-			}
-		}
 		
 
 		// add breadcrumbs
@@ -58,12 +44,13 @@ class Assessmentstudent extends CI_Controller {
 	public function form($student_id)
 	{	
 		$data['status'] = [];
-        if($this->input->get('status') == 'success') {
+		$status = $this->session->flashdata('status');
+        if($status == 'success') {
             $data['status'] = [
                 'text' => 'สำเร็จ',
                 'color' => 'success'
             ];
-        } else if($this->input->get('status') == 'error') {
+        } else if($status == 'error') {
             $data['status'] = [
                 'text' => 'ผิดพลาด',
                 'color' => 'warning'
@@ -118,8 +105,10 @@ class Assessmentstudent extends CI_Controller {
 		}
 		
 		if($status) {
+			$this->session->set_flashdata('status', 'success');
 			redirect('/Company/Assessmentstudent/form/'.$student_id.'?status=success', 'refresh');
 		} else {
+			$this->session->set_flashdata('status', 'error');
 			redirect('/Company/Assessmentstudent/form/'.$student_id.'?status=error', 'refresh');
 		}
 

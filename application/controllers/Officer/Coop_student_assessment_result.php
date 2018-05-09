@@ -38,15 +38,15 @@ class Coop_student_assessment_result extends CI_Controller {
             //     $cache['student'][$tmp['id']]['fullname'] = $tmp['student_fullname'];
             //     $cache['student'][$tmp['id']]['id'] = $tmp['student_id'];
             // }
-            foreach($this->Job->gets_job() as $tmp) {
-                $cache['job'][$tmp['job_id']]['job_title'] = $tmp['job_title'];
-            }
-            foreach($this->Company->gets_company() as $tmp) {
-                $cache['company'][$tmp['company_id']]['company_name_th'] = $tmp['company_name_th'];
-            }
-            foreach($this->Trainer->gets_trainer() as $tmp) {
-                $cache['trainer'][$tmp['person_id']]['person_fullname'] = $tmp['person_fullname'];
-            }
+            // foreach($this->Job->gets_job() as $tmp) {
+            //     $cache['job'][$tmp['job_id']]['job_title'] = $tmp['job_title'];
+            // }
+            // foreach($this->Company->gets_company() as $tmp) {
+            //     $cache['company'][$tmp['company_id']]['company_name_th'] = $tmp['company_name_th'];
+            // }
+            // foreach($this->Trainer->gets_trainer() as $tmp) {
+            //     $cache['trainer'][$tmp['person_id']]['person_fullname'] = $tmp['person_fullname'];
+            // }
 
             $return = array();
             $return['data'] = array();
@@ -57,14 +57,16 @@ class Coop_student_assessment_result extends CI_Controller {
                 // }
                 // //get student
                 $tmp_array = array();
-                $tmp_array['student'] = @$this->Student->get_student($row['student_id'])[0];
-                $tmp_array['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$tmp_array['student']['student_id']).'">'.$tmp_array['student']['student_id'].'</a>';
-                $tmp_array['job_position'] = $cache['job'][$row['job_id']];
-                $tmp_array['company'] = @$cache['company'][$row['company_id']];
-                if($row['trainer_id'] > 0) {
-                    $tmp_array['trainer'] = @$cache['trainer'][$row['trainer_id']];
-                } else {
+                $tmp_array['student']['student_fullname'] = $row['student_fullname'];
+                $tmp_array['student']['student_id'] = $row['student_id'];
+                $tmp_array['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$row['student_id']).'">'.$row['student_id'].'</a>';
+                $tmp_array['job_position']['job_title'] = $row['job_title'];
+                $tmp_array['company']['company_name_th'] = $row['company_name_th'];
+
+                if($row['person_fullname'] == '') {
                     $tmp_array['trainer']['person_fullname'] = ' - ';
+                } else {
+                    $tmp_array['trainer']['person_fullname'] = $row['person_fullname'];
                 }
                 
                 $tmp_array['button'] = '<a href="'.site_url('Officer/Coop_student_assessment_result/assessment_detail/'.$row['student_id']).'" class="btn btn-info"><i class="fa fa-list-alt"></i> ผลการประเมิน</a>';

@@ -22,7 +22,7 @@ class Trainer extends CI_Controller {
     public function lists($company_id, $status = '')
     {
         if($status == '') {
-            $status = $this->input->get('status');
+            $status = $this->session->flashdata('status');
         }
 
         if( $status == 'success'){
@@ -178,7 +178,7 @@ class Trainer extends CI_Controller {
     public function edit_form($trainer_id, $status = '')
     {
         if($status == '') {
-            $status = $this->input->get('status');
+            $status = $this->session->flashdata('status');
         }
 
         if($status == 'error_update'){
@@ -210,8 +210,8 @@ class Trainer extends CI_Controller {
         $this->form_validation->set_rules('person_position','ตำเเหน่ง','required');
         $this->form_validation->set_rules('person_email','E-mail','required|valid_email');
         if($this->form_validation->run() == false){
-
-            redirect('Officer/Trainer/edit_form/'.$trainer_id.'/?status=error_update','refresh');
+            $this->session->set_flashdata('status', 'error_update');
+            redirect('Officer/Trainer/edit_form/'.$trainer_id.'/?','refresh');
         } else {
             //success
 
@@ -220,9 +220,10 @@ class Trainer extends CI_Controller {
             $array['person_position'] = $this->input->post('person_position');
 
             $this->Trainer->update_trainer($trainer_id,$array);
+            $this->session->set_flashdata('status', 'success_update');
+            redirect('Officer/Trainer/lists/'.$company_id.'/?status=success_update','refresh');
         }
         
-            redirect('Officer/Trainer/lists/'.$company_id.'/?status=success_update','refresh');
     }
 
 
