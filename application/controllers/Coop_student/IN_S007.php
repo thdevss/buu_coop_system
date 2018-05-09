@@ -114,6 +114,9 @@ class IN_S007 extends CI_Controller {
         $data['student'] = @$this->Student->get_student($student_id)[0];
         $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
 
+        //student profile
+        $api['student'] = @$this->Student->get_student_data_from_profile($student_id);
+
         if($petition_data['student_id'] != $student_id) {
             //redirect
             redirect('Coop_student/IN_S007/?status=error_document','refresh');                
@@ -122,7 +125,9 @@ class IN_S007 extends CI_Controller {
             $template_file = "template/IN-S007.docx";
             $save_filename = "download/".$student_id."-IN-S007-id".$petition_data['petition_id'].".docx";
             $data_array = [
-                'student_fullname' => $data['student']['student_fullname'],
+                'student_fullname' => $data['student']['student_prefix']." ".$data['student']['student_fullname'],
+                'student_telephone' => $api['student']['Student_Phone'],
+                'student_email' => $api['student']['Student_Email'],
                 'student_id' => $student_id,
                 'student_course' => $data['student']['student_course'],
                 'department_name' => $data['department']['department_name'],
