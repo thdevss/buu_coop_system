@@ -19,6 +19,7 @@ class Job extends CI_Controller {
         }
           //add ->breadcrumbs
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+
     }
 
 

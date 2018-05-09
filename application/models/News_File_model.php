@@ -10,6 +10,7 @@ class News_File_model extends CI_model
 
     public function get_file($file_id)
     {
+        $this->db->select('file_name');
         $this->db->where('file_id', $file_id);
         $this->db->from('tb_news_file');
         $query = $this->db->get();
@@ -18,6 +19,7 @@ class News_File_model extends CI_model
 
     public function gets_file_by_news($news_id)
     {
+        $this->db->select('file_name, file_id');        
         $this->db->where('news_id', $news_id);
         $this->db->from('tb_news_file');
         $query = $this->db->get();

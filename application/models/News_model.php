@@ -8,14 +8,14 @@ class News_model extends CI_model
         }
         $arr = array();
         $this->db->from('tb_news');
+        $this->db->join('tb_officer', 'tb_officer.officer_id = tb_news.officer_id');
         $this->db->order_by('news_id', 'DESC');
         $query = $this->db->get();
 
         foreach($query->result_array() as $row) {
-            $row['author'] = $this->Officer->get_officer($row['officer_id'])[0];
-            foreach($this->db->where('news_id', $row['news_id'])->from('tb_news_file')->get()->result_array() as $rowFile) {
-                $row['file'][] = $rowFile['file_name'];
-            }
+            // foreach($this->db->select('file_name')->where('news_id', $row['news_id'])->from('tb_news_file')->get()->result_array() as $rowFile) {
+            //     $row['file'][] = $rowFile['file_name'];
+            // }
             array_push($arr, $row);
         }
         return $arr;
