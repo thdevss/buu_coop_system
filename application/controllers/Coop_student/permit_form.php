@@ -133,7 +133,7 @@ class permit_form  extends CI_Controller {
 
         $save_filename = "download/".$student_id."-IN-S003.docx";
         $data_array = [
-            "student_fullname_th" => $data['student']['student_fullname'],
+            "student_fullname_th" => $data['student']['student_prefix']." ".$data['student']['student_fullname'],
             "student_id" => $student_id,
             "student_course" => $data['student']['student_course'],
             "student_department" => $data['department']['department_name'],

@@ -22,19 +22,6 @@ class IN_S005 extends CI_Controller {
 
         public function index()
         {
-
-           // $data['student_id'] = $student_id;
-          //  $data['student'] = $this->Student->get_student($data['student_id'])[0];
-            // $data['data'] = array();
-            // foreach($this->Coop_Student_Assessment_Form->gets_form_for_coop_student() as $row)
-            // {
-    
-            //     $tmp_array = array();
-            //     $tmp_array['questionnaire_subject'] = $row;
-            //     $tmp_array['questionnaire_item'] = $this->Coop_Student_Assessment_Form->get_coop_student_questionnaire_item_by_subject($row['id']);
-            //     array_push($data['data'], $tmp_array);
-    
-            // }
             $status = $this->session->flashdata('status');
             if( $status == 'success'){
                 $data['status']['color'] = 'success';            
@@ -114,7 +101,7 @@ class IN_S005 extends CI_Controller {
             $term_id = $this->Login_session->check_login()->term_id;
             $template_file = "template/IN-S005.docx";
     
-            $save_filename = "download/".$student_id."-IN-S005.docx";
+            $save_filename = "download/".$student_id."-IN-S005-".time().".docx";
             $data_array = [
                 "student_fullname" => $data['student']['student_fullname'],
                 "student_id" => $student_id,
@@ -123,15 +110,15 @@ class IN_S005 extends CI_Controller {
             ];
 
             $cache_plans = $this->Coop_Student->get_coop_student_plan($student_id);
-            for($i=1;$i<13;$i++) {
+            for($i=0;$i<count($cache_plans);$i++) {
             // foreach($this->Coop_Student->get_coop_student_plan($student_id) as $i => $row) {
                 if(!@$cache_plans[$i]['plan_work_subject']) {
                     $cache_plans[$i]['plan_work_subject'] = ' ';
                 }
                 
                 $tmp_array = [
+                    'plan_work_subject' => $cache_plans[$i]['plan_work_subject'],                    
                     'n' => $i,
-                    'plan_work_subject' => $cache_plans[$i]['plan_work_subject'],
                     'w1' => '',
                     'w2' => '',
                     'w3' => '',
@@ -161,6 +148,8 @@ class IN_S005 extends CI_Controller {
                         $tmp_array['w'.$K] = "\u{2713}";
                     }
                 }
+
+                $tmp_array['n'] = ++$tmp_array['n'];
 
 
                 $data_array['wl'][] = $tmp_array;

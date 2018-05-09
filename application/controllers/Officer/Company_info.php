@@ -41,7 +41,7 @@ class Company_info extends CI_controller
             $this->load->library('form_validation');
             $this->form_validation->set_rules('company_id','Company ID','trim|required');
             $this->form_validation->set_rules('company_name_th','(ภาษาไทย)','trim|required');//required ต้องการไทย
-            $this->form_validation->set_rules('company_name_en','(ภาษาอังกฤษ)','trim|required|alpha');
+            $this->form_validation->set_rules('company_name_en','(ภาษาอังกฤษ)','trim|required');
             $this->form_validation->set_rules('company_address_number','ที่อยู่เลขที่','trim|required|alpha_dash');//required ต้องการตัวเลขและเคนื่องหมาย'/'
             $this->form_validation->set_rules('company_address_building','อาคาร','trim|required');//required ต้องการไทย
             $this->form_validation->set_rules('company_address_road','ถนน','trim|required');//required ต้องการไทย

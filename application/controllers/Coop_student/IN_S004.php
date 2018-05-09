@@ -180,21 +180,16 @@ class IN_S004 extends CI_Controller {
         $data['coop_student_emergency_contact'] = @$this->Coop_Student->get_coop_student_emergency_contact_by_student($student_id)[0];
 
 
-        $company_address = $data['company_address']['company_address_number']."".
-            $data['company_address']['company_address_building']."".
-            $data['company_address']['company_address_alley']."".
-            $data['company_address']['company_address_road']."".
-            $data['company_address']['company_address_district']."".
-            $data['company_address']['company_address_area']."".
-            $data['company_address']['company_address_province']."".
+        $company_address = $data['company_address']['company_address_number']." อาคาร ".
+            $data['company_address']['company_address_building']." ซอย ".
+            $data['company_address']['company_address_alley']." ถนน ".
+            $data['company_address']['company_address_road']." แขวง/ตำบล ".
+            $data['company_address']['company_address_district']." เขต/อำเภอ ".
+            $data['company_address']['company_address_area']." จังหวัด ".
+            $data['company_address']['company_address_province']." ".
             $data['company_address']['company_address_postal_code'] ;
             
-        $template_file = "template/IN-S004-0.docx";        
-        if($data['coop_student']['coop_student_newsletter_receive'] == 1) {
-            $template_file = "template/IN-S004-1.docx";
-        }else if($data['coop_student']['coop_student_newsletter_receive'] == 2) {
-            $template_file = "template/IN-S004-2.docx";
-        }
+        $template_file = "template/IN-S004.docx";        
 
         $save_filename = "download/".$student_id."-IN-S004-".time().".docx";
         $data_array = [
@@ -212,8 +207,8 @@ class IN_S004 extends CI_Controller {
             "contact_person_fax_number" => $data['contact_person']['person_fax_number'],
             "contact_person_email" => $data['contact_person']['person_email'],
 
-            "cn_a" => "",
-            "cn_b" => "",
+            "cn_a" => "\u{2611}",
+            "cn_b" => "\u{2610}",
 
             "trainer_fullname" => $data['trainer']['person_fullname'],
             "trainer_position" => $data['trainer']['person_position'],
@@ -249,16 +244,27 @@ class IN_S004 extends CI_Controller {
             "emergency_contact_telephone" => $data['coop_student_emergency_contact']['contact_telephone'],
             "emergency_contact_fax_number" => $data['coop_student_emergency_contact']['contact_fax_number'],
 
+            "yes_1" => "\u{2610}",
+            "yes_2" => "\u{2610}",
+            "no" => "\u{2610}",
+
         ];
 
         $data_array['map_image'] = 'http://maps.googleapis.com/maps/api/staticmap?zoom=13&size=600x450&maptype=roadmap&markers=color:blue%7Clabel:*%7C'.$data['company_address']['company_address_latitude'].','.$data['company_address']['company_address_longitude'].'';
 
 
         if($data['company']['headoffice_person_id'] == $data['company']['contact_person_id']) {
-            $data_array['cn_a'] = "*";
-                
+            $data_array['cn_a'] = "\u{2611}";
         }else{
-            $data_array['cn_b'] = "*";
+            $data_array['cn_b'] = "\u{2611}";
+        }
+
+        if($data['coop_student']['coop_student_newsletter_receive'] == 1) {
+            $data_array['yes_1'] = "\u{2611}";
+        }else if($data['coop_student']['coop_student_newsletter_receive'] == 2) {
+            $data_array['yes_2'] = "\u{2611}";
+        }else{
+            $data_array['no'] = "\u{2611}";
         }
  
        
@@ -281,7 +287,7 @@ class IN_S004 extends CI_Controller {
             <script>
                 window.location = '".base_url($result['full_url'])."';
                 setTimeout(function(){
-                    window.location = '".site_url('Coop_student/upload_document/?code=IN-S004')."';
+                   // window.location = '".site_url('Coop_student/upload_document/?code=IN-S004')."';
                 }, 1500);
             </script>
         ";

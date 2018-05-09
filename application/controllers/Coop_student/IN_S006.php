@@ -99,9 +99,9 @@ class IN_S006 extends CI_Controller {
                     
 
                     $template_file = "template/IN-S006.docx";        
-                    $save_filename = "download/".$student_id."-IN-S006.docx";
+                    $save_filename = "download/".$student_id."-IN-S006-".time().".docx";
                     $data_array = [
-                        "student_fullname" => $data['student']['student_fullname'],
+                        "student_fullname" => $data['student']['student_prefix'].' '.$data['student']['student_fullname'],
                         "student_id" => $data['student']['student_id'],
                         "student_course" => $data['student']['student_course'],
                         "department_name" => $data['department']['department_name'],
