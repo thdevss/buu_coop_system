@@ -371,11 +371,11 @@ class Company_info extends CI_controller
                 
                     $this->Job->update_job($job_id, $array);
                     $this->session->set_flashdata('form-alert', '<div class="alert alert-success">แก้ไขงานสำเร็จ</div>');
-                    redirect('Officer/Company_info/step3/'.$company_id, 'refresh');
+                    redirect('Officer/Company_info/step4/'.$company_id, 'refresh');
                 } else {
                     $job_id = $this->input->post('job_id');
                     $this->session->set_flashdata('form-alert', '<div class="alert alert-warning">แก้ไขงานไม่สำเร็จ</div>');
-                    redirect('Officer/Company_info/step3/'.$company_id, 'refresh');
+                    redirect('Officer/Company_info/step4/'.$company_id, 'refresh');
                 }
             }
 

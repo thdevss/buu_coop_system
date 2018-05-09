@@ -13,7 +13,7 @@
         <div class="row" >
             <div class="col-lg-6 offset-lg-3">
                 <div class="card">
-                 <div class="card-header"><i class="fa fa-align-justify"></i>เพิ่มข้อมูลโครงการอบรม</div>
+                 <div class="card-header"><i class="fa fa-align-justify"></i>เเก้ไขตำเเหน่งงาน</div>
                   <form action="<?php echo $work_form_url;?>" method="post">
                     <div class="card-body "> 
                         <?php
