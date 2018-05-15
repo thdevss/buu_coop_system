@@ -38,7 +38,7 @@ class Company_map extends CI_controller
         $company_id = $tmp['company_id'];
 
         $data['map'] = @$this->Address->get_address_by_company($company_id)[0];
-        $this->breadcrumbs->push('ปักหมุดแผนที่สถานประกอบการ', '/Company/company_map');
+        $this->breadcrumbs->push('ปักหมุดแผนที่สถานประกอบการ', '/Company/Company_map');
         $this->template->view('company/map_view', $data);
     }
 
@@ -85,10 +85,10 @@ class Company_map extends CI_controller
             $array['company_address_longitude'] = $this->input->post('company_address_longitude');
             $this->Address->update_address($company_id, $array);
             $this->session->set_flashdata('status', 'success');
-            redirect('Company/company_map/index/','refresh');
+            redirect('Company/Company_map/index/','refresh');
         } else {
             $this->session->set_flashdata('status', 'error');            
-            redirect('Company/company_map/index/','refresh');
+            redirect('Company/Company_map/index/','refresh');
         }
         
     }

@@ -1,7 +1,7 @@
 <?php
     defined('BASEPATH') OR exit('No direct script access allowed');
 
-    class Assessment_company_Form extends CI_Controller {
+    class Company_assessment_form extends CI_Controller {
         public function __construct()
         {
             parent::__construct();
@@ -45,7 +45,7 @@
             $data['next_number'] = (int) $data['next_number']+1;
 
             // add breadcrumbs
-            $this->breadcrumbs->push('จัดการแบบฟอร์มประเมินผลสถานประกอบการ', '/Officer/Assessment_company_Form/index');
+            $this->breadcrumbs->push('จัดการแบบฟอร์มประเมินผลสถานประกอบการ', '/Officer/Company_assessment_form/index');
 
             $this->template->view('Officer/Company_assessment_form_subject_view',$data);
      
@@ -69,14 +69,14 @@
                 if($this->Company_Assessment_Form->check_subject_dup($array['coop_company_questionnaire_subject_number'])) {
                     //is dup, cant insert
                     $this->session->set_flashdata('status', 'error');
-                    redirect('Officer/Assessment_company_Form/index/', 'refresh');                
+                    redirect('Officer/Company_assessment_form/index/', 'refresh');                
                     
                 } else {
                     //can insert
                     $this->Company_Assessment_Form->save_company_forms_subject($array);
                     
                     $this->session->set_flashdata('status', 'success');
-                    redirect('Officer/Assessment_company_Form/index/', 'refresh');                
+                    redirect('Officer/Company_assessment_form/index/', 'refresh');                
                 }
             }
         }
@@ -105,8 +105,8 @@
             $data['form_subject'] = $this->Company_Assessment_Form->gets_form_for_company();
 
             // add breadcrumbs
-            $this->breadcrumbs->push('จัดการแบบฟอร์มประเมินผลสถานประกอบการ', '/Officer/Assessment_company_Form/index');
-            $this->breadcrumbs->push('จัดการหัวข้อย่อยแบบประเมินผลสถานประกอบการ', '/Officer/Assessment_company_Form/get_company_questionnaire_item'.$subject_id);
+            $this->breadcrumbs->push('จัดการแบบฟอร์มประเมินผลสถานประกอบการ', '/Officer/Company_assessment_form/index');
+            $this->breadcrumbs->push('จัดการหัวข้อย่อยแบบประเมินผลสถานประกอบการ', '/Officer/Company_assessment_form/get_company_questionnaire_item'.$subject_id);
         
             $this->template->view('Officer/Company_assessment_form_item_view',$data);
         }
@@ -140,7 +140,7 @@
                     $this->Company_Assessment_Form->insert_company_questionnaire_item($array);
                 }
 
-                redirect('Officer/Assessment_company_Form/get_company_questionnaire_item/'.$array['subject_id'], 'refresh');
+                redirect('Officer/Company_assessment_form/get_company_questionnaire_item/'.$array['subject_id'], 'refresh');
 
             }
 
@@ -166,7 +166,7 @@
             $this->Company_Assessment_Form->sort_item($data['subject_id']);
             
 
-            redirect('Officer/Assessment_company_Form/get_company_questionnaire_item/'.$data['subject_id'], 'refresh');
+            redirect('Officer/Company_assessment_form/get_company_questionnaire_item/'.$data['subject_id'], 'refresh');
             
             
         }
@@ -199,7 +199,7 @@
                     $this->Company_Assessment_Form->update_item($item_id, $array);
                 }
     
-                redirect('Officer/Assessment_company_Form/get_company_questionnaire_item/'.$data['subject_id'], 'refresh');
+                redirect('Officer/Company_assessment_form/get_company_questionnaire_item/'.$data['subject_id'], 'refresh');
             }
         }
 

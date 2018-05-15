@@ -50,7 +50,7 @@
                         <td class="text-right"><?php echo $row['train']['train_seat'] ?></td>
                         <td class="text-center">
                           <div class="btn-group-vertical">
-                              <?php echo anchor('Officer/Training/student_list/'.$row['train']['train_id'], '<i class="fa fa-list"></i> รายชื่อนิสิต', 'class="btn btn-block btn-primary"');?>
+                              <?php echo anchor('Officer/Training/Students/'.$row['train']['train_id'], '<i class="fa fa-list"></i> รายชื่อนิสิต', 'class="btn btn-block btn-primary"');?>
                               <p style="width:5px;"></p>
                               <?php echo anchor('Officer/Training/edit/'.$row['train']['train_id'], '<i class="fa fa-eraser"></i> แก้ไขข้อมูล', 'class="btn btn-block btn-primary"');?>                              
                               <p style="width:5px;"></p>

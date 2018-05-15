@@ -124,7 +124,7 @@
 
                                     <dl class="row">
                                       <dt class="col-sm-4">จำนวนชั่วโมงอบรม</dt>
-                                      <dd><a href="<?php echo site_url('Officer/Student_list/training_history_student/'.$student['student_id']);?>">ประวัติการอบรมของนิสิตคนนี้</a></dd>
+                                      <dd><a href="<?php echo site_url('Officer/Students/training_history_student/'.$student['student_id']);?>">ประวัติการอบรมของนิสิตคนนี้</a></dd>
                                     </dl>
 
                                     <dl class="row">
@@ -214,7 +214,7 @@ jQuery("input:checkbox").on('click', function() {
       status_val = 1
     }
         var datastring = "student_id=<?php echo $student['student_id'];?>&student_core_subject_status="+status_val
-        jQuery.post(SITE_URL+"/officer/Student_list/update_pass_core_subject", datastring, function(response) {
+        jQuery.post(SITE_URL+"/officer/Students/update_pass_core_subject", datastring, function(response) {
             if(response.status) {
                 toastr["success"]("ok ja")
             } else {
@@ -230,7 +230,7 @@ jQuery("input:checkbox").on('click', function() {
 jQuery(".check_core_subj").on('click', function() {
         jQuery("#loading_status").html('<i class="fa fa-spin fa-spinner"></i> ')
         var datastring = "student_id=<?php echo $student['student_id'];?>"
-        jQuery.post(SITE_URL+"/officer/Student_list/check_core_subject_condition", datastring, function(response) {
+        jQuery.post(SITE_URL+"/officer/Students/check_core_subject_condition", datastring, function(response) {
             if(response.status) {
               jQuery("input:checkbox").prop('checked', true);
               toastr["success"]("นิสิตคนนี้ผ่านวิชาแกนเรียบร้อยแล้ว")

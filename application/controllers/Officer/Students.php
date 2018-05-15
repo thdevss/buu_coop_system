@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Student_list extends CI_Controller {
+class Students extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
@@ -28,9 +28,9 @@ class Student_list extends CI_Controller {
         $data['coop_status_type'] = $this->Student->gets_coop_status_type();
 
         // add breadcrumbs
-        $this->breadcrumbs->push('รายชื่อนิสิต', '/Officer/Student_list/index');
+        $this->breadcrumbs->push('รายชื่อนิสิต', '/Officer/Students/index');
 
-        $this->template->view('Officer/Student_list_view',$data);
+        $this->template->view('Officer/Students_view',$data);
     }
 
     public function ajax_list()
@@ -51,7 +51,7 @@ class Student_list extends CI_Controller {
         foreach($this->Student->gets_student() as $row)
         {
             $tmp_array = array();
-            $tmp_array['action_box'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$row['student_id']).'" class="btn btn-info"><i class="fa fa-list-alt"></i> รายละเอียด</a>';
+            $tmp_array['action_box'] = '<a href="'.site_url('Officer/Students/student_detail/'.$row['student_id']).'" class="btn btn-info"><i class="fa fa-list-alt"></i> รายละเอียด</a>';
             $tmp_array['checkbox'] = '';
             
             $tmp_array['student'] = $row;
@@ -196,7 +196,7 @@ class Student_list extends CI_Controller {
         // die();
 
         // add breadcrumbs
-        $this->breadcrumbs->push('รายละเอียดนิสิต', '/Officer/Student_list/student_detail');
+        $this->breadcrumbs->push('รายละเอียดนิสิต', '/Officer/Students/student_detail');
 
         $this->template->view('Officer/Student_detail_view', $data);
        

@@ -97,7 +97,7 @@ $(document).ready(function() {
         },
         'order': [[2, 'asc']],
         "ajax": {
-          "url": "<?php echo site_url('Officer/Student_list/ajax_list');?>",
+          "url": "<?php echo site_url('Officer/Students/ajax_list');?>",
           "dataSrc": ""
         },
         "columns": [
@@ -203,7 +203,7 @@ function change_coop_type_ajax(arr, coop_status_type)
       var data = { students: student_arr, status: coop_status_type }
       console.log(data)
 
-      jQuery.post(SITE_URL+"/Officer/Student_list/ajax_change_status/", data, function(response) {
+      jQuery.post(SITE_URL+"/Officer/Students/ajax_change_status/", data, function(response) {
         if(response.status) {
           swal("เปลี่ยนสถานะเรียบร้อย", {
             icon: "success",

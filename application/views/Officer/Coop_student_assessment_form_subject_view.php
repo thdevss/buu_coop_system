@@ -38,7 +38,7 @@
                                 <td><?php echo $row['coop_student_questionnaire_subject_number'];?></td>
                                 <td><?php echo $row['coop_student_questionnaire_subject_title'];?></td>
                                 <td class="text-center">
-                                    <?php echo anchor('Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item/'.$row['coop_student_questionnaire_subject_id'], 'จัดการหัวข้อย่อย', 'class="btn btn-primary"');?>                              
+                                    <?php echo anchor('Officer/Coop_student_assessment_form/get_coop_student_questionnaire_item/'.$row['coop_student_questionnaire_subject_id'], 'จัดการหัวข้อย่อย', 'class="btn btn-primary"');?>                              
                                 </td>
                               </tr>
                                 <?php } ?>
@@ -60,7 +60,7 @@
             <span aria-hidden="true">×</span>
           </button>
             </div>
-            <form action="<?php echo site_url('Officer/Assessment_coop_student_Form/add_coop_student_questionnaire_subject');?>" method="post">
+            <form action="<?php echo site_url('Officer/Coop_student_assessment_form/add_coop_student_questionnaire_subject');?>" method="post">
               <div class="modal-body">
                 <div class="col-md-12">
                   <div class="form-group">

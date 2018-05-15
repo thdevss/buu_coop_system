@@ -29,7 +29,7 @@
                             </div>
                             
                             <div class="col-md-6">
-                                <form action="<?php echo site_url('Company/company_map/update');?>" method="post">
+                                <form action="<?php echo site_url('Company/Company_map/update');?>" method="post">
                                     <div class="form-group">
                                       <label class="form-col-form-label" for="">ละติจูด <?php echo form_error('company_address_latitude');?></label>
                                       <input type="text" class="form-control map_val" id="company_address_latitude" name="company_address_latitude" value="<?php echo form_value_db('company_address_latitude', $map['company_address_latitude']);?>">

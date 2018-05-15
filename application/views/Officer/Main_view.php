@@ -11,7 +11,7 @@
                 <div class="col-6 col-lg-3">
                     <div class="card">
                         <div class="card-body p-0 clearfix">
-                            <a href="<?php echo site_url('Officer/Student_list');?>" target="_blank">
+                            <a href="<?php echo site_url('Officer/Students');?>" target="_blank">
                                 <i class="icon-list bg-primary p-4 font-2xl mr-3 float-left"></i>
                                 <div class="h5 text-primary mb-0 pt-3">เปลี่ยนสถานะนิสิต</div>
                                 <div class="text-muted text-uppercase font-weight-bold font-xs">จัดการนิสิต</div>                                
@@ -23,7 +23,7 @@
                 <div class="col-6 col-lg-3">
                     <div class="card">
                         <div class="card-body p-0 clearfix">
-                            <a href="<?php echo site_url('Officer/Management_student_adviser');?>" target="_blank">
+                            <a href="<?php echo site_url('Officer/Adviser');?>" target="_blank">
                                 <i class="fa fa-tripadvisor bg-primary p-4 font-2xl mr-3 float-left"></i>
                                 <div class="h5 text-primary mb-0 pt-3">เลือกอาจารย์ที่ปรึกษา</div>
                                 <div class="text-muted text-uppercase font-weight-bold font-xs">ให้นิสิตสหกิจ</div>

@@ -28,13 +28,13 @@
                     <?php $i=1; foreach($data as $row){?>
                         <tr>
                           <td><?php echo $i++; ?></tb>
-                          <td><?php echo $row['student_id']; ?></tb>
+                          <td><a href="<?php echo site_url('Company/Student/student_detail/'.$row['student_id']);?>"><?php echo $row['student_id'];?></a></tb>
                           <td><?php echo $row['student_prefix']." ".$row['student_fullname']; ?></tb>
                           <td><?php echo $row['job_title']; ?></tb>
                           <td><?php echo $row['company_name_th']; ?></tb>
                           <td>
-                          <?php if($row['person_fullname']){?>
-                          <?php echo $row['person_fullname']; ?>
+                          <?php if($row['person_fullname']){ ?>
+                            <?php echo $row['person_fullname']; ?>
                           <?php } ?>
                           </td>
                         </tr>

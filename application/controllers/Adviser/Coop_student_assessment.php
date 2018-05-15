@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Assessmentstudent extends CI_Controller {
+class Coop_student_assessment extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
@@ -23,21 +23,12 @@ class Assessmentstudent extends CI_Controller {
         public function index()
         {
             $adviser_id = $this->Login_session->check_login()->login_value;
-            $data['data'] = array();
-            foreach ($this->Coop_Student->gets_coop_student_by_adviser($adviser_id) as $row)
-            {
-                $tmp_array = array();
-                $tmp_array['student'] = $this->Student->get_student($row['student_id'])[0];
-                $tmp_array['department'] = $this->Student->get_department($tmp_array['student']['department_id'])[0];
-                $tmp_array['company'] = $this->Company->get_company($row['company_id'])[0];
-                $tmp_array['company_address'] = $this->Address->get_address_by_company($row['company_id'])[0];
-                array_push($data['data'],$tmp_array);
-            }
+            $data['data'] = $this->Coop_Student->gets_coop_student_by_adviser($adviser_id);
 
                 // add breadcrumbs
-                $this->breadcrumbs->push('การประเมินผลการฝึกงานของนักศึกษา', '/Adviser/Assessmentstudent/index');
+                $this->breadcrumbs->push('การประเมินผลการฝึกงานของนักศึกษา', '/Adviser/Coop_student_assessment/index');
 
-                $this->template->view('Adviser/Assessmentstudent_list_view',$data);
+                $this->template->view('Adviser/Coop_student_assessment_list_view',$data);
           
         }
 
@@ -75,10 +66,10 @@ class Assessmentstudent extends CI_Controller {
 
                 
             // add breadcrumbs
-            $this->breadcrumbs->push('การประเมินผลการฝึกงานของนักศึกษา', '/Adviser/Assessmentstudent/index');
-            $this->breadcrumbs->push('แบบการประเมินผลการฝึกงานของนิสิตสหกิจ', '/Adviser/Assessmentstudent/form');
+            $this->breadcrumbs->push('การประเมินผลการฝึกงานของนักศึกษา', '/Adviser/Coop_student_assessment/index');
+            $this->breadcrumbs->push('แบบการประเมินผลการฝึกงานของนิสิตสหกิจ', '/Adviser/Coop_student_assessment/form');
 
-            $this->template->view('Adviser/Assessmentstudent_form_view', $data);
+            $this->template->view('Adviser/Coop_student_assessment_form_view', $data);
         }
 
 }

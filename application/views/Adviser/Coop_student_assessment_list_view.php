@@ -30,12 +30,12 @@
                       <tr>
                       <?php $i=1; foreach ($data as $row){ ?>
                         <td class="text-center"><?php echo $i++; ?></td>
-                        <td><?php echo $row['student']['student_id']?></td>
-                        <td><?php echo $row['student']['student_fullname']?></td>
-                        <td><?php echo $row['department']['department_name']?></td>
-                        <td><?php echo $row['company']['company_name_th']?></td>
-                        <td><?php echo $row['company_address']['company_address_province']?></td>
-                        <td><a class="btn btn-primary" href="<?php echo site_url('Adviser/Assessmentstudent/form/'.$row['student']['student_id']);?>" target="_blank"><i class="fa fa-list-alt"></i> รายละเอียด</a></td> 
+                        <td><?php echo $row['student_id']?></td>
+                        <td><?php echo $row['student_fullname']?></td>
+                        <td><?php echo $row['department_name']?></td>
+                        <td><?php echo $row['company_name_th']?></td>
+                        <td><?php echo $row['company_address_province']?></td>
+                        <td><a class="btn btn-primary" href="<?php echo site_url('Adviser/Coop_student_assessment/form/'.$row['student_id']);?>" target="_blank"><i class="fa fa-list-alt"></i> รายละเอียด</a></td> 
                       </tr>
                       <?php } ?>
                     </tbody>

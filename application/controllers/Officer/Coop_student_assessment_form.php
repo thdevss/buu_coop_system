@@ -1,7 +1,7 @@
 <?php
     defined('BASEPATH') OR exit('No direct script access allowed');
 
-    class Assessment_coop_student_Form extends CI_Controller {
+    class Coop_student_assessment_form extends CI_Controller {
         public function __construct()
         {
             parent::__construct();
@@ -44,7 +44,7 @@
             $data['next_number'] = (int) $data['next_number']+1;
 
             // add breadcrumbs
-            $this->breadcrumbs->push('จัดการแบบฟอร์มประเมินผลการฝึกงานของนิสิต', '/Officer/Assessment_coop_student_Form/index');
+            $this->breadcrumbs->push('จัดการแบบฟอร์มประเมินผลการฝึกงานของนิสิต', '/Officer/Coop_student_assessment_form/index');
 
             $this->template->view('Officer/Coop_student_assessment_form_subject_view',$data);
 
@@ -69,13 +69,13 @@
                 if($this->Coop_Student_Assessment_Form->check_subject_dup($array['coop_student_questionnaire_subject_number'])) {
                     //is dup, cant insert
                     $this->session->set_flashdata('status', 'error');
-                    redirect('Officer/Assessment_coop_student_Form/index/', 'refresh');                
+                    redirect('Officer/Coop_student_assessment_form/index/', 'refresh');                
                     
                 } else {
                     //can insert
                     $this->Coop_Student_Assessment_Form->save_coop_student_form_subject($array);
                     $this->session->set_flashdata('status', 'success');
-                    redirect('Officer/Assessment_coop_student_Form/index/', 'refresh');                
+                    redirect('Officer/Coop_student_assessment_form/index/', 'refresh');                
                 }
 
                 // return $this->index('success');
@@ -106,8 +106,8 @@
             $data['form_subject'] = $this->Coop_Student_Assessment_Form->gets_form_for_coop_student();
 
             // add breadcrumbs
-            $this->breadcrumbs->push('จัดการแบบฟอร์มประเมินผลการฝึกงานของนิสิต', '/Officer/Assessment_coop_student_Form/index');
-            $this->breadcrumbs->push('จัดการหัวข้อย่อยแบบประเมินผลการฝึกงานของนิสิตสหกิจ', '/Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item'.$subject_id);
+            $this->breadcrumbs->push('จัดการแบบฟอร์มประเมินผลการฝึกงานของนิสิต', '/Officer/Coop_student_assessment_form/index');
+            $this->breadcrumbs->push('จัดการหัวข้อย่อยแบบประเมินผลการฝึกงานของนิสิตสหกิจ', '/Officer/Coop_student_assessment_form/get_coop_student_questionnaire_item'.$subject_id);
         
             $this->template->view('Officer/Coop_student_assessment_form_item_view',$data);
         }
@@ -142,7 +142,7 @@
                     $this->Coop_Student_Assessment_Form->insert_coop_student_questionnaire_item($array);
                 }
 
-                redirect('Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item/'.$array['subject_id'], 'refresh');
+                redirect('Officer/Coop_student_assessment_form/get_coop_student_questionnaire_item/'.$array['subject_id'], 'refresh');
             }
         }
 
@@ -164,7 +164,7 @@
             $this->Coop_Student_Assessment_Form->sort_item($data['subject_id']);
             
 
-            redirect('Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item/'.$data['subject_id'], 'refresh');
+            redirect('Officer/Coop_student_assessment_form/get_coop_student_questionnaire_item/'.$data['subject_id'], 'refresh');
             
             
         }
@@ -197,7 +197,7 @@
                     $this->Coop_Student_Assessment_Form->update_item($item_id, $array);
                 }
     
-                redirect('Officer/Assessment_coop_student_Form/get_coop_student_questionnaire_item/'.$data['subject_id'], 'refresh');
+                redirect('Officer/Coop_student_assessment_form/get_coop_student_questionnaire_item/'.$data['subject_id'], 'refresh');
             }
         }
 
