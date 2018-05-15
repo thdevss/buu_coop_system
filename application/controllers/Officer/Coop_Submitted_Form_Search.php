@@ -52,7 +52,7 @@ class Coop_Submitted_Form_Search extends CI_Controller {
 
 
                 $row['student'] = $this->Student->get_student($r['student_id'])[0];
-                $row['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$row['student']['student_id']).'">'.$row['student']['student_id'].'</a>';
+                $row['student']['id_link'] = '<a href="'.site_url('Officer/Students/student_detail/'.$row['student']['student_id']).'">'.$row['student']['student_id'].'</a>';
                 $row['department'] = $cache['department'][$row['student']['department_id']];
 
                 array_push($data['data'], $row);
@@ -97,7 +97,7 @@ class Coop_Submitted_Form_Search extends CI_Controller {
                     }
                     $row = array();
                     $row['student'] = @$this->Student->get_student($r['student_id'])[0];
-                    $row['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$row['student']['student_id']).'">'.$row['student']['student_id'].'</a>';                
+                    $row['student']['id_link'] = '<a href="'.site_url('Officer/Students/student_detail/'.$row['student']['student_id']).'">'.$row['student']['student_id'].'</a>';                
                     $row['form'] = @$this->Coop_Submitted_Form_Search->search_form_by_student_and_code($r['student_id'], $form_code)[0];
 
                     $row['form']['status'] = '<span style="color: red;">ยังไม่ส่ง</span>';

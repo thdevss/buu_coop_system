@@ -20,7 +20,7 @@
                 echo '<div class="alert alert-'.$status['color'].'">'.$status['text'].'</div>';
               }
               ?>
-              <form action="<?php echo site_url('Company/Assessmentstudent/save/'.$student_id);?>" method="post">
+              <form action="<?php echo site_url('Company/Coop_student_assessment/save/'.$student_id);?>" method="post">
               <input type="hidden" value="<?php echo $student_id;?>" name="student_id">
               <table class="table table-bordered">
                     <thead>

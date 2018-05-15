@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Assessmentstudent extends CI_Controller {
+class Coop_student_assessment extends CI_Controller {
 
 	public function __construct()
     {
@@ -34,7 +34,7 @@ class Assessmentstudent extends CI_Controller {
 		
 
 		// add breadcrumbs
-		$this->breadcrumbs->push('รายชื่อนิสิตฝึกงานของนิสิตสหกิจ', '/Company/Assessmentstudent/index');
+		$this->breadcrumbs->push('รายชื่อนิสิตฝึกงานของนิสิตสหกิจ', '/Company/Coop_student_assessment/index');
 
 
 		$this->template->view('Company/Coop_student_assessment_list_view', $data);
@@ -74,8 +74,8 @@ class Assessmentstudent extends CI_Controller {
 		// print_r($data);
 
 		// add breadcrumbs
-		$this->breadcrumbs->push('รายชื่อนิสิตฝึกงานของนิสิตสหกิจ', '/Company/Assessmentstudent/index');
-		$this->breadcrumbs->push('ประเมินผลการฝึกงานของนิสิตสหกิจ', '/Company/Assessmentstudent/form');
+		$this->breadcrumbs->push('รายชื่อนิสิตฝึกงานของนิสิตสหกิจ', '/Company/Coop_student_assessment/index');
+		$this->breadcrumbs->push('ประเมินผลการฝึกงานของนิสิตสหกิจ', '/Company/Coop_student_assessment/form');
 
 		$this->template->view('Company/Coop_student_assessment_form_view', $data);
 	}
@@ -106,10 +106,10 @@ class Assessmentstudent extends CI_Controller {
 		
 		if($status) {
 			$this->session->set_flashdata('status', 'success');
-			redirect('/Company/Assessmentstudent/form/'.$student_id.'?status=success', 'refresh');
+			redirect('/Company/Coop_student_assessment/form/'.$student_id.'?status=success', 'refresh');
 		} else {
 			$this->session->set_flashdata('status', 'error');
-			redirect('/Company/Assessmentstudent/form/'.$student_id.'?status=error', 'refresh');
+			redirect('/Company/Coop_student_assessment/form/'.$student_id.'?status=error', 'refresh');
 		}
 
 	}

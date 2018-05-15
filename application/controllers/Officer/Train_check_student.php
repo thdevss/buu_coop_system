@@ -202,7 +202,7 @@ class Train_check_student extends CI_Controller {
                 'check_no' => ++$key,
                 'check_date' => thaiDate($row['check_datetime']),
                 'check_title' => $row['check_note'],
-                'check_button' => '<a href="'.site_url('/Officer/Train_check_student/student_list/'.$row['check_id']).'" class="btn btn-info"><i class="fa fa-list"></i> รายชื่อนิสิต</a> <a href="'.site_url('/Officer/Train_check_student/check_student/'.$row['check_id']).'" class="btn btn-warning"><i class="fa fa-list"></i> เช็คชื่อนิสิต</a>'
+                'check_button' => '<a href="'.site_url('/Officer/Train_check_student/Students/'.$row['check_id']).'" class="btn btn-info"><i class="fa fa-list"></i> รายชื่อนิสิต</a> <a href="'.site_url('/Officer/Train_check_student/check_student/'.$row['check_id']).'" class="btn btn-warning"><i class="fa fa-list"></i> เช็คชื่อนิสิต</a>'
             );
         }
 
@@ -234,11 +234,11 @@ class Train_check_student extends CI_Controller {
         
         // add breadcrumbs
         $this->breadcrumbs->push('เช็คชื่อเข้าอบรม', '/Officer/Train_check_student/index');
-        $this->breadcrumbs->push('รายชื่อนิสิตเข้าร่วมอบรม', '/Officer/training/student_list/'.$training_id);
+        $this->breadcrumbs->push('รายชื่อนิสิตเข้าร่วมอบรม', '/Officer/training/Students/'.$training_id);
 
         $data['status'] = [];
         $data['is_uploadform'] = false;
-        $this->template->view('Officer/Student_list_report', $data);
+        $this->template->view('Officer/Students_report', $data);
 
     }
 

@@ -286,11 +286,11 @@ class Training extends CI_Controller {
         
         // add breadcrumbs
         $this->breadcrumbs->push('จัดการข้อมูลการอบรม', '/Officer/Training/index');
-        $this->breadcrumbs->push('รายชื่อนิสิตเข้าร่วมอบรม', '/Officer/training/student_list/'.$training_id);
+        $this->breadcrumbs->push('รายชื่อนิสิตเข้าร่วมอบรม', '/Officer/training/Students/'.$training_id);
 
         $data['is_uploadform'] = true;
 
-        $this->template->view('Officer/Student_list_report', $data);
+        $this->template->view('Officer/Students_report', $data);
 
     }
 
@@ -317,7 +317,7 @@ class Training extends CI_Controller {
             if ( ! $this->upload->do_upload('userfile')) {
                 $data['status'] = $this->upload->display_errors();
                 $this->session->set_flashdata('status', 'error_upload');
-                redirect('Officer/Training/student_list/'.$training_id, 'refresh');
+                redirect('Officer/Training/Students/'.$training_id, 'refresh');
                 die();
             } else {
                 
@@ -355,79 +355,14 @@ class Training extends CI_Controller {
 
                 unlink($file['full_path']);
                 $this->session->set_flashdata('form-alert', 'เพิ่มนิสิตได้ทั้งหมด '.$count['success'].' คน, เพิ่มไม่สำเร็จ '.$count['error'].' คน');
-                redirect('Officer/Training/student_list/'.$training_id, 'refresh');
+                redirect('Officer/Training/Students/'.$training_id, 'refresh');
                 die();
             }
         } else {
             $this->session->set_flashdata('status', 'error_training_id');
-            redirect('Officer/Training/student_list/'.$training_id, 'refresh');
+            redirect('Officer/Training/Students/'.$training_id, 'refresh');
             die();  
         }
     }
-
-    // public function student_list_excel($training_id)
-    // {
-    //     //to excel
-    //     require(FCPATH.'/application/libraries/XLSXWriter/xlsxwriter.class.php');
-    //     require(FCPATH.'/application/libraries/XLSXWriter/xlsxwriterplus.class.php');
-        
-
-    //     $filename = "example.xlsx";
-    //     header('Content-disposition: attachment; filename="'.XLSXWriter::sanitize_filename($filename).'"');
-    //     header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-    //     header('Content-Transfer-Encoding: binary');
-    //     header('Cache-Control: must-revalidate');
-    //     header('Pragma: public');
-
-    //     $writer = new XLSWriterPlus();
-    //     //get student
-    //     $header = array(
-    //         '' => 'string',
-    //         '' => 'string',
-    //         '' => 'string',
-    //         '' => 'string',
-    //         '' => 'string'
-    //     );
-        
-    //     $rows[] = array(
-    //         'รายชื่อนิสิตเข้าร่วมอบรมโครงการ xxx yyyy วันที่ xx-xx-2018', '', '', '', ''
-    //     );
-    //     $rows[] = array(
-    //         'ลำดับ',
-    //         'บาร์โค้ด',
-    //         'รหัสนิสิต',
-    //         'ชื่อ - นามสกุล',
-    //         'ลายเซ็นต์',
-    //     );
-
-    //     foreach($this->Training->gets_student_register_train($training_id) as $key => $student) {
-    //         $student_info = $this->Student->get_student($student['student_id'])[0];
-    //         $rows[] = array(
-    //             ++$key,
-    //             '',
-    //             $student['student_id'],
-    //             $student_info['fullname'],
-    //             ''
-    //         );
-    //     }
-    //     $format = array(
-    //         'font'=>'THSarabunPSK',
-    //         'font-size'=>16, 
-    //         'wrap_text'=>true
-    //     );
-
-    //     $writer = new XLSXWriter();
-    //     $writer->setAuthor('from Cooperative System, BUU');
-    //     foreach($rows as $row) {
-    //         $writer->writeSheetRow('Sheet1', $row, $format);            
-    //     }
-    //     $writer->markMergedCell('Sheet1', $start_row=0, $start_col=0, $end_row=0, $end_col=4);
-            
-    //     $writer->writeToStdOut();
-    // }
-
-
-
-
 
 }

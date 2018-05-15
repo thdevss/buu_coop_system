@@ -83,7 +83,7 @@ class Test_Management extends CI_Controller {
             //get student
             $tmp_array = array();
             $tmp_array['student'] = $this->Student->get_student($row['student_id'])[0];
-            $tmp_array['student']['id'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$tmp_array['student']['id']).'">'.$tmp_array['student']['id'].'</a>';
+            $tmp_array['student']['id'] = '<a href="'.site_url('Officer/Students/student_detail/'.$tmp_array['student']['id']).'">'.$tmp_array['student']['id'].'</a>';
             
 
             //get student field

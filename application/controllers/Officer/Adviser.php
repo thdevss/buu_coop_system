@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Management_student_adviser extends CI_controller{
+class Adviser extends CI_controller{
     public function __construct()
     {
         parent::__construct();
@@ -25,8 +25,8 @@ class Management_student_adviser extends CI_controller{
         $data['adviser'] = @$this->Adviser->gets_adviser();
 
         // addBreadcrumb
-        $this->breadcrumbs->push('จัดอาจารย์ที่ปรึกษากับนิสิต', '/Officer/Management_student_adviser/index');
-        $this->template->view('Officer/Management_student_adviser_view',$data);
+        $this->breadcrumbs->push('จัดอาจารย์ที่ปรึกษากับนิสิต', '/Officer/Adviser/index');
+        $this->template->view('Officer/Adviser_view',$data);
     }
     
     public function ajax_list()
@@ -62,7 +62,7 @@ class Management_student_adviser extends CI_controller{
             
             
             // $tmp_array['student'] = $cache['student'][$row['student_id']];
-            $tmp_array['student']['id_link'] = '<a href="'.site_url('Officer/Student_list/student_detail/'.$tmp_array['student']['student_id']).'">'.$tmp_array['student']['student_id'].'</a>';            
+            $tmp_array['student']['id_link'] = '<a href="'.site_url('Officer/Students/student_detail/'.$tmp_array['student']['student_id']).'">'.$tmp_array['student']['student_id'].'</a>';            
             
             $tmp_array['adviser']['adviser_fullname'] = '-';
             if(@$cache['adviser'][$row['adviser_id']]) {
@@ -135,7 +135,7 @@ class Management_student_adviser extends CI_controller{
 
     public function map_view()
     {
-        $this->breadcrumbs->push('แผนที่', '/Officer/Management_student_adviser/map_view');
+        $this->breadcrumbs->push('แผนที่', '/Officer/Adviser/map_view');
         $data = [];
         $data['company'] = [];
 
@@ -150,7 +150,7 @@ class Management_student_adviser extends CI_controller{
                 $tmp['pin_color'] = '1aff1a';   
                 $tmp['message'] = 'นิสิตสหกิจมีอาจารย์ที่ปรึกษาครบทุกคน';
             } else {
-                $tmp['message'] = 'มีนิสิตจำนวน '.count($check_student).' คน ไม่มีอาจารย์ที่ปรึกษา<br><br><a href=\''.site_url('Officer/Management_student_adviser/?company_id='.$company['company_id']).'\' target=\'_blank\'>จัดอาจารย์ที่ปรึกษาให้นิสิต</a>';
+                $tmp['message'] = 'มีนิสิตจำนวน '.count($check_student).' คน ไม่มีอาจารย์ที่ปรึกษา<br><br><a href=\''.site_url('Officer/Adviser/?company_id='.$company['company_id']).'\' target=\'_blank\'>จัดอาจารย์ที่ปรึกษาให้นิสิต</a>';
             }
             
             if(@$tmp['map']) {

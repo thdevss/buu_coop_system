@@ -39,7 +39,7 @@
                                 <td><?php echo $row['coop_company_questionnaire_subject_title'];?></td>
                                
                                 <td class="text-center">
-                                    <?php echo anchor('Officer/Assessment_company_Form/get_company_questionnaire_item/'.$row['coop_company_questionnaire_subject_id'], 'จัดการหัวข้อย่อย', 'class="btn btn-primary"');?>                              
+                                    <?php echo anchor('Officer/Company_assessment_form/get_company_questionnaire_item/'.$row['coop_company_questionnaire_subject_id'], 'จัดการหัวข้อย่อย', 'class="btn btn-primary"');?>                              
                                 </td>
                               </tr>
                                 <?php } ?>
@@ -67,7 +67,7 @@
             <span aria-hidden="true">×</span>
           </button>
             </div>
-            <form action="<?php echo site_url('Officer/Assessment_company_Form/add_company_questionnaire_subject');?>" method="post">
+            <form action="<?php echo site_url('Officer/Company_assessment_form/add_company_questionnaire_subject');?>" method="post">
               <div class="modal-body">
                 <div class="col-md-12">
                   <div class="form-group">

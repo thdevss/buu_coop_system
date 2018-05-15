@@ -89,7 +89,7 @@ $(document).ready(function() {
         },
         'order': [[2, 'asc']],
         "ajax": {
-          "url": "<?php echo site_url('Officer/Management_student_adviser/ajax_list?company_id='.$this->input->get('company_id'));?>",
+          "url": "<?php echo site_url('Officer/Adviser/ajax_list?company_id='.$this->input->get('company_id'));?>",
           "dataSrc": ""
         },
         "columns": [
@@ -185,7 +185,7 @@ function update_student_into_adviser_ajax(arr, adviser_id)
 
 
           var data = { students: student_arr, adviser: adviser_id }
-          jQuery.post(SITE_URL+"/Officer/Management_student_adviser/ajax_change_status/", data, function(response) {
+          jQuery.post(SITE_URL+"/Officer/Adviser/ajax_change_status/", data, function(response) {
             if(response.status) {
               swal("เพิ่มนิสิตในอาจารย์เรียบร้อย", {
                 icon: "success",

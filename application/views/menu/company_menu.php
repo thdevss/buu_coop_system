@@ -17,7 +17,7 @@
                 <?php echo anchor('company/company_info/step1', '<i class="fa fa-edit "></i> จัดการข้อมูลบริษัท', 'class="nav-link"');?>                
               </li>
               <li class="nav-item">
-              <?php echo anchor('company/company_map/', '<i class="fa fa-map-pin"></i> แผนที่ตั้งบริษัท', 'class="nav-link"');?>
+              <?php echo anchor('company/Company_map/', '<i class="fa fa-map-pin"></i> แผนที่ตั้งบริษัท', 'class="nav-link"');?>
               </li>
               <!-- <li class="nav-item">
                 <a class="nav-link" href="components-cards.html"><i class="fa fa-address-card-o"></i> จัดการที่อยู่</a>
@@ -34,7 +34,7 @@
                 <?php echo anchor('Company/Coop_Student/coop_student_list', '<i class="icon-list"></i> รายชื่อนิสิตสหกิจ', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
-              <?php echo anchor('Company/Assessmentstudent/', '<i class="icon-doc"></i> ประเมินผลการฝึกงานของนิสิต', 'class="nav-link"');?>
+              <?php echo anchor('Company/Coop_student_assessment/', '<i class="icon-doc"></i> ประเมินผลการฝึกงานของนิสิต', 'class="nav-link"');?>
               </li>
             </ul>
           </li>

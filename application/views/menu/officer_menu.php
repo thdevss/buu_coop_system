@@ -24,7 +24,7 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-people"></i> จัดการนิสิต</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <?php echo anchor('Officer/Student_list', '<i class="icon-list"></i> เปลี่ยนสถานะ', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Students', '<i class="icon-list"></i> เปลี่ยนสถานะ', 'class="nav-link"');?>
             </li>
             
             
@@ -37,10 +37,10 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-mortar-board"></i> จัดการอาจารย์</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <?php echo anchor('Officer/Management_student_adviser', '<i class="fa fa-tripadvisor"></i> อ.ที่ปรึกษากับนิสิต', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Adviser', '<i class="fa fa-tripadvisor"></i> อ.ที่ปรึกษากับนิสิต', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-              <?php echo anchor('Officer/Management_student_adviser/map_view', '<i class="icon-list"></i> แผนที่', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Adviser/map_view', '<i class="icon-list"></i> แผนที่', 'class="nav-link"');?>
             </li>
 
           </ul>
@@ -118,10 +118,10 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-file-o"></i> จัดการแบบประเมิน</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-            <?php echo anchor('Officer/Assessment_company_Form/', '<i class="fa fa-tasks"></i> แบบประเมินบริษัท', 'class="nav-link"');?>
+            <?php echo anchor('Officer/Company_assessment_form/', '<i class="fa fa-tasks"></i> แบบประเมินบริษัท', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/Assessment_coop_student_Form/', '<i class="fa fa-mortar-board"></i> แบบประเมินนิสิต', 'class="nav-link"');?>
+            <?php echo anchor('Officer/Coop_student_assessment_form/', '<i class="fa fa-mortar-board"></i> แบบประเมินนิสิต', 'class="nav-link"');?>
             </li>
           </ul>
         </li>
