@@ -204,7 +204,7 @@ class Setting extends CI_Controller {
 
     public function add_job_title()
     {
-        $this->form_validation->set_rules('job_title', 'ตำแหน่งงาน', 'trim|required|thai_eng_character|is_unique[tb_company_job_title.job_title]');
+        $this->form_validation->set_rules('job_title', 'ตำแหน่งงาน', 'trim|required|thai_en_character|is_unique[tb_company_job_title.job_title]');
 
         if ($this->form_validation->run() == FALSE) {
             $this->lists_job_title();
@@ -220,7 +220,7 @@ class Setting extends CI_Controller {
 
     public function update_job_title($job_title_id = 0)
     {
-        $this->form_validation->set_rules('job_title', 'ตำแหน่งงาน', 'trim|required|thai_eng_character');
+        $this->form_validation->set_rules('job_title', 'ตำแหน่งงาน', 'trim|required|thai_en_character');
         
         if ($this->form_validation->run() == FALSE) {
             if($job_title_id < 1) {
@@ -313,7 +313,7 @@ class Setting extends CI_Controller {
 
     public function add_skill_name()
     {
-        $this->form_validation->set_rules('skill_name', 'ชื่อทักษะงาน', 'trim|required|thai_eng_character|is_unique[tb_skill.skill_name]');
+        $this->form_validation->set_rules('skill_name', 'ชื่อทักษะงาน', 'trim|required|thai_en_character|is_unique[tb_skill.skill_name]');
         $this->form_validation->set_rules('skill_category_id', 'ประเภททักษะ', 'trim|required|integer');
         
         if ($this->form_validation->run() == FALSE) {
@@ -330,7 +330,7 @@ class Setting extends CI_Controller {
 
     public function update_skill_name($skill_id = 0)
     {
-        $this->form_validation->set_rules('skill_name', 'ชื่อทักษะงาน', 'trim|required|thai_eng_character|is_unique[tb_skill.skill_name]');
+        $this->form_validation->set_rules('skill_name', 'ชื่อทักษะงาน', 'trim|required|thai_en_character|is_unique[tb_skill.skill_name]');
 
         if ($this->form_validation->run() == FALSE) {
             $data['form_type'] = 'update';
