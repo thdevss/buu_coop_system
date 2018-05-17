@@ -115,7 +115,6 @@ class IN_S007 extends CI_Controller {
         $data['coop_student'] = @$this->Coop_Student->get_coop_student($student_id)[0];
         $data['adviser'] = @$this->Adviser->get_adviser($data['coop_student']['adviser_id'])[0];
         $data['student'] = @$this->Student->get_student($student_id)[0];
-        $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
 
         //student profile
         $api['student'] = @$this->Student->get_student_data_from_profile($student_id);
@@ -134,7 +133,7 @@ class IN_S007 extends CI_Controller {
                 'student_email' => $api['student']['Student_Email'],
                 'student_id' => $student_id,
                 'student_course' => $data['student']['student_course'],
-                'department_name' => $data['department']['department_name'],
+                'department_name' => $data['student']['department_name'],
                 'adviser_fullname' => $data['adviser']['adviser_fullname'],
                 'date' => thaiDate(date('Y-m-d H:i:s')),
             ];

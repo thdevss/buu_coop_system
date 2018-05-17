@@ -172,14 +172,12 @@ class IN_S004 extends CI_Controller {
         $data['company'] = @$this->Company->get_company($data['coop_student']['company_id'])[0];
         $data['company_address'] = @$this->Address->get_address_by_company($data['coop_student']['company_id'])[0];
         $data['company_person'] = @$this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];
-        // $data['contact_person'] = @$this->Trainer->get_trainer($data['company']['contact_person_id'])[0];
+        $data['contact_person'] = @$this->Trainer->get_trainer($data['company']['contact_person_id'])[0];
         $data['trainer'] = @$this->Trainer->get_trainer($data['coop_student']['trainer_id'])[0];
         $data['student_name'] = @$this->Student->get_student($data['coop_student']['student_id'])[0];
-        $data['student_department'] = @$this->Student->get_department($data['student_name']['department_id'])[0];
         $data['company_job_position'] = @$this->Job->get_job($data['coop_student']['job_id'])[0];
         $data['coop_student_dorm'] = @$this->Coop_Student->get_coop_student_dorm_by_student($data['coop_student']['student_id'])[0];
         $data['coop_student_emergency_contact'] = @$this->Coop_Student->get_coop_student_emergency_contact_by_student($student_id)[0];
-
 
         $company_address = $data['company_address']['company_address_number']." อาคาร ".
             $data['company_address']['company_address_building']." ซอย ".
@@ -219,7 +217,7 @@ class IN_S004 extends CI_Controller {
             "trainer_email" => $data['trainer']['person_email'],
             "student_name_fullname" => $data['student_name']['student_fullname'],
             "student_name_id" => $data['student_name']['student_id'],
-            "student_department_name" => $data['student_department']['department_name'],
+            "student_department_name" => $data['student_name']['department_name'],
             "student_faculty" => 'คณะวิทยาการสารสนเทศ',
             "company_job_position_title" => $data['company_job_position']['job_title'],
             "company_job_job_description" => $data['company_job_position']['job_description'],

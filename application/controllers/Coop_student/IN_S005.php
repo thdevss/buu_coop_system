@@ -96,7 +96,7 @@ class IN_S005 extends CI_Controller {
     
             $data['coop_student'] = @$this->Coop_Student->get_coop_student($student_id)[0];
             $data['student'] = @$this->Student->get_student($student_id)[0];
-            $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
+
             $data['company'] = @$this->Company->get_company($data['coop_student']['company_id'])[0];
             $term_id = $this->Login_session->check_login()->term_id;
             $template_file = "template/IN-S005.docx";
@@ -105,7 +105,7 @@ class IN_S005 extends CI_Controller {
             $data_array = [
                 "student_fullname" => $data['student']['student_fullname'],
                 "student_id" => $student_id,
-                "department_name" => $data['department']['department_name'],
+                "department_name" => $data['student']['department_name'],
                 "company_name" => $data['company']['company_name_th'],
             ];
 
