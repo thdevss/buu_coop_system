@@ -72,7 +72,7 @@ class permit_form  extends CI_Controller {
         $return['status'] = false;
         $return['print'] = false;
                 
-        $this->form_validation->set_rules('permit_fullname', 'ชื่อผู้ปกครอง', 'trim|required|thai_eng_character');
+        $this->form_validation->set_rules('permit_fullname', 'ชื่อผู้ปกครอง', 'trim|required|thai_en_character');
         $this->form_validation->set_rules('permit_relative', 'ความสัมพันธ์กับนิสิต', 'trim|required|thai_character');
         $this->form_validation->set_rules('permit_address_number', 'บ้านเลขที่', 'trim|required');
         $this->form_validation->set_rules('permit_address_road', 'ถนน', 'trim|required');
@@ -129,7 +129,6 @@ class permit_form  extends CI_Controller {
 
         $data['permit'] = @$this->Coop_Student->get_permit_form_by_student($student_id)[0];
         $data['student'] = @$this->Student->get_student($student_id)[0];
-        $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
 
         $template_file = 'template/IN-S003.docx';
 
@@ -138,7 +137,7 @@ class permit_form  extends CI_Controller {
             "student_fullname_th" => $data['student']['student_prefix']." ".$data['student']['student_fullname'],
             "student_id" => $student_id,
             "student_course" => $data['student']['student_course'],
-            "student_department" => $data['department']['department_name'],
+            "student_department" => $data['student']['department_name'],
             "yes" => "\u{2610}",
             "no" => "\u{2610}",
         ];

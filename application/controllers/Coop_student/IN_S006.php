@@ -92,7 +92,6 @@ class IN_S006 extends CI_Controller {
                     $student_id = $this->Login_session->check_login()->login_value;
                     $data['student'] = @$this->Student->get_student($student_id)[0];
                     $data['coop_student'] = @$this->Coop_Student->get_coop_student($student_id)[0];
-                    $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
                     $data['subject_report'] = @$this->Subject_Report->get_report($student_id)[0];
                     $data['company'] = @$this->Company->get_company($data['coop_student']['company_id'])[0];
                     $data['company_person'] = @$this->Trainer->get_trainer($data['company']['contact_person_id'])[0];
@@ -105,7 +104,7 @@ class IN_S006 extends CI_Controller {
                         "student_fullname" => $data['student']['student_prefix'].' '.$data['student']['student_fullname'],
                         "student_id" => $data['student']['student_id'],
                         "student_course" => $data['student']['student_course'],
-                        "department_name" => $data['department']['department_name'],
+                        "department_name" => $data['student']['department_name'],
                         "company_name_th" => $data['company']['company_name_th'],
                         "company_number" => $data['company_address']['company_address_number'],
                         "company_road" => $data['company_address']['company_address_road'],
