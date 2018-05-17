@@ -116,7 +116,10 @@ class Student_model extends CI_model {
     {
         $ch = curl_init();
         $timeout = 5;
-        curl_setopt($ch, CURLOPT_URL, 'http://10.80.34.5:9991/public/api/v1/student/'.$student_id);
+        $token = $this->get_profile_api_token();
+        $authorization = "Authorization: Bearer $token";
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , $authorization ));
+        curl_setopt($ch, CURLOPT_URL, 'http://10.80.34.5:9013/api/v1/student/'.$student_id.'/about');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
         $result = curl_exec($ch);
@@ -135,7 +138,10 @@ class Student_model extends CI_model {
     {
         $ch = curl_init();
         $timeout = 5;
-        curl_setopt($ch, CURLOPT_URL, 'http://10.80.34.5:9991/public/api/v1/student/'.$student_id);
+        $token = $this->get_profile_api_token();
+        $authorization = "Authorization: Bearer $token";
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , $authorization ));
+        curl_setopt($ch, CURLOPT_URL, 'http://10.80.34.5:9013/api/v1/student/'.$student_id.'/about');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
         $result = curl_exec($ch);
@@ -153,8 +159,11 @@ class Student_model extends CI_model {
         $ch = curl_init();
         $timeout = 5;
         $subject_codes = implode(",", $subject_arr);
-        // echo 'http://10.80.34.5:9991/public/api/v1/student/'.$student_id.'/subjects?Subject_Code='.$subject_codes;
-        curl_setopt($ch, CURLOPT_URL, 'http://10.80.34.5:9991/public/api/v1/student/'.$student_id.'/subjects?Subject_Code='.$subject_codes);
+
+        $token = $this->get_profile_api_token();
+        $authorization = "Authorization: Bearer $token";
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , $authorization ));
+        curl_setopt($ch, CURLOPT_URL, 'http://10.80.34.5:9013/api/v1/student/'.$student_id.'/subjects?Subject_Code='.$subject_codes);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
         $result = curl_exec($ch);
@@ -211,5 +220,25 @@ class Student_model extends CI_model {
         $this->db->from('tb_company_status');
         $query = $this->db->get();
         return $query->result_array();
+    }
+
+    private function get_profile_api_token()
+    {
+        $token = '';
+        if(! $token = $this->cache->file->get('profile_api_token')) {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_USERPWD, "buu_profile:profile_999");
+            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+            curl_setopt($ch, CURLOPT_URL, 'http://10.80.34.5:9013/api/token');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+            $result = curl_exec($ch);
+            curl_close($ch);
+            $api = json_decode($result, true);
+            $token = $api['result']['token'];
+            $this->cache->file->save('profile_api_token', $token, 7100);
+        }
+
+        return $token;
     }
 }

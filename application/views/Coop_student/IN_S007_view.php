@@ -21,7 +21,7 @@
                     ?>
                     <div class="row">
                             <div class="form-group col-sm-10">           
-                                <label>เรื่อง (ภาษาไทย)</label> <?php echo form_error('petition_subject'); ?><code>*</code>
+                                <label>เรื่อง</label> <?php echo form_error('petition_subject'); ?><code>*</code>
                                 <input type="text" class="form-control" id="petition_subject" name="petition_subject" value="">
                             </div>
                             <div class="form-group col-sm-8">           
