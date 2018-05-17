@@ -140,8 +140,8 @@ class Training extends CI_Controller {
         $this->load->library('form_validation');        
         $this->form_validation->set_rules('train_type', 'ประเภทการอบรม', 'trim|required|numeric');
         $this->form_validation->set_rules('train_title', 'ชื่อโครงการอบรม', 'trim|required');
-        $this->form_validation->set_rules('train_lecturer', 'วิทยากร', 'trim|required');
-        $this->form_validation->set_rules('train_seat', 'จำนวนที่นั่งเปิดรับ', 'trim|required|is_natural_no_zero');
+        $this->form_validation->set_rules('train_lecturer', 'วิทยากร', 'trim|required|thai_en_character');
+        $this->form_validation->set_rules('train_seat', 'จำนวนที่นั่งเปิดรับ', 'trim|required|numeric|is_natural_no_zero');
         $this->form_validation->set_rules('train_start_date', 'วันที่เริ่มการอบรม', 'trim|required');
         $this->form_validation->set_rules('train_end_date', 'วันสิ้นสุดการอบรม', 'trim|required');   
         $this->form_validation->set_rules('train_location_id', 'ห้องอบรม', 'trim|required|numeric');
@@ -190,8 +190,8 @@ class Training extends CI_Controller {
         $this->form_validation->set_rules('train_id', 'primary_id', 'trim|required|numeric');
         $this->form_validation->set_rules('train_type', 'ประเภทการอบรม', 'trim|required|numeric');
         $this->form_validation->set_rules('train_title', 'ชื่อโครงการอบรม', 'trim|required');
-        $this->form_validation->set_rules('train_lecturer', 'วิทยากร', 'trim|required');
-        $this->form_validation->set_rules('train_seat', 'จำนวนที่นั่งเปิดรับ', 'trim|required|is_natural_no_zero');
+        $this->form_validation->set_rules('train_lecturer', 'วิทยากร', 'trim|required|thai_en_character');
+        $this->form_validation->set_rules('train_seat', 'จำนวนที่นั่งเปิดรับ', 'trim|required|numeric|is_natural_no_zero');
         $this->form_validation->set_rules('train_start_date', 'วันที่เริ่มการอบรม', 'trim|required');
         $this->form_validation->set_rules('train_end_date', 'วันสิ้นสุดการอบรม', 'trim|required');        
         $this->form_validation->set_rules('train_location_id', 'ห้องอบรม', 'trim|required|numeric');
