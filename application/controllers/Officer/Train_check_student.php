@@ -138,7 +138,7 @@ class Train_check_student extends CI_Controller {
         $this->form_validation->set_rules('train_set_check_id', 'train_set_check_id', 'trim|required');
 
         if ($this->form_validation->run() != FALSE) {
-            // $return['status'] = true;
+            $return['status'] = true; // เช็คสถานะการเช็คชื่อ
             $student_code = $this->input->post('student_code');
 
             //check barcode
@@ -148,16 +148,16 @@ class Train_check_student extends CI_Controller {
             // echo $student_code;
 
             //check student
-            // $data['student'] = @$this->Student->get_student($student_code)[0];
-            // if(!@$data['student']) {
-            //     $return['status'] = false;                
-            // }
+            $data['student'] = @$this->Student->get_student($student_code)[0];
+            if(!@$data['student']) {
+                $return['status'] = false;                
+            }
 
             //check train set
             $data['train_set_check'] = @$this->Training_Check_Student->get_check($this->input->post('train_set_check_id'))[0];
-            // if(!@$data['train_set_check']) {
-            //     $return['status'] = false;
-            // }
+            if(!@$data['train_set_check']) {
+                $return['status'] = false;
+            }
 
             //check student_train_register
             if(!@$this->Training->check_student_in_training($data['train_set_check']['train_id'], $student_code)) {

@@ -41,10 +41,10 @@
 
                 <div class="form-group col-sm-4">
                   <label for="job_title_id">ตำแหน่งงาน</label>
-                  <select class="form-control" id="job_title" name="job_title">
+                  <select class="form-control" id="job_title_id" name="job_title_id">
                     <option value="0">-- ตำแหน่งงานทั้งหมด --</option>
                     <?php foreach($job as $row) {?>
-                      <option value="<?php echo $row['job_title'];?>" <?php echo set_select('job_title_id', $row['job_title_id']); ?> ><?php echo $row['job_title']; ?></option>
+                      <option value="<?php echo $row['job_title_id'];?>" <?php echo set_select('job_title_id', $row['job_title_id']); ?> ><?php echo $row['job_title']; ?></option>
                     <?php } ?>
                   </select>
                 </div>

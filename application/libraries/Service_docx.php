@@ -37,7 +37,10 @@ class Service_docx {
             // echo "cURL Error #:" . $err;
         } else {
             // echo $response;
-            sleep(5);
+
+            if(@$data_array['image'] && @$data_array['map']) {
+                sleep(5);
+            }
             file_put_contents('./uploads/'.basename($json_sent['document_save_filename']), file_get_contents('http://docx:7777/'.$json_sent['document_save_filename']));
             $return['full_url'] = 'uploads/'.basename($json_sent['document_save_filename']);
             

@@ -250,7 +250,7 @@ class Training extends CI_Controller {
             ];
         } else if($status == 'error_upload') {
             $data['status'] = [
-                'text' => 'ผิดพลาด',
+                'text' => 'ผิดพลาด นามสกุลไฟล์ไม่ถูกต้อง',
                 'color' => 'warning'
             ];
         } else if($status == 'error_training_id') {

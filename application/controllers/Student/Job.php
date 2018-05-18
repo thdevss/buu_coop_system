@@ -32,7 +32,8 @@ class Job extends CI_Controller {
         $student_id = $this->Login_session->check_login()->login_value;
         
         if(!$this->Skill_Search->search_skill_by_student($student_id)){
-            redirect('Student/Skill/index?status=select_before', 'refresh');
+            $this->session->set_flashdata('status', 'select_before');
+            redirect('Student/Skill/index?', 'refresh');
         }
 
         
@@ -51,18 +52,19 @@ class Job extends CI_Controller {
             $data['job'] = $this->Job->gets_job_title();
         
             $data['data'] = array();
+            $jobs = [];
             
             if($this->form_validation->run() == FALSE) {
                 $jobs = $this->Job->gets_job();
             } else {
                 // if($this->input->post('job_title_id') > 0) {
-                //     // $job_title = @$this->Job->get_company_job_title_by_job_title_id($this->input->post('job_title_id'))[0]['job_title'];
+                    // $job_title = @$this->Job->get_company_job_title_by_job_title_id($this->input->post('job_title_id'))[0]['job_title'];
                 // } else {
-                //     $job_title = null;
+                    // $job_title = null;
                 // }
-                $job_title = null;
-                $job_title = $this->input->post('job_title');
-                $jobs = $this->Job->search_job_by_company_and_position($this->input->post('company_id'), $job_title);
+                // $job_title = null;
+                // $job_title = $this->input->post('job_title');
+                $jobs = $this->Job->search_job_by_company_and_position($this->input->post('company_id'), $this->input->post('job_title_id'));
             }
 
     
@@ -97,8 +99,8 @@ class Job extends CI_Controller {
         $student_id = $this->Login_session->check_login()->login_value;
         $data['student'] = $this->Student->get_student($student_id)[0];
         $data['department'] = $this->Student->get_department($data['student']['department_id'])[0];
-        $data['company'] = $this->Company->get_company($company_id)[0];
-        $data['company_job_position'] = $this->Skilled_Job_Search->search_skill_by_job($company_job_position_id)[0];
+        $data['company'] = @$this->Company->get_company($company_id)[0];
+        $data['company_job_position'] = @$this->Skilled_Job_Search->search_skill_by_job($company_job_position_id)[0];
         $data['student_profile'] = $this->Student->get_student_data_from_profile($student_id);
 
         $data['has_profile'] = $this->Student->has_student_data_from_profile($student_id);
