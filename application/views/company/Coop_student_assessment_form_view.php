@@ -56,6 +56,33 @@
                       <?php } ?>
                     </tbody>
                   </table>
+                  
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                       <label for="no5">จุดเด่นของนักศึกษา/Strength</label><code>*</code>
+                       <textarea class="form-control" rows="5" id="no5" name="no5"></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                       <label for="no6">ข้อควรปรับปรุงของนักศึกษา/Improvement</label><code>*</code>
+                       <textarea class="form-control" rows="5" id="no6" name="no6"></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                       <label for="no7">ข้อคิดเห็นเพิ่มเติม /Other Comments</label><code>*</code>
+                       <textarea class="form-control" rows="5" id="no7" name="no7"></textarea>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  
+
                   <div class="text-center">
                     <button type="reset" class="btn btn-md btn-danger"><i class=""></i> ยกเลิก</button>
                     <button type="submit" class="btn btn-md btn-success"><i class=""></i> บันทึก</button>                    

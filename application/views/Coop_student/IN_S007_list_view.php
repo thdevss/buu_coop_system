@@ -39,7 +39,7 @@
                     <td class="text-left"><?php echo thaiDate($row['petition_datetime']);?></td>
                     <td class="text-left"><?php echo $row['petition_subject'];?></td>
                     <td>
-                      <?php echo anchor('Coop_Student/IN_S007/print_data/'.$row['petition_id'] , '<i class="fa fa-list-alt"></i> พิมพ์เอกสาร', 'class="btn btn-primary"');?>
+                      <?php echo anchor('Coop_Student/IN_S007/print_data/'.$row['petition_id'] , '<i class="fa fa-list-alt"></i> Export', 'class="btn btn-primary"');?>
                     </td>
                   </tr> 
                 <?php } ?>   

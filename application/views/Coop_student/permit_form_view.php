@@ -118,7 +118,7 @@
               </div>
 
                 <div class="text-center">
-                  <button type="submit" class="btn btn-md btn-primary" name="print" value="1"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
+                  <button type="submit" class="btn btn-md btn-primary" name="print" value="1"><i class="fa fa-dot-circle-o"></i>Export</button>
                   <button type="submit" class="btn btn-md btn-success" name="print" value="0"><i class="fa fa-dot-circle-o"></i>บันทึกเอกสาร</button>                
        
                 </div>
