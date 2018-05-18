@@ -43,7 +43,9 @@ class Job_model extends CI_model {
         if($company_id > 0) {
             $this->db->where('company_id', $company_id);
         }
-        if($job_title) {
+        if(is_numeric($job_title)) {
+            $this->db->where('job_title_id', $job_title);
+        } else {
             $this->db->where('job_title', $job_title);
         }
         $this->db->from('tb_company_job_position');

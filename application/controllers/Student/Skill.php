@@ -27,7 +27,7 @@ class Skill extends CI_Controller {
 
         if( $status == 'success'){
             $data['status']['color'] = 'success';            
-            $data['status']['text'] = 'เพิ่มสำเร็จ';
+            $data['status']['text'] = 'บันทึกสำเร็จ';
         }
         else if($status == 'error'){
             $data['status']['color'] = 'warning';            
@@ -80,7 +80,7 @@ class Skill extends CI_Controller {
             }
            
             $this->session->set_flashdata('status', 'success');
-            redirect('Student/Skill/index/?status=success','refresh');
+            redirect('Student/Skill/index/?','refresh');
         }
     
         
