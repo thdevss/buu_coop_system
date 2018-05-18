@@ -239,7 +239,7 @@ class Training extends CI_Controller {
         }
     }
 
-    public function student_list($training_id)
+    public function Students($training_id)
     {
         $data['status'] = [];
         $status = $this->session->flashdata('status');
@@ -290,7 +290,7 @@ class Training extends CI_Controller {
 
         $data['is_uploadform'] = true;
 
-        $this->template->view('Officer/Students_report', $data);
+        $this->template->view('Officer/Student_list_report', $data);
 
     }
 

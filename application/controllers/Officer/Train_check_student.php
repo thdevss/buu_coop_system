@@ -209,7 +209,7 @@ class Train_check_student extends CI_Controller {
         echo json_encode($return);
     }
 
-    public function student_list($check_id)
+    public function students($check_id)
     {
         $data['students'] = [];
         //to pdf
@@ -238,7 +238,7 @@ class Train_check_student extends CI_Controller {
 
         $data['status'] = [];
         $data['is_uploadform'] = false;
-        $this->template->view('Officer/Students_report', $data);
+        $this->template->view('Officer/Student_list_report', $data);
 
     }
 
