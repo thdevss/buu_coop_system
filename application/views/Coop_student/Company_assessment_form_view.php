@@ -92,7 +92,7 @@
                     </div>
                     <br><br>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-md btn-primary" value="1" name="print"><i class="fa fa-dot-circle-o"></i>พิมพ์เอกสาร</button>
+                    <button type="submit" class="btn btn-md btn-primary" value="1" name="print"><i class="fa fa-dot-circle-o"></i>Export</button>
                     <!-- <button type="submit" class="btn btn-md btn-success" value="0" name="print"><i class="fa fa-dot-circle-o"></i> บันทึก </button>                     -->
                   </div>
                   </form>

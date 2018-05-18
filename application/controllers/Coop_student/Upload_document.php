@@ -41,7 +41,7 @@ class Upload_document extends CI_Controller {
         
         if($this->input->post('code')) {
             $config['upload_path']          = './uploads/';
-            $config['allowed_types']        = 'docx|pdf';
+            $config['allowed_types']        = 'pdf|jpg|jpeg|png';
             $config['max_size']             = 1024;
             $config['encrypt_name'] = true;
             $this->load->library('upload', $config);

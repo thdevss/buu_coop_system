@@ -16,7 +16,7 @@
                   if(@$status == 'success') {
                     echo '<div class="alert alert-success" role="alert"><strong>สำเร็จ!</strong></div>';
                   } else if(@$status == 1) {
-                    echo '<div class="alert alert-info" role="alert"><strong>ข้อควรรู้!</strong> โปรดอัพโหลดไฟล์ .pdf, .docx ขนาดไม่เกิน 500kb</div>';
+                    echo '<div class="alert alert-info" role="alert"><strong>ข้อควรรู้!</strong> โปรดอัพโหลดไฟล์ .pdf, .jpg, .jpeg, .png ขนาดไม่เกิน 500kb</div>';
                   } else {
                     echo '<div class="alert alert-warning" role="alert"><strong>ผิดพลาด!</strong> '.@$status.'</div>';
                   }
