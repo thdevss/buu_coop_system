@@ -26,7 +26,10 @@
                       <?php 
                       $i=1; 
                       foreach($train_type as $row) { 
-                        $remain_hour = $row['total_hour'] - $row['check_hour']; //คำนวณชั่วโมงคงเหลือ
+                        $remain_hour = number_format($row['total_hour'] - $row['check_hour'], 2); //คำนวณชั่วโมงคงเหลือ
+                        $row['total_hour'] = number_format($row['total_hour'], 2);
+                        $row['check_hour'] = number_format($row['check_hour'], 2);
+                        
                         if($remain_hour < 1) {
                           $remain_hour = "<span style='color: red;'> - </span>";
                         }
