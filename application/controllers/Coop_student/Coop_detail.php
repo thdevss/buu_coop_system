@@ -81,8 +81,11 @@ class Coop_detail extends CI_Controller {
         //print_r($data['coop_student']);
 
         $arr_css = [
-            base_url('assets/css/fullsize_datetimepicker.css?1')
+            base_url('assets/css/fullsize_datetimepicker.css?2')
         ];
+
+        $this->breadcrumbs->push('กำหนดวันขึ้นสอบ', '/Coop_student/Coop_detail/oral_exam');
+        
         $this->template->view('Coop_student/Oral_exam_view', $data, [], $arr_css);
     }
     public function post_oral_exam()
