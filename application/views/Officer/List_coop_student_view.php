@@ -22,6 +22,7 @@
                         <th class="text-left">ตำแหน่งงาน</th>
                         <th class="text-left">บริษัท</th>
                         <th class="text-left">พี่เลียง</th>
+                        <th class="text-left">วันขึ้นสอบ</th>
                       </tr>
                     </thead>
                     <tbody></tbody>
@@ -29,12 +30,10 @@
                 </div>
               </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
   </div>
 </div>
+
 
 
 
@@ -61,7 +60,10 @@ $(document).ready(function() {
             { "data": "student.student_fullname" },
             { "data": "job_position.job_title" },
             { "data": "company.company_name_th" },
-            { "data": "trainer.person_fullname" }
+            { "data": "trainer.person_fullname" },
+            { "data": "student.oral_exam_datetime" }
+            
+
         ],
         'initComplete': function(){
           var api = this.api();

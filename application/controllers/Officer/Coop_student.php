@@ -59,6 +59,7 @@ class Coop_student extends CI_Controller {
                 $tmp_array['student']['id_link'] = '<a href="'.site_url('Officer/Students/student_detail/'.$row['student_id']).'">'.$row['student_id'].'</a>';
                 $tmp_array['job_position']['job_title'] = $row['job_title'];
                 $tmp_array['company']['company_name_th'] = $row['company_name_th'];
+                $tmp_array['student']['oral_exam_datetime'] = thaiDate($row['coop_student_oral_exam_date']);
 
                 if($row['person_fullname'] == '') {
                     $tmp_array['trainer']['person_fullname'] = ' - ';
