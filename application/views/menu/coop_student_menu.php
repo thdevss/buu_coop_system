@@ -93,6 +93,9 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+                <?php echo anchor('Coop_student/Coop_detail/Oral_exam', '<i class="fa fa-inbox"></i> การสอบ', 'class="nav-link"');?>
+          </li>
         </ul>
       </nav>
       <button class="sidebar-minimizer brand-minimizer" type="button"></button>
