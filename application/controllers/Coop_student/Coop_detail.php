@@ -68,10 +68,10 @@ class Coop_detail extends CI_Controller {
 
         if( $status == 'success'){
             $data['status']['color'] = 'success';            
-            $data['status']['text'] = 'UPDATE กำหนดวันสอบที่สำเร็จ';
+            $data['status']['text'] = 'กำหนดวันขึ้นสอบสำเร็จ';
         } else if( $status == 'error'){
             $data['status']['color'] = 'danger';            
-            $data['status']['text'] = 'UPDATE กำหนดวันสอบผิดพลาด';
+            $data['status']['text'] = 'ผิดพลาด';
         }else {
             $data['status'] = '';
         }
@@ -79,14 +79,18 @@ class Coop_detail extends CI_Controller {
         $student_id = $this->Login_session->check_login()->login_value;
         $data['coop_student'] = $this->Coop_Student->get_coop_student($student_id)[0];
         //print_r($data['coop_student']);
-        $this->template->view('Coop_student/Oral_exam_view',$data);
-    }
-    public function add_oral_exam(){
 
-        // print_r($_POST);
+        $arr_css = [
+            base_url('assets/css/fullsize_datetimepicker.css?1')
+        ];
+        $this->template->view('Coop_student/Oral_exam_view', $data, [], $arr_css);
+    }
+    public function post_oral_exam()
+    {
+
         $student_id = $this->Login_session->check_login()->login_value;
 
-        $this->form_validation->set_rules('coop_student_oral_exam_date', 'กำหนดวันสอบ', 'required');
+        $this->form_validation->set_rules('coop_student_oral_exam_date', 'กำหนดวันสอบ', 'required|trim|checkDateTime');
     
         if ($this->form_validation->run() == FALSE)
         {

@@ -28,4 +28,15 @@ class MY_Form_validation extends CI_Form_validation {
     
         return false;
     }
+
+    public function checkDateTime($dt)
+    {
+        $pattern = '[\d{4}-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3(0|1))]';
+        if(preg_match($pattern, $dt)) {
+            return true;
+        }
+        
+        $this->form_validation->set_message('checkDateTime', 'Invalid Date!');
+        return false;
+    }
 }
