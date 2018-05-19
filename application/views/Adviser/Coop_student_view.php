@@ -21,7 +21,7 @@
                         <th>สาขาวิชา</th>
                         <th>สถานประกอบการ</th>
                         <th>จังหวัด</th>
-                        <th>หมายเลขงาน</th>
+                        <th>วันขึ้นสอบ</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -33,7 +33,7 @@
                             <td><?php echo $row['department_name']; ?></td>
                             <td><?php echo $row['company_name_th']; ?> (<?php echo $row['company_name_en']; ?>)</td>
                             <td><?php echo $row['company_address_province']; ?></td>
-                            <td>?</td>
+                            <td><?php echo thaiDate($row['coop_student_oral_exam_date']);?></td>
                         </tr>
                         <?php } ?>
                     </tbody>

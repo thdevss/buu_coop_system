@@ -85,6 +85,9 @@ class Coop_student_assessment extends CI_Controller {
 		$trainer = $this->Trainer->get_trainer($this->Login_session->check_login()->login_value)[0];
 		$term_id = $this->Login_session->check_login()->term_id;
 		$student_id = $this->input->post('student_id');
+
+		$sum_score = 0;
+			
 		foreach($this->input->post('item') as $item_id => $result) {
 			$insert = [
 				'item_id' => $item_id,
@@ -97,6 +100,7 @@ class Coop_student_assessment extends CI_Controller {
 
 			if(is_numeric($result)) {
 				$insert['coop_student_has_coop_student_questionnaire_item_score'] = $result;
+				$sum_score += (int) $insert['coop_student_has_coop_student_questionnaire_item_score'];
 			} else {
 				$insert['coop_student_has_coop_student_questionnaire_item_comment'] = $result;
 			}
@@ -105,11 +109,16 @@ class Coop_student_assessment extends CI_Controller {
 		}
 		
 		if($status) {
+			// save score
+			$this->Coop_Student->update_coop_student($student_id, [
+				'coop_student_company_score' => ($sum_score/2),
+			]);
+			
 			$this->session->set_flashdata('status', 'success');
-			redirect('/Company/Coop_student_assessment/form/'.$student_id.'?status=success', 'refresh');
+			redirect('/Company/Coop_student_assessment/form/'.$student_id.'?', 'refresh');
 		} else {
 			$this->session->set_flashdata('status', 'error');
-			redirect('/Company/Coop_student_assessment/form/'.$student_id.'?status=error', 'refresh');
+			redirect('/Company/Coop_student_assessment/form/'.$student_id.'?', 'refresh');
 		}
 
 	}

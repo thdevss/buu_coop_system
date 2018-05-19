@@ -33,4 +33,37 @@ class Coop_student extends CI_controller
         $this->template->view('Adviser/Coop_student_view',$data);
     }
 
+
+    public function exam_score()
+    {
+        $adviser_id = $this->Login_session->check_login()->login_value;
+        $data['data'] = $this->Coop_Student->gets_coop_student_by_adviser($adviser_id);
+
+
+        // add breadcrumbs
+        $this->breadcrumbs->push('คะแนนสอบนิสิตในที่ปรึกษา', '/Adviser/Coop_student/index');
+
+        $this->template->view('Adviser/Coop_student_exam_view.php',$data);
+    }
+
+    public function post_exam_score()
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('coop_student_adviser_score', 'coop_student_adviser_score', 'required|trim|numeric');
+        $this->form_validation->set_rules('student_id', 'student_id', 'required|trim|numeric');
+    
+        $return = [
+            'status' => false
+        ];
+    
+        if ($this->form_validation->run() != FALSE) {
+            $this->Coop_Student->update_coop_student($this->input->post('student_id'), [
+                'coop_student_adviser_score' => $this->input->post('coop_student_adviser_score')
+            ]);
+            $return['status'] = true;
+        }
+    
+        echo json_encode($return);
+    
+    }
 }
