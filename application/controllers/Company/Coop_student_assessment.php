@@ -71,6 +71,9 @@ class Coop_student_assessment extends CI_Controller {
 		foreach($this->Coop_Student_Assessment_Form->get_coop_student_form_result($student_id) as $result) {
 			$data['result'][$result['item_id']] = $result['coop_student_has_coop_student_questionnaire_item_score'];
 		}
+
+		$data['result_comment'] = $this->Coop_Student_Assessment_Form->get_coop_student_comment_result($student_id)[0];
+		
 		// print_r($data);
 
 		// add breadcrumbs
@@ -87,7 +90,7 @@ class Coop_student_assessment extends CI_Controller {
 		$student_id = $this->input->post('student_id');
 
 		$sum_score = 0;
-			
+
 		foreach($this->input->post('item') as $item_id => $result) {
 			$insert = [
 				'item_id' => $item_id,
@@ -107,6 +110,19 @@ class Coop_student_assessment extends CI_Controller {
 			
 			$status = $this->Coop_Student_Assessment_Form->save_coop_student_form_result($insert);
 		}
+
+		$insert = [
+			'student_id' => $student_id,
+			'trainer_id' => $trainer['person_id'],
+			'company_id' => $trainer['company_id'],
+			'term_id' => $term_id,
+			'coop_student_has_coop_student_questionnaire_comment_datetime' => date('Y-m-d H:i:s'),
+			'coop_student_has_coop_student_questionnaire_comment_no5' => $this->input->post('no5'),
+			'coop_student_has_coop_student_questionnaire_comment_no6' => $this->input->post('no6'),
+			'coop_student_has_coop_student_questionnaire_comment_no7' => $this->input->post('no7'),
+		];		
+		$status = $this->Coop_Student_Assessment_Form->save_coop_student_comment_result($insert);
+		
 		
 		if($status) {
 			// save score
