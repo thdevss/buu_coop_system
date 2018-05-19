@@ -206,12 +206,12 @@
 
                       <div class="form-group col-sm-4">
                         <label for="name">ส่วนสูง cm</label> <?php echo form_error('height'); ?><code>*</code>
-                        <input type="number" min="0" class="form-control" id="" name="height" value="<?php echo set_value('height');?>" placeholder="กรุณากรอก">
+                        <input type="number" min="120" max="250" class="form-control" id="" name="height" value="<?php echo set_value('height');?>" placeholder="กรุณากรอก">
                       </div>
 
                       <div class="form-group col-sm-4">
                         <label for="name">น้ำหนัก kg</label> <?php echo form_error('weight'); ?><code>*</code>
-                        <input type="number" min="0" class="form-control" id="" name="weight" value="<?php echo set_value('weight');?>" placeholder="กรุณากรอก">
+                        <input type="number" min="20" max="200" class="form-control" id="" name="weight" value="<?php echo set_value('weight');?>" placeholder="กรุณากรอก">
                       </div>
 
     
@@ -232,7 +232,7 @@
 
                       <div class="form-group col-sm-3">
                         <label for="name">เกรดเฉลี่ยภาคการศึกษาที่ผ่านมา</label> <?php echo form_error('GPA'); ?><code>*</code>
-                        <input type="text" class="form-control" id="" name="GPA" value="<?php echo set_value('GPA');?>">
+                        <input type="number" step="0.01" min="0.00" max="4.00" class="form-control" id="" name="GPA" value="<?php echo set_value('GPA');?>">
                       </div>
 
                       <div class="form-group col-sm-3">
@@ -406,9 +406,9 @@
                       <tr class="first_row">
                       <td><input type="text" class="form-control" name="education_level[]"></td>
                       <td><input type="text" class="form-control" name="education_place[]"></td>
-                      <td><input type="text" class="form-control" name="education_start_year[]"></td>
-                      <td><input type="text" class="form-control" name="education_end_year[]"></td>
-                      <td><input type="text" class="form-control" name="education_result[]"></td>
+                      <td><input type="text" class="form-control" min="<?php echo (date('Y')+543)-15;?>" max="<?php echo (date('Y')+543)-1;?>" name="education_start_year[]"></td>
+                      <td><input type="text" class="form-control" min="<?php echo (date('Y')+543)-15;?>" max="<?php echo (date('Y')+543)-1;?>" name="education_end_year[]"></td>
+                      <td><input type="text" class="form-control" step="0.01" min="0.00" max="4.00" name="education_result[]"></td>
                       </tr> 
                     </tbody>
                     <tfoot>

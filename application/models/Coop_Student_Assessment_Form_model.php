@@ -15,10 +15,23 @@ class Coop_Student_Assessment_Form_model extends CI_model {
         return $this->db->insert('tb_coop_student_questionnaire_subject',$array);
     }
 
+    public function save_coop_student_comment_result($array)
+    {
+        return $this->db->replace('tb_coop_student_has_coop_student_questionnaire_comment',$array);
+    }
+
     public function save_coop_student_form_result($array)
     {
         return $this->db->replace('tb_coop_student_has_coop_student_questionnaire_item',$array);
     }
+
+    public function get_coop_student_comment_result($student_id)
+    {
+        $this->db->where('student_id', $student_id);
+        $this->db->from('tb_coop_student_has_coop_student_questionnaire_comment');
+        $query = $this->db->get();
+        return $query->result_array();
+    }    
 
     public function get_coop_student_form_result($student_id)
     {

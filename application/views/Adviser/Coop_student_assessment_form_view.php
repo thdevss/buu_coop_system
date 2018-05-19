@@ -48,7 +48,6 @@
                     </tbody>
                   </table>
 
-
                   <div class="row">
                     <div class="col-lg-6 offset-lg-3">
                       <table class="table table-bordered" style="font-size: 18px;">
@@ -69,6 +68,35 @@
                   </div>
 
 
+                   <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                       <label for="no5">จุดเด่นของนักศึกษา/Strength</label><code>*</code>
+                       <textarea class="form-control" rows="5" id="no5" name="no5" readonly><?php echo $result_comment['coop_student_has_coop_student_questionnaire_comment_no5'];?></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                       <label for="no6">ข้อควรปรับปรุงของนักศึกษา/Improvement</label><code>*</code>
+                       <textarea class="form-control" rows="5" id="no6" name="no6" readonly><?php echo $result_comment['coop_student_has_coop_student_questionnaire_comment_no6'];?></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                       <label for="no7">ข้อคิดเห็นเพิ่มเติม /Other Comments</label><code>*</code>
+                       <textarea class="form-control" rows="5" id="no7" name="no7" readonly><?php echo $result_comment['coop_student_has_coop_student_questionnaire_comment_no7'];?></textarea>
+                      </div>
+                    </div>
+
+                  </div>
+
+
+
+                  
+
+
                   
                 </div>
               </div>
@@ -76,7 +104,12 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-      
+
+
+</main>
+
+<style>
+.form-control:disabled, .form-control[readonly] {
+  background: #fff !important;
+}
+</style>
