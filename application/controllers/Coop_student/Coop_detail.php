@@ -62,5 +62,45 @@ class Coop_detail extends CI_Controller {
         $this->template->view('Coop_student/Coop_detail_view',$data);
 
     }
+    public function oral_exam(){
+
+        $status = $this->session->flashdata('status');
+
+        if( $status == 'success'){
+            $data['status']['color'] = 'success';            
+            $data['status']['text'] = 'UPDATE กำหนดวันสอบที่สำเร็จ';
+        } else if( $status == 'error'){
+            $data['status']['color'] = 'danger';            
+            $data['status']['text'] = 'UPDATE กำหนดวันสอบผิดพลาด';
+        }else {
+            $data['status'] = '';
+        }
+
+        $student_id = $this->Login_session->check_login()->login_value;
+        $data['coop_student'] = $this->Coop_Student->get_coop_student($student_id)[0];
+        //print_r($data['coop_student']);
+        $this->template->view('Coop_student/Oral_exam_view',$data);
+    }
+    public function add_oral_exam(){
+
+        // print_r($_POST);
+        $student_id = $this->Login_session->check_login()->login_value;
+
+        $this->form_validation->set_rules('coop_student_oral_exam_date', 'กำหนดวันสอบ', 'required');
+    
+        if ($this->form_validation->run() == FALSE)
+        {
+            $this->session->set_flashdata('status', 'error');
+            redirect('Coop_student/Coop_detail/oral_exam/','refresh');
+        }
+        else
+        {
+            $array['coop_student_oral_exam_date'] = $this->input->post('coop_student_oral_exam_date');
+            $this->Coop_Student->update_coop_student($student_id, $array);
+            $this->session->set_flashdata('status', 'success');
+            redirect('Coop_student/Coop_detail/oral_exam/','refresh');
+        }
+   
+    }
     
 }

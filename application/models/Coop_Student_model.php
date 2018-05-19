@@ -56,10 +56,22 @@ class Coop_Student_model extends CI_model {
     {
         $term_id = $this->Term->get_current_term()[0]['term_id'];
 
-        $this->db->where('term_id', $term_id);
-        $this->db->where('student_id', $student_id);
-        $this->db->from('tb_coop_student');
-        $query = $this->db->get();
+        // $this->db->where('term_id', $term_id);
+        // $this->db->where('student_id', $student_id);
+        // $this->db->from('tb_coop_student');
+        $sql = "SELECT `tb_company`.`company_id`, `tb_department`.`department_name`, `tb_student`.`student_gpax`, `tb_student`.`student_prefix`, `tb_student`.`student_fullname`, `tb_student`.`student_id`, `tb_company_job_position`.`job_title`, `tb_company`.`company_name_th`, `tb_company_person`.`person_fullname`,  `tb_adviser`.`adviser_id`, `tb_adviser`.`adviser_fullname`, `tb_company_address`.`company_address_area`, `tb_company_address`.`company_address_province`,`tb_company`.`company_name_en`,`tb_coop_student`.`coop_student_oral_exam_date`
+        FROM `tb_coop_student` 
+        INNER JOIN `tb_student` ON `tb_student`.`student_id` = `tb_coop_student`.`student_id`
+        INNER JOIN `tb_department` ON `tb_department`.`department_id` = `tb_student`.`department_id`
+        INNER JOIN `tb_company_job_position` ON `tb_company_job_position`.`job_id` = `tb_coop_student`.`job_id`
+        INNER JOIN `tb_company` ON `tb_company`.`company_id` = `tb_coop_student`.`company_id`
+        INNER JOIN `tb_company_address` ON `tb_company_address`.`company_id` = `tb_coop_student`.`company_id`
+        LEFT JOIN `tb_adviser` ON `tb_adviser`.`adviser_id` = `tb_coop_student`.`adviser_id`
+        LEFT JOIN `tb_company_person` ON `tb_company_person`.`person_id` = `tb_coop_student`.`trainer_id`
+        WHERE `tb_coop_student`.`term_id` = '".$term_id."'
+        AND `tb_coop_student`.`student_id` = '".$student_id."'";
+
+        $query = $this->db->query($sql);
         
         return $query->result_array(); 
     }
