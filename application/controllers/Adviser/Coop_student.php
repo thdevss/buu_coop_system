@@ -53,7 +53,9 @@ class Coop_student extends CI_controller
         $this->form_validation->set_rules('student_id', 'student_id', 'required|trim|numeric');
     
         $return = [
-            'status' => false
+            'status' => false,
+            'sum_score' => 0,
+            'student_id' => 0,
         ];
     
         if ($this->form_validation->run() != FALSE) {
@@ -61,6 +63,9 @@ class Coop_student extends CI_controller
                 'coop_student_adviser_score' => $this->input->post('coop_student_adviser_score')
             ]);
             $return['status'] = true;
+            $return['student_id'] = $this->input->post('student_id');
+            $return['sum_score'] = $this->Coop_Student->get_coop_student($return['student_id'])[0]['coop_student_sum_score'];
+            
         }
     
         echo json_encode($return);

@@ -33,21 +33,6 @@ class Coop_student extends CI_Controller {
 
         public function ajax_list()
         {
-            $cache = array();
-            // foreach($this->Student->gets_student() as $tmp) {
-            //     $cache['student'][$tmp['id']]['fullname'] = $tmp['fullname'];
-            //     $cache['student'][$tmp['id']]['id'] = $tmp['id'];
-            // // }
-            // foreach($this->Job->gets_job() as $tmp) {
-            //     $cache['job'][$tmp['job_id']]['job_title'] = $tmp['job_title'];
-            // }
-            // foreach($this->Company->gets_company() as $tmp) {
-            //     $cache['company'][$tmp['company_id']]['company_name_th'] = $tmp['company_name_th'];
-            // }
-            // foreach($this->Trainer->gets_trainer() as $tmp) {
-            //     $cache['trainer'][$tmp['person_id']]['person_fullname'] = $tmp['person_fullname'];
-            // }
-
             $return = array();
             $return['data'] = array();
 
@@ -75,5 +60,15 @@ class Coop_student extends CI_Controller {
         }
     
     
-    
-    }
+        public function exam_score()
+        {   
+            $data = array();
+
+            // add breadcrumbs
+            $this->breadcrumbs->push('รายชื่อนิสิตสหกิจ', '/Officer/Coop_student/index');
+            $data['students'] = $this->Coop_Student->gets_coop_student();
+
+            $this->template->view('Officer/List_coop_student_exam_view', $data);
+        }
+   
+}

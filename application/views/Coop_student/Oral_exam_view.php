@@ -13,14 +13,18 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <p>รหัสนิสิต: <?php echo $coop_student['student_id']; ?></p>
+                                <p><b>รหัสนิสิต: </b><?php echo $coop_student['student_id']; ?></p>
 
-                                <p>ชื่อ - นามสกุล: <?php echo $coop_student['student_fullname']; ?></p>
+                                <p><b>ชื่อ - นามสกุล: </b><?php echo $coop_student['student_fullname']; ?></p>
 
-                                <p>สาขา: <?php echo $coop_student['department_name']; ?></p>
+                                <p><b>สาขา: </b><?php echo $coop_student['department_name']; ?></p>
 
-                                <p>บริษัท: <?php echo $coop_student['company_name_th']." (".$coop_student['company_name_en'].")"; ?></p>
+                                <p><b>บริษัท: </b><?php echo $coop_student['company_name_th']." (".$coop_student['company_name_en'].")"; ?></p>
 
+                                <div class="alert alert-warning">
+                                    <b>วันขึ้นสอบ: </b>
+                                    <?php echo thaiDate($coop_student['coop_student_oral_exam_date'], true);?>
+                                </div>
                             </div>
                         </div>
                   

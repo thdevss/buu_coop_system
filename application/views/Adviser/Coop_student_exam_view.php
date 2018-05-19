@@ -20,9 +20,9 @@
                         <th>ชื่อ - สกุล</th>
                         <th>สาขาวิชา</th>
                         <th>สถานประกอบการ</th>
-                        <th>จังหวัด</th>
                         <th>คะแนนสถานประกอบการ</th>
                         <th>คะแนนอาจารย์ที่ปรึกษา</th>
+                        <th>คะแนนรวม</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -33,8 +33,7 @@
                             <td><?php echo $row['student_fullname']; ?></td>
                             <td><?php echo $row['department_name']; ?></td>
                             <td><?php echo $row['company_name_th']; ?> (<?php echo $row['company_name_en']; ?>)</td>
-                            <td><?php echo $row['company_address_province']; ?></td>
-                            <td><?php echo $row['coop_student_company_score'];?></td>
+                            <td class="text-right"><?php echo $row['coop_student_company_score'];?></td>
                             <td>
                               <form class="form-inline save_adviser_score">
                                 <div class="form-group mx-sm-3 mb-2">
@@ -43,7 +42,10 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-2"><i class="fa fa-floppy-o"></i></button>
                               </form>
-                            </td>                          
+                            </td> 
+                            <td class="text-right">
+                              <span class="sum_score" data-studentid="<?php echo $row['student_id'];?>"><?php echo $row['coop_student_sum_score'];?></span>
+                            </td>                         
                         </tr>
                         <?php } ?>
                     </tbody>
@@ -69,7 +71,8 @@ jQuery( document ).ready(function() {
     
     jQuery.post(SITE_URL+"/Adviser/Coop_student/post_exam_score", jQuery(this).serialize(), function(data, status){
         if(data.status) {
-          swal("สำเร็จ", 'ทำการบันทึกคะแนนสำเร็จ', 'success');                          
+          swal("สำเร็จ", 'ทำการบันทึกคะแนนสำเร็จ', 'success');       
+          jQuery(".sum_score[data-studentid='"+data.student_id+"']").html(data.sum_score)
         } else {
           swal("ผิดพลาด", 'มีข้อผิดพลาดระหว่างการบันทึกคะแนน', 'warning');                          
         }
