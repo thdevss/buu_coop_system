@@ -23,6 +23,7 @@
                         <th>สาขาวิชา</th>
                         <th>สถานประกอบการที่ได้</th>
                         <th>จังหวัด</th>
+                        <th>คะแนนรวม</th>                        
                         <th></th>
                       </tr>
                     </thead>
@@ -35,6 +36,7 @@
                         <td><?php echo $row['department_name']?></td>
                         <td><?php echo $row['company_name_th']?></td>
                         <td><?php echo $row['company_address_province']?></td>
+                        <td><?php echo $row['coop_student_company_score']?></td>                        
                         <td><a class="btn btn-primary" href="<?php echo site_url('Adviser/Coop_student_assessment/form/'.$row['student_id']);?>" target="_blank"><i class="fa fa-list-alt"></i> รายละเอียด</a></td> 
                       </tr>
                       <?php } ?>

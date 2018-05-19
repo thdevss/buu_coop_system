@@ -38,7 +38,7 @@ class Service_docx {
         } else {
             // echo $response;
 
-            if(@$data_array['image'] && @$data_array['map']) {
+            if(@$data_array['image'] && @$data_array['map_image']) {
                 sleep(5);
             }
             file_put_contents('./uploads/'.basename($json_sent['document_save_filename']), file_get_contents('http://docx:7777/'.$json_sent['document_save_filename']));
