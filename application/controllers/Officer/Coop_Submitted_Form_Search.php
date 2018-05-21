@@ -85,20 +85,78 @@ class Coop_Submitted_Form_Search extends CI_Controller {
             echo json_encode($array);
         }
 
+        // public function get_by_form_code($form_code)
+        // {
+        //     $array = array();
+        //     $document = $this->Form->get_form($form_code)[0];
+        //     if($document) {
+        //         foreach($this->Coop_Submitted_Form_Search->gets_student_has_document($form_code) as $r) {
+        //             $student = $this->Student->get_student($r['student_id']);
+        //             if(count($student) != 1) {
+        //                 continue;
+        //             }
+        //             $row = array();
+        //             $row['student'] = @$student[0];
+        //             $row['student']['id_link'] = '<a href="'.site_url('Officer/Students/student_detail/'.$row['student']['student_id']).'">'.$row['student']['student_id'].'</a>';                
+        //             $row['form'] = @$this->Coop_Submitted_Form_Search->search_form_by_student_and_code($r['student_id'], $form_code)[0];
+
+        //             $row['form']['status'] = '<span style="color: red;">ยังไม่ส่ง</span>';
+        //             if(@$row['form']['document_pdf_file']) {
+        //                 $late_status = '';
+        //                 if($row['form']['document_sent_date'] >= $document['document_deadline']) {
+        //                     $late_status = ' (<span style="color: red;">ส่งช้า</span>)';
+        //                 }
+        //                 $row['form']['status'] = '<span style="color: green;">ส่งแล้ว</span>'.$late_status;
+        //                 $row['form']['document_pdf_file'] = '<a href="'.base_url($row['form']['document_pdf_file']).'" target="_blank">ดาวน์โหลด</a>';
+        //             } else {
+        //                 $row['form']['document_pdf_file'] = '-';
+        //             }
+
+        //             if(
+        //                 $row['student'] &&
+        //                 $row['form']
+        //             ) {
+        //                 array_push($array, $row);                        
+        //             }
+        //         }
+        //     }
+            
+        //     echo json_encode($array);
+        // }
+
+
         public function get_by_form_code($form_code)
         {
             $array = array();
             $document = $this->Form->get_form($form_code)[0];
             if($document) {
-                foreach($this->Coop_Submitted_Form_Search->gets_student_has_document() as $r) {
-                    $student = $this->Student->get_student($r['student_id']);
-                    if(count($student) != 1) {
-                        continue;
-                    }
+                // cache
+                $cache = [];
+                foreach($this->Coop_Submitted_Form_Search->search_form_by_code($form_code) as $doc) {
+                    $cache[$doc['student_id']] = $doc;
+                }
+
+                // foreach($this->Coop_Submitted_Form_Search->gets_student_has_document() as $r) {
+                if(
+                    $document['document_code'] == 'IN-S001' || 
+                    $document['document_code'] == 'IN-S002'
+                    ) 
+                {
+                    $gets_student = $this->Student->gets_student();
+                } else {
+                    $gets_student = $this->Coop_Student->gets_coop_student();
+                }
+
+                foreach($gets_student as $r) {
+                
+                    // $student = $this->Student->get_student($r['student_id']);
+                    
                     $row = array();
-                    $row['student'] = @$this->Student->get_student($r['student_id'])[0];
+                    $row['student'] = @$r;
                     $row['student']['id_link'] = '<a href="'.site_url('Officer/Students/student_detail/'.$row['student']['student_id']).'">'.$row['student']['student_id'].'</a>';                
-                    $row['form'] = @$this->Coop_Submitted_Form_Search->search_form_by_student_and_code($r['student_id'], $form_code)[0];
+                    // $row['form'] = @$this->Coop_Submitted_Form_Search->search_form_by_student_and_code($r['student_id'], $form_code)[0];
+                    $row['form'] = @$cache[$row['student']['student_id']];
+                    
 
                     $row['form']['status'] = '<span style="color: red;">ยังไม่ส่ง</span>';
                     if(@$row['form']['document_pdf_file']) {
