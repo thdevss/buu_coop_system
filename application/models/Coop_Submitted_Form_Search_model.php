@@ -69,4 +69,6 @@ class Coop_Submitted_Form_Search_model extends CI_model {
         $query = $this->db->query($sql);
         return $query->result_array();
     }
+
+
 }

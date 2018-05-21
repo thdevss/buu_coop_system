@@ -73,7 +73,7 @@ class Assessment_company extends CI_Controller {
 	{
         $student_id = $this->Login_session->check_login()->login_value;            
 		$coop_student = $this->Coop_Student->get_coop_student($student_id)[0];
-		
+
 		// check trainer id
 		if($coop_student['trainer_id'] < 1) {
 			$this->session->set_flashdata('status', 'error');
@@ -102,6 +102,21 @@ class Assessment_company extends CI_Controller {
 			
 			$sql_status = $this->Company_Assessment_Form->save_company_form_result($insert);
 		}
+
+		$insert = [
+			'student_id' => $student_id,
+			'trainer_id' => $coop_student['trainer_id'],
+			'company_id' => $coop_student['company_id'],
+			'term_id' => $term_id,
+			'company_has_coop_company_questionnaire_item_datetime' => date('Y-m-d H:i:s'),
+			'company_has_coop_company_questionnaire_comment_no4' => $this->input->post('no4'),
+			'company_has_coop_company_questionnaire_comment_no5' => $this->input->post('no5'),
+			'company_has_coop_company_questionnaire_comment_no6' => $this->input->post('no6'),
+			'company_has_coop_company_questionnaire_comment_no7' => $this->input->post('no7'),
+			
+		];		
+		$sql_status = $this->Company_Assessment_Form->save_company_comment_result($insert);
+		
 		
 
 		if($sql_status) {

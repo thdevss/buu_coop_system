@@ -12,6 +12,20 @@ class Company_Assessment_Form_model extends CI_model {
 
     }
 
+    public function save_company_comment_result($array)
+    {
+        return $this->db->replace('tb_company_has_coop_company_questionnaire_comment',$array);
+    }
+
+    public function get_company_comment_result($company_id)
+    {
+        $this->db->where('company_id', $company_id);
+        $this->db->from('tb_company_has_coop_company_questionnaire_comment');
+        $query = $this->db->get();
+        return $query->result_array();
+    }    
+
+
     public function save_company_forms_subject($array)
     {
         return $this->db->insert('tb_coop_company_questionnaire_subject',$array);

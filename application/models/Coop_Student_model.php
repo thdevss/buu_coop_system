@@ -36,9 +36,7 @@ class Coop_Student_model extends CI_model {
         // $query = $this->db->get();       
         
         $sql = "SELECT `tb_company`.`company_id`, `tb_department`.`department_name`, `tb_student`.`student_gpax`, `tb_student`.`student_prefix`, `tb_student`.`student_fullname`, `tb_student`.`student_id`, `tb_company_job_position`.`job_title`, `tb_company`.`company_name_th`, `tb_company_person`.`person_fullname`, `tb_adviser`.`adviser_id`, `tb_adviser`.`adviser_fullname`, `tb_company_address`.`company_address_area`, `tb_company_address`.`company_address_province`, 
-        `tb_coop_student`.`coop_student_oral_exam_date`,
-        `tb_coop_student`.`coop_student_company_score`,
-        `tb_coop_student`.`coop_student_adviser_score`,
+        `tb_coop_student`.*,
         (`tb_coop_student`.`coop_student_adviser_score` + `tb_coop_student`.`coop_student_company_score`) as `coop_student_sum_score`
         FROM `tb_coop_student` 
         INNER JOIN `tb_student` ON `tb_student`.`student_id` = `tb_coop_student`.`student_id`
@@ -64,9 +62,7 @@ class Coop_Student_model extends CI_model {
         // $this->db->where('student_id', $student_id);
         // $this->db->from('tb_coop_student');
         $sql = "SELECT `tb_company`.`company_id`, `tb_department`.`department_name`, `tb_student`.`student_gpax`, `tb_student`.`student_prefix`, `tb_student`.`student_fullname`, `tb_student`.`student_id`, `tb_company_job_position`.`job_title`, `tb_company`.`company_name_th`, `tb_company_person`.`person_fullname`,  `tb_adviser`.`adviser_id`, `tb_adviser`.`adviser_fullname`, `tb_company_address`.`company_address_area`, `tb_company_address`.`company_address_province`,`tb_company`.`company_name_en`,
-        `tb_coop_student`.`coop_student_oral_exam_date`,
-        `tb_coop_student`.`coop_student_company_score`,
-        `tb_coop_student`.`coop_student_adviser_score`,
+        `tb_coop_student`.*,
         (`tb_coop_student`.`coop_student_adviser_score` + `tb_coop_student`.`coop_student_company_score`) as `coop_student_sum_score`
         FROM `tb_coop_student` 
         INNER JOIN `tb_student` ON `tb_student`.`student_id` = `tb_coop_student`.`student_id`
