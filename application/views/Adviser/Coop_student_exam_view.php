@@ -38,7 +38,7 @@
                               <form class="form-inline save_adviser_score">
                                 <div class="form-group mx-sm-3 mb-2">
                                   <input type="hidden" name="student_id" value="<?php echo $row['student_id'];?>">
-                                  <input name="coop_student_adviser_score" type="number" step="0.01" max="50" value="<?php echo $row['coop_student_adviser_score'];?>" class="form-control" style="width:80px;" placeholder="0.00">
+                                  <input name="coop_student_adviser_score" type="number" min="0" step="0.01" max="50" value="<?php echo $row['coop_student_adviser_score'];?>" class="form-control" style="width:80px;" placeholder="0.00">
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-2"><i class="fa fa-floppy-o"></i></button>
                               </form>
