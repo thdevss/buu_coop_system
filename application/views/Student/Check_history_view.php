@@ -38,7 +38,7 @@
                         <?php $i=1; foreach($type['history'] as $row) { ?>
                           <tr>
                             <td class="text-center"><?php echo $i++;?></td>
-                            <td><?php echo thaiDate($row['tb_train']['train_date']);?></td>
+                            <td><?php echo thaiDate($row['tb_train']['train_start_date']);?></td>
                             <td class="text-right"><?php echo $row['total_hour'];?></td>
                             <td><?php echo $row['tb_train']['train_title'];?></td>
                             <td><?php echo $row['tb_train']['train_lecturer'];?></td>
