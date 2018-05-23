@@ -88,7 +88,9 @@ class Train_check_student extends CI_Controller {
         $data['total_student'] = count($this->Training->gets_student_register_train($data['training_check_student']['train_id']));
 
 
-        $this->template->view('Officer/Train_check_student_form_view', $data);
+        $this->template->view('Officer/Train_check_student_form_view', $data, [
+            base_url('assets/js/officer_js/train_check_student.js')
+        ]);
     }
 
     public function ajax_get()
@@ -119,6 +121,7 @@ class Train_check_student extends CI_Controller {
                     
                     array_push($return['rows'], $tmp);
                 }
+                echo $this->db->last_query();
             }
         } else {
             $return['status'] = false;

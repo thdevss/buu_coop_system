@@ -61,7 +61,7 @@ class Training_Check_Student_model extends CI_model {
         $sql = "SELECT `tb_student`.`student_id`, `tb_student`.`student_fullname`, `tb_train_check_student`.`train_check_student_date`
         FROM `tb_train_check_student` 
         INNER JOIN `tb_student` ON `tb_student`.`student_id` = `tb_train_check_student`.`student_id`
-        WHERE `train_set_check_id` = ".$check_id;
+        WHERE `train_set_check_id` = ".$check_id." AND `tb_student`.`term_id` = `tb_train_check_student`.`term_id` ";
 
         $query = $this->db->query($sql);
         
