@@ -121,7 +121,6 @@ class Train_check_student extends CI_Controller {
                     
                     array_push($return['rows'], $tmp);
                 }
-                echo $this->db->last_query();
             }
         } else {
             $return['status'] = false;

@@ -300,6 +300,7 @@ class Coop_Student_model extends CI_model {
         WHERE `tb_coop_student`.`term_id` = '".$term_id."'
         AND `tb_coop_student`.`adviser_id` = '".$adviser_id."'
         AND `tb_coop_student`.`coop_student_oral_exam_date` >= '".date('Y-m-d H:i:s')."'
+        ORDER BY `tb_coop_student`.`coop_student_oral_exam_date` ASC
         
         ";
 
