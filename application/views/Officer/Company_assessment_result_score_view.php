@@ -48,6 +48,33 @@
                       <?php } ?>
                     </tbody>
                   </table>
+
+                  <div class="row">
+                    <div class="col-md-12" style="margin-bottom:10px;">
+                      <lable><b>4. ตามข้อ 1.2 สถานประกอบการได้สนับสนุนสิ่งอำนวยความสะดวกต่าง ๆ ได้แก่</b></lable><code>*</code>
+                      <textarea id="textarea-input" name="no4" rows="6" class="form-control" placeholder="......"><?php echo $comment['no4'];?></textarea>
+                    </div>
+                    <div class="col-md-12" style="margin-bottom:10px;">
+                      <lable><b>5 .ตามข้อ 1.3 สถานประกอบการได้ให้การสนับสนุนด้านสวัสดิการ ได้แก่</b></lable><code>*</code>
+                      <textarea id="textarea-input" name="no5" rows="6" class="form-control" placeholder="......"><?php echo $comment['no5'];?></textarea>
+                    </div>
+                    <div class="col-md-12" style="margin-bottom:10px;">
+                      <lable><b>6. ในปีการศึกษาถัดไป ท่านคิดว่าสมควรส่งนักศึกษาไปปฏิบัติสหกิจศึกษา/ฝึกงาน ณ สถานประกอบการแห่งนี้หรือไม่</b></lable><code>*</code>
+                      <div class="custom-controls-stacked">
+                          <label class="custom-control custom-radio">
+                            <span class="custom-control-description"><?php echo $comment['no6']['y'];?> คน เห็นสมควรส่งไป</span>
+                          </label>
+                          <label class="custom-control custom-radio">
+                            <span class="custom-control-description"><?php echo $comment['no6']['n'];?> คน ไม่สมควรส่งไป</span>
+                          </label>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-12" style="margin-bottom:10px;">
+                      <lable><b>7.ข้อคิดเห็นเพิ่มเติม</b></lable> <?php form_error('no7'); ?><code>*</code>
+                      <textarea id="textarea-input" name="no7" rows="6" class="form-control"><?php echo $comment['no7'];?></textarea>
+                    </div>
+                  </div>
                   <?php } ?>
                   
 
