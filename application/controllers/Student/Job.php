@@ -64,7 +64,11 @@ class Job extends CI_Controller {
                 // }
                 // $job_title = null;
                 // $job_title = $this->input->post('job_title');
-                $jobs = $this->Job->search_job_by_company_and_position($this->input->post('company_id'), $this->input->post('job_title_id'));
+                if($this->input->post('job_title_id') > 0) {
+                    $jobs = $this->Job->search_job_by_company_and_position($this->input->post('company_id'), $this->input->post('job_title_id'));
+                } else {
+                    $jobs = $this->Job->gets_job_by_company($this->input->post('company_id'));  
+                }
             }
 
     

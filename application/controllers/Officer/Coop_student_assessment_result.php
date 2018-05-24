@@ -102,6 +102,9 @@ class Coop_student_assessment_result extends CI_Controller {
                 $data['total_score']++;
             }
             $data['total_score'] = $data['total_score']*5;
+
+		    $data['result_comment'] = @$this->Coop_Student_Assessment_Form->get_coop_student_comment_result($student_id)[0];            
+            
                 
             // add breadcrumbs
             $this->breadcrumbs->push('รายชื่อนิสิตสหกิจ', '/Officer/Coop_student_assessment_result/index');

@@ -21,7 +21,9 @@ class Main extends CI_Controller {
 	public function index()
 	{
         $data['rowNews'] = $this->News->gets_news();
-		$this->template->view('template/news_view', $data);
+        $data['exam_reminder'] = $this->Coop_Student->gets_oral_exam_date_by_adviser($this->Login_session->check_login()->login_value);
+
+		$this->template->view('adviser/news_view', $data);
     }
     
     public function change_to_officer()

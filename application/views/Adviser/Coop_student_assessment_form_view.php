@@ -13,6 +13,11 @@
           <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i>ประเมินผลการฝึกงานของนิสิตสหกิจ ของ <?php echo $student['student_fullname']." ".$student['student_id'];?></div>
               <div class="card-body">
+              <?php 
+              if($sum_score < 1) { 
+                echo '<div class="alert alert-warning"><b>นิสิตคนนี้ยังไม่ถูกประเมิน</b></div>';
+              }
+              ?>
               <table class="table table-bordered">
                     <thead>
                       <tr>

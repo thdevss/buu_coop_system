@@ -26,7 +26,7 @@ class Company_assessment_result extends CI_Controller {
             // $data = array();
             $data['data'] = array();
 
-            foreach($this->Company->gets_company()as $row) {
+            foreach($this->Company->gets_company() as $row) {
                 $tmp_array = array();
                 $tmp_array = $row;
                 $tmp_array['count'] = count($this->Coop_Student->gets_coop_student_by_company($row['company_id']));
@@ -52,6 +52,29 @@ class Company_assessment_result extends CI_Controller {
                 if( count($tmp_array['questionnaire_item']) > 0 ) {
                     array_push($data['data'], $tmp_array);
                 }
+            }
+
+            $data['comment'] = [
+                'no4' => '',
+                'no5' => '',
+                'no6' => [
+                    'y' => 0,
+                    'n' => 0
+                ],
+                'no7' => ''
+            ];
+            foreach($this->Company_Assessment_Form->get_company_comment_result($company_id) as $comment) {
+                $data['comment']['no4'] .= $comment['company_has_coop_company_questionnaire_comment_no4']."\n";
+                $data['comment']['no5'] .= $comment['company_has_coop_company_questionnaire_comment_no5']."\n";
+                $data['comment']['no7'] .= $comment['company_has_coop_company_questionnaire_comment_no7']."\n";
+
+                if($comment['company_has_coop_company_questionnaire_comment_no6'] == "1") {
+                    $data['comment']['no6']['y']++;
+                } else {
+                    $data['comment']['no6']['n']++;
+                }
+                
+                
             }
 
             // add breadcrumbs

@@ -48,7 +48,7 @@ class Coop_student_assessment extends CI_Controller {
     
             }
 
-		    $data['result_comment'] = $this->Coop_Student_Assessment_Form->get_coop_student_comment_result($student_id)[0];            
+		    $data['result_comment'] = @$this->Coop_Student_Assessment_Form->get_coop_student_comment_result($student_id)[0];            
 
             // $data['result'] = [];
             // foreach($this->Coop_Student_Assessment_Form->get_coop_student_form_result($student_id) as $result) {
