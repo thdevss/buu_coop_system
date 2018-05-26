@@ -3,35 +3,34 @@ class BUUMember_model extends CI_Model
 {
     public function xlogin($username, $password)
     {
-        $data = array();
-        if($username == 'nutthanon9') {
-            $data['fullname'] = 'Nutthanon';
-            $data['login_type'] = 'adviser';
-            $data['login_value'] = 'nutthanon';
+        // mock up login for testing adviser, officer actor~
+        // $data = array();
+        // if($username == 'nutthanon9') {
+        //     $data['fullname'] = 'Nutthanon';
+        //     $data['login_type'] = 'adviser';
+        //     $data['login_value'] = 'nutthanon';
 
-        } else if($username == 'pnut') {
-            $data['fullname'] = 'Kamonwan';
-            $data['login_type'] = 'officer';
-            $data['login_value'] = 'kamonwans';
-            $data['user_fullname'] = 'Kamonwan Sangrawee';
-        } else if(strpos($username, "est")) {
-            $username = str_replace("test", "", $username);
-            $data['fullname'] = $username;
+        // } else if($username == 'pnut') {
+        //     $data['fullname'] = 'Kamonwan';
+        //     $data['login_type'] = 'officer';
+        //     $data['login_value'] = 'kamonwans';
+        //     $data['user_fullname'] = 'Kamonwan Sangrawee';
+        // } else if(strpos($username, "est")) {
+        //     $username = str_replace("test", "", $username);
+        //     $data['fullname'] = $username;
         
-            $data['login_value'] = $username;
-            if($this->Coop_Student->get_coop_student($username)) {
-                $data['login_type'] = 'coop_student';
-            } else {
-                $data['login_type'] = 'student';
-                $this->insert_new_student($data['login_value']);
-            }
-            // if(is_numeric($username)) {
-                // for debug
-                
-            // }
-        }  
+        //     $data['login_value'] = $username;
+        //     if($this->Coop_Student->get_coop_student($username)) {
+        //         $data['login_type'] = 'coop_student';
+        //     } else {
+        //         $data['login_type'] = 'student';
+        //         $this->insert_new_student($data['login_value']);
+        //     }
 
-        return $data;
+        // }  
+        // return $data;
+
+        return false;
     }
 
     public function login($username, $password)
@@ -76,10 +75,12 @@ class BUUMember_model extends CI_Model
                 }
             } else {
                 //test login, mockup function
-                return $this->xlogin($username, $password);
+                // return $this->xlogin($username, $password);
+                return false;
             }
         } else {
-            return $this->xlogin($username, $password);
+            // return $this->xlogin($username, $password);
+            return false;
         }
         return $data;
     }

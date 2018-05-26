@@ -119,7 +119,7 @@ class Student_model extends CI_model {
         $token = $this->get_profile_api_token();
         $authorization = "Authorization: Bearer $token";
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , $authorization ));
-        curl_setopt($ch, CURLOPT_URL, 'http://10.80.34.5:9013/api/v1/student/'.$student_id.'/about');
+        curl_setopt($ch, CURLOPT_URL, getenv('API_URL').'api/v1/student/'.$student_id.'/about');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
         $result = curl_exec($ch);
@@ -141,7 +141,7 @@ class Student_model extends CI_model {
         $token = $this->get_profile_api_token();
         $authorization = "Authorization: Bearer $token";
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , $authorization ));
-        curl_setopt($ch, CURLOPT_URL, 'http://10.80.34.5:9013/api/v1/student/'.$student_id.'/about');
+        curl_setopt($ch, CURLOPT_URL, getenv('API_URL').'api/v1/student/'.$student_id.'/about');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
         $result = curl_exec($ch);
@@ -163,7 +163,7 @@ class Student_model extends CI_model {
         $token = $this->get_profile_api_token();
         $authorization = "Authorization: Bearer $token";
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , $authorization ));
-        curl_setopt($ch, CURLOPT_URL, 'http://10.80.34.5:9013/api/v1/student/'.$student_id.'/subjects?Subject_Code='.$subject_codes);
+        curl_setopt($ch, CURLOPT_URL, getenv('API_URL').'api/v1/student/'.$student_id.'/subjects?Subject_Code='.$subject_codes);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
         $result = curl_exec($ch);
@@ -229,7 +229,7 @@ class Student_model extends CI_model {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_USERPWD, "buu_profile:profile_999");
             curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-            curl_setopt($ch, CURLOPT_URL, 'http://10.80.34.5:9013/api/token');
+            curl_setopt($ch, CURLOPT_URL, getenv('API_URL').'api/token');
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
             $result = curl_exec($ch);
