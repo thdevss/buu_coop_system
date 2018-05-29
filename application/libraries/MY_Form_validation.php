@@ -1,8 +1,12 @@
 <?php
 
-class Form_validation extends CI_Form_validation {
+class MY_Form_validation extends CI_Form_validation {
 
-
+    function MY_Form_validation( $config = array() )
+    {
+        parent::CI_Form_validation($config);
+    }
+    
     public function thai_character($input) 
     {
 
