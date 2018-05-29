@@ -199,7 +199,7 @@ class Setting extends CI_Controller {
         $this->breadcrumbs->push('เพิ่มตำแหน่งงาน', '/');
         
 
-        $this->template->view('officer/Job_position_setting_view',$data);
+        $this->template->view('Officer/Job_position_setting_view',$data);
     }
 
     public function add_job_title()
@@ -236,7 +236,7 @@ class Setting extends CI_Controller {
             $this->breadcrumbs->push('จัดการตำแหน่งงาน', '/Officer/Setting/lists_job_title');
             $this->breadcrumbs->push('แก้ไขตำแหน่งงาน', '/Officer/Setting/update_job_title'.$job_title_id);
 
-            $this->template->view('officer/Job_position_setting_view',$data);
+            $this->template->view('Officer/Job_position_setting_view',$data);
 
         } else {
             //update
