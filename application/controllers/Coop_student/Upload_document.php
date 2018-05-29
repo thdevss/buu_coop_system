@@ -14,7 +14,7 @@ class Upload_document extends CI_Controller {
         //check priv
         $user = $this->Login_session->check_login();
         if($user->login_type != 'coop_student') {
-            redirect($this->Login_session->check_login()->login_type);
+            redirect(ucfirst($this->Login_session->check_login()->login_type).'/main/');
             die();
         }
 
@@ -35,7 +35,7 @@ class Upload_document extends CI_Controller {
             $document_code = $this->input->get('code');
 
         if(!$data['document'] = $this->Form->get_form_by_name($document_code)[0]) {
-            redirect($this->Login_session->check_login()->login_type);
+            redirect(ucfirst($this->Login_session->check_login()->login_type).'/main/');
             die();
         }
         

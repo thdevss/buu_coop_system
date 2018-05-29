@@ -4,7 +4,7 @@
       <nav class="sidebar-nav">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo site_url('company/');?>"><i class="icon-home"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
+            <a class="nav-link" href="<?php echo site_url('Company/main');?>"><i class="icon-home"></i> หน้าแรก <span class="badge badge-primary">NEW</span></a>
           </li>
 
           <li class="nav-title">

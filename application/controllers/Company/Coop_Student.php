@@ -16,7 +16,7 @@ class Coop_Student extends CI_Controller {
 		
 		//check priv
         if($user->login_type != 'company') {
-            redirect($user->login_type);
+            redirect(ucfirst($user->login_type).'/main/');
             die();
         }
         //add breadcrumbs

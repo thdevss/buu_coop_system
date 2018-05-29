@@ -78,7 +78,7 @@
             <span aria-hidden="true">×</span>
           </button>
             </div>
-            <form action="<?php echo site_url('Officer/company/post_add');?>" method="post">
+            <form action="<?php echo site_url('Officer/Company/post_add');?>" method="post">
               <div class="modal-body">
                 <div class="col-md-12">
                   <label>ชื่อสถานประกอบการ</label>
