@@ -23,7 +23,7 @@
               
                 
 
-                <form id="permit_form" method="post" action="<?php echo site_url('Coop_Student/Permit_form/post/');?>">
+                <form id="permit_form" method="post" action="<?php echo site_url('Coop_student/Permit_form/post/');?>">
                  <div class="row">
                  <div class="form-group col-sm-8">
                    <label for="student_fullname">ชื่อนิสิต นาย/นางสาว</label><code>*</code>
