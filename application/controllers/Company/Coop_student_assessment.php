@@ -16,7 +16,7 @@ class Coop_student_assessment extends CI_Controller {
         $user = $this->Login_session->check_login();
 
         if($user->login_type != 'company') {
-            redirect($this->Login_session->check_login()->login_type);
+            redirect(ucfirst($this->Login_session->check_login()->login_type).'/main/');
             die();
         }
 

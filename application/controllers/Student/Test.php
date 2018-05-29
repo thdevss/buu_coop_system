@@ -14,7 +14,7 @@ class Test extends CI_Controller {
 		//check priv
         $user = $this->Login_session->check_login();
         if($user->login_type != 'student') {
-            redirect($this->Login_session->check_login()->login_type);
+            redirect(ucfirst($this->Login_session->check_login()->login_type).'/main/');
             die();
         }
       

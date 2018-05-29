@@ -14,7 +14,7 @@ class Member extends CI_Controller {
         $user = $this->Login_session->check_login();
         // print_r($user);
         if(@$user->login_type) {
-            redirect($this->Login_session->check_login()->login_type);
+            redirect(ucfirst($this->Login_session->check_login()->login_type).'/main/');
             die();
         }
 

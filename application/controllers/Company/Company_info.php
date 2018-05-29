@@ -14,7 +14,7 @@ class Company_info extends CI_controller
             //check priv
             $user = $this->Login_session->check_login();
             if($user->login_type != 'company') {
-                redirect($this->Login_session->check_login()->login_type);
+                redirect(ucfirst($this->Login_session->check_login()->login_type).'/main/');
                 die();
             }
             //add breadcrumbs
@@ -32,7 +32,7 @@ class Company_info extends CI_controller
             
             $user = $this->Login_session->check_login();
             if($user->login_type != 'company') {
-                redirect($this->Login_session->check_login()->login_type);
+                redirect(ucfirst($this->Login_session->check_login()->login_type).'/main/');
                 die();
             }
         //add breadcrumbs

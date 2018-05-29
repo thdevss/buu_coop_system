@@ -13,7 +13,7 @@ class Company_info extends CI_controller
 
             $user = $this->Login_session->check_login();
             if($user->login_type != 'officer') {
-                redirect($this->Login_session->check_login()->login_type);
+                redirect(ucfirst($this->Login_session->check_login()->login_type).'/main/');
                 die();
             }
             // $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
@@ -25,7 +25,7 @@ class Company_info extends CI_controller
         {
             $data['company'] = $this->Company->get_company($company_id)[0];
             $data['company_address'] = @$this->Address->get_address_by_company($data['company']['company_id'])[0];
-            $data['form_url'] = site_url('officer/company_info/post_step1');
+            $data['form_url'] = site_url('Officer/Company_info/post_step1');
 
             // add breadcrumbs
             $this->breadcrumbs->push('รายละเอียดเกี่ยวกับสถานประกอบการ/หน่วยงาน', '/Officer/company_info/step1/'.$company_id);
@@ -82,7 +82,7 @@ class Company_info extends CI_controller
                 $this->Company->update_company($company_id , $array_company);
                 $this->Address->update_address($company_id , $array_company_address);
                 
-                redirect('officer/company_info/step2/'.$company_id, 'refresh');
+                redirect('Officer/Company_info/step2/'.$company_id, 'refresh');
             }
         }
 
@@ -95,8 +95,8 @@ class Company_info extends CI_controller
             $data['company_person'] = @$this->Trainer->get_trainer($data['company']['headoffice_person_id'])[0];
             $data['company_employee'] = @$this->Trainer->gets_trainer_by_company($data['company']['company_id']);
 
-            $data['form_url'] = site_url('officer/company_info/post_step2');
-            $data['back_url'] = site_url('officer/company_info/step1/'.$company_id);
+            $data['form_url'] = site_url('Officer/Company_info/post_step2');
+            $data['back_url'] = site_url('Officer/Company_info/step1/'.$company_id);
             $data['save_trainer_url'] = site_url('Officer/Trainer/ajax_save_trainer');
 
             $data['contact_select_box'] = 0;
@@ -146,7 +146,7 @@ class Company_info extends CI_controller
                 // update on table
                 $this->Company->update_company($company_id, $array_company);
 
-                redirect('officer/company_info/step3/'.$company_id, 'refresh');
+                redirect('Officer/Company_info/step3/'.$company_id, 'refresh');
             }
         }
 
@@ -159,10 +159,10 @@ class Company_info extends CI_controller
             $tmp['company_id'] = $company_id;
             $data['company'] = $this->Company->get_company($company_id)[0];
 
-            $data['form_url'] = site_url('officer/company_info/post_step3');
-            $data['back_url'] = site_url('officer/company_info/step2/'.$company_id);
+            $data['form_url'] = site_url('Officer/Company_info/post_step3');
+            $data['back_url'] = site_url('Officer/Company_info/step2/'.$company_id);
 
-            $data['work_form_url'] = site_url('officer/company_info/');
+            $data['work_form_url'] = site_url('Officer/Company_info/');
             $data['company_has_department'] = [];
             foreach($this->Company->get_company_has_department($company_id) as $department) {
                 $data['company_has_department'][] = $department['department_id'];
@@ -249,7 +249,7 @@ class Company_info extends CI_controller
                 ];
                 $this->Company->update_benefit($company_id, $update_benefit);
 
-                redirect('officer/company_info/step4/'.$company_id, 'refresh');                
+                redirect('Officer/Company_info/step4/'.$company_id, 'refresh');                
                 
             }
             // echo "<script>alert('ok')</script>";
@@ -268,10 +268,10 @@ class Company_info extends CI_controller
 
             $data['company_job'] = $this->Job->gets_job_by_company($tmp['company_id']);
             $data['job_title'] = $this->Job->gets_job_title();
-            $data['form_url'] = site_url('officer/company_info/post_step4');
-            $data['back_url'] = site_url('officer/company_info/step3/'.$company_id);
+            $data['form_url'] = site_url('Officer/Company_info/post_step4');
+            $data['back_url'] = site_url('Officer/Company_info/step3/'.$company_id);
 
-            $data['work_form_url'] = site_url('officer/company_info/');
+            $data['work_form_url'] = site_url('Officer/Company_info/');
 
             $this->breadcrumbs->push('ตำแหน่งงาน', '/Officer/company_info/step2/'.$company_id);
             
@@ -284,7 +284,7 @@ class Company_info extends CI_controller
         public function post_step4()
         {
             echo "<script>alert('ok')</script>";
-            redirect('officer/company/', 'refresh');
+            redirect('Officer/Company/', 'refresh');
         }
         
         //job section
@@ -298,7 +298,7 @@ class Company_info extends CI_controller
 
                 $company = $this->input->post('company_id');
                 $this->session->set_flashdata('form-alert', '<div class="alert alert-danger"> เพิ่มไม่สำเร็จ </div>');
-                redirect('/officer/company_info/step3/'.$company, 'refresh');
+                redirect('/Officer/Company_info/step3/'.$company, 'refresh');
 
             }
             else{
@@ -313,7 +313,7 @@ class Company_info extends CI_controller
 
                 $this->Job->insert_job($data);
                 $this->session->set_flashdata('form-alert', '<div class="alert alert-success">เพิ่มงานสำเร็จ</div>');
-                redirect('/officer/company_info/step4/'.$data['company_id'], 'refresh');
+                redirect('/Officer/Company_info/step4/'.$data['company_id'], 'refresh');
             }
             // return $this->step3($data['company_id']);
         }
@@ -325,10 +325,10 @@ class Company_info extends CI_controller
                 // hide job
                 $this->Job->delete_job($job_id);
                 $this->session->set_flashdata('form-alert', '<div class="alert alert-primary">ลบงานสำเร็จ</div>');
-                redirect('/officer/company_info/step3/'.$job[0]['company_id'], 'refresh');                
+                redirect('/Officer/Company_info/step3/'.$job[0]['company_id'], 'refresh');                
             } else {
                 $this->session->set_flashdata('form-alert', '<div class="alert alert-warning">ผิดพลาด</div>');
-                redirect('/officer/', 'refresh');                
+                redirect('/Officer/', 'refresh');                
             }
         }
         public function job_form_edit($job_id)
@@ -339,7 +339,7 @@ class Company_info extends CI_controller
             
             $data['work_form_url'] = site_url('Officer/Company_info/job_update/'.$data['company_job_position_by_id']['job_id']);
             //print_r($data);
-            $this->template->view('company/info/job_form_view', $data);
+            $this->template->view('Company/info/job_form_view', $data);
         }
 
         public function job_update()
