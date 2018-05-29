@@ -33,7 +33,7 @@ class Member extends CI_Controller {
             if($member) {
                 $session_ID = $this->Login_session->set($username, 'company', $member['person_fullname']);
                 if($session_ID) {
-                    redirect('Company');                    
+                    redirect('company/main/index');                    
                 }
             }
         } else {
@@ -43,7 +43,7 @@ class Member extends CI_Controller {
                 $session_ID = $this->Login_session->set($check_ldap['login_value'], $check_ldap['login_type'], $check_ldap['user_fullname']);
                 if($session_ID) {
                     $this->session->set_userdata('session_ID', $session_ID);
-                    redirect($check_ldap['login_type']);                    
+                    redirect(strtolower($check_ldap['login_type']).'/main/index');
                 }
             }
         }
