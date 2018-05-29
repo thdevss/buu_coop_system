@@ -152,7 +152,7 @@ jQuery( "#save_trainer" ).submit(function( event ) {
 
     if(validForm) {
         //post ajax
-        jQuery.post("<?php echo site_url('officer/trainer/ajax_save_trainer');?>", jQuery("#save_trainer").serialize(), function(result){
+        jQuery.post("<?php echo site_url('Officer/Trainer/ajax_save_trainer');?>", jQuery("#save_trainer").serialize(), function(result){
             jQuery("#company_person_form").modal('hide');
 
             if(result.status) {               
