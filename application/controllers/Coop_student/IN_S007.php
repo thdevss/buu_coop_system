@@ -66,7 +66,7 @@ class IN_S007 extends CI_Controller {
         $data['department'] = @$this->Student->get_department($data['student']['department_id'])[0];
         $data['profile_student'] = @$this->Student->get_student_data_from_profile($student_id);
         // print_r($data);
-        $this->template->view('Coop_Student/IN_S007_view', $data);
+        $this->template->view('Coop_student/IN_S007_view', $data);
     }
     
     public function save()
