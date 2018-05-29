@@ -51,17 +51,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'member/login';
 
-$route['company'] = 'Company/main/index';
-$route['student'] = 'Student/main/index';
-$route['coop_student'] = 'Coop_student/main/index';
-$route['officer'] = 'Officer/main/index';
-$route['adviser'] = 'Adviser/main/index';
+// $route['company'] = 'Company/main/index';
+// $route['student'] = 'Student/main/index';
+// $route['coop_student'] = 'Coop_student/main/index';
+// $route['officer'] = 'Officer/main/index';
+// $route['adviser'] = 'Adviser/main/index';
 
-$route['Company'] = 'Company/main/index';
-$route['Student'] = 'Student/main/index';
-$route['Coop_student'] = 'Coop_student/main/index';
-$route['Officer'] = 'Officer/main/index';
-$route['Adviser'] = 'Adviser/main/index';
+// $route['Company'] = 'Company/main/index';
+// $route['Student'] = 'Student/main/index';
+// $route['Coop_student'] = 'Coop_student/main/index';
+// $route['Officer'] = 'Officer/main/index';
+// $route['Adviser'] = 'Adviser/main/index';
 
 
 //controller route
