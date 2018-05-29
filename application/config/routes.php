@@ -57,11 +57,11 @@ $route['default_controller'] = 'member/login';
 // $route['officer'] = 'Officer/main/index';
 // $route['adviser'] = 'Adviser/main/index';
 
-// $route['Company'] = 'Company/main/index';
-// $route['Student'] = 'Student/main/index';
-// $route['Coop_student'] = 'Coop_student/main/index';
-// $route['Officer'] = 'Officer/main/index';
-// $route['Adviser'] = 'Adviser/main/index';
+$route['Company'] = 'Company/main/index';
+$route['Student'] = 'Student/main/index';
+$route['Coop_student'] = 'Coop_student/main/index';
+$route['Officer'] = 'Officer/main/index';
+$route['Adviser'] = 'Adviser/main/index';
 
 
 //controller route
