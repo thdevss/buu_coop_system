@@ -63,19 +63,19 @@ class Company_assessment_result extends CI_Controller {
                 ],
                 'no7' => ''
             ];
-            foreach($this->Company_Assessment_Form->get_company_comment_result($company_id) as $comment) {
-                $data['comment']['no4'] .= $comment['company_has_coop_company_questionnaire_comment_no4']."\n";
-                $data['comment']['no5'] .= $comment['company_has_coop_company_questionnaire_comment_no5']."\n";
-                $data['comment']['no7'] .= $comment['company_has_coop_company_questionnaire_comment_no7']."\n";
+            // foreach($this->Company_Assessment_Form->get_company_comment_result($company_id) as $comment) {
+            //     $data['comment']['no4'] .= $comment['company_has_coop_company_questionnaire_comment_no4']."\n";
+            //     $data['comment']['no5'] .= $comment['company_has_coop_company_questionnaire_comment_no5']."\n";
+            //     $data['comment']['no7'] .= $comment['company_has_coop_company_questionnaire_comment_no7']."\n";
 
-                if($comment['company_has_coop_company_questionnaire_comment_no6'] == "1") {
-                    $data['comment']['no6']['y']++;
-                } else {
-                    $data['comment']['no6']['n']++;
-                }
+            //     if($comment['company_has_coop_company_questionnaire_comment_no6'] == "1") {
+            //         $data['comment']['no6']['y']++;
+            //     } else {
+            //         $data['comment']['no6']['n']++;
+            //     }
                 
                 
-            }
+            // }
 
             // add breadcrumbs
             $this->breadcrumbs->push('รายชื่อสถานประกอบการ', '/Officer/Company_assessment_result/index');
