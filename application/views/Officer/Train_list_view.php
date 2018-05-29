@@ -12,7 +12,7 @@
           <div class="card">
             <div class="card-header">
               <i class="fa fa-align-justify"></i> จัดการข้อมูลการอบรม
-              <a class="btn btn-primary float-right" href="<?php echo site_url('officer/Training/add');?>"><i class="fa fa-hand-pointer-o"></i> เพิ่มการอบรม</a>
+              <a class="btn btn-primary float-right" href="<?php echo site_url('Officer/Training/add');?>"><i class="fa fa-hand-pointer-o"></i> เพิ่มการอบรม</a>
 
             </div>
               <div class="card-body">
