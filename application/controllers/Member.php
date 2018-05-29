@@ -18,6 +18,7 @@ class Member extends CI_Controller {
             die();
         }
         
+        
         $data['status'] = $this->session->flashdata('status');
         $this->load->view('login/login_view.php', $data);
     }
