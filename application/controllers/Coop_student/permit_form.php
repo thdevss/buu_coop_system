@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class permit_form  extends CI_Controller {
+class Permit_form  extends CI_Controller {
 
 	public function __construct()
     {
@@ -59,7 +59,7 @@ class permit_form  extends CI_Controller {
         // print_r($data);
         $this->breadcrumbs->push('ดาวน์โหลดเอกสารแบบอนุญาติให้นิสิตไปปฏิบัติงานสหกิจ (IN-S003)', '/Coop_student/Permit_form');
         
-        $this->template->view('Coop_student/permit_form_view',$data);
+        $this->template->view('Coop_student/Permit_form_view',$data);
 
     }
 
@@ -111,11 +111,11 @@ class permit_form  extends CI_Controller {
                     $this->print_data();
                 } else {
                     $this->session->set_flashdata('status', 'success');
-                    redirect('Coop_student/permit_form?');
+                    redirect('Coop_student/Permit_form?');
                 }     
             } else {
                 $this->session->set_flashdata('status', 'error');
-                redirect('Coop_student/permit_form?');
+                redirect('Coop_student/Permit_form?');
             }
         } else {
            
@@ -168,7 +168,7 @@ class permit_form  extends CI_Controller {
             <script>
                 window.location = '".base_url($result['full_url'])."';
                 setTimeout(function(){
-                    window.location = '".site_url('Coop_student/upload_document/?code=IN-S003')."';
+                    window.location = '".site_url('Coop_student/Upload_document/?code=IN-S003')."';
                 }, 1500);
             </script>
         ";

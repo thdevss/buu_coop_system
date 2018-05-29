@@ -230,7 +230,7 @@ class Assessment_company extends CI_Controller {
             <script>
                 window.location = '".base_url($result['full_url'])."';
                 setTimeout(function(){
-                    window.location = '".site_url('Coop_student/upload_document/?code=IN-S008')."';
+                    window.location = '".site_url('Coop_student/Upload_document/?code=IN-S008')."';
                 }, 1500);
             </script>
         ";

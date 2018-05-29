@@ -75,13 +75,13 @@ class Upload_document extends CI_Controller {
         if($old_doc['document_pdf_file'] != '') {
             $data['old_document'] = $old_doc;
         }
-        $this->breadcrumbs->push('อัพโหลดเอกสาร'.$data['document']['document_code'].' ('.$data['document']['document_name'].')', '/Coop_student/upload_document/?code='.$data['document']['document_code']);
+        $this->breadcrumbs->push('อัพโหลดเอกสาร'.$data['document']['document_code'].' ('.$data['document']['document_name'].')', '/Coop_student/Upload_document/?code='.$data['document']['document_code']);
         
         if($data['document']['document_code'] == 'IN-S007') {
             $data['ins007'] = $this->Coop_Student->gets_general_petition_by_student($student_id);            
         }
 
-        $this->template->view('Coop_student/upload_document_view', $data);
+        $this->template->view('Coop_student/Upload_document_view', $data);
         
        
     }
