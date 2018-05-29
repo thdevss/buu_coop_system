@@ -29,7 +29,7 @@ class Company_map extends CI_controller
         // add breadcrumbs
         $this->breadcrumbs->push('แผนที่ตั้งบริษัท', '/Adviser/Company_map/index');
 
-        $this->template->view('adviser/map_list_view', $data);
+        $this->template->view('Adviser/Map_list_view', $data);
     }
 
     public function ajax_post()
