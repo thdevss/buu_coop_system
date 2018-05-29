@@ -108,7 +108,7 @@ function deleteNewsFile(file_id)
             //delete in ajax
             var datastring = "news_file_id="+file_id;
 
-            jQuery.post(SITE_URL+"/officer/news/ajax_delete_file", datastring, function(response) {
+            jQuery.post(SITE_URL+"/Officer/News/ajax_delete_file", datastring, function(response) {
                 //delete element
                 if(response.status) {
                     $("ul.list-group").find("[data-fileid='" + file_id + "']").remove();

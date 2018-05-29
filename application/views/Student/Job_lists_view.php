@@ -27,7 +27,7 @@
             <div class="row">
               
                 
-              <form action="<?php echo site_url('student/job/lists');?>" method="post" style="width: 100%;display: inline-flex;">
+              <form action="<?php echo site_url('Student/Job/lists');?>" method="post" style="width: 100%;display: inline-flex;">
 
                 <div class="form-group col-sm-4">
                   <label for="company_id">บริษัท</label>

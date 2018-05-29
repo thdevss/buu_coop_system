@@ -111,11 +111,11 @@ class permit_form  extends CI_Controller {
                     $this->print_data();
                 } else {
                     $this->session->set_flashdata('status', 'success');
-                    redirect('coop_student/permit_form?');
+                    redirect('Coop_student/permit_form?');
                 }     
             } else {
                 $this->session->set_flashdata('status', 'error');
-                redirect('coop_student/permit_form?');
+                redirect('Coop_student/permit_form?');
             }
         } else {
            

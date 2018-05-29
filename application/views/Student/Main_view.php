@@ -12,7 +12,7 @@
                 <div class="col-md-12">
                     <div class="alert alert-primary">
                         <b>โปรดสมัครเข้าร่วมเป็นนิสิตสหกิจก่อนเข้าใช้งานค่ะ</b>
-                        <a href="<?php echo site_url('student/main/coop_register');?>" style="color: red; font-size:18px;">คลิ้กเพื่อสมัครเป็นนิสิตสหกิจ</a>
+                        <a href="<?php echo site_url('Student/Main/coop_register');?>" style="color: red; font-size:18px;">คลิ้กเพื่อสมัครเป็นนิสิตสหกิจ</a>
                     </div>
 
                 </div>

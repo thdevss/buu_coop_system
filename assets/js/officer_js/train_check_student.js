@@ -51,7 +51,7 @@ function updateStudentList()
     $("#student_table").find("tr:gt(0)").remove();
 
     var datastring = "train_set_check_id="+$("#train_set_check_id").val();
-    jQuery.post(SITE_URL+"/officer/Train_check_student/ajax_get", datastring, function(response) {
+    jQuery.post(SITE_URL+"/Officer/Train_check_student/ajax_get", datastring, function(response) {
         if(response.status) {
             jQuery("#current_student").html(response.rows.length)
             var i = 1;

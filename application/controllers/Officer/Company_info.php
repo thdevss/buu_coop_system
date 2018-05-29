@@ -97,7 +97,7 @@ class Company_info extends CI_controller
 
             $data['form_url'] = site_url('officer/company_info/post_step2');
             $data['back_url'] = site_url('officer/company_info/step1/'.$company_id);
-            $data['save_trainer_url'] = site_url('officer/trainer/ajax_save_trainer');
+            $data['save_trainer_url'] = site_url('Officer/Trainer/ajax_save_trainer');
 
             $data['contact_select_box'] = 0;
             if($data['company']['headoffice_person_id'] != $data['company']['contact_person_id']) {

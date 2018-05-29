@@ -85,7 +85,7 @@ class IN_S005 extends CI_Controller {
                     $this->session->set_flashdata('status', 'success');
                 }
 
-                redirect('coop_student/IN_S005');
+                redirect('Coop_student/IN_S005');
             }     
            
         }

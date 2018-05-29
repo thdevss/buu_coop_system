@@ -67,7 +67,7 @@ class Assessment_company extends CI_Controller {
 		// add breadcrumbs
 		$this->breadcrumbs->push('แบบประเมินสถานประกอบการ', '/Coop_student/Assessment_company/form');
 
-		$this->template->view('coop_student/Company_assessment_form_view', $data);
+		$this->template->view('Coop_student/Company_assessment_form_view', $data);
 	}
 
 	public function save()
