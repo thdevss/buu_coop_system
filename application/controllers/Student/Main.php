@@ -45,7 +45,7 @@ class Main extends CI_Controller {
         $data['session_alert'] = $this->session->flashdata('status');
 
 
-		$this->template->view('Student/main_view', $data);
+		$this->template->view('Student/Main_view', $data);
 		
     }
     
@@ -93,7 +93,7 @@ class Main extends CI_Controller {
             <script>
                 window.location = '".base_url($result['full_url'])."';
                 setTimeout(function(){
-                    window.location = '".site_url('student/main')."';
+                    window.location = '".site_url('Student/Main')."';
                 }, 1500);
             </script>
         ";
