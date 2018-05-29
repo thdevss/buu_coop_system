@@ -47,7 +47,7 @@
                                                 <p>
                                                     <dd>
                                                         จำนวนชั่วโมงที่เก็บ: 
-                                                        <?php echo $train_type[0]['check_hour'];?>
+                                                        <?php echo  number_format($train_type[0]['check_hour'], 2);?>
                                                     </dd>
                                                 </p>
                                             </div>
@@ -58,7 +58,7 @@
                                                         <?php 
                                                         $calc_hour = $train_type[0]['total_hour']-$train_type[0]['check_hour'];
                                                         if($calc_hour < 0) echo 0;
-                                                        else echo $calc_hour;
+                                                        else echo nubmer_format($calc_hour, 2);
                                                         ?>
                                                     </dd>
                                                 </p>
@@ -84,7 +84,7 @@
                                                 <p>
                                                     <dd>
                                                         จำนวนชั่วโมงที่เก็บ: 
-                                                        <?php echo $train_type[1]['check_hour'];?>
+                                                        <?php echo number_format($train_type[1]['check_hour'], 2);?>
                                                     </dd>
                                                 </p>
                                             </div>
@@ -95,7 +95,7 @@
                                                         <?php 
                                                         $calc_hour = $train_type[1]['total_hour']-$train_type[1]['check_hour'];
                                                         if($calc_hour < 0) echo 0;
-                                                        else echo $calc_hour;
+                                                        else echo number_format($calc_hour, 2);
                                                         ?>
                                                     </dd>
                                                 </p>
@@ -124,7 +124,7 @@
                                                 <p>
                                                     <dd>
                                                         จำนวนชั่วโมงที่เก็บ: 
-                                                        <?php echo $train['check_hour'];?>
+                                                        <?php echo number_format($train['check_hour'], 2);?>
                                                     </dd>
                                                 </p>
                                             </div>
@@ -135,7 +135,7 @@
                                                         <?php 
                                                         $calc_hour = $train['total_hour']-$train['check_hour'];
                                                         if($calc_hour < 0) echo 0;
-                                                        else echo $calc_hour;
+                                                        else echo number_format($calc_hour, 2);
                                                         ?>
                                                     </dd>
                                                 </p>
@@ -163,7 +163,7 @@
                                                     <td class="text-left"><?php echo $train['name'];?></td>
                                                     <td class="text-left"><?php echo $row['tb_train']['train_title'];?></td>
                                                     <td class="text-right"><?php echo $row['tb_train']['train_hour'];?></td>
-                                                    <td class="text-right"><?php echo $row['check_hour'];?></td>
+                                                    <td class="text-right"><?php echo number_format($row['check_hour'], 2);?></td>
                                                 </tr>
                                                 <?php } ?>
                                             </tbody>
