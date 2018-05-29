@@ -34,7 +34,7 @@ class Main extends CI_Controller {
             $session_ID = $this->Login_session->set($login_data->login_value, 'officer');
             if($session_ID) {
                 $this->session->set_userdata('session_ID', $session_ID);
-                redirect($check_ldap['login_type']);                    
+                redirect('/Officer');                    
             }
         } else {
             redirect('/Adviser');                    
