@@ -26,7 +26,7 @@ class Main extends CI_Controller {
         $this->breadcrumbs->push('ประกาศข่าวสาร', '/Officer/');
         
         $data['rowNews'] = $this->News->gets_news();
-		$this->template->view('officer/main_view', $data);
+		$this->template->view('Officer/main_view', $data);
     }
     
     public function change_to_adviser()
@@ -40,7 +40,7 @@ class Main extends CI_Controller {
                 redirect($check_ldap['login_type']);                    
             }
         } else {
-            redirect('/officer');                    
+            redirect('/Officer');                    
         }
     }
 }  

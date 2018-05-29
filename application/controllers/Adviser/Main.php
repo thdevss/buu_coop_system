@@ -23,7 +23,7 @@ class Main extends CI_Controller {
         $data['rowNews'] = $this->News->gets_news();
         $data['exam_reminder'] = $this->Coop_Student->gets_oral_exam_date_by_adviser($this->Login_session->check_login()->login_value);
 
-		$this->template->view('adviser/news_view', $data);
+		$this->template->view('Adviser/News_view', $data);
     }
     
     public function change_to_officer()
@@ -37,7 +37,7 @@ class Main extends CI_Controller {
                 redirect($check_ldap['login_type']);                    
             }
         } else {
-            redirect('/adviser');                    
+            redirect('/Adviser');                    
         }
     }
 }  

@@ -42,7 +42,7 @@ class Setting extends CI_Controller {
         // add breadcrumbs
         $this->breadcrumbs->push('จัดการปีการศึกษา', '/Officer/Setting/edit_term');
         $data['terms'] = $this->Term->gets_term();
-        $this->template->view('officer/setting_term_view', $data);
+        $this->template->view('Officer/Setting_term_view', $data);
     }
 
     public function post_current_term()
@@ -75,14 +75,14 @@ class Setting extends CI_Controller {
                 $insert['term_is_current'] = 0;
                 if($this->Term->add_term($insert)) {
                     $this->session->set_flashdata('status', 'success');
-                    redirect('Officer/setting/edit_term?form_status=success');
+                    redirect('Officer/Setting/edit_term?form_status=success');
                 } else {
                     $this->session->set_flashdata('status', 'error');
-                    redirect('Officer/setting/edit_term?form_status=error');
+                    redirect('Officer/Setting/edit_term?form_status=error');
                 }
             } else {
                 $this->session->set_flashdata('status', 'error');
-                redirect('Officer/setting/edit_term?form_status=error');
+                redirect('Officer/Setting/edit_term?form_status=error');
             }
         }
     }
@@ -108,7 +108,7 @@ class Setting extends CI_Controller {
         // add breadcrumbs
         $this->breadcrumbs->push('จัดการเอกสารที่นิสิตต้องส่ง', '/Officer/Setting/edit_document');
         
-        $this->template->view('officer/setting_document_view',$data);
+        $this->template->view('Officer/Setting_document_view',$data);
     }
 
     public function post_edit_document() 
@@ -127,14 +127,14 @@ class Setting extends CI_Controller {
                 ];
                 $this->Form->update_form($document_id, $updateArr);
                 $this->session->set_flashdata('status', 'success');
-                redirect('Officer/setting/edit_document?', 'refresh');
+                redirect('Officer/Setting/edit_document?', 'refresh');
             } else {
                 $this->session->set_flashdata('status', 'error');
-                redirect('Officer/setting/edit_document?', 'refresh');                
+                redirect('Officer/Setting/edit_document?', 'refresh');                
             }
         } else {
             $this->session->set_flashdata('status', 'error');
-            redirect('Officer/setting/edit_document?', 'refresh');
+            redirect('Officer/Setting/edit_document?', 'refresh');
         }
     }
 
@@ -323,7 +323,7 @@ class Setting extends CI_Controller {
             $array['skill_name'] = $this->input->post('skill_name');
             $this->Skill->insert_skill($array);
             $this->session->set_flashdata('status', 'success');
-            redirect('Officer/setting/lists_skill_name/?', 'refresh');
+            redirect('Officer/Setting/lists_skill_name/?', 'refresh');
         }
 
     }
@@ -361,7 +361,7 @@ class Setting extends CI_Controller {
             $array['skill_name'] = $this->input->post('skill_name');
             $this->Skill->update_skill($skill_id , $array);
             $this->session->set_flashdata('status', 'success_update');
-            redirect('Officer/setting/lists_skill_name/?', 'refersh');
+            redirect('Officer/Setting/lists_skill_name/?', 'refersh');
         }
 
 
@@ -371,7 +371,7 @@ class Setting extends CI_Controller {
     {
         $this->Skill->delete_skill($skill_id);
         $this->session->set_flashdata('status', 'success_delete');
-        redirect('Officer/setting/lists_skill_name/?', 'refersh');
+        redirect('Officer/Setting/lists_skill_name/?', 'refersh');
 
     }
 
