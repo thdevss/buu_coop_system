@@ -3,7 +3,7 @@ $( "#train_location_form" ).submit(function( event ) {
     event.preventDefault();
     var datastring = $("#train_location_form").serialize();
 
-    jQuery.post(SITE_URL+"/officer/train_location/ajax_post", datastring, function(response) {
+    jQuery.post(SITE_URL+"/Officer/Train_location/ajax_post", datastring, function(response) {
         //alert
         if(response.status) {
             swal({
@@ -12,7 +12,7 @@ $( "#train_location_form" ).submit(function( event ) {
                 icon: "success",
               })
               .then((xxx) => {
-                window.location.replace(SITE_URL+"/officer/train_location/");
+                window.location.replace(SITE_URL+"/Officer/Train_location/");
               });
         } else {
             swal({

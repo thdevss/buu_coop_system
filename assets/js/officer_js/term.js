@@ -12,7 +12,7 @@ $('#term_option_menu').change(function() {
 function changeTerm(term_id)
 {
     var data = { term_id: term_id }
-    jQuery.post(SITE_URL+"/officer/change_term/ajax_change/", data, function(response) {
+    jQuery.post(SITE_URL+"/Officer/Change_term/ajax_change/", data, function(response) {
         // Do something with the request
         $("#selectTermBox").modal('hide')
         //alert

@@ -9,7 +9,7 @@ $( "#permit_form" ).submit(function( event ) {
 
     var datastring = $("#permit_form").serialize();
 
-    jQuery.post(SITE_URL+"/coop_student/permit_form/post", datastring, function(response) {
+    jQuery.post(SITE_URL+"/Coop_student/Permit_form/post", datastring, function(response) {
         //alert
         console.log(response)
         if(response.status) {

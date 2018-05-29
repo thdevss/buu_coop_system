@@ -14,7 +14,7 @@ function addStudent(student_code)
         jQuery('#enter_student_code').val(null)
 
         var datastring = "train_set_check_id="+$("#train_set_check_id").val()+"&student_code="+student_code;
-        jQuery.post(SITE_URL+"/officer/Train_check_student/ajax_post", datastring, function(response) {
+        jQuery.post(SITE_URL+"/Officer/Train_check_student/ajax_post", datastring, function(response) {
             if(response.status) {
                 toastr["success"]("เช็คชื่อเรียบร้อย ID: "+response.student.student_id)
 
