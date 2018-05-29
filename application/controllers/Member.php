@@ -33,7 +33,7 @@ class Member extends CI_Controller {
             if($member) {
                 $session_ID = $this->Login_session->set($username, 'company', $member['person_fullname']);
                 if($session_ID) {
-                    redirect('company');                    
+                    redirect('Company');                    
                 }
             }
         } else {
