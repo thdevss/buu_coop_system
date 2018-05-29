@@ -1,6 +1,6 @@
 <?php
 
-class MY_Form_validation extends CI_Form_validation {
+class Form_validation extends CI_Form_validation {
 
 
     public function thai_character($input) 
