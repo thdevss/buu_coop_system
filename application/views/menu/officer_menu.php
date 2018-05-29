@@ -55,7 +55,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url('Officer/news');?>"><i class="fa fa-bullhorn"></i> ประกาศข่าวหน้าเว็บ </a>
+          <a class="nav-link" href="<?php echo site_url('Officer/News');?>"><i class="fa fa-bullhorn"></i> ประกาศข่าวหน้าเว็บ </a>
         </li>
         <li class="nav-item nav-dropdown">
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-book"></i> จัดการการอบรม</a>
@@ -132,22 +132,22 @@
           <a class="nav-link nav-dropdown-toggle" href="#"><i class="fa fa-cogs fa-md fa-spin"></i> ตั้งค่า</a>
           <ul class="nav-dropdown-items">
             <li class="nav-item">
-              <?php echo anchor('Officer/setting/lists_job_title', '<i class="fa fa-gear"></i> จัดการตำแหน่งงาน', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Setting/lists_job_title', '<i class="fa fa-gear"></i> จัดการตำแหน่งงาน', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-              <?php echo anchor('Officer/setting/lists_skill_name', '<i class="fa fa-gear"></i> จัดการประเภททักษะ', 'class="nav-link"');?>
+              <?php echo anchor('Officer/Setting/lists_skill_name', '<i class="fa fa-gear"></i> จัดการประเภททักษะ', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/setting/edit_term', '<i class="fa fa-gear"></i> ภาคปีการศึกษา', 'class="nav-link"');?>
+            <?php echo anchor('Officer/Setting/edit_term', '<i class="fa fa-gear"></i> ภาคปีการศึกษา', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/setting/edit_document', '<i class="fa fa-gear"></i> กำหนดเอกสาร', 'class="nav-link"');?>
+            <?php echo anchor('Officer/Setting/edit_document', '<i class="fa fa-gear"></i> กำหนดเอกสาร', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/setting/adviser_setting', '<i class="fa fa-gear"></i> เปลี่ยนสิทธิ์อาจารย์', 'class="nav-link"');?>
+            <?php echo anchor('Officer/Setting/adviser_setting', '<i class="fa fa-gear"></i> เปลี่ยนสิทธิ์อาจารย์', 'class="nav-link"');?>
             </li>
             <li class="nav-item">
-            <?php echo anchor('Officer/setting/core_subjects_list', '<i class="fa fa-gear"></i> จัดการวิชาแกน', 'class="nav-link"');?>
+            <?php echo anchor('Officer/Setting/core_subjects_list', '<i class="fa fa-gear"></i> จัดการวิชาแกน', 'class="nav-link"');?>
             </li>
       </ul>
     </nav>

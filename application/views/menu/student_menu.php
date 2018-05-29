@@ -42,16 +42,16 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-graduation"></i> สหกิจศึกษา</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('student/Job/lists');?>" target="_top"><i class="icon-list"></i> รายการสมัครที่เปิดรับ</a>
+              <a class="nav-link" href="<?php echo site_url('Student/Job/lists');?>" target="_top"><i class="icon-list"></i> รายการสมัครที่เปิดรับ</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('student/Job/register_status');?>" target="_top"><i class="fa fa-bell-o"></i> ประกาศผลการสมัคร</a>
+              <a class="nav-link" href="<?php echo site_url('Student/Job/register_status');?>" target="_top"><i class="fa fa-bell-o"></i> ประกาศผลการสมัคร</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('student/Skill/');?>" target="_top"><i class="fa fa-check"></i> ทักษะที่ถนัด</a>
+              <a class="nav-link" href="<?php echo site_url('Student/Skill/');?>" target="_top"><i class="fa fa-check"></i> ทักษะที่ถนัด</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('student/upload_document/');?>" target="_top"><i class="fa fa-upload"></i> อัพโหลดเอกสาร</a>
+              <a class="nav-link" href="<?php echo site_url('Student/Upload_document/');?>" target="_top"><i class="fa fa-upload"></i> อัพโหลดเอกสาร</a>
               <!-- <a class="nav-link" href="#" target="_top"><i class="fa fa-upload"></i> อัพโหลดเอกสาร</a> -->
               
               </li>
