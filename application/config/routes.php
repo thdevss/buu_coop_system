@@ -57,6 +57,12 @@ $route['coop_student'] = 'coop_student/main/index';
 $route['officer'] = 'officer/main/index';
 $route['adviser'] = 'adviser/main/index';
 
+$route['Company'] = 'company/main/index';
+$route['Student'] = 'student/main/index';
+$route['Coop_student'] = 'coop_student/main/index';
+$route['Officer'] = 'officer/main/index';
+$route['Adviser'] = 'adviser/main/index';
+
 
 //controller route
 $route['get_student_stat_of_training'] = 'student/training/get_student_stat_of_training';
