@@ -325,7 +325,7 @@ class Company_info extends CI_controller
                 // hide job
                 $this->Job->delete_job($job_id);
                 $this->session->set_flashdata('form-alert', '<div class="alert alert-primary">ลบงานสำเร็จ</div>');
-                redirect('/Officer/Company_info/step3/'.$job[0]['company_id'], 'refresh');                
+                redirect('/Officer/Company_info/step4/'.$job[0]['company_id'], 'refresh');                
             } else {
                 $this->session->set_flashdata('form-alert', '<div class="alert alert-warning">ผิดพลาด</div>');
                 redirect('/Officer/', 'refresh');                
