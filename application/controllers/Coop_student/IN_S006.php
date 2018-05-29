@@ -18,7 +18,7 @@ class IN_S006 extends CI_Controller {
             die();
         }
       
-        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.ucfirst($user->login_type)); //actor
     }
     public function form()
     {

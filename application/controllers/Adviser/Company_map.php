@@ -18,7 +18,7 @@ class Company_map extends CI_controller
         }
 
         
-        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.ucfirst($user->login_type)); //actor
     }
 
     public function index()

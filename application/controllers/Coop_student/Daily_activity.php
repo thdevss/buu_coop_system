@@ -17,7 +17,7 @@ class Daily_activity extends CI_controller
             die();
         }
         //add breadcrumbs
-        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.ucfirst($user->login_type)); //actor
     }
 
     public function lists()

@@ -19,7 +19,7 @@ class Main extends CI_Controller {
             die();
         }
       
-        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.ucfirst($user->login_type)); //actor
         // $this->output->enable_profiler(TRUE);
 
     }

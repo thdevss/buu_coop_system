@@ -17,7 +17,7 @@ class Company_assessment_result extends CI_Controller {
         }
 
         // $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
-        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.ucfirst($user->login_type)); //actor
     }
 
     
