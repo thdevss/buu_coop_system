@@ -58,6 +58,5 @@
           </div>  
         </div>
       </div>
-      <!-- /.conainer-fluid -->
-    </main>
 
+    </main>

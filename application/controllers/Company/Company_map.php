@@ -39,7 +39,7 @@ class Company_map extends CI_controller
 
         $data['map'] = @$this->Address->get_address_by_company($company_id)[0];
         $this->breadcrumbs->push('ปักหมุดแผนที่สถานประกอบการ', '/Company/Company_map');
-        $this->template->view('company/map_view', $data);
+        $this->template->view('Company/Map_view', $data);
     }
 
     public function ajax_post()
