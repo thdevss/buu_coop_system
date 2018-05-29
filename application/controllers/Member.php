@@ -17,7 +17,7 @@ class Member extends CI_Controller {
             redirect($this->Login_session->check_login()->login_type);
             die();
         }
-        
+
         
         $data['status'] = $this->session->flashdata('status');
         $this->load->view('login/login_view.php', $data);
@@ -34,7 +34,7 @@ class Member extends CI_Controller {
             if($member) {
                 $session_ID = $this->Login_session->set($username, 'company', $member['person_fullname']);
                 if($session_ID) {
-                    redirect('company/main/index');                    
+                    redirect('Company/main/index');                    
                 }
             }
         } else {
@@ -44,7 +44,7 @@ class Member extends CI_Controller {
                 $session_ID = $this->Login_session->set($check_ldap['login_value'], $check_ldap['login_type'], $check_ldap['user_fullname']);
                 if($session_ID) {
                     $this->session->set_userdata('session_ID', $session_ID);
-                    redirect(strtolower($check_ldap['login_type']).'/main/index');
+                    redirect(ucfirst($check_ldap['login_type']).'/main/index');
                 }
             }
         }
