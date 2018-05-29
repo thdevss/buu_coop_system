@@ -73,7 +73,7 @@ class Upload_document extends CI_Controller {
         
         
 
-        $this->template->view('Student/upload_document_view', $data);
+        $this->template->view('Student/Upload_document_view', $data);
         
        
     }
