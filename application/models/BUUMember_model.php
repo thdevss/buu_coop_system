@@ -35,7 +35,7 @@ class BUUMember_model extends CI_Model
 
     public function login($username, $password)
     {
-        return $this->xlogin($username, $password);
+        // return $this->xlogin($username, $password);
 
         $this->ldap->connect();
         if($this->ldap->authenticate('' , $username, $password)) {
@@ -75,11 +75,11 @@ class BUUMember_model extends CI_Model
                 }
             } else {
                 //test login, mockup function
-                // return $this->xlogin($username, $password);
+                return $this->xlogin($username, $password);
                 return false;
             }
         } else {
-            // return $this->xlogin($username, $password);
+            return $this->xlogin($username, $password);
             return false;
         }
         return $data;
