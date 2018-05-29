@@ -123,7 +123,7 @@
 
                                     <dl class="row">
                                       <dt class="col-sm-4">จำนวนชั่วโมงอบรม</dt>
-                                      <dd><a href="<?php echo site_url('Company/Job_list_position/training_history_student/'.$student['student_id']);?>">ประวัติการอบรมของนิสิตคนนี้</a></dd>
+                                      <dd><a href="<?php echo site_url('Company/Student/training_history_student/'.$student['student_id']);?>">ประวัติการอบรมของนิสิตคนนี้</a></dd>
                                     </dl>
 
                                     <dl class="row">
@@ -178,7 +178,7 @@
 
                                 <dl class="row">
                                   <dt class="col-sm-4">ผลการประเมิน</dt>
-                                  <dd><a href="<?php echo site_url('Officer/Coop_student_assessment_result/assessment_detail/'.$student['student_id']); ?>">ดูผลการประเมิน</a></dd>
+                                  <dd><a href="<?php echo site_url('Company/Coop_student_assessment/form/'.$student['student_id']); ?>">ดูผลการประเมิน</a></dd>
                                 </dl>
 
                               </div>

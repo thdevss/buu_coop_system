@@ -40,7 +40,7 @@
                         <td class="text-right"><?php echo $row['student_gpax'];?></td>
                         <td><?php echo $row['department_name'];?></td>
                         <td><?php echo $row['job_title']?></td>
-                        <td class="text-center"><?php echo anchor('company/Coop_student_assessment/form/'.$row['student_id'], 'ประเมินผล', 'class="btn btn-primary"');?></td>
+                        <td class="text-center"><?php echo anchor('Company/Coop_student_assessment/form/'.$row['student_id'], 'ประเมินผล', 'class="btn btn-primary"');?></td>
                       </tr>
                     <?php } ?>
                     </tbody>
