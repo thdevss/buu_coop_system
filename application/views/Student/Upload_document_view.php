@@ -11,7 +11,7 @@
         <div class="card">
           <div class="card-header"><i class="fa fa-align-justify"></i>อัพโหลดเอกสารที่เกี่ยวข้อง</div>
                  <div class="card-body text-center  ">
-                 <?php echo form_open_multipart('student/upload_document');?>
+                 <?php echo form_open_multipart('Student/Upload_document');?>
                  
                  <?php if($session_alert) : ?>
                     <div class="col-md-12">

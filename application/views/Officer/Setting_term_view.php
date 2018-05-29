@@ -133,7 +133,7 @@ $("input:checkbox").on('click', function() {
     // alert($box.val())
     if($box.prop("checked")) {
         var datastring = "term_id="+$box.val()
-        jQuery.post(SITE_URL+"/officer/Setting/post_current_term", datastring, function(response) {
+        jQuery.post(SITE_URL+"/Officer/Setting/post_current_term", datastring, function(response) {
             if(response.status) {
                 toastr["success"]("ok ja")
             } else {

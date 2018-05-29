@@ -96,7 +96,7 @@ jQuery(function() {
               </div>
               <div class="modal-body">
             
-              <form action="<?php echo site_url('officer/Test_form/add');?>" method="post">
+              <form action="<?php echo site_url('Officer/Test_form/add');?>" method="post">
               <!--สอบรอบที่-->
               <div class="form-group row">
                       <label class="col-md-3 form-control-label" for="text-input">สอบรอบที่</label>

@@ -11,7 +11,7 @@
         <div class="card">
           <div class="card-header"><i class="fa fa-align-justify"></i>อัพโหลดเอกสาร <?php echo $document['document_code'];?>-<?php echo $document['document_name'];?></div>
                  <div class="card-body text-center  ">
-                 <?php echo form_open_multipart('coop_student/upload_document');?>
+                 <?php echo form_open_multipart('Coop_student/Upload_document');?>
                   <?php 
                   if(@$status == 'success') {
                     echo '<div class="alert alert-success" role="alert"><strong>สำเร็จ!</strong></div>';

@@ -34,7 +34,7 @@
                     <div class="card-header"><i class="fa fa-align-justify"></i> เช็คชื่อเข้าอบรม</div>
                     <div class="card-body">     
                         
-                        <form action="<?php echo site_url('officer/Train_check_student/check');?>" method="post">
+                        <form action="<?php echo site_url('Officer/Train_check_student/check');?>" method="post">
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label for="building">โครงการ</label> <?php echo form_error('train_id'); ?>         

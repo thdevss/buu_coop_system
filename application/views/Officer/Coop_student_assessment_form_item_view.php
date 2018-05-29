@@ -14,7 +14,7 @@
                     <div class="card-header">
                       <i class="fa fa-align-justify"></i> จัดการหัวข้อย่อยแบบประเมินผลการฝึกงานของนิสิตสหกิจ
 
-                      <a href="<?php echo site_url('officer/Coop_student_assessment_form');?>" class="btn btn-warning float-right" >กลับไปยังหัวข้อหลัก</a>
+                      <a href="<?php echo site_url('Officer/Coop_student_assessment_form');?>" class="btn btn-warning float-right" >กลับไปยังหัวข้อหลัก</a>
                         
                     </div>
                       <div class="card-body">
@@ -60,7 +60,7 @@
                                 <td><?php echo $row['coop_student_questionnaire_item_title'];?></td>
                                 <td>
                                   <a href="#" data-itemid="<?php echo $row['coop_student_questionnaire_item_id'];?>" class="btn btn-info editBtn"><i class="icon-pencil"></i> แก้ไข</a>
-                                  <a href="<?php echo site_url('officer/Coop_student_assessment_form/delete_coop_student_questionnaire_item/'.$row['coop_student_questionnaire_item_id']);?>" class="btn btn-danger" onclick="return confirmDelete(this)"><i class="icon-trash"></i> ลบ</a>
+                                  <a href="<?php echo site_url('Officer/Coop_student_assessment_form/delete_coop_student_questionnaire_item/'.$row['coop_student_questionnaire_item_id']);?>" class="btn btn-danger" onclick="return confirmDelete(this)"><i class="icon-trash"></i> ลบ</a>
                                 </td>
                               </tr>
 
@@ -213,12 +213,12 @@ jQuery(".editBtn").click(function(event) {
 })
 
 jQuery("#form_subject").change(function(event) {
-  window.location.assign(SITE_URL+"/officer/Coop_student_assessment_form/get_coop_student_questionnaire_item/"+jQuery(this).val())
+  window.location.assign(SITE_URL+"/Officer/Coop_student_assessment_form/get_coop_student_questionnaire_item/"+jQuery(this).val())
 })
 
 function call_assessment_item(item_id) {
   //ajax get
-  jQuery.get( SITE_URL+"/officer/Coop_student_assessment_form/get_ajax_item/"+item_id, function( result ) {
+  jQuery.get( SITE_URL+"/Officer/Coop_student_assessment_form/get_ajax_item/"+item_id, function( result ) {
     var data = result.data
     jQuery("#item_title").val(data.coop_student_questionnaire_item_title)
     jQuery("#item_number").val(data.coop_student_questionnaire_item_number)

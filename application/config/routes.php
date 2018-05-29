@@ -51,21 +51,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'member/login';
 
-$route['company'] = 'company/main/index';
-$route['student'] = 'student/main/index';
-$route['coop_student'] = 'coop_student/main/index';
-$route['officer'] = 'officer/main/index';
-$route['adviser'] = 'adviser/main/index';
+$route['company'] = 'Company/main/index';
+$route['student'] = 'Student/main/index';
+$route['coop_student'] = 'Coop_student/main/index';
+$route['officer'] = 'Officer/main/index';
+$route['adviser'] = 'Adviser/main/index';
 
-$route['Company'] = 'company/main/index';
-$route['Student'] = 'student/main/index';
-$route['Coop_student'] = 'coop_student/main/index';
-$route['Officer'] = 'officer/main/index';
-$route['Adviser'] = 'adviser/main/index';
+$route['Company'] = 'Company/main/index';
+$route['Student'] = 'Student/main/index';
+$route['Coop_student'] = 'Coop_student/main/index';
+$route['Officer'] = 'Officer/main/index';
+$route['Adviser'] = 'Adviser/main/index';
 
 
 //controller route
-$route['get_student_stat_of_training'] = 'student/training/get_student_stat_of_training';
+$route['get_student_stat_of_training'] = 'Student/Training/get_student_stat_of_training';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
