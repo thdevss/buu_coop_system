@@ -5,7 +5,7 @@ class BUUMember_model extends CI_Model
     {
         $data = array();
         if($username == 'nutthanon9') {
-            $data['fullname'] = 'Nutthanon';
+            $data['user_fullname'] = 'Nutthanon';
             $data['login_type'] = 'adviser';
             $data['login_value'] = 'nutthanon';
 

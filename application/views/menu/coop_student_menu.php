@@ -31,7 +31,7 @@
               <?php echo anchor('Coop_student/Permit_form/', '<i class="fa fa-download"></i> แบบอนุญาตให้นิสิตไปปฏิบัติงานสหกิจศึกษา ', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
-              <?php echo anchor('Coop_student/upload_document/?code=IN-S003', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
+              <?php echo anchor('Coop_student/Upload_document/?code=IN-S003', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
               </li>
             </ul>
           </li>
@@ -43,7 +43,7 @@
           
             </li>
             <li class="nav-item">
-              <?php echo anchor('Coop_student/upload_document/?code=IN-S004', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
+              <?php echo anchor('Coop_student/Upload_document/?code=IN-S004', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
             </li>
             </ul>
           </li>
@@ -55,7 +55,7 @@
               <?php echo anchor('Coop_student/IN_S005/', '<i class="fa fa-file"></i> แบบแจ้งแผนปฏิบัติงานสหกิจศึกษา ', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
-                <?php echo anchor('Coop_student/upload_document/?code=IN-S005', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
+                <?php echo anchor('Coop_student/Upload_document/?code=IN-S005', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
               </li>
             </ul>
           </li>
@@ -66,7 +66,7 @@
                 <?php echo anchor('Coop_student/IN_S006/form', '<i class="fa fa-download"></i> แบบแจ้งโครงร่างรายงานการปฏิบัติงาน', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
-                <?php echo anchor('Coop_student/upload_document/?code=IN-S006', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
+                <?php echo anchor('Coop_student/Upload_document/?code=IN-S006', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
               </li>
               
             </ul>
@@ -78,7 +78,7 @@
                 <?php echo anchor('Coop_student/IN_S007/', '<i class="fa fa-download"></i> แบบคำร้องทั่วไป', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
-                <?php echo anchor('Coop_student/upload_document/?code=IN-S007', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
+                <?php echo anchor('Coop_student/Upload_document/?code=IN-S007', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
               </li>
             </ul>
           </li>
@@ -89,7 +89,7 @@
                <?php echo anchor('Coop_student/Assessment_company/form', '<i class="fa fa-file-o"></i> แบบประเมินสถานประกอบการที่ให้ความอนุเคราะห์รับนักศึกษาฝึกงาน', 'class="nav-link"');?>
               </li>
               <li class="nav-item">
-                <?php echo anchor('Coop_student/upload_document/?code=IN-S008', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
+                <?php echo anchor('Coop_student/Upload_document/?code=IN-S008', '<i class="fa fa-upload"></i> อัพโหลดเอกสาร', 'class="nav-link"');?>
               </li>
             </ul>
           </li>
