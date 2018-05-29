@@ -24,7 +24,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = getenv('WEB_DOMAIN');
-// $config['base_url'] = 'https://happy-mouse-56.localtunnel.me/';
 
 /*
 |--------------------------------------------------------------------------

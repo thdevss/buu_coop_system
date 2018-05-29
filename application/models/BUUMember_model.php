@@ -3,12 +3,12 @@ class BUUMember_model extends CI_Model
 {
     public function xlogin($username, $password)
     {
+
         $data = array();
         if($username == 'nutthanon9') {
             $data['user_fullname'] = 'Nutthanon';
             $data['login_type'] = 'adviser';
             $data['login_value'] = 'nutthanon';
-
         } else if($username == 'pnut') {
             $data['fullname'] = 'Kamonwan';
             $data['login_type'] = 'officer';
@@ -25,13 +25,11 @@ class BUUMember_model extends CI_Model
                 $data['login_type'] = 'student';
                 $this->insert_new_student($data['login_value']);
             }
-            // if(is_numeric($username)) {
-                // for debug
-                
-            // }
-        }  
 
+        }  
         return $data;
+
+        // return false;
     }
 
     public function login($username, $password)
@@ -76,10 +74,12 @@ class BUUMember_model extends CI_Model
                 }
             } else {
                 //test login, mockup function
-                return $this->xlogin($username, $password);
+                // return $this->xlogin($username, $password);
+                return false;
             }
         } else {
-            return $this->xlogin($username, $password);
+            // return $this->xlogin($username, $password);
+            return false;
         }
         return $data;
     }
