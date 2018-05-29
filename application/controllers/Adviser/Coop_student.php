@@ -17,7 +17,7 @@ class Coop_student extends CI_controller
             die();
         }
 
-        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.ucfirst($user->login_type)); //actor
     }
 
     public function index()

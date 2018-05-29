@@ -17,7 +17,7 @@ class Main extends CI_Controller {
             redirect(ucfirst($this->Login_session->check_login()->login_type).'/main/');
             die();
         }
-        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.$user->login_type); //actor
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.ucfirst($user->login_type)); //actor
         
     }
 
