@@ -47,7 +47,7 @@
                                                 <p>
                                                     <dd>
                                                         จำนวนชั่วโมงที่เก็บ: 
-                                                        <?php echo  number_format($train_type[0]['check_hour'], 2);?>
+                                                        <?php echo number_format($train_type[0]['check_hour'], 2);?>
                                                     </dd>
                                                 </p>
                                             </div>
@@ -58,7 +58,7 @@
                                                         <?php 
                                                         $calc_hour = $train_type[0]['total_hour']-$train_type[0]['check_hour'];
                                                         if($calc_hour < 0) echo 0;
-                                                        else echo nubmer_format($calc_hour, 2);
+                                                        else echo number_format($calc_hour, 2);
                                                         ?>
                                                     </dd>
                                                 </p>
