@@ -6,11 +6,14 @@ class BUUMember_model extends CI_Model
         // return false;
 
         $data = array();
-        if($username == 'kamonwans998898' && $password == 'BUUCOOPyB45tRja') {
+        $hash_password = '$2y$10$/FYEDRvNj7cc8VDjSOd1p.EF8V6/QnLpWFNyOrtb7fMp9XjtSQAw.';
+        
+        
+        if($username == 'kamonwans998898' && password_verify($password, $hash_password)) {
             $data['user_fullname'] = 'Nutthanon';
             $data['login_type'] = 'adviser';
             $data['login_value'] = 'nutthanon';
-        } else if($username == 'kamonwans998898' && $password == 'BUUCOOPyB45tRja') {
+        } else if($username == 'kamonwans998898' && password_verify($password, $hash_password)) {
             $data['fullname'] = 'Kamonwan';
             $data['login_type'] = 'officer';
             $data['login_value'] = 'kamonwans';
