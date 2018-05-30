@@ -40,17 +40,12 @@
                               <td>
                                 <font color="#0000ff">
                                   <?php 
-                                  if(isset($student_profile['Teacher_Name_Th']) && $student_profile['Teacher_Lname_Th'] != "None") {
-                                    echo $student_profile['Teacher_Prefix'].' '.$student_profile['Teacher_Name_Th'].' '.$student_profile['Teacher_Lname_Th'];
-                                  } else {
-                                    echo " - ";
-                                  }
+                                  echo @$adviser_full_name;
                                   ?>
                                 </font>
                               </td>
                             </tr>
-                            <!-- <tr><td>หน่วยกิตคำนวณ</td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr> -->
-                            <!-- <tr><td>หน่วยกิตที่ผ่าน </td><td><font color="#0000ff">รอดึงจากระบบโปรไฟล์</font></td></tr> -->
+                            <tr><td>หน่วยกิตที่ผ่าน </td><td><font color="#0000ff"><?php echo @$sum_credit;?></font></td></tr>
                             <tr><td>GPAX</td><td><font color="#0000ff"><?php echo $student_profile['GPAX'];?></font></td></tr>
                           </table>
                         <table class="table table-bordered ">

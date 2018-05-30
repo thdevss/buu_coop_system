@@ -33,11 +33,17 @@ class Upload_document extends CI_Controller {
         
         $student_id = $this->Login_session->check_login()->login_value;
         $data['session_alert'] = '';
+
+        $this->form_validation->set_rules('coop_document_id', 'ประเภทเอกสาร', 'trim|required|is_natural_no_zero');
         
-        if($this->input->post('coop_document_id')) {
+        // input form view
+        if ($this->form_validation->run() != FALSE)
+        {
+        
+        // if($this->input->post('coop_document_id')) {
             $config['upload_path']          = './uploads/';
             $config['allowed_types']        = 'pdf|jpg|jpeg|png';
-            $config['max_size']             = 1024;
+            $config['max_size']             = 2048;
             $config['encrypt_name'] = true;
             $this->load->library('upload', $config);
 

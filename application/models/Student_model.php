@@ -241,4 +241,51 @@ class Student_model extends CI_model {
 
         return $token;
     }
+
+
+    public function get_student_sum_credit($student_id) 
+    {
+        $ch = curl_init();
+        $timeout = 5;
+
+        $token = $this->get_profile_api_token();
+        $authorization = "Authorization: Bearer $token";
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , $authorization ));
+        curl_setopt($ch, CURLOPT_URL, getenv('API_URL').'api/v1/student/'.$student_id.'/credit');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        $api = json_decode($result, true);
+
+
+        if(@$api['status'] == "true") {
+            return $api['result']['sum_credit'];
+        } 
+        
+        return false;
+    }    
+
+    public function get_adviser_name_from_student($student_id) 
+    {
+        $ch = curl_init();
+        $timeout = 5;
+
+        $token = $this->get_profile_api_token();
+        $authorization = "Authorization: Bearer $token";
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , $authorization ));
+        curl_setopt($ch, CURLOPT_URL, getenv('API_URL').'api/v1/adviser/'.$student_id.'/adviser');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        $api = json_decode($result, true);
+
+
+        if(@$api['status'] == "true") {
+            return $api['result']['Full_Name_Teacher'];
+        } 
+        
+        return false;
+    }    
 }
