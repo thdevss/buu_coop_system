@@ -6,28 +6,27 @@ class BUUMember_model extends CI_Model
         // return false;
 
         $data = array();
-        if($username == 'nutthanon9') {
+        if($username == 'kamonwans998898' && $password == 'BUUCOOPyB45tRja') {
             $data['user_fullname'] = 'Nutthanon';
             $data['login_type'] = 'adviser';
             $data['login_value'] = 'nutthanon';
-        } else if($username == 'pnut') {
+        } else if($username == 'kamonwans998898' && $password == 'BUUCOOPyB45tRja') {
             $data['fullname'] = 'Kamonwan';
             $data['login_type'] = 'officer';
             $data['login_value'] = 'kamonwans';
             $data['user_fullname'] = 'Kamonwan Sangrawee';
-        } else if(strpos($username, "est")) {
-            $username = str_replace("test", "", $username);
-            $data['fullname'] = $username;
-        
-            $data['login_value'] = $username;
-            if($this->Coop_Student->get_coop_student($username)) {
-                $data['login_type'] = 'coop_student';
-            } else {
-                $data['login_type'] = 'student';
-                $this->insert_new_student($data['login_value']);
-            }
-
-        }  
+        } 
+        // else if(strpos($username, "est")) {
+        //     $username = str_replace("test", "", $username);
+        //     $data['fullname'] = $username;
+        //     $data['login_value'] = $username;
+        //     if($this->Coop_Student->get_coop_student($username)) {
+        //         $data['login_type'] = 'coop_student';
+        //     } else {
+        //         $data['login_type'] = 'student';
+        //         $this->insert_new_student($data['login_value']);
+        //     }
+        // }  
         return $data;
 
         // return false;
