@@ -260,7 +260,7 @@ class Student_model extends CI_model {
 
 
         if(@$api['status'] == "true") {
-            return $api['result']['sum_credit'];
+            return $api['result'][0]['sum_credit'];
         } 
         
         return false;
@@ -283,7 +283,7 @@ class Student_model extends CI_model {
 
 
         if(@$api['status'] == "true") {
-            return $api['result']['Full_Name_Teacher'];
+            return $api['result'][0]['Full_Name_Teacher'];
         } 
         
         return false;
