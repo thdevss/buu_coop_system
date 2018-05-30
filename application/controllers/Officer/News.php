@@ -20,8 +20,9 @@ class News extends CI_Controller {
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.ucfirst($user->login_type)); //actor
     }
 
-    public function index($status = '')
+    public function index()
     {
+        $status = $this->session->flashdata('status');
         if($status == 'success_add' ){
             $data['status']['color'] = 'success';
             $data['status']['text'] = 'เพิ่มประกาศข่าวสารสำเร็จ';
@@ -54,6 +55,7 @@ class News extends CI_Controller {
 
     public function add($status = '')
     {
+        $status = $this->session->flashdata('status');        
         if($status == 'error_add' ){
             $data['status']['color'] = 'danger';
             $data['status']['text'] = 'ผิดพลาด โบรดตรวจสอบ';
@@ -93,7 +95,7 @@ class News extends CI_Controller {
             if(@$_FILES['news_file']['name'][0]) {
 
                 $config['upload_path']          = './uploads/';
-                $config['allowed_types']        = 'docx|pdf|jpg|jpeg|png';
+                $config['allowed_types']        = 'docx|pdf|jpg|jpeg|png|xlsx';
                 $config['max_size']             = 5128;
                 $config['encrypt_name'] = true;
                 $this->load->library('upload', $config);
@@ -106,23 +108,28 @@ class News extends CI_Controller {
                     $_FILES['userfile']['size']     = @$_FILES['news_file']['size'][$i];
 
                     if ( ! $this->upload->do_upload('userfile') ) {
-                        return $this->edit('error_upload');
+                        $this->session->set_flashdata('status', 'error_upload');
+                        redirect('Officer/News/edit/'.$news_id);
                     } else {
                         //add to newsfile
                         $file = $this->upload->data();
                         $this->News_File->add_file($news_id, $file['file_name']);
                     }
                 }
-            } else {                            
-                return $this->index('success_add');
+            } else {               
+                $this->session->set_flashdata('status', 'success_add');             
+                redirect('Officer/News/');
             }
-            return $this->index('success_add');
+            $this->session->set_flashdata('status', 'success_add');
+            redirect('Officer/News/');
         }
         return $this->add(validation_errors());
     }
 
     public function edit($id, $status = '')
     {
+        $status = $this->session->flashdata('status');
+        
         if($status == 'error_add' ){
             $data['status']['color'] = 'danger';
             $data['status']['text'] = 'ผิดพลาด โปรดตรวจสอบ';
@@ -185,7 +192,8 @@ class News extends CI_Controller {
                     $_FILES['userfile']['size']     = @$_FILES['news_file']['size'][$i];
 
                     if ( ! $this->upload->do_upload('userfile') ) {
-                        return $this->edit('error_upload');
+                        $this->session->set_flashdata('status', 'error_upload');
+                        redirect('Officer/News/edit/'.$news_id);
                     } else {
                         //add to newsfile
                         $file = $this->upload->data();
@@ -193,11 +201,13 @@ class News extends CI_Controller {
                     }
                 }
             } else {                            
-                return $this->index('success_edit');
+                $this->session->set_flashdata('status', 'success_edit');
+                redirect('Officer/News/');
             }
-            return $this->index('success_edit');
+            $this->session->set_flashdata('status', 'success_edit');
+            redirect('Officer/News/');
         }
-        return $this->add(validation_errors());
+        return $this->edit($news_id, validation_errors());
     }    
 
     public function hide_status($news_id)
@@ -209,7 +219,8 @@ class News extends CI_Controller {
                 $insert['news_hide'] = '0';
             }
             $this->News->update_news($news_id, $insert);
-            return $this->index('success_hide_status');
+            $this->session->set_flashdata('status', 'success_hide_status');
+            redirect('Officer/News/');
             die();
         } else {
             return $this->index();
@@ -230,14 +241,17 @@ class News extends CI_Controller {
             if(@$this->News->get_news($news_id)) {
                 //delete
                 $this->News->delete_news($news_id);
-                return $this->index('success_delete');
+                $this->session->set_flashdata('status', 'success_delete');
+                redirect('Officer/News/');
                 die();
             } else {
                 return $this->index();
                 die();
             }
         } else {
-            return $this->index('error_delete');
+            // return $this->index('error_delete');
+            $this->session->set_flashdata('status', 'error_delete');
+            redirect('Officer/News/');
             die();
         }
         
