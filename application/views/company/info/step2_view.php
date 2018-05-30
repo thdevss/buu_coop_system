@@ -22,7 +22,7 @@
 
                         <div class="row" id="headoffice_person_frm">
                             <div class="col-md-12">
-                                <label for="name">หากมหาวิทยาลัย ฯ ประสงค์จะติดต่อประสานงานในรายละเอียดกับสถานประกอบการ / หน่วยงาน ขอให้</label>                            
+                                <label for="name">ข้อมูลผู้จัดการสถานประกอบการ</label>                            
                             </div>
                             <div class="col-md-10">
                                 <select name="headoffice_person_id" class="form-control trainer_lists">
