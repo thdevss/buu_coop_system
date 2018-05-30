@@ -38,7 +38,7 @@
                                     <ul class="list-group">
                                         <?php foreach($files as $file) { ?>
                                         <li class="list-group-item fileList" data-fileid="<?php echo $file['file_id'];?>">
-                                            <?php echo $file['filename'];?>
+                                            <a href="<?php echo base_url('uploads/'.$file['file_name']);?>"><?php echo $file['file_name'];?></a>
                                             <span class="float-right">
                                                 <a class="btn btn-xs btn-danger" onclick="deleteNewsFile('<?php echo $file['file_id'];?>')">x</a>
                                             </span>
