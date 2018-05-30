@@ -62,7 +62,11 @@ class Template {
         } else if($login_data->login_type == 'adviser') {
             $data['user_info']['fullname'] = $data['user_info']['adviser_fullname'];
         } else if($login_data->login_type == 'officer') {
+            // check adviser before
             $data['user_info']['fullname'] = $data['user_info']['officer_fullname'];
+            if(!$data['user_info']['fullname']) {
+                $data['user_info']['fullname'] = $data['user_info']['adviser_fullname'];
+            }
         } else if($login_data->login_type == 'company') {
             $data['user_info']['fullname'] = $data['user_info']['person_fullname'];
         }
