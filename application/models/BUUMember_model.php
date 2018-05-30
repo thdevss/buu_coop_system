@@ -6,7 +6,7 @@ class BUUMember_model extends CI_Model
         // return false;
 
         $data = array();
-        $hash_password = '$2y$10$/FYEDRvNj7cc8VDjSOd1p.EF8V6/QnLpWFNyOrtb7fMp9XjtSQAw.';
+        $hash_password = '$2y$10$d270bHk09dUJe4W4LeAgLe4YJmG0tCQi8sEffsu5hn61GTLcLk5yG';
         
         
         if($username == 'kamonwans998898' && password_verify($password, $hash_password)) {
