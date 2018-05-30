@@ -187,7 +187,7 @@ class Job extends CI_Controller {
                 "Student_ID" => $data['student_profile']['Student_ID'], //รหัสนิสิต
 
             // input form
-                "student_telephone" => $telephone, //โทร
+                "Student_telephone" => $telephone, //โทร
                 "Student_Phone" =>  $data['student_profile']['Student_Phone'], //มือถือ
                 "Student_Email" => $data['student_profile']['Student_Email'], //อีเมล์
 
@@ -207,7 +207,7 @@ class Job extends CI_Controller {
                 "Student_Name_Eng" => $data['student_profile']['Student_Name_Eng'], //ชื่ออังกฤษ
                 "Student_Lname_Eng" => $data['student_profile']['Student_Lname_Eng'], //นามสกุลอังกฤษ
                 "Student_IdNum" => $data['student_profile']['Student_IdNum'], //รหัสบัตรประชาชน
-                "Nationality" => $data['student_profile']['Nationality'],  //สัญชาติ
+                "Nationnality" => $data['student_profile']['Nationality'],  //สัญชาติ
                 "Religion" => $data['student_profile']['Relidion'], //ศาสนา
                 "Province_Birth" => $data['student_profile']['Province_Birth'], //สถานที่เกิด
                 "Birthday" => thaiDate($data['student_profile']['Birthday'], false, false), //วัน เดือน ปี เกิด
@@ -264,7 +264,7 @@ class Job extends CI_Controller {
                 "Father_Status_l" => "\u{2610}\u{0020}",// สถานะบิดา มีชีวิต
                 "Father_Status_d" => "\u{2610}\u{0020}", // สถานะบิดา ถึงแก่กรรม
 
-                // "Father_Age" => "55", กรอกเอง
+                "Father_Age" => "      ",
 
                 "Father_Address_Number" => $data['student_profile']['Father_Address_Number'], //ที่อยู่บิดา เลขที่
                 "Father_Address_Moo" => $data['student_profile']['Father_Address_Moo'], //ที่อยู่บิดา หมู่
@@ -284,7 +284,7 @@ class Job extends CI_Controller {
                 "Mother_Status_l" => "\u{2610}\u{0020}",// สถานะบิดา มีชีวิต
                 "Mother_Status_d" => "\u{2610}\u{0020}", // สถานะบิดา ถึงแก่กรรม
 
-                // "Mother_Age" => "50", กรอกเอง
+                "Mother_Age" => "      ",
 
 
                 "Mother_Address_Number" => $data['student_profile']['Mother_Address_Number'],
@@ -464,9 +464,9 @@ class Job extends CI_Controller {
                 $this->Student->update_student($student_id, array(
                     'coop_status_id' => 2
                 ));
-                $this->session->set_tempdata('session_alert', '<div class="alert alert-success">ทำการสมัครงานสหกิจเรียบร้อย โปรดรอขั้นตอนต่อไป</div>', 300);
+                $this->session->set_flashdata('session_alert', '<div class="alert alert-success">ทำการสมัครงานสหกิจเรียบร้อย โปรดรอขั้นตอนต่อไป</div>');
             } else {
-                $this->session->set_tempdata('session_alert', '<div class="alert alert-warning">มีปัญหาระหว่างทาง โปรดตรวจสอบกับเจ้าหน้าที่</div>', 300);
+                $this->session->set_flashdata('session_alert', '<div class="alert alert-warning">มีปัญหาระหว่างทาง โปรดตรวจสอบกับเจ้าหน้าที่</div>');
             }
 
 
@@ -477,9 +477,9 @@ class Job extends CI_Controller {
                 <img src='".base_url('assets/img/loading.gif')."' />
                 <script>
                     window.location = '".base_url($result['full_url'])."';
-                    // setTimeout(function(){
-                    //     window.location = '".site_url()."';
-                    // }, 1500);
+                    setTimeout(function(){
+                        window.location = '".site_url()."';
+                    }, 1500);
                 </script>
             ";
 

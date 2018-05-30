@@ -70,7 +70,7 @@
       <?php } ?>
     </ul>
 
-    <ul class="nav navbar-nav ml-auto">
+    <ul class="nav navbar-nav ml-auto" style="margin-right: 30px;">
 
       <!-- <li class="nav-item d-md-down-none"> -->
         <!-- <a class="nav-link" href="#"><i class="icon-bell"></i><span class="badge badge-pill badge-danger">5</span></a> -->
@@ -93,9 +93,6 @@
         </div>
       </li>
     </ul>
-    <button class="navbar-toggler aside-menu-toggler" type="button">
-      <!-- <span class="navbar-toggler-icon"></span> -->
-    </button>
 
   </header>
   <div class="app-body">

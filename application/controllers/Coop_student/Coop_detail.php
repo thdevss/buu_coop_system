@@ -56,6 +56,8 @@ class Coop_detail extends CI_Controller {
         $data['student_profile'] = $this->Student->get_student_data_from_profile($student_id);
         $data['has_profile'] = $this->Student->has_student_data_from_profile($student_id);
         // print_r($data);
+        $data['adviser_full_name'] = @$this->Student->get_adviser_name_from_student($student_id);
+        $data['sum_credit'] = @$this->Student->get_student_sum_credit($student_id);
 
         
         $this->breadcrumbs->push('ข้อมูลนิสิต', '/Student/Coop_detail/index');
