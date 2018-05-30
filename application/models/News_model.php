@@ -13,9 +13,9 @@ class News_model extends CI_model
         $query = $this->db->get();
 
         foreach($query->result_array() as $row) {
-            // foreach($this->db->select('file_name')->where('news_id', $row['news_id'])->from('tb_news_file')->get()->result_array() as $rowFile) {
-            //     $row['file'][] = $rowFile['file_name'];
-            // }
+            foreach($this->db->select('file_name')->where('news_id', $row['news_id'])->from('tb_news_file')->get()->result_array() as $rowFile) {
+                $row['file'][] = $rowFile['file_name'];
+            }
             array_push($arr, $row);
         }
         return $arr;
