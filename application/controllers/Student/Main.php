@@ -36,7 +36,7 @@ class Main extends CI_Controller {
 
         //check ins001 register
         $coop_document_id = @$this->Form->get_form_by_name('IN-S001', $term_id)[0]['document_id'];        
-        $data['ins001'] = $this->Coop_Submitted_Form_Search->search_form_by_student_and_codes($student_id, [$coop_document_id]);
+        $data['ins001'] = $this->Coop_Submitted_Form_Search->search_uploaded_form_by_student_and_codes($student_id, [$coop_document_id]);
 
         $status = $this->session->flashdata('status');
 
