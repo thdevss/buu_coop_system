@@ -107,7 +107,7 @@ $(document).ready(function() {
             "targets": [1, 9]
           },
           {
-            "targets": [ 12 ],
+            "targets": [ 11 ],
             "visible": false,
             "searchable": true,
           }
@@ -123,7 +123,7 @@ $(document).ready(function() {
         "columns": [
             { "data": "student.student_id" },
             { "data": "student.student_id" },            
-            { "data": "student.student_id" },            
+            { "data": "action_box" },            
             { "data": "student.student_fullname" },
             { "data": "student.student_gpax" },
             { "data": "department.department_name" }, //5
@@ -138,7 +138,7 @@ $(document).ready(function() {
 
             { "data": "coop_student_type.select_box" },
             { "data": "student.company_status" },
-            { "data": "action_box" },
+            // { "data": "action_box" },
             { "data": "coop_student_type.status_name" },
             
         ],
