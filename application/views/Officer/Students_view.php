@@ -64,16 +64,16 @@
 
                         <div style="height:40px;"></div>
                     <!---->
-                        <div class="container-fluid row alert alert-info">
+                        <div class="container-fluid row">
                           <div class="col-sm-12">
-                            <label>** หมายเลขสถานะจากสถานประกอบการ</label>
-                          </div>
-                          <div class="col-sm-12">
+                            <div class="alert alert-info">
+                              <label>** หมายเลขสถานะจากสถานประกอบการ</label>
                               <ol>  
                                 <?php foreach($company_status_type as $company_status) { ?>
                                 <li><?php echo $company_status['company_status_name'];?></li>
                                 <?php } ?>
                               </ol>
+                            </div>
                           </div>
                         </div> 
 
