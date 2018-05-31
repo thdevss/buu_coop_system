@@ -3,7 +3,8 @@ class BUUMember_model extends CI_Model
 {
     public function xlogin($username, $password)
     {
-        // return false;
+        return false; // กรณีต้องการทดสอบ actor อาจารย์, เจ้าหน้าที่ ให้เอา return false ออก แล้วใส่รหัสตามคู่มือดู
+        // โชคดีนะจ๊ะ อุอุอิอิ
 
         $data = array();
         $hash_password = '$2y$10$d270bHk09dUJe4W4LeAgLe4YJmG0tCQi8sEffsu5hn61GTLcLk5yG';
