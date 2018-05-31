@@ -105,8 +105,13 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <p>รายนามผู้พัฒนารุ่นแรก</p>
-        <p>อาจารย์ที่ปรึกษา: ผศ.ดร ณัฐนนท์ ลีลาตระกูล ( nutthanon@buu.ac.th )</p>
+        <p>
+          รายนามผู้พัฒนารุ่นแรก
+          <br>
+          อาจารย์ที่ปรึกษา: ผศ.ดร ณัฐนนท์ ลีลาตระกูล ( nutthanon@buu.ac.th )
+          <br>
+          ลิ้งค์เอกสาร: <a href="https://drive.google.com/drive/folders/136IIt3j67rEtOI67YQj7xfWCaeCrDL5s?usp=sharing">Click</a>
+        </p>
         <ol>
           <li>57160419 ปิยวัฒน์ น้อยภู่ ( 57160419@go.buu.ac.th )</li>
           <li>57660074 โกเมนทร์ เวียงคำ ( 57660074@go.buu.ac.th )</li>
@@ -114,7 +119,7 @@
           <li>57660135 ศานติกร อภัย ( 57660135@go.buu.ac.th )</li>
         </ol>
         <p class="text-center">
-          <h1>Good luck, have fun lol ~</h1>
+          <h1><a href="https://www.youtube.com/watch?v=X2WH8mHJnhM" target="_blank">Good luck, have fun lol ~</a></h1>
         </p>
       </div>
 
