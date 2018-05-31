@@ -43,7 +43,7 @@ class Coop_Submitted_Form_Search extends CI_Controller {
                 //check document in document active
                 $row['complete_form'] = false;
                 
-                $doc_count = $this->Coop_Submitted_Form_Search->search_form_by_student_and_codes($r['student_id'], $document_active_arr); //รอการเช็คสถานะ
+                $doc_count = $this->Coop_Submitted_Form_Search->search_uploaded_form_by_student_and_codes($r['student_id'], $document_active_arr); //รอการเช็คสถานะ
 
                 if(count($doc_count) >= count($document_active_arr)) {
                     $row['complete_form'] = true;
