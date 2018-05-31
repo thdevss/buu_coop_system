@@ -52,7 +52,9 @@ class Students extends CI_Controller {
         foreach($this->Student->gets_student() as $row)
         {
             $tmp_array = array();
-            $tmp_array['action_box'] = '<a href="'.site_url('Officer/Students/student_detail/'.$row['student_id']).'" class="btn btn-info"><i class="fa fa-list-alt"></i></a>';
+            // $tmp_array['action_box'] = '<a href="'.site_url('Officer/Students/student_detail/'.$row['student_id']).'" class="btn btn-info"><i class="fa fa-list-alt"></i></a>';
+            $tmp_array['action_box'] = '<a href="'.site_url('Officer/Students/student_detail/'.$row['student_id']).'">'.$row['student_id'].'</a>';
+            
             $tmp_array['checkbox'] = '';
             
             $tmp_array['student'] = $row;
