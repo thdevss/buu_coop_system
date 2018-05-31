@@ -342,7 +342,8 @@ class Training extends CI_Controller {
                         $count['error']++;
                         continue;
                     } else {
-                        $student_id = trim($row[0]);
+                        // $student_id = trim($row[0]);
+                        $student_id = trim($row[1]);
                         if(is_numeric($student_id)) {
                             if($this->Training->add_student_to_training($training_id, $student_id)) {
                                 $count['success']++;
