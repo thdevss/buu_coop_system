@@ -40,6 +40,11 @@ class Assessment_company extends CI_Controller {
                 'text' => 'ผิดพลาด',
                 'color' => 'warning'
             ];
+        } else if($status == 'error_trainer_id') {
+            $data['status'] = [
+                'text' => 'ผิดพลาด: โปรดเลือกผู้นิเทศงานก่อนทำการประเมิน (<a href="'.site_url('Coop_student/IN_S004/').'">เลือกผู้นิเทศงาน</a>)',
+                'color' => 'warning'
+            ];
         }
 
         $student_id = $this->Login_session->check_login()->login_value;            
@@ -77,7 +82,7 @@ class Assessment_company extends CI_Controller {
 
 		// check trainer id
 		if($coop_student['trainer_id'] < 1) {
-			$this->session->set_flashdata('status', 'error');
+			$this->session->set_flashdata('status', 'error_trainer_id');
 			redirect('/Coop_student/Assessment_company/form', 'refresh');;
 			die();			
 		}
