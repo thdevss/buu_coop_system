@@ -64,7 +64,7 @@
 
                         <div style="height:40px;"></div>
                     <!---->
-                        <div class="container-fluid row">
+                        <div class="container-fluid row alert alert-info">
                           <div class="col-sm-12">
                             <label>** หมายเลขสถานะจากสถานประกอบการ</label>
                           </div>
