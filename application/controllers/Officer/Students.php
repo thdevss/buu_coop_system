@@ -26,6 +26,7 @@ class Students extends CI_Controller {
         $data['data'] = array();
         
         $data['coop_status_type'] = $this->Student->gets_coop_status_type();
+        $data['company_status_type'] = $this->Company->gets_company_status_type();
 
         // add breadcrumbs
         $this->breadcrumbs->push('รายชื่อนิสิต', '/Officer/Students/index');
@@ -51,12 +52,13 @@ class Students extends CI_Controller {
         foreach($this->Student->gets_student() as $row)
         {
             $tmp_array = array();
-            $tmp_array['action_box'] = '<a href="'.site_url('Officer/Students/student_detail/'.$row['student_id']).'" class="btn btn-info"><i class="fa fa-list-alt"></i> รายละเอียด</a>';
+            $tmp_array['action_box'] = '<a href="'.site_url('Officer/Students/student_detail/'.$row['student_id']).'" class="btn btn-info"><i class="fa fa-list-alt"></i></a>';
             $tmp_array['checkbox'] = '';
             
             $tmp_array['student'] = $row;
             // $tmp_array['student']['company_status'] = @$cache['company_status_type'][$row['company_status_id']]['company_status_name'];
-            $tmp_array['student']['company_status'] = $row['company_status_name'];
+            $tmp_array['student']['company_status'] = '<p class="text-right"><a title="'.$row['company_status_name'].'">'.$row['company_status_id'].' **</a></p>';
+            $tmp_array['student']['student_gpax'] = '<p class="text-right">'.$tmp_array['student']['student_gpax'].'</p>';
             
             
             if(!$row['coop_status_id']) {
@@ -76,6 +78,36 @@ class Students extends CI_Controller {
             $tmp_array['coop_student_type']['select_box'] = $coop_type_Render;
             
             $tmp_array['department']['department_name'] = $row['department_name'];
+
+            
+            $tmp_array['training_hour'] = array();
+            $train_type = $this->Training->get_student_stat_of_training($row['student_id']);
+            $training_status = false;
+    
+            foreach($train_type['train_type'] as $type) {
+                $tmp['name'] = $type['train_type_name'];
+                $tmp['total_hour'] = $type['train_type_total_hour'];
+                $tmp['check_hour'] = 0;
+                //calc total hour
+                foreach($type['history'] as $history) {
+                    $tmp['check_hour'] += $history['check_hour'];
+                }
+
+
+                if($tmp['check_hour'] >= $tmp['total_hour']) {
+                    $training_status = true;
+                }
+
+                $tmp['check_hour'] = '<p class="text-right">'.$tmp['check_hour'].'</p>';
+                
+    
+                array_push($tmp_array['training_hour'], $tmp);
+            }
+            
+            $tmp_array['student']['student_training_hour'] = '<span style="color: red">ไม่ผ่าน</span>';
+            if($training_status) {
+                $tmp_array['student']['student_training_hour'] = '<span style="color: green">ผ่าน</span>';                
+            }
             // $tmp_array['coop_student_type'] = $this->Student->get_by_coop_status_type($row['coop_status'])[0];
             // $tmp_array['department'] = $this->Student->get_department($row['department_id'])[0];
             array_push($return['data'], $tmp_array);
@@ -117,7 +149,7 @@ class Students extends CI_Controller {
                         if(count($job) < 1) {
                             continue;
                         }
-                        
+
 
                         //update job register
                         $this->Job->update_student($student_id, array( 'company_status_id' => 5 ));

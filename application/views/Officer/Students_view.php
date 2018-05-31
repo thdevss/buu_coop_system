@@ -17,7 +17,7 @@
               
               <!---->
 
-              <table class="table table-bordered" id="student_table">
+              <table class="table table-bordered" id="student_table" style="width:100% !important;">
                     <thead>
                       <tr>
                         <th></th>
@@ -26,8 +26,11 @@
                         <th class="text-center">ชื่อ-สกุล</th>
                         <th class="text-center">GPAX</th>
                         <th class="text-center">สาขาวิชา</th>
+                        <th class="text-center">ชม.วิชาการ</th>
+                        <th class="text-center">ชม.เตรียมความพร้อม</th>
+                        <th class="text-center">เก็บชั่วโมง</th> <!-- ครบ/ไม่ครบ -->
                         <th class="text-center">สถานะ</th>
-                        <th class="text-center">สถานะจากสถานประกอบการ</th>
+                        <th class="text-center">สถานะสถานประกอบการ</th>
                         <th class="text-center"></th>
                       </tr>
                     </thead>
@@ -54,6 +57,23 @@
                           <div class="col-sm-4">
                             <label></label>
                             <button type="button" class="btn btn-success" id="change_student_status">Success</button>                             
+                          </div>
+                        </div> 
+
+
+
+                        <div style="height:40px;"></div>
+                    <!---->
+                        <div class="container-fluid row">
+                          <div class="col-sm-12">
+                            <label>** หมายเลขสถานะจากสถานประกอบการ</label>
+                          </div>
+                          <div class="col-sm-12">
+                              <ol>  
+                                <?php foreach($company_status_type as $company_status) { ?>
+                                <li><?php echo $company_status['company_status_name'];?></li>
+                                <?php } ?>
+                              </ol>
                           </div>
                         </div> 
 
@@ -84,10 +104,10 @@ $(document).ready(function() {
           {
             "searchable": false,
             "orderable": false,
-            "targets": [1, 6]
+            "targets": [1, 9]
           },
           {
-            "targets": [ 9 ],
+            "targets": [ 12 ],
             "visible": false,
             "searchable": true,
           }
@@ -106,7 +126,16 @@ $(document).ready(function() {
             { "data": "student.student_id" },            
             { "data": "student.student_fullname" },
             { "data": "student.student_gpax" },
-            { "data": "department.department_name" },
+            { "data": "department.department_name" }, //5
+
+            { "data": "training_hour.0.check_hour" },            
+            { "data": "training_hour.1.check_hour" },            
+            { "data": "student.student_training_hour" },
+
+            
+
+
+
             { "data": "coop_student_type.select_box" },
             { "data": "student.company_status" },
             { "data": "action_box" },

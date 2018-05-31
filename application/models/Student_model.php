@@ -45,7 +45,7 @@ class Student_model extends CI_model {
         // $this->db->where('term_id', $term_id);
         // $this->db->from('tb_student');
         // $query = $this->db->get();
-        $sql = "SELECT `tb_student`.`student_gpax`, `tb_student`.`student_fullname`, `tb_student`.`student_id`, `tb_department`.`department_name`, `tb_company_status`.`company_status_name`, `tb_coop_status`.`coop_status_id`, `tb_coop_status`.`coop_status_name`
+        $sql = "SELECT `tb_student`.`company_status_id`, `tb_student`.`student_gpax`, `tb_student`.`student_fullname`, `tb_student`.`student_id`, `tb_department`.`department_name`, `tb_company_status`.`company_status_name`, `tb_coop_status`.`coop_status_id`, `tb_coop_status`.`coop_status_name`
         FROM `tb_student` 
         INNER JOIN `tb_department` ON `tb_department`.`department_id` = `tb_student`.`department_id`
         INNER JOIN `tb_company_status` ON `tb_company_status`.`company_status_id` = `tb_student`.`company_status_id`
