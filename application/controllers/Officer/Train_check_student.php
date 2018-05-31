@@ -220,8 +220,9 @@ class Train_check_student extends CI_Controller {
             $data['students'][] = array(
                 'student_id' => $student['student_id'],
                 'student_fullname' => $student_info['student_fullname'],
+                'student_barcode' => 'http://project.devss.pw/barcode.php?student_id='.$student['student_id'].'',
                 // 'student_barcode' => 'https://barcode.tec-it.com/barcode.ashx?data='.$student['student_id'].'&code=Code128&dpi=96&dataseparator=',
-                'student_barcode' => 'https://www.barcodesinc.com/generator/image.php?code='.$student['student_id'].'&style=196&type=C128B&width=158&height=100&xres=1&font=3',
+                // 'student_barcode' => 'https://www.barcodesinc.com/generator/image.php?code='.$student['student_id'].'&style=196&type=C128B&width=158&height=100&xres=1&font=3',
             );
         }
 
