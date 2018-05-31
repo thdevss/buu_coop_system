@@ -46,6 +46,9 @@ class News_model extends CI_model
     public function delete_news($news_id)
     {
         $this->db->where('news_id',$news_id);
+        $this->db->delete('tb_news_file');
+        
+        $this->db->where('news_id',$news_id);
         return $this->db->delete('tb_news');
 
     }
