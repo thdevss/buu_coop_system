@@ -117,6 +117,7 @@ class Students extends CI_Controller {
                         if(count($job) < 1) {
                             continue;
                         }
+                        
 
                         //update job register
                         $this->Job->update_student($student_id, array( 'company_status_id' => 5 ));
