@@ -66,7 +66,7 @@
             <div class="card-body text-center">
               <div>
                 <!-- <h2>ระบบสหกิจ</h2> -->
-                <img src="<?php echo base_url('assets/img/footer-logo.png');?>" style="margin-top:50px;">
+                <img src="<?php echo base_url('assets/img/new_logo_227.png');?>" style="margin-top:10px;">
                 <!-- <img src="<?php echo base_url('assets/img/it-logo.png');?>" style="width:50%;"> -->
               </div>
             </div>

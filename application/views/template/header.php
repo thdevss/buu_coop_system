@@ -36,6 +36,9 @@
   .card-body img {
     width:100% !important;
   }
+  .app-header.navbar .navbar-brand {
+    background-image: url(<?php echo base_url('assets/img/new_logo_227.png');?>) !important;
+  }
   </style>
 </head>
 
