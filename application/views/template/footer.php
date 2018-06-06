@@ -2,7 +2,7 @@
 
   <footer class="app-footer">
     <span><a href="#" data-toggle="modal" data-target="#credit_modal">ระบบสหกิจ</a> © 2017 uLab</span>
-    <span class="ml-auto"><img src="<?php echo base_url('assets/img/new_logo_227.png');?>" style="height: 40px;"></span>
+    <span class="ml-auto"><img src="<?php echo base_url('assets/img/new_logo_228.png');?>" style="height: 40px;"></span>
   </footer>
 
 
