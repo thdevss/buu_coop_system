@@ -44,6 +44,7 @@ class Trainer_model extends CI_model {
         } else {
             $this->db->or_where('person_username', $trainer_id);            
         }   
+        $this->db->where('person_active', 1);
              
         $this->db->from('tb_company_person');
         $query = $this->db->get();
@@ -64,6 +65,7 @@ class Trainer_model extends CI_model {
     {
         $this->db->select('person_password, person_fullname');
         $this->db->where('person_username', $username);
+        $this->db->where('person_active', 1);
         $this->db->from('tb_company_person');
         $query = $this->db->get();
         $row = $query->result_array()[0];
