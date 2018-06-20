@@ -42,7 +42,7 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-graduation"></i> สหกิจศึกษา</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('Student/Job/lists');?>" target="_top"><i class="icon-list"></i> รายการสมัครที่เปิดรับ</a>
+              <a class="nav-link" href="<?php echo site_url('Student/Job/lists');?>" target="_top"><i class="icon-list"></i> ตำแหน่งงานที่เปิดรับ</a>
               </li>
               <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url('Student/Job/register_status');?>" target="_top"><i class="fa fa-bell-o"></i> ประกาศผลการสมัคร</a>

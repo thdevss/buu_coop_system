@@ -242,12 +242,14 @@ class Trainer extends CI_Controller {
         $this->form_validation->set_rules('person_telephone','เบอร์โทร','required|numeric');
         $this->form_validation->set_rules('company_id','IDสถานประกอบการ','required|numeric');
         $this->form_validation->set_rules('person_fax_number','FAX');
-        $this->form_validation->set_rules('person_email','E-mail','required|valid_email|is_unique[tb_company_person.person_email]');
+        // $this->form_validation->set_rules('person_email','E-mail','required|valid_email|is_unique[tb_company_person.person_email]');
+        $this->form_validation->set_rules('person_email','E-mail','required|valid_email');
+
 
         if($this->form_validation->run() != false){
 
             $company_person = @$this->Trainer->get_trainer_by_email($this->input->post('person_email'))[0];
-            if($company_person) {
+            if($company_person[0]['person_active'] != 0) {
                 $data['text'] = 'มีพนักงานนิเทศงานอยู่แล้ว โปรดเลือกจากรายชื่อ';
             } else {
 
@@ -276,7 +278,7 @@ class Trainer extends CI_Controller {
                 $msg = 'Username: '.$array['person_username'].' | Password: '.$password_gen.' | '.site_url();
                 //sentmail here
                 $this->load->library('email');
-                $this->email->from('buu.coopsystem@gmail.com', 'Cooperative Student');
+                $this->email->from('buu.coopsystem@gmail.com', 'Informatics CoOp');
                 $this->email->to($array['person_email']);
                 $this->email->subject('แจ้งรายละเอียดข้อมูลเข้าระบบสหกิจ');
                 $this->email->message($msg);
@@ -287,11 +289,12 @@ class Trainer extends CI_Controller {
                 // $this->cache->file->save('userpass_'.$data['last_id'], $msg, 86400*365);
 
                 $data['status'] = true;
-                $data['text'] = 'เปลี่ยนสถานะสำเร็จ';
+                $data['text'] = 'ระบบได้ส่ง username / password ไปที่ email ที่กรอกมาเรียบร้อยค่ะ';
                 $data['color'] = 'success';
             }
             
         } else {
+
             $data['text'] = strip_tags(validation_errors());
             
         }

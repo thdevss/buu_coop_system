@@ -11,7 +11,8 @@
       <div class="col-lg-12">
         <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i>รายชื่อนิสิต</div>
-          <div class="card-body">
+            <div class="card-body">
+              <div class="alert alert-info"><b>โปรดทราบ</b> หน้านี้จะแสดงรายชื่อนิสิตที่สมัครสหกิจแล้วเท่านั้น</div>
 
               <!---->
               

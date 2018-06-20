@@ -430,14 +430,18 @@ class Company_info extends CI_controller
                 $msg = 'Username: '.$array['person_username'].' | Password: '.$password_gen.' | '.site_url();
                 //sentmail here
                 $this->load->library('email');
-                $this->email->from('buu.coopsystem@gmail.com', 'Cooperative Student');
+                $this->email->from('buu.coopsystem@gmail.com', 'Informatics CoOp');
                 $this->email->to($array['person_email']);
                 $this->email->subject('แจ้งรายละเอียดข้อมูลเข้าระบบสหกิจ');
                 $this->email->message($msg);
                 $this->email->send();
+                // echo $this->email->print_debugger();
+
+
+                // $this->cache->file->save('userpass_'.$data['last_id'], $msg, 86400*365);
 
                 $data['status'] = true;
-                $data['text'] = 'เปลี่ยนสถานะสำเร็จ';
+                $data['text'] = 'ระบบได้ส่ง username / password ไปที่ email ที่กรอกมาเรียบร้อยค่ะ';
                 $data['color'] = 'success';
             }
             
