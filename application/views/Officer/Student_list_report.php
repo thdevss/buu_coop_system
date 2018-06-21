@@ -170,6 +170,21 @@ $(document).ready(function() {
                 <button type="button" class="close" data-dismiss="modal">&times;</button>                
             </div>
             <div class="modal-body">
+                <div class="alert alert-warning">
+                การเตรียมไฟล์สำหรับอัพโหลด
+                <ol>
+                <li>ดาวน์โหลดไฟล์จาก Google Sheet มาเปิดบน Microsoft Excel</li>
+                <li>ทำการลบหัวตารางออก (แถวแรก)</li>
+                <li>เซฟ แล้วนำมาอัพโหลด</li>
+                </ol>
+
+                <p>
+                    ลำดับคอลั่ม<br>
+                    คอลั่มที่ 1: วันที่ (timestamp)<br>
+                    คอลั่มที่ 2: รหัสนิสิต<br>
+                    คอลั่มที่ 3 - สิ้นสุด: อะไรก็ได้<br>
+                </p>
+                </div>
                 <div class="form-group">
                     <label for="userfile">ไฟล์ Excel</label>
                     <input type="file" id="userfile" name="userfile" class="form-control">

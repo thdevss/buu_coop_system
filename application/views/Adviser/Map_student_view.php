@@ -30,10 +30,16 @@
 
                 <div class="col-lg-8">
                 <div class="card">
-                  <div class="card-header"><i class="fa fa-align-justify"></i> พิกัดงาน</div>
+                  <div class="card-header"><i class="fa fa-align-justify"></i> พิกัดของบริษัท</div>
                     <div class="card-body">
                         <div class="row">
-                           
+                                <?php if($map['coop_student_latitude'] != '' && $map['coop_student_longitude'] != '') { ?>
+                                <div class="col-sm-12" style="margin-bottom:20px;">
+                                    <a target="_blank" href="https://www.google.com/maps/?q=<?php echo $map['coop_student_latitude'].",".$map['coop_student_longitude'];?>" class="btn btn-info btn-block">ไปยัง Google Map</a>
+                                </div>
+                                <?php } ?>
+
+
                                 <div id="map" style="height:450px;width:100%;">
                                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                         <strong>ไม่พบข้อมูล!</strong> แจ้งนิสิตตามรายละเอียดนิสิตด้านซ้ายมือ
