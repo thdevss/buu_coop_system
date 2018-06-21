@@ -171,11 +171,13 @@ class Job_model extends CI_model {
     }
     public function gets_job_register_by_student($student)
     {
-        $this->db->select('*');
-        $this->db->where('student_id',$student);
+        $this->db->select('tb_company_status.*, tb_student_register_company_job_position.*, tb_company_job_position.*, tb_company.*, tb_coop_status.*');
+        $this->db->where('tb_student_register_company_job_position.student_id',$student);
         $this->db->from('tb_student_register_company_job_position');
         $this->db->join('tb_company_job_position', 'tb_student_register_company_job_position.job_id = tb_company_job_position.job_id');
         $this->db->join('tb_company', 'tb_student_register_company_job_position.company_id = tb_company.company_id');
+        $this->db->join('tb_student', 'tb_student_register_company_job_position.student_id = tb_student.student_id');
+        $this->db->join('tb_coop_status', 'tb_student.coop_status_id = tb_coop_status.coop_status_id');
         $this->db->join('tb_company_status', 'tb_student_register_company_job_position.company_status_id = tb_company_status.company_status_id');
         $query = $this->db->get();
         return $query->result_array();

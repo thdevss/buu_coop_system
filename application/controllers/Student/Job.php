@@ -123,7 +123,6 @@ class Job extends CI_Controller {
         $student_id = $this->Login_session->check_login()->login_value;
 
         $data['company_job_position_has_student'] = $this->Job->gets_job_register_by_student($student_id);
-        // print_r($data);
         $this->breadcrumbs->push('ประกาศผลการสมัครงาน', '/Student/Job/register_status');
         $this->template->view('Student/Register_result_view', $data);
     }
