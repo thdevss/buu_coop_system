@@ -94,7 +94,7 @@ class IN_S004 extends CI_Controller {
             //coop student dorm
             $this->form_validation->set_rules('dorm_name', 'ชื่อหอพัก/อพาร์ทเมนท์', 'trim|required');
             $this->form_validation->set_rules('dorm_room', 'ห้อง', 'trim|required');
-            $this->form_validation->set_rules('dorm_number', 'เลขที่', 'trim|required|numeric');
+            $this->form_validation->set_rules('dorm_number', 'เลขที่', 'trim|required');
             $this->form_validation->set_rules('dorm_alley', 'ซอย', 'trim');
             $this->form_validation->set_rules('dorm_road', 'ถนน', 'trim');
             $this->form_validation->set_rules('dorm_district', 'แขวง/ตำบล', 'trim|required');

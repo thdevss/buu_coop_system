@@ -147,8 +147,13 @@ class Adviser extends CI_controller{
             $tmp['pin_color'] = 'FE7569';   
             $check_student = $this->Coop_Student->gets_coop_student_no_adviser_by_company($company['company_id']);
             if(count($check_student) < 1) {
+                // get count all student
+                $count = count($this->Coop_Student->gets_coop_student_by_company($company['company_id']));
+
                 $tmp['pin_color'] = '1aff1a';   
-                $tmp['message'] = 'นิสิตสหกิจมีอาจารย์ที่ปรึกษาครบทุกคน';
+                // $tmp['message'] = 'นิสิตสหกิจมีอาจารย์ที่ปรึกษาครบทุกคน';
+                $tmp['message'] = 'นิสิตสหกิจจำนวน '.$count.' คน มีอาจารย์ที่ปรึกษาครบทุกคน';
+
             } else {
                 $tmp['message'] = 'มีนิสิตจำนวน '.count($check_student).' คน ไม่มีอาจารย์ที่ปรึกษา<br><br><a href=\''.site_url('Officer/Adviser/?company_id='.$company['company_id']).'\' target=\'_blank\'>จัดอาจารย์ที่ปรึกษาให้นิสิต</a>';
             }
