@@ -32,7 +32,15 @@
                       <td class="text-center"><?php echo ++$i; ?></td>
                       <td><?php echo $row['job_title']; ?></td>
                       <td><?php echo $row['company_name_th'] . " (" . $row['company_name_en'] . ")"; ?></td>
-                      <td><?php echo $row['company_status_name']; ?></td>
+                      <td>
+                        <?php 
+                        if($row['company_status_id'] == 5) {
+                          echo $row['coop_status_name'];
+                        } else {
+                          echo $row['company_status_name']; 
+                        }
+                        ?>
+                      </td>
                     </tr>
                   <?php }?>
                 </tbody>
