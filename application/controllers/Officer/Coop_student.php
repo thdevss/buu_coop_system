@@ -26,6 +26,7 @@ class Coop_student extends CI_Controller {
             $data = array();
 
             // add breadcrumbs
+            $this->breadcrumbs->push('รายงาน', '#');
             $this->breadcrumbs->push('รายชื่อนิสิตสหกิจ', '/Officer/Coop_student/index');
 
             $this->template->view('Officer/List_coop_student_view', $data);
@@ -65,6 +66,7 @@ class Coop_student extends CI_Controller {
             $data = array();
 
             // add breadcrumbs
+            $this->breadcrumbs->push('รายงาน', '#');
             $this->breadcrumbs->push('รายชื่อนิสิตสหกิจ', '/Officer/Coop_student/index');
             $data['students'] = $this->Coop_Student->gets_coop_student();
 

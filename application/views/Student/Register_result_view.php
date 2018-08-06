@@ -37,7 +37,11 @@
                         if($row['company_status_id'] == 5) {
                           echo $row['coop_status_name'];
                         } else {
-                          echo $row['company_status_name']; 
+                          if($row['company_status_id'] == 1) {
+                            echo 'ไม่ผ่านการสัมภาษณ์';
+                          } else {
+                            echo $row['company_status_name']; 
+                          }
                         }
                         ?>
                       </td>

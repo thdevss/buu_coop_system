@@ -17,6 +17,8 @@ class Training extends CI_Controller {
         }
 
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.ucfirst($user->login_type)); //actor           
+        $this->breadcrumbs->push('จัดการการอบรม', '#'); //actor
+
     }
 
     public function index($status = '')
@@ -288,7 +290,8 @@ class Training extends CI_Controller {
         
         // add breadcrumbs
         $this->breadcrumbs->push('จัดการข้อมูลการอบรม', '/Officer/Training/index');
-        $this->breadcrumbs->push('รายชื่อนิสิตเข้าร่วมอบรม', '/Officer/training/Students/'.$training_id);
+        $this->breadcrumbs->push('ข้อมูลโครงการอบรม', '/Officer/Training/edit/'.$training_id);
+        $this->breadcrumbs->push('รายชื่อนิสิตเข้าร่วมอบรม', '/Officer/Training/Students/'.$training_id);
 
         $data['is_uploadform'] = true;
 

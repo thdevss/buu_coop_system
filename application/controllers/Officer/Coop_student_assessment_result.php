@@ -18,6 +18,7 @@ class Coop_student_assessment_result extends CI_Controller {
 
         // $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.ucfirst($user->login_type)); //actor
+        $this->breadcrumbs->push('รายงาน', '#');
     }
 
     
@@ -26,7 +27,7 @@ class Coop_student_assessment_result extends CI_Controller {
             $data = array();
 
             // add breadcrumbs
-            $this->breadcrumbs->push('รายชื่อนิสิตสหกิจ', '/Officer/Coop_student_assessment_result/index');
+            $this->breadcrumbs->push('ผลประเมินนิสิต', '/Officer/Coop_student_assessment_result/index');
 
             $this->template->view('Officer/Coop_student_assessment_result_list_view', $data);
         }
@@ -107,8 +108,8 @@ class Coop_student_assessment_result extends CI_Controller {
             
                 
             // add breadcrumbs
-            $this->breadcrumbs->push('รายชื่อนิสิตสหกิจ', '/Officer/Coop_student_assessment_result/index');
-            $this->breadcrumbs->push('ผลประเมินนิสิต', '/Officer/Coop_student_assessment_result/assessment_detail');
+            $this->breadcrumbs->push('ผลประเมินนิสิต', '/Officer/Coop_student_assessment_result/index');
+            $this->breadcrumbs->push('ผลประเมินรายบุคคล', '/Officer/Coop_student_assessment_result/assessment_detail');
 
             $this->template->view('Officer/Coop_student_assessment_result_score_view', $data);
         } 

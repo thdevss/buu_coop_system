@@ -25,6 +25,7 @@ class Adviser extends CI_controller{
         $data['adviser'] = @$this->Adviser->gets_adviser();
 
         // addBreadcrumb
+        $this->breadcrumbs->push('จัดการอาจารย์', '#');
         $this->breadcrumbs->push('จัดอาจารย์ที่ปรึกษากับนิสิต', '/Officer/Adviser/index');
         $this->template->view('Officer/Adviser_view',$data);
     }
@@ -135,6 +136,7 @@ class Adviser extends CI_controller{
 
     public function map_view()
     {
+        $this->breadcrumbs->push('จัดการอาจารย์', '#');
         $this->breadcrumbs->push('แผนที่', '/Officer/Adviser/map_view');
         $data = [];
         $data['company'] = [];

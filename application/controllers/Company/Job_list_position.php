@@ -116,16 +116,22 @@ class Job_list_position extends CI_Controller {
                 if($this->Student->get_student($student_id)) {
                     //update status
                     $this->Job->update_student($student_id, array( 'company_status_id' => $status_type ));
-                    $this->Student->update_student($student_id, array( 'company_status_id' => $status_type ));
+
+                    if($status_type == 1) {
+                        $this->Student->update_student($student_id, array( 'company_status_id' => $status_type, 'coop_status_id' => 1 ));
+                    } else {
+                        $this->Student->update_student($student_id, array( 'company_status_id' => $status_type ));
+                    }
                 }
             }
+            
             $data['status'] = true;
             $data['msg'] = 'เปลี่ยนสถานะสำเร็จ';
             $data['msg_icon'] = 'success';
             
             
         }
-
+        
         echo json_encode($data);
     }
 

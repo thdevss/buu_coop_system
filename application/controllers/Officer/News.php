@@ -48,7 +48,7 @@ class News extends CI_Controller {
         $data['data'] = $this->News->gets_news(null, 1);
 
         // add breadcrumbs
-        $this->breadcrumbs->push('รายการบระกาศข่าวสารหน้าเว็บ', '/Officer/News/index');
+        $this->breadcrumbs->push('รายการประกาศข่าวสารหน้าเว็บ', '/Officer/News/index');
 
         $this->template->view('Officer/News_list_view', $data);
     } 

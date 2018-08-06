@@ -174,7 +174,6 @@ $(document).ready(function() {
                 การเตรียมไฟล์สำหรับอัพโหลด
                 <ol>
                 <li>ดาวน์โหลดไฟล์จาก Google Sheet มาเปิดบน Microsoft Excel</li>
-                <li>ทำการลบหัวตารางออก (แถวแรก)</li>
                 <li>เซฟ แล้วนำมาอัพโหลด</li>
                 </ol>
 
