@@ -29,7 +29,9 @@ class Students extends CI_Controller {
         $data['company_status_type'] = $this->Company->gets_company_status_type();
 
         // add breadcrumbs
-        $this->breadcrumbs->push('รายชื่อนิสิต', '/Officer/Students/index');
+        $this->breadcrumbs->push('จัดการนิสิต', '#');
+        $this->breadcrumbs->push('เปลี่ยนสถานะ', '/Officer/Students/index');
+
 
         $this->template->view('Officer/Students_view',$data);
     }

@@ -18,6 +18,7 @@ class Coop_Submitted_Form_Search extends CI_Controller {
 
             // $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
             $this->breadcrumbs->push(strToLevel($user->login_type), '/'.ucfirst($user->login_type)); //actor
+            $this->breadcrumbs->push('รายงาน', '#');
     }
 
         public function by_student()

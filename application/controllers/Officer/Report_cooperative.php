@@ -12,10 +12,14 @@ class Report_cooperative extends CI_Controller {
 		}
 		
 		//check priv
-        if($this->Login_session->check_login()->login_type != 'officer') {
+        $user = $this->Login_session->check_login();
+        if($user->login_type != 'officer') {
             redirect(ucfirst($this->Login_session->check_login()->login_type).'/main/');
             die();
         }
+        $this->breadcrumbs->push(strToLevel($user->login_type), '/'.ucfirst($user->login_type)); //actor
+        $this->breadcrumbs->push('รายงาน', '#'); //actor
+
     }
 
     public function index()
@@ -25,6 +29,8 @@ class Report_cooperative extends CI_Controller {
         //    get all
         $data['reports'] = $this->get_stat_all();
         $data['current_department'] = array();
+
+        $this->breadcrumbs->push('สรุปภาพรวม', '/Officer/Report_coperative'); //actor
 
         $this->template->view('Officer/Report_cooperative_view', $data);
     }
@@ -43,6 +49,8 @@ class Report_cooperative extends CI_Controller {
         
         $data['company_name'] = $this->Company->gets_company();        
         $data['department_name'] = $this->Student->gets_department();
+        $this->breadcrumbs->push('สรุปภาพรวม', '/Officer/Report_coperative'); //actor
+
 
         $this->template->view('Officer/Report_cooperative_view', $data);
     }

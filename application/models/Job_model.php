@@ -76,7 +76,7 @@ class Job_model extends CI_model {
         $array['company_id'] = $job[0]['company_id'];
         $array['student_id'] = $student_id;
         $array['job_register_datetime'] = date('Y-m_d H:i:s');
-        $array['company_status_id'] = 1;
+        $array['company_status_id'] = 2;
         
         $return = $this->db->replace('tb_student_register_company_job_position',$array);
 

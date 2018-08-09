@@ -44,7 +44,7 @@ class Company_model extends CI_model {
 
     public function gets_company_status_type()
     {
-        // $this->db->where('company_status_id !=', 5);        
+        $this->db->where('company_status_id !=', 5);        
         $this->db->from('tb_company_status');
         $query = $this->db->get();
         return $query->result_array();

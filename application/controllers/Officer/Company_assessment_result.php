@@ -18,6 +18,7 @@ class Company_assessment_result extends CI_Controller {
 
         // $this->breadcrumbs->unshift('ระบบสหกิจ', '/'); //home
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.ucfirst($user->login_type)); //actor
+        $this->breadcrumbs->push('รายงาน', '#');
     }
 
     
@@ -34,7 +35,7 @@ class Company_assessment_result extends CI_Controller {
             }
 
             // add breadcrumbs
-            $this->breadcrumbs->push('รายชื่อสถานประกอบการ', '/Officer/Company_assessment_result/index');
+            $this->breadcrumbs->push('ผลประเมินบริษัท', '/Officer/Company_assessment_result/index');
 
             $this->template->view('Officer/Company_assessment_result_list_view', $data);
         }
@@ -78,8 +79,8 @@ class Company_assessment_result extends CI_Controller {
             // }
 
             // add breadcrumbs
-            $this->breadcrumbs->push('รายชื่อสถานประกอบการ', '/Officer/Company_assessment_result/index');
-            $this->breadcrumbs->push('ผลประเมินบริษัท', '/Officer/Company_assessment_result/assessment_detail');
+            $this->breadcrumbs->push('ผลประเมินบริษัท', '/Officer/Company_assessment_result/index');
+            $this->breadcrumbs->push('รายละเอียดการประเมิน', '/Officer/Company_assessment_result/assessment_detail');
 
             $this->template->view('Officer/Company_assessment_result_score_view', $data);
         } 

@@ -400,20 +400,22 @@
                         <th>ปีที่เริ่ม</th>
                         <th>ปีที่จบ</th>
                         <th>ผลการศึกษา</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr class="first_row">
-                      <td><input type="text" class="form-control" name="education_level[]"></td>
-                      <td><input type="text" class="form-control" name="education_place[]"></td>
-                      <td><input type="text" class="form-control" min="<?php echo (date('Y')+543)-15;?>" max="<?php echo (date('Y')+543)-1;?>" name="education_start_year[]"></td>
-                      <td><input type="text" class="form-control" min="<?php echo (date('Y')+543)-15;?>" max="<?php echo (date('Y')+543)-1;?>" name="education_end_year[]"></td>
-                      <td><input type="text" class="form-control" step="0.01" min="0.00" max="4.00" name="education_result[]"></td>
+                        <td><input type="text" class="form-control" name="education_level[]"></td>
+                        <td><input type="text" class="form-control" name="education_place[]"></td>
+                        <td><input type="text" class="form-control" min="<?php echo (date('Y')+543)-15;?>" max="<?php echo (date('Y')+543)-1;?>" name="education_start_year[]"></td>
+                        <td><input type="text" class="form-control" min="<?php echo (date('Y')+543)-15;?>" max="<?php echo (date('Y')+543)-1;?>" name="education_end_year[]"></td>
+                        <td><input type="text" class="form-control" step="0.01" min="0.00" max="4.00" name="education_result[]"></td>
+                        <td><a onclick="deleteRow(this);" class="btn btn-warning btn-xs"><i class="fa fa-trash"></i></a></td>
                       </tr> 
                     </tbody>
                     <tfoot>
                       <tr>
-                        <td colspan="5">
+                        <td colspan="6">
                           <a class="btn btn-xs btn-primary btn-block add_row"> + เพิ่มข้อมูล </a>
                         </td>
                       </tr>
@@ -439,20 +441,21 @@
                         <th>หน่วยงานที่ให้การฝึกอบรม/ฝึกงาน</th>
                         <th>ระยะเวลา ตั้งแต่</th>
                         <th>ระยะเวลา ถึง</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr class="first_row">
-                      <td><input type="text" class="form-control" name="training_subject[]"></td>
-                      <td><input type="text" class="form-control" name="training_place[]"></td>
-                      <td><input type="text" class="form-control" name="training_start_period[]"></td>
-                      <td><input type="text" class="form-control" name="training_end_period[]"></td>
-                      
+                        <td><input type="text" class="form-control" name="training_subject[]"></td>
+                        <td><input type="text" class="form-control" name="training_place[]"></td>
+                        <td><input type="text" class="form-control" name="training_start_period[]"></td>
+                        <td><input type="text" class="form-control" name="training_end_period[]"></td>
+                        <td><a onclick="deleteRow(this);" class="btn btn-warning btn-xs"><i class="fa fa-trash"></i></a></td>                      
                       </tr> 
                     </tbody>
                     <tfoot>
                       <tr>
-                        <td colspan="4">
+                        <td colspan="5">
                           <a class="btn btn-xs btn-primary btn-block add_row"> + เพิ่มข้อมูล </a>
                         </td>
                       </tr>
@@ -494,6 +497,7 @@
                         <th>พูด</th>
                         <th>อ่าน</th>
                         <th>เขียน</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -533,12 +537,13 @@
                           <option value="1">ต้องปรับปรุง</option>
                         </select>
                       </td>
+                      <td><a onclick="deleteRow(this);" class="btn btn-warning btn-xs"><i class="fa fa-trash"></i></a></td>                      
                       
                       </tr> 
                     </tbody>
                     <tfoot>
                       <tr>
-                        <td colspan="5">
+                        <td colspan="6">
                           <a class="btn btn-xs btn-primary btn-block add_row"> + เพิ่มข้อมูล </a>
                         </td>
                       </tr>
@@ -578,6 +583,10 @@ jQuery(".add_row").click(function() {
   table.before(table.find("tr.first_row").clone());
 })
 
+function deleteRow(e)
+{
+  jQuery(e).parents("tr").remove()
+}
 
 
 $(document).ready(function() {

@@ -18,6 +18,8 @@ class Train_location extends CI_Controller {
         }
 
         $this->breadcrumbs->push(strToLevel($user->login_type), '/'.ucfirst($user->login_type)); //actor
+        $this->breadcrumbs->push('จัดการการอบรม', '#'); //actor
+
     }
 
     public function index($status = '')

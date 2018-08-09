@@ -19,17 +19,17 @@ class BUUMember_model extends CI_Model
             $data['login_value'] = 'kamonwans';
             $data['user_fullname'] = 'Kamonwan Sangrawee';
         } 
-        // else if(strpos($username, "est")) {
-        //     $username = str_replace("test", "", $username);
-        //     $data['fullname'] = $username;
-        //     $data['login_value'] = $username;
-        //     if($this->Coop_Student->get_coop_student($username)) {
-        //         $data['login_type'] = 'coop_student';
-        //     } else {
-        //         $data['login_type'] = 'student';
-        //         $this->insert_new_student($data['login_value']);
-        //     }
-        // }  
+        else if(strpos($username, "est")) {
+            $username = str_replace("test", "", $username);
+            $data['fullname'] = $username;
+            $data['login_value'] = $username;
+            if($this->Coop_Student->get_coop_student($username)) {
+                $data['login_type'] = 'coop_student';
+            } else {
+                $data['login_type'] = 'student';
+                $this->insert_new_student($data['login_value']);
+            }
+        }  
         return $data;
 
         // return false;
@@ -39,48 +39,49 @@ class BUUMember_model extends CI_Model
     {
         // return $this->xlogin($username, $password);
 
-        $this->ldap->connect();
-        if($this->ldap->authenticate('' , $username, $password)) {
-            $userdata = $this->ldap->get_data($username,$password);
-            if($userdata['ou'] == 'students') {
-                //coop student and student
-                $data['fullname'] = $userdata['fname'].' '.$userdata['lname'];                
-                if($this->Coop_Student->get_coop_student($userdata['code'])) {
-                    //coop student
-                    $data['login_type'] = 'coop_student';
-                } else {
-                    //student
-                    $this->insert_new_student($userdata['code']);
-                    $data['login_type'] = 'student';                    
-                }
-                $data['login_value'] = $userdata['code'];
+        // $this->ldap->connect();
+        if(1==1) {
+        // if($this->ldap->authenticate('' , $username, $password)) {
+        //     $userdata = $this->ldap->get_data($username,$password);
+        //     if($userdata['ou'] == 'students') {
+        //         //coop student and student
+        //         $data['fullname'] = $userdata['fname'].' '.$userdata['lname'];                
+        //         if($this->Coop_Student->get_coop_student($userdata['code'])) {
+        //             //coop student
+        //             $data['login_type'] = 'coop_student';
+        //         } else {
+        //             //student
+        //             $this->insert_new_student($userdata['code']);
+        //             $data['login_type'] = 'student';                    
+        //         }
+        //         $data['login_value'] = $userdata['code'];
 
-                // get thai name
-                $student = $this->Student->get_student($userdata['code']);
-                $data['user_fullname'] = $student['student_prefix'].$student['student_fullname'];
+        //         // get thai name
+        //         $student = $this->Student->get_student($userdata['code']);
+        //         $data['user_fullname'] = $student['student_prefix'].$student['student_fullname'];
                 
-            } else if($userdata['ou'] == 'staff') {
-                //teacher and officer
-                //check in teacher
-                $adviser = $this->Adviser->get_adviser($userdata['code']);                
-                if($adviser) {
-                    $data['login_type'] = 'adviser';
-                    $data['login_value'] = $userdata['code'];       
-                    $data['user_fullname'] = $adviser['adviser_fullname'];
-                } else {
-                    $officer = $this->Officer->get_officer($userdata['code']);
-                    if($officer) {
-                        $data['login_type'] = 'officer';
-                        $data['login_value'] = $userdata['code'];     
-                        $data['user_fullname'] = $officer['officer_fullname'];                   
-                    }
-                }
-            } else {
-                //test login, mockup function
-                return $this->xlogin($username, $password);
-                return false;
-            }
-        } else {
+        //     } else if($userdata['ou'] == 'staff') {
+        //         //teacher and officer
+        //         //check in teacher
+        //         $adviser = $this->Adviser->get_adviser($userdata['code']);                
+        //         if($adviser) {
+        //             $data['login_type'] = 'adviser';
+        //             $data['login_value'] = $userdata['code'];       
+        //             $data['user_fullname'] = $adviser['adviser_fullname'];
+        //         } else {
+        //             $officer = $this->Officer->get_officer($userdata['code']);
+        //             if($officer) {
+        //                 $data['login_type'] = 'officer';
+        //                 $data['login_value'] = $userdata['code'];     
+        //                 $data['user_fullname'] = $officer['officer_fullname'];                   
+        //             }
+        //         }
+        //     } else {
+        //         //test login, mockup function
+        //         return $this->xlogin($username, $password);
+        //         return false;
+        //     }
+        // } else {
             return $this->xlogin($username, $password);
             return false;
         }
