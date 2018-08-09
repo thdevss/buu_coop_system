@@ -110,6 +110,7 @@ class IN_S005 extends CI_Controller {
             ];
 
             $cache_plans = $this->Coop_Student->get_coop_student_plan($student_id);
+            
             for($i=0;$i<count($cache_plans);$i++) {
             // foreach($this->Coop_Student->get_coop_student_plan($student_id) as $i => $row) {
                 if(!@$cache_plans[$i]['plan_work_subject']) {
@@ -145,7 +146,11 @@ class IN_S005 extends CI_Controller {
                 }
                 for($K=0;$K<16;$K++) {
                     if(in_array($K, $choice)) {
-                        $tmp_array['w'.$K] = "\u{2713}";
+                        $KK = $K+1;
+                        $tmp_array['w'.$KK] = "\u{2713}";
+                        // $KK = ++$K;
+                        // $tmp_array['w'.$KK] = " * ";
+
                     }
                 }
 

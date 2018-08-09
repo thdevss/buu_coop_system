@@ -37,7 +37,7 @@ class Assessment_company extends CI_Controller {
             ];
         } else if($status == 'error') {
             $data['status'] = [
-                'text' => 'ผิดพลาด',
+                'text' => 'ผิดพลาด ไม่สามารถบันทึกข้อมูลได้',
                 'color' => 'warning'
             ];
         } else if($status == 'error_trainer_id') {
@@ -87,6 +87,7 @@ class Assessment_company extends CI_Controller {
 			die();			
 		}
 
+		$sql_status = false;
 		$term_id = $this->Login_session->check_login()->term_id;
 		foreach($this->input->post('item') as $item_id => $result) {
 			$insert = [
@@ -104,11 +105,13 @@ class Assessment_company extends CI_Controller {
 				$insert['company_has_coop_company_questionnaire_item_comment'] = $result;
             }
 			// print_r($insert);
-			$sql_status = false;
+			
 			
 			$sql_status = $this->Company_Assessment_Form->save_company_form_result($insert);
+			// var_dump($sql_status);
+			// print_r($this->db->last_query());
 		}
-
+		
 		$insert = [
 			'student_id' => $student_id,
 			'trainer_id' => $coop_student['trainer_id'],
@@ -124,9 +127,8 @@ class Assessment_company extends CI_Controller {
 		$sql_status = $this->Company_Assessment_Form->save_company_comment_result($insert);
 		
 		
-
 		if($sql_status) {
-			//chek=c if print
+			// check if print
 			if($this->input->post('print') == 1){
 				$this->print_data();
 

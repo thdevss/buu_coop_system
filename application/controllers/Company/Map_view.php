@@ -25,7 +25,9 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                              <div id="map" style="height:450px;width:100%;"></div>
+                              <!-- <div id="map" style="height:450px;width:100%;"></div> -->
+                              <!-- เปิดด้านบน หากสามารถใช้งาน https ได้ -->
+                              <img src="<?php echo base_url('assets/img/howto_map.png');?>">
                             </div>
                             
                             <div class="col-md-6">
